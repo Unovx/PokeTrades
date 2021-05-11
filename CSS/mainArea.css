@@ -1,0 +1,158 @@
+@media only screen and (max-width: 768px) {
+    [class*="MA-MainTextHolder"]{
+        width: 90% !important;
+    }
+    [class*="MA-PokeTradesTextIcon"]{
+        width: 100% !important;
+    }
+    [class*="TradingAreas"]{
+        grid-gap: 1rem;
+        width: 100% !important;
+        top: 20px !important;
+    }
+    [class*=MA-ForTradeImage]{
+        max-width: 100% !important;
+    }
+    [class*=MA-LookingForImage]{
+        max-width: 100% !important;
+    }
+    [class*="ForTradeText"]{
+        font-size: 20px !important;
+    }
+    [class*="LookingForText"]{
+        font-size: 20px !important;
+    }
+    [class*="MA-SearchInfo"]{
+        top: 35px !important;
+    }
+    [class*="MA-CustomMessageArea"]{
+        width: 90% !important;
+        top: 50px !important;
+    }
+    [class*="MA-Message"]{
+        font-size: initial !important;
+    }
+  }
+
+#MainArea{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+.MA-MainTextHolder{
+    position: relative;
+    width: 100%;
+    text-align: center;
+    top: 0%;
+}
+
+.MA-LoginButton{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    max-width: 48px;
+    max-height: 48px;
+}
+
+.TradingAreas{
+    display: grid;
+    grid-template-columns: repeat( 2, minmax(100px, 1fr) );
+    position: relative;
+    text-align: center;
+    justify-items: center;
+    width: 70%;
+    top: 50px;
+    margin: auto;
+    /*z-index: -1;*/
+}
+
+.MA-PokeTradesTextIcon{
+    position: relative;
+    top: 10px;
+    max-height: 500px;
+    max-width: 500px;
+}
+
+.MA-ForTradeImage{
+    position: relative;
+    top: 10px;
+    max-height: 250px;
+    max-width: 250px;
+}
+
+.MA-ForTradeText{
+    position: relative;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.MA-LookingForImage{
+    position: relative;
+    top: 10px;
+    max-height: 250px;
+    max-width: 250px;
+}
+
+.MA-LookingForText{
+    position: relative;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.MA-SearchInfo{
+    position: relative;
+    text-align: center;
+    margin: auto;
+    bottom: 100px;
+}
+
+.MA-TradeSheetInfo{
+    position: relative;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.MA-UserID{
+    position: relative;
+    display: none;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.MA-CustomMessageArea{
+    position: relative;
+    margin: auto;
+    background-color: #C0C0C0;
+    padding: 10px;
+    width: 750px;
+    top: 50px;
+}
+
+.MA-Message{
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+
+/* Removing the arrows at the end of the search bar that appears with the numbers */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

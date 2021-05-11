@@ -1,0 +1,521 @@
+@media only screen and (max-width: 768px) {
+    [class*="VA-"] {
+      width: 100% !important;
+      left: 0% !important;
+      right: 0%;
+      position: relative !important;
+      display: flex;
+      text-align: center !important;
+      place-content: center !important;
+      top: 0% !important;
+    }
+
+    [class*="ViewingAlign"]{
+      position: absolute !important;
+      display: flex !important;
+      right: 0 !important;
+      top: 0% !important;
+      left: auto !important;
+    }
+
+    [id*="MatchMaking"]{
+        position: relative !important;
+        top: 0% !important;
+        bottom: 0% !important;
+    }
+  }
+
+  @media only screen and (max-height: 800px) and (max-width: 768px) {
+    [id*="ViewingButtonsArea"]{
+        position: absolute !important;
+    }
+
+    [id*="MoreViewings"]{
+        position: relative !important;
+    }
+  }
+
+
+  #ViewingArea{
+    background-color: #2E2D2D;
+    position: absolute; 
+    display: none;
+    top: 50%;
+    height: 50%;
+    z-index: 2;
+    width:100%;
+    overflow: auto;
+  }
+
+    #ViewingButtonsArea{
+    /* sticky and 0; are so it acts like its fixed, as fixed has issues with overflow elements*/
+    position: sticky;
+    top: 0%;
+    z-index: 1;    
+  }
+
+  /* All buttons have Width set to 61px and Height set to 22px (Height for border issues); for the viewing buttons to look consistent*/
+  .ViewingButtons{
+    position: absolute;
+    
+  }
+
+  .VA-CloseButton{
+    width: 61px;
+    height: 22px;
+    background-color: #efefef;
+    border: none;
+    align-items: center;
+  }
+
+  .VA-ModifyButton{
+    width: 61px;
+    height: 22px;
+    pointer-events: none;
+    background-color: grey;
+    border: none;
+    align-items: center;
+  }
+
+  .VA-DeleteButton{
+    width: 61px;
+    height: 22px;
+    pointer-events: none;
+    background-color: grey;
+    border: none;
+    align-items: center;
+  }
+
+  .VA-AddButton{
+    width: 61px;
+    height: 22px;
+    pointer-events: none;
+    background-color: grey;
+    border: none;
+    align-items: center;
+  }
+
+  .VA-Username{
+    position: absolute;
+    color: #FF7B2F;
+    left: 100px;
+    top: 5px;
+    width: 200px;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .VA-Bunch{
+    position: absolute;
+    text-align: center;
+    color:#36E26E;
+    left: 340px;
+    top: 5px;
+    width: 200px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .VA-ObtainedInfo{
+    position: absolute;
+    color: white;
+    left: 570px;
+    top: 5px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /*.VA-HowObtained{
+    position: absolute;
+    color: white;
+    left: 650px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .VA-GameObtained{
+    position: absolute;
+    color: white;
+    left: 810px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }*/
+
+  .VA-Lang{
+    position: absolute;
+    color: #399BC8;
+    left: 810px;
+    top: 5px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .VA-Gen6{
+    position: absolute;
+    color: #C83939;
+    left: 910px;
+    top: 5px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .VA-Gen7{
+    position: absolute;
+    color: #C83939;
+    left: 1010px;
+    top: 5px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .VA-Gen8{
+    position: absolute;
+    color: #C83939;
+    left: 1110px;
+    top: 5px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .VA-Home{
+    position: absolute;
+    color: #C83939;
+    left: 1210px;
+    top: 5px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .VA-PokemonImage{
+    position: absolute; 
+    top: 50px; 
+    max-width: 128px; 
+    max-height: 128px;
+    left: 150px;
+    margin: auto;
+  }
+
+  /*Made this a grid for testing, though I could simply make this a table now later on*/
+  .VA-TextAlign{
+    display: grid;
+    grid-template-columns: repeat( 1, minmax(100px, 1fr) );
+    position: absolute;
+    text-align: center;
+    top: 180px;
+    left: 60px;
+    width: 280px;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .VA-ImageAlign{
+    position: absolute;
+    text-align: center;
+    top: 40px;
+    left: 355px;
+    width: auto;
+  }
+
+  /*Max Width and Height set for aspect scaling for images*/
+  .VA-Pokeball{
+    max-width: 24px; 
+    max-height: 24px;
+  }
+
+  .VA-Gender{
+    max-width: 24px; 
+    max-height: 24px;
+  }
+
+  .VA-Shiny{
+    max-width: 24px; 
+    max-height: 24px;
+  }
+
+  .VA-Mint{
+    max-width: 24px; 
+    max-height: 24px;
+  }
+
+  .VA-Misc{
+    max-width: 24px; 
+    max-height: 24px;
+  }
+
+  .VA-Mark{
+    max-width: 24px; 
+    max-height: 24px;
+  }
+
+  .VA-InfoAlign{
+    position: absolute;
+    text-align: center;
+    top: 80px;
+    left: 320px;
+    width: 225px;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /*Not VA as it needs to function differently in regards to dealing with long proof links*/
+  .ViewingProof{
+    
+    font-size: auto;
+    white-space:nowrap;
+    overflow: hidden;
+    width: 225px;
+  }
+
+  .VA-Note{
+    position: relative;
+    left: 570px;
+    top: 50px;
+    width: 200px;
+    height: fit-content;
+    color: white;
+    background-color: #555555;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .VA-PokemonMoves{
+    position: absolute;
+    color: white;
+    top: 60px;
+    left: 950px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* Grids for both normal and legacy moves, the outline is to create an illusion of a gap between them*/
+  .VA-NormalMoves{
+    display: grid;
+    grid-template-columns: repeat( 2, minmax(100px, 1fr) );
+    position: absolute;
+    color: white;
+    top: 100px;
+    left: 800px;
+    width: 400px;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    /*background-color: #9F9F9F;*/
+  }
+
+  .VA-Move1{
+    background-color: #9F9F9F;
+    width: 200px;
+    height: 25px;
+    align-items: center;
+    outline: 2px solid #2E2D2D;
+    display: inherit;
+  }
+
+  .VA-Move2{
+    background-color: #9F9F9F;
+    width: 200px;
+    height: 25px;
+    align-items: center;
+    outline: 2px solid #2E2D2D;
+    display: inherit;
+  }
+
+  .VA-Move3{
+    background-color: #9F9F9F;
+    width: 200px;
+    height: 25px;
+    align-items: center;
+    outline: 2px solid #2E2D2D;
+    display: inherit;
+  }
+
+  .VA-Move4{
+    background-color: #9F9F9F;
+    width: 200px;
+    height: 25px;
+    align-items: center;
+    outline: 2px solid #2E2D2D;
+    display: inherit;
+  }
+
+  .VA-TransferMoves{
+    position: absolute;
+    color: white;
+    top: 160px;
+    left: 950px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-bottom: 2px;
+  }
+
+  .VA-LegacyMoves{
+    display: grid;
+    grid-template-columns: repeat( 2, minmax(100px, 1fr) );
+    position: absolute;
+    color: white;
+    top: 200px;
+    left: 800px;
+    width: 400px;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .VA-LegacyMove1{
+    background-color: #9F9F9F;
+    width: 200px;
+    height: 25px;
+    align-items: center;
+    outline: 2px solid #2E2D2D;
+    display: inherit;
+  }
+
+  .VA-LegacyMove2{
+    background-color: #9F9F9F;
+    width: 200px;
+    height: 25px;
+    align-items: center;
+    outline: 2px solid #2E2D2D;
+    display: inherit;
+  }
+
+  .VA-LegacyMove3{
+    background-color: #9F9F9F;
+    width: 200px;
+    height: 25px;
+    align-items: center;
+    outline: 2px solid #2E2D2D;
+    display: inherit;
+  }
+
+  .VA-LegacyMove4{
+    background-color: #9F9F9F;
+    width: 200px;
+    height: 25px;
+    align-items: center;
+    outline: 2px solid #2E2D2D;
+    display: inherit;
+  }
+
+  #MoreViewings{
+    /* sticky and 0; are so it acts like its fixed, as fixed has issues with overflow elements*/
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .ViewingAlign{
+    position: absolute;
+    top: 50px;
+    left: 1230px;
+    /*position: relative;
+    left: 93%;*/
+  }
+
+  .VA-ViewingHelp{
+    max-width: 24px; 
+    max-height: 24px;
+    align-items: center;
+  }
+
+  /* Important used to make it the same as the VA-AVs below*/
+  .VA-AddAV1{
+    max-width: 24px !important; 
+    max-height: 24px !important;
+    align-items: center;
+  }
+
+  .VA-AddAV2{
+    max-width: 24px !important; 
+    max-height: 24px !important;
+    align-items: center;
+  }
+
+  .VA-AddAV3{
+    max-width: 24px !important; 
+    max-height: 24px !important;
+    align-items: center;
+  }
+
+  .VA-AddAV4{
+    max-width: 24px !important; 
+    max-height: 24px !important;
+    align-items: center;
+  }
+
+  .VA-AddAV5{
+    max-width: 24px !important; 
+    max-height: 24px !important;
+    align-items: center;
+  }
+
+  .VA-AddAV6{
+    max-width: 24px !important; 
+    max-height: 24px !important;
+    align-items: center;
+  }
+
+    /*Max Width and Height set for aspect scaling for images*/
+  .VA-AV1{
+    max-width: 24px; 
+    max-height: 24px;
+  }
+
+  .VA-AV2{
+    max-width: 24px; 
+    max-height: 24px;
+  }
+
+  .VA-AV3{
+    max-width: 24px; 
+    max-height: 24px;
+  }
+
+  .VA-AV4{
+    max-width: 24px; 
+    max-height: 24px;
+  }
+
+  .VA-AV5{
+    max-width: 24px; 
+    max-height: 24px;
+  }
+
+  .VA-AV6{
+    max-width: 24px; 
+    max-height: 24px;
+  }
+
+  .VA-PreferredPokemon{
+      position: absolute;
+      color: #39C8C4;
+      text-align: center;
+      font-weight: bold;
+      font-family: Arial, Helvetica, sans-serif;
+      top: 250px;
+      left: 400px;
+      padding-top: 5px;
+  }
+
+  #MatchMaking{
+    overflow: auto;
+    position: absolute;
+    width: 100%;
+    top: 280px;
+  }
+
+  #MatchContainer{
+    display: flex;
+    /* auto-fill into of auto-fit so it starts from the corner of the screen*/
+    grid-template-columns: repeat( auto-fill, minmax(100px, 1fr) );
+    /* this is so it fills all available space without an parts being cut off on any device
+    height: -webkit-fill-available;*/
+    /* needing to prevent bunches and to an slight extent mons looking crowded*/
+    grid-gap: 1rem;
+    /*place-items: center;*/
+  }

@@ -1,0 +1,345 @@
+#LoginArea{
+    display: none;
+    position: absolute;
+    background-color: #C0C0C0;
+    height: 350px;
+    width: 200px;
+    top: 50px;
+    right: 0%;
+    z-index: 1;
+
+}
+
+.LA-LoginClose{
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+}
+
+.LA-LoginArea{
+    position: relative;
+    display: none;
+}
+
+.LA-LoginText{
+    position: absolute;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    top: 10px;
+    text-align: center;
+}
+
+.LA-LoginUsername{
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    width: 80%;
+}
+
+.LA-LoginPassword{
+    position: absolute;
+    top: 85px;
+    left: 20px;
+    width: 80%;
+}
+
+.LA-LoginFailed{
+    position: absolute;
+    color: #C83939;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 155px;
+    width: 100%;
+    text-align: center;
+}
+
+.LA-LoginButton{
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    width: 66px;
+}
+
+.LA-LoginRegisterButton{
+    position: absolute;
+    top: 120px;
+    left: 60%;
+    width: 66px;
+}
+
+.LA-LoggedInArea{
+    position: relative;
+    display: none;
+}
+
+.LA-LoggedInText{
+    position: absolute;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    top: 10px;
+    text-align: center;
+}
+
+.LA-Username{
+    position: absolute;
+    color: #0b8fcc;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    top: 40px;
+    text-align: center;
+}
+
+.LA-LogOut{
+    position: absolute;
+    top: 70px;
+    left: 65px;
+    text-align: center;
+}
+
+.LA-ChangeDetails{
+    position: absolute;
+    top: 105px;
+    left: 10px;
+    text-align: center;
+    width: 180px;
+}
+
+.LA-Import{
+    position: absolute;
+    top: 160px;
+    left: 10px;
+    text-align: center;
+    width: 66px;
+}
+
+.LA-Export{
+    position: absolute;
+    top: 160px;
+    left: 124px;
+    text-align: center;
+    width: 66px;
+}
+
+.LA-LoggedInNotify{
+    position: absolute;
+    display: none;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 195px;
+    left: 10px;
+    text-align: center;
+    width: 180px;
+}
+
+.LA-DeleteAllData{
+    position: absolute;
+    top: 230px;
+    left: 50px;
+    text-align: center;
+}
+
+.LA-PreviewSettings{
+    position: absolute;
+    top: 270px;
+    width: 100%;
+    text-align: center;
+}
+
+.LA-RegisterArea{
+    position: relative;
+    display: none;
+}
+
+.LA-CreateAccount{
+    position: absolute;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    top: 10px;
+    text-align: center;
+}
+
+.LA-RegisterUsername{
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    width: 80%;
+}
+
+.LA-RegisterPassword{
+    position: absolute;
+    top: 85px;
+    left: 20px;
+    width: 80%;
+}
+
+.LA-RegisterConfirmPassword{
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    width: 80%;
+}
+
+.LA-RegisterButton{
+    position: absolute;
+    width: 65px;
+    top: 155px;
+    left: 20px;
+    width: 66px;
+}
+
+.LA-RegisterBackButton{
+    position: absolute;
+    width: 65px;
+    top: 155px;
+    left: 60%;
+    width: 66px;
+}
+
+.LA-RegisterFailed{
+    position: absolute;
+    width: 200px;
+    color: #C83939;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 190px;
+    text-align: center;
+}
+
+.LA-UpdateArea{
+    position: relative;
+    display: none;
+}
+
+.LA-UpdateText{
+    position: absolute;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    top: 10px;
+    text-align: center;
+}
+
+.LA-UpdateUsername{
+    position: absolute;
+    top: 55px;
+    left: 20px;
+    width: 80%;
+}
+
+.LA-OldPassword{
+    position: absolute;
+    top: 90px;
+    left: 20px;
+    width: 80%;
+}
+
+.LA-NewPassword{
+    position: absolute;
+    top: 125px;
+    left: 20px;
+    width: 80%;
+}
+
+.LA-ConfirmNewPassword{
+    position: absolute;
+    top: 160px;
+    left: 20px;
+    width: 80%;
+}
+
+.LA-ConfirmUpdate{
+    position: absolute;
+    width: 65px;
+    top: 195px;
+    left: 20px;
+}
+
+.LA-UpdateBackButton{
+    position: absolute;
+    width: 65px;
+    top: 195px;
+    left: 60%;
+}
+
+.LA-UpdateFailed{
+    position: absolute;
+    width: 200px;
+    color: #C83939;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 230px;
+    text-align: center;
+}
+
+.LA-PreviewArea{
+    position: relative;
+    display: none;
+}
+
+.LA-PreviewText{
+    position: absolute;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    top: 10px;
+    text-align: center;
+}
+
+.PreviewAlign{
+    position: absolute;
+    top: 55px;
+    left: 65px;
+}
+
+.LA-BallImage{
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.LA-GenderImage{
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.LA-ShinyImage{
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.LA-MintImage{
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.LA-MiscImage{
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.LA-MarkImage{
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.LA-IVsText{
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.LA-PreviewClose{
+    position: absolute;
+    top: 295px;
+    left: 85px;
+}

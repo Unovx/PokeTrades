@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Poketrades</title>
+  <style>
+
+  </style>
+  <link href="CSS/mainArea.css" rel="stylesheet" />
+  <link href="CSS/loginArea.css" rel="stylesheet" />
+  <link href="CSS/selectionArea.css" rel="stylesheet" />
+  <link href="CSS/viewingArea.css" rel="stylesheet" />
+  <link href="CSS/creationArea.css" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <div id="MainArea">
+    <div class="MA-MainTextHolder">
+      <img class="MA-PokeTradesTextIcon" src="https://poketrades.org/Resources/Misc/PokeTrades Icon Text.png"></img>
+    </div>
+    <img class="MA-LoginButton" src="https://poketrades.org/Resources/Home/Klang.png"></img>
+    <div class="TradingAreas">
+      <div>
+        <img class="MA-ForTradeImage" src="https://poketrades.org/Resources/Images/Other/Colress.png"></img>
+      </div>
+      <div>
+        <img class="MA-LookingForImage" src="https://poketrades.org/Resources/Images/Other/Aarune.png"></img>
+      </div>
+      <div>
+        <text class="MA-ForTradeText">For Trade</text>
+      </div>
+      <div>
+        <text class="MA-LookingForText">Looking For</text>
+      </div>
+    </div>
+    <table class="MA-SearchInfo">
+      <tr>
+        <td>
+          <text class="MA-TradeSheetInfo">Search TradeSheets</text>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <input class="MA-Searchbar" type="number" placeholder="Search IDs..">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <text class="MA-UserID">Your ID is:</text>
+        </td>
+      </tr>
+    </table>
+    <div class="MA-CustomMessageArea">
+      <text class="MA-Message">This is a current work in progress, so please excuse any slight issues. Click on
+        either of the Icons to see a selection of the Pokemon people have for trade or are looking for after typing in
+        their User ID. Users who sign in, can edit this text which will show when their User ID is typed in.</text>
+    </div>
+  </div>
+  <div id="LoginArea">
+    <div class="LA-LoginArea">
+      <text class="LA-LoginText">Log In</text>
+      <input class="LA-LoginUsername" type="text" maxlength="15" placeholder="Username...">
+      <input class="LA-LoginPassword" type="password" maxlength="50" placeholder="Password...">
+      <button class="LA-LoginButton">Log In</button>
+      <button class="LA-LoginRegisterButton">Register</button>
+      <text class="LA-LoginFailed">Wrong Username or Password.</text>
+      <button class="LA-PreviewSettings">Preview Settings</button>
+    </div>
+    <div class="LA-LoggedInArea">
+      <text class="LA-LoggedInText">Logged In As:</text>
+      <text class="LA-Username">Test</text>
+      <text class="LA-LoggedInNotify">Account Created.</text>
+      <button class="LA-LogOut">Log Out</button>
+      <button class="LA-ChangeDetails">Change Username or Password</button>
+      <button class="LA-Import">Import</button>
+      <button class="LA-Export">Export</button>
+      <button class="LA-DeleteAllData">Delete All Data</button>
+      <button class="LA-PreviewSettings">Preview Settings</button>
+    </div>
+    <div class="LA-RegisterArea">
+      <text class="LA-CreateAccount">Create Account</text>
+      <input class="LA-RegisterUsername" type="text" maxlength="15" placeholder="Enter Username...">
+      <input class="LA-RegisterPassword" type="password" maxlength="50" placeholder="Enter Password...">
+      <input class="LA-RegisterConfirmPassword" type="password" maxlength="50" placeholder="Confirm Password...">
+      <button class="LA-RegisterButton">Sign Up</button>
+      <button class="LA-RegisterBackButton">Back</button>
+      <text class="LA-RegisterFailed">Passwords do not match.</text>
+    </div>
+    <div class="LA-UpdateArea">
+      <text class="LA-UpdateText">Change Username or Password</text>
+      <input class="LA-UpdateUsername" type="text" maxlength="15" placeholder="Enter New Username...">
+      <input class="LA-OldPassword" type="password" maxlength="50" placeholder="Enter Old Password...">
+      <input class="LA-NewPassword" type="password" maxlength="50" placeholder="Enter New Password...">
+      <input class="LA-ConfirmNewPassword" type="password" maxlength="50" placeholder="Confirm New Password...">
+      <button class="LA-ConfirmUpdate">Confirm</button>
+      <button class="LA-UpdateBackButton">Back</button>
+      <text class="LA-UpdateFailed">Passwords do not match.</text>
+    </div>
+    <div class="LA-PreviewArea">
+      <text class="LA-PreviewText">Preview Settings</text>
+      <table class="PreviewAlign">
+        <tr>
+          <td>
+            <img class="LA-BallImage"
+              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png"></img>
+          </td>
+          <td>
+            <button class="LA-BallButton">On</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img class="LA-GenderImage" src="https://poketrades.org/Resources/Misc/Male.png"></img>
+          </td>
+          <td>
+            <button class="LA-GenderButton">Off</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img class="LA-ShinyImage" src="https://poketrades.org/Resources/Misc/Star Shiny.png"></img>
+          </td>
+          <td>
+            <button class="LA-ShinyButton">Off</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img class="LA-MintImage" src="https://poketrades.org/Resources/Misc/Minted.png"></img>
+          </td>
+          <td>
+            <button class="LA-MintButton">Off</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img class="LA-MiscImage" src="https://poketrades.org/Resources/Misc/Gigantamax.png"></img>
+          </td>
+          <td>
+            <button class="LA-MiscButton">Off</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img class="LA-MarkImage"
+              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/Zero Energy Mark.png"></img>
+          </td>
+          <td>
+            <button class="LA-MarkButton">Off</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <text class="LA-IVsText">IVs</text>
+          </td>
+          <td>
+            <button class="LA-IVsButton">On</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <button class="LA-LoginClose">Close</button>
+  </div>
+  <div id=SelectionArea>
+    <div id="SA-TopRow">
+      <table class="SelectionButtons">
+        <tr>
+          <td>
+            <button class="SA-ExitBunch">Exit Bunch</button>
+          </td>
+          <td>
+            <button class="SA-MainMenu">Main Menu</button>
+          </td>
+          <td>
+            <button class="SA-CreateButton">Create</button>
+          </td>
+          <td>
+            <button class="SA-FiltersButton">Filters</button>
+          </td>
+        </tr>
+      </table>
+      <input class="SA-Searchbar" type="text" placeholder="Search Pokemon..">
+      <text class="SA-Bunch">(No Bunch) </text>
+
+      <!--<div class="SelectionButtons">
+        <div>
+          <button id="SA-ExitBunch">Exit Bunch</button>
+        </div>
+        <div>
+          <button id="SA-MainMenu">Main Menu</button>
+        </div>
+        <div>
+          <button id="SA-CreateButton">Create</button>
+        </div>
+        <div>
+          <button id="SA-FiltersButton">Filters</button>
+        </div>
+      </div>-->
+      <!--<button id="Testing">Try it</button>-->
+    </div>
+    <div id="GeneratedSelection"></div>
+  </div>
+  <div id="ViewingArea">
+    <div id="ViewingButtonsArea">
+      <table class="ViewingButtons">
+        <tr>
+          <td>
+            <button class="VA-CloseButton">Close</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="VA-ModifyButton">Modify</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="VA-DeleteButton">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="VA-AddButton">Add</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="MoreViewings">
+      <table class="ViewingAlign">
+        <tr>
+          <td>
+            <img class="VA-ViewingHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="VA-AddAV1">+</button>
+          </td>
+          <td>
+            <img class="VA-AV1"
+              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="VA-AddAV2">+</button>
+          </td>
+          <td>
+            <img class="VA-AV2"
+              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="VA-AddAV3">+</button>
+          </td>
+          <td>
+            <img class="VA-AV3"
+              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="VA-AddAV4">+</button>
+          </td>
+          <td>
+            <img class="VA-AV4"
+              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="VA-AddAV5">+</button>
+          </td>
+          <td>
+            <img class="VA-AV5"
+              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="VA-AddAV6">+</button>
+          </td>
+          <td>
+            <img class="VA-AV6"
+              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="ViewingContent">
+      <text class="VA-Username">Test#0</text>
+      <text class="VA-Bunch">(No Bunch)</text>
+      <text class="VA-ObtainedInfo">Self Obtained(Retail) USUM</text>
+
+      <table class="VA-Availability">
+        <tr>
+          <td>
+            <text class="VA-Lang">[Any]</text>
+          </td>
+          <td>
+            <text class="VA-Gen6">Gen 6</text>
+          </td>
+          <td>
+            <text class="VA-Gen7">Gen 7</text>
+          </td>
+          <td>
+            <text class="VA-Gen8">Gen 8</text>
+          </td>
+          <td>
+            <text class="VA-Home">Home</text>
+          </td>
+        </tr>
+      </table>
+      <table class="VA-ImageAlign">
+        <tr>
+          <td>
+            <img class="VA-Pokeball"
+              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+          </td>
+          <td>
+            <img class="VA-Gender" src="https://poketrades.org/Resources/Misc/(Any Gender).png"></img>
+          </td>
+          <td>
+            <img class="VA-Shiny" src="https://poketrades.org/Resources/Misc/(Any Shiny or Normal).png"></img>
+          </td>
+          <td>
+            <img class="VA-Mint" src="https://poketrades.org/Resources/Misc/(Any or No Mint).png"></img>
+          </td>
+          <td>
+            <img class="VA-Misc" src="https://poketrades.org/Resources/Misc/(No Misc).png"></img>
+          </td>
+          <td>
+            <img class="VA-Mark"
+              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/(Any or No Mark).png"></img>
+          </td>
+        </tr>
+      </table>
+      <img class="VA-PokemonImage" src="https://poketrades.org/Resources/Fennel2.png"></img>
+
+      <!--<text class="VA-HowObtained">Self Obtained(Retail)</text>
+      <text class="VA-GameObtained">USUM</text>-->
+
+
+
+      <div class="VA-TextAlign">
+        <div>
+          <text class="VA-PokemonName">Pokemon Name</text>
+        </div>
+        <div>
+          <text class="VA-Nickname">(No Nickname)</text>
+        </div>
+        <div>
+          <text class="VA-IVs">31/31/31/31/31/31</text>
+        </div>
+        <div>
+          <text class="VA-EVs">252/252/252/252/252/252</text>
+        </div>
+      </div>
+      <!--<table class="VA-TextAlign">
+        <tr>
+          <td class="VA-PokemonName">Pokemon Name</td>
+        </tr>
+        <tr>
+          <td class="VA-Nickname">(No Nickname)</td>
+        </tr>
+        <tr>
+          <td class="VA-IVs">31/31/31/31/31/31</td>
+        </tr>
+        <tr>
+          <td class="VA-EVs">252/252/252/252/252/252</td>
+        </tr>
+      </table>-->
+
+      <table class="VA-InfoAlign">
+        <tr>
+          <td class="VA-Nature">(Quirky)</td>
+        </tr>
+        <tr>
+          <td class="VA-Ability">(No Ability)</td>
+        </tr>
+        <tr>
+          <td class="VA-OT">(Trainer)</td>
+        </tr>
+        <tr>
+          <td class="VA-ID">(000000)</td>
+        </tr>
+        <tr>
+          <td class="VA-Status">(Untouched)</td>
+        </tr>
+        <tr>
+          <td class="VA-Event">(No Event)</td>
+        </tr>
+        <tr>
+          <td>
+            <a class="ViewingProof" target="_blank">(No Proof)</a>
+          </td>
+
+
+        </tr>
+      </table>
+      <table class="VA-Note">
+        <tr>
+          <td>
+            <text>Testing</text>
+          </td>
+        </tr>
+      </table>
+      <text class="VA-PokemonMoves">Pokemon Moves</text>
+      <div class="VA-NormalMoves">
+        <div class="VA-Move1">(No Move)</div>
+        <div class="VA-Move2">(No Move)</div>
+        <div class="VA-Move3">(No Move)</div>
+        <div class="VA-Move4">(No Move)</div>
+      </div>
+      <!--<table class="VA-NormalMoves">
+        <tr>
+          <td class="VA-Move1">(No Move)</td>
+          <td class="VA-Move2">(No Move)</td>
+        </tr>
+        <tr>
+          <td class="VA-Move3">(No Move)</td>
+          <td class="VA-Move4">(No Move)</td>
+        </tr>
+      </table>-->
+      <text class="VA-TransferMoves">Egg/Transfer Moves</text>
+      <div class="VA-LegacyMoves">
+        <div class="VA-LegacyMove1">(No Move)</div>
+        <div class="VA-LegacyMove2">(No Move)</div>
+        <div class="VA-LegacyMove3">(No Move)</div>
+        <div class="VA-LegacyMove4">(No Move)</div>
+      </div>
+      <!--<table class="VA-LegacyMoves">
+        <tr>
+          <td class="VA-LegacyMove1">(No Move)</td>
+          <td class="VA-LegacyMove2">(No Move)</td>
+        </tr>
+        <tr>
+          <td class="VA-LegacyMove3">(No Move)</td>
+          <td class="VA-LegacyMove4">(No Move)</td>
+        </tr>
+      </table>-->
+      <text class="VA-PreferredPokemon">Preferred Pokemon in Exchange:</text>
+    </div>
+    <div id="MatchMaking"></div>
+  </div>
+  <div id="CreationArea">
+    <div id="CreationButtonsArea">
+      <table class="CreationButtons">
+        <tr>
+          <td>
+            <button class="CA-CloseButton">Close</button>
+          </td>
+          <td>
+            <button class="CA-CreatePokemon">Create</button>
+          </td>
+          <td>
+            <button class="CA-EditBunches">Edit Bunches</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="CreationContent">
+      <select class="CA-Bunch"></select>
+      <select class="CA-HowObtained"></select>
+      <select class="CA-GameObtained"></select>
+      <select class="CA-Lang"></select>
+
+      <table class="CA-Availability">
+        <tr>
+          <td>
+            <button class="CA-Gen6">Gen 6</button>
+          </td>
+          <td>
+            <button class="CA-Gen7">Gen 7</button>
+          </td>
+          <td>
+            <button class="CA-Gen8">Gen 8</button>
+          </td>
+          <td>
+            <button class="CA-Home">Home</button>
+          </td>
+        </tr>
+      </table>
+      <div class="CA-ImageAlign">
+        <div>
+          <select class="CA-BallDropdown"></select>
+        </div>
+        <div>
+          <select class="CA-GenderDropdown"></select>
+        </div>
+        <div>
+          <select class="CA-ShinyDropdown"></select>
+        </div>
+        <div>
+          <select class="CA-MintDropdown"></select>
+        </div>
+        <div>
+          <select class="CA-MiscDropdown"></select>
+        </div>
+        <div>
+          <select class="CA-MarkDropdown"></select>
+        </div>
+      </div>
+      </table>
+      <img class="CA-PokemonImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
+
+      <!--<text class="VA-HowObtained">Self Obtained(Retail)</text>
+      <text class="VA-GameObtained">USUM</text>-->
+
+
+      <select class="CA-PokemonDropdown"></select>
+      <input class="CA-Nickname" type="text" maxlength="12" placeholder="Nickname..">
+
+      <table class="CA-IVsEVs">
+        <tr>
+          <td>
+            <text></text>
+          </td>
+          <td>
+            <text class="CA-IvEvText">HP</text>
+          </td>
+          <td>
+            <text class="CA-IvEvText">Att</text>
+          </td>
+          <td>
+            <text class="CA-IvEvText">Def</text>
+          </td>
+          <td>
+            <text class="CA-IvEvText">Spa</text>
+          </td>
+          <td>
+            <text class="CA-IvEvText">Spd</text>
+          </td>
+          <td>
+            <text class="CA-IvEvText">Spe</text>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <text class="CA-IvText">IVs</text>
+          </td>
+          <td>
+            <select class="CA-IvHP"></select>
+          </td>
+          <td>
+            <select class="CA-IvAtt"></select>
+          </td>
+          <td>
+            <select class="CA-IvDef"></select>
+          </td>
+          <td>
+            <select class="CA-IvSpa"></select>
+          </td>
+          <td>
+            <select class="CA-IvSpd"></select>
+          </td>
+          <td>
+            <select class="CA-IvSpe"></select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <text class="CA-EvText">EVs</text>
+          </td>
+          <td>
+            <select class="CA-EvHP"></select>
+          </td>
+          <td>
+            <select class="CA-EvAtt"></select>
+          </td>
+          <td>
+            <select class="CA-EvDef"></select>
+          </td>
+          <td>
+            <select class="CA-EvSpa"></select>
+          </td>
+          <td>
+            <select class="CA-EvSpd"></select>
+          </td>
+          <td>
+            <select class="CA-EvSpe"></select>
+          </td>
+        </tr>
+      </table>
+      <!--<table class="VA-TextAlign">
+        <tr>
+          <td class="VA-PokemonName">Pokemon Name</td>
+        </tr>
+        <tr>
+          <td class="VA-Nickname">(No Nickname)</td>
+        </tr>
+        <tr>
+          <td class="VA-IVs">31/31/31/31/31/31</td>
+        </tr>
+        <tr>
+          <td class="VA-EVs">252/252/252/252/252/252</td>
+        </tr>
+      </table>-->
+
+      <table class="DropdownAlign">
+        <tr>
+          <td>
+            <select class="CA-NatureDropdown"></select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select class="CA-AbilityDropdown"></select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input class="CA-OT" type="text" placeholder="OT..">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input class="CA-ID" type="text" placeholder="ID..">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select class="CA-StatusDropdown"></select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <select class="CA-EventDropdown"></select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input class="CA-Proof" type="text" placeholder="Proof..">
+          </td>
+
+
+        </tr>
+      </table>
+
+      <textarea class="NoteField" placeholder="Type Note.." maxlength="150"
+        oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'></textarea>
+      <text class="CA-PokemonMoves">Pokemon Moves</text>
+      <div class="CA-NormalMoves">
+        <div>
+          <select class="CA-Move1"></select>
+        </div>
+        <div>
+          <select class="CA-Move2"></select>
+        </div>
+        <div>
+          <select class="CA-Move3"></select>
+        </div>
+        <div>
+          <select class="CA-Move4"></select>
+        </div>
+      </div>
+      <text class="CA-TransferMoves">Egg/Transfer Moves</text>
+      <div class="CA-LegacyMoves">
+        <div>
+          <select class="CA-LegacyMove1"></select>
+        </div>
+        <div>
+          <select class="CA-LegacyMove2"></select>
+        </div>
+        <div>
+          <select class="CA-LegacyMove3"></select>
+        </div>
+        <div>
+          <select class="CA-LegacyMove4"></select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+  <script src="JavaScript/mainArea.js"></scriptsrc>"</script>
+  <script src="JavaScript/loginArea.js"></scriptsrc>"</script>
+  <script src="JavaScript/selectionArea.js"></scriptsrc>"</script>
+  <script src="JavaScript/listHolder.js"></scriptsrc>"</script>
+  <script src="JavaScript/viewingArea.js"></scriptsrc>"</script>
+  <script src="JavaScript/creationArea.js"></scriptsrc>"</script>
+</body>
+
+</html>
