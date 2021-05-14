@@ -343,6 +343,11 @@ function CreatedPokemon(data) {
     document.querySelector("#CreationArea").style.display = "none";
     document.querySelector("#ViewingArea").style.display = "none";
     document.querySelector("#SelectionArea").style.height = "100%";
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+
     creationID = "";
     selectedPokemon = null;
     AssigningOutline();

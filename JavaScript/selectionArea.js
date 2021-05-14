@@ -62,8 +62,6 @@ $('.SA-MainMenu').click(function () {
     document.querySelector(".SA-ExitBunch").style.backgroundColor = "grey";
     document.querySelector("#MainArea").style.display = "block";
     document.querySelector("#CreationArea").style.display = "none";
-    document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
 });
 
 $('.SA-CreateButton').click(function () {
@@ -87,19 +85,7 @@ $('.SA-MoveButton').click(function () {
         currentlyRearranging = true;
         document.querySelector(".SA-MoveButton").innerHTML = "Cancel";
         OpacityHalf();
-        document.querySelector(".SA-ExitBunch").style.pointerEvents = "none";
-        document.querySelector(".SA-ExitBunch").style.backgroundColor = "grey";
-        document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
-        document.querySelector(".SA-MainMenu").style.backgroundColor = "grey";
-        document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-        document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
-        document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
-        document.querySelector(".SA-FiltersButton").style.backgroundColor = "grey";
-        document.querySelector(".SA-Searchbar").disabled = true;
-        document.querySelector(".VA-ModifyButton").style.pointerEvents = "none";
-        document.querySelector(".VA-ModifyButton").style.backgroundColor = "grey";
-        document.querySelector(".VA-DeleteButton").style.pointerEvents = "none";
-        document.querySelector(".VA-DeleteButton").style.backgroundColor = "grey";
+        MoveStarted();
     } else {
         currentlyRearranging = false;
         movingPokemon = null;
@@ -111,22 +97,42 @@ $('.SA-MoveButton').click(function () {
         if (bunchname == "") {
             RemoveBunchOutline();
         }
-        document.querySelector(".SA-ExitBunch").style.pointerEvents = "initial";
-        document.querySelector(".SA-ExitBunch").style.backgroundColor = "#efefef";
-        document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
-        document.querySelector(".SA-MainMenu").style.backgroundColor = "#efefef";
-        document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-        document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
-        document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
-        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#efefef";
-        document.querySelector(".SA-Searchbar").disabled = false;
-        document.querySelector(".VA-ModifyButton").style.pointerEvents = "initial";
-        document.querySelector(".VA-ModifyButton").style.backgroundColor = "#efefef";
-        document.querySelector(".VA-DeleteButton").style.pointerEvents = "initial";
-        document.querySelector(".VA-DeleteButton").style.backgroundColor = "#efefef";
+        MoveFinished();
     }
 
 });
+
+function MoveStarted() {
+    document.querySelector(".SA-ExitBunch").style.pointerEvents = "none";
+    document.querySelector(".SA-ExitBunch").style.backgroundColor = "grey";
+    document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "grey";
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
+    document.querySelector(".SA-FiltersButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-Searchbar").disabled = true;
+    document.querySelector(".VA-ModifyButton").style.pointerEvents = "none";
+    document.querySelector(".VA-ModifyButton").style.backgroundColor = "grey";
+    document.querySelector(".VA-DeleteButton").style.pointerEvents = "none";
+    document.querySelector(".VA-DeleteButton").style.backgroundColor = "grey";
+}
+
+function MoveFinished() {
+    document.querySelector(".SA-ExitBunch").style.pointerEvents = "initial";
+    document.querySelector(".SA-ExitBunch").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-Searchbar").disabled = false;
+    document.querySelector(".VA-ModifyButton").style.pointerEvents = "initial";
+    document.querySelector(".VA-ModifyButton").style.backgroundColor = "#efefef";
+    document.querySelector(".VA-DeleteButton").style.pointerEvents = "initial";
+    document.querySelector(".VA-DeleteButton").style.backgroundColor = "#efefef";
+}
 
 //Setting Opacity to half to show that moving is in progress.
 function OpacityHalf() {
@@ -721,6 +727,7 @@ function GenerateSelection(data) {
 }
 
 function MoveCopyPokemon() {
+    MoveFinished();
     $("#GridContainer").remove();
     document.querySelector(".SA-MoveButton").innerHTML = "Move";
     currentlyRearranging = false;
@@ -730,6 +737,7 @@ function MoveCopyPokemon() {
 }
 
 function MoveBunch() {
+    MoveFinished();
     $("#GridContainer").remove();
     document.querySelector(".SA-MoveButton").innerHTML = "Move";
     currentlyRearranging = false;

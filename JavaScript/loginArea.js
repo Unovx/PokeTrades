@@ -1,6 +1,6 @@
 var signedIn = false;
 var userData;
-var token;
+var token = null;
 
 var previewBall = true;
 var previewGender = false;

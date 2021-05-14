@@ -134,8 +134,7 @@ body {
 
   .SA-FiltersButton{
     position: relative; 
-    pointer-events: none;
-    background-color: grey;
+    background-color: #efefef;
     height: 22px;
     border: none;
   }
