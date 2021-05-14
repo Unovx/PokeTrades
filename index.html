@@ -179,6 +179,9 @@
             <button class="SA-CreateButton">Create</button>
           </td>
           <td>
+            <button class="SA-MoveButton">Move</button>
+          </td>
+          <td>
             <button class="SA-FiltersButton">Filters</button>
           </td>
         </tr>
@@ -466,10 +469,14 @@
     </div>
 
     <div id="CreationContent">
-      <select class="CA-Bunch"></select>
+      <select class="CA-BunchDropdown"></select>
       <select class="CA-HowObtained"></select>
       <select class="CA-GameObtained"></select>
       <select class="CA-Lang"></select>
+      <select class="CA-DisplayDropdown">
+        <option value="Public">Public</option>
+        <option value="Private">Private</option>
+      </select>
 
       <table class="CA-Availability">
         <tr>
@@ -509,10 +516,6 @@
       </div>
       </table>
       <img class="CA-PokemonImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
-
-      <!--<text class="VA-HowObtained">Self Obtained(Retail)</text>
-      <text class="VA-GameObtained">USUM</text>-->
-
 
       <select class="CA-PokemonDropdown"></select>
       <input class="CA-Nickname" type="text" maxlength="12" placeholder="Nickname..">
@@ -588,20 +591,6 @@
           </td>
         </tr>
       </table>
-      <!--<table class="VA-TextAlign">
-        <tr>
-          <td class="VA-PokemonName">Pokemon Name</td>
-        </tr>
-        <tr>
-          <td class="VA-Nickname">(No Nickname)</td>
-        </tr>
-        <tr>
-          <td class="VA-IVs">31/31/31/31/31/31</td>
-        </tr>
-        <tr>
-          <td class="VA-EVs">252/252/252/252/252/252</td>
-        </tr>
-      </table>-->
 
       <table class="DropdownAlign">
         <tr>
@@ -616,12 +605,12 @@
         </tr>
         <tr>
           <td>
-            <input class="CA-OT" type="text" placeholder="OT..">
+            <input class="CA-OT" type="text" maxlength="=12" placeholder="OT..">
           </td>
         </tr>
         <tr>
           <td>
-            <input class="CA-ID" type="text" placeholder="ID..">
+            <input class="CA-ID" type="number" maxlength="6" placeholder="ID..">
           </td>
         </tr>
         <tr>
@@ -638,8 +627,6 @@
           <td>
             <input class="CA-Proof" type="text" placeholder="Proof..">
           </td>
-
-
         </tr>
       </table>
 

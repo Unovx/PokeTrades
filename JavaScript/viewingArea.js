@@ -1,4 +1,5 @@
 viewingDetails = [];
+
 AdditionalViewing1 = [];
 AdditionalViewing2 = [];
 AdditionalViewing3 = [];
@@ -13,6 +14,13 @@ var viewing4Image;
 var viewing5Image;
 var viewing6Image;
 
+viewing1Username = "";
+viewing2Username = "";
+viewing3Username = "";
+viewing4Username = "";
+viewing5Username = "";
+viewing6Username = "";
+
 $('.VA-CloseButton').click(function () {
     selectedPokemon = null;
     AssigningOutline();
@@ -20,12 +28,24 @@ $('.VA-CloseButton').click(function () {
     document.querySelector("#ViewingArea").style.display = "none";
 });
 
+$('.VA-ModifyButton').click(function () {
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+    OpenCreationArea();
+    ValidatePokemon();
+});
+
 function AssigningOutline() {
     //Makes sure arrayData isn't null so an error doesn't get brought up in specific cases like on the bunch area
     if (arrayData != null) {
         for (let i = 0; i < numberOfArrays; i++) {
+            if (currentlyRearranging == true && movingPokemon == document.querySelector(".GenerationGridDiv" + (i))) {
+
+            }
             //if no pokemon is selected, then no pokemon need an outline
-            if (selectedPokemon == null) {
+            else if (selectedPokemon == null) {
                 document.querySelector(".GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 0px #8135a9";
             }
             //If it finds a generated row that has the same creation id as the current viewing id, it gives that div a outline
@@ -39,6 +59,12 @@ function AssigningOutline() {
 
             }
         }
+    }
+}
+
+function RemoveBunchOutline() {
+    for (let i = 0; i < numberOfBunches; i++) {
+        document.querySelector(".GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 0px #8135a9";
     }
 }
 
@@ -70,6 +96,7 @@ $('.VA-AV1').click(function () {
     if (document.querySelector(".VA-AV1").getAttribute("src") == "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png") {
         ShowAV1();
         AssigningOutline();
+        $.post("https://poketrades.org/PHP/modify_check_viewing.php", { token: token, searchID: viewingDetails.user_id }, ModifyCheckViewing);
     }
 });
 
@@ -77,6 +104,7 @@ $('.VA-AV2').click(function () {
     if (document.querySelector(".VA-AV2").getAttribute("src") == "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png") {
         ShowAV2();
         AssigningOutline();
+        $.post("https://poketrades.org/PHP/modify_check_viewing.php", { token: token, searchID: viewingDetails.user_id }, ModifyCheckViewing);
     }
 });
 
@@ -84,6 +112,7 @@ $('.VA-AV3').click(function () {
     if (document.querySelector(".VA-AV3").getAttribute("src") == "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png") {
         ShowAV3();
         AssigningOutline();
+        $.post("https://poketrades.org/PHP/modify_check_viewing.php", { token: token, searchID: viewingDetails.user_id }, ModifyCheckViewing);
     }
 });
 
@@ -91,6 +120,7 @@ $('.VA-AV4').click(function () {
     if (document.querySelector(".VA-AV4").getAttribute("src") == "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png") {
         ShowAV4();
         AssigningOutline();
+        $.post("https://poketrades.org/PHP/modify_check_viewing.php", { token: token, searchID: viewingDetails.user_id }, ModifyCheckViewing);
     }
 });
 
@@ -98,6 +128,7 @@ $('.VA-AV5').click(function () {
     if (document.querySelector(".VA-AV5").getAttribute("src") == "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png") {
         ShowAV5();
         AssigningOutline();
+        $.post("https://poketrades.org/PHP/modify_check_viewing.php", { token: token, searchID: viewingDetails.user_id }, ModifyCheckViewing);
     }
 });
 
@@ -105,78 +136,181 @@ $('.VA-AV6').click(function () {
     if (document.querySelector(".VA-AV6").getAttribute("src") == "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png") {
         ShowAV6();
         AssigningOutline();
+        $.post("https://poketrades.org/PHP/modify_check_viewing.php", { token: token, searchID: viewingDetails.user_id }, ModifyCheckViewing);
     }
 });
+
+function OpenCreationArea() {
+
+    document.querySelector("#SelectionArea").style.height = "50%";
+    document.querySelector("#CreationArea").style.display = "block";
+    BunchDropdown();
+    CreationDropdowns();
+    creationDetails = viewingDetails;
+    creationID = creationDetails.creation_id;
+
+    bunchDropdown.value = creationDetails.bunch;
+    pokemonDropdown.value = creationDetails.pokemon;
+    nicknameInput.value = creationDetails.nickname;
+    ballDropdown.value = creationDetails.pokeball;
+    genderDropdown.value = creationDetails.gender;
+    shinyDropdown.value = creationDetails.shiny;
+    mintDropdown.value = creationDetails.mint;
+    miscDropdown.value = creationDetails.misc;
+    markDropdown.value = creationDetails.mark;
+    natureDropdown.value = creationDetails.nature;
+    abilityDropdown.value = creationDetails.ability;
+    otInput.value = creationDetails.game_ot;
+    idInput.value = creationDetails.game_id;
+    statusDropdown.value = creationDetails.status;
+    eventDropdown.value = creationDetails.event_info;
+    ivHpDropdown.value = creationDetails.iv_hp;
+    ivAttDropdown.value = creationDetails.iv_att;
+    ivDefDropdown.value = creationDetails.iv_def;
+    ivSpaDropdown.value = creationDetails.iv_spa;
+    ivSpdDropdown.value = creationDetails.iv_spd;
+    ivSpeDropdown.value = creationDetails.iv_spe;
+    evHpDropdown.value = creationDetails.ev_hp;
+    evAttDropdown.value = creationDetails.ev_att;
+    evDefDropdown.value = creationDetails.ev_def;
+    evSpaDropdown.value = creationDetails.ev_spa;
+    evSpdDropdown.value = creationDetails.ev_spd;
+    evSpeDropdown.value = creationDetails.ev_spe;
+    move1Dropdown.value = creationDetails.move_1;
+    move2Dropdown.value = creationDetails.move_2;
+    move3Dropdown.value = creationDetails.move_3;
+    move4Dropdown.value = creationDetails.move_4;
+    legacyMove1Dropdown.value = creationDetails.legacy_move_1;
+    legacyMove2Dropdown.value = creationDetails.legacy_move_2;
+    legacyMove3Dropdown.value = creationDetails.legacy_move_3;
+    legacyMove4Dropdown.value = creationDetails.legacy_move_4;
+    howObtainedDropdown.value = creationDetails.how_obtained;
+    gameObtainedDropdown.value = creationDetails.game_obtained;
+    languageDropdown.value = creationDetails.language;
+    displayDropdown.value = creationDetails.display;
+    proofInput.value = creationDetails.proof;
+    noteFieldInput.value = creationDetails.note;
+
+    if (creationDetails.gen6_availability == "Available") {
+        Gen6 = "Available";
+        document.querySelector(".CA-Gen6").style.backgroundColor = "#36E26E";
+    } else {
+        Gen6 = "Unavailable";
+        document.querySelector(".CA-Gen6").style.backgroundColor = "#C83939";
+    }
+
+    if (creationDetails.gen7_availability == "Available") {
+        Gen7 = "Available";
+        document.querySelector(".CA-Gen7").style.backgroundColor = "#36E26E";
+    } else {
+        Gen7 = "Unavailable";
+        document.querySelector(".CA-Gen7").style.backgroundColor = "#C83939";
+    }
+
+    if (creationDetails.gen8_availability == "Available") {
+        Gen8 = "Available";
+        document.querySelector(".CA-Gen8").style.backgroundColor = "#36E26E";
+    } else {
+        Gen8 = "Unavailable";
+        document.querySelector(".CA-Gen8").style.backgroundColor = "#C83939";
+    }
+
+    if (creationDetails.home_availability == "Available") {
+        Home = "Available";
+        document.querySelector(".CA-Home").style.backgroundColor = "#36E26E";
+    } else {
+        Home = "Unavailable";
+        document.querySelector(".CA-Home").style.backgroundColor = "#C83939";
+    }
+
+    pokemonValue = creationDetails.pokemon;
+    genderValue = creationDetails.gender;
+    shinyValue = creationDetails.shiny;
+
+    ValidatePokemon();
+}
 
 function SetAV1() {
     AdditionalViewing1 = viewingDetails;
     viewing1Image = pokemonImage;
+    viewing1Username = searchData.username;
     document.querySelector(".VA-AV1").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png";
 }
 
 function SetAV2() {
     AdditionalViewing2 = viewingDetails;
     viewing2Image = pokemonImage;
+    viewing2Username = searchData.username;
     document.querySelector(".VA-AV2").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png";
 }
 
 function SetAV3() {
     AdditionalViewing3 = viewingDetails;
     viewing3Image = pokemonImage;
+    viewing3Username = searchData.username;
     document.querySelector(".VA-AV3").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png";
 }
 
 function SetAV4() {
     AdditionalViewing4 = viewingDetails;
     viewing4Image = pokemonImage;
+    viewing4Username = searchData.username;
     document.querySelector(".VA-AV4").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png";
 }
 
 function SetAV5() {
     AdditionalViewing5 = viewingDetails;
     viewing5Image = pokemonImage;
+    viewing5Username = searchData.username;
     document.querySelector(".VA-AV5").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png";
 }
 
 function SetAV6() {
     AdditionalViewing6 = viewingDetails;
     viewing6Image = pokemonImage;
+    viewing6Username = searchData.username;
     document.querySelector(".VA-AV6").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png";
 }
 
 function ShowAV1() {
     pokemonImage = viewing1Image;
     viewingDetails = AdditionalViewing1;
+    document.querySelector(".VA-Username").innerHTML = viewing1Username + "#" + viewingDetails.user_id;
     UpdateViewingDetails();
 }
 
 function ShowAV2() {
     pokemonImage = viewing2Image;
     viewingDetails = AdditionalViewing2;
+    document.querySelector(".VA-Username").innerHTML = viewing2Username + "#" + viewingDetails.user_id;
     UpdateViewingDetails();
 }
 
 function ShowAV3() {
     pokemonImage = viewing3Image;
     viewingDetails = AdditionalViewing3;
+    document.querySelector(".VA-Username").innerHTML = viewing3Username + "#" + viewingDetails.user_id;
     UpdateViewingDetails();
 }
 
 function ShowAV4() {
     pokemonImage = viewing4Image;
     viewingDetails = AdditionalViewing4;
+    document.querySelector(".VA-Username").innerHTML = viewing4Username + "#" + viewingDetails.user_id;
     UpdateViewingDetails();
 }
 
 function ShowAV5() {
     pokemonImage = viewing5Image;
     viewingDetails = AdditionalViewing5;
+    document.querySelector(".VA-Username").innerHTML = viewing5Username + "#" + viewingDetails.user_id;
     UpdateViewingDetails();
 }
 
 function ShowAV6() {
     pokemonImage = viewing6Image;
     viewingDetails = AdditionalViewing6;
+    document.querySelector(".VA-Username").innerHTML = viewing6Username + "#" + viewingDetails.user_id;
     UpdateViewingDetails();
 }
 

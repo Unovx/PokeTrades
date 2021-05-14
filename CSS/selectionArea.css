@@ -116,6 +116,15 @@ body {
     border: none;
   }
 
+  .SA-MoveButton{
+    position: relative; 
+    pointer-events: none;
+    background-color: grey;
+    width: 54px;
+    height: 22px;
+    border: none;
+  }
+
   .SA-MainMenu{
     position: relative;
     background-color: #efefef;

@@ -61,8 +61,11 @@ $('.LA-PreviewSettings').click(function () {
 $('.LA-LogOut').click(function () {
     document.querySelector(".LA-LoggedInArea").style.display = "none";
     document.querySelector(".LA-LoginArea").style.display = "block";
-    document.querySelector(".MA-UserID").style.display = "none";
+    document.querySelector(".MA-UserID").style.opacity = "0%";
     document.querySelector(".MA-UserID").innerHTML = "Your ID is: ";
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+    $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     userData = null;
     token = null;
     signedIn = false;
@@ -303,11 +306,13 @@ function UserLogin(data) {
         document.querySelector(".LA-LoginFailed").style.display = "none";
         document.querySelector(".LA-LoggedInArea").style.display = "block";
         document.querySelector(".LA-Username").innerHTML = userData.username;
-        document.querySelector(".MA-UserID").style.display = "block";
+        document.querySelector(".MA-UserID").style.opacity = "100%";
         document.querySelector(".MA-UserID").innerHTML = "Your ID is: " + userData.user_id;
         signedIn = true;
         document.querySelector(".LA-LoginUsername").value = "";
         document.querySelector(".LA-LoginPassword").value = "";
+
+        $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     } else {
         document.querySelector(".LA-LoginFailed").style.display = "block";
         document.querySelector(".LA-LoginFailed").innerHTML = "Wrong Username or Password.";
@@ -324,13 +329,15 @@ function RegisterAccount(data) {
         document.querySelector(".LA-LoggedInNotify").style.display = "block";
         document.querySelector(".LA-LoggedInNotify").innerHTML = "Account Created.";
         document.querySelector(".LA-Username").innerHTML = userData.username;
-        document.querySelector(".MA-UserID").style.display = "block";
+        document.querySelector(".MA-UserID").style.opacity = "100%";
         document.querySelector(".MA-UserID").innerHTML = "Your ID is: " + userData.user_id;
         signedIn = true;
         document.querySelector(".LA-RegisterUsername").value = "";
         document.querySelector(".LA-RegisterPassword").value = "";
         document.querySelector(".LA-RegisterConfirmPassword").value = "";
         document.querySelector(".LA-RegisterFailed").style.display = "none";
+
+        $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     } else {
         document.querySelector(".LA-RegisterFailed").style.display = "block";
         document.querySelector(".LA-RegisterFailed").innerHTML = "Username already taken.";

@@ -69,6 +69,12 @@ $.post("https://poketrades.org/PHP/get_list_names.php", { column: "languages", t
 //$.post("https://poketrades.org/PHP/generate_bunch_selection.php", { isOwner: "", searchID: "1", tradeOption: "For Trade" }, GenerateBunch);
 
 
+function UserBunches(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    userBunchArray = arrayInfo["Rows"];
+    console.log(userBunchArray);
+}
+
 function AllPokemon(data) {
     arrayInfo = jQuery.parseJSON(data);
     allPokemonArray = arrayInfo["Rows"];

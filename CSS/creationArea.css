@@ -110,7 +110,7 @@
     align-items: center;
   }
 
-  .CA-Bunch{
+  .CA-BunchDropdown{
     position: absolute;
     left: 340px;
     top: 5px;
@@ -471,5 +471,13 @@ font-family: Arial, Helvetica, sans-serif;
   .CA-LegacyMove4{
     width: 200px;
     height: 25px;
+  }
+
+  .CA-DisplayDropdown{
+    position: absolute;
+    width: 204px;
+    height: 20px;;
+    top: 40px;
+    left: 975px;
   }
 

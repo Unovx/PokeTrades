@@ -2,18 +2,25 @@
 //$.post("https://poketrades.org/PHP/generate_bunch_selection.php", { isOwner: "isOwner", searchID: "1", tradeOption: "For Trade" }, GenerateBunch);
 console.log(40 + 8 + 23 - 10);
 
+var searchPokemonText = (document.querySelector(".SA-Searchbar").value);
 //The Image Displayed in the Viewing Area
 var pokemonImage;
 var bunchname = "";
 //The Element that holds
 var selectedPokemon;
+var movingPokemon;
 //The Number of Arrays used in for statements in other scripts for outlining
 var numberOfArrays;
 //The Array data for Pokemon Generation (Not Bunch) used in  for statements for other scripts for outlining
 var arrayData;
 
+var numberOfBunches;
+
+var currentlyRearranging = false;
+var oldPosition = "";
+var newPosition = "";
+
 $(".SA-Searchbar").keyup(function () {
-    var searchPokemonText = (document.querySelector(".SA-Searchbar").value);
     if (bunchname == "" && searchPokemonText == "") {
         $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
     } else {
@@ -41,6 +48,9 @@ $('.SA-ExitBunch').click(function () {
 });
 
 $('.SA-MainMenu').click(function () {
+    bunchname = "";
+    //making the Selection Area bunch name invisible (can't turn it off or the space for it goes)
+    document.querySelector(".SA-Bunch").style.opacity = "0%";
     selectedPokemon = null;
     AssigningOutline();
     //Removing the GridContainer so a new one can be created later
@@ -51,7 +61,97 @@ $('.SA-MainMenu').click(function () {
     document.querySelector(".SA-ExitBunch").style.pointerEvents = "none";
     document.querySelector(".SA-ExitBunch").style.backgroundColor = "grey";
     document.querySelector("#MainArea").style.display = "block";
+    document.querySelector("#CreationArea").style.display = "none";
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
 });
+
+$('.SA-CreateButton').click(function () {
+    document.querySelector("#SelectionArea").style.height = "50%";
+    document.querySelector("#CreationArea").style.display = "block";
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+    BunchDropdown();
+    if (optionsReady == false) {
+        optionsReady = true;
+    }
+    //So it doesn't add to an already existing row
+    creationID = "";
+    CreationDropdowns();
+});
+
+$('.SA-MoveButton').click(function () {
+    if (currentlyRearranging == false) {
+        currentlyRearranging = true;
+        document.querySelector(".SA-MoveButton").innerHTML = "Cancel";
+        OpacityHalf();
+        document.querySelector(".SA-ExitBunch").style.pointerEvents = "none";
+        document.querySelector(".SA-ExitBunch").style.backgroundColor = "grey";
+        document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
+        document.querySelector(".SA-MainMenu").style.backgroundColor = "grey";
+        document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
+        document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+        document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "grey";
+        document.querySelector(".SA-Searchbar").disabled = true;
+        document.querySelector(".VA-ModifyButton").style.pointerEvents = "none";
+        document.querySelector(".VA-ModifyButton").style.backgroundColor = "grey";
+        document.querySelector(".VA-DeleteButton").style.pointerEvents = "none";
+        document.querySelector(".VA-DeleteButton").style.backgroundColor = "grey";
+    } else {
+        currentlyRearranging = false;
+        movingPokemon = null;
+        oldPosition = "";
+        newPosition = "";
+        document.querySelector(".SA-MoveButton").innerHTML = "Move";
+        OpacityFull();
+        AssigningOutline();
+        if (bunchname == "") {
+            RemoveBunchOutline();
+        }
+        document.querySelector(".SA-ExitBunch").style.pointerEvents = "initial";
+        document.querySelector(".SA-ExitBunch").style.backgroundColor = "#efefef";
+        document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
+        document.querySelector(".SA-MainMenu").style.backgroundColor = "#efefef";
+        document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
+        document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+        document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#efefef";
+        document.querySelector(".SA-Searchbar").disabled = false;
+        document.querySelector(".VA-ModifyButton").style.pointerEvents = "initial";
+        document.querySelector(".VA-ModifyButton").style.backgroundColor = "#efefef";
+        document.querySelector(".VA-DeleteButton").style.pointerEvents = "initial";
+        document.querySelector(".VA-DeleteButton").style.backgroundColor = "#efefef";
+    }
+
+});
+
+//Setting Opacity to half to show that moving is in progress.
+function OpacityHalf() {
+    if (bunchname == "") {
+        for (let i = 0; i < numberOfBunches; i++) {
+            document.querySelector(".GenerationGridDiv" + (i)).style.opacity = "50%";
+        }
+    } else {
+        for (let i = 0; i < numberOfArrays; i++) {
+            document.querySelector(".GenerationGridDiv" + (i)).style.opacity = "50%";
+        }
+    }
+}
+//Setting Opacity to normal to show that moving is done.
+function OpacityFull() {
+    if (bunchname == "") {
+        for (let i = 0; i < numberOfBunches; i++) {
+            document.querySelector(".GenerationGridDiv" + (i)).style.opacity = "100%";
+        }
+    } else {
+        for (let i = 0; i < numberOfArrays; i++) {
+            document.querySelector(".GenerationGridDiv" + (i)).style.opacity = "100%";
+        }
+    }
+}
 
 function GenerateBunch(data) {
     //Using Jquery to parse the data and getting the length.
@@ -86,15 +186,17 @@ function GenerateBunch(data) {
     newDiv.appendChild(theText);
 
     newDiv.onclick = function () {
-        document.querySelector(".SA-Bunch").innerHTML = "All Pokemon";
-        $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
+        if (currentlyRearranging == false) {
+            document.querySelector(".SA-Bunch").innerHTML = "All Pokemon";
+            $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
+        }
     }
 
     for (let i = 0; i < numberOfBunches; i++) {
 
         //Creating newDivs for each bunch and making them children of the GridContainer
         newDiv = document.createElement("div");
-        newDiv.setAttribute("class", "GenerationGridDiv");
+        newDiv.setAttribute("class", "GenerationGridDiv" + (i));
         document.getElementById("GridContainer").appendChild(newDiv);
         newDiv.setAttribute("width", "100");
         newDiv.setAttribute("height", "100");
@@ -190,13 +292,36 @@ function GenerateBunch(data) {
 
         //Creating an Onclick for the Div to open the relevant bunch
         newDiv.onclick = function () {
-            bunchDetails = bunchData["Rows"][i]
-            console.log(bunchDetails);
-            let bunch = bunchDetails.name;
-            console.log(bunch);
-            bunchname = bunch;
-            document.querySelector(".SA-Bunch").innerHTML = bunch;
-            $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunch }, GenerateSelection);
+            if (currentlyRearranging != true) {
+                bunchDetails = bunchData["Rows"][i];
+                console.log(bunchDetails);
+                let bunch = bunchDetails.name;
+                console.log(bunch);
+                bunchname = bunch;
+                document.querySelector(".SA-Bunch").innerHTML = bunch;
+                $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunch }, GenerateSelection);
+            } else {
+                if (oldPosition == "") {
+                    oldPosition = bunchData["Rows"][i].position;
+                    tempCreationID = bunchData["Rows"][i].creation_id;
+                    console.log(oldPosition);
+                    document.querySelector(".GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 5px #3735a9";
+                    document.querySelector(".GenerationGridDiv" + (i)).style.opacity = "100%";
+                } else {
+                    newPosition = bunchData["Rows"][i].position;
+                    console.log(newPosition);
+                    if (oldPosition != newPosition) {
+                        $.post("https://poketrades.org/PHP/move_bunch.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveBunch);
+                    } else {
+                        document.querySelector(".SA-MoveButton").innerHTML = "Move";
+                        currentlyRearranging = false;
+                        oldPosition = "";
+                        newPosition = "";
+                        RemoveBunchOutline();
+                    }
+                }
+            }
+
         }
     }
 }
@@ -560,21 +685,61 @@ function GenerateSelection(data) {
         }
 
         //Setting up the onclick to open the viewing area and to set the information required for it.
-        theImage.onclick = function () {
-            viewingDetails = arrayData["Rows"][i]
-            console.log(viewingDetails);
-            pokemonImage = this.src;
-            console.log(pokemonImage);
-            selectedPokemon = document.querySelector(".GenerationGridDiv" + (i));
-            AssigningOutline();
-            UpdateViewingDetails();
+        newDiv.onclick = function () {
+
+            if (!currentlyRearranging) {
+                viewingDetails = arrayData["Rows"][i]
+                console.log(viewingDetails);
+                pokemonImage = document.getElementById("GeneratedSelection " + (i)).getAttribute("src");
+                console.log(pokemonImage);
+                selectedPokemon = document.querySelector(".GenerationGridDiv" + (i));
+                document.querySelector(".VA-Username").innerHTML = searchData.username + "#" + viewingDetails.user_id;
+                AssigningOutline();
+                UpdateViewingDetails();
+                $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: viewingDetails.user_id }, ModifyCheckViewing);
+            } else {
+                if (oldPosition == "") {
+                    movingPokemon = document.querySelector(".GenerationGridDiv" + (i));
+                    oldPosition = arrayData["Rows"][i].position;
+                    tempCreationID = arrayData["Rows"][i].creation_id;
+                    document.querySelector(".GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 5px #3735a9";
+                    document.querySelector(".GenerationGridDiv" + (i)).style.opacity = "100%";
+                } else {
+                    movingPokemon = null;
+                    newPosition = arrayData["Rows"][i].position;
+                    if (oldPosition != newPosition) {
+                        $.post("https://poketrades.org/PHP/move_selection.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveCopyPokemon);
+                    } else {
+                        $.post("https://poketrades.org/PHP/copy_selection.php", { token: token, creationID: tempCreationID, originalPosition: oldPosition, tradeOption: tradeOption }, MoveCopyPokemon);
+                    }
+                }
+            }
         }
     }
     //Assigning the outline in case a pokemon generated is the one still in the viewing area so the user knows which one it is.
     AssigningOutline();
 }
 
+function MoveCopyPokemon() {
+    $("#GridContainer").remove();
+    document.querySelector(".SA-MoveButton").innerHTML = "Move";
+    currentlyRearranging = false;
+    oldPosition = "";
+    newPosition = "";
+    $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname, searchbar: searchPokemonText }, GenerateSelection);
+}
+
+function MoveBunch() {
+    $("#GridContainer").remove();
+    document.querySelector(".SA-MoveButton").innerHTML = "Move";
+    currentlyRearranging = false;
+    oldPosition = "";
+    newPosition = "";
+    $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
+}
+
 function UpdateViewingDetails() {
+
     document.querySelector(".VA-Bunch").innerHTML = viewingDetails.bunch;
     document.querySelector(".VA-Lang").innerHTML = "[" + viewingDetails.language + "]";
     document.querySelector(".VA-ObtainedInfo").innerHTML = viewingDetails.how_obtained + " " + viewingDetails.game_obtained;
