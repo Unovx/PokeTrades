@@ -49,10 +49,10 @@ var displayDropdown = document.querySelector(".CA-DisplayDropdown");
 var proofInput = document.querySelector(".CA-Proof");
 var noteFieldInput = document.querySelector(".NoteField");
 
-var Gen6 = "Unavailable";
-var Gen7 = "Unavailable";
-var Gen8 = "Unavailable";
-var Home = "Unavailable";
+var Gen6 = "Not Available";
+var Gen7 = "Not Available";
+var Gen8 = "Not Available";
+var Home = "Not Available";
 var pokemonValue = "Abomasnow";
 var genderValue = "(Any Gender)";
 var shinyValue = "(Any Shiny or Normal)";
@@ -74,41 +74,41 @@ $('.CA-CreatePokemon').click(function () {
 });
 
 $('.CA-Gen6').click(function () {
-    if (Gen6 == "Unavailable") {
+    if (Gen6 == "Not Available") {
         Gen6 = "Available";
         document.querySelector(".CA-Gen6").style.backgroundColor = "#36E26E";
     } else {
-        Gen6 = "Unavailable";
+        Gen6 = "Not Available";
         document.querySelector(".CA-Gen6").style.backgroundColor = "#C83939";
     }
 });
 
 $('.CA-Gen7').click(function () {
-    if (Gen7 == "Unavailable") {
+    if (Gen7 == "Not Available") {
         Gen7 = "Available";
         document.querySelector(".CA-Gen7").style.backgroundColor = "#36E26E";
     } else {
-        Gen7 = "Unavailable";
+        Gen7 = "Not Available";
         document.querySelector(".CA-Gen7").style.backgroundColor = "#C83939";
     }
 });
 
 $('.CA-Gen8').click(function () {
-    if (Gen8 == "Unavailable") {
+    if (Gen8 == "Not Available") {
         Gen8 = "Available";
         document.querySelector(".CA-Gen8").style.backgroundColor = "#36E26E";
     } else {
-        Gen8 = "Unavailable";
+        Gen8 = "Not Available";
         document.querySelector(".CA-Gen8").style.backgroundColor = "#C83939";
     }
 });
 
 $('.CA-Home').click(function () {
-    if (Home == "Unavailable") {
+    if (Home == "Not Available") {
         Home = "Available";
         document.querySelector(".CA-Home").style.backgroundColor = "#36E26E";
     } else {
-        Home = "Unavailable";
+        Home = "Not Available";
         document.querySelector(".CA-Home").style.backgroundColor = "#C83939";
     }
 });

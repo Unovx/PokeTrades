@@ -1,6 +1,7 @@
 var searchData;
 var tradeOption;
-var searchInfoText;
+searchInfoText = (document.querySelector(".MA-Searchbar").value);
+searchInfoText.value = "";
 
 $(".MA-Searchbar").click(function () {
     CloseLoginArea();

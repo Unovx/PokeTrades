@@ -747,26 +747,34 @@ function UpdateViewingDetails() {
     //document.querySelector(".VA-GameObtained").innerHTML = viewingDetails.game_obtained;
 
     if (viewingDetails.gen6_availability == "Not Available") {
+        Gen6 = "Not Available";
         document.querySelector(".VA-Gen6").style.color = "#C83939";
     } else {
+        Gen6 = "Available";
         document.querySelector(".VA-Gen6").style.color = "#36E26E";
     }
 
     if (viewingDetails.gen7_availability == "Not Available") {
+        Gen7 = "Not Available";
         document.querySelector(".VA-Gen7").style.color = "#C83939";
     } else {
+        Gen7 = "Available";
         document.querySelector(".VA-Gen7").style.color = "#36E26E";
     }
 
     if (viewingDetails.gen8_availability == "Not Available") {
+        Gen8 = "Not Available";
         document.querySelector(".VA-Gen8").style.color = "#C83939";
     } else {
+        Gen8 = "Available";
         document.querySelector(".VA-Gen8").style.color = "#36E26E";
     }
 
     if (viewingDetails.home_availability == "Not Available") {
+        Home = "Not Available";
         document.querySelector(".VA-Home").style.color = "#C83939";
     } else {
+        Home = "Available";
         document.querySelector(".VA-Home").style.color = "#36E26E";
     }
 

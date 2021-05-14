@@ -195,7 +195,7 @@ function OpenCreationArea() {
         Gen6 = "Available";
         document.querySelector(".CA-Gen6").style.backgroundColor = "#36E26E";
     } else {
-        Gen6 = "Unavailable";
+        Gen6 = "Not Available";
         document.querySelector(".CA-Gen6").style.backgroundColor = "#C83939";
     }
 
@@ -203,7 +203,7 @@ function OpenCreationArea() {
         Gen7 = "Available";
         document.querySelector(".CA-Gen7").style.backgroundColor = "#36E26E";
     } else {
-        Gen7 = "Unavailable";
+        Gen7 = "Not Available";
         document.querySelector(".CA-Gen7").style.backgroundColor = "#C83939";
     }
 
@@ -211,7 +211,7 @@ function OpenCreationArea() {
         Gen8 = "Available";
         document.querySelector(".CA-Gen8").style.backgroundColor = "#36E26E";
     } else {
-        Gen8 = "Unavailable";
+        Gen8 = "Not Available";
         document.querySelector(".CA-Gen8").style.backgroundColor = "#C83939";
     }
 
@@ -219,7 +219,7 @@ function OpenCreationArea() {
         Home = "Available";
         document.querySelector(".CA-Home").style.backgroundColor = "#36E26E";
     } else {
-        Home = "Unavailable";
+        Home = "Not Available";
         document.querySelector(".CA-Home").style.backgroundColor = "#C83939";
     }
 
