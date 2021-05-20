@@ -144,8 +144,8 @@ function OpenCreationArea() {
 
     document.querySelector("#SelectionArea").style.height = "50%";
     document.querySelector("#CreationArea").style.display = "block";
-    BunchDropdown();
-    CreationDropdowns();
+    //$.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
+    CreationReset();
     creationDetails = viewingDetails;
     creationID = creationDetails.creation_id;
 

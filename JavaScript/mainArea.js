@@ -2,6 +2,7 @@ var searchData;
 var tradeOption;
 searchInfoText = (document.querySelector(".MA-Searchbar").value);
 searchInfoText.value = "";
+searchInfoText.innerHTML = "";
 
 $(".MA-Searchbar").click(function () {
     CloseLoginArea();
@@ -40,7 +41,8 @@ $('.MA-ForTradeImage').click(function () {
         document.querySelector("#SelectionArea").style.display = "block";
         $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
         if (searchInfoText != "") {
-            $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
+            PostGenerateSelection();
+            //$.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
 
             $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: "Looking For" }, MatchMaking);
         }
@@ -57,7 +59,8 @@ $('.MA-LookingForImage').click(function () {
         document.querySelector("#SelectionArea").style.display = "block";
         $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
         if (searchInfoText != "") {
-            $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
+            PostGenerateSelection();
+            //$.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
 
             $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: "Looking For" }, MatchMaking);
         }
@@ -87,11 +90,13 @@ function ModifyCheck(data) {
         document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
         document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+        filterDisplay.disabled = false;
     } else {
         document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
         document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
         document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+        filterDisplay.disabled = true;
     }
 }
 

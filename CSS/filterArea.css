@@ -1,0 +1,213 @@
+#FilterArea{
+    background-color: #2E2D2D;
+    position: absolute; 
+    display: none;
+    top: 50%;
+    height: 50%;
+    z-index: 5;
+    width:100%;
+    overflow: auto;
+}
+
+.FA-TopRow{
+    position: relative;
+    text-align: center;
+    margin: auto;
+}
+
+.FA-Display{
+    width: 155px;
+}
+
+.FA-FilterOptions{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat( 2, minmax(155px, 1fr) );
+    text-align: center;
+    top: 10px;
+    margin: auto;
+    width: 310px;
+}
+
+.FA-FilterBall{
+    width: 100%;
+}
+
+.FA-FilterShiny{
+    width: 100%;
+}
+
+.FA-FilterGender{
+    width: 100%;
+}
+
+.FA-FilterMint{
+    width: 100%;
+}
+
+.FA-FilterMisc{
+    width: 100%;
+}
+
+.FA-FilterMark{
+    width: 100%;
+}
+
+.FA-FilterLanguage{
+    width: 100%;
+}
+
+.FA-FilterNature{
+    width: 100%;
+}
+
+.FA-FilterAbility{
+    width: 100%;
+}
+
+.FA-FilterStatus{
+    width: 100%;
+}
+
+.FA-FilterEvent{
+    width: 100%;
+}
+
+.FA-FilterMove{
+    width: 100%;
+}
+
+.FA-FilterHowObtained{
+    width: 100%;
+}
+
+.FA-FilterGameObtained{
+    width: 100%;
+}
+
+.FA-FilterNote{
+    width: 100%;
+}
+
+.FA-FilterProof{
+    width: 100%;
+}
+
+.FA-FilterOT{
+    width: -webkit-fill-available;
+    width: -moz-available;
+}
+
+.FA-FilterID{
+    width: -webkit-fill-available;
+    width: -moz-available;
+}
+
+.FA-IvText{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.FA-EvText{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.FA-IvEvText{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+
+.FA-IVsEVs{
+    position: relative;
+    text-align: center;
+    top: 40px;
+    margin: auto;
+}
+
+
+
+.FA-IvHP{
+    width: 46px;
+}
+
+.FA-IvAtt{
+    width: 46px;
+}
+
+.FA-IvDef{
+    width: 46px;
+}
+
+.FA-IvSpa{
+    width: 46px;
+}
+
+.FA-IvSpd{
+    width: 46px;
+}
+
+.FA-IvSpe{
+    width: 46px;
+}
+
+.FA-EvHP{
+    width: 46px;
+}
+
+.FA-EvAtt{
+    width: 46px;
+}
+
+.FA-EvDef{
+    width: 46px;
+}
+
+.FA-EvSpa{
+    width: 46px;
+}
+
+.FA-EvSpd{
+    width: 46px;
+}
+
+.FA-EvSpe{
+    width: 46px;
+}
+
+.FA-Availability{
+    position: relative;
+    text-align: center;
+    top: 60px;
+    margin: auto;
+    /*width: 310px;*/
+}
+
+.FA-Gen6{
+    background-color: #efefef;
+}
+
+.FA-Gen7{
+    background-color: #efefef;
+}
+
+.FA-Gen8{
+    background-color: #efefef;
+}
+
+.FA-Home{
+    background-color: #efefef;
+}
+
+.FA-Trade{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}

@@ -2,7 +2,8 @@
 //$.post("https://poketrades.org/PHP/generate_bunch_selection.php", { isOwner: "isOwner", searchID: "1", tradeOption: "For Trade" }, GenerateBunch);
 console.log(40 + 8 + 23 - 10);
 
-var searchPokemonText = (document.querySelector(".SA-Searchbar").value);
+document.querySelector(".SA-Searchbar").value = "";
+var searchPokemonText = document.querySelector(".SA-Searchbar");
 //The Image Displayed in the Viewing Area
 var pokemonImage;
 var bunchname = "";
@@ -21,11 +22,12 @@ var oldPosition = "";
 var newPosition = "";
 
 $(".SA-Searchbar").keyup(function () {
-    if (bunchname == "" && searchPokemonText == "") {
+    PostGenerateSelection();
+    /*if (bunchname == "" && searchPokemonText == "") {
         $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
     } else {
         $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname, searchbar: searchPokemonText }, GenerateSelection);
-    }
+    }*/
 })
 
 $('.SA-ExitBunch').click(function () {
@@ -44,7 +46,8 @@ $('.SA-ExitBunch').click(function () {
     document.querySelector(".SA-ExitBunch").style.pointerEvents = "none";
     document.querySelector(".SA-ExitBunch").style.backgroundColor = "grey";
     //Generating the bunches
-    $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
+    PostGenerateSelection();
+    //$.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
 });
 
 $('.SA-MainMenu').click(function () {
@@ -60,8 +63,14 @@ $('.SA-MainMenu').click(function () {
     document.querySelector("#SelectionArea").style.display = "none";
     document.querySelector(".SA-ExitBunch").style.pointerEvents = "none";
     document.querySelector(".SA-ExitBunch").style.backgroundColor = "grey";
+    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#efefef";
+    ResetFilters();
     document.querySelector("#MainArea").style.display = "block";
     document.querySelector("#CreationArea").style.display = "none";
+    document.querySelector("#BunchArea").style.display = "none";
+    document.querySelector("#FilterArea").style.display = "none";
+    CreationReset();
+    BunchReset();
 });
 
 $('.SA-CreateButton').click(function () {
@@ -71,13 +80,9 @@ $('.SA-CreateButton').click(function () {
     document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
     document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
-    BunchDropdown();
-    if (optionsReady == false) {
-        optionsReady = true;
-    }
     //So it doesn't add to an already existing row
     creationID = "";
-    CreationDropdowns();
+    CreationReset();
 });
 
 $('.SA-MoveButton').click(function () {
@@ -100,6 +105,11 @@ $('.SA-MoveButton').click(function () {
         MoveFinished();
     }
 
+});
+
+$('.SA-FiltersButton').click(function () {
+    document.querySelector("#SelectionArea").style.height = "50%";
+    document.querySelector("#FilterArea").style.display = "block";
 });
 
 function MoveStarted() {
@@ -126,7 +136,11 @@ function MoveFinished() {
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
     document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#efefef";
+    if (filtersApplied) {
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "orchid";
+    } else {
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#efefef";
+    }
     document.querySelector(".SA-Searchbar").disabled = false;
     document.querySelector(".VA-ModifyButton").style.pointerEvents = "initial";
     document.querySelector(".VA-ModifyButton").style.backgroundColor = "#efefef";
@@ -160,6 +174,7 @@ function OpacityFull() {
 }
 
 function GenerateBunch(data) {
+    numberOfArrays = null;
     //Using Jquery to parse the data and getting the length.
     bunchData = jQuery.parseJSON(data);
     numberOfBunches = bunchData["Rows"].length;
@@ -194,7 +209,9 @@ function GenerateBunch(data) {
     newDiv.onclick = function () {
         if (currentlyRearranging == false) {
             document.querySelector(".SA-Bunch").innerHTML = "All Pokemon";
-            $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
+            bunchname = "All Pokemon";
+            PostGenerateSelection();
+            //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
         }
     }
 
@@ -305,7 +322,8 @@ function GenerateBunch(data) {
                 console.log(bunch);
                 bunchname = bunch;
                 document.querySelector(".SA-Bunch").innerHTML = bunch;
-                $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunch }, GenerateSelection);
+                PostGenerateSelection();
+                //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunch }, GenerateSelection);
             } else {
                 if (oldPosition == "") {
                     oldPosition = bunchData["Rows"][i].position;
@@ -333,8 +351,11 @@ function GenerateBunch(data) {
 }
 
 function GenerateSelection(data) {
-    //Showing the bunch name and setting up the ability to exit out the bunch.
-    document.querySelector(".SA-Bunch").style.opacity = "100%";
+    numberOfBunches = null;
+    if (bunchname != "") {
+        //Showing the bunch name and setting up the ability to exit out the bunch.
+        document.querySelector(".SA-Bunch").style.opacity = "100%";
+    }
     document.querySelector(".SA-ExitBunch").style.pointerEvents = "initial";
     document.querySelector(".SA-ExitBunch").style.backgroundColor = "#efefef";
 
@@ -733,7 +754,8 @@ function MoveCopyPokemon() {
     currentlyRearranging = false;
     oldPosition = "";
     newPosition = "";
-    $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname, searchbar: searchPokemonText }, GenerateSelection);
+    PostGenerateSelection();
+    //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname, searchbar: searchPokemonText }, GenerateSelection);
 }
 
 function MoveBunch() {
@@ -743,7 +765,8 @@ function MoveBunch() {
     currentlyRearranging = false;
     oldPosition = "";
     newPosition = "";
-    $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
+    PostGenerateSelection();
+    //$.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
 }
 
 function UpdateViewingDetails() {

@@ -1,0 +1,106 @@
+#BunchArea{
+    background-color: #2E2D2D;
+    position: absolute; 
+    display: none;
+    top: 50%;
+    height: 50%;
+    z-index: 4;
+    width:100%;
+    overflow: auto;
+}
+
+.BA-CloseButton{
+    position: relative;
+    display: block;
+    width: 310px;
+    top: 2px;
+    margin: auto;
+}
+
+.BA-IconOptions{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat( 2, minmax(155px, 1fr) );
+    text-align: center;
+    top: 5px;
+    margin: auto;
+    width: 310px;
+}
+
+.BA-GenderDropdown{
+    width: 100%; 
+}
+  
+.BA-ShinyDropdown{
+    width: 100%; 
+}
+
+.BA-IconImage{
+    position: relative; 
+    display: block;
+    top: 15px; 
+    max-width: 128px; 
+    max-height: 128px;
+    margin: auto;
+}
+
+.BA-IconDropdown{
+    position: relative;
+    display: block;
+    top: 25px;
+    width: 310px;
+    height: 20px;;
+    margin: auto;
+}
+
+.BA-BunchInput{
+    position: relative;
+    display: block;
+    width: 302px;
+    top: 30px;
+    margin: auto;
+}
+
+.BA-BunchOptions{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat( 2, minmax(155px, 1fr) );
+    text-align: center;
+    top: 35px;
+    margin: auto;
+    width: 310px;
+}
+
+.BA-AddBunch{
+    width: 100%; 
+}
+  
+.BA-RemoveBunch{
+    width: 100%; 
+}
+
+.BA-BunchRename{
+    position: relative;
+    display: block;
+    top: 50px;
+    width: 310px;
+    height: 20px;;
+    margin: auto;
+}
+
+.BA-BunchNewName{
+    position: relative;
+    display: block;
+    width: 302px;
+    top: 55px;
+    margin: auto;
+}
+
+.BA-RenameBunch{
+    position: relative;
+    display: block;
+    width: 310px;
+    top: 60px;
+    margin: auto;
+}
+    

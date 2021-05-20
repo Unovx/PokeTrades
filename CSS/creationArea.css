@@ -15,17 +15,14 @@
   }
   [class*="CA-"] {
     grid-template-columns: repeat( 2, minmax(100px, 1fr) ) !important;
-    width: 100% !important;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
     left: 0% !important;
     right: 0%;
     position: relative !important;
     display: flex;
     place-content: center !important;
     top: 0% !important;
-    padding-left: 0;
-    padding-right: 0;
-    border-left: 0;
-    border-right: 0;
   }
 
   [class*="DropdownAlign"]{
@@ -48,16 +45,6 @@
     place-content: center !important;
     top: 0% !important;
     margin: auto;
-  }
-}
-
-@media only screen and (max-height: 800px) and (max-width: 768px) {
-  [id*="ViewingButtonsArea"]{
-      position: absolute !important;
-  }
-
-  [id*="MoreViewings"]{
-      position: relative !important;
   }
 }
 
@@ -199,8 +186,7 @@
     position: absolute;
     top: 205px;
     left: 85px;
-    width: 200px;
-    padding: 0;
+    width: 196px;
 }
 
 .CA-IvText{

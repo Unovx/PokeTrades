@@ -14,6 +14,8 @@
   <link href="CSS/selectionArea.css" rel="stylesheet" />
   <link href="CSS/viewingArea.css" rel="stylesheet" />
   <link href="CSS/creationArea.css" rel="stylesheet" />
+  <link href="CSS/bunchArea.css" rel="stylesheet" />
+  <link href="CSS/filterArea.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
@@ -514,7 +516,6 @@
           <select class="CA-MarkDropdown"></select>
         </div>
       </div>
-      </table>
       <img class="CA-PokemonImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
 
       <select class="CA-PokemonDropdown"></select>
@@ -605,12 +606,12 @@
         </tr>
         <tr>
           <td>
-            <input class="CA-OT" type="text" maxlength="=12" placeholder="OT..">
+            <input class="CA-OT" type="text" maxlength="=12" placeholder="OT...">
           </td>
         </tr>
         <tr>
           <td>
-            <input class="CA-ID" type="number" maxlength="6" placeholder="ID..">
+            <input class="CA-ID" type="number" maxlength="6" placeholder="ID...">
           </td>
         </tr>
         <tr>
@@ -664,7 +665,195 @@
       </div>
     </div>
   </div>
-
+  <div id="BunchArea">
+    <button class="BA-CloseButton">Return to Creation Area</button>
+    <div class="BA-IconOptions">
+      <div>
+        <select class="BA-GenderDropdown"></select>
+      </div>
+      <div>
+        <select class="BA-ShinyDropdown"></select>
+      </div>
+    </div>
+    <img class="BA-IconImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
+    <select class="BA-IconDropdown"></select>
+    <input class="BA-BunchInput" type="text" maxlength="30" placeholder="Type Bunch to Add, Update or Remove..">
+    <div class="BA-BunchOptions">
+      <div>
+        <button class="BA-AddBunch">Add/Update Bunch</button>
+      </div>
+      <div>
+        <button class="BA-RemoveBunch">Remove Bunch</button>
+      </div>
+    </div>
+    <select class="BA-BunchRename"></select>
+    <input class="BA-BunchNewName" type="text" maxlength="30" placeholder="Type New Bunch Name..">
+    <button class="BA-RenameBunch">Rename Bunch</button>
+  </div>
+  <div id="FilterArea">
+    <table class="FA-TopRow">
+      <tr>
+        <td>
+          <button class="FA-CloseButton">Close</button>
+        </td>
+        <td>
+          <select class="FA-FilterDisplay" disabled="true">
+            <option>(Public or Private)</option>
+            <option>Public</option>
+            <option>Private</option>
+          </select>
+        </td>
+        <td>
+          <button class="FA-ResetButton">Reset</button>
+        </td>
+      </tr>
+    </table>
+    <div class="FA-FilterOptions">
+      <div>
+        <select class="FA-FilterBall"></select>
+      </div>
+      <div>
+        <select class="FA-FilterGender"></select>
+      </div>
+      <div>
+        <select class="FA-FilterShiny"></select>
+      </div>
+      <div>
+        <select class="FA-FilterMint"></select>
+      </div>
+      <div>
+        <select class="FA-FilterMisc"></select>
+      </div>
+      <div>
+        <select class="FA-FilterMark"></select>
+      </div>
+      <div>
+        <select class="FA-FilterLanguage"></select>
+      </div>
+      <div>
+        <select class="FA-FilterNature"></select>
+      </div>
+      <div>
+        <select class="FA-FilterAbility"></select>
+      </div>
+      <div>
+        <select class="FA-FilterStatus"></select>
+      </div>
+      <div>
+        <select class="FA-FilterEvent"></select>
+      </div>
+      <div>
+        <select class="FA-FilterMove"></select>
+      </div>
+      <div>
+        <select class="FA-FilterHowObtained"></select>
+      </div>
+      <div>
+        <select class="FA-FilterGameObtained"></select>
+      </div>
+      <div>
+        <select class="FA-FilterNote"></select>
+      </div>
+      <div>
+        <select class="FA-FilterProof"></select>
+      </div>
+      <div>
+        <input class="FA-FilterOT" type="text" maxlength="=12" placeholder="Filter OT..."></input>
+      </div>
+      <div>
+        <input class="FA-FilterID" type="number" maxlength="=6" placeholder="Filter ID..."></input>
+      </div>
+    </div>
+    <table class="FA-IVsEVs">
+      <tr>
+        <td>
+          <text></text>
+        </td>
+        <td>
+          <text class="FA-IvEvText">HP</text>
+        </td>
+        <td>
+          <text class="FA-IvEvText">Att</text>
+        </td>
+        <td>
+          <text class="FA-IvEvText">Def</text>
+        </td>
+        <td>
+          <text class="FA-IvEvText">Spa</text>
+        </td>
+        <td>
+          <text class="FA-IvEvText">Spd</text>
+        </td>
+        <td>
+          <text class="FA-IvEvText">Spe</text>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <text class="FA-IvText">IVs</text>
+        </td>
+        <td>
+          <select class="FA-IvHP"></select>
+        </td>
+        <td>
+          <select class="FA-IvAtt"></select>
+        </td>
+        <td>
+          <select class="FA-IvDef"></select>
+        </td>
+        <td>
+          <select class="FA-IvSpa"></select>
+        </td>
+        <td>
+          <select class="FA-IvSpd"></select>
+        </td>
+        <td>
+          <select class="FA-IvSpe"></select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <text class="FA-EvText">EVs</text>
+        </td>
+        <td>
+          <select class="FA-EvHP"></select>
+        </td>
+        <td>
+          <select class="FA-EvAtt"></select>
+        </td>
+        <td>
+          <select class="FA-EvDef"></select>
+        </td>
+        <td>
+          <select class="FA-EvSpa"></select>
+        </td>
+        <td>
+          <select class="FA-EvSpd"></select>
+        </td>
+        <td>
+          <select class="FA-EvSpe"></select>
+        </td>
+      </tr>
+    </table>
+    <table class="FA-Availability">
+      <tr>
+        <td>
+          <text class="FA-Trade">Can Trade In</text>
+        </td>
+        <td>
+          <button class="FA-Gen6">Gen 6</button>
+        </td>
+        <td>
+          <button class="FA-Gen7">Gen 7</button>
+        </td>
+        <td>
+          <button class="FA-Gen8">Gen 8</button>
+        </td>
+        <td>
+          <button class="FA-Home">Home</button>
+        </td>
+      </tr>
+    </table>
   </div>
   <script src="JavaScript/mainArea.js"></scriptsrc>"</script>
   <script src="JavaScript/loginArea.js"></scriptsrc>"</script>
@@ -672,6 +861,8 @@
   <script src="JavaScript/listHolder.js"></scriptsrc>"</script>
   <script src="JavaScript/viewingArea.js"></scriptsrc>"</script>
   <script src="JavaScript/creationArea.js"></scriptsrc>"</script>
+  <script src="JavaScript/bunchArea.js"></scriptsrc>"</script>
+  <script src="JavaScript/filterArea.js"></scriptsrc>"</script>
 </body>
 
 </html>

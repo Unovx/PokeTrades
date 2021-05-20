@@ -69,6 +69,10 @@ $('.CA-CloseButton').click(function () {
     }
 });
 
+$('.CA-EditBunches').click(function () {
+    document.querySelector("#BunchArea").style.display = "block";
+});
+
 $('.CA-CreatePokemon').click(function () {
     CreatePokemon();
 });
@@ -244,8 +248,7 @@ function ValidatePokemon() {
     }
 }
 
-//Calling all dropdowns when they are needed.
-function CreationDropdowns() {
+function CreationReset() {
     pokemonValue = "Abomasnow";
     genderValue = "(Any Gender)";
     shinyValue = "(Any Shiny or Normal)";
@@ -264,6 +267,44 @@ function CreationDropdowns() {
     document.querySelector(".CA-Home").click();
 
     displayDropdown.value = "Public";
+
+    ballDropdown.value = "(Any Ball)";
+    mintDropdown.value = "(Any or No Mint)";
+    miscDropdown.value = "(No Misc)";
+    markDropdown.value = "(Any or No Mark)";
+    natureDropdown.value = "(Any Nature)";
+    abilityDropdown.value = "(Any Ability)";
+    statusDropdown.value = "(Any Status)";
+    eventDropdown.value = "(Any/No Event)";
+    ivHpDropdown.value = "0";
+    ivAttDropdown.value = "0";
+    ivDefDropdown.value = "0";
+    ivSpaDropdown.value = "0";
+    ivSpdDropdown.value = "0";
+    ivSpeDropdown.value = "0";
+    evHpDropdown.value = "0";
+    evAttDropdown.value = "0";
+    evDefDropdown.value = "0";
+    evSpaDropdown.value = "0";
+    evSpdDropdown.value = "0";
+    evSpeDropdown.value = "0";
+    move1Dropdown.value = "(Any Move)";
+    move2Dropdown.value = "(Any Move)";
+    move3Dropdown.value = "(Any Move)";
+    move4Dropdown.value = "(Any Move)";
+    legacyMove1Dropdown.value = "(Any Move)";
+    legacyMove2Dropdown.value = "(Any Move)";
+    legacyMove3Dropdown.value = "(Any Move)";
+    legacyMove4Dropdown.value = "(Any Move)";
+    howObtainedDropdown.value = "(Any Obtained)";
+    gameObtainedDropdown.value = "(Any Game)";
+    languageDropdown.value = "ANY";
+    displayDropdown.value = "Public";
+}
+
+//Calling all dropdowns when they are needed.
+/*function CreationDropdowns() {
+
     PokemonDropdown();
     BallDropdown();
     GenderDropdown();
@@ -300,14 +341,14 @@ function CreationDropdowns() {
     LanguageDropdown();
     //DisplayDropdown();
     ValidatePokemon();
-}
+}*/
 
 function CreatePokemon() {
     //Making sure that if its For Trade, none of the "Any" options are allowed.
     if (document.querySelector(".CA-PokemonImage").getAttribute("src") != "https://poketrades.org/Resources/Fennel2.png") {
         console.log("NO FENNEL");
         if (tradeOption == "For Trade") {
-            if (howObtainedDropdown.value.includes("(Any Obtained") || gameObtainedDropdown.value.includes("(Any Game)" || languageDropdown.value.includes("ANY") || ballDropdown.value.includes("(Any Ball)") || genderDropdown.value.includes("(Any Gender)") || shinyDropdown.value.includes("(Any Shiny or Normal)") || mintDropdown.value.includes("Any or No Mint") || markDropdown.value.includes("Any or No Mark") || natureDropdown.value.includes("(Any Nature") || abilityDropdown.value.includes("(Any Ability)") || otInput.value != "" || idInput.value.length > 4 || statusDropdown.value.includes("(Any Status)") || eventDropdown.value.includes("(Any Event)") || move1Dropdown.value.includes("(Any Move)") || move2Dropdown.value.includes("(Any Move)") || move3Dropdown.value.includes("(Any Move)") || move4Dropdown.value.includes("(Any Move)") || legacyMove1Dropdown.value.includes("(Any Move)") || legacyMove2Dropdown.value.includes("(Any Move)") || legacyMove3Dropdown.value.includes("(Any Move)") || legacyMove4Dropdown.value.includes("(Any Move)"))) {
+            if (howObtainedDropdown.value.includes("(Any Obtained") || gameObtainedDropdown.value.includes("(Any Game)" || languageDropdown.value.includes("ANY") || ballDropdown.value.includes("(Any Ball)") || genderDropdown.value.includes("(Any Gender)") || shinyDropdown.value.includes("(Any Shiny or Normal)") || mintDropdown.value.includes("Any or No Mint") || markDropdown.value.includes("Any or No Mark") || natureDropdown.value.includes("(Any Nature") || abilityDropdown.value.includes("(Any Ability)") || otInput.value != "" || idInput.value.length > 4 || statusDropdown.value.includes("(Any Status)") || eventDropdown.value.includes("(Any Event)") || move1Dropdown.value.includes("(No Move)") || move1Dropdown.value.includes("(Any Move)") || move2Dropdown.value.includes("(Any Move)") || move3Dropdown.value.includes("(Any Move)") || move4Dropdown.value.includes("(Any Move)") || legacyMove1Dropdown.value.includes("(Any Move)") || legacyMove2Dropdown.value.includes("(Any Move)") || legacyMove3Dropdown.value.includes("(Any Move)") || legacyMove4Dropdown.value.includes("(Any Move)"))) {
                 console.log("I Sense an ANY");
             } else {
                 if (nicknameInput.value == "") {
@@ -352,18 +393,42 @@ function CreatedPokemon(data) {
     selectedPokemon = null;
     AssigningOutline();
 
-    if (bunchname != "") {
+    PostGenerateSelection();
+    /*if (bunchname != "") {
         $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
     } else {
         $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
-    }
+    }*/
 }
 
 //For the BunchDropdown, I need it to remove the previous options already in place so I remove all children to start with.
-function BunchDropdown() {
+/*function BunchDropdown() {
     while (bunchDropdown.lastElementChild) {
         bunchDropdown.removeChild(bunchDropdown.lastElementChild);
     }
+
+    bunchRename = document.querySelector(".BA-BunchRename");
+    while (bunchRename.lastElementChild) {
+        bunchRename.removeChild(bunchRename.lastElementChild);
+    }
+
+    const forCreation = document.querySelector(".CA-BunchDropdown");
+    forCreation.innerHtml = "";
+
+    const forBunch = document.querySelector(".BA-BunchRename");
+    forBunch.innerHtml = "";
+
+    for (let i = 0; i < userBunchArray.length; i++) {
+        const creationOption = document.createElement("option");
+        const bunchOption = document.createElement("option");
+        creationOption.value = userBunchArray[i].name;
+        creationOption.textContent = userBunchArray[i].name;
+        bunchOption.value = userBunchArray[i].name;
+        bunchOption.textContent = userBunchArray[i].name;
+        forCreation.appendChild(creationOption);
+        forBunch.appendChild(bunchOption);
+    }
+
     for (let i = 0; i < userBunchArray.length; i++) {
         newOption = document.createElement("option");
         bunchDropdown.appendChild(newOption);
@@ -371,10 +436,10 @@ function BunchDropdown() {
         document.querySelector(".BunchDropdown" + (i)).value = userBunchArray[i].name;
         document.querySelector(".BunchDropdown" + (i)).innerHTML = userBunchArray[i].name;
     }
-}
+}*/
 
 //Due to having thousands of options overall, they are generated this way to avoid a lot of lag than the way that involves css.
-function PokemonDropdown() {
+/*function PokemonDropdown() {
     while (pokemonDropdown.lastElementChild) {
         pokemonDropdown.removeChild(pokemonDropdown.lastElementChild);
     }
@@ -897,5 +962,5 @@ function DisplayDropdown() {
         optionEl.textContent = displayOptionsArray[i];
         selectEl.appendChild(optionEl);
     }
-}
+}*/
 
