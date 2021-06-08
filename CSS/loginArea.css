@@ -2,12 +2,11 @@
     display: none;
     position: absolute;
     background-color: #C0C0C0;
-    height: 350px;
+    height: 400px;
     width: 200px;
     top: 50px;
     right: 0%;
     z-index: 1;
-
 }
 
 .LA-LoginClose{
@@ -19,10 +18,12 @@
 .LA-LoginArea{
     position: relative;
     display: none;
+    height: inherit;
 }
 
 .LA-LoginText{
-    position: absolute;
+    position: relative;
+    display: block;
     color: black;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -32,50 +33,56 @@
 }
 
 .LA-LoginUsername{
-    position: absolute;
+    position: relative;
     top: 50px;
-    left: 20px;
     width: 80%;
+    display: block;
+    margin: auto;
 }
 
 .LA-LoginPassword{
-    position: absolute;
-    top: 85px;
-    left: 20px;
+    position: relative;
+    top: 63px;
     width: 80%;
+    display: block;
+    margin: auto;
 }
 
 .LA-LoginFailed{
-    position: absolute;
+    position: relative;
     color: #C83939;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    top: 155px;
+    top: 102px;
     width: 100%;
     text-align: center;
 }
 
 .LA-LoginButton{
-    position: absolute;
-    top: 120px;
-    left: 20px;
-    width: 66px;
+    position: relative;
+    top: 76px;
+    width: 50%;
+    display: block;
+    margin: auto;
 }
 
 .LA-LoginRegisterButton{
-    position: absolute;
-    top: 120px;
-    left: 60%;
-    width: 66px;
+    position: relative;
+    top: 89px;
+    width: 50%;
+    display: block;
+    margin: auto;
 }
 
 .LA-LoggedInArea{
     position: relative;
     display: none;
+    height: inherit;
 }
 
 .LA-LoggedInText{
-    position: absolute;
+    position: relative;
+    display: block;
     color: black;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -85,68 +92,77 @@
 }
 
 .LA-Username{
-    position: absolute;
+    position: relative;
+    display: block;
     color: #0b8fcc;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
-    top: 40px;
+    top: 20px;
     text-align: center;
 }
 
 .LA-LogOut{
-    position: absolute;
-    top: 70px;
-    left: 65px;
+    position: relative;
+    display: block;
+    top: 30px;
+    margin: auto;
     text-align: center;
 }
 
 .LA-ChangeDetails{
-    position: absolute;
-    top: 105px;
+    position: relative;
+    top: 45px;
     left: 10px;
     text-align: center;
     width: 180px;
 }
 
 .LA-Import{
-    position: absolute;
-    top: 160px;
+    position: relative;
+    top: 63px;
     left: 10px;
     text-align: center;
     width: 66px;
 }
 
+.LA-ImportInput{
+    position: relative;
+    visibility: hidden;
+}
+
 .LA-Export{
-    position: absolute;
-    top: 160px;
-    left: 124px;
+    position: relative;
+    top: 63px;
+    left: 54px;
     text-align: center;
     width: 66px;
 }
 
 .LA-LoggedInNotify{
-    position: absolute;
+    position: relative;
     display: none;
     color: black;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    top: 195px;
+    top: 78px;
     left: 10px;
     text-align: center;
     width: 180px;
 }
 
 .LA-DeleteAllData{
-    position: absolute;
-    top: 230px;
-    left: 50px;
+    position: relative;
+    display: block;
+    top: 95px;
     text-align: center;
+    margin: auto;
 }
 
 .LA-PreviewSettings{
     position: absolute;
-    top: 270px;
+    display: block;
+    top: 320px;
     width: 100%;
     text-align: center;
 }
@@ -154,72 +170,80 @@
 .LA-RegisterArea{
     position: relative;
     display: none;
+    height: inherit;
 }
 
 .LA-CreateAccount{
-    position: absolute;
+    position: relative;
+    display: block;
     color: black;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     top: 10px;
     text-align: center;
+    margin: auto;
 }
 
 .LA-RegisterUsername{
-    position: absolute;
+    position: relative;
     top: 50px;
-    left: 20px;
     width: 80%;
+    display: block;
+    margin: auto;
 }
 
 .LA-RegisterPassword{
-    position: absolute;
-    top: 85px;
-    left: 20px;
+    position: relative;
+    top: 63px;
     width: 80%;
+    display: block;
+    margin: auto;
 }
 
 .LA-RegisterConfirmPassword{
-    position: absolute;
-    top: 120px;
-    left: 20px;
+    position: relative;
+    top: 76px;
     width: 80%;
+    display: block;
+    margin: auto;
 }
 
 .LA-RegisterButton{
-    position: absolute;
-    width: 65px;
-    top: 155px;
-    left: 20px;
-    width: 66px;
+    position: relative;
+    top: 89px;
+    width: 50%;
+    display: block;
+    margin: auto;
 }
 
 .LA-RegisterBackButton{
-    position: absolute;
-    width: 65px;
-    top: 155px;
-    left: 60%;
-    width: 66px;
+    position: relative;
+    top: 102px;
+    width: 50%;
+    display: block;
+    margin: auto;
 }
 
 .LA-RegisterFailed{
-    position: absolute;
+    position: relative;
     width: 200px;
     color: #C83939;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    top: 190px;
+    top: 115px;
     text-align: center;
 }
 
 .LA-UpdateArea{
     position: relative;
     display: none;
+    height: inherit;
 }
 
 .LA-UpdateText{
-    position: absolute;
+    position: relative;
+    display: block;
     color: black;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -229,64 +253,72 @@
 }
 
 .LA-UpdateUsername{
-    position: absolute;
-    top: 55px;
-    left: 20px;
+    position: relative;
+    top: 20px;
     width: 80%;
+    display: block;
+    margin: auto;
 }
 
 .LA-OldPassword{
-    position: absolute;
-    top: 90px;
-    left: 20px;
+    position: relative;
+    top: 33px;
     width: 80%;
+    display: block;
+    margin: auto;
 }
 
 .LA-NewPassword{
-    position: absolute;
-    top: 125px;
-    left: 20px;
+    position: relative;
+    top: 46px;
     width: 80%;
+    display: block;
+    margin: auto;
 }
 
 .LA-ConfirmNewPassword{
-    position: absolute;
-    top: 160px;
-    left: 20px;
+    position: relative;
+    top: 59px;
     width: 80%;
+    display: block;
+    margin: auto;
 }
 
 .LA-ConfirmUpdate{
-    position: absolute;
-    width: 65px;
-    top: 195px;
-    left: 20px;
+    position: relative;
+    top: 72px;
+    width: 50%;
+    display: block;
+    margin: auto;
 }
 
 .LA-UpdateBackButton{
-    position: absolute;
-    width: 65px;
-    top: 195px;
-    left: 60%;
+    position: relative;
+    top: 85px;
+    width: 50%;
+    display: block;
+    margin: auto;
 }
 
 .LA-UpdateFailed{
-    position: absolute;
+    position: relative;
     width: 200px;
     color: #C83939;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    top: 230px;
+    top: 98px;
     text-align: center;
 }
 
 .LA-PreviewArea{
     position: relative;
     display: none;
+    height: inherit;
 }
 
 .LA-PreviewText{
-    position: absolute;
+    position: relative;
+    display: block;
     color: black;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -296,9 +328,9 @@
 }
 
 .PreviewAlign{
-    position: absolute;
-    top: 55px;
-    left: 65px;
+    position: relative;
+    top: 30px;
+    margin: auto;
 }
 
 .LA-BallImage{

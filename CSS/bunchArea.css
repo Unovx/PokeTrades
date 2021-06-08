@@ -1,3 +1,97 @@
+@media only screen and (max-width: 768px) {
+
+    [class*="BA-CloseButton"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        left: 0% !important;
+        right: 0%;
+        position: relative !important;
+        display: flex;
+        place-content: center !important;
+    }
+
+    [class*="BA-IconOptions"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        left: 0% !important;
+        right: 0%;
+        position: relative !important;
+        display: flex;
+        place-content: center !important;
+    }
+    
+    [class*="BA-IconDropdown"] {
+      width: -webkit-fill-available !important;
+      width: -moz-available !important;
+      left: 0% !important;
+      right: 0%;
+      position: relative !important;
+      display: flex !important;
+      place-content: center !important;
+      height: auto !important;
+    }
+
+    [class*="BA-BunchInput"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        left: 0% !important;
+        right: 0%;
+        position: relative !important;
+        display: flex;
+        place-content: center !important;
+    }
+
+    [class*="BA-BunchOptions"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        left: 0% !important;
+        right: 0%;
+        position: relative !important;
+        display: flex;
+        place-content: center !important;
+    }
+
+    [class*="BA-BunchRename"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        left: 0% !important;
+        right: 0%;
+        position: relative !important;
+        display: flex !important;
+        place-content: center !important;
+        height: auto !important;
+    }
+
+    [class*="BA-BunchNewName"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        left: 0% !important;
+        right: 0%;
+        position: relative !important;
+        display: flex;
+        place-content: center !important;
+    }
+
+    [class*="BA-RenameBunch"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        left: 0% !important;
+        right: 0%;
+        position: relative !important;
+        display: flex;
+        place-content: center !important;
+    }
+}
+
+@media only screen and (max-height: 600px) {
+    [id*="BunchArea"]{
+        height: auto !important;
+    }
+    [class*="BA"]{
+        top: 0px !important;
+    }
+}
+
 #BunchArea{
     background-color: #2E2D2D;
     position: absolute; 

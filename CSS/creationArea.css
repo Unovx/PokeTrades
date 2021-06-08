@@ -1,4 +1,7 @@
 @media only screen and (max-width: 768px) {
+  [id*="CreationArea"]{
+    height: auto !important;
+  }
   [id*=CreationButtonsArea]{
     grid-template-columns: repeat( 2, minmax(100px, 1fr) ) !important;
     width: 100% !important;
@@ -23,6 +26,7 @@
     display: flex;
     place-content: center !important;
     top: 0% !important;
+    height: auto !important;
   }
 
   [class*="DropdownAlign"]{
@@ -179,7 +183,7 @@
       top: 180px;
       left: 85px;
       width: 204px;
-      height: 20px;;
+      height: 25px;;
   }
 
   .CA-Nickname{
@@ -208,6 +212,7 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    width: 46px !important;
   }
 
 
@@ -221,51 +226,51 @@
 
 
 .CA-IvHP{
-    width: 46px;
+    width: 46px !important;
 }
 
 .CA-IvAtt{
-    width: 46px;
+    width: 46px !important;
 }
 
 .CA-IvDef{
-    width: 46px;
+    width: 46px !important;
 }
 
 .CA-IvSpa{
-    width: 46px;
+    width: 46px !important;
 }
 
 .CA-IvSpd{
-    width: 46px;
+    width: 46px !important;
 }
 
 .CA-IvSpe{
-    width: 46px;
+    width: 46px !important;
 }
 
 .CA-EvHP{
-    width: 46px;
+    width: 46px !important;
 }
 
 .CA-EvAtt{
-    width: 46px;
+    width: 46px !important;
 }
 
 .CA-EvDef{
-    width: 46px;
+    width: 46px !important;
 }
 
 .CA-EvSpa{
-    width: 46px;
+    width: 46px !important;
 }
 
 .CA-EvSpd{
-    width: 46px;
+    width: 46px !important;
 }
 
 .CA-EvSpe{
-    width: 46px;
+    width: 46px !important;
 }
 
 .CA-ImageAlign{
@@ -321,12 +326,12 @@ font-family: Arial, Helvetica, sans-serif;
 
 .CA-NatureDropdown{
     width: 100%;
-    height: 21px;
+    height: 25px;
 }
 
 .CA-AbilityDropdown{
     width: 100%;
-    height: 21px;
+    height: 25px;
 }
 
 .CA-OT{
@@ -345,12 +350,12 @@ font-family: Arial, Helvetica, sans-serif;
 
 .CA-StatusDropdown{
     width: 100%;
-    height: 21px;
+    height: 25px;
 }
 
 .CA-EventDropdown{
     width: 100%;
-    height: 21px;
+    height: 25px;
 }
 
 /*Not VA as it needs to function differently in regards to dealing with long proof links*/
@@ -462,7 +467,7 @@ font-family: Arial, Helvetica, sans-serif;
   .CA-DisplayDropdown{
     position: absolute;
     width: 204px;
-    height: 20px;;
+    height: 25px;
     top: 40px;
     left: 975px;
   }

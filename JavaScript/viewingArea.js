@@ -33,8 +33,21 @@ $('.VA-ModifyButton').click(function () {
     document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
     document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+    document.querySelector("#ViewingArea").style.display = "none";
     OpenCreationArea();
     ValidatePokemon();
+});
+
+$('.VA-DeleteButton').click(function () {
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".ViewingConfirmDelete").style.display = "block";
+});
+
+$('.VA-AddButton').click(function () {
+    $.post("https://poketrades.org/PHP/add_selection.php", { token: token, creationID: viewingDetails.creation_id });
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".ViewingPokemonAdded").style.display = "block";
+    $.post("https://poketrades.org/PHP/format_import.php", { token: token });
 });
 
 function AssigningOutline() {
@@ -67,6 +80,11 @@ function RemoveBunchOutline() {
         document.querySelector(".GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 0px #8135a9";
     }
 }
+
+$('.VA-ViewingHelp').click(function () {
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".ViewingAdditionalHelp").style.display = "block";
+});
 
 $('.VA-AddAV1').click(function () {
     SetAV1();
@@ -190,6 +208,8 @@ function OpenCreationArea() {
     displayDropdown.value = creationDetails.display;
     proofInput.value = creationDetails.proof;
     noteFieldInput.value = creationDetails.note;
+    noteFieldInput.style.height = "";
+    noteFieldInput.style.height = noteFieldInput.scrollHeight - 20 + "px";
 
     if (creationDetails.gen6_availability == "Available") {
         Gen6 = "Available";

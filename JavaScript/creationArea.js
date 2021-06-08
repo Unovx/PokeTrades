@@ -64,12 +64,15 @@ $('.CA-CloseButton').click(function () {
     document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
     document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
-    if (document.querySelector("#ViewingArea").style.display != "block") {
+    if (selectedPokemon == null) {
         document.querySelector("#SelectionArea").style.height = "100%";
+    } else {
+        document.querySelector("#ViewingArea").style.display = "block";
     }
 });
 
 $('.CA-EditBunches').click(function () {
+    document.querySelector("#CreationArea").style.display = "none";
     document.querySelector("#BunchArea").style.display = "block";
 });
 
@@ -173,6 +176,10 @@ function ValidatePokemon() {
                 document.querySelector(".CA-PokemonImage").setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Ribbon-Shiny.png");
             }
         }
+    }
+
+    else if (shinyLockedArray.includes(pokemonValue) && !shinyValue.includes("Normal")) {
+        document.querySelector(".CA-PokemonImage").setAttribute("src", "https://poketrades.org/Resources/Fennel2.png");
     }
 
     else if (genderlessPokemonArray.includes(pokemonValue)) {
@@ -288,18 +295,31 @@ function CreationReset() {
     evSpaDropdown.value = "0";
     evSpdDropdown.value = "0";
     evSpeDropdown.value = "0";
-    move1Dropdown.value = "(Any Move)";
-    move2Dropdown.value = "(Any Move)";
-    move3Dropdown.value = "(Any Move)";
-    move4Dropdown.value = "(Any Move)";
-    legacyMove1Dropdown.value = "(Any Move)";
-    legacyMove2Dropdown.value = "(Any Move)";
-    legacyMove3Dropdown.value = "(Any Move)";
-    legacyMove4Dropdown.value = "(Any Move)";
+    if (tradeOption == "For Trade") {
+        move1Dropdown.value = "(No Move)";
+        move2Dropdown.value = "(No Move)";
+        move3Dropdown.value = "(No Move)";
+        move4Dropdown.value = "(No Move)";
+        legacyMove1Dropdown.value = "(No Move)";
+        legacyMove2Dropdown.value = "(No Move)";
+        legacyMove3Dropdown.value = "(No Move)";
+        legacyMove4Dropdown.value = "(No Move)";
+    } else {
+        move1Dropdown.value = "(Any Move)";
+        move2Dropdown.value = "(Any Move)";
+        move3Dropdown.value = "(Any Move)";
+        move4Dropdown.value = "(Any Move)";
+        legacyMove1Dropdown.value = "(Any Move)";
+        legacyMove2Dropdown.value = "(Any Move)";
+        legacyMove3Dropdown.value = "(Any Move)";
+        legacyMove4Dropdown.value = "(Any Move)";
+    }
     howObtainedDropdown.value = "(Any Obtained)";
     gameObtainedDropdown.value = "(Any Game)";
     languageDropdown.value = "ANY";
     displayDropdown.value = "Public";
+
+    ValidatePokemon();
 }
 
 //Calling all dropdowns when they are needed.
@@ -348,8 +368,9 @@ function CreatePokemon() {
     if (document.querySelector(".CA-PokemonImage").getAttribute("src") != "https://poketrades.org/Resources/Fennel2.png") {
         console.log("NO FENNEL");
         if (tradeOption == "For Trade") {
-            if (howObtainedDropdown.value.includes("(Any Obtained") || gameObtainedDropdown.value.includes("(Any Game)" || languageDropdown.value.includes("ANY") || ballDropdown.value.includes("(Any Ball)") || genderDropdown.value.includes("(Any Gender)") || shinyDropdown.value.includes("(Any Shiny or Normal)") || mintDropdown.value.includes("Any or No Mint") || markDropdown.value.includes("Any or No Mark") || natureDropdown.value.includes("(Any Nature") || abilityDropdown.value.includes("(Any Ability)") || otInput.value != "" || idInput.value.length > 4 || statusDropdown.value.includes("(Any Status)") || eventDropdown.value.includes("(Any Event)") || move1Dropdown.value.includes("(No Move)") || move1Dropdown.value.includes("(Any Move)") || move2Dropdown.value.includes("(Any Move)") || move3Dropdown.value.includes("(Any Move)") || move4Dropdown.value.includes("(Any Move)") || legacyMove1Dropdown.value.includes("(Any Move)") || legacyMove2Dropdown.value.includes("(Any Move)") || legacyMove3Dropdown.value.includes("(Any Move)") || legacyMove4Dropdown.value.includes("(Any Move)"))) {
-                console.log("I Sense an ANY");
+            if (howObtainedDropdown.value.includes("(Any Obtained") || gameObtainedDropdown.value.includes("(Any Game)") || languageDropdown.value.includes("ANY") || ballDropdown.value.includes("(Any Ball)") || genderDropdown.value.includes("(Any Gender)") || shinyDropdown.value.includes("(Any Shiny or Normal)") || mintDropdown.value.includes("(Any or No Mint)") || markDropdown.value.includes("Any or No Mark") || natureDropdown.value.includes("(Any Nature") || abilityDropdown.value.includes("(Any Ability)") || otInput.value == "" || idInput.value.length < 4 || statusDropdown.value.includes("(Any Status)") || eventDropdown.value.includes("(Any Event)") || move1Dropdown.value.includes("(No Move)") || move1Dropdown.value.includes("(Any Move)") || move2Dropdown.value.includes("(Any Move)") || move3Dropdown.value.includes("(Any Move)") || move4Dropdown.value.includes("(Any Move)") || legacyMove1Dropdown.value.includes("(Any Move)") || legacyMove2Dropdown.value.includes("(Any Move)") || legacyMove3Dropdown.value.includes("(Any Move)") || legacyMove4Dropdown.value.includes("(Any Move)")) {
+                document.querySelector("#NotificationArea").style.display = "block";
+                document.querySelector(".CreationPokemonError").style.display = "block";
             } else {
                 if (nicknameInput.value == "") {
                     nicknameInput.value = "(No Nickname)";
@@ -360,7 +381,7 @@ function CreatePokemon() {
                 if (noteFieldInput.value == "") {
                     noteFieldInput.value = "(No Note)";
                 }
-                $.post("https://poketrades.org/PHP/create_or_update_selection.php", { token: token, creationID: creationDetails.creation_id, bunchname: bunchDropdown.value, tradeOption: tradeOption, pokemon: pokemonDropdown.value, nickname: nicknameInput.value, ball: ballDropdown.value, gender: genderDropdown.value, shiny: shinyDropdown.value, mint: mintDropdown.value, misc: miscDropdown.value, mark: markDropdown.value, lang: languageDropdown.value, gen6: Gen6, gen7: Gen7, gen8: Gen8, home: Home, nature: natureDropdown.value, ability: abilityDropdown.value, gameOT: otInput.value, gameID: idInput.value, status: statusDropdown.value, event: eventDropdown.value, move1: move1Dropdown.value, move2: move2Dropdown.value, move3: move3Dropdown.value, move4: move4Dropdown.value, legacymove1: legacyMove1Dropdown.value, legacymove2: legacyMove2Dropdown.value, legacymove3: legacyMove3Dropdown.value, legacymove4: legacyMove4Dropdown.value, howObtained: howObtainedDropdown.value, gameObtained: gameObtainedDropdown.value, display: displayDropdown.value, proof: proofInput.value, note: noteFieldInput.value, ivhp: ivHpDropdown.value, ivatt: ivAttDropdown.value, ivdef: ivDefDropdown.value, ivspa: ivSpaDropdown.value, ivspd: ivSpdDropdown.value, ivspe: ivSpeDropdown.value, evhp: evHpDropdown.value, evatt: evAttDropdown.value, evdef: evDefDropdown.value, evspa: evSpaDropdown.value, evspd: evSpdDropdown.value, evspe: evSpeDropdown.value }, CreatedPokemon);
+                $.post("https://poketrades.org/PHP/create_or_update_selection.php", { token: token, creationID: creationID, bunchname: bunchDropdown.value, tradeOption: tradeOption, pokemon: pokemonDropdown.value, nickname: nicknameInput.value, ball: ballDropdown.value, gender: genderDropdown.value, shiny: shinyDropdown.value, mint: mintDropdown.value, misc: miscDropdown.value, mark: markDropdown.value, lang: languageDropdown.value, gen6: Gen6, gen7: Gen7, gen8: Gen8, home: Home, nature: natureDropdown.value, ability: abilityDropdown.value, gameOT: otInput.value, gameID: idInput.value, status: statusDropdown.value, event: eventDropdown.value, move1: move1Dropdown.value, move2: move2Dropdown.value, move3: move3Dropdown.value, move4: move4Dropdown.value, legacymove1: legacyMove1Dropdown.value, legacymove2: legacyMove2Dropdown.value, legacymove3: legacyMove3Dropdown.value, legacymove4: legacyMove4Dropdown.value, howObtained: howObtainedDropdown.value, gameObtained: gameObtainedDropdown.value, display: displayDropdown.value, proof: proofInput.value, note: noteFieldInput.value, ivhp: ivHpDropdown.value, ivatt: ivAttDropdown.value, ivdef: ivDefDropdown.value, ivspa: ivSpaDropdown.value, ivspd: ivSpdDropdown.value, ivspe: ivSpeDropdown.value, evhp: evHpDropdown.value, evatt: evAttDropdown.value, evdef: evDefDropdown.value, evspa: evSpaDropdown.value, evspd: evSpdDropdown.value, evspe: evSpeDropdown.value }, CreatedPokemon);
             }
         } else if (tradeOption == "Looking For") {
             if (nicknameInput.value == "") {
@@ -372,10 +393,11 @@ function CreatePokemon() {
             if (noteFieldInput.value == "") {
                 noteFieldInput.value = "(No Note)";
             }
-            $.post("https://poketrades.org/PHP/create_or_update_selection.php", { token: token, creationID: creationDetails.creation_id, bunchname: bunchDropdown.value, tradeOption: tradeOption, pokemon: pokemonDropdown.value, nickname: nicknameInput.value, ball: ballDropdown.value, gender: genderDropdown.value, shiny: shinyDropdown.value, mint: mintDropdown.value, misc: miscDropdown.value, mark: markDropdown.value, lang: languageDropdown.value, gen6: Gen6, gen7: Gen7, gen8: Gen8, home: Home, nature: natureDropdown.value, ability: abilityDropdown.value, gameOT: otInput.value, gameID: idInput.value, status: statusDropdown.value, event: eventDropdown.value, move1: move1Dropdown.value, move2: move2Dropdown.value, move3: move3Dropdown.value, move4: move4Dropdown.value, legacymove1: legacyMove1Dropdown.value, legacymove2: legacyMove2Dropdown.value, legacymove3: legacyMove3Dropdown.value, legacymove4: legacyMove4Dropdown.value, howObtained: howObtainedDropdown.value, gameObtained: gameObtainedDropdown.value, display: displayDropdown.value, proof: proofInput.value, note: noteFieldInput.value, ivhp: ivHpDropdown.value, ivatt: ivAttDropdown.value, ivdef: ivDefDropdown.value, ivspa: ivSpaDropdown.value, ivspd: ivSpdDropdown.value, ivspe: ivSpeDropdown.value, evhp: evHpDropdown.value, evatt: evAttDropdown.value, evdef: evDefDropdown.value, evspa: evSpaDropdown.value, evspd: evSpdDropdown.value, evspe: evSpeDropdown.value }, CreatedPokemon);
+            $.post("https://poketrades.org/PHP/create_or_update_selection.php", { token: token, creationID: creationID, bunchname: bunchDropdown.value, tradeOption: tradeOption, pokemon: pokemonDropdown.value, nickname: nicknameInput.value, ball: ballDropdown.value, gender: genderDropdown.value, shiny: shinyDropdown.value, mint: mintDropdown.value, misc: miscDropdown.value, mark: markDropdown.value, lang: languageDropdown.value, gen6: Gen6, gen7: Gen7, gen8: Gen8, home: Home, nature: natureDropdown.value, ability: abilityDropdown.value, gameOT: otInput.value, gameID: idInput.value, status: statusDropdown.value, event: eventDropdown.value, move1: move1Dropdown.value, move2: move2Dropdown.value, move3: move3Dropdown.value, move4: move4Dropdown.value, legacymove1: legacyMove1Dropdown.value, legacymove2: legacyMove2Dropdown.value, legacymove3: legacyMove3Dropdown.value, legacymove4: legacyMove4Dropdown.value, howObtained: howObtainedDropdown.value, gameObtained: gameObtainedDropdown.value, display: displayDropdown.value, proof: proofInput.value, note: noteFieldInput.value, ivhp: ivHpDropdown.value, ivatt: ivAttDropdown.value, ivdef: ivDefDropdown.value, ivspa: ivSpaDropdown.value, ivspd: ivSpdDropdown.value, ivspe: ivSpeDropdown.value, evhp: evHpDropdown.value, evatt: evAttDropdown.value, evdef: evDefDropdown.value, evspa: evSpaDropdown.value, evspd: evSpdDropdown.value, evspe: evSpeDropdown.value }, CreatedPokemon);
         }
     } else {
-        console.log("FENNEL");
+        document.querySelector("#NotificationArea").style.display = "block";
+        document.querySelector(".CreationPokemonError").style.display = "block";
     }
 }
 

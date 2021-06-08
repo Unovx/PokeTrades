@@ -40,8 +40,10 @@ filterHome = "";
 
 $('.FA-CloseButton').click(function () {
     document.querySelector("#FilterArea").style.display = "none";
-    if (document.querySelector("#ViewingArea").style.display != "block" && document.querySelector("#CreationArea").style.display != "block") {
+    if (selectedPokemon == null) {
         document.querySelector("#SelectionArea").style.height = "100%";
+    } else {
+        document.querySelector("#ViewingArea").style.display = "block";
     }
 });
 
@@ -405,6 +407,7 @@ $('.FA-Gen6').click(function () {
         FilterCheck();
         document.querySelector(".FA-Gen6").style.backgroundColor = "#EFEFEF";
     }
+    PostGenerateSelection();
 });
 
 $('.FA-Gen7').click(function () {
@@ -419,6 +422,7 @@ $('.FA-Gen7').click(function () {
         FilterCheck();
         document.querySelector(".FA-Gen7").style.backgroundColor = "#EFEFEF";
     }
+    PostGenerateSelection();
 });
 
 $('.FA-Gen8').click(function () {
@@ -433,6 +437,7 @@ $('.FA-Gen8').click(function () {
         FilterCheck();
         document.querySelector(".FA-Gen8").style.backgroundColor = "#EFEFEF";
     }
+    PostGenerateSelection();
 });
 
 $('.FA-Home').click(function () {
@@ -447,6 +452,7 @@ $('.FA-Home').click(function () {
         FilterCheck();
         document.querySelector(".FA-Home").style.backgroundColor = "#EFEFEF";
     }
+    PostGenerateSelection();
 });
 
 

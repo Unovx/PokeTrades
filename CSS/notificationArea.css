@@ -1,0 +1,333 @@
+@media only screen and (max-width: 768px) {
+    [class*="ViewingAdditionalHelp"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
+    [class*="ViewingConfirmDelete"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
+    [class*="ViewingPokemonAdded"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
+    [class*="CreationPokemonError"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
+    [class*="BunchIconError"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
+    [class*="BunchPokemonAdded"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
+    [class*="BunchPokemonRemoved"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
+    [class*="TradeSheetImported"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
+    [class*="DeleteAllConfirm"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
+    [class*="DeleteAllSuccess"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+}
+
+#NotificationArea{
+    position: fixed; 
+    display: none;
+    height: 100%;
+    z-index: 10;
+    width:100%;
+    overflow: auto;
+}
+
+.ViewingAdditionalHelp{
+    position: relative;
+    display: none;
+    margin: auto;
+    background-color: #C0C0C0;
+    padding: 10px;
+    width: 500px;
+    top: 50%;
+    text-align: center;
+}
+
+.NA-ViewingAdditionalText{
+    position: relative;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-ViewingAdditionalClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
+.ViewingConfirmDelete{
+    position: relative;
+    display: none;
+    margin: auto;
+    background-color: #C0C0C0;
+    padding: 10px;
+    width: 500px;
+    top: 50%;
+    text-align: center;
+}
+
+.NA-ConfirmDeleteButtons{
+    position: relative;
+    width: 100%;
+    top: 10px;
+    text-align: center;
+}
+
+.NA-ConfirmDeleteText{
+    position: relative;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-ConfirmDeleteButton{
+    position: relative;
+}
+
+.NA-CloseConfirmButton{
+    position: relative;
+}
+
+.ViewingPokemonAdded{
+    position: relative;
+    display: none;
+    margin: auto;
+    background-color: #C0C0C0;
+    padding: 10px;
+    width: 500px;
+    top: 50%;
+    text-align: center;
+}
+
+.NA-PokemonAddedText{
+    position: relative;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-PokemonAddedClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
+.CreationPokemonError{
+    position: relative;
+    display: none;
+    margin: auto;
+    background-color: #C0C0C0;
+    padding: 10px;
+    width: 500px;
+    top: 40%;
+}
+
+.NA-CreationPokemonText{
+    position: relative;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+.NA-CreationPokemonClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
+.BunchIconError{
+    position: relative;
+    display: none;
+    margin: auto;
+    background-color: #C0C0C0;
+    padding: 10px;
+    width: 500px;
+    top: 40%;
+}
+
+.NA-BunchIconText{
+    position: relative;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+.NA-BunchIconClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
+.BunchPokemonAdded{
+    position: relative;
+    display: none;
+    margin: auto;
+    background-color: #C0C0C0;
+    padding: 10px;
+    width: 300px;
+    top: 50%;
+    text-align: center;
+}
+
+.NA-BunchAddedText{
+    position: relative;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-BunchAddedClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
+.BunchPokemonRemoved{
+    position: relative;
+    display: none;
+    margin: auto;
+    background-color: #C0C0C0;
+    padding: 10px;
+    width: 300px;
+    top: 50%;
+    text-align: center;
+}
+
+.NA-BunchRemovedText{
+    position: relative;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-BunchRemovedClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
+.TradeSheetImported{
+    position: relative;
+    display: none;
+    margin: auto;
+    background-color: #C0C0C0;
+    padding: 10px;
+    width: 300px;
+    top: 50%;
+    text-align: center;
+}
+
+.NA-ImportedSuccessText{
+    position: relative;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-ImportedSuccessClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
+.DeleteAllConfirm{
+    position: relative;
+    display: none;
+    margin: auto;
+    background-color: #C0C0C0;
+    padding: 10px;
+    width: 500px;
+    top: 50%;
+    text-align: center;
+}
+
+.NA-DeleteAllButtons{
+    position: relative;
+    width: 100%;
+    top: 10px;
+    text-align: center;
+}
+
+.NA-DeleteAllText{
+    position: relative;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+    color: crimson;
+}
+
+.NA-ConfirmDeleteAll{
+    position: relative;
+}
+
+.NA-CloseDeleteAll{
+    position: relative;
+}
+
+.DeleteAllSuccess{
+    position: relative;
+    display: none;
+    margin: auto;
+    background-color: #C0C0C0;
+    padding: 10px;
+    width: 300px;
+    top: 50%;
+    text-align: center;
+}
+
+.NA-SuccessDeleteAllText{
+    position: relative;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-SuccessDeleteAllClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}

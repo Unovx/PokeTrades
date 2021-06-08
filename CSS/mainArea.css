@@ -25,12 +25,14 @@
     [class*="MA-SearchInfo"]{
         top: 35px !important;
     }
-    [class*="MA-CustomMessageArea"]{
-        width: 90% !important;
-        top: 50px !important;
-    }
     [class*="MA-Message"]{
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        top: 50px !important;
         font-size: initial !important;
+    }
+    [class*="MA-TutorialAndDiscord"]{
+        width: 100% !important;
     }
   }
 
@@ -129,19 +131,41 @@
     font-size: 20px;
 }
 
-.MA-CustomMessageArea{
+.MA-TutorialAndDiscord{
+    position: relative;
+    text-align: center;
+    margin: auto;
+    top: 50px;
+    width: 400px;
+}
+
+.MA-Discord{
+    color: #4343FF;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+/*.MA-CustomMessageArea{
     position: relative;
     margin: auto;
     background-color: #C0C0C0;
     padding: 10px;
     width: 750px;
     top: 50px;
-}
+}*/
 
 .MA-Message{
+    position: relative;
+    display: block;
+    margin: auto;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 15px;
+    padding: 10px;
+    width: 750px;
+    top: 50px;
+    color: black;
 }
 
 

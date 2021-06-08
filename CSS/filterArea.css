@@ -1,3 +1,15 @@
+@media only screen and (max-width: 768px) {
+    [class*="FA"]{
+        top: 0px !important;
+    }
+}
+
+@media only screen and (max-height: 600px) {
+    [id*="FilterArea"]{
+        height: auto !important;
+    }
+}
+
 #FilterArea{
     background-color: #2E2D2D;
     position: absolute; 
@@ -192,18 +204,22 @@
 
 .FA-Gen6{
     background-color: #efefef;
+    border: none;
 }
 
 .FA-Gen7{
     background-color: #efefef;
+    border: none;
 }
 
 .FA-Gen8{
     background-color: #efefef;
+    border: none;
 }
 
 .FA-Home{
     background-color: #efefef;
+    border: none;
 }
 
 .FA-Trade{

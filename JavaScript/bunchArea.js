@@ -11,6 +11,7 @@ bunchToRenameDropdown = document.querySelector(".BA-BunchRename");
 
 $('.BA-CloseButton').click(function () {
     document.querySelector("#BunchArea").style.display = "none";
+    document.querySelector("#CreationArea").style.display = "block";
     BunchReset();
 });
 
@@ -39,6 +40,9 @@ $('.BA-AddBunch').click(function () {
             }
         }
         $.post("https://poketrades.org/PHP/create_or_update_bunch.php", { token: token, creationID: tempCreationID, name: bunchInput.value, icon: bunchIcon, gender: bunchGender, shiny: bunchShiny, tradeOption: tradeOption }, BunchChanges);
+    } else {
+        document.querySelector("#NotificationArea").style.display = "block";
+        document.querySelector(".BunchIconError").style.display = "block";
     }
 });
 
@@ -50,18 +54,27 @@ $('.BA-RemoveBunch').click(function () {
                 tempCreationID = userBunchArray[i].creation_id;
                 break;
             }
+        } if (tempCreationID == "") {
+            document.querySelector("#NotificationArea").style.display = "block";
+            document.querySelector(".BunchIconError").style.display = "block";
+        } else {
+            $.post("https://poketrades.org/PHP/delete_bunch.php", { token: token, creationID: tempCreationID, tradeOption: tradeOption }, BunchRemoved);
         }
-        $.post("https://poketrades.org/PHP/delete_bunch.php", { token: token, creationID: tempCreationID, tradeOption: tradeOption }, BunchRemoved);
+    } else {
+        document.querySelector("#NotificationArea").style.display = "block";
+        document.querySelector(".BunchIconError").style.display = "block";
     }
 });
 
 $('.BA-RenameBunch').click(function () {
-    if (bunchNewName.value != "All Pokemon" && bunchNewName.value != "(No Bunch)" && bunchNewName.value != "") {
+    if (bunchNewName.value != "All Pokemon" && bunchNewName.value != "(No Bunch)" && bunchNewName.value != "" && bunchToRenameDropdown.value != "(No Bunch)") {
         var existingName = false;
 
         for (let i = 0; i < userBunchArray.length; i++) {
             if (bunchNewName.value == userBunchArray[i].name) {
                 existingName = true;
+                document.querySelector("#NotificationArea").style.display = "block";
+                document.querySelector(".BunchIconError").style.display = "block";
                 break;
             }
         }
@@ -80,6 +93,9 @@ $('.BA-RenameBunch').click(function () {
                 document.querySelector(".SA-Bunch").innerHTML = tempBunchName;
             }
         }
+    } else {
+        document.querySelector("#NotificationArea").style.display = "block";
+        document.querySelector(".BunchIconError").style.display = "block";
     }
 });
 
@@ -100,6 +116,8 @@ function BunchReset() {
 
 function BunchChanges() {
     if (bunchname == "") {
+        document.querySelector("#NotificationArea").style.display = "block";
+        document.querySelector(".BunchPokemonAdded").style.display = "block";
         PostGenerateSelection();
         // $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
     }
@@ -118,6 +136,8 @@ function BunchRemoved() {
         $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
     }*/
     document.querySelector(".VA-CloseButton").click();
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".BunchPokemonRemoved").style.display = "block";
 }
 
 function BunchRenamed(data) {
@@ -130,6 +150,8 @@ function BunchRenamed(data) {
         $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
     }*/
     document.querySelector(".VA-CloseButton").click();
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".BunchPokemonAdded").style.display = "block";
 }
 
 function ValidateIcon() {
@@ -190,6 +212,10 @@ function ValidateIcon() {
                     document.querySelector(".BA-IconImage").setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Ribbon-Shiny.png");
                 }
             }
+        }
+
+        else if (shinyLockedArray.includes(bunchIcon) && !bunchShiny.includes("Normal")) {
+            document.querySelector(".BA-IconImage").setAttribute("src", "https://poketrades.org/Resources/Fennel2.png");
         }
 
         else if (genderlessPokemonArray.includes(bunchIcon)) {

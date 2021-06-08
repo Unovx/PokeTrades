@@ -1,14 +1,114 @@
-var signedIn = false;
-var userData;
-var token = null;
+var userData = null;
+var token = localStorage.getItem('token');
+if (token != null && token != "null") {
+    $.post("https://poketrades.org/PHP/token_check.php", { token: token }, LastSession);
+} else {
+    token = null;
+}
+$.post("https://poketrades.org/PHP/search_id.php", { searchID: searchInfoText }, TradeSheetInfo);
+$.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
 
-var previewBall = true;
-var previewGender = false;
-var previewShiny = false;
-var previewMint = false;
-var previewMisc = false;
-var previewMark = false;
-var previewIVs = true;
+function LastSession(data) {
+    if (data != null) {
+        userData = jQuery.parseJSON(data);
+        document.querySelector(".LA-Username").innerHTML = userData.username;
+        document.querySelector(".MA-UserID").style.opacity = "100%";
+        document.querySelector(".MA-UserID").innerHTML = "Your ID is: " + userData.user_id;
+    }
+}
+
+var previewBall;
+var previewGender;
+var previewShiny;
+var previewMint;
+var previewMisc;
+var previewMark;
+var previewIVs;
+
+if (localStorage.getItem('previewBall') == null) {
+    previewBall = true;
+    document.querySelector(".LA-BallButton").innerHTML = "On";
+}
+else if (localStorage.getItem('previewBall') == "1") {
+    previewBall = true;
+    document.querySelector(".LA-BallButton").innerHTML = "On";
+} else {
+    previewBall = false;
+    document.querySelector(".LA-BallButton").innerHTML = "Off";
+}
+
+if (localStorage.getItem('previewGender') == null) {
+    previewGender = false;
+    document.querySelector(".LA-GenderButton").innerHTML = "Off";
+}
+else if (localStorage.getItem('previewGender') == "1") {
+    previewGender = true;
+    document.querySelector(".LA-GenderButton").innerHTML = "On";
+} else {
+    previewGender = false;
+    document.querySelector(".LA-GenderButton").innerHTML = "Off";
+}
+
+if (localStorage.getItem('previewShiny') == null) {
+    previewShiny = false;
+    document.querySelector(".LA-ShinyButton").innerHTML = "Off";
+}
+else if (localStorage.getItem('previewShiny') == "1") {
+    previewShiny = true;
+    document.querySelector(".LA-ShinyButton").innerHTML = "On";
+} else {
+    previewShiny = false;
+    document.querySelector(".LA-ShinyButton").innerHTML = "Off";
+}
+
+if (localStorage.getItem('previewMint') == null) {
+    previewMint = false;
+    document.querySelector(".LA-MintButton").innerHTML = "Off";
+}
+else if (localStorage.getItem('previewMint') == "1") {
+    previewMint = true;
+    document.querySelector(".LA-MintButton").innerHTML = "On";
+} else {
+    previewMint = false;
+    document.querySelector(".LA-MintButton").innerHTML = "Off";
+}
+
+if (localStorage.getItem('previewMisc') == null) {
+    previewMisc = false;
+    document.querySelector(".LA-MiscButton").innerHTML = "Off";
+}
+else if (localStorage.getItem('previewMisc') == "1") {
+    previewMisc = true;
+    document.querySelector(".LA-MiscButton").innerHTML = "On";
+} else {
+    previewMisc = false;
+    document.querySelector(".LA-MiscButton").innerHTML = "Off";
+}
+
+if (localStorage.getItem('previewMark') == null) {
+    previewMark = false;
+    document.querySelector(".LA-MarkButton").innerHTML = "Off";
+}
+else if (localStorage.getItem('previewMark') == "1") {
+    previewMark = true;
+    document.querySelector(".LA-MarkButton").innerHTML = "On";
+} else {
+    previewMark = false;
+    document.querySelector(".LA-MarkButton").innerHTML = "Off";
+}
+
+if (localStorage.getItem('previewIVs') == null) {
+    previewIVs = true;
+    document.querySelector(".LA-IVsButton").innerHTML = "On";
+}
+else if (localStorage.getItem('previewIVs') == "1") {
+    previewIVs = true;
+    document.querySelector(".LA-IVsButton").innerHTML = "On";
+} else {
+    previewIVs = false;
+    document.querySelector(".LA-IVsButton").innerHTML = "Off";
+}
+
 
 $('.LA-LoginClose').click(function () {
     CloseLoginArea();
@@ -65,10 +165,10 @@ $('.LA-LogOut').click(function () {
     document.querySelector(".MA-UserID").innerHTML = "Your ID is: ";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
     document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
-    $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     userData = null;
     token = null;
-    signedIn = false;
+    localStorage.setItem('token', null);
+    $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
 });
 
 $('.LA-ChangeDetails').click(function () {
@@ -76,6 +176,47 @@ $('.LA-ChangeDetails').click(function () {
     document.querySelector(".LA-LoggedInArea").style.display = "none";
     document.querySelector(".LA-UpdateArea").style.display = "block";
     document.querySelector(".LA-UpdateFailed").style.display = "none";
+});
+
+$('.LA-Import').click(function () {
+    document.querySelector(".LA-ImportInput").click();
+});
+
+async function ImportData(file) {
+    let text = await (new Response(file)).text();
+    //console.log(text);
+    $.post("https://poketrades.org/PHP/import_data.php", { token: token, fileData: text });
+    document.querySelector(".LA-ImportInput").value = null;
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".TradeSheetImported").style.display = "block";
+    $.post("https://poketrades.org/PHP/format_import.php", { token: token });
+
+}
+
+$('.LA-Export').click(function () {
+    $.post("https://poketrades.org/PHP/export_data.php", { token: token }, ExportData);
+});
+
+function ExportData(mydata) {
+    var csvData = mydata;
+    var csvFileName = "poketrades_export.csv";
+
+    var csvContent = "data:text/csv;charset=utf-8,";
+    csvContent += csvData;
+
+    var encodedUri = encodeURI(csvContent);
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", csvFileName);
+    document.body.appendChild(link);
+    link.click();
+    $(link).remove();
+}
+
+$('.LA-DeleteAllData').click(function () {
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".DeleteAllConfirm").style.display = "block";
+
 });
 
 $('.LA-RegisterButton').click(function () {
@@ -134,7 +275,7 @@ $('.LA-ConfirmUpdate').click(function () {
 
     if (updateUsername == "" && oldPassword == "" && newPassword == "" && confirmNewPassword == "") {
         document.querySelector(".LA-UpdateFailed").style.display = "block";
-        document.querySelector(".LA-UpdateFailed").innerHTML = "Please fill in either the username or password fields.";
+        document.querySelector(".LA-UpdateFailed").innerHTML = "Please fill in the username or password fields.";
     }
 
     else if (updateUsername != "") {
@@ -207,9 +348,10 @@ $('.LA-UpdateBackButton').click(function () {
 $('.LA-BallButton').click(function () {
     if (previewBall == false) {
         previewBall = true;
+        localStorage.setItem('previewBall', "1");
         document.querySelector(".LA-BallButton").innerHTML = "On";
     } else {
-        previewBall = false;
+        localStorage.setItem('previewBall', "0");
         document.querySelector(".LA-BallButton").innerHTML = "Off";
     }
 });
@@ -217,9 +359,11 @@ $('.LA-BallButton').click(function () {
 $('.LA-GenderButton').click(function () {
     if (previewGender == false) {
         previewGender = true;
+        localStorage.setItem('previewGender', "1");
         document.querySelector(".LA-GenderButton").innerHTML = "On";
     } else {
         previewGender = false;
+        localStorage.setItem('previewGender', "0");
         document.querySelector(".LA-GenderButton").innerHTML = "Off";
     }
 });
@@ -227,9 +371,11 @@ $('.LA-GenderButton').click(function () {
 $('.LA-ShinyButton').click(function () {
     if (previewShiny == false) {
         previewShiny = true;
+        localStorage.setItem('previewShiny', "1");
         document.querySelector(".LA-ShinyButton").innerHTML = "On";
     } else {
         previewShiny = false;
+        localStorage.setItem('previewShiny', "0");
         document.querySelector(".LA-ShinyButton").innerHTML = "Off";
     }
 });
@@ -237,9 +383,11 @@ $('.LA-ShinyButton').click(function () {
 $('.LA-MintButton').click(function () {
     if (previewMint == false) {
         previewMint = true;
+        localStorage.setItem('previewMint', "1");
         document.querySelector(".LA-MintButton").innerHTML = "On";
     } else {
         previewMint = false;
+        localStorage.setItem('previewMint', "0");
         document.querySelector(".LA-MintButton").innerHTML = "Off";
     }
 });
@@ -247,9 +395,11 @@ $('.LA-MintButton').click(function () {
 $('.LA-MiscButton').click(function () {
     if (previewMisc == false) {
         previewMisc = true;
+        localStorage.setItem('previewMisc', "1");
         document.querySelector(".LA-MiscButton").innerHTML = "On";
     } else {
         previewMisc = false;
+        localStorage.setItem('previewMisc', "0");
         document.querySelector(".LA-MiscButton").innerHTML = "Off";
     }
 });
@@ -257,9 +407,11 @@ $('.LA-MiscButton').click(function () {
 $('.LA-MarkButton').click(function () {
     if (previewMark == false) {
         previewMark = true;
+        localStorage.setItem('previewMark', "1");
         document.querySelector(".LA-MarkButton").innerHTML = "On";
     } else {
         previewMark = false;
+        localStorage.setItem('previewMark', "0");
         document.querySelector(".LA-MarkButton").innerHTML = "Off";
     }
 });
@@ -267,9 +419,11 @@ $('.LA-MarkButton').click(function () {
 $('.LA-IVsButton').click(function () {
     if (previewIVs == false) {
         previewIVs = true;
+        localStorage.setItem('previewIVs', "1");
         document.querySelector(".LA-IVsButton").innerHTML = "On";
     } else {
         previewGender = false;
+        localStorage.setItem('previewIVs', "0");
         document.querySelector(".LA-IVsButton").innerHTML = "Off";
     }
 
@@ -302,13 +456,13 @@ function UserLogin(data) {
     if (data != "" && data != "Wrong Username or Password.") {
         userData = jQuery.parseJSON(data);
         token = userData.token;
+        localStorage.setItem('token', token);
         document.querySelector(".LA-LoginArea").style.display = "none";
         document.querySelector(".LA-LoginFailed").style.display = "none";
         document.querySelector(".LA-LoggedInArea").style.display = "block";
         document.querySelector(".LA-Username").innerHTML = userData.username;
         document.querySelector(".MA-UserID").style.opacity = "100%";
         document.querySelector(".MA-UserID").innerHTML = "Your ID is: " + userData.user_id;
-        signedIn = true;
         document.querySelector(".LA-LoginUsername").value = "";
         document.querySelector(".LA-LoginPassword").value = "";
 
@@ -323,6 +477,7 @@ function RegisterAccount(data) {
     if (data != "" && data != "Username already taken.") {
         userData = jQuery.parseJSON(data);
         token = userData.token;
+        localStorage.setItem('token', token);
         document.querySelector(".LA-RegisterArea").style.display = "none";
         document.querySelector(".LA-RegisterFailed").style.display = "none";
         document.querySelector(".LA-LoggedInArea").style.display = "block";
@@ -331,7 +486,6 @@ function RegisterAccount(data) {
         document.querySelector(".LA-Username").innerHTML = userData.username;
         document.querySelector(".MA-UserID").style.opacity = "100%";
         document.querySelector(".MA-UserID").innerHTML = "Your ID is: " + userData.user_id;
-        signedIn = true;
         document.querySelector(".LA-RegisterUsername").value = "";
         document.querySelector(".LA-RegisterPassword").value = "";
         document.querySelector(".LA-RegisterConfirmPassword").value = "";
