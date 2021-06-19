@@ -414,7 +414,7 @@ function CreatedPokemon(data) {
     creationID = "";
     selectedPokemon = null;
     AssigningOutline();
-
+    ShowLoading();
     PostGenerateSelection();
     /*if (bunchname != "") {
         $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);

@@ -118,6 +118,7 @@ function BunchChanges() {
     if (bunchname == "") {
         document.querySelector("#NotificationArea").style.display = "block";
         document.querySelector(".BunchPokemonAdded").style.display = "block";
+        ShowLoading();
         PostGenerateSelection();
         // $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
     }
@@ -128,6 +129,7 @@ function BunchRemoved() {
     if (bunchname == document.querySelector(".BA-BunchInput").value) {
         bunchname = "(No Bunch)";
     }
+    ShowLoading();
     $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
     PostGenerateSelection();
     /*if (bunchname == "") {
@@ -143,6 +145,7 @@ function BunchRemoved() {
 function BunchRenamed(data) {
     console.log(data);
     $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
+    ShowLoading();
     PostGenerateSelection();
     /*if (bunchname == "") {
         $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);

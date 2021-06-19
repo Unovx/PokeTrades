@@ -32,7 +32,7 @@ body {
     }
     [id*="GridContainer"]{
       /* larger font size is looks better on mobile devices*/
-      font-size: 3vw;
+      font-size: 100%;
       /* Spacing issues aren't an issue on mobile devices*/
       grid-gap: 0rem !important;
       /* 110 isn't need on mobile, but 100 is too crowded with preview icons on desktop*/
@@ -41,12 +41,14 @@ body {
   }
 
   #SelectionArea{
-    position: absolute;
+    position: fixed;
     z-index: 0;
     height: 100%;
     width: 100%;
     overflow: auto;
     display: none;
+    top: 0.5px;
+    bottom: 0.5px;
   }
 
   .theText{
@@ -57,7 +59,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     /* This is for PC only as otherwise text between the grid columns look too crowded*/
-    font-size: 1.5vh;
+    font-size: 70%;
   }
 
   #SA-TopRow{
@@ -78,7 +80,7 @@ body {
   }
 
   #GeneratedSelection{
-    overflow: auto;
+    overflow: hidden;
     z-index: -1;
   }
 
@@ -144,7 +146,7 @@ body {
     /* auto-fill into of auto-fit so it starts from the corner of the screen*/
     grid-template-columns: repeat( auto-fill, minmax(110px, 1fr) );
     /* this is so it fills all available space without an parts being cut off on any device*/
-    height: -webkit-fill-available;
+    height: inherit;
     /* needing to prevent bunches and to an slight extent mons looking crowded*/
     grid-gap: 1rem;
     place-items: center;

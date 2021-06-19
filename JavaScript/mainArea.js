@@ -7,7 +7,12 @@ searchInfoText = (document.querySelector(".MA-Searchbar").value);
 $(".MA-Searchbar").click(function () {
     CloseLoginArea();
     CloseTutorials();
+    //$.post("https://poketrades.org/PHP/changes.php", Testing);
 })
+
+function Testing(data) {
+    console.log(data)
+}
 
 $(".MA-Searchbar").keyup(function () {
     CloseLoginArea();
@@ -18,6 +23,8 @@ $(".MA-Searchbar").keyup(function () {
     $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     localStorage.setItem('searchID', searchInfoText);
 })
+
+
 
 $(".MA-LoginButton").click(function () {
     if (document.querySelector("#LoginArea").style.display == "block") {
@@ -48,6 +55,7 @@ $('.MA-ForTradeImage').click(function () {
         document.querySelector("#SelectionArea").style.display = "block";
         $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
         if (searchInfoText != "") {
+            ShowLoading();
             PostGenerateSelection();
             //$.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
 
@@ -67,6 +75,7 @@ $('.MA-LookingForImage').click(function () {
         document.querySelector("#SelectionArea").style.display = "block";
         $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
         if (searchInfoText != "") {
+            ShowLoading();
             PostGenerateSelection();
             //$.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
 

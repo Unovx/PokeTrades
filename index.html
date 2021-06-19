@@ -418,17 +418,16 @@
           <td>
             <a class="ViewingProof" target="_blank">(No Proof)</a>
           </td>
-
-
         </tr>
-      </table>
-      <table class="VA-Note">
         <tr>
           <td>
-            <text>Testing</text>
+            <button class="VA-ToggleProof">Show Proof</button>
           </td>
         </tr>
       </table>
+      <a class="VA-LinkRedirector" target="_blank"><img class="VA-ProofImage" src=""></img></a>
+
+
       <text class="VA-PokemonMoves">Pokemon Moves</text>
       <div class="VA-NormalMoves">
         <div class="VA-Move1">(No Move)</div>
@@ -463,6 +462,13 @@
           <td class="VA-LegacyMove4">(No Move)</td>
         </tr>
       </table>-->
+      <table class="VA-Note">
+        <tr>
+          <td>
+            <text>Testing</text>
+          </td>
+        </tr>
+      </table>
       <text class="VA-PreferredPokemon">Preferred Pokemon in Exchange:</text>
     </div>
     <div id="MatchMaking"></div>
@@ -645,8 +651,6 @@
         </tr>
       </table>
 
-      <textarea class="NoteField" placeholder="Type Note.." maxlength="150"
-        oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'></textarea>
       <text class="CA-PokemonMoves">Pokemon Moves</text>
       <div class="CA-NormalMoves">
         <div>
@@ -677,6 +681,8 @@
           <select class="CA-LegacyMove4"></select>
         </div>
       </div>
+      <textarea class="NoteField" placeholder="Type Note.." maxlength="150"
+        oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'></textarea>
     </div>
   </div>
   <div id="BunchArea">
@@ -962,6 +968,10 @@
     <div class="DeleteAllSuccess">
       <text class="NA-SuccessDeleteAllText">Deleted data successfully.</text>
       <button class="NA-SuccessDeleteAllClose">Close</button>
+    </div>
+    <div class="LoadingData">
+      <img class="NA-LoadingImage" src="https://poketrades.org/Resources/Misc/Loading Icon.png"></img>
+      <!--<text class="NA-LoadingText">Loading Data</text>-->
     </div>
   </div>
   <div id="TutorialArea">

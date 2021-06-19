@@ -21,7 +21,53 @@ var currentlyRearranging = false;
 var oldPosition = "";
 var newPosition = "";
 
+
+//This is needed so I can get the visible height of elements.
+$.fn.visibleHeight = function () {
+    var elBottom, elTop, scrollBot, scrollTop, visibleBottom, visibleTop;
+    scrollTop = $(window).scrollTop();
+    scrollBot = scrollTop + $(window).height();
+    elTop = this.offset().top;
+    elBottom = elTop + this.outerHeight();
+    visibleTop = elTop < scrollTop ? scrollTop : elTop;
+    visibleBottom = elBottom > scrollBot ? scrollBot : elBottom;
+    return visibleBottom - visibleTop
+}
+
+//Getting the visible heiht of the Selection Area.
+var selectionVH = $("#SelectionArea").visibleHeight();
+//console.log($(selection).visibleHeight());
+
+//Making sure the Selection Area height is constantly updated.
+$(function UpdateSelectionHeight() {
+    setInterval(oneSecondFunction, 1);
+});
+
+function oneSecondFunction() {
+    if (document.querySelector('#FilterArea').style.display == "block") {
+        //document.querySelector('#SelectionArea').style.height = "100%"
+        document.querySelector('#SelectionArea').style.height = selectionVH - $("#FilterArea").visibleHeight() + "px"
+    }
+    else if (document.querySelector('#BunchArea').style.display == "block") {
+        //document.querySelector('#SelectionArea').style.height = "100%"
+        document.querySelector('#SelectionArea').style.height = selectionVH - $("#BunchArea").visibleHeight() + "px"
+    }
+    else if (document.querySelector('#CreationArea').style.display == "block") {
+        //document.querySelector('#SelectionArea').style.height = "100%"
+        document.querySelector('#SelectionArea').style.height = selectionVH - $("#CreationArea").visibleHeight() + "px"
+    }
+    else if (document.querySelector('#ViewingArea').style.display == "block") {
+        //document.querySelector('#SelectionArea').style.height = "100%"
+        document.querySelector('#SelectionArea').style.height = selectionVH - $("#ViewingArea").visibleHeight() + "px"
+    } else {
+        document.querySelector('#SelectionArea').style.height = "100%"
+        //document.querySelector('#SelectionArea').style.height = $(selection).visibleHeight() - 1 + "px";
+        //alert($(selection).visibleHeight())
+    }
+}
+
 $(".SA-Searchbar").keyup(function () {
+    ShowLoading();
     PostGenerateSelection();
     /*if (bunchname == "" && searchPokemonText == "") {
         $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
@@ -46,6 +92,7 @@ $('.SA-ExitBunch').click(function () {
     document.querySelector(".SA-ExitBunch").style.pointerEvents = "none";
     document.querySelector(".SA-ExitBunch").style.backgroundColor = "grey";
     ResetFilters();
+    ShowLoading();
     //Generating the bunches
     PostGenerateSelection();
     //$.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
@@ -217,6 +264,7 @@ function GenerateBunch(data) {
             if (currentlyRearranging == false) {
                 document.querySelector(".SA-Bunch").innerHTML = "All Pokemon";
                 bunchname = "All Pokemon";
+                ShowLoading();
                 PostGenerateSelection();
                 //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
             }
@@ -329,6 +377,7 @@ function GenerateBunch(data) {
                     console.log(bunch);
                     bunchname = bunch;
                     document.querySelector(".SA-Bunch").innerHTML = bunch;
+                    ShowLoading();
                     PostGenerateSelection();
                     //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunch }, GenerateSelection);
                 } else {
@@ -356,6 +405,7 @@ function GenerateBunch(data) {
             }
         }
     }
+    HideLoading();
 }
 
 function GenerateSelection(data) {
@@ -731,8 +781,24 @@ function GenerateSelection(data) {
                 console.log(pokemonImage);
                 selectedPokemon = document.querySelector(".GenerationGridDiv" + (i));
                 document.querySelector(".VA-Username").innerHTML = searchData.username + "#" + viewingDetails.user_id;
+
                 AssigningOutline();
                 UpdateViewingDetails();
+
+                //Making it so when you click on a mon and Viewing Area hides it, that mon is scrolled to the new bottom.
+                var imageView = $(".GenerationGridDiv" + (i)).offset();
+                var imageViewTop = Math.abs(imageView.top);
+                console.log(imageViewTop)
+                console.log(document.querySelector('#SelectionArea').clientHeight)
+                //if (imageViewTop - 10 > document.querySelector('#SelectionArea').clientHeight \ 2) {
+                if (imageViewTop > document.querySelector('#SelectionArea').clientHeight) {
+                    //console.log(imageViewTop)
+                    document.querySelector(".GenerationGridDiv" + (i)).scrollIntoView(false);
+                } else {
+                    console.log("Else " + imageViewTop)
+                }
+                //console.log($(".GenerationGridDiv" + (i)).offset());
+
                 $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: viewingDetails.user_id }, ModifyCheckViewing);
             } else {
                 if (oldPosition == "") {
@@ -755,6 +821,7 @@ function GenerateSelection(data) {
     }
     //Assigning the outline in case a pokemon generated is the one still in the viewing area so the user knows which one it is.
     AssigningOutline();
+    HideLoading();
 }
 
 function MoveCopyPokemon() {
@@ -764,6 +831,7 @@ function MoveCopyPokemon() {
     currentlyRearranging = false;
     oldPosition = "";
     newPosition = "";
+    ShowLoading();
     PostGenerateSelection();
     //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname, searchbar: searchPokemonText }, GenerateSelection);
 }
@@ -775,6 +843,7 @@ function MoveBunch() {
     currentlyRearranging = false;
     oldPosition = "";
     newPosition = "";
+    ShowLoading();
     PostGenerateSelection();
     //$.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
 }
@@ -868,10 +937,29 @@ function UpdateViewingDetails() {
     document.querySelector(".ViewingProof").innerHTML = viewingDetails.proof;
     if (viewingDetails.proof == "(No Proof)") {
         document.querySelector(".ViewingProof").style.display = "none";
+        document.querySelector(".VA-LinkRedirector").style.display = "none";
+        document.querySelector(".VA-ToggleProof").style.display = "none";
     } else {
-        document.querySelector(".ViewingProof").setAttribute("href", viewingDetails.proof);
-        document.querySelector(".ViewingProof").style.color = "#4343FF";
-        document.querySelector(".ViewingProof").style.display = "flex";
+        if (!viewingDetails.proof.includes("imgur")) {
+            document.querySelector(".ViewingProof").style.display = "none";
+            document.querySelector(".VA-LinkRedirector").style.display = "block";
+            document.querySelector(".VA-ToggleProof").style.display = "inline-table";
+            document.querySelector(".VA-ProofImage").setAttribute("src", viewingDetails.proof);
+            document.querySelector(".VA-LinkRedirector").setAttribute("href", viewingDetails.proof);
+        } else {
+            document.querySelector(".VA-LinkRedirector").style.display = "none";
+            document.querySelector(".VA-ToggleProof").style.display = "none";
+            document.querySelector(".ViewingProof").setAttribute("href", viewingDetails.proof);
+            document.querySelector(".ViewingProof").style.color = "#4343FF";
+            document.querySelector(".ViewingProof").style.display = "flex";
+        }
+        document.querySelector(".VA-ProofImage").onerror = function () {
+            document.querySelector(".VA-LinkRedirector").style.display = "none";
+            document.querySelector(".VA-ToggleProof").style.display = "none";
+            document.querySelector(".ViewingProof").setAttribute("href", viewingDetails.proof);
+            document.querySelector(".ViewingProof").style.color = "#4343FF";
+            document.querySelector(".ViewingProof").style.display = "flex";
+        }
     }
 
     document.querySelector(".VA-Move1").innerHTML = viewingDetails.move_1;
@@ -899,6 +987,9 @@ function UpdateViewingDetails() {
         document.querySelector(".VA-Note").innerHTML = "Note: " + viewingDetails.note;
         document.querySelector(".VA-Note").style.display = "table";
     }
-    document.querySelector("#SelectionArea").style.height = "50%";
-    document.querySelector("#ViewingArea").style.display = "block";
+    if (document.querySelector("#ViewingArea").style.display != "block" && document.querySelector("#FilterArea").style.display != "block") {
+        document.querySelector("#SelectionArea").style.height = "50%";
+        document.querySelector("#ViewingArea").style.display = "block";
+    }
+
 }

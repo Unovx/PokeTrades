@@ -13,6 +13,7 @@ $('.NA-ConfirmDeleteButton').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".ViewingConfirmDelete").style.display = "none";
     document.querySelector(".VA-CloseButton").click();
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -62,3 +63,13 @@ $('.NA-SuccessDeleteAllClose').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".DeleteAllSuccess").style.display = "none";
 });
+
+function ShowLoading() {
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".LoadingData").style.display = "block";
+}
+
+function HideLoading() {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".LoadingData").style.display = "none";
+}

@@ -49,6 +49,7 @@ $('.FA-CloseButton').click(function () {
 
 $('.FA-ResetButton').click(function () {
     ResetFilters();
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -62,6 +63,7 @@ $(filterDisplay).change(function () {
         filterCheck[0] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -73,6 +75,7 @@ $(filterBall).change(function () {
         filterCheck[1] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -84,6 +87,7 @@ $(filterGender).change(function () {
         filterCheck[2] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -95,6 +99,7 @@ $(filterShiny).change(function () {
         filterCheck[3] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -106,6 +111,7 @@ $(filterMint).change(function () {
         filterCheck[4] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -117,6 +123,7 @@ $(filterMisc).change(function () {
         filterCheck[5] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -128,6 +135,7 @@ $(filterMark).change(function () {
         filterCheck[6] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -139,6 +147,7 @@ $(filterLanguage).change(function () {
         filterCheck[7] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -150,6 +159,7 @@ $(filterNature).change(function () {
         filterCheck[8] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -161,6 +171,7 @@ $(filterAbility).change(function () {
         filterCheck[9] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -172,6 +183,7 @@ $(filterStatus).change(function () {
         filterCheck[10] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -183,6 +195,7 @@ $(filterEvent).change(function () {
         filterCheck[11] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -194,6 +207,7 @@ $(filterMove).change(function () {
         filterCheck[12] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -205,6 +219,7 @@ $(filterHowObtained).change(function () {
         filterCheck[13] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -216,6 +231,7 @@ $(filterGameObtained).change(function () {
         filterCheck[14] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -227,6 +243,7 @@ $(filterNote).change(function () {
         filterCheck[15] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -238,6 +255,7 @@ $(filterProof).change(function () {
         filterCheck[16] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -249,6 +267,7 @@ $(filterOT).keyup(function () {
         filterCheck[17] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -260,6 +279,7 @@ $(filterID).keyup(function () {
         filterCheck[18] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -271,6 +291,7 @@ $(filterIvHP).change(function () {
         filterCheck[19] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -282,6 +303,7 @@ $(filterIvAtt).change(function () {
         filterCheck[20] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -293,6 +315,7 @@ $(filterIvDef).change(function () {
         filterCheck[21] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -304,6 +327,7 @@ $(filterIvSpa).change(function () {
         filterCheck[22] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -315,6 +339,7 @@ $(filterIvSpd).change(function () {
         filterCheck[23] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -326,6 +351,7 @@ $(filterIvSpe).change(function () {
         filterCheck[24] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -337,6 +363,7 @@ $(filterEvHP).change(function () {
         filterCheck[25] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -348,6 +375,7 @@ $(filterEvAtt).change(function () {
         filterCheck[26] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -359,6 +387,7 @@ $(filterEvDef).change(function () {
         filterCheck[27] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -370,6 +399,7 @@ $(filterEvSpa).change(function () {
         filterCheck[28] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -381,6 +411,7 @@ $(filterEvSpd).change(function () {
         filterCheck[29] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -392,6 +423,7 @@ $(filterEvSpe).change(function () {
         filterCheck[30] = "true";
         FilterCheck();
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -407,6 +439,7 @@ $('.FA-Gen6').click(function () {
         FilterCheck();
         document.querySelector(".FA-Gen6").style.backgroundColor = "#EFEFEF";
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -422,6 +455,7 @@ $('.FA-Gen7').click(function () {
         FilterCheck();
         document.querySelector(".FA-Gen7").style.backgroundColor = "#EFEFEF";
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -437,6 +471,7 @@ $('.FA-Gen8').click(function () {
         FilterCheck();
         document.querySelector(".FA-Gen8").style.backgroundColor = "#EFEFEF";
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -452,6 +487,7 @@ $('.FA-Home').click(function () {
         FilterCheck();
         document.querySelector(".FA-Home").style.backgroundColor = "#EFEFEF";
     }
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -469,7 +505,7 @@ function FilterCheck() {
 
 function PostGenerateSelection() {
     if (bunchname != "" || filtersApplied == true || searchPokemonText.value != "") {
-        $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, searchbar: searchPokemonText.value, tradeOption: tradeOption, bunchname: bunchname, ball: filterBall.value, gender: filterGender.value, shiny: filterShiny.value, mint: filterMint.value, misc: filterMisc.value, mark: filterMark.value, OT: filterOT.value, ID: filterID.value, gen6: filterGen6, gen7: filterGen7, gen8: filterGen8, home: filterHome, nature: filterNature.value, ability: filterAbility.value, status: filterStatus.value, event: filterEvent.value, move: filterMove.value, howObtained: filterHowObtained.value, gameObtained: filterGameObtained.value, display: filterDisplay.value, note: filterNote.value, proof: filterProof.value, ivhp: filterIvHP.value, ivatt: filterIvAtt.value, ivdef: filterIvDef.value, ivspa: filterIvSpa.value, ivspd: filterIvSpd.value, ivspe: filterIvSpe.value, evhp: filterEvHP.value, evatt: filterEvAtt.value, evdef: filterEvDef.value, evspa: filterEvSpa.value, evspd: filterEvSpd.value, evspe: filterEvSpe.value }, GenerateSelection);
+        $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, searchbar: searchPokemonText.value, tradeOption: tradeOption, bunchname: bunchname, ball: filterBall.value, gender: filterGender.value, shiny: filterShiny.value, mint: filterMint.value, misc: filterMisc.value, mark: filterMark.value, lang: filterLanguage.value, OT: filterOT.value, ID: filterID.value, gen6: filterGen6, gen7: filterGen7, gen8: filterGen8, home: filterHome, nature: filterNature.value, ability: filterAbility.value, status: filterStatus.value, event: filterEvent.value, move: filterMove.value, howObtained: filterHowObtained.value, gameObtained: filterGameObtained.value, display: filterDisplay.value, note: filterNote.value, proof: filterProof.value, ivhp: filterIvHP.value, ivatt: filterIvAtt.value, ivdef: filterIvDef.value, ivspa: filterIvSpa.value, ivspd: filterIvSpd.value, ivspe: filterIvSpe.value, evhp: filterEvHP.value, evatt: filterEvAtt.value, evdef: filterEvDef.value, evspa: filterEvSpa.value, evspd: filterEvSpd.value, evspe: filterEvSpe.value }, GenerateSelection);
         console.log(bunchname);
     } else {
         $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);

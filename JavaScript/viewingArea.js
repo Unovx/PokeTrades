@@ -50,6 +50,16 @@ $('.VA-AddButton').click(function () {
     $.post("https://poketrades.org/PHP/format_import.php", { token: token });
 });
 
+$('.VA-ToggleProof').click(function () {
+    if (document.querySelector(".VA-ToggleProof").innerHTML == "Show Proof") {
+        document.querySelector(".VA-ProofImage").style.display = "block";
+        document.querySelector(".VA-ToggleProof").innerHTML = "Hide Proof";
+    } else {
+        document.querySelector(".VA-ProofImage").style.display = "none";
+        document.querySelector(".VA-ToggleProof").innerHTML = "Show Proof";
+    }
+});
+
 function AssigningOutline() {
     //Makes sure arrayData isn't null so an error doesn't get brought up in specific cases like on the bunch area
     if (arrayData != null) {
@@ -209,7 +219,7 @@ function OpenCreationArea() {
     proofInput.value = creationDetails.proof;
     noteFieldInput.value = creationDetails.note;
     noteFieldInput.style.height = "";
-    noteFieldInput.style.height = noteFieldInput.scrollHeight - 20 + "px";
+    noteFieldInput.style.height = noteFieldInput.scrollHeight + "px";
 
     if (creationDetails.gen6_availability == "Available") {
         Gen6 = "Available";

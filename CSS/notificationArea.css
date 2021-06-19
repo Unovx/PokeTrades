@@ -331,3 +331,33 @@
     margin: auto;
     top: 10px;
 }
+
+.LoadingData{
+    position: relative;
+    display: none;
+    margin: auto;
+    padding: 10px;
+    width: 300px;
+    top: 25%;
+    text-align: center;
+}
+
+.NA-LoadingImage{
+    position: relative;
+    display: block; 
+    max-width: 256px; 
+    max-height: 256px;
+    margin: auto;
+}
+
+/*.NA-LoadingText{
+    position: relative;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+    color: white;
+    top: 10px;
+    font-size: 25px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}*/
