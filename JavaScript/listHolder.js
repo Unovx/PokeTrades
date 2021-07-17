@@ -37,35 +37,39 @@ var languageOptionsArray;
     $.post("https://poketrades.org/PHP/get_list_names.php", { column: "shiny_exceptions", table: "shiny_exception_pokemon" }, ShinyExceptionPokemon);
 });*/
 
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "pokemon", table: "pokemon_names" }, AllPokemon);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "balls", table: "ball_names" }, AllBalls);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "genderless", table: "genderless_pokemon" }, GenderlessPokemon);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "female_only", table: "female_only_pokemon" }, FemaleOnlyPokemon);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "male_only", table: "male_only_pokemon" }, MaleOnlyPokemon);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "gender_differences", table: "gender_different_pokemon" }, GenderDifferentPokemon);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "shiny_locked", table: "shiny_locked_pokemon" }, ShinyLockedPokemon);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "shiny_exceptions", table: "shiny_exception_pokemon" }, ShinyExceptionPokemon);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "moves", table: "move_names" }, AllMoves);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "natures", table: "nature_names" }, AllNatures);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "abilities", table: "ability_names" }, AllAbilities);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "items", table: "item_names" }, AllItems);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "marks", table: "mark_names" }, AllMarks);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "how_obtained", table: "how_obtained_options" }, HowObtained);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "game_obtained", table: "game_obtained_options" }, GameObtained);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "icons", table: "icon_names" }, AllIcons);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "icon_exclusives", table: "icon_exclusive_icons" }, IconExclusives);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "ivs", table: "iv_values" }, IvValues);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "evs", table: "ev_values" }, EvValues);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "display_types", table: "display_options" }, DisplayOptions);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "event_types", table: "event_options" }, EventOptions);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "genders", table: "gender_options" }, GenderOptions);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "misc_types", table: "misc_options" }, MiscOptions);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "shiny_types", table: "shiny_options" }, ShinyOptions);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "mint_types", table: "mint_options" }, MintOptions);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "status_types", table: "status_options" }, StatusOptions);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "note_types", table: "note_options" }, NoteOptions);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "proof_types", table: "proof_options" }, ProofOptions);
-$.post("https://poketrades.org/PHP/get_list_names.php", { column: "languages", table: "languages_options" }, LanguagesOptions);
+$(document).ready(function () {
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "pokemon", table: "pokemon_names" }, AllPokemon);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "balls", table: "ball_names" }, AllBalls);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "genderless", table: "genderless_pokemon" }, GenderlessPokemon);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "female_only", table: "female_only_pokemon" }, FemaleOnlyPokemon);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "male_only", table: "male_only_pokemon" }, MaleOnlyPokemon);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "gender_differences", table: "gender_different_pokemon" }, GenderDifferentPokemon);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "shiny_locked", table: "shiny_locked_pokemon" }, ShinyLockedPokemon);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "shiny_exceptions", table: "shiny_exception_pokemon" }, ShinyExceptionPokemon);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "moves", table: "move_names" }, AllMoves);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "natures", table: "nature_names" }, AllNatures);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "abilities", table: "ability_names" }, AllAbilities);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "items", table: "item_names" }, AllItems);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "marks", table: "mark_names" }, AllMarks);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "how_obtained", table: "how_obtained_options" }, HowObtained);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "game_obtained", table: "game_obtained_options" }, GameObtained);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "icons", table: "icon_names" }, AllIcons);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "icon_exclusives", table: "icon_exclusive_icons" }, IconExclusives);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "ivs", table: "iv_values" }, IvValues);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "evs", table: "ev_values" }, EvValues);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "display_types", table: "display_options" }, DisplayOptions);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "event_types", table: "event_options" }, EventOptions);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "genders", table: "gender_options" }, GenderOptions);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "misc_types", table: "misc_options" }, MiscOptions);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "shiny_types", table: "shiny_options" }, ShinyOptions);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "mint_types", table: "mint_options" }, MintOptions);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "status_types", table: "status_options" }, StatusOptions);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "note_types", table: "note_options" }, NoteOptions);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "proof_types", table: "proof_options" }, ProofOptions);
+    $.post("https://poketrades.org/PHP/get_list_names.php", { column: "languages", table: "languages_options" }, LanguagesOptions);
+});
+
+
 
 //$.post("https://poketrades.org/PHP/generate_bunch_selection.php", { isOwner: "", searchID: "1", tradeOption: "For Trade" }, GenerateBunch);
 

@@ -1,7 +1,21 @@
 @media only screen and (max-width: 768px) {
+
     [class*="MA-MainTextHolder"]{
         width: 90% !important;
+        margin: auto;
     }
+
+    [class*="MainSection"]{
+        margin-right: 0% !important;
+    }
+
+    [class*="StartingSections"]{
+        width: 100% !important;
+        grid-gap: 2rem !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
     [class*="MA-PokeTradesTextIcon"]{
         width: 100% !important;
     }
@@ -34,13 +48,28 @@
     [class*="MA-TutorialAndDiscord"]{
         width: 100% !important;
     }
+}
+
+
+#Background{
+    position: fixed;
+    background-image: url('https://poketrades.org/Resources/Designs/Background.png');
+    background-size: contain;
+    width: 100%;
+    height: 100%;
   }
 
 #MainArea{
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 100%;
-    overflow: auto;
+    overflow: hidden;
+}
+
+.TableHolder{
+    display: block;
+    height: 100%;
+    width: 100%;
 }
 
 .MA-MainTextHolder{
@@ -56,6 +85,64 @@
     right: 0%;
     max-width: 48px;
     max-height: 48px;
+    visibility: hidden;
+}
+
+.MainSection{
+    margin-right: 420px;
+}
+
+.StartingSections{
+    display: grid;
+    grid-template-columns: repeat( 3, minmax(100px, 1fr) );
+    text-align: center;
+    justify-items: center;
+    width: 70%;
+    top: 60px;
+    margin: auto;
+    position: relative;
+    grid-gap: 5rem;
+    /*z-index: -1;*/
+}
+
+.MA-SettingsImage{
+    position: relative;
+    max-width: 50%;
+}
+
+.MA-SearchTradeSheetsImage{
+    position: relative;
+    max-width: 50%;
+}
+
+.MA-UserLoginImage{
+    position: relative;
+    max-width: 50%;
+}
+
+.MA-FAQImage{
+    position: relative;
+    max-width: 50%;
+}
+
+.MA-ImportingTradeSheetImage{
+    position: relative;
+    max-width: 50%;
+}
+
+.MA-OtherImage{
+    position: relative;
+    max-width: 50%;
+}
+
+.MA-Text{
+    position: relative;
+    display: block;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5vw;
+    width: 100%;
 }
 
 .TradingAreas{
@@ -75,97 +162,6 @@
     top: 10px;
     max-height: 500px;
     max-width: 500px;
-}
-
-.MA-ForTradeImage{
-    position: relative;
-    top: 10px;
-    max-height: 250px;
-    max-width: 250px;
-}
-
-.MA-ForTradeText{
-    position: relative;
-    color: white;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-}
-
-.MA-LookingForImage{
-    position: relative;
-    top: 10px;
-    max-height: 250px;
-    max-width: 250px;
-}
-
-.MA-LookingForText{
-    position: relative;
-    color: white;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-}
-
-.MA-SearchInfo{
-    position: relative;
-    text-align: center;
-    margin: auto;
-    bottom: 100px;
-}
-
-.MA-TradeSheetInfo{
-    position: relative;
-    color: white;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-}
-
-.MA-UserID{
-    position: relative;
-    opacity: 0%;
-    color: white;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-}
-
-.MA-TutorialAndDiscord{
-    position: relative;
-    text-align: center;
-    margin: auto;
-    top: 50px;
-    width: 400px;
-}
-
-.MA-Discord{
-    color: #4343FF;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-}
-
-/*.MA-CustomMessageArea{
-    position: relative;
-    margin: auto;
-    background-color: #C0C0C0;
-    padding: 10px;
-    width: 750px;
-    top: 50px;
-}*/
-
-.MA-Message{
-    position: relative;
-    display: block;
-    margin: auto;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    padding: 10px;
-    width: 750px;
-    top: 50px;
-    color: black;
 }
 
 

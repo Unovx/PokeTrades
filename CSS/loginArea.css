@@ -1,24 +1,33 @@
+@media only screen and (max-width: 768px) {
+    [id*="LoginArea"]{
+        top: 72% !important;
+        width: 100% !important;
+    }
+}
+
 #LoginArea{
     display: none;
     position: absolute;
     background-color: #C0C0C0;
-    height: 400px;
-    width: 200px;
-    top: 50px;
+    min-height: 355px;
+    width: 420px;
     right: 0%;
     z-index: 1;
 }
 
 .LA-LoginClose{
     position: absolute;
-    bottom: 0%;
+    display: block;
+    top: 320px;
     width: 100%;
+    text-align: center;
 }
 
 .LA-LoginArea{
     position: relative;
     display: none;
     height: inherit;
+    text-align: center;
 }
 
 .LA-LoginText{
@@ -50,12 +59,12 @@
 
 .LA-LoginFailed{
     position: relative;
+    display: none;
     color: #C83939;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     top: 102px;
     width: 100%;
-    text-align: center;
 }
 
 .LA-LoginButton{
@@ -112,32 +121,40 @@
 
 .LA-ChangeDetails{
     position: relative;
+    display: block;
     top: 45px;
-    left: 10px;
     text-align: center;
-    width: 180px;
+    margin: auto;
 }
 
-.LA-Import{
+.LA-ImportExportButtons{
+    position: relative;
+    width: 70%;
+    text-align-last: center;
+    top: 70px;
+    margin: auto;
+}
+
+/*.LA-Import{
     position: relative;
     top: 63px;
-    left: 10px;
+    left: 117px;
     text-align: center;
     width: 66px;
-}
+}*/
 
 .LA-ImportInput{
     position: relative;
     visibility: hidden;
 }
 
-.LA-Export{
+/*.LA-Export{
     position: relative;
     top: 63px;
-    left: 54px;
+    left: 188px;
     text-align: center;
     width: 66px;
-}
+}*/
 
 .LA-LoggedInNotify{
     position: relative;
@@ -159,13 +176,13 @@
     margin: auto;
 }
 
-.LA-PreviewSettings{
+/*.LA-PreviewSettings{
     position: absolute;
     display: block;
     top: 320px;
     width: 100%;
     text-align: center;
-}
+}*/
 
 .LA-RegisterArea{
     position: relative;
@@ -227,7 +244,8 @@
 
 .LA-RegisterFailed{
     position: relative;
-    width: 200px;
+    display: block;
+    margin: auto;
     color: #C83939;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -302,18 +320,13 @@
 
 .LA-UpdateFailed{
     position: relative;
-    width: 200px;
+    display: block;
+    margin: auto;
     color: #C83939;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     top: 98px;
     text-align: center;
-}
-
-.LA-PreviewArea{
-    position: relative;
-    display: none;
-    height: inherit;
 }
 
 .LA-PreviewText{
@@ -325,12 +338,6 @@
     width: 100%;
     top: 10px;
     text-align: center;
-}
-
-.PreviewAlign{
-    position: relative;
-    top: 30px;
-    margin: auto;
 }
 
 .LA-BallImage{

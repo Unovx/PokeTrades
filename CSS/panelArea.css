@@ -1,0 +1,320 @@
+
+@media only screen and (max-width: 768px) {
+    [id*="PanelArea"]{
+      height: auto !important;
+      top: 80% !important;
+      width: 100% !important;
+    }
+
+    [class*="PA-WhatsNewPanel"]{
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
+    [class*="PA-SettingsPanel"]{
+        width: 100% !important;
+    }
+
+    [class*="PA-PanelPositionButton"]{
+        pointer-events: none !important;
+        background-color: grey !important;
+        border: none !important;
+    }
+
+    [class*="PA-TradeSheetPanel"]{
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        min-height: 170px !important;
+        position: unset !important;
+        overflow: unset !important;
+    }
+
+    [class*="PA-Message"]{
+        top: 0 !important;
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
+    [class*="PA-GeneratedBunches"]{
+        top: 15px !important;
+    }
+
+    [class*="PA-FAQPanel"]{
+        width: 100% !important;
+    }
+
+    [class*="PA-ImportingPanel"]{
+        width: 100% !important;
+    }
+}
+
+#PanelArea{
+    position: absolute;
+    display: block;
+    background-color: #2E2D2D;
+    width: 420px;
+    right: 0;
+    z-index: 1;
+}
+
+.PA-WhatsNewPanel{
+    background-color: #C0C0C0;
+    /*height: 100%;*/
+
+    width: 400px;
+    right: 0;
+    padding: 10px;
+    top: 10%;
+    /*visibility: hidden;*/
+}
+
+.WhatsNewText{
+    position: relative;
+    display: block;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+}
+
+.PA-TradeSheetPanel{
+    background-color: #2E2D2D;
+    z-index: 1;
+    height: 100%;
+    min-height: 275px;
+    width: 420px;
+    right: 0;
+    display: none;
+    position: fixed;
+    overflow: auto;    
+}
+
+.PA-SearchInfo{
+    text-align: center;
+    margin: auto;
+    bottom: 100px;
+}
+
+.PA-TradeSheetInfo{
+    position: relative;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.PA-UserID{
+    position: relative;
+    opacity: 0%;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+.PA-Message{
+    position: relative;
+    display: block;
+    margin: auto;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    padding: 10px;
+    width: 380px;
+    top: 50px;
+    color: black;
+}
+
+.PA-GeneratedBunches{
+    position: relative;
+    top: 75px;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+}
+
+.PA-FTAvailableBunchesText{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    text-align-last: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.PA-LFAvailableBunchesText{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    text-align-last: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#ForTradeContainer{
+    background-color: #2E2D2D;
+    display: grid;
+    /* auto-fill into of auto-fit so it starts from the corner of the screen*/
+    grid-template-columns: repeat( auto-fill, minmax(100px, 1fr) );
+    /* this is so it fills all available space without an parts being cut off on any device*/
+    height: inherit;
+    /* needing to prevent bunches and to an slight extent mons looking crowded*/
+    grid-gap: 1rem;
+    place-items: center;
+}
+
+#LookingForContainer{
+    background-color: #2E2D2D;
+    display: grid;
+    /* auto-fill into of auto-fit so it starts from the corner of the screen*/
+    grid-template-columns: repeat( auto-fill, minmax(100px, 1fr) );
+    /* this is so it fills all available space without an parts being cut off on any device*/
+    height: inherit;
+    /* needing to prevent bunches and to an slight extent mons looking crowded*/
+    grid-gap: 1rem;
+    place-items: center;
+}
+
+.theText{
+    position: relative;
+    margin: 0%;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    /* This is for PC only as otherwise text between the grid columns look too crowded*/
+    font-size: 70%;
+    padding-bottom: 5px;
+    width: 90%;
+}
+
+.PA-FAQPanel{
+    background-color: #C0C0C0;
+    z-index: 1;
+    height: 100%;
+    width: 420px;;
+    overflow: auto;
+    right: 0;
+    display: none;    
+}
+
+.PA-SettingsPanel{
+    background-color: #C0C0C0; 
+    z-index: 1;
+    min-height: 430px;
+    width: 420px;;
+    overflow: auto;
+    right: 0;
+    display: none;    
+}
+
+.PA-PreviewText{
+    position: relative;
+    display: block;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    top: 10px;
+    text-align: center;
+}
+
+.PreviewAlign{
+    position: relative;
+    top: 30px;
+    margin: auto;
+}
+
+.PA-BallImage{
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.PA-GenderImage{
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.PA-ShinyImage{
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.PA-MintImage{
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.PA-MiscImage{
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.PA-MarkImage{
+    max-width: 24px;
+    max-height: 24px;
+}
+
+.PA-IVsText{
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.SettingsAlign{
+    position: relative;
+    top: 70px;
+    margin: auto;
+    width: 55%;
+}
+
+.PA-OtherSettingsText{
+    position: relative;
+    display: block;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    top: 55px;
+    text-align: center;
+}
+
+.PA-PanelPositionText{
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.PA-PanelPositionButton{
+    width: 48px;
+    height: 22px;
+}
+
+.PA-CloseSettings{
+    position: relative;
+    display: block;
+    top: 100px;
+    margin: auto;
+}
+
+.PA-ImportingPanel{
+    background-color: #C0C0C0;
+    z-index: 1;
+    height: 100%;
+    width: 420px;;
+    overflow: auto;
+    right: 0;
+    display: none;
+}
+
+.PA-ImportingText{
+    position: relative;
+    display: block;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px;
+}

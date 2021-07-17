@@ -65,7 +65,8 @@ $('.CA-CloseButton').click(function () {
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
     document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
     if (selectedPokemon == null) {
-        document.querySelector("#SelectionArea").style.height = "100%";
+        //document.querySelector("#SelectionArea").style.width = "100%";
+        document.querySelector("#PanelArea").style.display = "block";
     } else {
         document.querySelector("#ViewingArea").style.display = "block";
     }
@@ -78,6 +79,7 @@ $('.CA-EditBunches').click(function () {
 
 $('.CA-CreatePokemon').click(function () {
     CreatePokemon();
+    document.querySelector("#PanelArea").style.display = "block";
 });
 
 $('.CA-Gen6').click(function () {
@@ -405,7 +407,7 @@ function CreatedPokemon(data) {
     //console.log(data);
     document.querySelector("#CreationArea").style.display = "none";
     document.querySelector("#ViewingArea").style.display = "none";
-    document.querySelector("#SelectionArea").style.height = "100%";
+    document.querySelector("#SelectionArea").style.width = "100%";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
     document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";

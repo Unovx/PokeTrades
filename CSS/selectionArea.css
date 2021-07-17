@@ -2,15 +2,21 @@ body {
     /*height: 100vh;*/
     display: block;
     align-items: center;
-    /*background: linear-gradient(to top left, #28b487, #7dd56f);*/
-    background: rgb(0, 0, 0);
-    overflow: auto;
+    /*background: linear-gradient(to top left, #28b487, #7dd56f);
+    background: rgb(0, 0, 0);*/
+    overflow: hidden;
     margin: 0;
   }
 
   @media only screen and (max-width: 768px) {
+    body{
+      overflow: auto !important;
+    }
+
     [id*="SA-TopRow"]{
       margin-bottom: 5px !important;
+      margin-right: unset !important;
+      margin-left: unset !important;
     }
     [class*="SA-Bunch"]{
       display: flex !important;
@@ -29,6 +35,9 @@ body {
       display: flex !important;
       width: 100% !important;
       place-content: center;
+    }
+    [id*="SelectionSection"]{
+      margin: unset !important;
     }
     [id*="GridContainer"]{
       /* larger font size is looks better on mobile devices*/
@@ -49,17 +58,13 @@ body {
     display: none;
     top: 0.5px;
     bottom: 0.5px;
+    align-content: baseline;
+    /*background-color: #163944;*/
   }
 
-  .theText{
-    position: relative;
-    margin: 0%;
-    color: white;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    /* This is for PC only as otherwise text between the grid columns look too crowded*/
-    font-size: 70%;
+  #SelectionSection{
+    overflow: auto;
+    margin-right: 420px;
   }
 
   #SA-TopRow{
@@ -67,44 +72,46 @@ body {
     position: sticky;
     top: 0;
     z-index: 1;
-    background-color: black;
+    /*background-color: #163944;*/
     /* So it doesn't look crowded at the top with tall icons*/
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
 
   .SelectionButtons{
     position: relative;
     text-align: center;
     vertical-align: middle;
+    vertical-align: -moz-middle-with-baseline;
     display: initial;
   }
 
   #GeneratedSelection{
-    overflow: hidden;
     z-index: -1;
+    height: inherit;
   }
 
   .SA-Bunch{
     position: relative;
-    color: #E1E15A;
-    background-color: black;
+    color: white;
+    /*background-color: #163944;*/
     opacity: 0%;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     /*So it doesn't cut into the top part of the outline in the top Row*/
     top: 2px;
     width: auto;
+    display: block;
   }
 
-  .SA-ExitBunch{
+  /*.SA-ExitBunch{
     position: relative; 
-    /*visibility: hidden*/;
+    visibility: hidden;
     pointer-events: none;
     background-color: grey;
     height: 22px;
     border: none;
 
-  }
+  }*/
 
   .SA-CreateButton{
     position: relative; 
@@ -118,7 +125,7 @@ body {
     position: relative; 
     pointer-events: none;
     background-color: grey;
-    width: 54px;
+    width: 80px;
     height: 22px;
     border: none;
   }
@@ -144,12 +151,13 @@ body {
   #GridContainer{
     display: grid;
     /* auto-fill into of auto-fit so it starts from the corner of the screen*/
-    grid-template-columns: repeat( auto-fill, minmax(110px, 1fr) );
+    grid-template-columns: repeat( auto-fill, minmax(100px, 1fr) );
     /* this is so it fills all available space without an parts being cut off on any device*/
     height: inherit;
     /* needing to prevent bunches and to an slight extent mons looking crowded*/
     grid-gap: 1rem;
     place-items: center;
+    /*background-color: #163944;*/
   }
 
   .GenerationGridDiv{

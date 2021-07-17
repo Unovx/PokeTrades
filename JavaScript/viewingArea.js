@@ -24,8 +24,9 @@ viewing6Username = "";
 $('.VA-CloseButton').click(function () {
     selectedPokemon = null;
     AssigningOutline();
-    document.querySelector("#SelectionArea").style.height = "100%";
+    document.querySelector("#SelectionArea").style.width = "100%";
     document.querySelector("#ViewingArea").style.display = "none";
+    document.querySelector("#PanelArea").style.display = "block";
 });
 
 $('.VA-ModifyButton').click(function () {
@@ -64,30 +65,22 @@ function AssigningOutline() {
     //Makes sure arrayData isn't null so an error doesn't get brought up in specific cases like on the bunch area
     if (arrayData != null) {
         for (let i = 0; i < numberOfArrays; i++) {
+            //document.querySelector(".GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 5px #0096c3";
             if (currentlyRearranging == true && movingPokemon == document.querySelector(".GenerationGridDiv" + (i))) {
 
             }
             //if no pokemon is selected, then no pokemon need an outline
             else if (selectedPokemon == null) {
-                document.querySelector(".GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 0px #8135a9";
+                document.querySelector(".GenerationGridDiv" + (i)).style.backgroundImage = "url('https://poketrades.org/Resources/Designs/Unselected Holder.png')";
             }
             //If it finds a generated row that has the same creation id as the current viewing id, it gives that div a outline
             else if (arrayData["Rows"][i].creation_id == viewingDetails.creation_id) {
                 selectedPokemon = document.querySelector(".GenerationGridDiv" + (i));
-                document.querySelector(".GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 5px #8135a9";
-
-                //Otherwise that div outline is set to nothing
+                document.querySelector(".GenerationGridDiv" + (i)).style.backgroundImage = "url('https://poketrades.org/Resources/Designs/Selected Holder.png')";
             } else {
-                document.querySelector(".GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 0px #8135a9";
-
+                document.querySelector(".GenerationGridDiv" + (i)).style.backgroundImage = "url('https://poketrades.org/Resources/Designs/Unselected Holder.png')";
             }
         }
-    }
-}
-
-function RemoveBunchOutline() {
-    for (let i = 0; i < numberOfBunches; i++) {
-        document.querySelector(".GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 0px #8135a9";
     }
 }
 
@@ -170,7 +163,7 @@ $('.VA-AV6').click(function () {
 
 function OpenCreationArea() {
 
-    document.querySelector("#SelectionArea").style.height = "50%";
+    //document.querySelector("#SelectionArea").style.width = "100%";
     document.querySelector("#CreationArea").style.display = "block";
     //$.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
     CreationReset();
@@ -306,6 +299,7 @@ function ShowAV1() {
     pokemonImage = viewing1Image;
     viewingDetails = AdditionalViewing1;
     document.querySelector(".VA-Username").innerHTML = viewing1Username + "#" + viewingDetails.user_id;
+    $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: viewingDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
     UpdateViewingDetails();
 }
 
@@ -313,6 +307,7 @@ function ShowAV2() {
     pokemonImage = viewing2Image;
     viewingDetails = AdditionalViewing2;
     document.querySelector(".VA-Username").innerHTML = viewing2Username + "#" + viewingDetails.user_id;
+    $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: viewingDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
     UpdateViewingDetails();
 }
 
@@ -320,6 +315,7 @@ function ShowAV3() {
     pokemonImage = viewing3Image;
     viewingDetails = AdditionalViewing3;
     document.querySelector(".VA-Username").innerHTML = viewing3Username + "#" + viewingDetails.user_id;
+    $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: viewingDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
     UpdateViewingDetails();
 }
 
@@ -327,6 +323,7 @@ function ShowAV4() {
     pokemonImage = viewing4Image;
     viewingDetails = AdditionalViewing4;
     document.querySelector(".VA-Username").innerHTML = viewing4Username + "#" + viewingDetails.user_id;
+    $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: viewingDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
     UpdateViewingDetails();
 }
 
@@ -334,6 +331,7 @@ function ShowAV5() {
     pokemonImage = viewing5Image;
     viewingDetails = AdditionalViewing5;
     document.querySelector(".VA-Username").innerHTML = viewing5Username + "#" + viewingDetails.user_id;
+    $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: viewingDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
     UpdateViewingDetails();
 }
 
@@ -341,10 +339,12 @@ function ShowAV6() {
     pokemonImage = viewing6Image;
     viewingDetails = AdditionalViewing6;
     document.querySelector(".VA-Username").innerHTML = viewing6Username + "#" + viewingDetails.user_id;
+    $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: viewingDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
     UpdateViewingDetails();
-}
+};
 
 function MatchMaking(data) {
+    console.log("Running Match");
     matchData = jQuery.parseJSON(data);
 
     var amount = matchData["Rows"].length;
@@ -362,6 +362,7 @@ function MatchMaking(data) {
         newDiv = document.createElement("div");
         newDiv.setAttribute("class", "MatchMakingDiv" + (i));
         document.getElementById("MatchContainer").appendChild(newDiv);
+        newDiv.style.position = "relative";
         newDiv.setAttribute("width", "60");
         newDiv.setAttribute("height", "60");
 

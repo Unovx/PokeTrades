@@ -1,4 +1,9 @@
 @media only screen and (max-width: 768px) {
+    [id*="FilterArea"]{
+        top: 50% !important;
+        height: 50% !important;
+        width:100% !important;
+    }
     [class*="FA"]{
         top: 0px !important;
     }
@@ -14,10 +19,10 @@
     background-color: #2E2D2D;
     position: absolute; 
     display: none;
-    top: 50%;
-    height: 50%;
+    height: 100%;
     z-index: 5;
-    width:100%;
+    width:420px;
+    right: 0;
     overflow: auto;
 }
 

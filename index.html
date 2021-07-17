@@ -11,6 +11,7 @@
   </style>
   <link rel="icon" type="image/png" href="https://poketrades.org/PokeTrades Icon Final.png" />
   <link href="CSS/mainArea.css" rel="stylesheet" />
+  <link href="CSS/panelArea.css" rel="stylesheet" />
   <link href="CSS/loginArea.css" rel="stylesheet" />
   <link href="CSS/selectionArea.css" rel="stylesheet" />
   <link href="CSS/viewingArea.css" rel="stylesheet" />
@@ -23,54 +24,236 @@
 </head>
 
 <body>
+  <div id="Background">
+    <img>
+  </div>
   <div id="MainArea">
-    <div class="MA-MainTextHolder">
-      <img class="MA-PokeTradesTextIcon" src="https://poketrades.org/Resources/Misc/PokeTrades Icon Text.png"></img>
+    <div class="MainSection">
+      <div class="MA-MainTextHolder">
+        <img class="MA-PokeTradesTextIcon" src="https://poketrades.org/Resources/Misc/PokeTrades Icon Text.png"></img>
+      </div>
+      <img class="MA-LoginButton" src="https://poketrades.org/Resources/Home/Klang.png"></img>
+
+      <div class="StartingSections">
+        <div class="MA-Settings">
+          <img class="MA-SettingsImage" src="https://poketrades.org/Resources/Home/Klang.png"></img>
+          <text class="MA-Text">Settings</text>
+        </div>
+        <div class="MA-SearchTradeSheets">
+          <img class="MA-SearchTradeSheetsImage" src="https://poketrades.org/Resources/Home/Kyurem.png"></img>
+          <text class="MA-Text">Search TradeSheets</text>
+        </div>
+
+        <div class="MA-UserLogin">
+          <!--<img class="MA-UserLoginImage" src="https://poketrades.org/Resources/Designs/Login Icon.png"></img>-->
+          <img class="MA-UserLoginImage" src="https://poketrades.org/Resources/Home/Klefki.png"></img>
+          <text class="MA-Text">Login/Update Details</text>
+        </div>
+
+        <div class="MA-FAQ">
+          <img class="MA-FAQImage" src="https://poketrades.org/Resources/Home/Uxie.png"></img>
+          <text class="MA-Text">FAQ</text>
+        </div>
+
+        <div class="MA-ImportingTradeSheet">
+          <img class="MA-ImportingTradeSheetImage" src="https://poketrades.org/Resources/Home/Porygon2.png"></img>
+          <text class="MA-Text">Importing TradeSheet</text>
+        </div>
+
+        <div class="MA-Other">
+          <img class="MA-OtherImage" src="https://poketrades.org/Resources/Home/Chatot.png"></img>
+          <text class="MA-Text">Discord</text>
+        </div>
+      </div>
     </div>
-    <img class="MA-LoginButton" src="https://poketrades.org/Resources/Home/Klang.png"></img>
-    <div class="TradingAreas">
-      <div>
-        <img class="MA-ForTradeImage" src="https://poketrades.org/Resources/Images/Other/Colress.png"></img>
-      </div>
-      <div>
-        <img class="MA-LookingForImage" src="https://poketrades.org/Resources/Images/Other/Aarune.png"></img>
-      </div>
-      <div>
-        <text class="MA-ForTradeText">For Trade</text>
-      </div>
-      <div>
-        <text class="MA-LookingForText">Looking For</text>
+  </div>
+  <div id="PanelArea">
+    <div class="PA-WhatsNewPanel">
+      <text class="WhatsNewText">
+        Whats New: July 2021
+        <br><br>
+        The entirety of PokeTrades has had a layout change, so sorry for anyone who got used to the old version. You may
+        see PokeTrades change even more over the coming days as I improve it further with better, custom designs instead
+        of just relying on the default options.
+        <br> <br>
+        Scaling should now also be fixed for all devices without an abunance of empty space, which is also part of the
+        resason for the redesign.
+        <br><br>
+        The Main Menu area where you are reading this has underwent the most changes to make things easier to navigate
+        and to improve the overall design.
+      </text>
+    </div>
+    <div class="PA-SettingsPanel">
+      <text class="PA-PreviewText">Preview Settings</text>
+      <table class="PreviewAlign">
+        <tr>
+          <td>
+            <img class="PA-BallImage"
+              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png"></img>
+          </td>
+          <td>
+            <button class="PA-BallButton">On</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img class="PA-GenderImage" src="https://poketrades.org/Resources/Misc/Male.png"></img>
+          </td>
+          <td>
+            <button class="PA-GenderButton">Off</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img class="PA-ShinyImage" src="https://poketrades.org/Resources/Misc/Star Shiny.png"></img>
+          </td>
+          <td>
+            <button class="PA-ShinyButton">Off</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img class="PA-MintImage" src="https://poketrades.org/Resources/Misc/Minted.png"></img>
+          </td>
+          <td>
+            <button class="PA-MintButton">Off</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img class="PA-MiscImage" src="https://poketrades.org/Resources/Misc/Gigantamax.png"></img>
+          </td>
+          <td>
+            <button class="PA-MiscButton">Off</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img class="PA-MarkImage"
+              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/Zero Energy Mark.png"></img>
+          </td>
+          <td>
+            <button class="PA-MarkButton">Off</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <text class="PA-IVsText">IVs</text>
+          </td>
+          <td>
+            <button class="PA-IVsButton">On</button>
+          </td>
+        </tr>
+      </table>
+      <text class="PA-OtherSettingsText">Other Settings</text>
+      <table class="SettingsAlign">
+        <tr>
+          <td>
+            <text class="PA-PanelPositionText">Panel Position</text>
+          </td>
+          <td>
+            <button class="PA-PanelPositionButton">Right</button>
+          </td>
+        </tr>
+      </table>
+      <button class="PA-CloseSettings">Close</button>
+    </div>
+    <div class="PA-TradeSheetPanel">
+      <table class="PA-SearchInfo">
+        <tr>
+          <td>
+            <text class="PA-TradeSheetInfo">Search TradeSheets</text>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input class="PA-Searchbar" type="number" placeholder="Search IDs..">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <text class="PA-UserID">Your ID is:</text>
+          </td>
+        </tr>
+      </table>
+      <textarea class="PA-Message" maxlength="350" disabled="true" spellcheck="false" onblur="UpdatePersonalText()"
+        oninput='this.style.height = ""; this.style.height = this.scrollHeight - 20 + "px"'>Type in a SearchID in the InputField to bring up their TradeSheet. Afterwards, (scroll down if on mobile) click on any of the Bunches below to open them and see the Pokemon within.</textarea>
+
+      <div class="PA-GeneratedBunches">
+        <div id="PA-ForTradeBunches">
+
+          <div id="ForTradeContainer">
+
+          </div>
+        </div>
+        <div id="PA-LookingForBunches">
+
+          <div id="LookingForContainer">
+
+          </div>
+        </div>
       </div>
     </div>
-    <table class="MA-SearchInfo">
-      <tr>
-        <td>
-          <text class="MA-TradeSheetInfo">Search TradeSheets</text>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <input class="MA-Searchbar" type="number" placeholder="Search IDs..">
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <text class="MA-UserID">Your ID is:</text>
-        </td>
-      </tr>
-    </table>
-    <table class="MA-TutorialAndDiscord">
-      <tr>
-        <td>
-          <button class="MA-Tutorials">Tutorials</button>
-        </td>
-        <td>
-          <a class="MA-Discord" target="_blank" href="https://discord.gg/KapqJKGMRy">Discord</a>
-        </td>
-      </tr>
-    </table>
-    <textarea class="MA-Message" maxlength="350" disabled="true" spellcheck="false" onblur="UpdatePersonalText()"
-      oninput='this.style.height = ""; this.style.height = this.scrollHeight - 20 + "px"'>Click on either of the Icons to see a selection of the Pokemon people have for trade or are looking for after typing in their User ID. Users who sign in, can edit this text which will show when their User ID is typed in. For more help, click on the "Tutorials" Button.</textarea>
+    <div class="PA-FAQPanel">
+      <text class="WhatsNewText">
+        FAQs
+        <br><br>
+        Q: None of the below answer my question, where can I get addtional help?
+        <br><br>
+        A: Click on the discord button below to join the discord and speak to me personally.
+        <br><br>
+        Q: What is PokeTrades?
+        <br><br>
+        A: Click on the discord button below to join the discord and speak to me personally.
+        <br><br>
+        Q: Does this work on Mobile?
+        <br><br>
+        A: Yes. There is a mobile view allowing you to clearly see everything.
+        <br><br>
+        Q: How do I re-arrange my Pokemon or Bunches?
+        <br><br>
+        A: To do this, you must be signed in. Then after clicking on any Bunch to open it, you will be able to
+        re-arrange any Bunch or any Pokemon inside that Bunch
+        <br><br>
+        Q: How do I copy a Pokemon?
+        <br><br>
+        A: When you click on the Move/Copy button, click on the same Pokemon twice and it will create a copy right after
+        it.
+        <br><br>
+        Q: How do I create a Bunch?
+        <br><br>
+        A: Click on the create button in the selection after and then click on Edit Bunches.
+      </text>
+    </div>
+    <div class="PA-ImportingPanel">
+      <text class="PA-ImportingText">
+        To get started, you will first need to sign into your account, then in the Login
+        Area, you should see the option to import your TradeSheet. Please make sure it is exported from Google
+        Sheets as
+        a "CSV" file beforehand. When importing into PokeTrades. This can be done with or without Headings, also
+        note
+        that when importing, natures can be simply the name without anything after as PokeTrades will format
+        accordingly.
+        <br><br>
+        Please note that the order MUST BE CORRECT when importing, if you do not know what this order is, then
+        please
+        first export your TradeSheet with the "Export" Button, as when an account is first created, there are
+        initial
+        creation mons, which along with the Headings will show what the order is.
+        <br><br>
+        There are also two more important things to keep in mind. The first is that if you give the Pokemon in the
+        TradeSheet a bunch name you have not yet created, you must create the bunch name to see the pokemon in that
+        bunch area. The trade_option Column MUST BE SET TO "For Trade" OR "Looking For", IF IT IS NONE OF THESE, YOU
+        WILL NOT BE ABLE TO SEE OR MODIFY IT AT ALL!
+        <br><br>
+        If a Pokemon shows up with a Fennel Icon instead of a Pokemon Icon or fails to show up at all, then that
+        Pokemon's image either can't be found or its an invalid combination. An example of this would be "Alcremie".
+        While
+        this is a Pokemon, Alcremie has many different forms, so the current form must be typed in to bring up the right
+        Image. Click on the Pokemon and then on the "Modify" Button to enter the Creation Area and make the necessary
+        changes and then click "Create/Update" to save the changes.
+      </text>
+    </div>
   </div>
   <div id="LoginArea">
     <div class="LA-LoginArea">
@@ -81,21 +264,29 @@
       <button class="LA-LoginRegisterButton">Register</button>
 
       <text class="LA-LoginFailed">Wrong Username or Password.</text>
-      <button class="LA-PreviewSettings">Preview Settings</button>
+      <button class="LA-LoginClose">Close</button>
     </div>
     <div class="LA-LoggedInArea">
       <text class="LA-LoggedInText">Logged In As:</text>
       <text class="LA-Username">Test</text>
       <button class="LA-LogOut">Log Out</button>
       <button class="LA-ChangeDetails">Change Username or Password</button>
-      <button class="LA-Import">Import</button>
+      <table class="LA-ImportExportButtons">
+        <tr>
+          <td>
+            <button class="LA-Import">Import</button>
+          </td>
+          <td>
+            <button class="LA-Export">Export</button>
+          </td>
+        </tr>
+      </table>
+
       <form method="post" enctype="multipart/form-data" style="display: none;">
         <input class="LA-ImportInput" type="file" accept=".csv" onchange="ImportData(this.files[0])">
       </form>
-      <button class="LA-Export">Export</button>
       <text class="LA-LoggedInNotify">Account Created.</text>
       <button class="LA-DeleteAllData">Delete All Data</button>
-      <button class="LA-PreviewSettings">Preview Settings</button>
     </div>
     <div class="LA-RegisterArea">
       <text class="LA-CreateAccount">Create Account</text>
@@ -116,78 +307,15 @@
       <button class="LA-UpdateBackButton">Back</button>
       <text class="LA-UpdateFailed">Passwords do not match.</text>
     </div>
-    <div class="LA-PreviewArea">
-      <text class="LA-PreviewText">Preview Settings</text>
-      <table class="PreviewAlign">
-        <tr>
-          <td>
-            <img class="LA-BallImage"
-              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png"></img>
-          </td>
-          <td>
-            <button class="LA-BallButton">On</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img class="LA-GenderImage" src="https://poketrades.org/Resources/Misc/Male.png"></img>
-          </td>
-          <td>
-            <button class="LA-GenderButton">Off</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img class="LA-ShinyImage" src="https://poketrades.org/Resources/Misc/Star Shiny.png"></img>
-          </td>
-          <td>
-            <button class="LA-ShinyButton">Off</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img class="LA-MintImage" src="https://poketrades.org/Resources/Misc/Minted.png"></img>
-          </td>
-          <td>
-            <button class="LA-MintButton">Off</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img class="LA-MiscImage" src="https://poketrades.org/Resources/Misc/Gigantamax.png"></img>
-          </td>
-          <td>
-            <button class="LA-MiscButton">Off</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img class="LA-MarkImage"
-              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/Zero Energy Mark.png"></img>
-          </td>
-          <td>
-            <button class="LA-MarkButton">Off</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <text class="LA-IVsText">IVs</text>
-          </td>
-          <td>
-            <button class="LA-IVsButton">On</button>
-          </td>
-        </tr>
-      </table>
-    </div>
     <button class="LA-LoginClose">Close</button>
   </div>
   <div id=SelectionArea>
     <div id="SA-TopRow">
       <table class="SelectionButtons">
         <tr>
-          <td>
+          <!--<td>
             <button class="SA-ExitBunch">Exit Bunch</button>
-          </td>
+          </td>-->
           <td>
             <button class="SA-MainMenu">Main Menu</button>
           </td>
@@ -195,7 +323,7 @@
             <button class="SA-CreateButton">Create</button>
           </td>
           <td>
-            <button class="SA-MoveButton">Move</button>
+            <button class="SA-MoveButton">Move/Copy</button>
           </td>
           <td>
             <button class="SA-FiltersButton">Filters</button>
@@ -221,7 +349,10 @@
       </div>-->
       <!--<button id="Testing">Try it</button>-->
     </div>
-    <div id="GeneratedSelection"></div>
+    <div id="SelectionSection">
+      <div id="GeneratedSelection"></div>
+    </div>
+
   </div>
   <div id="ViewingArea">
     <div id="ViewingButtonsArea">
@@ -878,11 +1009,13 @@
   <div id="NotificationArea">
     <div class="ViewingAdditionalHelp">
       <text class="NA-ViewingAdditionalText">
-        You can now save up to 6 viewings of Pokemon! To do this, once you are viewing a Pokemon you want to view later
+        You can now save up to 6 viewings of Pokemon! To do this, once you are viewing a Pokemon you want to view
+        later
         with ease, click on a + Button next to a Pokeball. That Pokeball will then turn to its normal colour to
         indicate a viewing is stored there.
         <br> <br>
-        To access this viewing at any time, just click on it. Clicking on the + Button next to it will replace it with
+        To access this viewing at any time, just click on it. Clicking on the + Button next to it will replace it
+        with
         the current viewing.</text>
       <button class="NA-ViewingAdditionalClose">Close</button>
     </div>
@@ -946,7 +1079,8 @@
       <button class="NA-BunchRemovedClose">Close</button>
     </div>
     <div class="TradeSheetImported">
-      <text class="NA-ImportedSuccessText">TradeSheet successfully imported, please check your collection. Any problems,
+      <text class="NA-ImportedSuccessText">TradeSheet successfully imported, please check your collection. Any
+        problems,
         please contact me on the discord.</text>
       <button class="NA-ImportedSuccessClose">Close</button>
     </div>
@@ -1031,14 +1165,17 @@
 
     <div class="TA-GeneralSection">
       <text class="TA-TitleText">Searching TradeSheets, Custom Message, Preview Icons, Additional Help</text>
-      <text class="TA-SectionText">To search a TradeSheet, first type in the User ID of the TradeSheet you want to view.
+      <text class="TA-SectionText">To search a TradeSheet, first type in the User ID of the TradeSheet you want to
+        view.
         You can then click on either the For Trade Image (Corless) or the Looking For Image (Aarune) to view the
         respective areas. If you are signed in, then your User ID will be available right underneath the InputField.
         <br> <br>
-        If you are signed in, when you type in your User ID in the InputField, you will be able to add a custom message
+        If you are signed in, when you type in your User ID in the InputField, you will be able to add a custom
+        message
         by modifying the text area below. To save any changes to it, just click outside of the text area.
         <br><br>
-        Preview Settings now exist to allow the user to see certain information such as Ball or IVs without having to
+        Preview Settings now exist to allow the user to see certain information such as Ball or IVs without having
+        to
         click on the Pokemon. This can be accessed by clicking on the Klang Icon and going to Preview Settings where
         they can then be toggled. By default, Ball and IV previews are on. The colour coding for the IVs are:
         <br><br>
@@ -1062,14 +1199,17 @@
     </div>
     <div class="TA-AccountSection">
       <text class="TA-TitleText">Creating an Account, Signing In, Changing Username and Password</text>
-      <text class="TA-SectionText">To register an account, first click on the Klang Icon in the Main Menu. Then click
+      <text class="TA-SectionText">To register an account, first click on the Klang Icon in the Main Menu. Then
+        click
         the "Register" Button. Currently, usernames are limited to 15 characters and Passwords to 50 characters.
         <br><br>
         After Signing in, You can log out or change your Username or Password in the same area. To change your login
-        details. Click on the "Change Username or Password Button". Keep in mind that you cannot change both Username
+        details. Click on the "Change Username or Password Button". Keep in mind that you cannot change both
+        Username
         AND Password at the SAME time. This has to be done individually and duplicate Usernames are not allowed.
         <br><br>
-        Only when signed in, are more options available to you such as seeing both Public and Private Pokemon on your
+        Only when signed in, are more options available to you such as seeing both Public and Private Pokemon on
+        your
         TradeSheets, being able to create Pokemon and having the option to modify them.
         <br><br>
         Once signed in, your User ID will be displayed in the Main Menu for ease of access and to share with others.
@@ -1079,16 +1219,20 @@
     <div class="TA-SelectionSection">
       <text class="TA-TitleText">Bunches, Viewing Pokemon, Re-ordering Bunches/Pokemon, Copying Pokemon</text>
       <text class="TA-SectionText">Bunches are essentially folders or tabs that contain a group of Pokemon with a
-        small description. Clicking on a Bunch will open the relevant Pokemon inside. To view a Pokemon, click on one
+        small description. Clicking on a Bunch will open the relevant Pokemon inside. To view a Pokemon, click on
+        one
         and
         you will be taken to a viewing area which shows the Pokemon inside.
         <br><br>
-        Bunches and Pokemon can be re-ordered. To do this, click on the Move Button and then Click on a Bunch/Pokemon
-        and you should see all other Bunches/Pokemon grey out, then just click on another Bunch/Pokemon you want it to
+        Bunches and Pokemon can be re-ordered. To do this, click on the Move Button and then Click on a
+        Bunch/Pokemon
+        and you should see all other Bunches/Pokemon grey out, then just click on another Bunch/Pokemon you want it
+        to
         be in front of. Keep in mind that the "All Pokemon" bunch cannot be re-ordered.
         <br><br>
         Pokemon can also be copied by clicking on themselves instead of another Pokemon and the new copy will appear
-        after the original. If you have clicked on a Bunch/Pokemon but do not want to copy or move, you can cancel this
+        after the original. If you have clicked on a Bunch/Pokemon but do not want to copy or move, you can cancel
+        this
         action by pressing the Move Button now which will show cancel instead. Remember that to re-order or copy
         Bunches/Pokemon, you must be signed into your account.
       </text>
@@ -1098,14 +1242,16 @@
       <text class="TA-TitleText">Viewing Details, Modifying/Deleting Pokemon, Adding Pokemon from other
         TradeSheets</text>
       <text class="TA-SectionText">After Clicking on a Pokemon to view, this area will open up allowing you to see
-        details about the Pokemon. Should information be uneccessary to show, it will not be displayed. An example of
+        details about the Pokemon. Should information be uneccessary to show, it will not be displayed. An example
+        of
         this would be if the Pokemon had no Nickname, then the Nickname text would be hidden.
         <br><br>
         The list of pokemon seen at the bottom are the Pokemon that the User is currently Looking For. If you are
         signed in and have a pokemon they want, then that Pokemon will not be greyed out, to show you have something
         preferred. Clicking on those Pokemon will bring up their details.
         <br><br>
-        If this is your TradeSheet, then you are able to click the "Modify" and "Delete" Buttons. allowing you to modify
+        If this is your TradeSheet, then you are able to click the "Modify" and "Delete" Buttons. allowing you to
+        modify
         and
         delete your pokemon accordingly. If this is not your TradeSheet but you are signed in, you can use the "Add"
         Button to add a copy of the Pokemon you are currently viewing to your TradeSheet.
@@ -1114,8 +1260,10 @@
     </div>
     <div class="TA-CreationSection">
       <text class="TA-TitleText">Creating Pokemon, Pokemon Validation, Private/Public Pokemon</text>
-      <text class="TA-SectionText">Clicking on the "Create" Button in the Selection Area or the "Modify" Button in the
-        Viewing Area will take you to the Creation Area. If accessed via the "Modify" Button, the details will be set to
+      <text class="TA-SectionText">Clicking on the "Create" Button in the Selection Area or the "Modify" Button in
+        the
+        Viewing Area will take you to the Creation Area. If accessed via the "Modify" Button, the details will be
+        set to
         what the Pokemon currently has.
         <br><br>
         Via Looking For, there is more freedom in what can be selected such as Any Ball or Any Gender. For Trade has
@@ -1130,8 +1278,10 @@
         creating a Pokemon. Then press the "Edit Bunches" Button to go to the Bunch Area.
         <br><br>
         To create a Bunch, an Icon must first be chosen. In addition to having all Pokemon available as Icons, forms
-        that can't usually be chosen for a Pokemon such as Megas and GMax, all Pokeballs and the Egg Icon are available.
-        After selecting the Icon, type a Bunch name into the InputField below and hit the "Add/Update Button" to add the
+        that can't usually be chosen for a Pokemon such as Megas and GMax, all Pokeballs and the Egg Icon are
+        available.
+        After selecting the Icon, type a Bunch name into the InputField below and hit the "Add/Update Button" to add
+        the
         new Bunch name. To delete a Bunch name, simply type in the name and hit the "Remove Bunch" Button to remove.
         Icon exclusives like the ones above do not need a gender set.
         <br><br>
@@ -1142,17 +1292,23 @@
     </div>
     <div class="TA-FilterSection">
       <text class="TA-TitleText">Filtering Options, Private/Public Display Option, Filter Indication</text>
-      <text class="TA-SectionText">To filter a Pokemon by name, you can simply type in the Pokemon name in the Selection
-        Area. However, for advanced filtering, click on the "Filters" Button in the Selection Area to open up the Filter
+      <text class="TA-SectionText">To filter a Pokemon by name, you can simply type in the Pokemon name in the
+        Selection
+        Area. However, for advanced filtering, click on the "Filters" Button in the Selection Area to open up the
+        Filter
         Area.
         <br><br>
         In this area you are able to filter Pokemon in a multitude of ways and all of these filtering options can be
-        used at once. However, only the Owner of the TradeSheet can use the filter to choose between Private and Public
-        Pokemon. Please note that if an option starts with an "(Any)" in brackets, then that filter option will act like
-        it has not been given any input and so will not be involved in filtering the Pokemon. The same also applies to X
+        used at once. However, only the Owner of the TradeSheet can use the filter to choose between Private and
+        Public
+        Pokemon. Please note that if an option starts with an "(Any)" in brackets, then that filter option will act
+        like
+        it has not been given any input and so will not be involved in filtering the Pokemon. The same also applies
+        to X
         for IVs/EVs
         <br><br>
-        If one or more of the advanced filters are in use, then the "Filters" Button will turn purple to let you know
+        If one or more of the advanced filters are in use, then the "Filters" Button will turn purple to let you
+        know
         that the Pokemon are currently being filtered.
       </text>
       <button class="TA-SectionClose">Close</button>
@@ -1160,13 +1316,17 @@
     <div class="TA-MainImportSection">
       <text class="TA-TitleText">Importing your TradeSheet from Google Sheets.</text>
       <text class="TA-SectionText">To get started, you will first need to sign into your account, then in the Login
-        Area, you should see the option to import your TradeSheet. Please make sure it is exported from Google Sheets as
-        a "CSV" file beforehand. When importing into PokeTrades. This can be done with or without Headings, also note
+        Area, you should see the option to import your TradeSheet. Please make sure it is exported from Google
+        Sheets as
+        a "CSV" file beforehand. When importing into PokeTrades. This can be done with or without Headings, also
+        note
         that when importing, natures can be simply the name without anything after as PokeTrades will format
         accordingly.
         <br><br>
-        Please note that the order MUST BE CORRECT when importing, if you do not know what this order is, then please
-        first export your TradeSheet with the "Export" Button, as when an account is first created, there are initial
+        Please note that the order MUST BE CORRECT when importing, if you do not know what this order is, then
+        please
+        first export your TradeSheet with the "Export" Button, as when an account is first created, there are
+        initial
         creation mons, which along with the Headings will show what the order is.
         <br><br>
         There are also two more important things to keep in mind. The first is that if you give the Pokemon in the
@@ -1180,23 +1340,31 @@
       <text class="TA-TitleText">Import Problems, Exporting TradeSheets, Deleting All Data.</text>
       <text class="TA-SectionText">The bulk of information regarding Importing has been covered in the Main Area, so
         that should be read first. If done so, there is a bit more information here to solve invalid Pokemon. If a
-        Pokemon shows up with a Fennel Icon instead of a Pokemon Icon or fails to show up at all, then that Pokemon's
-        image either can't be found or its an invalid combination. An example of this would be "Alcremie". While this is
-        a Pokemon, Alcremie has many different forms, so the current form must be typed in to bring up the right Image.
+        Pokemon shows up with a Fennel Icon instead of a Pokemon Icon or fails to show up at all, then that
+        Pokemon's
+        image either can't be found or its an invalid combination. An example of this would be "Alcremie". While
+        this is
+        a Pokemon, Alcremie has many different forms, so the current form must be typed in to bring up the right
+        Image.
         Click on the Pokemon and
         then on the "Modify" Button to enter the Creation Area and make the necessary changes and then click
-        "Create/Update" to save the changes. To Export, Simply sign in, and under the Login Area, there is an "Export"
+        "Create/Update" to save the changes. To Export, Simply sign in, and under the Login Area, there is an
+        "Export"
         Button that can be clicked on for exporting as a CSV.
         <br><br>
-        Should you wish to delete all data in the event of failing an import or another reason, then in the Login Area,
-        there is a button that allows you to do so. Keep in mind that this will not delete your account. Rather, it will
-        delete all Pokemon from your TradeSheet. This action cannot be undone, so it is advised that an export be done
+        Should you wish to delete all data in the event of failing an import or another reason, then in the Login
+        Area,
+        there is a button that allows you to do so. Keep in mind that this will not delete your account. Rather, it
+        will
+        delete all Pokemon from your TradeSheet. This action cannot be undone, so it is advised that an export be
+        done
         first as a precaution.
       </text>
       <button class="TA-SectionClose">Close</button>
     </div>
   </div>
   <script src="JavaScript/mainArea.js"></scriptsrc>"</script>
+  <script src="JavaScript/panelArea.js"></scriptsrc>"</script>
   <script src="JavaScript/loginArea.js"></scriptsrc>"</script>
   <script src="JavaScript/selectionArea.js"></scriptsrc>"</script>
   <script src="JavaScript/listHolder.js"></scriptsrc>"</script>

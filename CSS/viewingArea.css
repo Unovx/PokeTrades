@@ -1,6 +1,6 @@
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 9768px) {
     [id*="ViewingArea"]{
-      height: auto !important;
+      height: 100% !important;
   }
     [class*="VA-"] {
       width: 100% !important;
@@ -30,6 +30,41 @@
     }
   }
 
+  @media only screen and (max-width: 768px) {
+    [id*="ViewingArea"]{
+      height: auto !important;
+      top: 50% !important;
+      width: 100% !important;
+  }
+    [class*="VA-"] {
+      width: 100% !important;
+      left: 0% !important;
+      right: 0%;
+      position: relative !important;
+      display: flex;
+      text-align: center !important;
+      place-content: center !important;
+      top: 0% !important;
+      max-height: unset !important;
+      margin: auto;
+    }
+
+    [class*="ViewingAlign"]{
+      position: absolute !important;
+      display: flex !important;
+      right: 0 !important;
+      top: 0% !important;
+      left: auto !important;
+    }
+
+    [id*="MatchMaking"]{
+        position: relative !important;
+        top: 0% !important;
+        bottom: 0% !important;
+        width: auto !important;
+    }
+  }
+
   /*@media only screen and (max-height: 800px) and (max-width: 768px) {
     [id*="ViewingButtonsArea"]{
         position: absolute !important;
@@ -45,11 +80,11 @@
     background-color: #2E2D2D;
     position: absolute; 
     display: none;
-    top: 50%;
-    height: 50%;
+    height: 100%;
     z-index: 2;
-    width:100%;
+    width: 420px;;
     overflow: auto;
+    right: 0;
   }
 
     #ViewingButtonsArea{
@@ -100,6 +135,10 @@
     align-items: center;
   }
 
+  #ViewingContent{
+    position: relative;
+  }
+
   .VA-Username{
     position: absolute;
     color: #FF7B2F;
@@ -114,7 +153,7 @@
   .VA-Bunch{
     position: absolute;
     text-align: center;
-    color:#36E26E;
+    color:white;
     left: 340px;
     top: 5px;
     width: 200px;
@@ -269,7 +308,7 @@
     display: inline-table;
     background-color: #efefef;
     border: none;
-    width: 100px;
+    width: 140px !important;
     align-content: center;
   }
 
@@ -283,22 +322,23 @@
   }
 
   .VA-LinkRedirector{
-    position: relative;
-    width: 200px;
+    position: absolute;
+    left: 560px;
+    top: 30px;
+    width: 220px;
   }
 
   .VA-ProofImage{
     display: none;
     position: relative;
-    left: 560px;
-    top: 30px;
+
     max-width: 200px;
     max-height: 200px;
     margin: auto;
   }
 
   .VA-Note{
-    position: relative;
+    position: absolute;
     left: 1310px;
     top: 50px;
     width: 200px;
@@ -329,7 +369,7 @@
     color: white;
     top: 100px;
     left: 800px;
-    width: 400px;
+    width: 400px !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -390,7 +430,7 @@
     color: white;
     top: 200px;
     left: 800px;
-    width: 400px;
+    width: 400px !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -432,17 +472,18 @@
     display: inherit;
   }
 
-  #MoreViewings{
+  /*#MoreViewings{*/
     /* sticky and 0; are so it acts like its fixed, as fixed has issues with overflow elements*/
-    position: sticky;
+    /*position: sticky;
     top: 0;
     z-index: 1;
-  }
+  }*/
 
   .ViewingAlign{
-    position: absolute;
+    position: relative;
     top: 50px;
     left: 1230px;
+    z-index: 1;
     /*position: relative;
     left: 93%;*/
   }
@@ -522,21 +563,20 @@
   }
 
   .VA-PreferredPokemon{
-      position: absolute;
+      position: relative;
       color: #39C8C4;
       text-align: center;
       font-weight: bold;
       font-family: Arial, Helvetica, sans-serif;
-      top: 250px;
       left: 400px;
       padding-top: 5px;
   }
 
   #MatchMaking{
     overflow: auto;
-    position: absolute;
-    width: 100%;
-    top: 280px;
+    position: relative;
+    width: 400px;
+    height: 85px;
   }
 
   #MatchContainer{

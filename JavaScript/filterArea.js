@@ -41,7 +41,8 @@ filterHome = "";
 $('.FA-CloseButton').click(function () {
     document.querySelector("#FilterArea").style.display = "none";
     if (selectedPokemon == null) {
-        document.querySelector("#SelectionArea").style.height = "100%";
+        //document.querySelector("#SelectionArea").style.width = "100%";
+        document.querySelector("#PanelArea").style.display = "block";
     } else {
         document.querySelector("#ViewingArea").style.display = "block";
     }
