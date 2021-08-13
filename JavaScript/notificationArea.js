@@ -1,3 +1,8 @@
+$('.NA-SelectionClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".SelectionHelp").style.display = "none";
+});
+
 $('.NA-ViewingAdditionalClose').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".ViewingAdditionalHelp").style.display = "none";
@@ -44,7 +49,7 @@ $('.NA-BunchRemovedClose').click(function () {
 
 $('.NA-ImportedSuccessClose').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
-    document.querySelector(".TradeSheetImported").style.display = "none";
+    document.querySelector(".TradeShopImported").style.display = "none";
 });
 
 $('.NA-ConfirmDeleteAll').click(function () {

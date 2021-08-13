@@ -11,7 +11,7 @@
 
     [class*="StartingSections"]{
         width: 100% !important;
-        grid-gap: 2rem !important;
+        grid-gap: 0rem !important;
     }
 }
 
@@ -101,38 +101,38 @@
     top: 60px;
     margin: auto;
     position: relative;
-    grid-gap: 5rem;
+    grid-gap: 0rem;
     /*z-index: -1;*/
 }
 
 .MA-SettingsImage{
     position: relative;
-    max-width: 50%;
+    max-width: 100%;
 }
 
-.MA-SearchTradeSheetsImage{
+.MA-SearchTradeShopsImage{
     position: relative;
-    max-width: 50%;
+    max-width: 100%;
 }
 
 .MA-UserLoginImage{
     position: relative;
-    max-width: 50%;
+    max-width: 100%;
 }
 
 .MA-FAQImage{
     position: relative;
-    max-width: 50%;
+    max-width: 100%;
 }
 
-.MA-ImportingTradeSheetImage{
+.MA-ImportingTradeShopImage{
     position: relative;
-    max-width: 50%;
+    max-width: 100%;
 }
 
 .MA-OtherImage{
     position: relative;
-    max-width: 50%;
+    max-width: 100%;
 }
 
 .MA-Text{

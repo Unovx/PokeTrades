@@ -1,26 +1,36 @@
 @media only screen and (max-width: 768px) {
     [id*="LoginArea"]{
         top: 72% !important;
-        width: 100% !important;
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        border-bottom-left-radius: unset !important;
+        border-bottom-right-radius: unset!important;
     }
 }
 
 #LoginArea{
     display: none;
     position: absolute;
-    background-color: #C0C0C0;
-    min-height: 355px;
-    width: 420px;
-    right: 0%;
+    background: rgb(192 192 192 / 95%);
     z-index: 1;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    width: 380px;
+    min-height: 355px;
+    right: 0%;
+    padding: 10px;
+    margin: 10px;
 }
 
 .LA-LoginClose{
-    position: absolute;
+    position: relative;
     display: block;
-    top: 320px;
-    width: 100%;
+    top: 195px;
+    width: 100px;
     text-align: center;
+    margin:auto
 }
 
 .LA-LoginArea{

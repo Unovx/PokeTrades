@@ -9,16 +9,16 @@ $('.MA-Settings').click(function () {
     document.querySelector(".PA-SettingsPanel").style.display = "block";
 });
 
-$('.MA-SearchTradeSheets').click(function () {
-    if (document.querySelector(".PA-TradeSheetPanel").style.display != "block") {
+$('.MA-SearchTradeShops').click(function () {
+    if (document.querySelector(".PA-TradeShopPanel").style.display != "block") {
         CloseAllStartingAreas();
-        document.querySelector(".PA-TradeSheetPanel").style.display = "block";
+        document.querySelector(".PA-TradeShopPanel").style.display = "block";
         $(".PA-Message").keyup();
         document.querySelector(".PA-Message").style.height = "";
         document.querySelector(".PA-Message").style.height = document.querySelector(".PA-Message").scrollHeight - 20 + "px";
         $(".PA-FTAvailableBunchesText").remove();
         $(".PA-LFAvailableBunchesText").remove();
-        $.post("https://poketrades.org/PHP/search_id.php", { searchID: searchInfoText }, TradeSheetInfo);
+        $.post("https://poketrades.org/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
         $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     }
 });
@@ -38,7 +38,7 @@ $('.MA-FAQ').click(function () {
     document.querySelector(".PA-FAQPanel").style.display = "block";
 });
 
-$('.MA-ImportingTradeSheet').click(function () {
+$('.MA-ImportingTradeShop').click(function () {
     CloseAllStartingAreas();
     document.querySelector(".PA-ImportingPanel").style.display = "block";
 });
@@ -52,7 +52,7 @@ $('.MA-Other').click(function () {
 function CloseAllStartingAreas() {
     document.querySelector(".PA-WhatsNewPanel").style.display = "none";
     document.querySelector(".PA-SettingsPanel").style.display = "none";
-    document.querySelector(".PA-TradeSheetPanel").style.display = "none";
+    document.querySelector(".PA-TradeShopPanel").style.display = "none";
     document.querySelector("#LoginArea").style.display = "none";
     document.querySelector(".PA-FAQPanel").style.display = "none";
     document.querySelector(".PA-ImportingPanel").style.display = "none";

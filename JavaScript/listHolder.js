@@ -1,3 +1,4 @@
+var pokemonDataArray;
 var allPokemonArray;
 var allBallsArray;
 var genderlessPokemonArray;
@@ -38,6 +39,7 @@ var languageOptionsArray;
 });*/
 
 $(document).ready(function () {
+    $.post("https://poketrades.org/PHP/pokemon_data.php", PokemonData);
     $.post("https://poketrades.org/PHP/get_list_names.php", { column: "pokemon", table: "pokemon_names" }, AllPokemon);
     $.post("https://poketrades.org/PHP/get_list_names.php", { column: "balls", table: "ball_names" }, AllBalls);
     $.post("https://poketrades.org/PHP/get_list_names.php", { column: "genderless", table: "genderless_pokemon" }, GenderlessPokemon);
@@ -98,6 +100,12 @@ function UserBunches(data) {
         bunchDropdown.appendChild(creationOption);
         bunchToRenameDropdown.appendChild(bunchOption);
     }
+}
+
+function PokemonData(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    pokemonDataArray = arrayInfo["Rows"];
+    //console.log(pokemonDataArray);
 }
 
 function AllPokemon(data) {

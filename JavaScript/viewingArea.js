@@ -21,9 +21,16 @@ viewing4Username = "";
 viewing5Username = "";
 viewing6Username = "";
 
+var toggleOn = false;
+
 $('.VA-CloseButton').click(function () {
+    viewingDetails = null;
+    if (selectedPokemon != null) {
+        selectedPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+        selectedPokemon.style.backgroundColor = "#084f65";
+    }
     selectedPokemon = null;
-    AssigningOutline();
+    //AssigningOutline();
     document.querySelector("#SelectionArea").style.width = "100%";
     document.querySelector("#ViewingArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "block";
@@ -37,6 +44,12 @@ $('.VA-ModifyButton').click(function () {
     document.querySelector("#ViewingArea").style.display = "none";
     OpenCreationArea();
     ValidatePokemon();
+    AbilitySpecific();
+    for (let i = 0; i < abilityDropdown.length; i++) {
+        if (viewingDetails.ability == abilityDropdown[i].value && creationDetails.creation_id == viewingDetails.creation_id) {
+            abilityDropdown.value = viewingDetails.ability;
+        }
+    }
 });
 
 $('.VA-DeleteButton').click(function () {
@@ -53,11 +66,24 @@ $('.VA-AddButton').click(function () {
 
 $('.VA-ToggleProof').click(function () {
     if (document.querySelector(".VA-ToggleProof").innerHTML == "Show Proof") {
-        document.querySelector(".VA-ProofImage").style.display = "block";
-        document.querySelector(".VA-ToggleProof").innerHTML = "Hide Proof";
+        toggleOn = true
+        if (viewingDetails.proof.includes(".mp4") || viewingDetails.proof.includes(".MP4")) {
+            document.querySelector(".VA-ProofVideo").style.display = "block";
+            document.querySelector(".VA-ProofImage").style.display = "none";
+            document.querySelector(".VA-ToggleProof").innerHTML = "Hide Proof";
+            document.querySelector(".VA-LinkRedirector").style.display = "flex";
+        } else {
+            document.querySelector(".VA-ProofImage").style.display = "block";
+            document.querySelector(".VA-ProofVideo").style.display = "none";
+            document.querySelector(".VA-ToggleProof").innerHTML = "Hide Proof";
+            document.querySelector(".VA-LinkRedirector").style.display = "flex";
+        }
     } else {
+        toggleOn = false;
         document.querySelector(".VA-ProofImage").style.display = "none";
+        document.querySelector(".VA-ProofVideo").style.display = "none";
         document.querySelector(".VA-ToggleProof").innerHTML = "Show Proof";
+        document.querySelector(".VA-LinkRedirector").style.display = "none";
     }
 });
 
@@ -65,20 +91,23 @@ function AssigningOutline() {
     //Makes sure arrayData isn't null so an error doesn't get brought up in specific cases like on the bunch area
     if (arrayData != null) {
         for (let i = 0; i < numberOfArrays; i++) {
-            //document.querySelector(".GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 5px #0096c3";
-            if (currentlyRearranging == true && movingPokemon == document.querySelector(".GenerationGridDiv" + (i))) {
+            //document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 5px #0096c3";
+            if (currentlyRearranging == true && movingPokemon == document.getElementById("GenerationGridDiv" + (i))) {
 
             }
             //if no pokemon is selected, then no pokemon need an outline
             else if (selectedPokemon == null) {
-                document.querySelector(".GenerationGridDiv" + (i)).style.backgroundImage = "url('https://poketrades.org/Resources/Designs/Unselected Holder.png')";
+                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
             }
             //If it finds a generated row that has the same creation id as the current viewing id, it gives that div a outline
             else if (arrayData["Rows"][i].creation_id == viewingDetails.creation_id) {
-                selectedPokemon = document.querySelector(".GenerationGridDiv" + (i));
-                document.querySelector(".GenerationGridDiv" + (i)).style.backgroundImage = "url('https://poketrades.org/Resources/Designs/Selected Holder.png')";
+                selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
+                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
             } else {
-                document.querySelector(".GenerationGridDiv" + (i)).style.backgroundImage = "url('https://poketrades.org/Resources/Designs/Unselected Holder.png')";
+                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
             }
         }
     }
@@ -344,11 +373,11 @@ function ShowAV6() {
 };
 
 function MatchMaking(data) {
-    console.log("Running Match");
+    //console.log("Running Match");
     matchData = jQuery.parseJSON(data);
 
     var amount = matchData["Rows"].length;
-    console.log(amount);
+    //console.log(amount);
 
     //Removing the grid container so I can create a new one and making it a child of GeneratedSelection.
     $("#MatchContainer").remove();
@@ -629,7 +658,7 @@ function MatchMaking(data) {
 
         if (genderDifferencesArray.includes(loopArray.pokemon)) {
             if (loopArray.gender == "Male" || loopArray.gender == "(Any Gender)") {
-                console.log("WOOOORK")
+                //console.log("WOOOORK")
                 if (loopArray.shiny.includes("Normal")) {
                     theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Male.png");
                 }

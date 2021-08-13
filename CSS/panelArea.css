@@ -12,7 +12,8 @@
     }
 
     [class*="PA-SettingsPanel"]{
-        width: 100% !important;
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
     }
 
     [class*="PA-PanelPositionButton"]{
@@ -21,7 +22,13 @@
         border: none !important;
     }
 
-    [class*="PA-TradeSheetPanel"]{
+    [class*="PA-HoverButton"]{
+        pointer-events: none !important;
+        background-color: grey !important;
+        border: none !important;
+    }
+
+    [class*="PA-TradeShopPanel"]{
         width: -webkit-fill-available !important;
         width: -moz-available !important;
         min-height: 170px !important;
@@ -40,31 +47,36 @@
     }
 
     [class*="PA-FAQPanel"]{
-        width: 100% !important;
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
     }
 
     [class*="PA-ImportingPanel"]{
-        width: 100% !important;
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
     }
 }
 
 #PanelArea{
     position: absolute;
     display: block;
-    background-color: #2E2D2D;
+    /*background-color: #2E2D2D;*/
     width: 420px;
     right: 0;
     z-index: 1;
 }
 
 .PA-WhatsNewPanel{
-    background-color: #C0C0C0;
+    background: rgb(192 192 192 / 95%);
     /*height: 100%;*/
-
-    width: 400px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    width: 380px;
     right: 0;
     padding: 10px;
-    top: 10%;
+    margin: 10px;
     /*visibility: hidden;*/
 }
 
@@ -72,12 +84,13 @@
     position: relative;
     display: block;
     color: black;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
     padding: 10px;
 }
 
-.PA-TradeSheetPanel{
+.PA-TradeShopPanel{
     background-color: #2E2D2D;
     z-index: 1;
     height: 100%;
@@ -95,7 +108,7 @@
     bottom: 100px;
 }
 
-.PA-TradeSheetInfo{
+.PA-TradeShopInfo{
     position: relative;
     color: white;
     font-weight: bold;
@@ -115,6 +128,11 @@
 .PA-Message{
     position: relative;
     display: block;
+    overflow: hidden;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     margin: auto;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -190,23 +208,35 @@
 }
 
 .PA-FAQPanel{
-    background-color: #C0C0C0;
+    background: rgb(192 192 192 / 95%);
     z-index: 1;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    width: 380px;
     height: 100%;
-    width: 420px;;
-    overflow: auto;
     right: 0;
+    padding: 10px;
+    margin: 10px;
+    overflow: auto;
     display: none;    
 }
 
 .PA-SettingsPanel{
-    background-color: #C0C0C0; 
+    background: rgb(192 192 192 / 95%);
     z-index: 1;
-    min-height: 430px;
-    width: 420px;;
-    overflow: auto;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    width: 380px;
+    min-height: 510px;   
     right: 0;
-    display: none;    
+    padding: 10px;
+    margin: 10px;
+    overflow: auto;
+    display: none; 
 }
 
 .PA-PreviewText{
@@ -229,31 +259,37 @@
 .PA-BallImage{
     max-width: 24px;
     max-height: 24px;
+    vertical-align: bottom;
 }
 
 .PA-GenderImage{
     max-width: 24px;
     max-height: 24px;
+    vertical-align: bottom;
 }
 
 .PA-ShinyImage{
     max-width: 24px;
     max-height: 24px;
+    vertical-align: bottom;
 }
 
 .PA-MintImage{
     max-width: 24px;
     max-height: 24px;
+    vertical-align: bottom;
 }
 
 .PA-MiscImage{
     max-width: 24px;
     max-height: 24px;
+    vertical-align: bottom;
 }
 
 .PA-MarkImage{
     max-width: 24px;
     max-height: 24px;
+    vertical-align: bottom;
 }
 
 .PA-IVsText{
@@ -281,14 +317,53 @@
     text-align: center;
 }
 
-.PA-PanelPositionText{
+.PA-AdvancedPreviewText{
     color: black;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
+.PA-AdvancedPreviewButton{
+    width: 48px;
+    height: 22px;
+}
+
+.PA-PanelPositionText{
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    height: 24px;
+}
+
 .PA-PanelPositionButton{
+    width: 48px;
+    height: 22px;
+}
+
+.PA-HoverText{
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    height: 24px;
+}
+
+.PA-HoverButton{
+    width: 48px;
+    height: 22px;
+}
+
+.PA-ExactIVsText{
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    height: 24px;
+}
+
+.PA-ExactIVsButton{
     width: 48px;
     height: 22px;
 }
@@ -301,12 +376,18 @@
 }
 
 .PA-ImportingPanel{
-    background-color: #C0C0C0;
+    background: rgb(192 192 192 / 95%);
     z-index: 1;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    width: 380px;
     height: 100%;
-    width: 420px;;
-    overflow: auto;
     right: 0;
+    padding: 10px;
+    margin: 10px;
+    overflow: auto;
     display: none;
 }
 
@@ -314,7 +395,8 @@
     position: relative;
     display: block;
     color: black;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
     padding: 10px;
 }

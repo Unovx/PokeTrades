@@ -1,4 +1,9 @@
 @media only screen and (max-width: 768px) {
+    [class*="SelectionHelp"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
     [class*="ViewingAdditionalHelp"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
@@ -34,7 +39,7 @@
         width: -moz-available !important;
     }
 
-    [class*="TradeSheetImported"] {
+    [class*="TradeShopImported"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
     }
@@ -59,11 +64,44 @@
     overflow: auto;
 }
 
+.SelectionHelp{
+    position: relative;
+    display: none;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
+    padding: 10px;
+    width: 500px;
+    top: 10%;
+    text-align: center;
+}
+
+.NA-SelectionText{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-SelectionClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
 .ViewingAdditionalHelp{
     position: relative;
     display: none;
     margin: auto;
-    background-color: #C0C0C0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
     padding: 10px;
     width: 500px;
     top: 50%;
@@ -72,7 +110,6 @@
 
 .NA-ViewingAdditionalText{
     position: relative;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
@@ -89,7 +126,11 @@
     position: relative;
     display: none;
     margin: auto;
-    background-color: #C0C0C0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
     padding: 10px;
     width: 500px;
     top: 50%;
@@ -105,7 +146,6 @@
 
 .NA-ConfirmDeleteText{
     position: relative;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
@@ -123,7 +163,11 @@
     position: relative;
     display: none;
     margin: auto;
-    background-color: #C0C0C0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
     padding: 10px;
     width: 500px;
     top: 50%;
@@ -132,7 +176,6 @@
 
 .NA-PokemonAddedText{
     position: relative;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
@@ -149,7 +192,11 @@
     position: relative;
     display: none;
     margin: auto;
-    background-color: #C0C0C0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
     padding: 10px;
     width: 500px;
     top: 40%;
@@ -157,7 +204,6 @@
 
 .NA-CreationPokemonText{
     position: relative;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
 }
@@ -173,7 +219,11 @@
     position: relative;
     display: none;
     margin: auto;
-    background-color: #C0C0C0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
     padding: 10px;
     width: 500px;
     top: 40%;
@@ -181,7 +231,6 @@
 
 .NA-BunchIconText{
     position: relative;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
 }
@@ -197,7 +246,7 @@
     position: relative;
     display: none;
     margin: auto;
-    background-color: #C0C0C0;
+    background: rgb(192 192 192 / 95%);
     padding: 10px;
     width: 300px;
     top: 50%;
@@ -206,7 +255,6 @@
 
 .NA-BunchAddedText{
     position: relative;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
@@ -223,7 +271,11 @@
     position: relative;
     display: none;
     margin: auto;
-    background-color: #C0C0C0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
     padding: 10px;
     width: 300px;
     top: 50%;
@@ -232,7 +284,6 @@
 
 .NA-BunchRemovedText{
     position: relative;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
@@ -245,11 +296,15 @@
     top: 10px;
 }
 
-.TradeSheetImported{
+.TradeShopImported{
     position: relative;
     display: none;
     margin: auto;
-    background-color: #C0C0C0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
     padding: 10px;
     width: 300px;
     top: 50%;
@@ -258,7 +313,6 @@
 
 .NA-ImportedSuccessText{
     position: relative;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
@@ -275,7 +329,11 @@
     position: relative;
     display: none;
     margin: auto;
-    background-color: #C0C0C0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
     padding: 10px;
     width: 500px;
     top: 50%;
@@ -291,7 +349,6 @@
 
 .NA-DeleteAllText{
     position: relative;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
@@ -310,7 +367,11 @@
     position: relative;
     display: none;
     margin: auto;
-    background-color: #C0C0C0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
     padding: 10px;
     width: 300px;
     top: 50%;
@@ -319,7 +380,6 @@
 
 .NA-SuccessDeleteAllText{
     position: relative;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
@@ -348,6 +408,21 @@
     max-width: 256px; 
     max-height: 256px;
     margin: auto;
+}
+
+.NA-LoadingText{
+    position: relative;
+    display: block;
+    color: white;
+    text-shadow:
+    -1px -1px 0 #000,  
+     1px -1px 0 #000,
+     -1px 1px 0 #000,
+      1px 1px 0 #000;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 20px;
 }
 
 /*.NA-LoadingText{

@@ -125,6 +125,7 @@ $('.CA-Home').click(function () {
 $('.CA-PokemonDropdown').change(function () {
     pokemonValue = document.querySelector(".CA-PokemonDropdown").value;
     ValidatePokemon();
+    AbilitySpecific();
 });
 
 $('.CA-GenderDropdown').change(function () {
@@ -136,6 +137,53 @@ $('.CA-ShinyDropdown').change(function () {
     shinyValue = document.querySelector(".CA-ShinyDropdown").value;
     ValidatePokemon();
 });
+
+function AbilitySpecific() {
+    while (abilityDropdown.lastElementChild) {
+        abilityDropdown.removeChild(abilityDropdown.lastElementChild);
+    }
+
+    for (let i = 0; i < pokemonDataArray.length; i++) {
+        var dataPokemon = null;
+        if (pokemonDropdown.value == "Meowstic") {
+            dataPokemon = pokemonDropdown.value + "-" + genderDropdown.value;
+            //console.log(dataPokemon);
+        }
+
+        if (loopArray.pokemon == "Indeedee") {
+            dataPokemon = pokemonDropdown.value + "-" + genderDropdown.value;
+        }
+
+        if (pokemonDropdown.value == pokemonDataArray[i].pokemon || dataPokemon == pokemonDataArray[i].pokemon) {
+            const creationOption = document.createElement("option");
+            creationOption.value = pokemonDataArray[i].ability_1;
+            creationOption.textContent = pokemonDataArray[i].ability_1;
+            abilityDropdown.appendChild(creationOption);
+
+            if (pokemonDataArray[i].ability_2 != null || dataPokemon != null && dataPokemon.ability_2 != null) {
+                const creationOption = document.createElement("option");
+                creationOption.value = pokemonDataArray[i].ability_2;
+                creationOption.textContent = pokemonDataArray[i].ability_2;
+                abilityDropdown.appendChild(creationOption);
+            }
+
+            if (pokemonDataArray[i].hidden_ability_1 != null || dataPokemon != null && dataPokemon.hidden_ability_1 != null) {
+                const creationOption = document.createElement("option");
+                creationOption.value = pokemonDataArray[i].hidden_ability_1;
+                creationOption.textContent = pokemonDataArray[i].hidden_ability_1 + (" (H)");
+                abilityDropdown.appendChild(creationOption);
+            }
+
+            if (pokemonDataArray[i].hidden_ability_2 != null || dataPokemon != null && dataPokemon.hidden_ability_2 != null) {
+                const creationOption = document.createElement("option");
+                creationOption.value = pokemonDataArray[i].hidden_ability_2;
+                creationOption.textContent = pokemonDataArray[i].hidden_ability_2 + (" (H)");
+                abilityDropdown.appendChild(creationOption);
+            }
+
+        }
+    }
+}
 
 function ValidatePokemon() {
     if (shinyExceptionArray.includes(pokemonValue) && !shinyValue.includes("Normal")) {
@@ -369,7 +417,10 @@ function CreatePokemon() {
     //Making sure that if its For Trade, none of the "Any" options are allowed.
     if (document.querySelector(".CA-PokemonImage").getAttribute("src") != "https://poketrades.org/Resources/Fennel2.png") {
         console.log("NO FENNEL");
-        if (tradeOption == "For Trade") {
+        if (displayDropdown.value == "Private") {
+            $.post("https://poketrades.org/PHP/create_or_update_selection.php", { token: token, creationID: creationID, bunchname: bunchDropdown.value, tradeOption: tradeOption, pokemon: pokemonDropdown.value, nickname: nicknameInput.value, ball: ballDropdown.value, gender: genderDropdown.value, shiny: shinyDropdown.value, mint: mintDropdown.value, misc: miscDropdown.value, mark: markDropdown.value, lang: languageDropdown.value, gen6: Gen6, gen7: Gen7, gen8: Gen8, home: Home, nature: natureDropdown.value, ability: abilityDropdown.value, gameOT: otInput.value, gameID: idInput.value, status: statusDropdown.value, event: eventDropdown.value, move1: move1Dropdown.value, move2: move2Dropdown.value, move3: move3Dropdown.value, move4: move4Dropdown.value, legacymove1: legacyMove1Dropdown.value, legacymove2: legacyMove2Dropdown.value, legacymove3: legacyMove3Dropdown.value, legacymove4: legacyMove4Dropdown.value, howObtained: howObtainedDropdown.value, gameObtained: gameObtainedDropdown.value, display: displayDropdown.value, proof: proofInput.value, note: noteFieldInput.value, ivhp: ivHpDropdown.value, ivatt: ivAttDropdown.value, ivdef: ivDefDropdown.value, ivspa: ivSpaDropdown.value, ivspd: ivSpdDropdown.value, ivspe: ivSpeDropdown.value, evhp: evHpDropdown.value, evatt: evAttDropdown.value, evdef: evDefDropdown.value, evspa: evSpaDropdown.value, evspd: evSpdDropdown.value, evspe: evSpeDropdown.value }, CreatedPokemon);
+        }
+        else if (tradeOption == "For Trade") {
             if (howObtainedDropdown.value.includes("(Any Obtained") || gameObtainedDropdown.value.includes("(Any Game)") || languageDropdown.value.includes("ANY") || ballDropdown.value.includes("(Any Ball)") || genderDropdown.value.includes("(Any Gender)") || shinyDropdown.value.includes("(Any Shiny or Normal)") || mintDropdown.value.includes("(Any or No Mint)") || markDropdown.value.includes("Any or No Mark") || natureDropdown.value.includes("(Any Nature") || abilityDropdown.value.includes("(Any Ability)") || otInput.value == "" || idInput.value.length < 4 || statusDropdown.value.includes("(Any Status)") || eventDropdown.value.includes("(Any Event)") || move1Dropdown.value.includes("(No Move)") || move1Dropdown.value.includes("(Any Move)") || move2Dropdown.value.includes("(Any Move)") || move3Dropdown.value.includes("(Any Move)") || move4Dropdown.value.includes("(Any Move)") || legacyMove1Dropdown.value.includes("(Any Move)") || legacyMove2Dropdown.value.includes("(Any Move)") || legacyMove3Dropdown.value.includes("(Any Move)") || legacyMove4Dropdown.value.includes("(Any Move)")) {
                 document.querySelector("#NotificationArea").style.display = "block";
                 document.querySelector(".CreationPokemonError").style.display = "block";
@@ -415,6 +466,8 @@ function CreatedPokemon(data) {
 
     creationID = "";
     selectedPokemon = null;
+    creationDetails = null;
+    viewingDetails = null;
     AssigningOutline();
     ShowLoading();
     PostGenerateSelection();

@@ -41,12 +41,14 @@ body {
     }
     [id*="GridContainer"]{
       /* larger font size is looks better on mobile devices*/
-      font-size: 100%;
+      font-size: 82%;
       /* Spacing issues aren't an issue on mobile devices*/
-      grid-gap: 0rem !important;
-      /* 110 isn't need on mobile, but 100 is too crowded with preview icons on desktop*/
-      grid-template-columns: repeat( auto-fill, minmax(100px, 1fr) ) !important; 
+      grid-gap: 0.5rem !important;
     }
+    /*[class*="TypeDisplay"]{
+      vertical-align: -webkit-baseline-middle !important;
+      vertical-align: -moz-middle-with-baseline !important;
+    }*/
   }
 
   #SelectionArea{
@@ -142,6 +144,12 @@ body {
     background-color: #efefef;
     height: 22px;
     border: none;
+  }
+
+  .SA-SelectionHelp{
+    max-width: 22px; 
+    max-height: 22px;
+    align-items: center;
   }
 
   .SA-Searchbar{

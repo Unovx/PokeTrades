@@ -322,6 +322,7 @@
   }
 
   .VA-LinkRedirector{
+    display: none;
     position: absolute;
     left: 560px;
     top: 30px;
@@ -334,6 +335,15 @@
 
     max-width: 200px;
     max-height: 200px;
+    margin: auto;
+  }
+
+  .VA-ProofVideo{
+    display: none;
+    position: relative;
+
+    max-width: 200px !important;
+    max-height: 200px !important;
     margin: auto;
   }
 

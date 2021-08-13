@@ -97,7 +97,7 @@ async function ImportData(file) {
     $.post("https://poketrades.org/PHP/import_data.php", { token: token, fileData: text });
     document.querySelector(".LA-ImportInput").value = null;
     document.querySelector("#NotificationArea").style.display = "block";
-    document.querySelector(".TradeSheetImported").style.display = "block";
+    document.querySelector(".TradeShopImported").style.display = "block";
     $.post("https://poketrades.org/PHP/format_import.php", { token: token });
 
 }
