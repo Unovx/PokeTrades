@@ -94,12 +94,15 @@ $('.LA-Import').click(function () {
 async function ImportData(file) {
     let text = await (new Response(file)).text();
     //console.log(text);
-    $.post("https://poketrades.org/PHP/import_data.php", { token: token, fileData: text });
+    $.post("https://poketrades.org/PHP/import_data.php", { token: token, fileData: text }, StartFormat);
     document.querySelector(".LA-ImportInput").value = null;
     document.querySelector("#NotificationArea").style.display = "block";
     document.querySelector(".TradeShopImported").style.display = "block";
-    $.post("https://poketrades.org/PHP/format_import.php", { token: token });
+}
 
+function StartFormat() {
+    $.post("https://poketrades.org/PHP/format_import.php", { token: token });
+    console.log("Importing Finished");
 }
 
 $('.LA-Export').click(function () {

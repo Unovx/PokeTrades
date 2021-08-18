@@ -11,7 +11,7 @@ bunchToRenameDropdown = document.querySelector(".BA-BunchRename");
 
 $('.BA-CloseButton').click(function () {
     document.querySelector("#BunchArea").style.display = "none";
-    document.querySelector("#CreationArea").style.display = "block";
+    //document.querySelector("#CreationArea").style.display = "block";
     BunchReset();
 });
 

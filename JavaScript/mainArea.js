@@ -16,8 +16,8 @@ $('.MA-SearchTradeShops').click(function () {
         $(".PA-Message").keyup();
         document.querySelector(".PA-Message").style.height = "";
         document.querySelector(".PA-Message").style.height = document.querySelector(".PA-Message").scrollHeight - 20 + "px";
-        $(".PA-FTAvailableBunchesText").remove();
-        $(".PA-LFAvailableBunchesText").remove();
+        //$(".PA-FTAvailableBunchesText").remove();
+        //$(".PA-LFAvailableBunchesText").remove();
         $.post("https://poketrades.org/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
         $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     }

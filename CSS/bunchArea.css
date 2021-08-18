@@ -127,6 +127,39 @@
     width: 310px;
 }
 
+.BA-SelectIconText{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    text-align-last: center;
+    padding-top: 10px;
+    top: 5px;
+    position: relative;
+}
+
+.BA-TrioBunchText{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    text-align-last: center;
+    padding-top: 10px;
+    top: 28px;
+    position: relative;
+}
+
+.BA-RenameText{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    text-align-last: center;
+    padding-top: 10px;
+    top: 50px;
+    position: relative;
+}
+
 .BA-GenderDropdown{
     width: 100%; 
 }

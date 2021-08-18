@@ -57,6 +57,21 @@ var pokemonValue = "Abomasnow";
 var genderValue = "(Any Gender)";
 var shinyValue = "(Any Shiny or Normal)";
 
+let types = ['Fighting', 'Flying', 'Poison', 'Ground', 'Rock', 'Bug', 'Ghost', 'Steel', 'Fire', 'Water', 'Grass', 'Electric', 'Psychic', 'Ice', 'Dragon', 'Dark']
+
+calcHP = ivHpDropdown.value;
+calcAtt = ivAttDropdown.value;
+calcDef = ivDefDropdown.value;
+calcSpa = ivSpaDropdown.value;
+calcSpd = ivSpdDropdown.value;
+calcSpe = ivSpeDropdown.value;
+
+function calculateTypeHP(calcHP, calcAtt, calcDef, calcSpa, calcSpd, calcSpe) {
+    let numerator = (calcHP & 1) + 2 * (calcAtt & 1) + 4 * (calcDef & 1) + 8 * (calcSpe & 1) + 16 * (calcSpa & 1) + 32 * (calcSpd & 1);
+    numerator *= 15;
+    return Math.floor(numerator / 63);
+}
+
 
 $('.CA-CloseButton').click(function () {
     document.querySelector("#CreationArea").style.display = "none";
@@ -185,6 +200,31 @@ function AbilitySpecific() {
     }
 }
 
+$(ivHpDropdown).change(function () {
+    SetHiddenPower();
+});
+
+$(ivAttDropdown).change(function () {
+    SetHiddenPower();
+});
+
+$(ivDefDropdown).change(function () {
+    SetHiddenPower();
+});
+
+$(ivSpaDropdown).change(function () {
+    SetHiddenPower();
+});
+
+$(ivSpdDropdown).change(function () {
+    SetHiddenPower();
+});
+
+$(ivSpeDropdown).change(function () {
+    SetHiddenPower();
+});
+
+
 function ValidatePokemon() {
     if (shinyExceptionArray.includes(pokemonValue) && !shinyValue.includes("Normal")) {
         if (pokemonValue.includes("Minior")) {
@@ -302,6 +342,19 @@ function ValidatePokemon() {
         }
     } else {
         document.querySelector(".CA-PokemonImage").setAttribute("src", "https://poketrades.org/Resources/Fennel2.png");
+    }
+}
+
+function SetHiddenPower() {
+    if (!ivHpDropdown.value.includes("X") && !ivHpDropdown.value.includes("HT") && !ivAttDropdown.value.includes("X") && !ivAttDropdown.value.includes("HT") && !ivDefDropdown.value.includes("X") && !ivDefDropdown.value.includes("HT") && !ivSpaDropdown.value.includes("X") && !ivSpaDropdown.value.includes("HT") && !ivSpdDropdown.value.includes("X") && !ivSpdDropdown.value.includes("HT") && !ivSpeDropdown.value.includes("X") && !ivSpeDropdown.value.includes("HT") && miscDropdown.value != "Gigantamax") {
+        calcHP = ivHpDropdown.value;
+        calcAtt = ivAttDropdown.value;
+        calcDef = ivDefDropdown.value;
+        calcSpa = ivSpaDropdown.value;
+        calcSpd = ivSpdDropdown.value;
+        calcSpe = ivSpeDropdown.value;
+        console.log(types[calculateTypeHP(calcHP, calcAtt, calcDef, calcSpa, calcSpd, calcSpe)]);
+        miscDropdown.value = "HP " + types[calculateTypeHP(calcHP, calcAtt, calcDef, calcSpa, calcSpd, calcSpe)];
     }
 }
 

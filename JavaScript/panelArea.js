@@ -14,6 +14,8 @@ var advancedPreview;
 var panelsPositions;
 var hoverInfo;
 var exactIVs;
+var emptyBunches;
+var showEmpty;
 
 if (localStorage.getItem('previewBall') == null) {
     previewBall = true;
@@ -148,13 +150,28 @@ else if (localStorage.getItem('exactIVs') == "1") {
     document.querySelector(".PA-ExactIVsButton").innerHTML = "Off";
 }
 
+if (localStorage.getItem('emptyBunches') == null) {
+    emptyBunches = true;
+    showEmpty = "yes";
+    document.querySelector(".PA-EmptyBunchesButton").innerHTML = "On";
+}
+else if (localStorage.getItem('emptyBunches') == "1") {
+    emptyBunches = true;
+    showEmpty = "yes";
+    document.querySelector(".PA-EmptyBunchesButton").innerHTML = "On";
+} else {
+    emptyBunches = false;
+    showEmpty = "";
+    document.querySelector(".PA-EmptyBunchesButton").innerHTML = "Off";
+}
+
 
 $(".PA-Searchbar").keyup(function () {
     document.querySelector(".PA-Message").disabled = true;
     $("#ForTradeContainer").remove();
     $("#LookingForContainer").remove();
-    $(".PA-FTAvailableBunchesText").remove();
-    $(".PA-LFAvailableBunchesText").remove();
+    //$(".PA-FTAvailableBunchesText").remove();
+    //$(".PA-LFAvailableBunchesText").remove();
     searchInfoText = (document.querySelector(".PA-Searchbar").value);
     searchData = null;
     $.post("https://poketrades.org/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
@@ -163,7 +180,19 @@ $(".PA-Searchbar").keyup(function () {
     $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchInfoText, tradeOption: "Looking For" }, MatchMaking);
 
     localStorage.setItem('searchID', searchInfoText);
-})
+});
+
+$('.PA-ForTradeBunchEdit').click(function () {
+    $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
+    document.querySelector("#BunchArea").style.display = "block";
+
+});
+
+$('.PA-LookingForBunchEdit').click(function () {
+    $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "Looking For" }, UserBunches);
+    document.querySelector("#BunchArea").style.display = "block";
+
+});
 
 $('.PA-CloseSettings').click(function () {
     CloseAllStartingAreas();
@@ -351,6 +380,21 @@ $('.PA-ExactIVsButton').click(function () {
     }
 });
 
+$('.PA-EmptyBunchesButton').click(function () {
+    if (emptyBunches == false) {
+        emptyBunches = true;
+        localStorage.setItem('emptyBunches', "1");
+        showEmpty = "yes";
+        document.querySelector(".PA-EmptyBunchesButton").innerHTML = "On";
+    } else {
+        emptyBunches = false;
+        localStorage.setItem('emptyBunches', "0");
+        showEmpty = "";
+        document.querySelector(".PA-EmptyBunchesButton").innerHTML = "Off";
+    }
+    console.log(showEmpty);
+});
+
 
 function TradeShopInfo(data) {
     if (data != "") {
@@ -387,6 +431,10 @@ function ModifyCheck(data) {
         document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
         document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
+        document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
+        document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "#efefef";
         filterDisplay.disabled = false;
         if (searchInfoText != "") {
             document.querySelector(".PA-Message").disabled = false;
@@ -396,6 +444,10 @@ function ModifyCheck(data) {
         document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
         document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+        document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
+        document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "grey";
+        document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
+        document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "grey";
         filterDisplay.disabled = true;
         document.querySelector(".PA-Message").disabled = true;
     }
@@ -429,9 +481,9 @@ function UpdatePersonalText() {
 
 function PostGenerateSelectionData() {
 
-    $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: "For Trade" }, ForTradeData);
+    $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: "For Trade", showEmpty: showEmpty }, ForTradeData);
 
-    $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: "Looking For" }, LookingForData);
+    $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: "Looking For", showEmpty: showEmpty }, LookingForData);
 
 }
 
@@ -448,6 +500,59 @@ function RemoveBunchOutline() {
 }
 
 function ForTradeData(data) {
+    //Removing the grid container so I can create a new one and making it a child of GeneratedBunches.
+    $("#ForTradeContainer").remove();
+
+    /*tradeText = document.createElement("text");
+    tradeText.setAttribute("class", "PA-FTAvailableBunchesText");
+    tradeText.innerHTML = "For Trade";
+    document.getElementById("PA-ForTradeBunches").appendChild(tradeText);*/
+
+    gridTest = document.createElement("div");
+    gridTest.setAttribute("id", "ForTradeContainer");
+    document.getElementById("PA-ForTradeBunches").appendChild(gridTest);
+
+
+    //The Below is hard coding the "All Pokemon" bunch.
+    newDiv = document.createElement("div");
+    newDiv.setAttribute("class", "ForTradeGridDiv");
+    document.getElementById("ForTradeContainer").appendChild(newDiv);
+    newDiv.setAttribute("width", "100");
+    newDiv.setAttribute("height", "100");
+
+    theImage = document.createElement("IMG");
+    theImage.setAttribute("id", "GeneratedBunches All");
+    theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Arceus.png");
+    theImage.setAttribute("min-width", "100");
+    theImage.setAttribute("height", "100");
+    newDiv.appendChild(theImage);
+    document.querySelector(".ForTradeGridDiv").style.boxShadow = "inset 0px 0px 0px 3.5px #AF9946";
+    document.querySelector(".ForTradeGridDiv").style.backgroundColor = "#2E2D2D";
+    document.querySelector(".ForTradeGridDiv").style.borderTopLeftRadius = "15px";
+    document.querySelector(".ForTradeGridDiv").style.borderTopRightRadius = "15px";
+    document.querySelector(".ForTradeGridDiv").style.borderBottomLeftRadius = "15px";
+    document.querySelector(".ForTradeGridDiv").style.borderBottomRightRadius = "15px";
+    document.querySelector(".ForTradeGridDiv").style.width = "100%";
+    document.querySelector(".ForTradeGridDiv").style.height = "100%";
+
+    theText = document.createElement("P")
+    theText.setAttribute("class", "theText");
+    theText.innerHTML = "All Pokemon";
+    newDiv.appendChild(theText);
+
+    newDiv.onclick = function () {
+        if (currentlyRearranging == false) {
+            document.querySelector(".SA-Bunch").innerHTML = "All Pokemon";
+            bunchname = "All Pokemon";
+            document.querySelector("#MainArea").style.display = "none";
+            document.querySelector("#SelectionArea").style.display = "grid";
+            tradeOption = "For Trade";
+            ShowLoading();
+            PostGenerateSelection();
+            $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+            //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
+        }
+    }
     //Using Jquery to parse the data and getting the length.
     ftData = jQuery.parseJSON(data);
     if (ftData["Rows"] != null) {
@@ -455,59 +560,7 @@ function ForTradeData(data) {
         console.log(ftBunches);
         console.log(ftData);
 
-        //Removing the grid container so I can create a new one and making it a child of GeneratedBunches.
-        $("#ForTradeContainer").remove();
 
-        tradeText = document.createElement("text");
-        tradeText.setAttribute("class", "PA-FTAvailableBunchesText");
-        tradeText.innerHTML = "For Trade";
-        document.getElementById("PA-ForTradeBunches").appendChild(tradeText);
-
-        gridTest = document.createElement("div");
-        gridTest.setAttribute("id", "ForTradeContainer");
-        document.getElementById("PA-ForTradeBunches").appendChild(gridTest);
-
-
-        //The Below is hard coding the "All Pokemon" bunch.
-        newDiv = document.createElement("div");
-        newDiv.setAttribute("class", "ForTradeGridDiv");
-        document.getElementById("ForTradeContainer").appendChild(newDiv);
-        newDiv.setAttribute("width", "100");
-        newDiv.setAttribute("height", "100");
-
-        theImage = document.createElement("IMG");
-        theImage.setAttribute("id", "GeneratedBunches All");
-        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Arceus.png");
-        theImage.setAttribute("min-width", "100");
-        theImage.setAttribute("height", "100");
-        newDiv.appendChild(theImage);
-        document.querySelector(".ForTradeGridDiv").style.boxShadow = "inset 0px 0px 0px 3.5px #AF9946";
-        document.querySelector(".ForTradeGridDiv").style.backgroundColor = "#2E2D2D";
-        document.querySelector(".ForTradeGridDiv").style.borderTopLeftRadius = "15px";
-        document.querySelector(".ForTradeGridDiv").style.borderTopRightRadius = "15px";
-        document.querySelector(".ForTradeGridDiv").style.borderBottomLeftRadius = "15px";
-        document.querySelector(".ForTradeGridDiv").style.borderBottomRightRadius = "15px";
-        document.querySelector(".ForTradeGridDiv").style.width = "100%";
-        document.querySelector(".ForTradeGridDiv").style.height = "100%";
-
-        theText = document.createElement("P")
-        theText.setAttribute("class", "theText");
-        theText.innerHTML = "All Pokemon";
-        newDiv.appendChild(theText);
-
-        newDiv.onclick = function () {
-            if (currentlyRearranging == false) {
-                document.querySelector(".SA-Bunch").innerHTML = "All Pokemon";
-                bunchname = "All Pokemon";
-                document.querySelector("#MainArea").style.display = "none";
-                document.querySelector("#SelectionArea").style.display = "grid";
-                tradeOption = "For Trade";
-                ShowLoading();
-                PostGenerateSelection();
-                $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-                //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
-            }
-        }
 
         for (let i = 0; i < ftBunches; i++) {
 
@@ -649,7 +702,7 @@ function ForTradeData(data) {
                         console.log(newPosition);
                         if (oldPosition != newPosition) {
                             $.post("https://poketrades.org/PHP/move_bunch.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveBunch);
-                            $(".PA-FTAvailableBunchesText").remove();
+                            //$(".PA-FTAvailableBunchesText").remove();
                         } else {
                             document.querySelector(".SA-MoveButton").innerHTML = "Move/Copy";
                             currentlyRearranging = false;
@@ -667,6 +720,59 @@ function ForTradeData(data) {
 }
 
 function LookingForData(data) {
+    //Removing the grid container so I can create a new one and making it a child of GeneratedBunches.
+    $("#LookingForContainer").remove();
+
+    /*tradeText = document.createElement("text");
+    tradeText.setAttribute("class", "PA-LFAvailableBunchesText");
+    tradeText.innerHTML = "Looking For";
+    document.getElementById("PA-LookingForBunches").appendChild(tradeText);*/
+
+    gridTest = document.createElement("div");
+    gridTest.setAttribute("id", "LookingForContainer");
+    document.getElementById("PA-LookingForBunches").appendChild(gridTest);
+
+    //The Below is hard coding the "All Pokemon" bunch.
+    newDiv = document.createElement("div");
+    newDiv.setAttribute("class", "LookingForGridDiv");
+    document.getElementById("LookingForContainer").appendChild(newDiv);
+    newDiv.setAttribute("width", "100");
+    newDiv.setAttribute("height", "100");
+    document.querySelector(".LookingForGridDiv").style.boxShadow = "inset 0px 0px 0px 3.5px #AF9946";
+    document.querySelector(".LookingForGridDiv").style.backgroundColor = "#2E2D2D";
+    document.querySelector(".LookingForGridDiv").style.borderTopLeftRadius = "15px";
+    document.querySelector(".LookingForGridDiv").style.borderTopRightRadius = "15px";
+    document.querySelector(".LookingForGridDiv").style.borderBottomLeftRadius = "15px";
+    document.querySelector(".LookingForGridDiv").style.borderBottomRightRadius = "15px";
+    document.querySelector(".LookingForGridDiv").style.width = "100%";
+    document.querySelector(".LookingForGridDiv").style.height = "100%";
+
+    theImage = document.createElement("IMG");
+    theImage.setAttribute("id", "GeneratedBunches All");
+    theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Arceus.png");
+    theImage.setAttribute("min-width", "100");
+    theImage.setAttribute("height", "100");
+    newDiv.appendChild(theImage);
+
+    theText = document.createElement("P")
+    theText.setAttribute("class", "theText");
+    theText.innerHTML = "All Pokemon";
+    newDiv.appendChild(theText);
+
+    newDiv.onclick = function () {
+        if (currentlyRearranging == false) {
+            document.querySelector(".SA-Bunch").innerHTML = "All Pokemon";
+            bunchname = "All Pokemon";
+            document.querySelector("#MainArea").style.display = "none";
+            document.querySelector("#SelectionArea").style.display = "grid";
+            tradeOption = "Looking For";
+            $("#GridContainer").remove();
+            ShowLoading();
+            PostGenerateSelection();
+            $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+            //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
+        }
+    }
     //Using Jquery to parse the data and getting the length.
     lfData = jQuery.parseJSON(data);
     if (lfData["Rows"] != null) {
@@ -674,59 +780,7 @@ function LookingForData(data) {
         console.log(lfBunches);
         console.log(lfData);
 
-        //Removing the grid container so I can create a new one and making it a child of GeneratedBunches.
-        $("#LookingForContainer").remove();
 
-        tradeText = document.createElement("text");
-        tradeText.setAttribute("class", "PA-LFAvailableBunchesText");
-        tradeText.innerHTML = "Looking For";
-        document.getElementById("PA-LookingForBunches").appendChild(tradeText);
-
-        gridTest = document.createElement("div");
-        gridTest.setAttribute("id", "LookingForContainer");
-        document.getElementById("PA-LookingForBunches").appendChild(gridTest);
-
-        //The Below is hard coding the "All Pokemon" bunch.
-        newDiv = document.createElement("div");
-        newDiv.setAttribute("class", "LookingForGridDiv");
-        document.getElementById("LookingForContainer").appendChild(newDiv);
-        newDiv.setAttribute("width", "100");
-        newDiv.setAttribute("height", "100");
-        document.querySelector(".LookingForGridDiv").style.boxShadow = "inset 0px 0px 0px 3.5px #AF9946";
-        document.querySelector(".LookingForGridDiv").style.backgroundColor = "#2E2D2D";
-        document.querySelector(".LookingForGridDiv").style.borderTopLeftRadius = "15px";
-        document.querySelector(".LookingForGridDiv").style.borderTopRightRadius = "15px";
-        document.querySelector(".LookingForGridDiv").style.borderBottomLeftRadius = "15px";
-        document.querySelector(".LookingForGridDiv").style.borderBottomRightRadius = "15px";
-        document.querySelector(".LookingForGridDiv").style.width = "100%";
-        document.querySelector(".LookingForGridDiv").style.height = "100%";
-
-        theImage = document.createElement("IMG");
-        theImage.setAttribute("id", "GeneratedBunches All");
-        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Arceus.png");
-        theImage.setAttribute("min-width", "100");
-        theImage.setAttribute("height", "100");
-        newDiv.appendChild(theImage);
-
-        theText = document.createElement("P")
-        theText.setAttribute("class", "theText");
-        theText.innerHTML = "All Pokemon";
-        newDiv.appendChild(theText);
-
-        newDiv.onclick = function () {
-            if (currentlyRearranging == false) {
-                document.querySelector(".SA-Bunch").innerHTML = "All Pokemon";
-                bunchname = "All Pokemon";
-                document.querySelector("#MainArea").style.display = "none";
-                document.querySelector("#SelectionArea").style.display = "grid";
-                tradeOption = "Looking For";
-                $("#GridContainer").remove();
-                ShowLoading();
-                PostGenerateSelection();
-                $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-                //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
-            }
-        }
 
         for (let i = 0; i < lfBunches; i++) {
 
@@ -867,7 +921,7 @@ function LookingForData(data) {
                         if (oldPosition != newPosition) {
                             tradeOption = "Looking For";
                             $.post("https://poketrades.org/PHP/move_bunch.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveBunch);
-                            $(".PA-LFAvailableBunchesText").remove();
+                            //$(".PA-LFAvailableBunchesText").remove();
                         } else {
                             document.querySelector(".SA-MoveButton").innerHTML = "Move/Copy";
                             currentlyRearranging = false;
