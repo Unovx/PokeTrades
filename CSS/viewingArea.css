@@ -252,6 +252,7 @@
     color: white;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
+    padding-bottom: 10px;
   }
 
   .VA-ImageAlign{
@@ -298,17 +299,47 @@
     text-align: center;
     top: 80px;
     left: 320px;
-    width: 225px;
+    width: 220px !important;
+    /*place-content: unset !important;*/
+    padding-bottom: 10px;
     color: white;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .VA-Nature{
+    place-content: unset !important;
+  }
+
+  .VA-Ability{
+    place-content: unset !important;
+  }
+
+  .VA-Nature{
+    place-content: unset !important;
+  }
+
+  .VA-OT{
+    place-content: unset !important;
+  }
+
+  .VA-ID{
+    place-content: unset !important;
+  }
+
+  .VA-Status{
+    place-content: unset !important;
+  }
+
+  .VA-Event{
+    place-content: unset !important;
   }
 
   .VA-ToggleProof{
     display: inline-table;
     background-color: #efefef;
     border: none;
-    width: 140px !important;
+    width: 220px !important;
     align-content: center;
   }
 

@@ -1269,7 +1269,7 @@ function UpdateViewingDetails() {
 
         document.querySelector(".VA-IVs").style.display = "none";
     } else {
-        document.querySelector(".VA-IVs").innerHTML = viewingDetails.iv_hp + "/" + viewingDetails.iv_att + "/" +
+        document.querySelector(".VA-IVs").innerHTML = "IVS: " + viewingDetails.iv_hp + "/" + viewingDetails.iv_att + "/" +
             viewingDetails.iv_def + "/" + viewingDetails.iv_spa + "/" + viewingDetails.iv_spd + "/" + viewingDetails.iv_spe;
         document.querySelector(".VA-IVs").style.display = "inline";
     }
@@ -1279,7 +1279,7 @@ function UpdateViewingDetails() {
 
         document.querySelector(".VA-EVs").style.display = "none";
     } else {
-        document.querySelector(".VA-EVs").innerHTML = viewingDetails.ev_hp + "/" + viewingDetails.ev_att + "/" +
+        document.querySelector(".VA-EVs").innerHTML = "EVS: " + viewingDetails.ev_hp + "/" + viewingDetails.ev_att + "/" +
             viewingDetails.ev_def + "/" + viewingDetails.ev_spa + "/" + viewingDetails.ev_spd + "/" + viewingDetails.ev_spe;
         document.querySelector(".VA-EVs").style.display = "inline";
     }
@@ -1291,15 +1291,15 @@ function UpdateViewingDetails() {
     document.querySelector(".VA-Mint").setAttribute("src", "https://poketrades.org/Resources/Misc/" + viewingDetails.mint + ".png");
     document.querySelector(".VA-Misc").setAttribute("src", "https://poketrades.org/Resources/Misc/" + viewingDetails.misc + ".png");
     document.querySelector(".VA-Mark").setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/" + viewingDetails.mark + ".png");
-    document.querySelector(".VA-Nature").innerHTML = viewingDetails.nature;
-    document.querySelector(".VA-Ability").innerHTML = viewingDetails.ability;
-    document.querySelector(".VA-OT").innerHTML = viewingDetails.game_ot;
-    document.querySelector(".VA-ID").innerHTML = viewingDetails.game_id;
-    document.querySelector(".VA-Status").innerHTML = viewingDetails.status;
+    document.querySelector(".VA-Nature").innerHTML = "Nature: " + viewingDetails.nature;
+    document.querySelector(".VA-Ability").innerHTML = "Ability: " + viewingDetails.ability;
+    document.querySelector(".VA-OT").innerHTML = "OT: " + viewingDetails.game_ot;
+    document.querySelector(".VA-ID").innerHTML = "ID: " + viewingDetails.game_id;
+    document.querySelector(".VA-Status").innerHTML = "Status: " + viewingDetails.status;
     if (viewingDetails.event_info == "(Not Event)") {
         document.querySelector(".VA-Event").style.display = "none";
     } else {
-        document.querySelector(".VA-Event").innerHTML = viewingDetails.event_info;
+        document.querySelector(".VA-Event").innerHTML = "Event: " + viewingDetails.event_info;
         document.querySelector(".VA-Event").style.display = "inline";
     }
     document.querySelector(".ViewingProof").innerHTML = viewingDetails.proof;
