@@ -22,6 +22,7 @@
   <link href="CSS/tutorialArea.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+  <script src="https://unpkg.com/vue@next"></script>
 </head>
 
 <body>
@@ -304,13 +305,12 @@
     </div>
   </div>
   <div id="LoginArea">
-    <div class="LA-LoginArea">
+    <div id="LA-LoginArea" class="LA-LoginArea">
       <text class="LA-LoginText">Log In</text>
-      <input class="LA-LoginUsername" type="text" maxlength="15" placeholder="Username...">
-      <input class="LA-LoginPassword" type="password" maxlength="50" placeholder="Password...">
-      <button class="LA-LoginButton">Log In</button>
-      <button class="LA-LoginRegisterButton">Register</button>
-
+      <input v-model="username" class="LA-LoginUsername" type="text" maxlength="15" placeholder="Username"/>      
+      <input v-model="password" class="LA-LoginPassword" type="password" maxlength="50" placeholder="Password"/>
+      <button v-on:click="submit" class="LA-LoginButton">Log In</button>
+      <button v-on:click="register" class="LA-LoginRegisterButton">Register</button>
       <text class="LA-LoginFailed">Wrong Username or Password.</text>
     </div>
     <div class="LA-LoggedInArea">
@@ -1444,6 +1444,8 @@
   <script src="JavaScript/filterArea.js"></scriptsrc>"</script>
   <script src="JavaScript/notificationArea.js"></scriptsrc>"</script>
   <script src="JavaScript/tutorialArea.js"></scriptsrc>"</script>
+
+  <script src="vue/loginArea.js"></script>
 </body>
 
 </html>

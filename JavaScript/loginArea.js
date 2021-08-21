@@ -17,45 +17,8 @@ function LastSession(data) {
     }
 }
 
-
-
 $('.LA-LoginClose').click(function () {
     CloseLoginArea();
-
-});
-
-$('.LA-LoginButton').click(function () {
-    var loginUsername = (document.querySelector(".LA-LoginUsername").value);
-    var loginPassword = (document.querySelector(".LA-LoginPassword").value);
-    if (loginUsername != "" && loginPassword != "") {
-        $.post("https://poketrades.org/PHP/user_login.php", { username: loginUsername, password: loginPassword }, UserLogin);
-    } else {
-        document.querySelector(".LA-LoginFailed").style.display = "block";
-        document.querySelector(".LA-LoginFailed").innerHTML = "Please fill in all the fields.";
-    }
-});
-
-document.querySelector(".LA-LoginUsername").addEventListener("keyup", function (event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        document.querySelector(".LA-LoginButton").click();
-    }
-});
-
-document.querySelector(".LA-LoginPassword").addEventListener("keyup", function (event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        document.querySelector(".LA-LoginButton").click();
-    }
-});
-
-$('.LA-LoginRegisterButton').click(function () {
-    document.querySelector(".LA-LoginUsername").value = "";
-    document.querySelector(".LA-LoginPassword").value = "";
-    document.querySelector(".LA-LoginArea").style.display = "none";
-    document.querySelector(".LA-LoginFailed").style.display = "none";
-    document.querySelector(".LA-RegisterArea").style.display = "block";
-    document.querySelector(".LA-RegisterFailed").style.display = "none";
 });
 
 $('.LA-PreviewSettings').click(function () {
@@ -278,27 +241,6 @@ function CloseLoginArea() {
     document.querySelector(".LA-ConfirmNewPassword").value = "";
     document.querySelector(".LA-UpdateFailed").style.display = "none";
     document.querySelector(".LA-PreviewArea").style.display = "none";
-}
-
-function UserLogin(data) {
-    if (data != "" && data != "Wrong Username or Password.") {
-        userData = jQuery.parseJSON(data);
-        token = userData.token;
-        localStorage.setItem('token', token);
-        document.querySelector(".LA-LoginArea").style.display = "none";
-        document.querySelector(".LA-LoginFailed").style.display = "none";
-        document.querySelector(".LA-LoggedInArea").style.display = "block";
-        document.querySelector(".LA-Username").innerHTML = userData.username;
-        document.querySelector(".PA-UserID").style.opacity = "100%";
-        document.querySelector(".PA-UserID").innerHTML = "Your ID is: " + userData.user_id;
-        document.querySelector(".LA-LoginUsername").value = "";
-        document.querySelector(".LA-LoginPassword").value = "";
-
-        $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-    } else {
-        document.querySelector(".LA-LoginFailed").style.display = "block";
-        document.querySelector(".LA-LoginFailed").innerHTML = "Wrong Username or Password.";
-    }
 }
 
 function RegisterAccount(data) {
