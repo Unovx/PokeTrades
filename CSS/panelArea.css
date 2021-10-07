@@ -143,6 +143,14 @@
     color: black;
 }
 
+.PA-BunchHelp{
+    position: relative;
+    display: block;
+    max-width: 22px; 
+    max-height: 22px;
+    align-items: center;
+}
+
 .PA-GeneratedBunches{
     position: relative;
     top: 75px;
@@ -152,6 +160,15 @@
 
 .PA-ForTradeBunchEdit{
     margin-top: 20px;
+    width: 175px;
+    pointer-events: none;
+    background-color: grey;
+    border: none;
+}
+
+.PA-ForTradeBunchMove{
+    margin-top: 20px;
+    width: 175px;
     pointer-events: none;
     background-color: grey;
     border: none;
@@ -169,6 +186,15 @@
 
 .PA-LookingForBunchEdit{
     margin-top: 20px;
+    width: 175px;
+    pointer-events: none;
+    background-color: grey;
+    border: none;
+}
+
+.PA-LookingForBunchMove{
+    margin-top: 20px;
+    width: 175px;
     pointer-events: none;
     background-color: grey;
     border: none;
@@ -245,7 +271,7 @@
     border-bottom-left-radius: 35px;
     border-bottom-right-radius: 35px;
     width: 380px;
-    min-height: 540px;   
+    min-height: 600px;   
     right: 0;
     padding: 10px;
     margin: 10px;
@@ -317,7 +343,7 @@
     position: relative;
     top: 70px;
     margin: auto;
-    width: 55%;
+    width: 59%;
 }
 
 .PA-OtherSettingsText{
@@ -331,6 +357,18 @@
     text-align: center;
 }
 
+.PA-DexNumberText{
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.PA-DexNumberButton{
+    width: 48px;
+    height: 22px;
+}
+
 .PA-AdvancedPreviewText{
     color: black;
     font-weight: bold;
@@ -339,6 +377,18 @@
 }
 
 .PA-AdvancedPreviewButton{
+    width: 48px;
+    height: 22px;
+}
+
+.PA-OldSpritesText{
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.PA-OldSpritesButton{
     width: 48px;
     height: 22px;
 }

@@ -69,6 +69,11 @@ $('.NA-SuccessDeleteAllClose').click(function () {
     document.querySelector(".DeleteAllSuccess").style.display = "none";
 });
 
+$('.NA-BunchMoveHelpClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".BunchesMoveHelp").style.display = "none";
+});
+
 function ShowLoading() {
     document.querySelector("#NotificationArea").style.display = "block";
     document.querySelector(".LoadingData").style.display = "block";

@@ -11,6 +11,7 @@ bunchToRenameDropdown = document.querySelector(".BA-BunchRename");
 
 $('.BA-CloseButton').click(function () {
     document.querySelector("#BunchArea").style.display = "none";
+    document.querySelector("#PanelArea").style.display = "block";
     //document.querySelector("#CreationArea").style.display = "block";
     BunchReset();
 });
@@ -40,6 +41,9 @@ $('.BA-AddBunch').click(function () {
             }
         }
         $.post("https://poketrades.org/PHP/create_or_update_bunch.php", { token: token, creationID: tempCreationID, name: bunchInput.value, icon: bunchIcon, gender: bunchGender, shiny: bunchShiny, tradeOption: tradeOption }, BunchChanges);
+        $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
+        $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "Looking For" }, UserBunches);
+        PostGenerateSelectionData();
     } else {
         document.querySelector("#NotificationArea").style.display = "block";
         document.querySelector(".BunchIconError").style.display = "block";
@@ -59,6 +63,9 @@ $('.BA-RemoveBunch').click(function () {
             document.querySelector(".BunchIconError").style.display = "block";
         } else {
             $.post("https://poketrades.org/PHP/delete_bunch.php", { token: token, creationID: tempCreationID, tradeOption: tradeOption }, BunchRemoved);
+            $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
+            $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "Looking For" }, UserBunches);
+            PostGenerateSelectionData();
         }
     } else {
         document.querySelector("#NotificationArea").style.display = "block";
@@ -88,6 +95,9 @@ $('.BA-RenameBunch').click(function () {
                 }
             }
             $.post("https://poketrades.org/PHP/rename_bunch_selection.php", { token: token, creationID: tempCreationID, newName: bunchNewName.value, oldName: bunchToRenameDropdown.value, tradeOption: tradeOption }, BunchRenamed);
+            $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
+            $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "Looking For" }, UserBunches);
+            PostGenerateSelectionData();
             if (bunchname == bunchToRenameDropdown.value) {
                 bunchname = tempBunchName;
                 document.querySelector(".SA-Bunch").innerHTML = tempBunchName;

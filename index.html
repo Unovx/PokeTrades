@@ -65,6 +65,20 @@
   <div id="PanelArea">
     <div class="PA-WhatsNewPanel">
       <text class="WhatsNewText">
+        Whats New: October 2021
+        <br><br>
+        Another option was added which I think you'll love, the option to see sprites instead of thhe normal Home
+        artwork for gens 1-5. This option is off by default, but once turned on, you will see older sprites depending on
+        the game they were obtained in. If a sprite does not exist for it, the default Home artwork is used.
+        <br><br>
+        Whats New: September 2021
+        <br><br>
+        There is now an option to see the Dex Number of the Pokemon in the Selection Area. Additionally the Advanced
+        Preview option also now shows the Pokemon Name and Typing to fill the empty space.
+        <br><br>
+        The way to create and move Bunches has been improved. Now you simply need to click on the buttons above either
+        the For Trade or Looking For Bunches.
+        <br><br>
         Whats New: August 2021
         <br><br>
         The default preview settings have now changed. You know see more information at a glance, but this can still be
@@ -77,20 +91,6 @@
         Hidden Power support is here! Previously, you would have had to manually click on the Hidden Power dropdown, but
         now it is automatic when toggling IVs! You can still change it manually however, and if Gigantamax is selected,
         it won't force the dropdown to any Hidden Power. The dropdown also won't change if an IV is X or HT.
-        <br><br>
-        Whats New: July 2021
-        <br><br>
-        The entirety of PokeTrades has had a layout change, so sorry for anyone who got used to the old version. You may
-        see PokeTrades change even more over the coming days as I improve it further with better, custom designs instead
-        of just relying on the default options.
-        <br> <br>
-        Be sure to check the updated Settings area to change Panel Layouts in addition to Hover and Preview Settings
-        <br> <br>
-        Scaling should now also be fixed for all devices without an abunance of empty space, which is also part of the
-        resason for the redesign.
-        <br><br>
-        The Main Menu area where you are reading this has underwent the most changes to make things easier to navigate
-        and to improve the overall design.
       </text>
     </div>
     <div class="PA-SettingsPanel">
@@ -159,10 +159,26 @@
       <table class="SettingsAlign">
         <tr style="height: 30px;">
           <td>
+            <text class="PA-DexNumberText">Dex Number</text>
+          </td>
+          <td>
+            <button class="PA-DexNumberButton">Off</button>
+          </td>
+        </tr>
+        <tr style="height: 30px;">
+          <td>
             <text class="PA-AdvancedPreviewText">Advanced Preview</text>
           </td>
           <td>
             <button class="PA-AdvancedPreviewButton">Off</button>
+          </td>
+        </tr>
+        <tr style="height: 30px;">
+          <td>
+            <text class="PA-OldSpritesText">Generational Sprites</text>
+          </td>
+          <td>
+            <button class="PA-OldSpritesButton">Off</button>
           </td>
         </tr>
         <tr style="height: 30px;">
@@ -222,8 +238,10 @@
         oninput='this.style.height = ""; this.style.height = this.scrollHeight - 20 + "px"'>Type in a SearchID in the InputField to bring up their TradeShop. Afterwards, (scroll down if on mobile) click on any of the Bunches below to open them and see the Pokemon within.</textarea>
 
       <div class="PA-GeneratedBunches">
+        <img class="PA-BunchHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
         <div id="PA-ForTradeBunches">
           <button class="PA-ForTradeBunchEdit">Edit For Trade Bunches</button>
+          <button class="PA-ForTradeBunchMove">Move For Trade Bunches</button>
           <text class="PA-FTAvailableBunchesText">For Trade</text>
           <div id="ForTradeContainer">
 
@@ -231,6 +249,7 @@
         </div>
         <div id="PA-LookingForBunches">
           <button class="PA-LookingForBunchEdit">Edit Looking For Bunches</button>
+          <button class="PA-LookingForBunchMove">Move Looking For Bunches</button>
           <text class="PA-LFAvailableBunchesText">Looking For</text>
           <div id="LookingForContainer">
 
@@ -330,7 +349,8 @@
       </table>
 
       <form method="post" enctype="multipart/form-data" style="display: none;">
-        <input class="LA-ImportInput" type="file" accept=".csv" onchange="ImportData(this.files[0])">
+        <input class="LA-ImportInput" type="file" enctype="multipart/form-data" accept-charset="utf-8" accept=".csv"
+          onchange="ImportData(this.files[0])">
       </form>
       <text class="LA-LoggedInNotify">Account Created.</text>
       <button class="LA-DeleteAllData">Delete All Data</button>
@@ -611,7 +631,7 @@
 
 
       <text class="VA-PokemonMoves">Pokemon Moves</text>
-      <div class="VA-NormalMoves">
+      <div id="VA-NormalMoves" class="VA-NormalMoves">
         <div class="VA-Move1">(No Move)</div>
         <div class="VA-Move2">(No Move)</div>
         <div class="VA-Move3">(No Move)</div>
@@ -628,7 +648,7 @@
         </tr>
       </table>-->
       <text class="VA-TransferMoves">Egg/Transfer Moves</text>
-      <div class="VA-LegacyMoves">
+      <div id="VA-LegacyMoves" class="VA-LegacyMoves">
         <div class="VA-LegacyMove1">(No Move)</div>
         <div class="VA-LegacyMove2">(No Move)</div>
         <div class="VA-LegacyMove3">(No Move)</div>
@@ -1069,9 +1089,9 @@
         To interact with the viewing area to toggle proof, modify or delete for example, that Pokemon must first be
         selected by clicking on it.
         <br> <br>
-        To copy a Pokemon, click on the Move/Copy button and select the Pokemon twice. To move a Pokemon/Bunch, click on
+        To copy a Pokemon, click on the Move/Copy button and select the Pokemon twice. To move a Pokemon, click on
         it
-        and then click on the Pokemon/Bunch you want it to be in front of.</text>
+        and then click on the Pokemon you want it to be in front of.</text>
       <button class="NA-SelectionClose">Close</button>
     </div>
     <div class="ViewingAdditionalHelp">
@@ -1172,6 +1192,13 @@
     <div class="DeleteAllSuccess">
       <text class="NA-SuccessDeleteAllText">Deleted data successfully.</text>
       <button class="NA-SuccessDeleteAllClose">Close</button>
+    </div>
+    <div class="BunchesMoveHelp">
+      <text class="NA-BunchMoveHelpText">To move a Bunch, click on
+        it and then click on the Pokemon/Bunch you want it to be in front of. Note that you can only select Bunches from
+        the
+        Trade Option linked to the Button.</text>
+      <button class="NA-BunchMoveHelpClose">Close</button>
     </div>
     <div class="LoadingData">
       <img class="NA-LoadingImage" src="https://poketrades.org/Resources/Misc/Loading Icon.png"></img>
@@ -1433,17 +1460,18 @@
       <button class="TA-SectionClose">Close</button>
     </div>
   </div>
-  <script src="JavaScript/mainArea.js"></scriptsrc>"</script>
-  <script src="JavaScript/panelArea.js"></scriptsrc>"</script>
-  <script src="JavaScript/loginArea.js"></scriptsrc>"</script>
-  <script src="JavaScript/selectionArea.js"></scriptsrc>"</script>
-  <script src="JavaScript/listHolder.js"></scriptsrc>"</script>
-  <script src="JavaScript/viewingArea.js"></scriptsrc>"</script>
-  <script src="JavaScript/creationArea.js"></scriptsrc>"</script>
-  <script src="JavaScript/bunchArea.js"></scriptsrc>"</script>
-  <script src="JavaScript/filterArea.js"></scriptsrc>"</script>
-  <script src="JavaScript/notificationArea.js"></scriptsrc>"</script>
-  <script src="JavaScript/tutorialArea.js"></scriptsrc>"</script>
+  <script src="JavaScript/mainArea.js?random=<?php echo filemtime('mainArea.js'); ?"></scriptsrc>"</script>
+  <script src="JavaScript/panelArea.js?random=<?php echo filemtime('panelArea.js'); ?"></scriptsrc>"</script>
+  <script src="JavaScript/loginArea.js?random=<?php echo filemtime('loginArea.js'); ?"></scriptsrc>"</script>
+  <script src="JavaScript/selectionArea.js?random=<?php echo filemtime('selectionArea.js'); ?"></scriptsrc>"</script>
+  <script src="JavaScript/listHolder.js?random=<?php echo filemtime('listHolder.js'); ?"></scriptsrc>"</script>
+  <script src="JavaScript/viewingArea.js?random=<?php echo filemtime('viewingArea.js'); ?"></scriptsrc>"</script>
+  <script src="JavaScript/creationArea.js?random=<?php echo filemtime('creationArea.js'); ?"></scriptsrc>"</script>
+  <script src="JavaScript/bunchArea.js?random=<?php echo filemtime('bunchArea.js'); ?"></scriptsrc>"</script>
+  <script src="JavaScript/filterArea.js?random=<?php echo filemtime('filterArea.js'); ?"></scriptsrc>"</script>
+  <script
+    src="JavaScript/notificationArea.js?random=<?php echo filemtime('notificationArea.js'); ?"></scriptsrc>"</script>
+  <script src="JavaScript/tutorialArea.js?random=<?php echo filemtime('tutorialArea.js'); ?"></scriptsrc>"</script>
 </body>
 
 </html>

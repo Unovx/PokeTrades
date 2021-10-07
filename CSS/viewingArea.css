@@ -28,6 +28,14 @@
         top: 0% !important;
         bottom: 0% !important;
     }
+
+    [id="VA-NormalMoves"]{
+      width: 400px !important;
+    }
+
+    [id="VA-LegacyMoves"]{
+      width: 400px !important;
+    }
   }
 
   @media only screen and (max-width: 768px) {
@@ -300,7 +308,7 @@
     top: 80px;
     left: 320px;
     width: 220px !important;
-    /*place-content: unset !important;*/
+    place-content: unset !important;
     padding-bottom: 10px;
     color: white;
     font-weight: bold;
@@ -410,7 +418,7 @@
     color: white;
     top: 100px;
     left: 800px;
-    width: 400px !important;
+    width: 400px;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -471,7 +479,7 @@
     color: white;
     top: 200px;
     left: 800px;
-    width: 400px !important;
+    width: 400px;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;

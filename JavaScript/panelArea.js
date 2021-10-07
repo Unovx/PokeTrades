@@ -10,10 +10,12 @@ var previewMint;
 var previewMisc;
 var previewMark;
 var previewIVs;
+var dexNumber;
 var advancedPreview;
 var panelsPositions;
 var hoverInfo;
 var exactIVs;
+var oldSprites;
 var emptyBunches;
 var showEmpty;
 
@@ -126,6 +128,18 @@ else if (localStorage.getItem('hoverInfo') == "1") {
     document.querySelector(".PA-HoverButton").innerHTML = "Off";
 }
 
+if (localStorage.getItem('dexNumber') == null) {
+    dexNumber = false;
+    document.querySelector(".PA-DexNumberButton").innerHTML = "Off";
+}
+else if (localStorage.getItem('dexNumber') == "1") {
+    dexNumber = true;
+    document.querySelector(".PA-DexNumberButton").innerHTML = "On";
+} else {
+    dexNumber = false;
+    document.querySelector(".PA-DexNumberButton").innerHTML = "Off";
+}
+
 if (localStorage.getItem('advancedPreview') == null) {
     advancedPreview = true;
     document.querySelector(".PA-AdvancedPreviewButton").innerHTML = "On";
@@ -136,6 +150,18 @@ else if (localStorage.getItem('advancedPreview') == "1") {
 } else {
     advancedPreview = false;
     document.querySelector(".PA-AdvancedPreviewButton").innerHTML = "Off";
+}
+
+if (localStorage.getItem('oldSprites') == null) {
+    oldSprites = false;
+    document.querySelector(".PA-OldSpritesButton").innerHTML = "Off";
+}
+else if (localStorage.getItem('oldSprites') == "1") {
+    oldSprites = true;
+    document.querySelector(".PA-OldSpritesButton").innerHTML = "On";
+} else {
+    oldSprites = false;
+    document.querySelector(".PA-OldSpritesButton").innerHTML = "Off";
 }
 
 if (localStorage.getItem('exactIVs') == null) {
@@ -182,16 +208,77 @@ $(".PA-Searchbar").keyup(function () {
     localStorage.setItem('searchID', searchInfoText);
 });
 
+$('.PA-BunchHelp').click(function () {
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".BunchesMoveHelp").style.display = "block";
+});
+
 $('.PA-ForTradeBunchEdit').click(function () {
     $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
     document.querySelector("#BunchArea").style.display = "block";
+    document.querySelector("#PanelArea").style.display = "none";
+});
 
+$('.PA-ForTradeBunchMove').click(function () {
+    if (currentlyRearranging == false) {
+        currentlyRearranging = true;
+        document.querySelector(".PA-ForTradeBunchMove").innerHTML = "Cancel";
+        document.querySelector("#GeneratedSelection").style.pointerEvents = "none";
+        BunchMoveStarted();
+        document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
+        document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "grey";
+        document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "none";
+        document.querySelector(".PA-LookingForBunchMove").style.backgroundColor = "grey";
+        document.querySelector("#PA-LookingForBunches").style.pointerEvents = "none";
+    } else {
+        currentlyRearranging = false;
+        movingPokemon = null;
+        oldPosition = "";
+        newPosition = "";
+        document.querySelector(".PA-ForTradeBunchMove").innerHTML = "Move For Trade Bunches";
+        document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
+        RemoveBunchOutline();
+        BunchMoveFinished();
+        document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
+        document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
+        document.querySelector(".PA-LookingForBunchMove").style.backgroundColor = "#efefef";
+        document.querySelector("#PA-LookingForBunches").style.pointerEvents = "initial";
+    }
 });
 
 $('.PA-LookingForBunchEdit').click(function () {
     $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "Looking For" }, UserBunches);
     document.querySelector("#BunchArea").style.display = "block";
+    document.querySelector("#PanelArea").style.display = "none";
+});
 
+$('.PA-LookingForBunchMove').click(function () {
+    if (currentlyRearranging == false) {
+        currentlyRearranging = true;
+        document.querySelector(".PA-LookingForBunchMove").innerHTML = "Cancel";
+        document.querySelector("#GeneratedSelection").style.pointerEvents = "none";
+        BunchMoveStarted();
+        document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
+        document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "grey";
+        document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "none";
+        document.querySelector(".PA-ForTradeBunchMove").style.backgroundColor = "grey";
+        document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "none";
+    } else {
+        currentlyRearranging = false;
+        movingPokemon = null;
+        oldPosition = "";
+        newPosition = "";
+        document.querySelector(".PA-LookingForBunchMove").innerHTML = "Move Looking For Bunches";
+        document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
+        RemoveBunchOutline();
+        BunchMoveFinished();
+        document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
+        document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
+        document.querySelector(".PA-ForTradeBunchMove").style.backgroundColor = "#efefef";
+        document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "initial";
+    }
 });
 
 $('.PA-CloseSettings').click(function () {
@@ -356,6 +443,18 @@ $('.PA-HoverButton').click(function () {
     }
 });
 
+$('.PA-DexNumberButton').click(function () {
+    if (dexNumber == false) {
+        dexNumber = true;
+        localStorage.setItem('dexNumber', "1");
+        document.querySelector(".PA-DexNumberButton").innerHTML = "On";
+    } else {
+        dexNumber = false;
+        localStorage.setItem('dexNumber', "0");
+        document.querySelector(".PA-DexNumberButton").innerHTML = "Off";
+    }
+});
+
 $('.PA-AdvancedPreviewButton').click(function () {
     if (advancedPreview == false) {
         advancedPreview = true;
@@ -365,6 +464,18 @@ $('.PA-AdvancedPreviewButton').click(function () {
         advancedPreview = false;
         localStorage.setItem('advancedPreview', "0");
         document.querySelector(".PA-AdvancedPreviewButton").innerHTML = "Off";
+    }
+});
+
+$('.PA-OldSpritesButton').click(function () {
+    if (oldSprites == false) {
+        oldSprites = true;
+        localStorage.setItem('oldSprites', "1");
+        document.querySelector(".PA-OldSpritesButton").innerHTML = "On";
+    } else {
+        oldSprites = false;
+        localStorage.setItem('oldSprites', "0");
+        document.querySelector(".PA-OldSpritesButton").innerHTML = "Off";
     }
 });
 
@@ -426,15 +537,24 @@ function TradeShopInfo(data) {
 
 //Checking if the user is allowed to create and move data in the selection area.
 function ModifyCheck(data) {
-    if (data != "") {
+    if (data != "" && searchInfoText != "") {
         document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
         document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
         document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
         document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-ForTradeBunchEdit").style.visibility = "visible";
+        document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
+        document.querySelector(".PA-ForTradeBunchMove").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-ForTradeBunchMove").style.visibility = "visible";
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
         document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-LookingForBunchEdit").style.visibility = "visible";
+        document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
+        document.querySelector(".PA-LookingForBunchMove").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-LookingForBunchMove").style.visibility = "visible";
+        document.querySelector(".PA-BunchHelp").style.visibility = "visible";
         filterDisplay.disabled = false;
         if (searchInfoText != "") {
             document.querySelector(".PA-Message").disabled = false;
@@ -446,8 +566,17 @@ function ModifyCheck(data) {
         document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
         document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "grey";
+        document.querySelector(".PA-ForTradeBunchEdit").style.visibility = "hidden";
+        document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "none";
+        document.querySelector(".PA-ForTradeBunchMove").style.backgroundColor = "grey";
+        document.querySelector(".PA-ForTradeBunchMove").style.visibility = "hidden";
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
         document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "grey";
+        document.querySelector(".PA-LookingForBunchEdit").style.visibility = "hidden";
+        document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "none";
+        document.querySelector(".PA-LookingForBunchMove").style.backgroundColor = "grey";
+        document.querySelector(".PA-LookingForBunchMove").style.visibility = "hidden";
+        document.querySelector(".PA-BunchHelp").style.visibility = "hidden";
         filterDisplay.disabled = true;
         document.querySelector(".PA-Message").disabled = true;
     }
@@ -477,6 +606,62 @@ function ModifyCheckViewing(data) {
 function UpdatePersonalText() {
     $.post("https://poketrades.org/PHP/update_text.php", { token: token, personalText: customMessage.value });
     searchData.personal_text = customMessage.value;
+}
+
+function BunchMoveStarted() {
+    document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "grey";
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
+    document.querySelector(".SA-FiltersButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-Searchbar").disabled = true;
+    document.querySelector(".VA-ModifyButton").style.pointerEvents = "none";
+    document.querySelector(".VA-ModifyButton").style.backgroundColor = "grey";
+    document.querySelector(".VA-DeleteButton").style.pointerEvents = "none";
+    document.querySelector(".VA-DeleteButton").style.backgroundColor = "grey";
+    document.querySelector(".PA-Searchbar").disabled = true;
+    document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
+    document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "grey";
+    document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
+    document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "grey";
+    document.querySelector("#MainArea").style.pointerEvents = "none";
+}
+
+function BunchMoveFinished() {
+    document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
+    /*if (filtersApplied) {
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "orchid";
+    } else {
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#efefef";
+    }*/
+    document.querySelector(".SA-Searchbar").disabled = false;
+    document.querySelector(".VA-ModifyButton").style.pointerEvents = "initial";
+    document.querySelector(".VA-ModifyButton").style.backgroundColor = "#efefef";
+    document.querySelector(".VA-DeleteButton").style.pointerEvents = "initial";
+    document.querySelector(".VA-DeleteButton").style.backgroundColor = "#efefef";
+    document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
+    document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "initial";
+    document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
+    document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "#efefef";
+    document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
+    document.querySelector(".PA-ForTradeBunchMove").style.backgroundColor = "#efefef";
+    document.querySelector("#PA-LookingForBunches").style.pointerEvents = "initial";
+    document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
+    document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "#efefef";
+    document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
+    document.querySelector(".PA-LookingForBunchMove").style.backgroundColor = "#efefef";
+    document.querySelector("#MainArea").style.pointerEvents = "initial";
+    document.querySelector(".PA-Searchbar").disabled = false;
+
 }
 
 function PostGenerateSelectionData() {
@@ -695,16 +880,16 @@ function ForTradeData(data) {
                         document.querySelector(".ForTradeGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
                         document.querySelector(".ForTradeGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
                         document.querySelector(".ForTradeGridDiv" + (i)).style.opacity = "100%";
-                        document.querySelector("#GeneratedSelection").style.pointerEvents = "none";
                         document.querySelector("#PA-LookingForBunches").style.pointerEvents = "none";
                     } else {
                         newPosition = ftData["Rows"][i].position;
                         console.log(newPosition);
+                        tradeOption = "For Trade";
                         if (oldPosition != newPosition) {
                             $.post("https://poketrades.org/PHP/move_bunch.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveBunch);
                             //$(".PA-FTAvailableBunchesText").remove();
                         } else {
-                            document.querySelector(".SA-MoveButton").innerHTML = "Move/Copy";
+                            document.querySelector(".PA-ForTradeBunchMove").innerHTML = "Move For Trade Bunches";
                             currentlyRearranging = false;
                             oldPosition = "";
                             newPosition = "";
@@ -913,17 +1098,17 @@ function LookingForData(data) {
                         document.querySelector(".LookingForGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
                         document.querySelector(".LookingForGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
                         document.querySelector(".LookingForGridDiv" + (i)).style.opacity = "100%";
-                        document.querySelector("#GeneratedSelection").style.pointerEvents = "none";
                         document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "none";
                     } else {
                         newPosition = lfData["Rows"][i].position;
                         console.log(newPosition);
+                        tradeOption = "Looking For";
                         if (oldPosition != newPosition) {
                             tradeOption = "Looking For";
                             $.post("https://poketrades.org/PHP/move_bunch.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveBunch);
                             //$(".PA-LFAvailableBunchesText").remove();
                         } else {
-                            document.querySelector(".SA-MoveButton").innerHTML = "Move/Copy";
+                            document.querySelector(".PA-LookingForBunchMove").innerHTML = "Move Looking For Bunches";
                             currentlyRearranging = false;
                             oldPosition = "";
                             newPosition = "";

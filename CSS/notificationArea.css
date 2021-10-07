@@ -53,6 +53,11 @@
         width: -webkit-fill-available !important;
         width: -moz-available !important;
     }
+
+    [class*="BunchesMoveHelp"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
 }
 
 #NotificationArea{
@@ -386,6 +391,35 @@
 }
 
 .NA-SuccessDeleteAllClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
+.BunchesMoveHelp{
+    position: relative;
+    display: none;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
+    padding: 10px;
+    width: 500px;
+    top: 50%;
+    text-align: center;
+}
+
+.NA-BunchMoveHelpText{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-BunchMoveHelpClose{
     position: relative;
     display: block;
     margin: auto;

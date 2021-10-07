@@ -24,7 +24,6 @@ var newPosition = "";
 
 var limitWidth = 768;
 
-
 //This is needed so I can get the visible height of elements.
 $.fn.visibleHeight = function () {
     var elBottom, elTop, scrollBot, scrollTop, visibleBottom, visibleTop;
@@ -42,60 +41,6 @@ var selectionVH = $("#SelectionArea").visibleHeight();
 console.log(document.querySelector('#SelectionArea').clientWidth);
 //console.log($(selection).visibleHeight());
 
-/*document.querySelector('#PanelArea').ontouchmove = function () {
-    if (window.innerWidth <= 768) {
-        if (document.querySelector('#PanelArea').style.display == "block") {
-            //document.querySelector('#SelectionArea').style.height = "100%"
-            document.querySelector('#SelectionArea').style.height = selectionVH - $("#PanelArea").visibleHeight() + "px";
-        } else {
-            document.querySelector('#SelectionArea').style.height = "100%"
-        }
-    }
-}
-
-document.querySelector('#ViewingArea').ontouchmove = function () {
-    if (window.innerWidth <= 768) {
-        if (document.querySelector('#ViewingArea').style.display == "block") {
-            //document.querySelector('#SelectionArea').style.height = "100%"
-            document.querySelector('#SelectionArea').style.height = selectionVH - $("#ViewingArea").visibleHeight() + "px";
-        } else {
-            document.querySelector('#SelectionArea').style.height = "100%"
-        }
-    }
-}
-
-document.querySelector('#CreationArea').ontouchmove = function () {
-    if (window.innerWidth <= 768) {
-        if (document.querySelector('#CreationArea').style.display == "block") {
-            //document.querySelector('#SelectionArea').style.height = "100%"
-            document.querySelector('#SelectionArea').style.height = selectionVH - $("#CreationArea").visibleHeight() + "px";
-        } else {
-            document.querySelector('#SelectionArea').style.height = "100%"
-        }
-    }
-}
-
-document.querySelector('#FilterArea').ontouchmove = function () {
-    if (window.innerWidth <= 768) {
-        if (document.querySelector('#FilterArea').style.display == "block") {
-            //document.querySelector('#SelectionArea').style.height = "100%"
-            document.querySelector('#SelectionArea').style.height = selectionVH - $("#FilterArea").visibleHeight() + "px";
-        } else {
-            document.querySelector('#SelectionArea').style.height = "100%"
-        }
-    }
-}
-
-document.querySelector('#BunchArea').ontouchmove = function () {
-    if (window.innerWidth <= 768) {
-        if (document.querySelector('#BunchArea').style.display == "block") {
-            //document.querySelector('#SelectionArea').style.height = "100%"
-            document.querySelector('#SelectionArea').style.height = selectionVH - $("#BunchArea").visibleHeight() + "px";
-        } else {
-            document.querySelector('#SelectionArea').style.height = "100%"
-        }
-    }
-}*/
 
 document.querySelector('#ViewingArea').onmouseover = function () {
     if (selectedPokemon == null && hoverInfo == true) {
@@ -240,6 +185,7 @@ function MoveStarted() {
     document.querySelector(".VA-DeleteButton").style.pointerEvents = "none";
     document.querySelector(".VA-DeleteButton").style.backgroundColor = "grey";
     document.querySelector(".PA-Searchbar").disabled = true;
+    document.querySelector("#PanelArea").style.pointerEvents = "none";
 }
 
 function MoveFinished() {
@@ -261,9 +207,8 @@ function MoveFinished() {
     document.querySelector(".VA-DeleteButton").style.pointerEvents = "initial";
     document.querySelector(".VA-DeleteButton").style.backgroundColor = "#efefef";
     document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
-    document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "initial";
-    document.querySelector("#PA-LookingForBunches").style.pointerEvents = "intial";
     document.querySelector(".PA-Searchbar").disabled = false;
+    document.querySelector("#PanelArea").style.pointerEvents = "initial";
     //OpacityFull();
 }
 
@@ -296,196 +241,12 @@ function OpacityFull() {
     }
 }
 
-/*function GenerateBunch(data) {
-    numberOfArrays = null;
-    //Using Jquery to parse the data and getting the length.
-    bunchData = jQuery.parseJSON(data);
-    if (bunchData["Rows"] != null) {
-        numberOfBunches = bunchData["Rows"].length;
-        console.log(numberOfBunches);
-        console.log(bunchData);
-
-        //Removing the grid container so I can create a new one and making it a child of GeneratedSelection.
-        $("#GridContainer").remove();
-        gridTest = document.createElement("div");
-        gridTest.setAttribute("id", "GridContainer");
-        document.getElementById("GeneratedSelection").appendChild(gridTest);
-
-        //The Below is hard coding the "All Pokemon" bunch.
-        newDiv = document.createElement("div");
-        newDiv.setAttribute("class", "GenerationGridDiv");
-        document.getElementById("GridContainer").appendChild(newDiv);
-        newDiv.setAttribute("width", "100");
-        newDiv.setAttribute("height", "100");
-
-        theImage = document.createElement("IMG");
-        theImage.setAttribute("id", "GeneratedSelection All");
-        theImage.setAttribute("src", "https://poketrades.org/Resources/Fennel3.png");
-        theImage.setAttribute("min-width", "100");
-        theImage.setAttribute("height", "100");
-        newDiv.appendChild(theImage);
-
-        theText = document.createElement("P")
-        theText.setAttribute("class", "theText");
-        theText.innerHTML = "All Pokemon";
-        newDiv.appendChild(theText);
-
-        newDiv.onclick = function () {
-            if (currentlyRearranging == false) {
-                document.querySelector(".SA-Bunch").innerHTML = "All Pokemon";
-                bunchname = "All Pokemon";
-                ShowLoading();
-                PostGenerateSelection();
-                //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
-            }
-        }
-
-        for (let i = 0; i < numberOfBunches; i++) {
-
-            //Creating newDivs for each bunch and making them children of the GridContainer
-            newDiv = document.createElement("div");
-            newDiv.setAttribute("class", "GenerationGridDiv" + (i));
-            document.getElementById("GridContainer").appendChild(newDiv);
-            newDiv.setAttribute("width", "100");
-            newDiv.setAttribute("height", "100");
-
-            //Storing each bunch in a array.
-            bunchArray = [];
-            bunchArray = bunchData["Rows"][i];
-            theImage = document.createElement("IMG");
-            theImage.setAttribute("id", "GeneratedSelection " + (i));
-
-            //Setting the Icon
-            if (iconExclusivesArray.includes(bunchArray.icon)) {
-                if (allBallsArray.includes(bunchArray.icon) || bunchArray.icon == "Egg") {
-                    theImage.setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Small Icons/" + bunchArray.icon + ".png");
-                }
-                else if (bunchArray.icon.includes("HP")) {
-                    theImage.setAttribute("src", "https://poketrades.org/Resources/Misc/" + bunchArray.icon + ".png");
-                } else {
-                    if (bunchArray.shiny == "Shiny") {
-                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Shiny" + ".png");
-                    } else {
-                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + ".png");
-                    }
-                }
-            } else {
-                if (genderDifferencesArray.includes(bunchArray.icon)) {
-                    if (bunchArray.gender == "Male" || bunchArray.gender == "(Any Gender)") {
-                        console.log("WOOOORK")
-                        if (bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Male.png");
-                        }
-                        else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Male-Shiny.png");
-                        }
-                    }
-                    else if (bunchArray.gender == "Female") {
-                        if (bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Female.png");
-                        }
-                        else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Female-Shiny.png");
-                        }
-                    }
-                } else {
-                    if (bunchArray.shiny.includes("Normal")) {
-                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + ".png")
-                    }
-                    else {
-                        if (shinyExceptionArray.includes(bunchArray.icon)) {
-                            if (bunchArray.icon.includes("Minior")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Minior-Shiny.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Strawberry")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Strawberry-Shiny.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Berry")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Berry-Shiny.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Love")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Love-Shiny.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Star")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Star-Shiny.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Clover")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Clover-Shiny.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Flower")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Flower-Shiny.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Ribbon")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Ribbon-Shiny.png");
-                            }
-                        }
-                        else {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Shiny.png")
-                        }
-                    }
-                }
-            }
-
-            //Setting Image and Text Attributes
-            theImage.setAttribute("width", "100");
-            theImage.setAttribute("height", "100");
-            newDiv.appendChild(theImage);
-
-            theText = document.createElement("P")
-
-            theText.setAttribute("class", "theText");
-            theText.innerHTML = bunchArray.name;
-            newDiv.appendChild(theText);
-
-
-            //Creating an Onclick for the Div to open the relevant bunch
-            newDiv.onclick = function () {
-                if (currentlyRearranging != true) {
-                    bunchDetails = bunchData["Rows"][i];
-                    console.log(bunchDetails);
-                    let bunch = bunchDetails.name;
-                    console.log(bunch);
-                    bunchname = bunch;
-                    document.querySelector(".SA-Bunch").innerHTML = bunch;
-                    ShowLoading();
-                    PostGenerateSelection();
-                    //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunch }, GenerateSelection);
-                } else {
-                    if (oldPosition == "") {
-                        oldPosition = bunchData["Rows"][i].position;
-                        tempCreationID = bunchData["Rows"][i].creation_id;
-                        console.log(oldPosition);
-                        document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 5px #3735a9";
-                        document.getElementById("GenerationGridDiv" + (i)).style.opacity = "100%";
-                    } else {
-                        newPosition = bunchData["Rows"][i].position;
-                        console.log(newPosition);
-                        if (oldPosition != newPosition) {
-                            $.post("https://poketrades.org/PHP/move_bunch.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveBunch);
-                        } else {
-                            document.querySelector(".SA-MoveButton").innerHTML = "Move";
-                            currentlyRearranging = false;
-                            oldPosition = "";
-                            newPosition = "";
-                            RemoveBunchOutline();
-                        }
-                    }
-                }
-
-            }
-        }
-    }
-    HideLoading();
-}*/
-
 function GenerateSelection(data) {
     numberOfBunches = null;
     if (bunchname != "") {
         //Showing the bunch name and setting up the ability to exit out the bunch.
         document.querySelector(".SA-Bunch").style.opacity = "100%";
     }
-    //document.querySelector(".SA-ExitBunch").style.pointerEvents = "initial";
-    //document.querySelector(".SA-ExitBunch").style.backgroundColor = "#efefef";
 
     //Using Jquery to parse the data and getting the length.
     arrayData = jQuery.parseJSON(data);
@@ -533,6 +294,58 @@ function GenerateSelection(data) {
         theImage.setAttribute("width", "100");
         theImage.setAttribute("height", "100");
         newDiv.appendChild(theImage);
+
+        if (dexNumber) {
+            newTable = document.createElement("table");
+            newTable.style.position = "absolute";
+            newTable.style.zIndex = "1";
+
+            newDiv.style.width = "100%";
+            newTable.style.left = "5px";
+            var tr = newTable.insertRow();
+            tr.style.marginBottom = "10px";
+            tr.style.display = "flex";
+
+            var td = tr.insertCell();
+            dex = document.createElement("Text");
+            td.setAttribute("height", "auto");
+            td.setAttribute("id", "Dex" + (i));
+            dex.style.height = "13px";
+
+            for (let j = 0; j < pokemonDataArray.length; j++) {
+                if (loopArray.pokemon == "Meowstic") {
+                    for (let k = 0; k < pokemonDataArray.length; k++) {
+                        if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
+                            dex.innerHTML = pokemonDataArray[k].pokedex;
+                        }
+                    }
+                }
+
+                if (loopArray.pokemon == "Indeedee") {
+                    for (let k = 0; k < pokemonDataArray.length; k++) {
+                        if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
+                            dex.innerHTML = pokemonDataArray[k].pokedex;
+                        }
+                    }
+                }
+
+                if (loopArray.pokemon == pokemonDataArray[j].pokemon) {
+                    dex.innerHTML = pokemonDataArray[j].pokedex;
+                }
+            }
+
+            dex.style.fontWeight = "bold";
+            dex.style.color = "white";
+            dex.style.fontFamily = "Arial, Helvetica, sans-serif";
+            dex.style.fontSize = "60%";
+            //dex.style.display = "inline-flex";
+
+            td.appendChild(dex);
+
+            newDiv.appendChild(newTable);
+
+        }
+
 
         if (previewBall || previewGender || previewShiny || previewMint || previewMisc || previewMark || previewIVs || advancedPreview) {
             newTable = document.createElement("table");
@@ -663,8 +476,6 @@ function GenerateSelection(data) {
                 td.appendChild(pokemon);
 
                 newDiv.appendChild(newTable);
-
-
 
             }
 
@@ -1016,23 +827,164 @@ function GenerateSelection(data) {
             if (loopArray.gender == "Male" || loopArray.gender == "(Any Gender)") {
                 //console.log("WOOOORK")
                 if (loopArray.shiny.includes("Normal")) {
-                    theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Male.png");
+                    if (oldSprites) {
+                        if (loopArray.game_obtained == "R/B/Y") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "G/S/C") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen2Sprites/Gen2/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen3Sprites/Gen3/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen4Sprites/Gen4/" + loopArray.pokemon + "-.png");
+                            } else {
+                                theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen4Sprites/Gen4/" + loopArray.pokemon + "-Male.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "BW/BW2") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen5Sprites/Gen5/" + loopArray.pokemon + "-Male.png");
+                        }
+                        else {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Male.png");
+                        }
+                    } else {
+                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Male.png");
+                    }
+                    document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).onerror = function () {
+                        document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).setAttribute("src", "https://poketrades.org/Resources/Home/" + arrayData["Rows"][i].pokemon + "-Male.png")
+                    };
                 }
                 else if (!loopArray.shiny.includes("Normal")) {
-                    theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Male-Shiny.png");
+                    if (oldSprites) {
+                        if (loopArray.game_obtained == "R/B/Y") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "G/S/C") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen3Sprites/Gen3Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + "-Male.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "BW/BW2") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + "-Male.png");
+                            }
+                        }
+                        else {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Male-Shiny.png");
+                        }
+                    } else {
+                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Male-Shiny.png");
+                    }
+                    document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).onerror = function () {
+                        document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).setAttribute("src", "https://poketrades.org/Resources/Home/" + arrayData["Rows"][i].pokemon + "-Male-Shiny.png")
+                    };
                 }
             }
             else if (loopArray.gender == "Female") {
                 if (loopArray.shiny.includes("Normal")) {
-                    theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Female.png");
+                    if (oldSprites) {
+                        if (loopArray.game_obtained == "R/B/Y") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "G/S/C") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen2Sprites/Gen2/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen3Sprites/Gen3/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen4Sprites/Gen4/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen4Sprites/Gen4/" + loopArray.pokemon + "-Female.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "BW/BW2") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen5Sprites/Gen5/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen5Sprites/Gen5/" + loopArray.pokemon + "-Female.png");
+                            }
+                        }
+                        else {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Female.png");
+                        }
+                    } else {
+                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Female.png");
+                    }
+                    document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).onerror = function () {
+                        document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).setAttribute("src", "https://poketrades.org/Resources/Home/" + arrayData["Rows"][i].pokemon + "-Female.png")
+                    };
                 }
                 else if (!loopArray.shiny.includes("Normal")) {
-                    theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Female-Shiny.png");
+                    if (oldSprites) {
+                        if (loopArray.game_obtained == "R/B/Y") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "G/S/C") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen3Sprites/Gen3Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + "-Female.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "BW/BW2") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + "-Female.png");
+                        }
+                        else {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Female-Shiny.png");
+                        }
+                    } else {
+                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Female-Shiny.png");
+                    }
+                    document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).onerror = function () {
+                        document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).setAttribute("src", "https://poketrades.org/Resources/Home/" + arrayData["Rows"][i].pokemon + "-Female-Shiny.png")
+                    };
                 }
             }
         } else {
             if (loopArray.shiny.includes("Normal")) {
-                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + ".png")
+                if (oldSprites) {
+                    if (loopArray.game_obtained == "R/B/Y") {
+                        theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
+                    }
+                    else if (loopArray.game_obtained == "G/S/C") {
+                        theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen2Sprites/Gen2/" + loopArray.pokemon + ".png");
+                    }
+                    else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
+                        theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen3Sprites/Gen3/" + loopArray.pokemon + ".png");
+                    }
+                    else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
+                        theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen4Sprites/Gen4/" + loopArray.pokemon + ".png");
+                    }
+                    else if (loopArray.game_obtained == "BW/BW2") {
+                        theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen5Sprites/Gen5/" + loopArray.pokemon + ".png");
+                    }
+                    else {
+                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + ".png")
+                    }
+                } else {
+                    theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + ".png")
+                }
             }
             else {
                 if (shinyExceptionArray.includes(loopArray.pokemon)) {
@@ -1062,12 +1014,42 @@ function GenerateSelection(data) {
                     }
                 }
                 else {
-                    theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Shiny.png")
+                    if (oldSprites) {
+                        if (loopArray.game_obtained == "R/B/Y") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "G/S/C") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen3Sprites/Gen3Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "BW/BW2") {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/OldGens/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else {
+                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Shiny.png")
+                        }
+                    } else {
+                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + loopArray.pokemon + "-Shiny.png")
+                    }
+
+                    //loopArray does not work properly for some reason, so having to use arrayData.
+                    document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).onerror = function () {
+                        document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).setAttribute("src", "https://poketrades.org/Resources/Home/" + arrayData["Rows"][i].pokemon + "-Shiny.png");
+                    }
+
                 }
-
-
             }
         }
+
+        /*document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).onerror = function () {
+            document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).setAttribute("src", "https://poketrades.org/Resources/PlaceHolderImage.png");
+        }*/
+
 
         //Setting up the onclick to open the viewing area and to set the information required for it.
         newDiv.onclick = function () {
@@ -1123,6 +1105,10 @@ function GenerateSelection(data) {
                             document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
                             document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
                             console.log(arrayData["Rows"][i].creation_id);
+                        } else {
+                            document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
+                            document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
+                            console.log(arrayData["Rows"][i].creation_id);
                         }
                     } else {
                         document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
@@ -1130,8 +1116,8 @@ function GenerateSelection(data) {
                         console.log(arrayData["Rows"][i].creation_id);
                     }
                     document.getElementById("GenerationGridDiv" + (i)).style.opacity = "100%";
-                    document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "none";
-                    document.querySelector("#PA-LookingForBunches").style.pointerEvents = "none";
+                    //document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "none";
+                    //document.querySelector("#PA-LookingForBunches").style.pointerEvents = "none";
                 } else {
                     movingPokemon = null;
                     selectedPokemon = null;
@@ -1201,15 +1187,17 @@ function MoveCopyPokemon() {
 }
 
 function MoveBunch() {
-    MoveFinished();
+    BunchMoveFinished();
     //$("#GridContainer").remove();
-    document.querySelector(".SA-MoveButton").innerHTML = "Move/Copy";
+    document.querySelector(".PA-ForTradeBunchMove").innerHTML = "Move For Trade Bunches";
+    document.querySelector(".PA-LookingForBunchMove").innerHTML = "Move Looking For Bunches";
+    document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
     currentlyRearranging = false;
     oldPosition = "";
     newPosition = "";
     ShowLoading();
     if (tradeOption == "For Trade") {
-        $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, showEmpty: showEmpty }, ForTradeData);
+        $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: "For Trade", showEmpty: showEmpty }, ForTradeData);
     } else if (tradeOption == "Looking For") {
         $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, showEmpty: showEmpty }, LookingForData);
     }
@@ -1259,6 +1247,7 @@ function UpdateViewingDetails() {
     document.querySelector(".VA-PokemonImage").setAttribute("src", pokemonImage);
     document.querySelector(".VA-PokemonName").innerHTML = viewingDetails.pokemon;
     if (viewingDetails.nickname != "(No Nickname)") {
+        document.querySelector(".VA-Nickname").style.display = "inline";
         document.querySelector(".VA-Nickname").innerHTML = viewingDetails.nickname;
     } else {
         document.querySelector(".VA-Nickname").style.display = "none";
@@ -1300,7 +1289,7 @@ function UpdateViewingDetails() {
         document.querySelector(".VA-Event").style.display = "none";
     } else {
         document.querySelector(".VA-Event").innerHTML = "Event: " + viewingDetails.event_info;
-        document.querySelector(".VA-Event").style.display = "inline";
+        document.querySelector(".VA-Event").style.display = "flex";
     }
     document.querySelector(".ViewingProof").innerHTML = viewingDetails.proof;
 
