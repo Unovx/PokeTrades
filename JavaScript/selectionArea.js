@@ -571,7 +571,7 @@ function GenerateSelection(data) {
                     textIVs = document.createElement("Text");
                     td.setAttribute("height", "13px");
                     textIVs.setAttribute("height", "13px");
-                    textIVs.innerHTML = loopArray.iv_hp + " / " + loopArray.iv_att + " / " + loopArray.iv_def + " / " + loopArray.iv_spa + " / " + loopArray.iv_spd + " / " + loopArray.iv_spe;
+                    textIVs.innerHTML = loopArray.iv_hp + "/" + loopArray.iv_att + "/" + loopArray.iv_def + "/" + loopArray.iv_spa + "/" + loopArray.iv_spd + "/" + loopArray.iv_spe;
                     textIVs.style.fontWeight = "bold";
                     textIVs.style.color = "white";
                     textIVs.style.fontFamily = "Arial, Helvetica, sans-serif";
