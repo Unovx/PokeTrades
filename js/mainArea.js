@@ -4,12 +4,12 @@ var tradeOption;
 //document.querySelector(".MA-Searchbar").value = localStorage.getItem('searchID');
 ////searchInfoText = (document.querySelector(".MA-Searchbar").value);
 
-$('.MA-Settings').click(function () {
+$('.MA-SettingsImage').click(function () {
     CloseAllStartingAreas();
     document.querySelector(".PA-SettingsPanel").style.display = "block";
 });
 
-$('.MA-SearchTradeShops').click(function () {
+$('.MA-SearchTradeShopsImage').click(function () {
     if (document.querySelector(".PA-TradeShopPanel").style.display != "block") {
         CloseAllStartingAreas();
         document.querySelector(".PA-TradeShopPanel").style.display = "block";
@@ -18,12 +18,17 @@ $('.MA-SearchTradeShops').click(function () {
         document.querySelector(".PA-Message").style.height = document.querySelector(".PA-Message").scrollHeight - 20 + "px";
         //$(".PA-FTAvailableBunchesText").remove();
         //$(".PA-LFAvailableBunchesText").remove();
-        $.post("https://poketrades.org/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
-        $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+        $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
+        $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+        if (document.querySelector(".PA-Searchbar").value != "") {
+            window.location.hash = "users/" + searchInfoText;
+        } else {
+            RemoveHash();
+        }
     }
 });
 
-$(".MA-UserLogin").click(function () {
+$(".MA-UserLoginImage").click(function () {
     CloseAllStartingAreas();
     document.querySelector("#LoginArea").style.display = "block";
     if (token != null) {
@@ -33,20 +38,28 @@ $(".MA-UserLogin").click(function () {
     }
 });
 
-$('.MA-FAQ').click(function () {
+$('.MA-FAQImage').click(function () {
     CloseAllStartingAreas();
     document.querySelector(".PA-FAQPanel").style.display = "block";
 });
 
-$('.MA-ImportingTradeShop').click(function () {
+$('.MA-ImportingTradeShopImage').click(function () {
     CloseAllStartingAreas();
     document.querySelector(".PA-ImportingPanel").style.display = "block";
 });
 
-$('.MA-Other').click(function () {
+$('.MA-OtherImage').click(function () {
     window.open(
         'https://discord.gg/KapqJKGMRy', '_blank'
     );
+});
+
+$('.MA-TrackingImage').click(function () {
+    CloseAllStartingAreas();
+    document.querySelector("#MainArea").style.display = "none";
+    document.querySelector("#PanelArea").style.display = "none";
+    document.querySelector("#TrackingArea").style.display = "grid";
+    window.location.hash = "legalitylist";
 });
 
 function CloseAllStartingAreas() {
@@ -56,4 +69,5 @@ function CloseAllStartingAreas() {
     document.querySelector("#LoginArea").style.display = "none";
     document.querySelector(".PA-FAQPanel").style.display = "none";
     document.querySelector(".PA-ImportingPanel").style.display = "none";
+    RemoveHash();
 }

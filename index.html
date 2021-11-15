@@ -10,1467 +10,1297 @@
 
   </style>
   <link rel="icon" type="image/png" href="https://poketrades.org/PokeTrades Icon Final.png" />
-  <link href="CSS/mainArea.css" rel="stylesheet" />
-  <link href="CSS/panelArea.css" rel="stylesheet" />
-  <link href="CSS/loginArea.css" rel="stylesheet" />
-  <link href="CSS/selectionArea.css" rel="stylesheet" />
-  <link href="CSS/viewingArea.css" rel="stylesheet" />
-  <link href="CSS/creationArea.css" rel="stylesheet" />
-  <link href="CSS/bunchArea.css" rel="stylesheet" />
-  <link href="CSS/filterArea.css" rel="stylesheet" />
-  <link href="CSS/notificationArea.css" rel="stylesheet" />
-  <link href="CSS/tutorialArea.css" rel="stylesheet" />
+  <link href="css/mainArea.css" rel="stylesheet" />
+  <link href="css/panelArea.css" rel="stylesheet" />
+  <link href="css/loginArea.css" rel="stylesheet" />
+  <link href="css/selectionArea.css" rel="stylesheet" />
+  <link href="css/viewingArea.css" rel="stylesheet" />
+  <link href="css/creationArea.css" rel="stylesheet" />
+  <link href="css/bunchArea.css" rel="stylesheet" />
+  <link href="css/filterArea.css" rel="stylesheet" />
+  <link href="css/notificationArea.css" rel="stylesheet" />
+  <link href="css/trackingArea.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+  <script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
 </head>
 
 <body>
-  <div id="Background">
-    <img>
-  </div>
-  <div id="MainArea">
-    <div class="MainSection">
-      <div class="MA-MainTextHolder">
-        <img class="MA-PokeTradesTextIcon" src="https://poketrades.org/Resources/Misc/PokeTrades Icon Text.png"></img>
-      </div>
-      <img class="MA-LoginButton" src="https://poketrades.org/Resources/Home/Klang.png"></img>
-
-      <div class="StartingSections">
-        <div class="MA-Settings">
-          <img class="MA-SettingsImage" src="https://poketrades.org/Resources/Designs/Settings_Icon.png"></img>
-        </div>
-        <div class="MA-SearchTradeShops">
-          <img class="MA-SearchTradeShopsImage"
-            src="https://poketrades.org/Resources/Designs/TradeShops_Icon.png"></img>
-        </div>
-
-        <div class="MA-UserLogin">
-          <img class="MA-UserLoginImage" src="https://poketrades.org/Resources/Designs/Login_Icon.png"></img>
-        </div>
-
-        <div class="MA-FAQ">
-          <img class="MA-FAQImage" src="https://poketrades.org/Resources/Designs/FAQ_Icon.png"></img>
-        </div>
-
-        <div class="MA-ImportingTradeShop">
-          <img class="MA-ImportingTradeShopImage" src="https://poketrades.org/Resources/Designs/Import_Icon.png"></img>
-        </div>
-
-        <div class="MA-Other">
-          <img class="MA-OtherImage" src="https://poketrades.org/Resources/Designs/Discord_Icon.png"></img>
-        </div>
-      </div>
+  <div id="root">
+    <div id="Background">
+      <img>
     </div>
-  </div>
-  <div id="PanelArea">
-    <div class="PA-WhatsNewPanel">
-      <text class="WhatsNewText">
-        What's New: October 2021
-        <br><br>
-        Another option was added which I think you'll love, the option to see sprites instead of the normal Home
-        artwork for gens 1-5. This option is off by default, but once turned on, you will see older sprites depending on
-        the game they were obtained in. If a sprite does not exist for it, the default Home artwork is used.
-        <br><br>
-        What's New: September 2021
-        <br><br>
-        There is now an option to see the Dex Number of the Pokemon in the Selection Area. Additionally the Advanced
-        Preview option also now shows the Pokemon Name and Typing to fill the empty space.
-        <br><br>
-        The way to create and move Bunches has been improved. Now you simply need to click on the buttons above either
-        the For Trade or Looking For Bunches.
-        <br><br>
-        What's New: August 2021
-        <br><br>
-        The default preview settings have now changed. You know see more information at a glance, but this can still be
-        toggled to show less options. Like it used to.
-        <br><br>
-        Importing is now also fixed, sorry to the people that tried to previously import. I've also made it easier to
-        import without having to change your tradesheet to be exactly how PokeTrades wants, with placeholder values when
-        needed.
-        <br><br>
-        Hidden Power support is here! Previously, you would have had to manually click on the Hidden Power dropdown, but
-        now it is automatic when toggling IVs! You can still change it manually however, and if Gigantamax is selected,
-        it won't force the dropdown to any Hidden Power. The dropdown also won't change if an IV is X or HT.
-      </text>
-    </div>
-    <div class="PA-SettingsPanel">
-      <text class="PA-PreviewText">Preview Settings</text>
-      <table class="PreviewAlign">
-        <tr style="height: 30px;">
-          <td>
-            <img class="PA-BallImage"
-              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png"></img>
-          </td>
-          <td>
-            <button class="PA-BallButton">On</button>
-          </td>
-        </tr>
-        <tr style="height: 30px;">
-          <td>
-            <img class="PA-GenderImage" src="https://poketrades.org/Resources/Misc/Male.png"></img>
-          </td>
-          <td>
-            <button class="PA-GenderButton">Off</button>
-          </td>
-        </tr>
-        <tr style="height: 30px;">
-          <td>
-            <img class="PA-ShinyImage" src="https://poketrades.org/Resources/Misc/Star Shiny.png"></img>
-          </td>
-          <td>
-            <button class="PA-ShinyButton">Off</button>
-          </td>
-        </tr>
-        <tr style="height: 30px;">
-          <td>
-            <img class="PA-MintImage" src="https://poketrades.org/Resources/Misc/Minted.png"></img>
-          </td>
-          <td>
-            <button class="PA-MintButton">Off</button>
-          </td>
-        </tr>
-        <tr style="height: 30px;">
-          <td>
-            <img class="PA-MiscImage" src="https://poketrades.org/Resources/Misc/Gigantamax.png"></img>
-          </td>
-          <td>
-            <button class="PA-MiscButton">Off</button>
-          </td>
-        </tr>
-        <tr style="height: 30px;">
-          <td>
-            <img class="PA-MarkImage"
-              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/Zero Energy Mark.png"></img>
-          </td>
-          <td>
-            <button class="PA-MarkButton">Off</button>
-          </td>
-        </tr>
-        <tr style="height: 30px;">
-          <td>
-            <text class="PA-IVsText">IVs</text>
-          </td>
-          <td>
-            <button class="PA-IVsButton">On</button>
-          </td>
-        </tr>
-      </table>
-      <text class="PA-OtherSettingsText">Other Settings</text>
-      <table class="SettingsAlign">
-        <tr style="height: 30px;">
-          <td>
-            <text class="PA-DexNumberText">Dex Number</text>
-          </td>
-          <td>
-            <button class="PA-DexNumberButton">Off</button>
-          </td>
-        </tr>
-        <tr style="height: 30px;">
-          <td>
-            <text class="PA-AdvancedPreviewText">Advanced Preview</text>
-          </td>
-          <td>
-            <button class="PA-AdvancedPreviewButton">Off</button>
-          </td>
-        </tr>
-        <tr style="height: 30px;">
-          <td>
-            <text class="PA-OldSpritesText">Generational Sprites</text>
-          </td>
-          <td>
-            <button class="PA-OldSpritesButton">Off</button>
-          </td>
-        </tr>
-        <tr style="height: 30px;">
-          <td>
-            <text class="PA-PanelPositionText">Panel Position</text>
-          </td>
-          <td>
-            <button class="PA-PanelPositionButton">Right</button>
-          </td>
-        </tr>
-        <tr style="height: 30px;">
-          <td>
-            <text class="PA-HoverText">See Info on Hover</text>
-          </td>
-          <td>
-            <button class="PA-HoverButton">Off</button>
-          </td>
-        </tr>
-        <tr style="height: 30px;">
-          <td>
-            <text class="PA-ExactIVsText">See Exact IVs</text>
-          </td>
-          <td>
-            <button class="PA-ExactIVsButton">Off</button>
-          </td>
-        </tr>
-        <tr style="height: 30px;">
-          <td>
-            <text class="PA-EmptyBunchesText">See Empty Bunch</text>
-          </td>
-          <td>
-            <button class="PA-EmptyBunchesButton">On</button>
-          </td>
-        </tr>
-      </table>
-      <button class="PA-CloseSettings">Close</button>
-    </div>
-    <div class="PA-TradeShopPanel">
-      <table class="PA-SearchInfo">
-        <tr>
-          <td>
-            <text class="PA-TradeShopInfo">Search TradeShops</text>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input class="PA-Searchbar" type="number" placeholder="Search IDs..">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <text class="PA-UserID">Your ID is:</text>
-          </td>
-        </tr>
-      </table>
-      <textarea class="PA-Message" maxlength="350" disabled="true" spellcheck="false" onblur="UpdatePersonalText()"
-        oninput='this.style.height = ""; this.style.height = this.scrollHeight - 20 + "px"'>Type in a SearchID in the InputField to bring up their TradeShop. Afterwards, (scroll down if on mobile) click on any of the Bunches below to open them and see the Pokemon within.</textarea>
+    <div id="MainArea">
+      <div class="MainSection">
+        <div class="MA-MainTextHolder">
+          <img class="MA-PokeTradesTextIcon" src="https://poketrades.org/Resources/Misc/PokeTrades Icon Text.png"></img>
+        </div>
+        <img class="MA-LoginButton" src="https://poketrades.org/Resources/Home/Klang.png"></img>
 
-      <div class="PA-GeneratedBunches">
-        <img class="PA-BunchHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
-        <div id="PA-ForTradeBunches">
-          <button class="PA-ForTradeBunchEdit">Edit For Trade Bunches</button>
-          <button class="PA-ForTradeBunchMove">Move For Trade Bunches</button>
-          <text class="PA-FTAvailableBunchesText">For Trade</text>
-          <div id="ForTradeContainer">
+        <div class="StartingSections">
+          <div class="MA-Settings">
+            <img class="MA-SettingsImage" src="https://poketrades.org/Resources/Designs/Settings_Icon.png"></img>
+          </div>
+          <div class="MA-SearchTradeShops">
+            <img class="MA-SearchTradeShopsImage"
+              src="https://poketrades.org/Resources/Designs/TradeShops_Icon.png"></img>
+          </div>
+
+          <div class="MA-UserLogin">
+            <img class="MA-UserLoginImage" src="https://poketrades.org/Resources/Designs/Login_Icon.png"></img>
+          </div>
+
+          <div class="MA-FAQ">
+            <img class="MA-FAQImage" src="https://poketrades.org/Resources/Designs/FAQ_Icon.png"></img>
+          </div>
+
+          <div class="MA-ImportingTradeShop">
+            <img class="MA-ImportingTradeShopImage"
+              src="https://poketrades.org/Resources/Designs/Import_Icon.png"></img>
+          </div>
+
+          <div class="MA-Other">
+            <img class="MA-OtherImage" src="https://poketrades.org/Resources/Designs/Discord_Icon.png"></img>
+          </div>
+          <div>
 
           </div>
-        </div>
-        <div id="PA-LookingForBunches">
-          <button class="PA-LookingForBunchEdit">Edit Looking For Bunches</button>
-          <button class="PA-LookingForBunchMove">Move Looking For Bunches</button>
-          <text class="PA-LFAvailableBunchesText">Looking For</text>
-          <div id="LookingForContainer">
-
+          <div class="MA-Tracking">
+            <img class="MA-TrackingImage" src="https://poketrades.org/Resources/Fennel2.png"></img>
           </div>
         </div>
       </div>
     </div>
-    <div class="PA-FAQPanel">
-      <text class="WhatsNewText">
-        FAQs
-        <br><br>
-        Q: None of the below answer my question, where can I get addtional help?
-        <br><br>
-        A: Click on the discord button below to join the discord and speak to me personally.
-        <br><br>
-        Q: What is PokeTrades?
-        <br><br>
-        A: PokeTrades was designed to be a better alternative to options such as Google Sheets. PokeTrades allows you to
-        see all information without scrolling on Desktop, is actually usable on Mobile, and comes with many features
-        from filter options to storing multiple viewings to seeing proof without having to open another tab.
-        <br><br>
-        Q: Does this work on Mobile?
-        <br><br>
-        A: Yes. There is a mobile view allowing you to clearly see everything.
-        <br><br>
-        Q: How do I re-arrange my Pokemon or Bunches?
-        <br><br>
-        A: To do this, you must be signed in. Then after clicking on any Bunch to open it, you will be able to
-        re-arrange any Bunch or any Pokemon inside that Bunch
-        <br><br>
-        Q: How do I copy a Pokemon?
-        <br><br>
-        A: When you click on the Move/Copy button, click on the same Pokemon twice and it will create a copy right after
-        it.
-        <br><br>
-        Q: How do I create a Bunch?
-        <br><br>
-        A: Click on the create button in the selection after and then click on Edit Bunches.
-      </text>
-    </div>
-    <div class="PA-ImportingPanel">
-      <text class="PA-ImportingText">
-        Importing your TradeSheet
-        <br><br>
-        To get started, you will first need to sign into your account, then in the Login
-        Area, you should see the option to import your TradeSheet. Please make sure it is exported from Google
-        Sheets as
-        a "CSV" file beforehand. When importing into PokeTrades. This can be done with or without Headings, also
-        note
-        that when importing, natures can be simply the name without anything after as PokeTrades will format
-        accordingly.
-        <br><br>
-        Please note that the order MUST BE CORRECT when importing, if you do not know what this order is, then
-        please
-        first export your TradeSheet with the "Export" Button, as when an account is first created, there are
-        initial
-        creation mons, which along with the Headings will show what the order is.
-        <br><br>
-        There are also two more important things to keep in mind. The first is that if you give the Pokemon in the
-        TradeSheet a bunch name you have not yet created, you must create the bunch name to see the pokemon in that
-        bunch area. The trade_option Column MUST BE SET TO "For Trade" OR "Looking For", IF IT IS NONE OF THESE, YOU
-        WILL NOT BE ABLE TO SEE OR MODIFY IT AT ALL!
-        <br><br>
-        If a Pokemon shows up with a Fennel Icon instead of a Pokemon Icon or fails to show up at all, then that
-        Pokemon's image either can't be found or its an invalid combination. An example of this would be "Alcremie".
-        While
-        this is a Pokemon, Alcremie has many different forms, so the current form must be typed in to bring up the right
-        Image. Click on the Pokemon and then on the "Modify" Button to enter the Creation Area and make the necessary
-        changes and then click "Create/Update" to save the changes.
-      </text>
-    </div>
-  </div>
-  <div id="LoginArea">
-    <div class="LA-LoginArea">
-      <text class="LA-LoginText">Log In</text>
-      <input class="LA-LoginUsername" type="text" maxlength="15" placeholder="Username...">
-      <input class="LA-LoginPassword" type="password" maxlength="50" placeholder="Password...">
-      <button class="LA-LoginButton">Log In</button>
-      <button class="LA-LoginRegisterButton">Register</button>
+    <div id="PanelArea">
+      <div class="PA-WhatsNewPanel">
+        <text class="WhatsNewText">
+          What's New: November 2021
+          <br><br>
+          BDSP is finally here! PokeTrades has support for it, and since BDSP have special artwork for the Pokemon,
+          enabling the "Generational Sprites" option will show them when viewing a Pokemon obtained in BDSP.
+          <br><br>
+          Routing is now also added! Big thanks to the team who helped, with this, to show users your TradeShop, you
+          simply have to copy the URL after typing in your Search ID making it much easier to share.
+          <br><br>
+          What's New: October 2021
+          <br><br>
+          Another option was added which I think you'll love, the option to see sprites instead of the normal Home
+          artwork for gens 1-5. This option is off by default, but once turned on, you will see older sprites depending
+          on
+          the game they were obtained in. If a sprite does not exist for it, the default Home artwork is used.
+          <br><br>
+          What's New: September 2021
+          <br><br>
+          There is now an option to see the Dex Number of the Pokemon in the Selection Area. Additionally the Advanced
+          Preview option also now shows the Pokemon Name and Typing to fill the empty space.
+          <br><br>
+          The way to create and move Bunches has been improved. Now you simply need to click on the buttons above either
+          the For Trade or Looking For Bunches.
+          <br><br>
+          What's New: August 2021
+          <br><br>
+          Hidden Power support is here! Previously, you would have had to manually click on the Hidden Power dropdown,
+          but
+          now it is automatic when toggling IVs! You can still change it manually however, and if Gigantamax is
+          selected,
+          it won't force the dropdown to any Hidden Power. The dropdown also won't change if an IV is X or HT.
+        </text>
+      </div>
+      <div class="PA-SettingsPanel">
+        <text class="PA-PreviewText">Preview Settings</text>
+        <table class="PreviewAlign">
+          <tr style="height: 30px;">
+            <td>
+              <img class="PA-BallImage"
+                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png"></img>
+            </td>
+            <td>
+              <button class="PA-BallButton">On</button>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>
+              <img class="PA-GenderImage" src="https://poketrades.org/Resources/Misc/Male.png"></img>
+            </td>
+            <td>
+              <button class="PA-GenderButton">Off</button>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>
+              <img class="PA-ShinyImage" src="https://poketrades.org/Resources/Misc/Star Shiny.png"></img>
+            </td>
+            <td>
+              <button class="PA-ShinyButton">Off</button>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>
+              <img class="PA-MintImage" src="https://poketrades.org/Resources/Misc/Minted.png"></img>
+            </td>
+            <td>
+              <button class="PA-MintButton">Off</button>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>
+              <img class="PA-MiscImage" src="https://poketrades.org/Resources/Misc/Gigantamax.png"></img>
+            </td>
+            <td>
+              <button class="PA-MiscButton">Off</button>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>
+              <img class="PA-MarkImage"
+                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/Zero Energy Mark.png"></img>
+            </td>
+            <td>
+              <button class="PA-MarkButton">Off</button>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>
+              <text class="PA-IVsText">IVs</text>
+            </td>
+            <td>
+              <button class="PA-IVsButton">On</button>
+            </td>
+          </tr>
+        </table>
+        <text class="PA-OtherSettingsText">Other Settings</text>
+        <table class="SettingsAlign">
+          <tr style="height: 30px;">
+            <td>
+              <text class="PA-DexNumberText">Dex Number</text>
+            </td>
+            <td>
+              <button class="PA-DexNumberButton">Off</button>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>
+              <text class="PA-AdvancedPreviewText">Advanced Preview</text>
+            </td>
+            <td>
+              <button class="PA-AdvancedPreviewButton">Off</button>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>
+              <text class="PA-OldSpritesText">Generational Sprites</text>
+            </td>
+            <td>
+              <button class="PA-OldSpritesButton">Off</button>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>
+              <text class="PA-PanelPositionText">Panel Position</text>
+            </td>
+            <td>
+              <button class="PA-PanelPositionButton">Right</button>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>
+              <text class="PA-HoverText">See Info on Hover</text>
+            </td>
+            <td>
+              <button class="PA-HoverButton">Off</button>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>
+              <text class="PA-ExactIVsText">See Exact IVs</text>
+            </td>
+            <td>
+              <button class="PA-ExactIVsButton">Off</button>
+            </td>
+          </tr>
+          <tr style="height: 30px;">
+            <td>
+              <text class="PA-EmptyBunchesText">See Empty Bunch</text>
+            </td>
+            <td>
+              <button class="PA-EmptyBunchesButton">On</button>
+            </td>
+          </tr>
+        </table>
+        <button class="PA-CloseSettings">Close</button>
+      </div>
+      <div class="PA-TradeShopPanel">
+        <table class="PA-SearchInfo">
+          <tr>
+            <td>
+              <text class="PA-TradeShopInfo">Search TradeShops</text>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input class="PA-Searchbar" type="number" placeholder="Search IDs..">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <text class="PA-UserID">Your ID is:</text>
+            </td>
+          </tr>
+        </table>
+        <textarea class="PA-Message" maxlength="350" disabled="true" spellcheck="false" onblur="UpdatePersonalText()"
+          oninput='this.style.height = ""; this.style.height = this.scrollHeight - 20 + "px"'>Type in a SearchID in the InputField to bring up their TradeShop. Afterwards, (scroll down if on mobile) click on any of the Bunches below to open them and see the Pokemon within.</textarea>
 
-      <text class="LA-LoginFailed">Wrong Username or Password.</text>
-    </div>
-    <div class="LA-LoggedInArea">
-      <text class="LA-LoggedInText">Logged In As:</text>
-      <text class="LA-Username">Test</text>
-      <button class="LA-LogOut">Log Out</button>
-      <button class="LA-ChangeDetails">Change Username or Password</button>
-      <table class="LA-ImportExportButtons">
-        <tr>
-          <td>
-            <button class="LA-Import">Import</button>
-          </td>
-          <td>
-            <button class="LA-Export">Export</button>
-          </td>
-        </tr>
-      </table>
+        <div class="PA-GeneratedBunches">
+          <img class="PA-BunchHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
+          <div id="PA-ForTradeBunches">
+            <button class="PA-ForTradeBunchEdit">Edit For Trade Bunches</button>
+            <button class="PA-ForTradeBunchMove">Move For Trade Bunches</button>
+            <text class="PA-FTAvailableBunchesText">For Trade</text>
+            <div id="ForTradeContainer">
 
-      <form method="post" enctype="multipart/form-data" style="display: none;">
-        <input class="LA-ImportInput" type="file" enctype="multipart/form-data" accept-charset="utf-8" accept=".csv"
-          onchange="ImportData(this.files[0])">
-      </form>
-      <text class="LA-LoggedInNotify">Account Created.</text>
-      <button class="LA-DeleteAllData">Delete All Data</button>
-    </div>
-    <div class="LA-RegisterArea">
-      <text class="LA-CreateAccount">Create Account</text>
-      <input class="LA-RegisterUsername" type="text" maxlength="15" placeholder="Enter Username...">
-      <input class="LA-RegisterPassword" type="password" maxlength="50" placeholder="Enter Password...">
-      <input class="LA-RegisterConfirmPassword" type="password" maxlength="50" placeholder="Confirm Password...">
-      <button class="LA-RegisterButton">Sign Up</button>
-      <button class="LA-RegisterBackButton">Back</button>
-      <text class="LA-RegisterFailed">Passwords do not match.</text>
-    </div>
-    <div class="LA-UpdateArea">
-      <text class="LA-UpdateText">Change Username or Password</text>
-      <input class="LA-UpdateUsername" type="text" maxlength="15" placeholder="Enter New Username...">
-      <input class="LA-OldPassword" type="password" maxlength="50" placeholder="Enter Old Password...">
-      <input class="LA-NewPassword" type="password" maxlength="50" placeholder="Enter New Password...">
-      <input class="LA-ConfirmNewPassword" type="password" maxlength="50" placeholder="Confirm New Password...">
-      <button class="LA-ConfirmUpdate">Confirm</button>
-      <button class="LA-UpdateBackButton">Back</button>
-      <text class="LA-UpdateFailed">Passwords do not match.</text>
-    </div>
-    <button class="LA-LoginClose">Close</button>
-  </div>
-  <div id=SelectionArea>
-    <div id="SA-TopRow">
-      <table class="SelectionButtons">
-        <tr>
-          <!--<td>
-            <button class="SA-ExitBunch">Exit Bunch</button>
-          </td>-->
-          <td>
-            <button class="SA-MainMenu">Main Menu</button>
-          </td>
-          <td>
-            <button class="SA-CreateButton">Create</button>
-          </td>
-          <td>
-            <button class="SA-MoveButton">Move/Copy</button>
-          </td>
-          <td>
-            <button class="SA-FiltersButton">Filters</button>
-          </td>
-          <td>
-            <img class="SA-SelectionHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
-          </td>
-        </tr>
-      </table>
-      <input class="SA-Searchbar" type="text" placeholder="Search Pokemon..">
-      <text class="SA-Bunch">(No Bunch) </text>
+            </div>
+          </div>
+          <div id="PA-LookingForBunches">
+            <button class="PA-LookingForBunchEdit">Edit Looking For Bunches</button>
+            <button class="PA-LookingForBunchMove">Move Looking For Bunches</button>
+            <text class="PA-LFAvailableBunchesText">Looking For</text>
+            <div id="LookingForContainer">
 
-      <!--<div class="SelectionButtons">
-        <div>
-          <button id="SA-ExitBunch">Exit Bunch</button>
-        </div>
-        <div>
-          <button id="SA-MainMenu">Main Menu</button>
-        </div>
-        <div>
-          <button id="SA-CreateButton">Create</button>
-        </div>
-        <div>
-          <button id="SA-FiltersButton">Filters</button>
-        </div>
-      </div>-->
-      <!--<button id="Testing">Try it</button>-->
-    </div>
-    <div id="SelectionSection">
-      <div id="GeneratedSelection"></div>
-    </div>
-
-  </div>
-  <div id="ViewingArea">
-    <div id="ViewingButtonsArea">
-      <table class="ViewingButtons">
-        <tr>
-          <td>
-            <button class="VA-CloseButton">Close</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button class="VA-ModifyButton">Modify</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button class="VA-DeleteButton">Delete</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button class="VA-AddButton">Add</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div id="MoreViewings">
-      <table class="ViewingAlign">
-        <tr>
-          <td>
-            <img class="VA-ViewingHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img class="VA-AddAV1" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
-          </td>
-          <td>
-            <img class="VA-AV1"
-              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img class="VA-AddAV2" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
-          </td>
-          <td>
-            <img class="VA-AV2"
-              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img class="VA-AddAV3" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
-          </td>
-          <td>
-            <img class="VA-AV3"
-              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img class="VA-AddAV4" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
-          </td>
-          <td>
-            <img class="VA-AV4"
-              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img class="VA-AddAV5" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
-          </td>
-          <td>
-            <img class="VA-AV5"
-              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img class="VA-AddAV6" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
-          </td>
-          <td>
-            <img class="VA-AV6"
-              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div id="ViewingContent">
-      <text class="VA-Username">Test#0</text>
-      <text class="VA-Bunch">(No Bunch)</text>
-      <text class="VA-ObtainedInfo">Self Obtained(Retail) USUM</text>
-
-      <table class="VA-Availability">
-        <tr>
-          <td>
-            <text class="VA-Lang">[Any]</text>
-          </td>
-          <td>
-            <text class="VA-Gen6">Gen 6</text>
-          </td>
-          <td>
-            <text class="VA-Gen7">Gen 7</text>
-          </td>
-          <td>
-            <text class="VA-Gen8">Gen 8</text>
-          </td>
-          <td>
-            <text class="VA-Home">Home</text>
-          </td>
-        </tr>
-      </table>
-      <table class="VA-ImageAlign">
-        <tr>
-          <td>
-            <img class="VA-Pokeball"
-              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-          </td>
-          <td>
-            <img class="VA-Gender" src="https://poketrades.org/Resources/Misc/(Any Gender).png"></img>
-          </td>
-          <td>
-            <img class="VA-Shiny" src="https://poketrades.org/Resources/Misc/(Any Shiny or Normal).png"></img>
-          </td>
-          <td>
-            <img class="VA-Mint" src="https://poketrades.org/Resources/Misc/(Any or No Mint).png"></img>
-          </td>
-          <td>
-            <img class="VA-Misc" src="https://poketrades.org/Resources/Misc/(No Misc).png"></img>
-          </td>
-          <td>
-            <img class="VA-Mark"
-              src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/(Any or No Mark).png"></img>
-          </td>
-        </tr>
-      </table>
-      <img class="VA-PokemonImage" src="https://poketrades.org/Resources/Fennel2.png"></img>
-
-      <!--<text class="VA-HowObtained">Self Obtained(Retail)</text>
-      <text class="VA-GameObtained">USUM</text>-->
-
-
-
-      <div class="VA-TextAlign">
-        <div>
-          <text class="VA-PokemonName">Pokemon Name</text>
-        </div>
-        <div>
-          <text class="VA-Nickname">(No Nickname)</text>
-        </div>
-        <div>
-          <text class="VA-IVs">31/31/31/31/31/31</text>
-        </div>
-        <div>
-          <text class="VA-EVs">252/252/252/252/252/252</text>
+            </div>
+          </div>
         </div>
       </div>
-      <!--<table class="VA-TextAlign">
-        <tr>
-          <td class="VA-PokemonName">Pokemon Name</td>
-        </tr>
-        <tr>
-          <td class="VA-Nickname">(No Nickname)</td>
-        </tr>
-        <tr>
-          <td class="VA-IVs">31/31/31/31/31/31</td>
-        </tr>
-        <tr>
-          <td class="VA-EVs">252/252/252/252/252/252</td>
-        </tr>
-      </table>-->
-
-      <table class="VA-InfoAlign">
-        <tr>
-          <td class="VA-Nature">(Quirky)</td>
-        </tr>
-        <tr>
-          <td class="VA-Ability">(No Ability)</td>
-        </tr>
-        <tr>
-          <td class="VA-OT">(Trainer)</td>
-        </tr>
-        <tr>
-          <td class="VA-ID">(000000)</td>
-        </tr>
-        <tr>
-          <td class="VA-Status">(Untouched)</td>
-        </tr>
-        <tr>
-          <td class="VA-Event">(No Event)</td>
-        </tr>
-        <tr>
-          <td>
-            <a class="ViewingProof" target="_blank">(No Proof)</a>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button class="VA-ToggleProof">Show Proof</button>
-          </td>
-        </tr>
-      </table>
-      <a class="VA-LinkRedirector" target="_blank"><img class="VA-ProofImage" src=""></img><video class="VA-ProofVideo"
-          src="" controls=true></video></a>
-
-
-      <text class="VA-PokemonMoves">Pokemon Moves</text>
-      <div id="VA-NormalMoves" class="VA-NormalMoves">
-        <div class="VA-Move1">(No Move)</div>
-        <div class="VA-Move2">(No Move)</div>
-        <div class="VA-Move3">(No Move)</div>
-        <div class="VA-Move4">(No Move)</div>
+      <div class="PA-FAQPanel">
+        <text class="WhatsNewText">
+          FAQs
+          <br><br>
+          Q: None of the below answer my question, where can I get addtional help?
+          <br><br>
+          A: Click on the discord button below to join the discord and speak to me personally.
+          <br><br>
+          Q: What is PokeTrades?
+          <br><br>
+          A: PokeTrades was designed to be a better alternative to options such as Google Sheets. PokeTrades allows you
+          to
+          see all information without scrolling on Desktop, is actually usable on Mobile, and comes with many features
+          from filter options to storing multiple viewings to seeing proof without having to open another tab.
+          <br><br>
+          Q: Does this work on Mobile?
+          <br><br>
+          A: Yes. There is a mobile view allowing you to clearly see everything.
+          <br><br>
+          Q: How do I re-arrange my Pokemon or Bunches?
+          <br><br>
+          A: To do this, you must be signed in. Then after clicking on any Bunch to open it, you will be able to
+          re-arrange any Bunch or any Pokemon inside that Bunch
+          <br><br>
+          Q: How do I copy a Pokemon?
+          <br><br>
+          A: When you click on the Move/Copy button, click on the same Pokemon twice and it will create a copy right
+          after
+          it.
+          <br><br>
+          Q: How do I create a Bunch?
+          <br><br>
+          A: Click on the create button in the selection after and then click on Edit Bunches.
+        </text>
       </div>
-      <!--<table class="VA-NormalMoves">
-        <tr>
-          <td class="VA-Move1">(No Move)</td>
-          <td class="VA-Move2">(No Move)</td>
-        </tr>
-        <tr>
-          <td class="VA-Move3">(No Move)</td>
-          <td class="VA-Move4">(No Move)</td>
-        </tr>
-      </table>-->
-      <text class="VA-TransferMoves">Egg/Transfer Moves</text>
-      <div id="VA-LegacyMoves" class="VA-LegacyMoves">
-        <div class="VA-LegacyMove1">(No Move)</div>
-        <div class="VA-LegacyMove2">(No Move)</div>
-        <div class="VA-LegacyMove3">(No Move)</div>
-        <div class="VA-LegacyMove4">(No Move)</div>
+      <div class="PA-ImportingPanel">
+        <text class="PA-ImportingText">
+          Importing your TradeSheet
+          <br><br>
+          To get started, you will first need to sign into your account, then in the Login
+          Area, you should see the option to import your TradeSheet. Please make sure it is exported from Google
+          Sheets as
+          a "CSV" file beforehand. When importing into PokeTrades. This can be done with or without Headings, also
+          note
+          that when importing, natures can be simply the name without anything after as PokeTrades will format
+          accordingly.
+          <br><br>
+          Please note that the order MUST BE CORRECT when importing, if you do not know what this order is, then
+          please
+          first export your TradeSheet with the "Export" Button, as when an account is first created, there are
+          initial
+          creation mons, which along with the Headings will show what the order is.
+          <br><br>
+          There are also two more important things to keep in mind. The first is that if you give the Pokemon in the
+          TradeSheet a bunch name you have not yet created, you must create the bunch name to see the pokemon in that
+          bunch area. The trade_option Column MUST BE SET TO "For Trade" OR "Looking For", IF IT IS NONE OF THESE, YOU
+          WILL NOT BE ABLE TO SEE OR MODIFY IT AT ALL!
+          <br><br>
+          If a Pokemon shows up with a Fennel Icon instead of a Pokemon Icon or fails to show up at all, then that
+          Pokemon's image either can't be found or its an invalid combination. An example of this would be "Alcremie".
+          While
+          this is a Pokemon, Alcremie has many different forms, so the current form must be typed in to bring up the
+          right
+          Image. Click on the Pokemon and then on the "Modify" Button to enter the Creation Area and make the necessary
+          changes and then click "Create/Update" to save the changes.
+        </text>
       </div>
-      <!--<table class="VA-LegacyMoves">
-        <tr>
-          <td class="VA-LegacyMove1">(No Move)</td>
-          <td class="VA-LegacyMove2">(No Move)</td>
-        </tr>
-        <tr>
-          <td class="VA-LegacyMove3">(No Move)</td>
-          <td class="VA-LegacyMove4">(No Move)</td>
-        </tr>
-      </table>-->
-      <table class="VA-Note">
-        <tr>
-          <td>
-            <text>Testing</text>
-          </td>
-        </tr>
-      </table>
-      <text class="VA-PreferredPokemon">Preferred Pokemon in Exchange:</text>
     </div>
-    <div id="MatchMaking"></div>
-  </div>
-  <div id="CreationArea">
-    <div id="CreationButtonsArea">
-      <table class="CreationButtons">
-        <tr>
-          <td>
-            <button class="CA-CloseButton">Close</button>
-          </td>
-          <td>
-            <button class="CA-CreatePokemon">Create/Save</button>
-          </td>
-          <!--<td>
-            <button class="CA-EditBunches">Edit Bunches</button>
-          </td>-->
-        </tr>
-      </table>
+    <div id="LoginArea">
+      <div class="LA-LoginArea">
+        <text class="LA-LoginText">Log In</text>
+        <input class="LA-LoginUsername" type="text" maxlength="15" placeholder="Username...">
+        <input class="LA-LoginPassword" type="password" maxlength="50" placeholder="Password...">
+        <button class="LA-LoginButton">Log In</button>
+        <button class="LA-LoginRegisterButton">Register</button>
+
+        <text class="LA-LoginFailed">Wrong Username or Password.</text>
+      </div>
+      <div class="LA-LoggedInArea">
+        <text class="LA-LoggedInText">Logged In As:</text>
+        <text class="LA-Username">Test</text>
+        <button class="LA-LogOut">Log Out</button>
+        <button class="LA-ChangeDetails">Change Username or Password</button>
+        <table class="LA-ImportExportButtons">
+          <tr>
+            <td>
+              <button class="LA-Import">Import</button>
+            </td>
+            <td>
+              <button class="LA-Export">Export</button>
+            </td>
+          </tr>
+        </table>
+
+        <form method="post" enctype="multipart/form-data" style="display: none;">
+          <input class="LA-ImportInput" type="file" enctype="multipart/form-data" accept-charset="utf-8" accept=".csv"
+            onchange="ImportData(this.files[0])">
+        </form>
+        <text class="LA-LoggedInNotify">Account Created.</text>
+        <button class="LA-DeleteAllData">Delete All Data</button>
+      </div>
+      <div class="LA-RegisterArea">
+        <text class="LA-CreateAccount">Create Account</text>
+        <input class="LA-RegisterUsername" type="text" maxlength="15" placeholder="Enter Username...">
+        <input class="LA-RegisterPassword" type="password" maxlength="50" placeholder="Enter Password...">
+        <input class="LA-RegisterConfirmPassword" type="password" maxlength="50" placeholder="Confirm Password...">
+        <button class="LA-RegisterButton">Sign Up</button>
+        <button class="LA-RegisterBackButton">Back</button>
+        <text class="LA-RegisterFailed">Passwords do not match.</text>
+      </div>
+      <div class="LA-UpdateArea">
+        <text class="LA-UpdateText">Change Username or Password</text>
+        <input class="LA-UpdateUsername" type="text" maxlength="15" placeholder="Enter New Username...">
+        <input class="LA-OldPassword" type="password" maxlength="50" placeholder="Enter Old Password...">
+        <input class="LA-NewPassword" type="password" maxlength="50" placeholder="Enter New Password...">
+        <input class="LA-ConfirmNewPassword" type="password" maxlength="50" placeholder="Confirm New Password...">
+        <button class="LA-ConfirmUpdate">Confirm</button>
+        <button class="LA-UpdateBackButton">Back</button>
+        <text class="LA-UpdateFailed">Passwords do not match.</text>
+      </div>
+      <button class="LA-LoginClose">Close</button>
     </div>
+    <div id=SelectionArea>
+      <div id="SA-TopRow">
+        <table class="SelectionButtons">
+          <tr>
+            <!--<td>
+              <button class="SA-ExitBunch">Exit Bunch</button>
+            </td>-->
+            <td>
+              <button class="SA-MainMenu">Main Menu</button>
+            </td>
+            <td>
+              <button class="SA-CreateButton">Create</button>
+            </td>
+            <td>
+              <button class="SA-MoveButton">Move/Copy</button>
+            </td>
+            <td>
+              <button class="SA-FiltersButton">Filters</button>
+            </td>
+            <td>
+              <img class="SA-SelectionHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
+            </td>
+          </tr>
+        </table>
+        <input class="SA-Searchbar" type="text" placeholder="Search Pokemon..">
+        <text class="SA-Bunch">(No Bunch) </text>
 
-    <div id="CreationContent">
-      <select class="CA-BunchDropdown"></select>
-      <select class="CA-HowObtained"></select>
-      <select class="CA-GameObtained"></select>
-      <select class="CA-Lang"></select>
-      <select class="CA-DisplayDropdown">
-        <!--<option value="Public">Public</option>
-        <option value="Private">Private</option>-->
-      </select>
+        <!--<div class="SelectionButtons">
+          <div>
+            <button id="SA-ExitBunch">Exit Bunch</button>
+          </div>
+          <div>
+            <button id="SA-MainMenu">Main Menu</button>
+          </div>
+          <div>
+            <button id="SA-CreateButton">Create</button>
+          </div>
+          <div>
+            <button id="SA-FiltersButton">Filters</button>
+          </div>
+        </div>-->
+        <!--<button id="Testing">Try it</button>-->
+      </div>
+      <div id="SelectionSection">
+        <div id="GeneratedSelection"></div>
+      </div>
 
-      <table class="CA-Availability">
-        <tr>
-          <td>
-            <button class="CA-Gen6">Gen 6</button>
-          </td>
-          <td>
-            <button class="CA-Gen7">Gen 7</button>
-          </td>
-          <td>
-            <button class="CA-Gen8">Gen 8</button>
-          </td>
-          <td>
-            <button class="CA-Home">Home</button>
-          </td>
-        </tr>
-      </table>
-      <div class="CA-ImageAlign">
+    </div>
+    <div id="ViewingArea">
+      <div id="ViewingButtonsArea">
+        <table class="ViewingButtons">
+          <tr>
+            <td>
+              <button class="VA-CloseButton">Close</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="VA-ModifyButton">Modify</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="VA-DeleteButton">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="VA-AddButton">Add</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="MoreViewings">
+        <table class="ViewingAlign">
+          <tr>
+            <td>
+              <img class="VA-ViewingHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img class="VA-AddAV1" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
+            </td>
+            <td>
+              <img class="VA-AV1"
+                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img class="VA-AddAV2" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
+            </td>
+            <td>
+              <img class="VA-AV2"
+                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img class="VA-AddAV3" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
+            </td>
+            <td>
+              <img class="VA-AV3"
+                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img class="VA-AddAV4" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
+            </td>
+            <td>
+              <img class="VA-AV4"
+                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img class="VA-AddAV5" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
+            </td>
+            <td>
+              <img class="VA-AV5"
+                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img class="VA-AddAV6" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
+            </td>
+            <td>
+              <img class="VA-AV6"
+                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="ViewingContent">
+        <text class="VA-Username">Test#0</text>
+        <text class="VA-Bunch">(No Bunch)</text>
+        <text class="VA-ObtainedInfo">Self Obtained(Retail) USUM</text>
+
+        <table class="VA-Availability">
+          <tr>
+            <td>
+              <text class="VA-Lang">[Any]</text>
+            </td>
+            <td>
+              <text class="VA-Gen6">Gen 6</text>
+            </td>
+            <td>
+              <text class="VA-Gen7">Gen 7</text>
+            </td>
+            <td>
+              <text class="VA-Gen8">Gen 8</text>
+            </td>
+            <td>
+              <text class="VA-Home">Home</text>
+            </td>
+          </tr>
+        </table>
+        <table class="VA-ImageAlign">
+          <tr>
+            <td>
+              <img class="VA-Pokeball"
+                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+            </td>
+            <td>
+              <img class="VA-Gender" src="https://poketrades.org/Resources/Misc/(Any Gender).png"></img>
+            </td>
+            <td>
+              <img class="VA-Shiny" src="https://poketrades.org/Resources/Misc/(Any Shiny or Normal).png"></img>
+            </td>
+            <td>
+              <img class="VA-Mint" src="https://poketrades.org/Resources/Misc/(Any or No Mint).png"></img>
+            </td>
+            <td>
+              <img class="VA-Misc" src="https://poketrades.org/Resources/Misc/(No Misc).png"></img>
+            </td>
+            <td>
+              <img class="VA-Mark"
+                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/(Any or No Mark).png"></img>
+            </td>
+          </tr>
+        </table>
+        <img class="VA-PokemonImage" src="https://poketrades.org/Resources/Fennel2.png"></img>
+
+        <!--<text class="VA-HowObtained">Self Obtained(Retail)</text>
+        <text class="VA-GameObtained">USUM</text>-->
+
+
+
+        <div class="VA-TextAlign">
+          <div>
+            <text class="VA-PokemonName">Pokemon Name</text>
+          </div>
+          <div>
+            <text class="VA-Nickname">(No Nickname)</text>
+          </div>
+          <div>
+            <text class="VA-IVs">31/31/31/31/31/31</text>
+          </div>
+          <div>
+            <text class="VA-EVs">252/252/252/252/252/252</text>
+          </div>
+        </div>
+        <!--<table class="VA-TextAlign">
+          <tr>
+            <td class="VA-PokemonName">Pokemon Name</td>
+          </tr>
+          <tr>
+            <td class="VA-Nickname">(No Nickname)</td>
+          </tr>
+          <tr>
+            <td class="VA-IVs">31/31/31/31/31/31</td>
+          </tr>
+          <tr>
+            <td class="VA-EVs">252/252/252/252/252/252</td>
+          </tr>
+        </table>-->
+
+        <table class="VA-InfoAlign">
+          <tr>
+            <td class="VA-Nature">(Quirky)</td>
+          </tr>
+          <tr>
+            <td class="VA-Ability">(No Ability)</td>
+          </tr>
+          <tr>
+            <td class="VA-OT">(Trainer)</td>
+          </tr>
+          <tr>
+            <td class="VA-ID">(000000)</td>
+          </tr>
+          <tr>
+            <td class="VA-Status">(Untouched)</td>
+          </tr>
+          <tr>
+            <td class="VA-Event">(No Event)</td>
+          </tr>
+          <tr>
+            <td>
+              <a class="ViewingProof" target="_blank">(No Proof)</a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="VA-ToggleProof">Show Proof</button>
+            </td>
+          </tr>
+        </table>
+        <a class="VA-LinkRedirector" target="_blank"><img class="VA-ProofImage" src=""></img><video
+            class="VA-ProofVideo" src="" controls=true></video></a>
+
+
+        <text class="VA-PokemonMoves">Pokemon Moves</text>
+        <div id="VA-NormalMoves" class="VA-NormalMoves">
+          <div class="VA-Move1">(No Move)</div>
+          <div class="VA-Move2">(No Move)</div>
+          <div class="VA-Move3">(No Move)</div>
+          <div class="VA-Move4">(No Move)</div>
+        </div>
+        <!--<table class="VA-NormalMoves">
+          <tr>
+            <td class="VA-Move1">(No Move)</td>
+            <td class="VA-Move2">(No Move)</td>
+          </tr>
+          <tr>
+            <td class="VA-Move3">(No Move)</td>
+            <td class="VA-Move4">(No Move)</td>
+          </tr>
+        </table>-->
+        <text class="VA-TransferMoves">Egg/Transfer Moves</text>
+        <div id="VA-LegacyMoves" class="VA-LegacyMoves">
+          <div class="VA-LegacyMove1">(No Move)</div>
+          <div class="VA-LegacyMove2">(No Move)</div>
+          <div class="VA-LegacyMove3">(No Move)</div>
+          <div class="VA-LegacyMove4">(No Move)</div>
+        </div>
+        <!--<table class="VA-LegacyMoves">
+          <tr>
+            <td class="VA-LegacyMove1">(No Move)</td>
+            <td class="VA-LegacyMove2">(No Move)</td>
+          </tr>
+          <tr>
+            <td class="VA-LegacyMove3">(No Move)</td>
+            <td class="VA-LegacyMove4">(No Move)</td>
+          </tr>
+        </table>-->
+        <table class="VA-Note">
+          <tr>
+            <td>
+              <text>Testing</text>
+            </td>
+          </tr>
+        </table>
+        <text class="VA-PreferredPokemon">Preferred Pokemon in Exchange:</text>
+      </div>
+      <div id="MatchMaking"></div>
+    </div>
+    <div id="CreationArea">
+      <div id="CreationButtonsArea">
+        <table class="CreationButtons">
+          <tr>
+            <td>
+              <button class="CA-CloseButton">Close</button>
+            </td>
+            <td>
+              <button class="CA-CreatePokemon">Create/Save</button>
+            </td>
+            <!--<td>
+              <button class="CA-EditBunches">Edit Bunches</button>
+            </td>-->
+          </tr>
+        </table>
+      </div>
+
+      <div id="CreationContent">
+        <select class="CA-BunchDropdown"></select>
+        <select class="CA-HowObtained"></select>
+        <select class="CA-GameObtained"></select>
+        <select class="CA-Lang"></select>
+        <select class="CA-DisplayDropdown">
+          <!--<option value="Public">Public</option>
+          <option value="Private">Private</option>-->
+        </select>
+
+        <table class="CA-Availability">
+          <tr>
+            <td>
+              <button class="CA-Gen6">Gen 6</button>
+            </td>
+            <td>
+              <button class="CA-Gen7">Gen 7</button>
+            </td>
+            <td>
+              <button class="CA-Gen8">Gen 8</button>
+            </td>
+            <td>
+              <button class="CA-Home">Home</button>
+            </td>
+          </tr>
+        </table>
+        <div class="CA-ImageAlign">
+          <div>
+            <select class="CA-BallDropdown"></select>
+          </div>
+          <div>
+            <select class="CA-GenderDropdown"></select>
+          </div>
+          <div>
+            <select class="CA-ShinyDropdown"></select>
+          </div>
+          <div>
+            <select class="CA-MintDropdown"></select>
+          </div>
+          <div>
+            <select class="CA-MiscDropdown"></select>
+          </div>
+          <div>
+            <select class="CA-MarkDropdown"></select>
+          </div>
+        </div>
+        <img class="CA-PokemonImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
+
+        <select class="CA-PokemonDropdown"></select>
+        <input class="CA-Nickname" type="text" maxlength="12" placeholder="Nickname..">
+
+        <table class="CA-IVsEVs">
+          <tr>
+            <td>
+              <text></text>
+            </td>
+            <td>
+              <text class="CA-IvEvText">HP</text>
+            </td>
+            <td>
+              <text class="CA-IvEvText">Att</text>
+            </td>
+            <td>
+              <text class="CA-IvEvText">Def</text>
+            </td>
+            <td>
+              <text class="CA-IvEvText">Spa</text>
+            </td>
+            <td>
+              <text class="CA-IvEvText">Spd</text>
+            </td>
+            <td>
+              <text class="CA-IvEvText">Spe</text>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <text class="CA-IvText">IVs</text>
+            </td>
+            <td>
+              <select class="CA-IvHP"></select>
+            </td>
+            <td>
+              <select class="CA-IvAtt"></select>
+            </td>
+            <td>
+              <select class="CA-IvDef"></select>
+            </td>
+            <td>
+              <select class="CA-IvSpa"></select>
+            </td>
+            <td>
+              <select class="CA-IvSpd"></select>
+            </td>
+            <td>
+              <select class="CA-IvSpe"></select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <text class="CA-EvText">EVs</text>
+            </td>
+            <td>
+              <select class="CA-EvHP"></select>
+            </td>
+            <td>
+              <select class="CA-EvAtt"></select>
+            </td>
+            <td>
+              <select class="CA-EvDef"></select>
+            </td>
+            <td>
+              <select class="CA-EvSpa"></select>
+            </td>
+            <td>
+              <select class="CA-EvSpd"></select>
+            </td>
+            <td>
+              <select class="CA-EvSpe"></select>
+            </td>
+          </tr>
+        </table>
+
+        <table class="DropdownAlign">
+          <tr>
+            <td>
+              <select class="CA-NatureDropdown"></select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <select class="CA-AbilityDropdown"></select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input class="CA-OT" type="text" maxlength="=12" placeholder="OT...">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input class="CA-ID" type="number" maxlength="6" placeholder="ID...">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <select class="CA-StatusDropdown"></select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <select class="CA-EventDropdown"></select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input class="CA-Proof" type="text" placeholder="Proof..">
+            </td>
+          </tr>
+        </table>
+
+        <text class="CA-PokemonMoves">Pokemon Moves</text>
+        <div class="CA-NormalMoves">
+          <div>
+            <select class="CA-Move1"></select>
+          </div>
+          <div>
+            <select class="CA-Move2"></select>
+          </div>
+          <div>
+            <select class="CA-Move3"></select>
+          </div>
+          <div>
+            <select class="CA-Move4"></select>
+          </div>
+        </div>
+        <text class="CA-TransferMoves">Egg/Transfer Moves</text>
+        <div class="CA-LegacyMoves">
+          <div>
+            <select class="CA-LegacyMove1"></select>
+          </div>
+          <div>
+            <select class="CA-LegacyMove2"></select>
+          </div>
+          <div>
+            <select class="CA-LegacyMove3"></select>
+          </div>
+          <div>
+            <select class="CA-LegacyMove4"></select>
+          </div>
+        </div>
+        <textarea class="NoteField" placeholder="Type Note.." maxlength="150"
+          oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'></textarea>
+      </div>
+    </div>
+    <div id="BunchArea">
+      <button class="BA-CloseButton">Return to Main Area</button>
+      <text class="BA-SelectIconText">Select the Icon to display for your Bunch</text>
+      <div class="BA-IconOptions">
         <div>
-          <select class="CA-BallDropdown"></select>
+          <select class="BA-GenderDropdown"></select>
         </div>
         <div>
-          <select class="CA-GenderDropdown"></select>
-        </div>
-        <div>
-          <select class="CA-ShinyDropdown"></select>
-        </div>
-        <div>
-          <select class="CA-MintDropdown"></select>
-        </div>
-        <div>
-          <select class="CA-MiscDropdown"></select>
-        </div>
-        <div>
-          <select class="CA-MarkDropdown"></select>
+          <select class="BA-ShinyDropdown"></select>
         </div>
       </div>
-      <img class="CA-PokemonImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
-
-      <select class="CA-PokemonDropdown"></select>
-      <input class="CA-Nickname" type="text" maxlength="12" placeholder="Nickname..">
-
-      <table class="CA-IVsEVs">
+      <img class="BA-IconImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
+      <select class="BA-IconDropdown"></select>
+      <text class="BA-TrioBunchText">Type in the Bunch to Add, Update, Remove</text>
+      <input class="BA-BunchInput" type="text" maxlength="30" placeholder="Type Bunch to Add, Update or Remove..">
+      <div class="BA-BunchOptions">
+        <div>
+          <button class="BA-AddBunch">Add/Update Bunch</button>
+        </div>
+        <div>
+          <button class="BA-RemoveBunch">Remove Bunch</button>
+        </div>
+      </div>
+      <text class="BA-RenameText">This is the area to Rename Bunches</text>
+      <select class="BA-BunchRename"></select>
+      <input class="BA-BunchNewName" type="text" maxlength="30" placeholder="Type New Bunch Name..">
+      <button class="BA-RenameBunch">Rename Bunch</button>
+    </div>
+    <div id="FilterArea">
+      <table class="FA-TopRow">
+        <tr>
+          <td>
+            <button class="FA-CloseButton">Close</button>
+          </td>
+          <td>
+            <select class="FA-FilterDisplay" disabled="true">
+              <option>(Public or Private)</option>
+              <option>Public</option>
+              <option>Private</option>
+            </select>
+          </td>
+          <td>
+            <button class="FA-ResetButton">Reset</button>
+          </td>
+        </tr>
+      </table>
+      <div class="FA-FilterOptions">
+        <div>
+          <select class="FA-FilterBall"></select>
+        </div>
+        <div>
+          <select class="FA-FilterGender"></select>
+        </div>
+        <div>
+          <select class="FA-FilterShiny"></select>
+        </div>
+        <div>
+          <select class="FA-FilterMint"></select>
+        </div>
+        <div>
+          <select class="FA-FilterMisc"></select>
+        </div>
+        <div>
+          <select class="FA-FilterMark"></select>
+        </div>
+        <div>
+          <select class="FA-FilterLanguage"></select>
+        </div>
+        <div>
+          <select class="FA-FilterNature"></select>
+        </div>
+        <div>
+          <select class="FA-FilterAbility"></select>
+        </div>
+        <div>
+          <select class="FA-FilterStatus"></select>
+        </div>
+        <div>
+          <select class="FA-FilterEvent"></select>
+        </div>
+        <div>
+          <select class="FA-FilterMove"></select>
+        </div>
+        <div>
+          <select class="FA-FilterHowObtained"></select>
+        </div>
+        <div>
+          <select class="FA-FilterGameObtained"></select>
+        </div>
+        <div>
+          <select class="FA-FilterNote"></select>
+        </div>
+        <div>
+          <select class="FA-FilterProof"></select>
+        </div>
+        <div>
+          <input class="FA-FilterOT" type="text" maxlength="=12" placeholder="Filter OT..."></input>
+        </div>
+        <div>
+          <input class="FA-FilterID" type="number" maxlength="=6" placeholder="Filter ID..."></input>
+        </div>
+      </div>
+      <table class="FA-IVsEVs">
         <tr>
           <td>
             <text></text>
           </td>
           <td>
-            <text class="CA-IvEvText">HP</text>
+            <text class="FA-IvEvText">HP</text>
           </td>
           <td>
-            <text class="CA-IvEvText">Att</text>
+            <text class="FA-IvEvText">Att</text>
           </td>
           <td>
-            <text class="CA-IvEvText">Def</text>
+            <text class="FA-IvEvText">Def</text>
           </td>
           <td>
-            <text class="CA-IvEvText">Spa</text>
+            <text class="FA-IvEvText">Spa</text>
           </td>
           <td>
-            <text class="CA-IvEvText">Spd</text>
+            <text class="FA-IvEvText">Spd</text>
           </td>
           <td>
-            <text class="CA-IvEvText">Spe</text>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <text class="CA-IvText">IVs</text>
-          </td>
-          <td>
-            <select class="CA-IvHP"></select>
-          </td>
-          <td>
-            <select class="CA-IvAtt"></select>
-          </td>
-          <td>
-            <select class="CA-IvDef"></select>
-          </td>
-          <td>
-            <select class="CA-IvSpa"></select>
-          </td>
-          <td>
-            <select class="CA-IvSpd"></select>
-          </td>
-          <td>
-            <select class="CA-IvSpe"></select>
+            <text class="FA-IvEvText">Spe</text>
           </td>
         </tr>
         <tr>
           <td>
-            <text class="CA-EvText">EVs</text>
+            <text class="FA-IvText">IVs</text>
           </td>
           <td>
-            <select class="CA-EvHP"></select>
+            <select class="FA-IvHP"></select>
           </td>
           <td>
-            <select class="CA-EvAtt"></select>
+            <select class="FA-IvAtt"></select>
           </td>
           <td>
-            <select class="CA-EvDef"></select>
+            <select class="FA-IvDef"></select>
           </td>
           <td>
-            <select class="CA-EvSpa"></select>
+            <select class="FA-IvSpa"></select>
           </td>
           <td>
-            <select class="CA-EvSpd"></select>
+            <select class="FA-IvSpd"></select>
           </td>
           <td>
-            <select class="CA-EvSpe"></select>
+            <select class="FA-IvSpe"></select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <text class="FA-EvText">EVs</text>
+          </td>
+          <td>
+            <select class="FA-EvHP"></select>
+          </td>
+          <td>
+            <select class="FA-EvAtt"></select>
+          </td>
+          <td>
+            <select class="FA-EvDef"></select>
+          </td>
+          <td>
+            <select class="FA-EvSpa"></select>
+          </td>
+          <td>
+            <select class="FA-EvSpd"></select>
+          </td>
+          <td>
+            <select class="FA-EvSpe"></select>
           </td>
         </tr>
       </table>
+      <table class="FA-Availability">
+        <tr>
+          <td>
+            <text class="FA-Trade">Can Trade In</text>
+          </td>
+          <td>
+            <button class="FA-Gen6">Gen 6</button>
+          </td>
+          <td>
+            <button class="FA-Gen7">Gen 7</button>
+          </td>
+          <td>
+            <button class="FA-Gen8">Gen 8</button>
+          </td>
+          <td>
+            <button class="FA-Home">Home</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="NotificationArea">
+      <div class="SelectionHelp">
+        <text class="NA-SelectionText">
+          By default on Desktop (But disabled on Mobile devices), the Hover Info setting is On which allows you to see
+          all
+          information about a pokemon by hovering over it. To disable this, go to settings and turn it off.
+          <br> <br>
+          To interact with the viewing area to toggle proof, modify or delete for example, that Pokemon must first be
+          selected by clicking on it.
+          <br> <br>
+          To copy a Pokemon, click on the Move/Copy button and select the Pokemon twice. To move a Pokemon, click on
+          it
+          and then click on the Pokemon you want it to be in front of.</text>
+        <button class="NA-SelectionClose">Close</button>
+      </div>
+      <div class="ViewingAdditionalHelp">
+        <text class="NA-ViewingAdditionalText">
+          You can now save up to 6 viewings of Pokemon! To do this, once you are viewing a Pokemon you want to view
+          later
+          with ease, click on a + Button next to a Pokeball. That Pokeball will then turn to its normal colour to
+          indicate a viewing is stored there.
+          <br> <br>
+          To access this viewing at any time, just click on it. Clicking on the + Button next to it will replace it
+          with
+          the current viewing.</text>
+        <button class="NA-ViewingAdditionalClose">Close</button>
+      </div>
+      <div class="ViewingConfirmDelete">
+        <text class="NA-ConfirmDeleteText">Are you sure you want to delete this Pokemon?</text>
+        <table class="NA-ConfirmDeleteButtons">
+          <tr>
+            <td>
+              <button class="NA-ConfirmDeleteButton">Delete</button>
+            </td>
+            <td>
+              <button class="NA-CloseConfirmButton">Close</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="ViewingPokemonAdded">
+        <text class="NA-PokemonAddedText">Sucessfully added the Pokemon to your Tradesheet.</text>
+        <button class="NA-PokemonAddedClose">Close</button>
+      </div>
+      <div class="CreationPokemonError">
+        <text class="NA-CreationPokemonText">Cannot create Pokemon!
+          <br> <br>
+          If you are creating in Looking For:
+          Check the Pokemon is valid by seeing if the Pokemon's image appears.
+          <br> <br>
+          If you are looking to create this pokemon as a draft due to not filling in the necessary fields, please set
+          that
+          Pokemon to private.
+          <br> <br>
+          If you are creating in For Trade: Check the following:
+          <br> <br>
+          Check the Pokemon is valid by seeing if the Pokemon's image appears.
+          <br>
+          Check none of the Dropdown fields currently contain (Any) apart from the Shiny Dropdown.
+          <br>
+          Check the ID, OT InputFields are filled.
+          <br>
+          Check the Move1 field is filled.</text>
+        <button class="NA-CreationPokemonClose">Close</button>
+      </div>
+      <div class="BunchIconError">
+        <text class="NA-BunchIconText">Cannot Create/Delete Bunch or Rename!
+          <br> <br>
+          If you are deleting a Bunch:
+          <br>
+          Check the InputField is filled and does not contain All Pokemon or (No Bunch).
+          <br> <br>
+          If you are creating a new Bunch or updating the Icon of an existing one:
+          <br>
+          The same as above, and check Icon is valid and the image appears
+          <br> <br>
+          If you are renaming a Bunch:
+          <br>
+          Make sure that the InputField is filled and does not contain All Pokemon or (No Bunch) and that the new name
+          does not already exist.</text>
+        <button class="NA-BunchIconClose">Close</button>
+      </div>
+      <div class="BunchPokemonAdded">
+        <text class="NA-BunchAddedText">Bunch successfully Added/Updated.</text>
+        <button class="NA-BunchAddedClose">Close</button>
+      </div>
+      <div class="BunchPokemonRemoved">
+        <text class="NA-BunchRemovedText">Bunch successfully Removed.</text>
+        <button class="NA-BunchRemovedClose">Close</button>
+      </div>
+      <div class="TradeShopImported">
+        <text class="NA-ImportedSuccessText">TradeShop successfully imported, please check your collection. Any
+          problems,
+          please contact me on the discord.</text>
+        <button class="NA-ImportedSuccessClose">Close</button>
+      </div>
+      <div class="DeleteAllConfirm">
+        <text class="NA-DeleteAllText">Are you sure you want to delete ALL DATA? This cannot be undone. (This will not
+          delete your user account, only all Pokemon and Bunches) It is advised that an export be done first of your
+          current TradeShop as a precaution.</text>
+        <table class="NA-DeleteAllButtons">
+          <tr>
+            <td>
+              <button class="NA-ConfirmDeleteAll">Delete</button>
+            </td>
+            <td>
+              <button class="NA-CloseDeleteAll">Close</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="DeleteAllSuccess">
+        <text class="NA-SuccessDeleteAllText">Deleted data successfully.</text>
+        <button class="NA-SuccessDeleteAllClose">Close</button>
+      </div>
+      <div class="BunchesMoveHelp">
+        <text class="NA-BunchMoveHelpText">To move a Bunch, click on
+          it and then click on the Pokemon/Bunch you want it to be in front of. Note that you can only select Bunches
+          from
+          the
+          Trade Option linked to the Button.</text>
+        <button class="NA-BunchMoveHelpClose">Close</button>
+      </div>
+      <div class="TrackingInformation">
+        <text class="NA-TrackingHelpText">This area shows you both a legality list for ball combinations and what
+          combinations you currently have in your collection.
+          <br> <br>
+          To see the legality list, click on the "Legality List" Button. To see the ball combinations in your
+          collection,
+          you must be signed into your account, then click on the "My Collection" Button.
+          <br> <br>
+          The Colour Coding for the balls are:
+          <br> <br>
+          Normal Colour: Possible (Legality List)/You have (Your Collection)
+          <br>
+          Darkened Colour: Unavailable (Both Legality List and Your Collection)
+          <br>
+          Greyscale: Obtainable (Your Collection)
+        </text>
+        <button class="NA-TrackingHelpClose">Close</button>
+      </div>
+      <div class="LoadingData">
+        <img class="NA-LoadingImage" src="https://poketrades.org/Resources/Misc/Loading Icon.png"></img>
+        <!--<text class="NA-LoadingText">Loading Data</text>-->
+      </div>
+    </div>
+    <div id="TrackingArea">
+      <div id="TA-TopRow">
+        <table class="TA-TrackingButtons">
+          <tr>
+            <td>
+              <button class="TA-MainMenu">Main Menu</button>
+            </td>
+            <td>
+              <button class="TA-LegalityChecker">Legality List</button>
+            </td>
+            <td>
+              <button class="TA-UserCollection">My Collection</button>
+            </td>
+            <td>
+              <button class="TA-InfoButton">How It Works</button>
+            </td>
+          </tr>
+        </table>
+        <text class="TA-TitleText">Legality List/Pokedex Tracker</text>
+      </div>
+      <div id="TrackingSelection">
+        <div id="TrackingData">
 
-      <table class="DropdownAlign">
-        <tr>
-          <td>
-            <select class="CA-NatureDropdown"></select>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <select class="CA-AbilityDropdown"></select>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input class="CA-OT" type="text" maxlength="=12" placeholder="OT...">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input class="CA-ID" type="number" maxlength="6" placeholder="ID...">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <select class="CA-StatusDropdown"></select>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <select class="CA-EventDropdown"></select>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input class="CA-Proof" type="text" placeholder="Proof..">
-          </td>
-        </tr>
-      </table>
+        </div>
+      </div>
+      <div class="TA-PokemonDetails">
+        <div class="TA-RBY-Section">
+          <text class="TA-RBY-Text">RBY Availability</text>
+          <div class="TA-RBY-Balls">
 
-      <text class="CA-PokemonMoves">Pokemon Moves</text>
-      <div class="CA-NormalMoves">
-        <div>
-          <select class="CA-Move1"></select>
+          </div>
         </div>
-        <div>
-          <select class="CA-Move2"></select>
+        <div class="TA-GSC-Section">
+          <text class="TA-GSC-Text">GSC Availability</text>
+          <div class="TA-GSC-Balls">
+
+          </div>
         </div>
-        <div>
-          <select class="CA-Move3"></select>
-        </div>
-        <div>
-          <select class="CA-Move4"></select>
-        </div>
-      </div>
-      <text class="CA-TransferMoves">Egg/Transfer Moves</text>
-      <div class="CA-LegacyMoves">
-        <div>
-          <select class="CA-LegacyMove1"></select>
-        </div>
-        <div>
-          <select class="CA-LegacyMove2"></select>
-        </div>
-        <div>
-          <select class="CA-LegacyMove3"></select>
-        </div>
-        <div>
-          <select class="CA-LegacyMove4"></select>
+        <div class="TA-RSE-Section">
+          <text class="TA-RSE-Text">RSE Availability</text>
+          <div class="TA-RSE-Balls">
+
+          </div>
         </div>
       </div>
-      <textarea class="NoteField" placeholder="Type Note.." maxlength="150"
-        oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'></textarea>
-    </div>
-  </div>
-  <div id="BunchArea">
-    <button class="BA-CloseButton">Return to Main Area</button>
-    <text class="BA-SelectIconText">Select the Icon to display for your Bunch</text>
-    <div class="BA-IconOptions">
-      <div>
-        <select class="BA-GenderDropdown"></select>
-      </div>
-      <div>
-        <select class="BA-ShinyDropdown"></select>
-      </div>
-    </div>
-    <img class="BA-IconImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
-    <select class="BA-IconDropdown"></select>
-    <text class="BA-TrioBunchText">Type in the Bunch to Add, Update, Remove</text>
-    <input class="BA-BunchInput" type="text" maxlength="30" placeholder="Type Bunch to Add, Update or Remove..">
-    <div class="BA-BunchOptions">
-      <div>
-        <button class="BA-AddBunch">Add/Update Bunch</button>
-      </div>
-      <div>
-        <button class="BA-RemoveBunch">Remove Bunch</button>
-      </div>
-    </div>
-    <text class="BA-RenameText">This is the area to Rename Bunches</text>
-    <select class="BA-BunchRename"></select>
-    <input class="BA-BunchNewName" type="text" maxlength="30" placeholder="Type New Bunch Name..">
-    <button class="BA-RenameBunch">Rename Bunch</button>
-  </div>
-  <div id="FilterArea">
-    <table class="FA-TopRow">
-      <tr>
-        <td>
-          <button class="FA-CloseButton">Close</button>
-        </td>
-        <td>
-          <select class="FA-FilterDisplay" disabled="true">
-            <option>(Public or Private)</option>
-            <option>Public</option>
-            <option>Private</option>
-          </select>
-        </td>
-        <td>
-          <button class="FA-ResetButton">Reset</button>
-        </td>
-      </tr>
-    </table>
-    <div class="FA-FilterOptions">
-      <div>
-        <select class="FA-FilterBall"></select>
-      </div>
-      <div>
-        <select class="FA-FilterGender"></select>
-      </div>
-      <div>
-        <select class="FA-FilterShiny"></select>
-      </div>
-      <div>
-        <select class="FA-FilterMint"></select>
-      </div>
-      <div>
-        <select class="FA-FilterMisc"></select>
-      </div>
-      <div>
-        <select class="FA-FilterMark"></select>
-      </div>
-      <div>
-        <select class="FA-FilterLanguage"></select>
-      </div>
-      <div>
-        <select class="FA-FilterNature"></select>
-      </div>
-      <div>
-        <select class="FA-FilterAbility"></select>
-      </div>
-      <div>
-        <select class="FA-FilterStatus"></select>
-      </div>
-      <div>
-        <select class="FA-FilterEvent"></select>
-      </div>
-      <div>
-        <select class="FA-FilterMove"></select>
-      </div>
-      <div>
-        <select class="FA-FilterHowObtained"></select>
-      </div>
-      <div>
-        <select class="FA-FilterGameObtained"></select>
-      </div>
-      <div>
-        <select class="FA-FilterNote"></select>
-      </div>
-      <div>
-        <select class="FA-FilterProof"></select>
-      </div>
-      <div>
-        <input class="FA-FilterOT" type="text" maxlength="=12" placeholder="Filter OT..."></input>
-      </div>
-      <div>
-        <input class="FA-FilterID" type="number" maxlength="=6" placeholder="Filter ID..."></input>
-      </div>
-    </div>
-    <table class="FA-IVsEVs">
-      <tr>
-        <td>
-          <text></text>
-        </td>
-        <td>
-          <text class="FA-IvEvText">HP</text>
-        </td>
-        <td>
-          <text class="FA-IvEvText">Att</text>
-        </td>
-        <td>
-          <text class="FA-IvEvText">Def</text>
-        </td>
-        <td>
-          <text class="FA-IvEvText">Spa</text>
-        </td>
-        <td>
-          <text class="FA-IvEvText">Spd</text>
-        </td>
-        <td>
-          <text class="FA-IvEvText">Spe</text>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <text class="FA-IvText">IVs</text>
-        </td>
-        <td>
-          <select class="FA-IvHP"></select>
-        </td>
-        <td>
-          <select class="FA-IvAtt"></select>
-        </td>
-        <td>
-          <select class="FA-IvDef"></select>
-        </td>
-        <td>
-          <select class="FA-IvSpa"></select>
-        </td>
-        <td>
-          <select class="FA-IvSpd"></select>
-        </td>
-        <td>
-          <select class="FA-IvSpe"></select>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <text class="FA-EvText">EVs</text>
-        </td>
-        <td>
-          <select class="FA-EvHP"></select>
-        </td>
-        <td>
-          <select class="FA-EvAtt"></select>
-        </td>
-        <td>
-          <select class="FA-EvDef"></select>
-        </td>
-        <td>
-          <select class="FA-EvSpa"></select>
-        </td>
-        <td>
-          <select class="FA-EvSpd"></select>
-        </td>
-        <td>
-          <select class="FA-EvSpe"></select>
-        </td>
-      </tr>
-    </table>
-    <table class="FA-Availability">
-      <tr>
-        <td>
-          <text class="FA-Trade">Can Trade In</text>
-        </td>
-        <td>
-          <button class="FA-Gen6">Gen 6</button>
-        </td>
-        <td>
-          <button class="FA-Gen7">Gen 7</button>
-        </td>
-        <td>
-          <button class="FA-Gen8">Gen 8</button>
-        </td>
-        <td>
-          <button class="FA-Home">Home</button>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div id="NotificationArea">
-    <div class="SelectionHelp">
-      <text class="NA-SelectionText">
-        By default on Desktop (But disabled on Mobile devices), the Hover Info setting is On which allows you to see all
-        information about a pokemon by hovering over it. To disable this, go to settings and turn it off.
-        <br> <br>
-        To interact with the viewing area to toggle proof, modify or delete for example, that Pokemon must first be
-        selected by clicking on it.
-        <br> <br>
-        To copy a Pokemon, click on the Move/Copy button and select the Pokemon twice. To move a Pokemon, click on
-        it
-        and then click on the Pokemon you want it to be in front of.</text>
-      <button class="NA-SelectionClose">Close</button>
-    </div>
-    <div class="ViewingAdditionalHelp">
-      <text class="NA-ViewingAdditionalText">
-        You can now save up to 6 viewings of Pokemon! To do this, once you are viewing a Pokemon you want to view
-        later
-        with ease, click on a + Button next to a Pokeball. That Pokeball will then turn to its normal colour to
-        indicate a viewing is stored there.
-        <br> <br>
-        To access this viewing at any time, just click on it. Clicking on the + Button next to it will replace it
-        with
-        the current viewing.</text>
-      <button class="NA-ViewingAdditionalClose">Close</button>
-    </div>
-    <div class="ViewingConfirmDelete">
-      <text class="NA-ConfirmDeleteText">Are you sure you want to delete this Pokemon?</text>
-      <table class="NA-ConfirmDeleteButtons">
-        <tr>
-          <td>
-            <button class="NA-ConfirmDeleteButton">Delete</button>
-          </td>
-          <td>
-            <button class="NA-CloseConfirmButton">Close</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div class="ViewingPokemonAdded">
-      <text class="NA-PokemonAddedText">Sucessfully added the Pokemon to your Tradesheet.</text>
-      <button class="NA-PokemonAddedClose">Close</button>
-    </div>
-    <div class="CreationPokemonError">
-      <text class="NA-CreationPokemonText">Cannot create Pokemon!
-        <br> <br>
-        If you are creating in Looking For:
-        Check the Pokemon is valid by seeing if the Pokemon's image appears.
-        <br> <br>
-        If you are looking to create this pokemon as a draft due to not filling in the necessary fields, please set that
-        Pokemon to private.
-        <br> <br>
-        If you are creating in For Trade: Check the following:
-        <br> <br>
-        Check the Pokemon is valid by seeing if the Pokemon's image appears.
-        <br>
-        Check none of the Dropdown fields currently contain (Any) apart from the Shiny Dropdown.
-        <br>
-        Check the ID, OT InputFields are filled.
-        <br>
-        Check the Move1 field is filled.</text>
-      <button class="NA-CreationPokemonClose">Close</button>
-    </div>
-    <div class="BunchIconError">
-      <text class="NA-BunchIconText">Cannot Create/Delete Bunch or Rename!
-        <br> <br>
-        If you are deleting a Bunch:
-        <br>
-        Check the InputField is filled and does not contain All Pokemon or (No Bunch).
-        <br> <br>
-        If you are creating a new Bunch or updating the Icon of an existing one:
-        <br>
-        The same as above, and check Icon is valid and the image appears
-        <br> <br>
-        If you are renaming a Bunch:
-        <br>
-        Make sure that the InputField is filled and does not contain All Pokemon or (No Bunch) and that the new name
-        does not already exist.</text>
-      <button class="NA-BunchIconClose">Close</button>
-    </div>
-    <div class="BunchPokemonAdded">
-      <text class="NA-BunchAddedText">Bunch successfully Added/Updated.</text>
-      <button class="NA-BunchAddedClose">Close</button>
-    </div>
-    <div class="BunchPokemonRemoved">
-      <text class="NA-BunchRemovedText">Bunch successfully Removed.</text>
-      <button class="NA-BunchRemovedClose">Close</button>
-    </div>
-    <div class="TradeShopImported">
-      <text class="NA-ImportedSuccessText">TradeShop successfully imported, please check your collection. Any
-        problems,
-        please contact me on the discord.</text>
-      <button class="NA-ImportedSuccessClose">Close</button>
-    </div>
-    <div class="DeleteAllConfirm">
-      <text class="NA-DeleteAllText">Are you sure you want to delete ALL DATA? This cannot be undone. (This will not
-        delete your user account, only all Pokemon and Bunches) It is advised that an export be done first of your
-        current TradeShop as a precaution.</text>
-      <table class="NA-DeleteAllButtons">
-        <tr>
-          <td>
-            <button class="NA-ConfirmDeleteAll">Delete</button>
-          </td>
-          <td>
-            <button class="NA-CloseDeleteAll">Close</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div class="DeleteAllSuccess">
-      <text class="NA-SuccessDeleteAllText">Deleted data successfully.</text>
-      <button class="NA-SuccessDeleteAllClose">Close</button>
-    </div>
-    <div class="BunchesMoveHelp">
-      <text class="NA-BunchMoveHelpText">To move a Bunch, click on
-        it and then click on the Pokemon/Bunch you want it to be in front of. Note that you can only select Bunches from
-        the
-        Trade Option linked to the Button.</text>
-      <button class="NA-BunchMoveHelpClose">Close</button>
-    </div>
-    <div class="LoadingData">
-      <img class="NA-LoadingImage" src="https://poketrades.org/Resources/Misc/Loading Icon.png"></img>
-      <!--<text class="NA-LoadingText">Loading Data</text>-->
-    </div>
-  </div>
-  <div id="TutorialArea">
-    <div class="TA-TutorialMenu">
-      <text class="TA-TitleText">Tutorials</text>
-      <table class="TA-TutorialSection">
-        <tr>
-          <td>
-            <text class="TA-General">Searching TradeShops, Custom Message, Preview Icons, Additional Help</text>
-          </td>
-        </tr>
-        <td>
-          <text class="TA-Account">Creating an Account, Signing In, Changing Username and Password</text>
-        </td>
-        </tr>
-        <tr>
-          <td>
-            <text class="TA-Selection">Bunches, Viewing Pokemon, Re-ordering Bunches/Pokemon, Copying Pokemon</text>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <text class="TA-Viewing">Viewing Details, Modifying/Deleting Pokemon, Adding Pokemon from other
-              TradeShops</text>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <text class="TA-Creation">Creating Pokemon, Pokemon Validation, Private/Public Pokemon</text>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <text class="TA-Bunch">Creating Bunches/Icons, Updating/Removing Bunches, Renaming Bunches</text>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <text class="TA-Filter">Filtering Options, Private/Public Display Option, Filter Indication</text>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <text class="TA-MainImport">Importing your TradeShop from Google Sheets</text>
-          </td>
-        </tr>
-        <tr>
-        <tr>
-          <td>
-            <text class="TA-ImportExport">Importing TradeShops, Exporting TradeShops, Deleting All Data</text>
-          </td>
-        </tr>
-        <tr>
-      </table>
-      <button class="TA-MainClose">Close</button>
+      <script src="js/mainArea.js?v=<?=time();?"></scriptsrc>"</script>
+      <script src="js/panelArea.js?v=<?=time();?"></scriptsrc>"</script>
+      <script src="js/loginArea.js?v=<?=time();?"></scriptsrc>"</script>
+      <script src="js/selectionArea.js?v=<?=time();?"></scriptsrc>"</script>
+      <script src="js/listHolder.js?v=<?=time();?"></scriptsrc>"</script>
+      <script src="js/viewingArea.js?v=<?=time();?"></scriptsrc>"</script>
+      <script src="js/creationArea.js?v=<?=time();?"></scriptsrc>"</script>
+      <script src="js/bunchArea.js?v=<?=time();?"></scriptsrc>"</script>
+      <script src="js/filterArea.js?v=<?=time();?"></scriptsrc>"</script>
+      <script src="js/notificationArea.js?v=<?=time();?"></scriptsrc>"</script>
+      <script src="js/trackingArea.js?v=<?=time();?"></scriptsrc>"</script>
+      <script src="js/router.js?v=<?=time();?"></scriptsrc>"</script>
     </div>
 
-    <div class="TA-GeneralSection">
-      <text class="TA-TitleText">Searching TradeShops, Custom Message, Preview Icons, Additional Help</text>
-      <text class="TA-SectionText">To search a TradeShop, first type in the User ID of the TradeShop you want to
-        view.
-        You can then click on either the For Trade Image (Corless) or the Looking For Image (Aarune) to view the
-        respective areas. If you are signed in, then your User ID will be available right underneath the InputField.
-        <br> <br>
-        If you are signed in, when you type in your User ID in the InputField, you will be able to add a custom
-        message
-        by modifying the text area below. To save any changes to it, just click outside of the text area.
-        <br><br>
-        Preview Settings now exist to allow the user to see certain information such as Ball or IVs without having
-        to
-        click on the Pokemon. This can be accessed by clicking on the Klang Icon and going to Preview Settings where
-        they can then be toggled. By default, Ball and IV previews are on. The colour coding for the IVs are:
-        <br><br>
-        31 IV: Blue
-        <br>
-        30 IV: Green
-        <br>
-        0 IV: Red
-        <br>
-        1 IV: Pink
-        <br>
-        HT: Yellow
-        <br>
-        Anything else: Grey
-        <br> <br>
-        Should you need more help outside of these tutorials or if you just want to talk about PokeTrades or other
-        things Pokemon,
-        you can head over to the discord link in the main menu.
-      </text>
-      <button class="TA-SectionClose">Close</button>
-    </div>
-    <div class="TA-AccountSection">
-      <text class="TA-TitleText">Creating an Account, Signing In, Changing Username and Password</text>
-      <text class="TA-SectionText">To register an account, first click on the Klang Icon in the Main Menu. Then
-        click
-        the "Register" Button. Currently, usernames are limited to 15 characters and Passwords to 50 characters.
-        <br><br>
-        After Signing in, You can log out or change your Username or Password in the same area. To change your login
-        details. Click on the "Change Username or Password Button". Keep in mind that you cannot change both
-        Username
-        AND Password at the SAME time. This has to be done individually and duplicate Usernames are not allowed.
-        <br><br>
-        Only when signed in, are more options available to you such as seeing both Public and Private Pokemon on
-        your
-        TradeShops, being able to create Pokemon and having the option to modify them.
-        <br><br>
-        Once signed in, your User ID will be displayed in the Main Menu for ease of access and to share with others.
-      </text>
-      <button class="TA-SectionClose">Close</button>
-    </div>
-    <div class="TA-SelectionSection">
-      <text class="TA-TitleText">Bunches, Viewing Pokemon, Re-ordering Bunches/Pokemon, Copying Pokemon</text>
-      <text class="TA-SectionText">Bunches are essentially folders or tabs that contain a group of Pokemon with a
-        small description. Clicking on a Bunch will open the relevant Pokemon inside. To view a Pokemon, click on
-        one
-        and
-        you will be taken to a viewing area which shows the Pokemon inside.
-        <br><br>
-        Bunches and Pokemon can be re-ordered. To do this, click on the Move Button and then Click on a
-        Bunch/Pokemon
-        and you should see all other Bunches/Pokemon grey out, then just click on another Bunch/Pokemon you want it
-        to
-        be in front of. Keep in mind that the "All Pokemon" bunch cannot be re-ordered.
-        <br><br>
-        Pokemon can also be copied by clicking on themselves instead of another Pokemon and the new copy will appear
-        after the original. If you have clicked on a Bunch/Pokemon but do not want to copy or move, you can cancel
-        this
-        action by pressing the Move Button now which will show cancel instead. Remember that to re-order or copy
-        Bunches/Pokemon, you must be signed into your account.
-      </text>
-      <button class="TA-SectionClose">Close</button>
-    </div>
-    <div class="TA-ViewingSection">
-      <text class="TA-TitleText">Viewing Details, Modifying/Deleting Pokemon, Adding Pokemon from other
-        TradeShops</text>
-      <text class="TA-SectionText">After Clicking on a Pokemon to view, this area will open up allowing you to see
-        details about the Pokemon. Should information be uneccessary to show, it will not be displayed. An example
-        of
-        this would be if the Pokemon had no Nickname, then the Nickname text would be hidden.
-        <br><br>
-        The list of pokemon seen at the bottom are the Pokemon that the User is currently Looking For. If you are
-        signed in and have a pokemon they want, then that Pokemon will not be greyed out, to show you have something
-        preferred. Clicking on those Pokemon will bring up their details.
-        <br><br>
-        If this is your TradeShop, then you are able to click the "Modify" and "Delete" Buttons. allowing you to
-        modify
-        and
-        delete your pokemon accordingly. If this is not your TradeShop but you are signed in, you can use the "Add"
-        Button to add a copy of the Pokemon you are currently viewing to your TradeShop.
-      </text>
-      <button class="TA-SectionClose">Close</button>
-    </div>
-    <div class="TA-CreationSection">
-      <text class="TA-TitleText">Creating Pokemon, Pokemon Validation, Private/Public Pokemon</text>
-      <text class="TA-SectionText">Clicking on the "Create" Button in the Selection Area or the "Modify" Button in
-        the
-        Viewing Area will take you to the Creation Area. If accessed via the "Modify" Button, the details will be
-        set to
-        what the Pokemon currently has.
-        <br><br>
-        Via Looking For, there is more freedom in what can be selected such as Any Ball or Any Gender. For Trade has
-        less freedom as the User will be detailing what the Pokemon has rather than what they want. Also a Pokemon
-        created as Private is visible only to the User when they are signed in.
-      </text>
-      <button class="TA-SectionClose">Close</button>
-    </div>
-    <div class="TA-BunchSection">
-      <text class="TA-TitleText">Creating Bunches/Icons, Updating/Removing Bunches, Renaming Bunches</text>
-      <text class="TA-SectionText">Currently, to create a Bunch, you must be signed in and in the Creation Area for
-        creating a Pokemon. Then press the "Edit Bunches" Button to go to the Bunch Area.
-        <br><br>
-        To create a Bunch, an Icon must first be chosen. In addition to having all Pokemon available as Icons, forms
-        that can't usually be chosen for a Pokemon such as Megas and GMax, all Pokeballs and the Egg Icon are
-        available.
-        After selecting the Icon, type a Bunch name into the InputField below and hit the "Add/Update Button" to add
-        the
-        new Bunch name. To delete a Bunch name, simply type in the name and hit the "Remove Bunch" Button to remove.
-        Icon exclusives like the ones above do not need a gender set.
-        <br><br>
-        To rename a Bunch and give all the Pokemon with the old Bunch name the new one, type in the new name on the
-        first InputField on the side. Then select the Bunch name to replace and select the "Rename Bunch" Button.
-      </text>
-      <button class="TA-SectionClose">Close</button>
-    </div>
-    <div class="TA-FilterSection">
-      <text class="TA-TitleText">Filtering Options, Private/Public Display Option, Filter Indication</text>
-      <text class="TA-SectionText">To filter a Pokemon by name, you can simply type in the Pokemon name in the
-        Selection
-        Area. However, for advanced filtering, click on the "Filters" Button in the Selection Area to open up the
-        Filter
-        Area.
-        <br><br>
-        In this area you are able to filter Pokemon in a multitude of ways and all of these filtering options can be
-        used at once. However, only the Owner of the TradeShop can use the filter to choose between Private and
-        Public
-        Pokemon. Please note that if an option starts with an "(Any)" in brackets, then that filter option will act
-        like
-        it has not been given any input and so will not be involved in filtering the Pokemon. The same also applies
-        to X
-        for IVs/EVs
-        <br><br>
-        If one or more of the advanced filters are in use, then the "Filters" Button will turn purple to let you
-        know
-        that the Pokemon are currently being filtered.
-      </text>
-      <button class="TA-SectionClose">Close</button>
-    </div>
-    <div class="TA-MainImportSection">
-      <text class="TA-TitleText">Importing your TradeShop from Google Sheets.</text>
-      <text class="TA-SectionText">To get started, you will first need to sign into your account, then in the Login
-        Area, you should see the option to import your TradeShop. Please make sure it is exported from Google
-        Sheets as
-        a "CSV" file beforehand. When importing into PokeTrades. This can be done with or without Headings, also
-        note
-        that when importing, natures can be simply the name without anything after as PokeTrades will format
-        accordingly.
-        <br><br>
-        Please note that the order MUST BE CORRECT when importing, if you do not know what this order is, then
-        please
-        first export your TradeShop with the "Export" Button, as when an account is first created, there are
-        initial
-        creation mons, which along with the Headings will show what the order is.
-        <br><br>
-        There are also two more important things to keep in mind. The first is that if you give the Pokemon in the
-        TradeShop a bunch name you have not yet created, you must create the bunch name to see the pokemon in that
-        bunch area. The trade_option Column MUST BE SET TO "For Trade" OR "Looking For", IF IT IS NONE OF THESE, YOU
-        WILL NOT BE ABLE TO SEE OR MODIFY IT AT ALL!
-      </text>
-      <button class="TA-SectionClose">Close</button>
-    </div>
-    <div class="TA-ImportExportSection">
-      <text class="TA-TitleText">Import Problems, Exporting TradeShops, Deleting All Data.</text>
-      <text class="TA-SectionText">The bulk of information regarding Importing has been covered in the Main Area, so
-        that should be read first. If done so, there is a bit more information here to solve invalid Pokemon. If a
-        Pokemon shows up with a Fennel Icon instead of a Pokemon Icon or fails to show up at all, then that
-        Pokemon's
-        image either can't be found or its an invalid combination. An example of this would be "Alcremie". While
-        this is
-        a Pokemon, Alcremie has many different forms, so the current form must be typed in to bring up the right
-        Image.
-        Click on the Pokemon and
-        then on the "Modify" Button to enter the Creation Area and make the necessary changes and then click
-        "Create/Update" to save the changes. To Export, Simply sign in, and under the Login Area, there is an
-        "Export"
-        Button that can be clicked on for exporting as a CSV.
-        <br><br>
-        Should you wish to delete all data in the event of failing an import or another reason, then in the Login
-        Area,
-        there is a button that allows you to do so. Keep in mind that this will not delete your account. Rather, it
-        will
-        delete all Pokemon from your TradeShop. This action cannot be undone, so it is advised that an export be
-        done
-        first as a precaution.
-      </text>
-      <button class="TA-SectionClose">Close</button>
-    </div>
-  </div>
-  <script src="JavaScript/mainArea.js?v=<?=time();?"></scriptsrc>"</script>
-  <script src="JavaScript/panelArea.js?v=<?=time();?"></scriptsrc>"</script>
-  <script src="JavaScript/loginArea.js?v=<?=time();?"></scriptsrc>"</script>
-  <script src="JavaScript/selectionArea.js?v=<?=time();?"></scriptsrc>"</script>
-  <script src="JavaScript/listHolder.js?v=<?=time();?"></scriptsrc>"</script>
-  <script src="JavaScript/viewingArea.js?v=<?=time();?"></scriptsrc>"</script>
-  <script src="JavaScript/creationArea.js?v=<?=time();?"></scriptsrc>"</script>
-  <script src="JavaScript/bunchArea.js?v=<?=time();?"></scriptsrc>"</script>
-  <script src="JavaScript/filterArea.js?v=<?=time();?"></scriptsrc>"</script>
-  <script src="JavaScript/notificationArea.js?v=<?=time();?"></scriptsrc>"</script>
-  <script src="JavaScript/tutorialArea.js?v=<?=time();?"></scriptsrc>"</script>
 </body>
 
 </html>

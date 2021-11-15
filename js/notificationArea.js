@@ -14,7 +14,7 @@ $('.NA-CloseConfirmButton').click(function () {
 });
 
 $('.NA-ConfirmDeleteButton').click(function () {
-    $.post("https://poketrades.org/PHP/delete_selection.php", { token: token, creationID: viewingDetails.creation_id, tradeOption: tradeOption });
+    $.post(url + "/PHP/delete_selection.php", { token: token, creationID: viewingDetails.creation_id, tradeOption: tradeOption });
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".ViewingConfirmDelete").style.display = "none";
     document.querySelector(".VA-CloseButton").click();
@@ -54,7 +54,7 @@ $('.NA-ImportedSuccessClose').click(function () {
 
 $('.NA-ConfirmDeleteAll').click(function () {
     document.querySelector(".DeleteAllConfirm").style.display = "none";
-    $.post("https://poketrades.org/PHP/delete_all_data.php", { token: token });
+    $.post(url + "/PHP/delete_all_data.php", { token: token });
     document.querySelector(".DeleteAllSuccess").style.display = "block";
 
 });
@@ -72,6 +72,11 @@ $('.NA-SuccessDeleteAllClose').click(function () {
 $('.NA-BunchMoveHelpClose').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".BunchesMoveHelp").style.display = "none";
+});
+
+$('.NA-TrackingHelpClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".TrackingInformation").style.display = "none";
 });
 
 function ShowLoading() {

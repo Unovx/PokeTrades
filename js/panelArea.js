@@ -1,5 +1,5 @@
 //Hotfix for now.
-document.querySelector('#PanelArea').style.display = "block";
+//document.querySelector('#PanelArea').style.display = "block";
 customMessage = document.querySelector(".PA-Message");
 let lfBunches = 0;
 let ftBunches = 0;
@@ -200,12 +200,17 @@ $(".PA-Searchbar").keyup(function () {
     //$(".PA-LFAvailableBunchesText").remove();
     searchInfoText = (document.querySelector(".PA-Searchbar").value);
     searchData = null;
-    $.post("https://poketrades.org/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
-    $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-    $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
-    $.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchInfoText, tradeOption: "Looking For" }, MatchMaking);
+    $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
+    $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+    $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
+    $.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchInfoText, tradeOption: "Looking For" }, MatchMaking);
 
     localStorage.setItem('searchID', searchInfoText);
+    if (document.querySelector(".PA-Searchbar").value != "") {
+        window.location.hash = "users/" + searchInfoText;
+    } else {
+        RemoveHash();
+    }
 });
 
 $('.PA-BunchHelp').click(function () {
@@ -214,7 +219,7 @@ $('.PA-BunchHelp').click(function () {
 });
 
 $('.PA-ForTradeBunchEdit').click(function () {
-    $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
+    $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
     document.querySelector("#BunchArea").style.display = "block";
     document.querySelector("#PanelArea").style.display = "none";
 });
@@ -248,7 +253,7 @@ $('.PA-ForTradeBunchMove').click(function () {
 });
 
 $('.PA-LookingForBunchEdit').click(function () {
-    $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: "Looking For" }, UserBunches);
+    $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "Looking For" }, UserBunches);
     document.querySelector("#BunchArea").style.display = "block";
     document.querySelector("#PanelArea").style.display = "none";
 });
@@ -604,7 +609,7 @@ function ModifyCheckViewing(data) {
 }
 
 function UpdatePersonalText() {
-    $.post("https://poketrades.org/PHP/update_text.php", { token: token, personalText: customMessage.value });
+    $.post(url + "/PHP/update_text.php", { token: token, personalText: customMessage.value });
     searchData.personal_text = customMessage.value;
 }
 
@@ -666,9 +671,9 @@ function BunchMoveFinished() {
 
 function PostGenerateSelectionData() {
 
-    $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: "For Trade", showEmpty: showEmpty }, ForTradeData);
+    $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: "For Trade", showEmpty: showEmpty }, ForTradeData);
 
-    $.post("https://poketrades.org/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: "Looking For", showEmpty: showEmpty }, LookingForData);
+    $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: "Looking For", showEmpty: showEmpty }, LookingForData);
 
 }
 
@@ -707,7 +712,7 @@ function ForTradeData(data) {
 
     theImage = document.createElement("IMG");
     theImage.setAttribute("id", "GeneratedBunches All");
-    theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Arceus.png");
+    theImage.setAttribute("src", url + "/Resources/Home/Arceus.png");
     theImage.setAttribute("min-width", "100");
     theImage.setAttribute("height", "100");
     newDiv.appendChild(theImage);
@@ -734,8 +739,8 @@ function ForTradeData(data) {
             tradeOption = "For Trade";
             ShowLoading();
             PostGenerateSelection();
-            $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-            //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
+            $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+            //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
         }
     }
     //Using Jquery to parse the data and getting the length.
@@ -773,15 +778,15 @@ function ForTradeData(data) {
             //Setting the Icon
             if (iconExclusivesArray.includes(bunchArray.icon)) {
                 if (allBallsArray.includes(bunchArray.icon) || bunchArray.icon == "Egg") {
-                    theImage.setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Small Icons/" + bunchArray.icon + ".png");
+                    theImage.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/" + bunchArray.icon + ".png");
                 }
                 else if (bunchArray.icon.includes("HP")) {
-                    theImage.setAttribute("src", "https://poketrades.org/Resources/Misc/" + bunchArray.icon + ".png");
+                    theImage.setAttribute("src", url + "/Resources/Misc/" + bunchArray.icon + ".png");
                 } else {
                     if (bunchArray.shiny == "Shiny") {
-                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Shiny" + ".png");
+                        theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Shiny" + ".png");
                     } else {
-                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + ".png");
+                        theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + ".png");
                     }
                 }
             } else {
@@ -789,53 +794,53 @@ function ForTradeData(data) {
                     if (bunchArray.gender == "Male" || bunchArray.gender == "(Any Gender)") {
                         console.log("WOOOORK")
                         if (bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Male.png");
+                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Male.png");
                         }
                         else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Male-Shiny.png");
+                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Male-Shiny.png");
                         }
                     }
                     else if (bunchArray.gender == "Female") {
                         if (bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Female.png");
+                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Female.png");
                         }
                         else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Female-Shiny.png");
+                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Female-Shiny.png");
                         }
                     }
                 } else {
                     if (bunchArray.shiny.includes("Normal")) {
-                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + ".png")
+                        theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + ".png")
                     }
                     else {
                         if (shinyExceptionArray.includes(bunchArray.icon)) {
                             if (bunchArray.icon.includes("Minior")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Minior-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Minior-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Strawberry")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Strawberry-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Strawberry-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Berry")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Berry-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Berry-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Love")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Love-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Love-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Star")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Star-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Star-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Clover")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Clover-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Clover-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Flower")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Flower-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Flower-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Ribbon")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Ribbon-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Ribbon-Shiny.png");
                             }
                         }
                         else {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Shiny.png")
+                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Shiny.png")
                         }
                     }
                 }
@@ -857,7 +862,7 @@ function ForTradeData(data) {
             newDiv.onclick = function () {
                 if (currentlyRearranging != true) {
                     tradeOption = "For Trade";
-                    $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
+                    $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
                     bunchDetails = ftData["Rows"][i];
                     console.log(bunchDetails);
                     let bunch = bunchDetails.name;
@@ -870,8 +875,8 @@ function ForTradeData(data) {
                     $("#GridContainer").remove();
                     ShowLoading();
                     PostGenerateSelection();
-                    $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-                    //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunch }, GenerateSelection);
+                    $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+                    //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunch }, GenerateSelection);
                 } else {
                     if (oldPosition == "") {
                         oldPosition = ftData["Rows"][i].position;
@@ -886,7 +891,7 @@ function ForTradeData(data) {
                         console.log(newPosition);
                         tradeOption = "For Trade";
                         if (oldPosition != newPosition) {
-                            $.post("https://poketrades.org/PHP/move_bunch.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveBunch);
+                            $.post(url + "/PHP/move_bunch.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveBunch);
                             //$(".PA-FTAvailableBunchesText").remove();
                         } else {
                             document.querySelector(".PA-ForTradeBunchMove").innerHTML = "Move For Trade Bunches";
@@ -934,7 +939,7 @@ function LookingForData(data) {
 
     theImage = document.createElement("IMG");
     theImage.setAttribute("id", "GeneratedBunches All");
-    theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Arceus.png");
+    theImage.setAttribute("src", url + "/Resources/Home/Arceus.png");
     theImage.setAttribute("min-width", "100");
     theImage.setAttribute("height", "100");
     newDiv.appendChild(theImage);
@@ -954,8 +959,8 @@ function LookingForData(data) {
             $("#GridContainer").remove();
             ShowLoading();
             PostGenerateSelection();
-            $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-            //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
+            $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+            //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
         }
     }
     //Using Jquery to parse the data and getting the length.
@@ -993,15 +998,15 @@ function LookingForData(data) {
             //Setting the Icon
             if (iconExclusivesArray.includes(bunchArray.icon)) {
                 if (allBallsArray.includes(bunchArray.icon) || bunchArray.icon == "Egg") {
-                    theImage.setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Small Icons/" + bunchArray.icon + ".png");
+                    theImage.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/" + bunchArray.icon + ".png");
                 }
                 else if (bunchArray.icon.includes("HP")) {
-                    theImage.setAttribute("src", "https://poketrades.org/Resources/Misc/" + bunchArray.icon + ".png");
+                    theImage.setAttribute("src", url + "/Resources/Misc/" + bunchArray.icon + ".png");
                 } else {
                     if (bunchArray.shiny == "Shiny") {
-                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Shiny" + ".png");
+                        theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Shiny" + ".png");
                     } else {
-                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + ".png");
+                        theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + ".png");
                     }
                 }
             } else {
@@ -1009,53 +1014,53 @@ function LookingForData(data) {
                     if (bunchArray.gender == "Male" || bunchArray.gender == "(Any Gender)") {
                         console.log("WOOOORK")
                         if (bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Male.png");
+                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Male.png");
                         }
                         else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Male-Shiny.png");
+                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Male-Shiny.png");
                         }
                     }
                     else if (bunchArray.gender == "Female") {
                         if (bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Female.png");
+                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Female.png");
                         }
                         else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Female-Shiny.png");
+                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Female-Shiny.png");
                         }
                     }
                 } else {
                     if (bunchArray.shiny.includes("Normal")) {
-                        theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + ".png")
+                        theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + ".png")
                     }
                     else {
                         if (shinyExceptionArray.includes(bunchArray.icon)) {
                             if (bunchArray.icon.includes("Minior")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Minior-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Minior-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Strawberry")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Strawberry-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Strawberry-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Berry")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Berry-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Berry-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Love")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Love-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Love-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Star")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Star-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Star-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Clover")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Clover-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Clover-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Flower")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Flower-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Flower-Shiny.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Ribbon")) {
-                                theImage.setAttribute("src", "https://poketrades.org/Resources/Home/Alcremie-Ribbon-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Ribbon-Shiny.png");
                             }
                         }
                         else {
-                            theImage.setAttribute("src", "https://poketrades.org/Resources/Home/" + bunchArray.icon + "-Shiny.png")
+                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Shiny.png")
                         }
                     }
                 }
@@ -1076,7 +1081,7 @@ function LookingForData(data) {
             //Creating an Onclick for the Div to open the relevant bunch
             newDiv.onclick = function () {
                 tradeOption = "Looking For";
-                $.post("https://poketrades.org/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
+                $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
                 if (currentlyRearranging != true) {
                     bunchDetails = lfData["Rows"][i];
                     console.log(bunchDetails);
@@ -1088,8 +1093,8 @@ function LookingForData(data) {
                     document.querySelector("#SelectionArea").style.display = "grid";
                     ShowLoading();
                     PostGenerateSelection();
-                    $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-                    //$.post("https://poketrades.org/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunch }, GenerateSelection);
+                    $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+                    //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunch }, GenerateSelection);
                 } else {
                     if (oldPosition == "") {
                         oldPosition = lfData["Rows"][i].position;
@@ -1105,7 +1110,7 @@ function LookingForData(data) {
                         tradeOption = "Looking For";
                         if (oldPosition != newPosition) {
                             tradeOption = "Looking For";
-                            $.post("https://poketrades.org/PHP/move_bunch.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveBunch);
+                            $.post(url + "/PHP/move_bunch.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveBunch);
                             //$(".PA-LFAvailableBunchesText").remove();
                         } else {
                             document.querySelector(".PA-LookingForBunchMove").innerHTML = "Move Looking For Bunches";

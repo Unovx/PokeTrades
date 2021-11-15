@@ -2,11 +2,15 @@ var userData = null;
 var token = localStorage.getItem('token');
 document.querySelector(".PA-Searchbar").value = localStorage.getItem('searchID');
 searchInfoText = (document.querySelector(".PA-Searchbar").value);
-if (token != null && token != "null") {
-    $.post("https://poketrades.org/PHP/token_check.php", { token: token }, LastSession);
-} else {
-    token = null;
-}
+$(document).ready(function () {
+    if (token != null && token != "null") {
+        $.post(url + "/PHP/token_check.php", { token: token }, LastSession);
+    } else {
+        token = null;
+    }
+});
+
+
 
 function LastSession(data) {
     if (data != null) {
@@ -14,6 +18,8 @@ function LastSession(data) {
         document.querySelector(".LA-Username").innerHTML = userData.username;
         document.querySelector(".PA-UserID").style.opacity = "100%";
         document.querySelector(".PA-UserID").innerHTML = "Your ID is: " + userData.user_id;
+        document.querySelector(".TA-UserCollection").style.pointerEvents = "initial";
+        document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
     }
 }
 
@@ -28,7 +34,7 @@ $('.LA-LoginButton').click(function () {
     var loginUsername = (document.querySelector(".LA-LoginUsername").value);
     var loginPassword = (document.querySelector(".LA-LoginPassword").value);
     if (loginUsername != "" && loginPassword != "") {
-        $.post("https://poketrades.org/PHP/user_login.php", { username: loginUsername, password: loginPassword }, UserLogin);
+        $.post(url + "/PHP/user_login.php", { username: loginUsername, password: loginPassword }, UserLogin);
     } else {
         document.querySelector(".LA-LoginFailed").style.display = "block";
         document.querySelector(".LA-LoginFailed").innerHTML = "Please fill in all the fields.";
@@ -74,10 +80,12 @@ $('.LA-LogOut').click(function () {
     document.querySelector(".PA-UserID").innerHTML = "Your ID is: ";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
     document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+    document.querySelector(".TA-UserCollection").style.pointerEvents = "none";
+    document.querySelector(".TA-UserCollection").style.backgroundColor = "grey";
     userData = null;
     token = null;
     localStorage.setItem('token', null);
-    $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+    $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
 });
 
 $('.LA-ChangeDetails').click(function () {
@@ -94,19 +102,19 @@ $('.LA-Import').click(function () {
 async function ImportData(file) {
     let text = await (new Response(file)).text();
     //console.log(text);
-    $.post("https://poketrades.org/PHP/import_data.php", { token: token, fileData: text }, StartFormat);
+    $.post(url + "/PHP/import_data.php", { token: token, fileData: text }, StartFormat);
     document.querySelector(".LA-ImportInput").value = null;
     document.querySelector("#NotificationArea").style.display = "block";
     document.querySelector(".TradeShopImported").style.display = "block";
 }
 
 function StartFormat() {
-    $.post("https://poketrades.org/PHP/format_import.php", { token: token });
+    $.post(url + "/PHP/format_import.php", { token: token });
     console.log("Importing Finished");
 }
 
 $('.LA-Export').click(function () {
-    $.post("https://poketrades.org/PHP/export_data.php", { token: token }, ExportData);
+    $.post(url + "/PHP/export_data.php", { token: token }, ExportData);
 });
 
 function ExportData(mydata) {
@@ -137,7 +145,7 @@ $('.LA-RegisterButton').click(function () {
     var registerConfirmPassword = (document.querySelector(".LA-RegisterConfirmPassword").value);
     if (registerUsername != "" && registerPassword != "" && registerConfirmPassword != "") {
         if (registerPassword == registerConfirmPassword) {
-            $.post("https://poketrades.org/PHP/register_account.php", { username: registerUsername, password: registerPassword }, RegisterAccount);
+            $.post(url + "/PHP/register_account.php", { username: registerUsername, password: registerPassword }, RegisterAccount);
         } else {
             document.querySelector(".LA-RegisterFailed").style.display = "block";
             document.querySelector(".LA-RegisterFailed").innerHTML = "Passwords do not match.";
@@ -195,7 +203,7 @@ $('.LA-ConfirmUpdate').click(function () {
             document.querySelector(".LA-UpdateFailed").style.display = "block";
             document.querySelector(".LA-UpdateFailed").innerHTML = "Cannot change username and password at the same time.";
         } else {
-            $.post("https://poketrades.org/PHP/update_username_or_password.php", { token: token, newUsername: updateUsername }, UpdateDetails);
+            $.post(url + "/PHP/update_username_or_password.php", { token: token, newUsername: updateUsername }, UpdateDetails);
         }
     } else if (oldPassword != "" && newPassword == "" || oldPassword != "" && confirmNewPassword == ""
         || oldPassword == "" && newPassword != "" && confirmNewPassword != "") {
@@ -207,7 +215,7 @@ $('.LA-ConfirmUpdate').click(function () {
     else {
         if (oldPassword != "" || newPassword != "" || confirmNewPassword != "") {
             if (newPassword == confirmNewPassword) {
-                $.post("https://poketrades.org/PHP/update_username_or_password.php", { token: token, password: oldPassword, newPassword: newPassword }, UpdateDetails);
+                $.post(url + "/PHP/update_username_or_password.php", { token: token, password: oldPassword, newPassword: newPassword }, UpdateDetails);
             } else {
                 document.querySelector(".LA-UpdateFailed").style.display = "block";
                 document.querySelector(".LA-UpdateFailed").innerHTML = "New passwords do not match.";
@@ -293,8 +301,10 @@ function UserLogin(data) {
         document.querySelector(".PA-UserID").innerHTML = "Your ID is: " + userData.user_id;
         document.querySelector(".LA-LoginUsername").value = "";
         document.querySelector(".LA-LoginPassword").value = "";
+        document.querySelector(".TA-UserCollection").style.pointerEvents = "initial";
+        document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
 
-        $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+        $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     } else {
         document.querySelector(".LA-LoginFailed").style.display = "block";
         document.querySelector(".LA-LoginFailed").innerHTML = "Wrong Username or Password.";
@@ -318,8 +328,10 @@ function RegisterAccount(data) {
         document.querySelector(".LA-RegisterPassword").value = "";
         document.querySelector(".LA-RegisterConfirmPassword").value = "";
         document.querySelector(".LA-RegisterFailed").style.display = "none";
+        document.querySelector(".TA-UserCollection").style.pointerEvents = "initial";
+        document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
 
-        $.post("https://poketrades.org/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+        $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     } else {
         document.querySelector(".LA-RegisterFailed").style.display = "block";
         document.querySelector(".LA-RegisterFailed").innerHTML = "Username already taken.";

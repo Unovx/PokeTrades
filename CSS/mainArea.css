@@ -64,6 +64,7 @@
     height: 100%;
     width: 100%;
     overflow: hidden;
+    display: block;
 }
 
 .TableHolder{
@@ -133,6 +134,12 @@
 .MA-OtherImage{
     position: relative;
     max-width: 100%;
+}
+
+.MA-TrackingImage{
+    position: relative;
+    max-width: 100%;
+    display: none;
 }
 
 .MA-Text{

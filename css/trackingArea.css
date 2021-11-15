@@ -1,0 +1,187 @@
+@media only screen and (max-width: 768px) {
+    [id*="TA-TopRow"]{
+        margin-bottom: 5px !important;
+        margin-right: unset !important;
+        margin-left: unset !important;
+    }
+    [class*="TA-TitleText"]{
+        display: flex !important;
+        width: 100% !important;
+        place-content: center;
+    }
+    [class*="TrackingButtons"]{
+        bottom: 0% !important;
+        left: 0% !important;
+        display: flex !important;
+        width: 100% !important;
+        place-content: center;
+    }
+    [id*="TrackingContainer"]{
+        /* Spacing issues aren't an issue on mobile devices*/
+        grid-gap: 0.5rem !important;
+    }
+    [class*="TA-PokemonDetails"]{
+        height: auto !important;
+        top: 80% !important;
+        width: 100% !important;
+        min-height: 200px;
+    }[id*="TrackingSelection"]{
+        margin-right: unset !important;
+    }
+}
+
+#TrackingArea{
+    position: fixed;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    display: none;
+    top: 0.5px;
+    bottom: 0.5px;
+    align-content: baseline;
+    /*background-color: #163944;*/
+}
+
+#TA-TopRow{
+    /* sticky and 0; are so it acts like its fixed, as fixed has issues with overflow elements*/
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    /* So it doesn't look crowded at the top with tall icons*/
+    margin-bottom: 5px;
+}
+
+.TA-TitleText{
+    position: relative;
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    /*So it doesn't cut into the top part of the outline in the top Row*/
+    top: 2px;
+    width: auto;
+    display: block;
+}
+
+.TrackingButtons{
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    vertical-align: -moz-middle-with-baseline;
+    display: initial;
+}
+
+.TA-MainMenu{
+    position: relative;
+    background-color: #efefef;
+    height: 22px;
+    border: none;
+}
+
+.TA-LegalityChecker{
+    position: relative;
+    background-color: #efefef;
+    height: 22px;
+    border: none;
+}
+
+.TA-UserCollection{
+    position: relative; 
+    pointer-events: none;
+    background-color: grey;
+    height: 22px;
+    border: none;
+}
+
+.TA-InfoButton{
+    position: relative;
+    background-color: #efefef;
+    height: 22px;
+    border: none;
+}
+
+#TrackingSelection{
+    overflow: auto;
+    margin-right: 420px;
+  }
+
+#TrackingData{
+    z-index: -1;
+    height: inherit;
+}
+
+.TrackingGridDiv{
+    /* for some reason this centers the image which is needed*/
+    text-align-last: center;
+  }
+
+#TrackingContainer{
+    display: grid;
+    /* auto-fill into of auto-fit so it starts from the corner of the screen*/
+    grid-template-columns: repeat( auto-fill, minmax(100px, 1fr) );
+    /* this is so it fills all available space without an parts being cut off on any device*/
+    height: inherit;
+    /* needing to prevent bunches and to an slight extent mons looking crowded*/
+    grid-gap: 1rem;
+    place-items: center;
+    /*background-color: #163944;*/
+}
+
+.TA-PokemonDetails{
+    background-color: #2E2D2D;
+    position: absolute; 
+    
+    height: 100%;
+    z-index: 2;
+    width: 420px;;
+    overflow: auto;
+    right: 0;
+}
+
+.TA-RBY-Section{
+    display: grid;
+}
+
+.TA-RBY-Text{
+    text-align: center;
+    color:white;
+    width: 100%;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.TA-RBY-Balls{
+    text-align-last: center;
+}
+
+.TA-GSC-Section{
+    display: grid;
+}
+
+.TA-GSC-Text{
+    text-align: center;
+    color:white;
+    width: 100%;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.TA-GSC-Balls{
+    text-align-last: center;
+}
+
+.TA-RSE-Section{
+    display: grid;
+}
+
+.TA-RSE-Text{
+    text-align: center;
+    color:white;
+    width: 100%;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.TA-RSE-Balls{
+    text-align-last: center;
+}
