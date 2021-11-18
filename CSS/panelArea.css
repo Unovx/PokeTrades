@@ -51,11 +51,15 @@
     [class*="PA-FAQPanel"]{
         width: -webkit-fill-available !important;
         width: -moz-available !important;
+        overflow: unset;
+        height: unset;
     }
 
     [class*="PA-ImportingPanel"]{
         width: -webkit-fill-available !important;
         width: -moz-available !important;
+        overflow: unset;
+        height: unset;
     }
 }
 
@@ -471,6 +475,7 @@
     margin: 10px;
     overflow: auto;
     display: none;
+    height: 500;
 }
 
 .PA-ImportingText{
@@ -481,4 +486,6 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     padding: 10px;
+    height: 480px;
+    overflow: auto;
 }
