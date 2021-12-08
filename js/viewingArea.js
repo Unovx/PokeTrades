@@ -41,6 +41,8 @@ $('.VA-ModifyButton').click(function () {
     document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
     document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "grey";
     document.querySelector("#ViewingArea").style.display = "none";
     OpenCreationArea();
     ValidatePokemon();

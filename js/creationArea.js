@@ -79,6 +79,8 @@ $('.CA-CloseButton').click(function () {
     document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
     document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#efefef";
     if (selectedPokemon == null) {
         //document.querySelector("#SelectionArea").style.width = "100%";
         document.querySelector("#PanelArea").style.display = "block";
@@ -507,8 +509,7 @@ function CreatePokemon() {
     }
 }
 
-function CreatedPokemon(data) {
-    //console.log(data);
+function CreatedPokemon() {
     document.querySelector("#CreationArea").style.display = "none";
     document.querySelector("#ViewingArea").style.display = "none";
     document.querySelector("#SelectionArea").style.width = "100%";
@@ -516,6 +517,8 @@ function CreatedPokemon(data) {
     document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
     document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#efefef";
 
     creationID = "";
     selectedPokemon = null;
@@ -524,11 +527,6 @@ function CreatedPokemon(data) {
     AssigningOutline();
     ShowLoading();
     PostGenerateSelection();
-    /*if (bunchname != "") {
-        $.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
-    } else {
-        $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
-    }*/
 }
 
 //For the BunchDropdown, I need it to remove the previous options already in place so I remove all children to start with.

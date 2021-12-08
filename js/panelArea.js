@@ -545,6 +545,8 @@ function ModifyCheck(data) {
     if (data != "" && searchInfoText != "") {
         document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
         document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+        document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
+        document.querySelector(".SA-CopyButton").style.backgroundColor = "#efefef";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
         document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
@@ -567,6 +569,8 @@ function ModifyCheck(data) {
     } else {
         document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
         document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+        document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
+        document.querySelector(".SA-CopyButton").style.backgroundColor = "grey";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
         document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
@@ -620,6 +624,8 @@ function BunchMoveStarted() {
     document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
     document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "grey";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
     document.querySelector(".SA-FiltersButton").style.backgroundColor = "grey";
     document.querySelector(".SA-Searchbar").disabled = true;
@@ -642,12 +648,14 @@ function BunchMoveFinished() {
     document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
     document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#efefef";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
-    /*if (filtersApplied) {
+    if (filtersApplied) {
         document.querySelector(".SA-FiltersButton").style.backgroundColor = "orchid";
     } else {
         document.querySelector(".SA-FiltersButton").style.backgroundColor = "#efefef";
-    }*/
+    }
     document.querySelector(".SA-Searchbar").disabled = false;
     document.querySelector(".VA-ModifyButton").style.pointerEvents = "initial";
     document.querySelector(".VA-ModifyButton").style.backgroundColor = "#efefef";

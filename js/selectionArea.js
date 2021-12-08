@@ -11,6 +11,8 @@ var bunchname = "";
 //The Element that holds
 var selectedPokemon;
 var movingPokemon;
+var moving = false;
+var copying = false;
 //The Number of Arrays used in for statements in other scripts for outlining
 var numberOfArrays;
 //The Array data for Pokemon Generation (Not Bunch) used in  for statements for other scripts for outlining
@@ -122,6 +124,8 @@ $('.SA-CreateButton').click(function () {
     document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
     document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "grey";
 
     //So it doesn't add to an already existing row
     creationID = "";
@@ -130,11 +134,13 @@ $('.SA-CreateButton').click(function () {
 
 $('.SA-MoveButton').click(function () {
     if (currentlyRearranging == false) {
+        moving = true;
         currentlyRearranging = true;
         document.querySelector(".SA-MoveButton").innerHTML = "Cancel";
         //OpacityHalf();
         MoveStarted();
     } else {
+        moving = false;
         currentlyRearranging = false;
         if (movingPokemon == selectedPokemon && movingPokemon != null) {
             movingPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
@@ -146,11 +152,40 @@ $('.SA-MoveButton').click(function () {
         movingPokemon = null;
         oldPosition = "";
         newPosition = "";
-        document.querySelector(".SA-MoveButton").innerHTML = "Move/Copy";
+        document.querySelector(".SA-MoveButton").innerHTML = "Move";
         //OpacityFull();
         //AssigningOutline();
         RemoveBunchOutline();
         MoveFinished();
+    }
+
+});
+
+$('.SA-CopyButton').click(function () {
+    if (currentlyRearranging == false) {
+        currentlyRearranging = true;
+        copying = true;
+        document.querySelector(".SA-CopyButton").innerHTML = "Cancel";
+        //OpacityHalf();
+        CopyStarted();
+    } else {
+        copying = false;
+        currentlyRearranging = false;
+        if (movingPokemon == selectedPokemon && movingPokemon != null) {
+            movingPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+            movingPokemon.style.backgroundColor = "#2E2D2D";
+        } else if (movingPokemon != null) {
+            movingPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+            movingPokemon.style.backgroundColor = "#084f65";
+        }
+        movingPokemon = null;
+        oldPosition = "";
+        newPosition = "";
+        document.querySelector(".SA-CopyButton").innerHTML = "Copy";
+        //OpacityFull();
+        //AssigningOutline();
+        RemoveBunchOutline();
+        CopyFinished();
     }
 
 });
@@ -171,10 +206,13 @@ $('.SA-SelectionHelp').click(function () {
 });
 
 function MoveStarted() {
+    moving = true;
     //document.querySelector(".SA-ExitBunch").style.pointerEvents = "none";
     //document.querySelector(".SA-ExitBunch").style.backgroundColor = "grey";
     document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
     document.querySelector(".SA-MainMenu").style.backgroundColor = "grey";
+    document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "grey";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
     document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
@@ -189,10 +227,13 @@ function MoveStarted() {
 }
 
 function MoveFinished() {
+    moving = false;
     //document.querySelector(".SA-ExitBunch").style.pointerEvents = "initial";
     //document.querySelector(".SA-ExitBunch").style.backgroundColor = "#efefef";
     document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
     document.querySelector(".SA-MainMenu").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#efefef";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
     document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
@@ -210,6 +251,49 @@ function MoveFinished() {
     document.querySelector(".PA-Searchbar").disabled = false;
     document.querySelector("#PanelArea").style.pointerEvents = "initial";
     //OpacityFull();
+}
+
+function CopyStarted() {
+    copying = true;
+    document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "grey";
+    document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
+    document.querySelector(".SA-FiltersButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-Searchbar").disabled = true;
+    document.querySelector(".VA-ModifyButton").style.pointerEvents = "none";
+    document.querySelector(".VA-ModifyButton").style.backgroundColor = "grey";
+    document.querySelector(".VA-DeleteButton").style.pointerEvents = "none";
+    document.querySelector(".VA-DeleteButton").style.backgroundColor = "grey";
+    document.querySelector(".PA-Searchbar").disabled = true;
+    document.querySelector("#PanelArea").style.pointerEvents = "none";
+}
+
+function CopyFinished() {
+    copying = false;
+    document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
+    if (filtersApplied) {
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "orchid";
+    } else {
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#efefef";
+    }
+    document.querySelector(".SA-Searchbar").disabled = false;
+    document.querySelector(".VA-ModifyButton").style.pointerEvents = "initial";
+    document.querySelector(".VA-ModifyButton").style.backgroundColor = "#efefef";
+    document.querySelector(".VA-DeleteButton").style.pointerEvents = "initial";
+    document.querySelector(".VA-DeleteButton").style.backgroundColor = "#efefef";
+    document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
+    document.querySelector(".PA-Searchbar").disabled = false;
+    document.querySelector("#PanelArea").style.pointerEvents = "initial";
 }
 
 //Setting Opacity to half to show that moving is in progress.
@@ -1137,13 +1221,24 @@ function GenerateSelection(data) {
                     //document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "none";
                     //document.querySelector("#PA-LookingForBunches").style.pointerEvents = "none";
                 } else {
-                    movingPokemon = null;
-                    selectedPokemon = null;
                     newPosition = arrayData["Rows"][i].position;
-                    if (oldPosition != newPosition) {
+                    /*if (oldPosition != newPosition) {
                         $.post(url + "/PHP/move_selection.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveCopyPokemon);
                     } else {
                         $.post(url + "/PHP/copy_selection.php", { token: token, creationID: tempCreationID, originalPosition: oldPosition, tradeOption: tradeOption }, MoveCopyPokemon);
+                    }*/
+                    if (oldPosition != newPosition && moving) {
+                        movingPokemon = null;
+                        selectedPokemon = null;
+                        ShowLoading();
+                        $.post(url + "/PHP/move_selection.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MovePokemon);
+                    }
+
+                    if (oldPosition == newPosition && copying) {
+                        movingPokemon = null;
+                        selectedPokemon = null;
+                        ShowLoading();
+                        $.post(url + "/PHP/copy_selection.php", { token: token, creationID: tempCreationID, originalPosition: oldPosition, tradeOption: tradeOption }, CopyPokemon);
                     }
                 }
             }
@@ -1192,16 +1287,24 @@ function GenerateSelection(data) {
     HideLoading();
 }
 
-function MoveCopyPokemon() {
+function MovePokemon() {
     MoveFinished();
-    //$("#GridContainer").remove();
-    document.querySelector(".SA-MoveButton").innerHTML = "Move/Copy";
+    document.querySelector(".SA-MoveButton").innerHTML = "Move";
     currentlyRearranging = false;
     oldPosition = "";
     newPosition = "";
     ShowLoading();
     PostGenerateSelection();
-    //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname, searchbar: searchPokemonText }, GenerateSelection);
+}
+
+function CopyPokemon() {
+    CopyFinished();
+    document.querySelector(".SA-CopyButton").innerHTML = "Copy";
+    currentlyRearranging = false;
+    oldPosition = "";
+    newPosition = "";
+    ShowLoading();
+    PostGenerateSelection();
 }
 
 function MoveBunch() {
