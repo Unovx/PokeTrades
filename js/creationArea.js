@@ -57,7 +57,7 @@ var pokemonValue = "Abomasnow";
 var genderValue = "(Any Gender)";
 var shinyValue = "(Any Shiny or Normal)";
 
-let types = ['Fighting', 'Flying', 'Poison', 'Ground', 'Rock', 'Bug', 'Ghost', 'Steel', 'Fire', 'Water', 'Grass', 'Electric', 'Psychic', 'Ice', 'Dragon', 'Dark']
+/*let types = ['Fighting', 'Flying', 'Poison', 'Ground', 'Rock', 'Bug', 'Ghost', 'Steel', 'Fire', 'Water', 'Grass', 'Electric', 'Psychic', 'Ice', 'Dragon', 'Dark']
 
 calcHP = ivHpDropdown.value;
 calcAtt = ivAttDropdown.value;
@@ -70,7 +70,7 @@ function calculateTypeHP(calcHP, calcAtt, calcDef, calcSpa, calcSpd, calcSpe) {
     let numerator = (calcHP & 1) + 2 * (calcAtt & 1) + 4 * (calcDef & 1) + 8 * (calcSpe & 1) + 16 * (calcSpa & 1) + 32 * (calcSpd & 1);
     numerator *= 15;
     return Math.floor(numerator / 63);
-}
+}*/
 
 
 $('.CA-CloseButton').click(function () {
@@ -202,7 +202,7 @@ function AbilitySpecific() {
     }
 }
 
-$(ivHpDropdown).change(function () {
+/*$(ivHpDropdown).change(function () {
     SetHiddenPower();
 });
 
@@ -224,7 +224,7 @@ $(ivSpdDropdown).change(function () {
 
 $(ivSpeDropdown).change(function () {
     SetHiddenPower();
-});
+});*/
 
 
 function ValidatePokemon() {
@@ -347,7 +347,7 @@ function ValidatePokemon() {
     }
 }
 
-function SetHiddenPower() {
+/*function SetHiddenPower() {
     if (!ivHpDropdown.value.includes("X") && !ivHpDropdown.value.includes("HT") && !ivAttDropdown.value.includes("X") && !ivAttDropdown.value.includes("HT") && !ivDefDropdown.value.includes("X") && !ivDefDropdown.value.includes("HT") && !ivSpaDropdown.value.includes("X") && !ivSpaDropdown.value.includes("HT") && !ivSpdDropdown.value.includes("X") && !ivSpdDropdown.value.includes("HT") && !ivSpeDropdown.value.includes("X") && !ivSpeDropdown.value.includes("HT") && miscDropdown.value != "Gigantamax") {
         calcHP = ivHpDropdown.value;
         calcAtt = ivAttDropdown.value;
@@ -358,9 +358,9 @@ function SetHiddenPower() {
         console.log(types[calculateTypeHP(calcHP, calcAtt, calcDef, calcSpa, calcSpd, calcSpe)]);
         miscDropdown.value = "HP " + types[calculateTypeHP(calcHP, calcAtt, calcDef, calcSpa, calcSpd, calcSpe)];
     }
-}
+}*/
 
-function CreationReset() {
+/*function CreationReset() {
     pokemonValue = "Abomasnow";
     genderValue = "(Any Gender)";
     shinyValue = "(Any Shiny or Normal)";
@@ -425,7 +425,7 @@ function CreationReset() {
     displayDropdown.value = "Public";
 
     ValidatePokemon();
-}
+}*/
 
 //Calling all dropdowns when they are needed.
 /*function CreationDropdowns() {
@@ -468,7 +468,7 @@ function CreationReset() {
     ValidatePokemon();
 }*/
 
-function CreatePokemon() {
+/*function CreatePokemon() {
     //Making sure that if its For Trade, none of the "Any" options are allowed.
     if (document.querySelector(".CA-PokemonImage").getAttribute("src") != url + "/Resources/Fennel2.png") {
         console.log("NO FENNEL");
@@ -527,7 +527,7 @@ function CreatedPokemon() {
     AssigningOutline();
     ShowLoading();
     PostGenerateSelection();
-}
+}*/
 
 //For the BunchDropdown, I need it to remove the previous options already in place so I remove all children to start with.
 /*function BunchDropdown() {

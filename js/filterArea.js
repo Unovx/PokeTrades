@@ -44,7 +44,7 @@ $('.FA-CloseButton').click(function () {
         //document.querySelector("#SelectionArea").style.width = "100%";
         document.querySelector("#PanelArea").style.display = "block";
     } else {
-        document.querySelector("#ViewingArea").style.display = "block";
+        document.querySelector("#DetailsArea").style.display = "block";
     }
 });
 
@@ -509,7 +509,7 @@ function PostGenerateSelection() {
         $.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, searchbar: searchPokemonText.value, tradeOption: tradeOption, bunchname: bunchname, ball: filterBall.value, gender: filterGender.value, shiny: filterShiny.value, mint: filterMint.value, misc: filterMisc.value, mark: filterMark.value, lang: filterLanguage.value, OT: filterOT.value, ID: filterID.value, gen6: filterGen6, gen7: filterGen7, gen8: filterGen8, home: filterHome, nature: filterNature.value, ability: filterAbility.value, status: filterStatus.value, event: filterEvent.value, move: filterMove.value, howObtained: filterHowObtained.value, gameObtained: filterGameObtained.value, display: filterDisplay.value, note: filterNote.value, proof: filterProof.value, ivhp: filterIvHP.value, ivatt: filterIvAtt.value, ivdef: filterIvDef.value, ivspa: filterIvSpa.value, ivspd: filterIvSpd.value, ivspe: filterIvSpe.value, evhp: filterEvHP.value, evatt: filterEvAtt.value, evdef: filterEvDef.value, evspa: filterEvSpa.value, evspd: filterEvSpd.value, evspe: filterEvSpe.value }, GenerateSelection);
         console.log(bunchname);
     } else {
-        $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, showEmpty: showEmpty }, GenerateBunch);
+        HideLoading();
     }
 }
 

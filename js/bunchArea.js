@@ -41,9 +41,6 @@ $('.BA-AddBunch').click(function () {
             }
         }
         $.post(url + "/PHP/create_or_update_bunch.php", { token: token, creationID: tempCreationID, name: bunchInput.value, icon: bunchIcon, gender: bunchGender, shiny: bunchShiny, tradeOption: tradeOption }, BunchChanges);
-        $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
-        $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "Looking For" }, UserBunches);
-        PostGenerateSelectionData();
     } else {
         document.querySelector("#NotificationArea").style.display = "block";
         document.querySelector(".BunchIconError").style.display = "block";
@@ -63,8 +60,6 @@ $('.BA-RemoveBunch').click(function () {
             document.querySelector(".BunchIconError").style.display = "block";
         } else {
             $.post(url + "/PHP/delete_bunch.php", { token: token, creationID: tempCreationID, tradeOption: tradeOption }, BunchRemoved);
-            $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
-            $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "Looking For" }, UserBunches);
             PostGenerateSelectionData();
         }
     } else {
@@ -95,8 +90,6 @@ $('.BA-RenameBunch').click(function () {
                 }
             }
             $.post(url + "/PHP/rename_bunch_selection.php", { token: token, creationID: tempCreationID, newName: bunchNewName.value, oldName: bunchToRenameDropdown.value, tradeOption: tradeOption }, BunchRenamed);
-            $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
-            $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "Looking For" }, UserBunches);
             PostGenerateSelectionData();
             if (bunchname == bunchToRenameDropdown.value) {
                 bunchname = tempBunchName;
@@ -125,14 +118,11 @@ function BunchReset() {
 }
 
 function BunchChanges() {
-    if (bunchname == "") {
-        document.querySelector("#NotificationArea").style.display = "block";
-        document.querySelector(".BunchPokemonAdded").style.display = "block";
-        ShowLoading();
-        PostGenerateSelection();
-        // $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
-    }
     $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".BunchPokemonAdded").style.display = "block";
+    PostGenerateSelectionData();
+
 }
 
 function BunchRemoved() {
@@ -142,14 +132,15 @@ function BunchRemoved() {
     ShowLoading();
     $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
     PostGenerateSelection();
+    PostGenerateSelectionData();
     /*if (bunchname == "") {
         $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
     } else {
         $.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
     }*/
-    document.querySelector(".VA-CloseButton").click();
-    document.querySelector("#NotificationArea").style.display = "block";
-    document.querySelector(".BunchPokemonRemoved").style.display = "block";
+    //document.querySelector(".DA-Close").click();
+    //document.querySelector("#NotificationArea").style.display = "block";
+    //document.querySelector(".BunchPokemonRemoved").style.display = "block";
 }
 
 function BunchRenamed(data) {
@@ -157,14 +148,14 @@ function BunchRenamed(data) {
     $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
     ShowLoading();
     PostGenerateSelection();
+    PostGenerateSelectionData();
     /*if (bunchname == "") {
         $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
     } else {
         $.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
     }*/
-    document.querySelector(".VA-CloseButton").click();
-    document.querySelector("#NotificationArea").style.display = "block";
-    document.querySelector(".BunchPokemonAdded").style.display = "block";
+    //document.querySelector("#NotificationArea").style.display = "block";
+    //document.querySelector(".BunchPokemonAdded").style.display = "block";
 }
 
 function ValidateIcon() {

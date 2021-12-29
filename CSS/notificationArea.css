@@ -7,6 +7,7 @@
     [class*="ViewingAdditionalHelp"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
+        top: 50% !important;
     }
 
     [class*="ViewingConfirmDelete"] {
@@ -27,6 +28,41 @@
     [class*="BunchIconError"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
+    }
+
+    [class*="TemplateHelpInfo"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        top: 50% !important;
+        right: unset !important;
+    }
+
+    [class*="TemplateAdded"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        top: 50% !important;
+        right: unset !important;
+    }
+
+    [class*="TemplateRemoved"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        top: 50% !important;
+        right: unset !important;
+    }
+
+    [class*="TemplateAddedError"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        top: 50% !important;
+        right: unset !important;
+    }
+
+    [class*="TemplateRemovedError"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        top: 50% !important;
+        right: unset !important;
     }
 
     [class*="BunchPokemonAdded"] {
@@ -114,7 +150,7 @@
     background: rgb(192 192 192 / 95%);
     padding: 10px;
     width: 500px;
-    top: 50%;
+    top: 30%;
     text-align: center;
 }
 
@@ -225,6 +261,156 @@
     top: 10px;
 }
 
+.TemplateHelpInfo{
+    position: absolute;
+    display: none;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
+    padding: 10px;
+    width: 300px;
+    top: 130px;
+    right: 50px;
+    text-align: center;
+}
+
+.NA-TemplateHelpText{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-TemplateHelpClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
+.TemplateAdded{
+    position: absolute;
+    display: none;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
+    padding: 10px;
+    width: 300px;
+    top: 130px;
+    right: 50px;
+    text-align: center;
+}
+
+.NA-TemplateAddedText{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-TemplateAddedClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
+.TemplateRemoved{
+    position: absolute;
+    display: none;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
+    padding: 10px;
+    width: 300px;
+    top: 130px;
+    right: 50px;
+    text-align: center;
+}
+
+.NA-TemplateRemovedText{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-TemplateRemovedClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
+.TemplateAddedError{
+    position: absolute;
+    display: none;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
+    padding: 10px;
+    width: 300px;
+    top: 130px;
+    right: 50px;
+    text-align: center;
+}
+
+.NA-TemplateAddedErrorText{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-TemplateAddedErrorClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
+.TemplateRemovedError{
+    position: absolute;
+    display: none;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
+    padding: 10px;
+    width: 300px;
+    top: 130px;
+    right: 50px;
+    text-align: center;
+}
+
+.NA-TemplateRemovedErrorText{
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
+.NA-TemplateRemovedErrorClose{
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 10px;
+}
+
 .BunchIconError{
     position: relative;
     display: none;
@@ -256,6 +442,10 @@
     position: relative;
     display: none;
     margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     background: rgb(192 192 192 / 95%);
     padding: 10px;
     width: 300px;

@@ -14,11 +14,12 @@ $('.NA-CloseConfirmButton').click(function () {
 });
 
 $('.NA-ConfirmDeleteButton').click(function () {
-    $.post(url + "/PHP/delete_selection.php", { token: token, creationID: viewingDetails.creation_id, tradeOption: tradeOption });
+    $.post(url + "/PHP/delete_selection.php", { token: token, creationID: pokemonDetails.creation_id, tradeOption: tradeOption });
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".ViewingConfirmDelete").style.display = "none";
-    document.querySelector(".VA-CloseButton").click();
+    document.querySelector(".DA-Close").click();
     ShowLoading();
+    PostGenerateSelectionData();
     PostGenerateSelection();
 });
 
@@ -30,6 +31,31 @@ $('.NA-PokemonAddedClose').click(function () {
 $('.NA-CreationPokemonClose').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".CreationPokemonError").style.display = "none";
+});
+
+$('.NA-TemplateHelpClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".TemplateHelpInfo").style.display = "none";
+});
+
+$('.NA-TemplateAddedClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".TemplateAdded").style.display = "none";
+});
+
+$('.NA-TemplateRemovedClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".TemplateRemoved").style.display = "none";
+});
+
+$('.NA-TemplateAddedErrorClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".TemplateAddedError").style.display = "none";
+});
+
+$('.NA-TemplateRemovedErrorClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".TemplateRemovedError").style.display = "none";
 });
 
 $('.NA-BunchIconClose').click(function () {

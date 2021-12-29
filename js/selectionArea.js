@@ -43,10 +43,11 @@ var selectionVH = $("#SelectionArea").visibleHeight();
 console.log(document.querySelector('#SelectionArea').clientWidth);
 //console.log($(selection).visibleHeight());
 
-
-document.querySelector('#ViewingArea').onmouseover = function () {
-    if (selectedPokemon == null && hoverInfo == true) {
-        $('.VA-CloseButton').click();
+document.querySelector('#DetailsArea').onmouseover = function () {
+    if (!creationInProgress) {
+        if (selectedPokemon == null && hoverInfo == true) {
+            $('.DA-Close').click();
+        }
     }
 }
 
@@ -59,19 +60,15 @@ function oneSecondFunction() {
     if (window.innerWidth <= 768) {
         if (document.querySelector('#FilterArea').style.display == "block") {
             //document.querySelector('#SelectionArea').style.height = "100%"
-            document.querySelector('#SelectionArea').style.height = selectionVH - $("#FilterArea").visibleHeight() + "px"
+            document.querySelector('#SelectionArea').style.height = selectionVH - $("#FilterArea").visibleHeight() + "px";
         }
         else if (document.querySelector('#BunchArea').style.display == "block") {
             //document.querySelector('#SelectionArea').style.height = "100%"
-            document.querySelector('#SelectionArea').style.height = selectionVH - $("#BunchArea").visibleHeight() + "px"
+            document.querySelector('#SelectionArea').style.height = selectionVH - $("#BunchArea").visibleHeight() + "px";
         }
-        else if (document.querySelector('#CreationArea').style.display == "block") {
+        else if (document.querySelector('#DetailsArea').style.display == "block") {
             //document.querySelector('#SelectionArea').style.height = "100%"
-            document.querySelector('#SelectionArea').style.height = selectionVH - $("#CreationArea").visibleHeight() + "px"
-        }
-        else if (document.querySelector('#ViewingArea').style.display == "block") {
-            //document.querySelector('#SelectionArea').style.height = "100%"
-            document.querySelector('#SelectionArea').style.height = selectionVH - $("#ViewingArea").visibleHeight() + "px"
+            document.querySelector('#SelectionArea').style.height = selectionVH - $("#DetailsArea").visibleHeight() + "px";
         }
         else if (document.querySelector('#PanelArea').style.display == "block") {
             //document.querySelector('#SelectionArea').style.height = "100%"
@@ -94,12 +91,11 @@ $('.SA-MainMenu').click(function () {
     //making the Selection Area bunch name invisible (can't turn it off or the space for it goes)
     document.querySelector(".SA-Bunch").style.opacity = "0%";
     selectedPokemon = null;
-    viewingDetails = null;
-    creationDetails = null;
+    pokemonDetails = null;
     //AssigningOutline();
     //Removing the GridContainer so a new one can be created later
     $("#GridContainer").remove();
-    document.querySelector("#ViewingArea").style.display = "none";
+    document.querySelector("#DetailsArea").style.display = "none";
     document.querySelector("#SelectionArea").style.height = "100%";
     document.querySelector("#SelectionArea").style.display = "none";
     //document.querySelector(".SA-ExitBunch").style.pointerEvents = "none";
@@ -110,26 +106,43 @@ $('.SA-MainMenu').click(function () {
     document.querySelector("#BunchArea").style.display = "none";
     document.querySelector("#FilterArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "block";
+    document.querySelector(".DA-Place").style.pointerEvents = "initial";
+    document.querySelector(".DA-Place").innerHTML = "Place";
     CreationReset();
     BunchReset();
+    creationInProgress = false;
 });
 
 $('.SA-CreateButton').click(function () {
     //document.querySelector("#SelectionArea").style.width = "100%"
-    document.querySelector("#ViewingArea").style.display = "none";
     document.querySelector("#FilterArea").style.display = "none";
-    document.querySelector("#PanelArea").style.display = "none";
-    document.querySelector("#CreationArea").style.display = "block";
+    document.querySelector("#DetailsArea").style.display = "block";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
     document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
     document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
     document.querySelector(".SA-CopyButton").style.backgroundColor = "grey";
+    document.querySelector(".DA-Place").style.pointerEvents = "initial";
+    document.querySelector(".DA-Place").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+    document.querySelector(".DA-Delete").style.pointerEvents = "none";
+    document.querySelector(".DA-Delete").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+    document.querySelector(".DA-Lock").style.pointerEvents = "none";
+    document.querySelector(".DA-Lock").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+    detailsLocked = false;
+    document.querySelector(".DA-Lock").innerHTML = "Lock";
+
+    ShowAllDropdowns();
 
     //So it doesn't add to an already existing row
     creationID = "";
+    creationInProgress = true;
     CreationReset();
+    selectedPokemon = null;
+    pokemonDetails = null;
+    AssigningOutline();
+    templateSelection.value = "(No Template)";
+    AbilityOptions();
 });
 
 $('.SA-MoveButton').click(function () {
@@ -194,7 +207,7 @@ $('.SA-FiltersButton').click(function () {
     $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     //document.querySelector("#SelectionArea").style.width = "100%";
     document.querySelector("#FilterArea").style.display = "block";
-    document.querySelector("#ViewingArea").style.display = "none";
+    document.querySelector("#DetailsArea").style.display = "none";
     document.querySelector("#CreationArea").style.display = "none";
     document.querySelector("#BunchArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "none";
@@ -204,6 +217,32 @@ $('.SA-SelectionHelp').click(function () {
     document.querySelector("#NotificationArea").style.display = "block";
     document.querySelector(".SelectionHelp").style.display = "block";
 });
+
+function AssigningOutline() {
+    //Makes sure arrayData isn't null so an error doesn't get brought up in specific cases like on the bunch area
+    if (arrayData != null) {
+        for (let i = 0; i < numberOfArrays; i++) {
+            //document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 5px #0096c3";
+            if (currentlyRearranging == true && movingPokemon == document.getElementById("GenerationGridDiv" + (i))) {
+
+            }
+            //if no pokemon is selected, then no pokemon need an outline
+            else if (selectedPokemon == null) {
+                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
+            }
+            //If it finds a generated row that has the same creation id as the current viewing id, it gives that div a outline
+            else if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id) {
+                selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
+                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
+            } else {
+                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
+            }
+        }
+    }
+}
 
 function MoveStarted() {
     moving = true;
@@ -923,13 +962,17 @@ function GenerateSelection(data) {
                         }
                         else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
                             if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4/" + loopArray.pokemon + "-.png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4/" + loopArray.pokemon + ".png");
                             } else {
                                 theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4/" + loopArray.pokemon + "-Male.png");
                             }
                         }
                         else if (loopArray.game_obtained == "BW/BW2") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen5Sprites/Gen5/" + loopArray.pokemon + "-Male.png");
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen5Sprites/Gen4/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen5Sprites/Gen4/" + loopArray.pokemon + "-Male.png");
+                            }
                         }
                         else if (loopArray.game_obtained == "BD/SP") {
                             theImage.setAttribute("src", url + "/Resources/GenerationalSprites/BDSP/" + loopArray.pokemon + ".png");
@@ -970,7 +1013,7 @@ function GenerateSelection(data) {
                             }
                         }
                         else if (loopArray.game_obtained == "BD/SP") {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Male-Shiny.png");
+                            theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Shiny.png");
                         }
                         else {
                             theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Male-Shiny.png");
@@ -1148,142 +1191,109 @@ function GenerateSelection(data) {
             }
         }
 
-        /*document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).onerror = function () {
-            document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).setAttribute("src", url + "/Resources/PlaceHolderImage.png");
-        }*/
-
-
-        //Setting up the onclick to open the viewing area and to set the information required for it.
+        //Setting up the onclick to open the details area and to set the information required for it.
         newDiv.onclick = function () {
-            console.log("Clicked");
-            if (!currentlyRearranging) {
-                if (selectedPokemon != null && viewingDetails.creation_id == arrayData["Rows"][i].creation_id) {
-                    $('.VA-CloseButton').click();
-                    return;
-                } else {
-                    viewingDetails = arrayData["Rows"][i];
-                    console.log(viewingDetails);
-                    pokemonImage = document.getElementById("GeneratedSelection " + (i)).getAttribute("src");
-                    console.log(pokemonImage);
-                    if (selectedPokemon != null) {
-                        selectedPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-                        selectedPokemon.style.backgroundColor = "#084f65";
-                    }
-                    selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
-                    console.log(selectedPokemon);
-                    selectedPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-                    selectedPokemon.style.backgroundColor = "#2E2D2D";
-                    document.querySelector(".VA-Username").innerHTML = searchData.username + "#" + viewingDetails.user_id;
-                    $.post(url + "/PHP/generate_selection.php", { token: token, searchID: viewingDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
-
-                    //AssigningOutline();
-                    UpdateViewingDetails();
-
-                    /*if (window.innerWidth < limitWidth) {
-                        //Making it so when you click on a mon and Viewing Area hides it, that mon is scrolled to the new bottom.
-                        var imageView = $(".GenerationGridDiv" + (i)).offset();
-                        var imageViewTop = Math.abs(imageView.top);
-                        console.log(imageViewTop)
-                        console.log(document.querySelector('#SelectionArea').clientHeight)
-                        //if (imageViewTop - 10 > document.querySelector('#SelectionArea').clientHeight \ 2) {
-                        if (imageViewTop > document.querySelector('#SelectionArea').clientHeight) {
-                            //console.log(imageViewTop)
-                            document.getElementById("GenerationGridDiv" + (i)).scrollIntoView(false);
-                        } else {
-                            console.log("Else " + imageViewTop)
+            if (!creationInProgress) {
+                console.log("Clicked");
+                if (!currentlyRearranging) {
+                    if (selectedPokemon != null && pokemonDetails.creation_id == arrayData["Rows"][i].creation_id) {
+                        $('.DA-Close').click();
+                        return;
+                    } else {
+                        pokemonDetails = arrayData["Rows"][i];
+                        if (selectedPokemon != null) {
+                            selectedPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+                            selectedPokemon.style.backgroundColor = "#084f65";
                         }
-                        //console.log($(".GenerationGridDiv" + (i)).offset());
-                    }*/
-                }
+                        selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
+                        console.log(selectedPokemon);
+                        selectedPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+                        selectedPokemon.style.backgroundColor = "#2E2D2D";
+                        //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
+                        ShowPokemonDetails();
+                    }
 
-                $.post(url + "/PHP/modify_check.php", { token: token, searchID: viewingDetails.user_id }, ModifyCheckViewing);
-            } else {
-                if (oldPosition == "") {
-                    movingPokemon = document.getElementById("GenerationGridDiv" + (i));
-                    oldPosition = arrayData["Rows"][i].position;
-                    tempCreationID = arrayData["Rows"][i].creation_id;
-                    if (viewingDetails != null && selectedPokemon != null) {
-                        if (arrayData["Rows"][i].creation_id == viewingDetails.creation_id && selectedPokemon != null) {
-                            document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
-                            document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
-                            console.log(arrayData["Rows"][i].creation_id);
+                    $.post(url + "/PHP/modify_check.php", { token: token, searchID: pokemonDetails.user_id }, ModifyCheckViewing);
+                } else {
+                    if (oldPosition == "") {
+                        movingPokemon = document.getElementById("GenerationGridDiv" + (i));
+                        oldPosition = arrayData["Rows"][i].position;
+                        tempCreationID = arrayData["Rows"][i].creation_id;
+                        if (pokemonDetails != null && selectedPokemon != null) {
+                            if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id && selectedPokemon != null) {
+                                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
+                                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
+                                console.log(arrayData["Rows"][i].creation_id);
+                            } else {
+                                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
+                                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
+                                console.log(arrayData["Rows"][i].creation_id);
+                            }
                         } else {
                             document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
                             document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
                             console.log(arrayData["Rows"][i].creation_id);
                         }
+                        document.getElementById("GenerationGridDiv" + (i)).style.opacity = "100%";
                     } else {
-                        document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
-                        document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
-                        console.log(arrayData["Rows"][i].creation_id);
-                    }
-                    document.getElementById("GenerationGridDiv" + (i)).style.opacity = "100%";
-                    //document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "none";
-                    //document.querySelector("#PA-LookingForBunches").style.pointerEvents = "none";
-                } else {
-                    newPosition = arrayData["Rows"][i].position;
-                    /*if (oldPosition != newPosition) {
-                        $.post(url + "/PHP/move_selection.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MoveCopyPokemon);
-                    } else {
-                        $.post(url + "/PHP/copy_selection.php", { token: token, creationID: tempCreationID, originalPosition: oldPosition, tradeOption: tradeOption }, MoveCopyPokemon);
-                    }*/
-                    if (oldPosition != newPosition && moving) {
-                        movingPokemon = null;
-                        selectedPokemon = null;
-                        ShowLoading();
-                        $.post(url + "/PHP/move_selection.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MovePokemon);
-                    }
+                        newPosition = arrayData["Rows"][i].position;
+                        if (oldPosition != newPosition && moving) {
+                            movingPokemon = null;
+                            selectedPokemon = null;
+                            ShowLoading();
+                            $.post(url + "/PHP/move_selection.php", { token: token, creationID: tempCreationID, firstSelection: oldPosition, secondSelection: newPosition, tradeOption: tradeOption }, MovePokemon);
+                        }
 
-                    if (oldPosition == newPosition && copying) {
-                        movingPokemon = null;
-                        selectedPokemon = null;
-                        ShowLoading();
-                        $.post(url + "/PHP/copy_selection.php", { token: token, creationID: tempCreationID, originalPosition: oldPosition, tradeOption: tradeOption }, CopyPokemon);
+                        if (oldPosition == newPosition && copying) {
+                            movingPokemon = null;
+                            selectedPokemon = null;
+                            ShowLoading();
+                            $.post(url + "/PHP/copy_selection.php", { token: token, creationID: tempCreationID, originalPosition: oldPosition, tradeOption: tradeOption }, CopyPokemon);
+                        }
                     }
+                }
+            } else {
+                tempPosition = arrayData["Rows"][i].position - 0.1;
+                document.querySelector(".DA-PlaceInfo").style.display = "none";
+                PlacePokemon();
+            }
+        }
+
+        newDiv.onmouseenter = function () {
+            if (!creationInProgress) {
+                if (selectedPokemon == null && hoverInfo == true && window.innerWidth > limitWidth) {
+                    pokemonDetails = arrayData["Rows"][i];
+                    //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
+
+                    ShowPokemonDetails();
+
+                    if (window.innerWidth < limitWidth) {
+                        //Making it so when you click on a mon and Details Area hides it, that mon is scrolled to the new bottom.
+                        var imageView = $(".GenerationGridDiv" + (i)).offset();
+                        var imageViewTop = Math.abs(imageView.top);
+                        console.log(imageViewTop)
+                        console.log(document.querySelector('#SelectionArea').clientHeight)
+                        if (imageViewTop > document.querySelector('#SelectionArea').clientHeight) {
+                            document.getElementById("GenerationGridDiv" + (i)).scrollIntoView(false);
+                        } else {
+                            console.log("Else " + imageViewTop)
+                        }
+                    }
+                    $.post(url + "/PHP/modify_check.php", { token: token, searchID: pokemonDetails.user_id }, ModifyCheckViewing);
                 }
             }
         }
-
-        newDiv.onmouseover = function () {
-            if (selectedPokemon == null && hoverInfo == true && window.innerWidth > limitWidth) {
-                viewingDetails = arrayData["Rows"][i];
-                pokemonImage = document.getElementById("GeneratedSelection " + (i)).getAttribute("src");
-                document.querySelector(".VA-Username").innerHTML = searchData.username + "#" + viewingDetails.user_id;
-                $.post(url + "/PHP/generate_selection.php", { token: token, searchID: viewingDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
-
-                //AssigningOutline();
-                UpdateViewingDetails();
-
-                if (window.innerWidth < limitWidth) {
-                    //Making it so when you click on a mon and Viewing Area hides it, that mon is scrolled to the new bottom.
-                    var imageView = $(".GenerationGridDiv" + (i)).offset();
-                    var imageViewTop = Math.abs(imageView.top);
-                    console.log(imageViewTop)
-                    console.log(document.querySelector('#SelectionArea').clientHeight)
-                    if (imageViewTop > document.querySelector('#SelectionArea').clientHeight) {
-                        document.getElementById("GenerationGridDiv" + (i)).scrollIntoView(false);
-                    } else {
-                        console.log("Else " + imageViewTop)
-                    }
+        if (!creationInProgress) {
+            if (pokemonDetails != null && selectedPokemon != null) {
+                if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id) {
+                    selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
+                    document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+                    document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
                 }
             }
         }
-        if (viewingDetails != null && selectedPokemon != null) {
-            if (arrayData["Rows"][i].creation_id == viewingDetails.creation_id) {
-                selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
-                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
-            }
-        }
-
-        /*newDiv.onmouseout = function () {
-            if (selectedPokemon == null) {
-                $('.VA-CloseButton').click();
-            }
-        }*/
     }
-    //Assigning the outline in case a pokemon generated is the one still in the viewing area so the user knows which one it is.
-    //AssigningOutline();
+
     HideLoading();
 }
 
@@ -1325,199 +1335,412 @@ function MoveBunch() {
     //$.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
 }
 
-function UpdateViewingDetails() {
-
-    document.querySelector(".VA-Bunch").innerHTML = viewingDetails.bunch;
-    document.querySelector(".VA-Lang").innerHTML = "[" + viewingDetails.language + "]";
-    document.querySelector(".VA-ObtainedInfo").innerHTML = viewingDetails.how_obtained + " " + viewingDetails.game_obtained;
-    //document.querySelector(".VA-HowObtained").innerHTML = viewingDetails.how_obtained;
-    //document.querySelector(".VA-GameObtained").innerHTML = viewingDetails.game_obtained;
-
-    if (viewingDetails.gen6_availability == "Not Available") {
-        Gen6 = "Not Available";
-        document.querySelector(".VA-Gen6").style.color = "#C83939";
-    } else {
-        Gen6 = "Available";
-        document.querySelector(".VA-Gen6").style.color = "#36E26E";
-    }
-
-    if (viewingDetails.gen7_availability == "Not Available") {
-        Gen7 = "Not Available";
-        document.querySelector(".VA-Gen7").style.color = "#C83939";
-    } else {
-        Gen7 = "Available";
-        document.querySelector(".VA-Gen7").style.color = "#36E26E";
-    }
-
-    if (viewingDetails.gen8_availability == "Not Available") {
-        Gen8 = "Not Available";
-        document.querySelector(".VA-Gen8").style.color = "#C83939";
-    } else {
-        Gen8 = "Available";
-        document.querySelector(".VA-Gen8").style.color = "#36E26E";
-    }
-
-    if (viewingDetails.home_availability == "Not Available") {
-        Home = "Not Available";
-        document.querySelector(".VA-Home").style.color = "#C83939";
-    } else {
-        Home = "Available";
-        document.querySelector(".VA-Home").style.color = "#36E26E";
-    }
-
-    document.querySelector(".VA-PokemonImage").setAttribute("src", pokemonImage);
-    document.querySelector(".VA-PokemonName").innerHTML = viewingDetails.pokemon;
-    if (viewingDetails.nickname != "(No Nickname)") {
-        document.querySelector(".VA-Nickname").style.display = "inline";
-        document.querySelector(".VA-Nickname").innerHTML = viewingDetails.nickname;
-    } else {
-        document.querySelector(".VA-Nickname").style.display = "none";
-    }
-
-    if (viewingDetails.iv_hp == "X" && viewingDetails.iv_att == "X" && viewingDetails.iv_def == "X" &&
-        viewingDetails.iv_spa == "X" && viewingDetails.iv_spd == "X" && viewingDetails.iv_spe == "X") {
-
-        document.querySelector(".VA-IVs").style.display = "none";
-    } else {
-        document.querySelector(".VA-IVs").innerHTML = "IVS: " + viewingDetails.iv_hp + "/" + viewingDetails.iv_att + "/" +
-            viewingDetails.iv_def + "/" + viewingDetails.iv_spa + "/" + viewingDetails.iv_spd + "/" + viewingDetails.iv_spe;
-        document.querySelector(".VA-IVs").style.display = "inline";
-    }
-
-    if (viewingDetails.ev_hp == "X" && viewingDetails.ev_att == "X" && viewingDetails.ev_def == "X" &&
-        viewingDetails.ev_spa == "X" && viewingDetails.ev_spd == "X" && viewingDetails.ev_spe == "X") {
-
-        document.querySelector(".VA-EVs").style.display = "none";
-    } else {
-        document.querySelector(".VA-EVs").innerHTML = "EVS: " + viewingDetails.ev_hp + "/" + viewingDetails.ev_att + "/" +
-            viewingDetails.ev_def + "/" + viewingDetails.ev_spa + "/" + viewingDetails.ev_spd + "/" + viewingDetails.ev_spe;
-        document.querySelector(".VA-EVs").style.display = "inline";
-    }
-
-    document.querySelector(".VA-Pokeball").setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Items/" + viewingDetails.pokeball + ".png");
-
-    document.querySelector(".VA-Gender").setAttribute("src", url + "/Resources/Misc/" + viewingDetails.gender + ".png");
-    document.querySelector(".VA-Shiny").setAttribute("src", url + "/Resources/Misc/" + viewingDetails.shiny + ".png");
-    document.querySelector(".VA-Mint").setAttribute("src", url + "/Resources/Misc/" + viewingDetails.mint + ".png");
-    document.querySelector(".VA-Misc").setAttribute("src", url + "/Resources/Misc/" + viewingDetails.misc + ".png");
-    document.querySelector(".VA-Mark").setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Marks/" + viewingDetails.mark + ".png");
-    document.querySelector(".VA-Nature").innerHTML = "Nature: " + viewingDetails.nature;
-    document.querySelector(".VA-Ability").innerHTML = "Ability: " + viewingDetails.ability;
-    document.querySelector(".VA-OT").innerHTML = "OT: " + viewingDetails.game_ot;
-    document.querySelector(".VA-ID").innerHTML = "ID: " + viewingDetails.game_id;
-    document.querySelector(".VA-Status").innerHTML = "Status: " + viewingDetails.status;
-    if (viewingDetails.event_info == "(Not Event)") {
-        document.querySelector(".VA-Event").style.display = "none";
-    } else {
-        document.querySelector(".VA-Event").innerHTML = "Event: " + viewingDetails.event_info;
-        document.querySelector(".VA-Event").style.display = "flex";
-    }
-    document.querySelector(".ViewingProof").innerHTML = viewingDetails.proof;
-
-    //document.querySelector(".VA-ToggleProof").style.display = "inline-table";
-    if (viewingDetails.proof == "(No Proof)") {
-        document.querySelector(".ViewingProof").style.display = "none";
-        document.querySelector(".VA-LinkRedirector").style.display = "none";
-        document.querySelector(".VA-ToggleProof").style.display = "none";
-    } else {
-        var imageError = false;
-        var videoError = false;
-        if (!viewingDetails.proof.includes("imgur")) {
-
-            if (viewingDetails.proof.includes(".mp4") || viewingDetails.proof.includes(".MP4")) {
-                if (document.querySelector(".VA-ProofVideo").getAttribute("src") != viewingDetails.proof || document.querySelector(".VA-ProofVideo").innerHTML != viewingDetails.proof) {
-                    document.querySelector(".VA-ProofVideo").setAttribute("src", viewingDetails.proof);
-                    document.querySelector(".VA-ToggleProof").style.display = "block";
-                    document.querySelector(".VA-ProofImage").style.display = "none";
-                    document.querySelector(".VA-ProofVideo").style.display = "block";
-                    document.querySelector(".VA-LinkRedirector").setAttribute("href", viewingDetails.proof);
-                    document.querySelector(".VA-ProofVideo").onerror = function () {
-                        document.querySelector(".VA-LinkRedirector").style.display = "none";
-                        document.querySelector(".VA-ToggleProof").style.display = "none";
-                        document.querySelector(".ViewingProof").setAttribute("href", viewingDetails.proof);
-                        document.querySelector(".ViewingProof").style.color = "#4343FF";
-                        document.querySelector(".ViewingProof").style.display = "flex";
-                        document.querySelector(".VA-LinkRedirector").setAttribute("href", null);
-                    }
-                    document.querySelector(".ViewingProof").style.display = "none";
-                    if (toggleOn) {
-                        document.querySelector(".VA-LinkRedirector").style.display = "flex";
-                    }
-                }
-
-
-
-            } else {
-                if (document.querySelector(".VA-ProofImage").getAttribute("src") != viewingDetails.proof || document.querySelector(".VA-ProofImage").innerHTML != viewingDetails.proof) {
-                    document.querySelector(".VA-ProofImage").setAttribute("src", viewingDetails.proof);
-                    document.querySelector(".VA-LinkRedirector").style.display = "none";
-                    document.querySelector(".VA-ProofVideo").style.display = "none";
-                    document.querySelector(".VA-ProofImage").style.display = "block";
-                    document.querySelector(".VA-ToggleProof").style.display = "block";
-                    document.querySelector(".VA-LinkRedirector").setAttribute("href", viewingDetails.proof);
-                    document.querySelector(".VA-ProofImage").onerror = function () {
-                        document.querySelector(".VA-LinkRedirector").style.display = "none";
-                        document.querySelector(".VA-ToggleProof").style.display = "none";
-                        document.querySelector(".ViewingProof").setAttribute("href", viewingDetails.proof);
-                        document.querySelector(".ViewingProof").style.color = "#4343FF";
-                        document.querySelector(".ViewingProof").style.display = "flex";
-                        document.querySelector(".VA-LinkRedirector").setAttribute("href", null);
-                    }
-                    document.querySelector(".ViewingProof").style.display = "none";
-                    if (toggleOn) {
-                        document.querySelector(".VA-LinkRedirector").style.display = "flex";
-                    }
-                }
-            }
-
-        } else {
-            document.querySelector(".VA-LinkRedirector").style.display = "none";
-            document.querySelector(".VA-ToggleProof").style.display = "none";
-            document.querySelector(".ViewingProof").setAttribute("href", viewingDetails.proof);
-            document.querySelector(".ViewingProof").style.color = "#4343FF";
-            document.querySelector(".ViewingProof").style.display = "flex";
+function GettingFTBunches(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    ft = arrayInfo["Rows"];
+    if (tempTradeOption == "For Trade") {
+        while (bunchSelection.lastElementChild) {
+            bunchSelection.removeChild(bunchSelection.lastElementChild);
+        }
+        for (let i = 0; i < ft.length; i++) {
+            const detailsOption = document.createElement("option");
+            detailsOption.value = ft[i].name;
+            detailsOption.textContent = ft[i].name;
+            detailsOption.setAttribute("class", "DA-DropdownOptions");
+            bunchSelection.appendChild(detailsOption);
+        }
+        //This is needed for on mouse over for details or else you get an error since pokemonDetails set to null
+        //when details area not open.
+        if (pokemonDetails != null) {
+            bunchSelection.value = pokemonDetails.bunch;
         }
 
-
-
     }
+}
 
-    document.querySelector(".VA-Move1").innerHTML = viewingDetails.move_1;
-    document.querySelector(".VA-Move2").innerHTML = viewingDetails.move_2;
-    document.querySelector(".VA-Move3").innerHTML = viewingDetails.move_3;
-    document.querySelector(".VA-Move4").innerHTML = viewingDetails.move_4;
-
-    document.querySelector(".VA-LegacyMove1").innerHTML = viewingDetails.legacy_move_1;
-    document.querySelector(".VA-LegacyMove2").innerHTML = viewingDetails.legacy_move_2;
-    document.querySelector(".VA-LegacyMove3").innerHTML = viewingDetails.legacy_move_3;
-    document.querySelector(".VA-LegacyMove4").innerHTML = viewingDetails.legacy_move_4;
-
-    if (viewingDetails.legacy_move_1 == "(No Move)" && viewingDetails.legacy_move_2 == "(No Move)" &&
-        viewingDetails.legacy_move_3 == "(No Move)" && viewingDetails.legacy_move_4 == "(No Move)") {
-        document.querySelector(".VA-TransferMoves").style.display = "none";
-        document.querySelector(".VA-LegacyMoves").style.display = "none";
-    } else {
-        document.querySelector(".VA-TransferMoves").style.display = "flex";
-        document.querySelector(".VA-LegacyMoves").style.display = "grid";
+function GettingLFBunches(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    lf = arrayInfo["Rows"];
+    if (tempTradeOption == "Looking For") {
+        while (bunchSelection.lastElementChild) {
+            bunchSelection.removeChild(bunchSelection.lastElementChild);
+        }
+        for (let i = 0; i < lf.length; i++) {
+            const detailsOption = document.createElement("option");
+            detailsOption.value = lf[i].name;
+            detailsOption.textContent = lf[i].name;
+            detailsOption.setAttribute("class", "DA-DropdownOptions");
+            bunchSelection.appendChild(detailsOption);
+        }
+        //This is needed for on mouse over for details or else you get an error since pokemonDetails set to null
+        //when details area not open.
+        if (pokemonDetails != null) {
+            bunchSelection.value = pokemonDetails.bunch;
+        }
     }
+}
 
-    if (viewingDetails.note == "(No Note)") {
-        document.querySelector(".VA-Note").style.display = "none";
-    } else {
-        document.querySelector(".VA-Note").innerHTML = "Note: " + viewingDetails.note;
-        document.querySelector(".VA-Note").style.display = "table";
+function ShowPokemonDetails() {
+    document.querySelector(".DA-Place").style.pointerEvents = "none";
+    document.querySelector(".DA-Place").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+    tempUserID = "";
+    if (userData != null) {
+        tempUserID = userData.user_id;
     }
-    if (document.querySelector("#ViewingArea").style.display != "block" && document.querySelector("#FilterArea").style.display != "block") {
-        document.querySelector("#ViewingArea").style.display = "block";
+    creationID = pokemonDetails.creation_id;
+    if (document.querySelector("#DetailsArea").style.display != "block" && document.querySelector("#FilterArea").style.display != "block") {
+        document.querySelector("#DetailsArea").style.display = "block";
         document.querySelector("#PanelArea").style.display = "none";
-        //document.querySelector('#SelectionArea').style.width = "100%"
-        /*if (document.querySelector('#SelectionArea').offsetWidth > limitWidth) {
-            //var newWidth = document.querySelector('#SelectionArea').offsetWidth -= document.querySelector('#ViewingArea').offsetWidth;
-            var newWidth = document.querySelector('#SelectionArea').offsetWidth - 420
-            document.querySelector('#SelectionArea').style.width = newWidth + "px";
-        } else {
-            document.querySelector('#SelectionArea').style.height = "50%"
-        }*/
     }
 
+    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+        document.querySelector(".DA-DetailsData").style.pointerEvents = "none";
+    } else {
+        document.querySelector(".DA-DetailsData").style.pointerEvents = "initial";
+    }
+
+    tempTradeOption = "";
+    tempTradeOption = pokemonDetails.trade_option;
+
+    document.querySelector(".DA-Username").innerHTML = searchData.username + "#" + pokemonDetails.user_id;
+
+    if (tempUserID == pokemonDetails.user_id) {
+        bunchSelection.value = pokemonDetails.bunch;
+    }
+    $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: pokemonDetails.trade_option, showEmpty: "Yes" }, GettingFTBunches);
+
+    $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: pokemonDetails.trade_option, showEmpty: "Yes" }, GettingLFBunches);
+
+    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+        document.querySelector(".DA-TemplateSection").style.display = "none";
+    } else {
+        document.querySelector(".DA-TemplateSection").style.display = "table";
+    }
+
+    templateName.value = null;
+
+    document.querySelector(".DA-LangIcon").innerHTML = "[" + pokemonDetails.language + "]";
+    howObtainedSelection.value = pokemonDetails.how_obtained;
+    gameObtainedSelection.value = pokemonDetails.game_obtained;
+    gameObtainedValue = pokemonDetails.game_obtained;
+
+    displaySelection.value = pokemonDetails.display;
+    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+        displaySelection.style.display = "none";
+    } else {
+        displaySelection.style.display = "block";
+    }
+
+    gen6Data = pokemonDetails.gen6_availability;
+    gen7Data = pokemonDetails.gen7_availability;
+    gen8Data = pokemonDetails.gen8_availability;
+    homeData = pokemonDetails.home_availability;
+    if (pokemonDetails.gen6_availability == "Not Available") {
+        gen6Data = "Not Available";
+        document.querySelector(".DA-Gen6").style.color = "#dc7878";
+    } else {
+        gen6Data = "Available";
+        document.querySelector(".DA-Gen6").style.color = "#74db96";
+    }
+
+    if (pokemonDetails.gen7_availability == "Not Available") {
+        gen7Data = "Not Available";
+        document.querySelector(".DA-Gen7").style.color = "#dc7878";
+    } else {
+        gen7Data = "Available";
+        document.querySelector(".DA-Gen7").style.color = "#74db96";
+    }
+
+    if (pokemonDetails.gen8_availability == "Not Available") {
+        gen8Data = "Not Available";
+        document.querySelector(".DA-Gen8").style.color = "#dc7878";
+    } else {
+        gen8Data = "Available";
+        document.querySelector(".DA-Gen8").style.color = "#74db96";
+    }
+
+    if (pokemonDetails.home_availability == "Not Available") {
+        homeData = "Not Available";
+        document.querySelector(".DA-Home").style.color = "#dc7878";
+    } else {
+        homeData = "Available";
+        document.querySelector(".DA-Home").style.color = "#74db96";
+    }
+
+    ballData = pokemonDetails.pokeball;
+    document.querySelector(".DA-BallIcon").setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Items/" + pokemonDetails.pokeball + ".png");
+    genderData = pokemonDetails.gender;
+    document.querySelector(".DA-GenderIcon").setAttribute("src", url + "/Resources/Misc/" + pokemonDetails.gender + ".png");
+    shinyData = pokemonDetails.shiny;
+    document.querySelector(".DA-ShinyIcon").setAttribute("src", url + "/Resources/Misc/" + pokemonDetails.shiny + ".png");
+    mintData = pokemonDetails.mint;
+    document.querySelector(".DA-MintIcon").setAttribute("src", url + "/Resources/Misc/" + pokemonDetails.mint + ".png");
+    miscData = pokemonDetails.misc;
+    document.querySelector(".DA-MiscIcon").setAttribute("src", url + "/Resources/Misc/" + pokemonDetails.misc + ".png");
+    markData = pokemonDetails.mark;
+    document.querySelector(".DA-MarkIcon").setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Marks/" + pokemonDetails.mark + ".png");
+
+    pokemonData = pokemonDetails.pokemon;
+    pokemonSelection.value = pokemonDetails.pokemon;
+
+    PokemonValidation();
+
+    abilitySelection.value = pokemonDetails.ability;
+    if (pokemonDetails.ability == "(Any Ability)" && tempUserID != pokemonDetails.user_id ||
+        pokemonDetails.ability == "(Any Ability)" && detailsLocked) {
+        document.querySelector(".DA-AbilityRow").style.display = "none";
+    } else {
+        document.querySelector(".DA-AbilityRow").style.display = "table-row";
+    }
+
+    nicknameSelection.value = pokemonDetails.nickname;
+    if (pokemonDetails.nickname == "" && tempUserID != pokemonDetails.user_id ||
+        pokemonDetails.nickname == "" && detailsLocked) {
+        nicknameSelection.style.display = "none";
+    } else {
+        nicknameSelection.style.display = "block";
+    }
+
+    natureSelection.value = pokemonDetails.nature;
+    if (pokemonDetails.nature == "(Any Nature)" && tempUserID != pokemonDetails.user_id ||
+        pokemonDetails.nature == "(Any Nature)" && detailsLocked) {
+        document.querySelector(".DA-NatureRow").style.display = "none";
+    } else {
+        document.querySelector(".DA-NatureRow").style.display = "table-row";
+    }
+
+    otSelection.value = pokemonDetails.game_ot;
+    if (pokemonDetails.game_ot == "" && tempUserID != pokemonDetails.user_id ||
+        pokemonDetails.game_ot == "" && detailsLocked) {
+        document.querySelector(".DA-OTRow").style.display = "none";
+    } else {
+        document.querySelector(".DA-OTRow").style.display = "table-row";
+    }
+
+    idSelection.value = pokemonDetails.game_id;
+    if (pokemonDetails.game_id == "" && tempUserID != pokemonDetails.user_id ||
+        pokemonDetails.game_id == "" && detailsLocked) {
+        document.querySelector(".DA-IDRow").style.display = "none";
+    } else {
+        document.querySelector(".DA-IDRow").style.display = "table-row";
+    }
+
+    statusSelection.value = pokemonDetails.status;
+    if (pokemonDetails.status == "(Any Status)" && tempUserID != pokemonDetails.user_id ||
+        pokemonDetails.status == "(Any Status)" && detailsLocked) {
+        document.querySelector(".DA-StatusRow").style.display = "none";
+    } else {
+        document.querySelector(".DA-StatusRow").style.display = "table-row";
+    }
+
+    eventSelection.value = pokemonDetails.event_info;
+    if (pokemonDetails.event_info == "(Any/No Event)" && tempUserID != pokemonDetails.user_id ||
+        pokemonDetails.event_info == "(Any/No Event)" && detailsLocked ||
+        pokemonDetails.event_info == "(Not Event)" && tempUserID != pokemonDetails.user_id ||
+        pokemonDetails.event_info == "(Not Event)" && detailsLocked) {
+        document.querySelector(".DA-EventRow").style.display = "none";
+    } else {
+        document.querySelector(".DA-EventRow").style.display = "table-row";
+    }
+
+    document.querySelector(".DA-StatHolder").style.display = "table";
+    ivHpSelection.value = pokemonDetails.iv_hp;
+    ivAttSelection.value = pokemonDetails.iv_att;
+    ivDefSelection.value = pokemonDetails.iv_def;
+    ivSpaSelection.value = pokemonDetails.iv_spa;
+    ivSpdSelection.value = pokemonDetails.iv_spd;
+    ivSpeSelection.value = pokemonDetails.iv_spe;
+
+    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+        if (pokemonDetails.iv_hp == "X" && pokemonDetails.iv_att == "X" && pokemonDetails.iv_def == "X" &&
+            pokemonDetails.iv_spa == "X" && pokemonDetails.iv_spd == "X" && pokemonDetails.iv_spe == "X") {
+
+            document.querySelector(".DA-RowIVs").style.display = "none";
+        } else {
+            document.querySelector(".DA-RowIVs").style.display = "table-row";
+        }
+    } else {
+        document.querySelector(".DA-RowIVs").style.display = "table-row";
+    }
+
+    evHpSelection.value = pokemonDetails.ev_hp;
+    evAttSelection.value = pokemonDetails.ev_att;
+    evDefSelection.value = pokemonDetails.ev_def;
+    evSpaSelection.value = pokemonDetails.ev_spa;
+    evSpdSelection.value = pokemonDetails.ev_spd;
+    evSpeSelection.value = pokemonDetails.ev_spe;
+
+    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+        if (pokemonDetails.ev_hp == "X" && pokemonDetails.ev_att == "X" && pokemonDetails.ev_def == "X" &&
+            pokemonDetails.ev_spa == "X" && pokemonDetails.ev_spd == "X" && pokemonDetails.ev_spe == "X") {
+
+            document.querySelector(".DA-RowEVs").style.display = "none";
+        } else {
+
+            document.querySelector(".DA-RowEVs").style.display = "table-row";
+        }
+    } else {
+        document.querySelector(".DA-RowEVs").style.display = "table-row";
+    }
+
+    if (document.querySelector(".DA-RowEVs").style.display == "none" && document.querySelector(".DA-RowIVs").style.display == "none") {
+        document.querySelector(".DA-RowEVs").style.display = "table-row";
+        document.querySelector(".DA-RowIVs").style.display = "table-row";
+        document.querySelector(".DA-StatHolder").style.display = "none";
+    }
+
+    document.querySelector(".DA-PokemonMoves").style.display = "block";
+    document.querySelector(".DA-NormalMoves").style.display = "grid";
+    document.querySelector(".DA-Move1").style.display = "block";
+    document.querySelector(".DA-Move2").style.display = "block";
+    document.querySelector(".DA-Move3").style.display = "block";
+    document.querySelector(".DA-Move4").style.display = "block";
+
+    document.querySelector(".DA-TransferMoves").style.display = "block";
+    document.querySelector(".DA-LegacyMoves").style.display = "grid";
+    document.querySelector(".DA-LegacyMove1").style.display = "block";
+    document.querySelector(".DA-LegacyMove2").style.display = "block";
+    document.querySelector(".DA-LegacyMove3").style.display = "block";
+    document.querySelector(".DA-LegacyMove4").style.display = "block";
+
+    move1Selection.value = pokemonDetails.move_1;
+    move2Selection.value = pokemonDetails.move_2;
+    move3Selection.value = pokemonDetails.move_3;
+    move4Selection.value = pokemonDetails.move_4;
+
+    move1Null = true;
+    move2Null = true;
+    move3Null = true;
+    move4Null = true;
+
+    if (pokemonDetails.move_1 == "(Any Move)" || pokemonDetails.move_1 == "(No Move)") {
+        move1Null = false;
+    }
+
+    if (pokemonDetails.move_2 == "(Any Move)" || pokemonDetails.move_2 == "(No Move)") {
+        move2Null = false;
+    }
+
+    if (pokemonDetails.move_3 == "(Any Move)" || pokemonDetails.move_3 == "(No Move)") {
+        move3Null = false;
+    }
+
+    if (pokemonDetails.move_4 == "(Any Move)" || pokemonDetails.move_4 == "(No Move)") {
+        move4Null = false;
+    }
+
+    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+        if (!move1Null && !move2Null && !move3Null && !move1Null) {
+            document.querySelector(".DA-PokemonMoves").style.display = "none";
+            document.querySelector(".DA-NormalMoves").style.display = "none";
+        } else if (!move3Null && !move4Null) {
+            document.querySelector(".DA-Move3").style.display = "none";
+            document.querySelector(".DA-Move4").style.display = "none";
+        }
+    }
+
+
+    legacyMove1Selection.value = pokemonDetails.legacy_move_1;
+    legacyMove2Selection.value = pokemonDetails.legacy_move_2;
+    legacyMove3Selection.value = pokemonDetails.legacy_move_3;
+    legacyMove4Selection.value = pokemonDetails.legacy_move_4;
+
+    legacyMove1Null = true;
+    legacyMove2Null = true;
+    legacyMove3Null = true;
+    legacyMove4Null = true;
+
+    if (pokemonDetails.legacy_move_1 == "(Any Move)" || pokemonDetails.legacy_move_1 == "(No Move)") {
+        legacyMove1Null = false;
+    }
+
+    if (pokemonDetails.legacy_move_2 == "(Any Move)" || pokemonDetails.legacy_move_2 == "(No Move)") {
+        legacyMove2Null = false;
+    }
+
+    if (pokemonDetails.legacy_move_3 == "(Any Move)" || pokemonDetails.legacy_move_3 == "(No Move)") {
+        legacyMove3Null = false;
+    }
+
+    if (pokemonDetails.legacy_move_4 == "(Any Move)" || pokemonDetails.legacy_move_4 == "(No Move)") {
+        legacyMove4Null = false;
+    }
+
+    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+        if (!legacyMove1Null && !legacyMove2Null && !legacyMove3Null && !legacyMove1Null) {
+            document.querySelector(".DA-TransferMoves").style.display = "none";
+            document.querySelector(".DA-LegacyMoves").style.display = "none";
+        } else if (!legacyMove3Null && !legacyMove4Null) {
+            document.querySelector(".DA-LegacyMove3").style.display = "none";
+            document.querySelector(".DA-LegacyMove4").style.display = "none";
+        }
+    }
+
+    proofSelection.value = pokemonDetails.proof;
+    document.querySelector(".DA-ProofURL").setAttribute("src", pokemonDetails.proof);
+    document.querySelector(".DA-ProofVideo").setAttribute("src", pokemonDetails.proof);
+    document.querySelector(".DA-ProofImage").setAttribute("src", pokemonDetails.proof);
+    //document.querySelector(".DA-ProofImage").setAttribute("src", "");
+    //document.querySelector(".DA-ProofVideo").setAttribute("src", "");
+
+    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+        if (pokemonDetails.proof == "") {
+            document.querySelector(".DA-Proof").style.display = "none";
+        } else {
+            document.querySelector(".DA-Proof").style.display = "block";
+            if (toggleOn) {
+                DisplayProof();
+            }
+        }
+    } else {
+        document.querySelector(".DA-Proof").style.display = "block";
+        if (toggleOn) {
+            DisplayProof();
+        }
+    }
+
+    document.querySelector(".DA-Note").style.display = "flex";
+    noteSelection.value = pokemonDetails.note;
+    noteSelection.style.height = "";
+    noteSelection.style.height = noteSelection.scrollHeight + "px";
+
+
+    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+        if (pokemonDetails.note == "") {
+            document.querySelector(".DA-Note").style.display = "none";
+        } else {
+            document.querySelector(".DA-Note").style.display = "flex";
+            noteSelection.value = "Note: " + pokemonDetails.note;
+            noteSelection.style.height = "";
+            noteSelection.style.height = noteSelection.scrollHeight + "px";
+        }
+    }
+}
+
+function ShowAllDropdowns() {
+    displaySelection.style.display = "block";
+    document.querySelector(".DA-AbilityRow").style.display = "table-row";
+    nicknameSelection.style.display = "block";
+    document.querySelector(".DA-NatureRow").style.display = "table-row";
+    document.querySelector(".DA-OTRow").style.display = "table-row";
+    document.querySelector(".DA-IDRow").style.display = "table-row";
+    document.querySelector(".DA-StatusRow").style.display = "table-row";
+    document.querySelector(".DA-EventRow").style.display = "table-row";
+    document.querySelector(".DA-StatHolder").style.display = "table";
+    document.querySelector(".DA-RowIVs").style.display = "table-row";
+    document.querySelector(".DA-RowEVs").style.display = "table-row";
+    document.querySelector(".DA-PokemonMoves").style.display = "block";
+    document.querySelector(".DA-NormalMoves").style.display = "grid";
+    document.querySelector(".DA-Move1").style.display = "block";
+    document.querySelector(".DA-Move2").style.display = "block";
+    document.querySelector(".DA-Move3").style.display = "block";
+    document.querySelector(".DA-Move4").style.display = "block";
+    document.querySelector(".DA-TransferMoves").style.display = "block";
+    document.querySelector(".DA-LegacyMoves").style.display = "grid";
+    document.querySelector(".DA-LegacyMove1").style.display = "block";
+    document.querySelector(".DA-LegacyMove2").style.display = "block";
+    document.querySelector(".DA-LegacyMove3").style.display = "block";
+    document.querySelector(".DA-LegacyMove4").style.display = "block";
+    document.querySelector(".DA-Proof").style.display = "block";
+    document.querySelector(".DA-Note").style.display = "flex";
 }

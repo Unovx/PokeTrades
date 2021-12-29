@@ -1,11 +1,11 @@
 viewingDetails = [];
 
-AdditionalViewing1 = [];
+/*AdditionalViewing1 = [];
 AdditionalViewing2 = [];
 AdditionalViewing3 = [];
 AdditionalViewing4 = [];
 AdditionalViewing5 = [];
-AdditionalViewing6 = [];
+AdditionalViewing6 = [];*/
 
 var viewing1Image;
 var viewing2Image;
@@ -14,12 +14,12 @@ var viewing4Image;
 var viewing5Image;
 var viewing6Image;
 
-viewing1Username = "";
+/*viewing1Username = "";
 viewing2Username = "";
 viewing3Username = "";
 viewing4Username = "";
 viewing5Username = "";
-viewing6Username = "";
+viewing6Username = "";*/
 
 var toggleOn = false;
 
@@ -89,7 +89,7 @@ $('.VA-ToggleProof').click(function () {
     }
 });
 
-function AssigningOutline() {
+/*function AssigningOutline() {
     //Makes sure arrayData isn't null so an error doesn't get brought up in specific cases like on the bunch area
     if (arrayData != null) {
         for (let i = 0; i < numberOfArrays; i++) {
@@ -103,7 +103,7 @@ function AssigningOutline() {
                 document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
             }
             //If it finds a generated row that has the same creation id as the current viewing id, it gives that div a outline
-            else if (arrayData["Rows"][i].creation_id == viewingDetails.creation_id) {
+            else if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id) {
                 selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
                 document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
                 document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
@@ -113,7 +113,7 @@ function AssigningOutline() {
             }
         }
     }
-}
+}*/
 
 $('.VA-ViewingHelp').click(function () {
     document.querySelector("#NotificationArea").style.display = "block";
@@ -284,7 +284,7 @@ function OpenCreationArea() {
     ValidatePokemon();
 }
 
-function SetAV1() {
+/*function SetAV1() {
     AdditionalViewing1 = viewingDetails;
     viewing1Image = pokemonImage;
     viewing1Username = searchData.username;
@@ -372,7 +372,7 @@ function ShowAV6() {
     document.querySelector(".VA-Username").innerHTML = viewing6Username + "#" + viewingDetails.user_id;
     $.post(url + "/PHP/generate_selection.php", { token: token, searchID: viewingDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
     UpdateViewingDetails();
-};
+};*/
 
 function MatchMaking(data) {
     //console.log("Running Match");
