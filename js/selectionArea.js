@@ -131,6 +131,7 @@ $('.SA-CreateButton').click(function () {
     document.querySelector(".DA-Lock").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
     detailsLocked = false;
     document.querySelector(".DA-Lock").innerHTML = "Lock";
+    document.querySelector(".DA-DetailsData").style.pointerEvents = "initial";
 
     ShowAllDropdowns();
 
@@ -142,7 +143,6 @@ $('.SA-CreateButton').click(function () {
     pokemonDetails = null;
     AssigningOutline();
     templateSelection.value = "(No Template)";
-    AbilityOptions();
 });
 
 $('.SA-MoveButton').click(function () {
@@ -1484,6 +1484,7 @@ function ShowPokemonDetails() {
     pokemonSelection.value = pokemonDetails.pokemon;
 
     PokemonValidation();
+    AbilityOptions();
 
     abilitySelection.value = pokemonDetails.ability;
     if (pokemonDetails.ability == "(Any Ability)" && tempUserID != pokemonDetails.user_id ||
