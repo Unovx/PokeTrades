@@ -111,6 +111,7 @@ $('.SA-MainMenu').click(function () {
     CreationReset();
     BunchReset();
     creationInProgress = false;
+    placingPokemon = false;
 });
 
 $('.SA-CreateButton').click(function () {
@@ -1253,9 +1254,11 @@ function GenerateSelection(data) {
                     }
                 }
             } else {
-                tempPosition = arrayData["Rows"][i].position - 0.1;
-                document.querySelector(".DA-PlaceInfo").style.display = "none";
-                PlacePokemon();
+                if (placingPokemon){
+                    tempPosition = arrayData["Rows"][i].position - 0.1;
+                    document.querySelector(".DA-PlaceInfo").style.display = "none";
+                    PlacePokemon();
+                }
             }
         }
 

@@ -1,5 +1,6 @@
 var detailsLocked = false;
 var creationInProgress = false;
+var placingPokemon = false;
 var pokemonDetails = [];
 var tempPosition = 0;
 AdditionalViewing1 = [];
@@ -150,11 +151,13 @@ $('.DA-Place').click(function () {
         document.querySelector(".DA-DetailsData").style.pointerEvents = "none";
         document.querySelector(".DA-Place").innerHTML = "Cancel";
         document.querySelector(".DA-PlaceInfo").style.display = "block";
+        placingPokemon = true;
     } else {
         document.querySelector(".DA-AdditionalViewings").style.pointerEvents = "initial";
         document.querySelector(".DA-DetailsData").style.pointerEvents = "initial";
         document.querySelector(".DA-Place").innerHTML = "Place";
         document.querySelector(".DA-PlaceInfo").style.display = "none";
+        placingPokemon = false;
     }
 
 });
@@ -1704,6 +1707,7 @@ function PlacePokemon() {
     } else {
         document.querySelector("#NotificationArea").style.display = "block";
         document.querySelector(".CreationPokemonError").style.display = "block";
+        placingPokemon = false;
     }
 }
 
@@ -1724,5 +1728,6 @@ function PlacedPokemon() {
     document.querySelector(".SA-CopyButton").style.backgroundColor = "#efefef";
     document.querySelector(".DA-AdditionalViewings").style.pointerEvents = "initial";
     document.querySelector(".DA-Place").innerHTML = "Place";
+    placingPokemon = false;
 }
 
