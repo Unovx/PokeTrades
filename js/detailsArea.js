@@ -548,13 +548,13 @@ function DisplayProof() {
         if (proofSelection.value.includes(".mp4") || proofSelection.value.includes(".MP4")) {
             if (document.querySelector(".DA-ProofVideo").getAttribute("src") != proofSelection.value || document.querySelector(".DA-ProofVideo").innerHTML != proofSelection.value) {
                 document.querySelector(".DA-ProofVideo").setAttribute("src", proofSelection.value);
-                document.querySelector(".DA-ToggleProof").style.display = "block";
+                //document.querySelector(".DA-ToggleProof").style.display = "block";
                 document.querySelector(".DA-ProofImage").style.display = "none";
                 document.querySelector(".DA-ProofVideo").style.display = "block";
                 document.querySelector(".DA-LinkRedirector").setAttribute("href", proofSelection.value);
                 document.querySelector(".DA-ProofVideo").onerror = function () {
                     document.querySelector(".DA-LinkRedirector").style.display = "none";
-                    document.querySelector(".DA-ToggleProof").style.display = "none";
+                    //document.querySelector(".DA-ToggleProof").style.display = "none";
                     document.querySelector(".DA-LinkRedirector").setAttribute("href", null);
                 }
                 if (toggleOn) {
@@ -570,7 +570,7 @@ function DisplayProof() {
                 document.querySelector(".DA-LinkRedirector").style.display = "none";
                 document.querySelector(".DA-ProofVideo").style.display = "none";
                 document.querySelector(".DA-ProofImage").style.display = "block";
-                document.querySelector(".DA-ToggleProof").style.display = "block";
+                //document.querySelector(".DA-ToggleProof").style.display = "block";
                 document.querySelector(".DA-LinkRedirector").setAttribute("href", proofSelection.value);
                 document.querySelector(".DA-ProofImage").onerror = function () {
                     document.querySelector(".DA-LinkRedirector").style.display = "none";
