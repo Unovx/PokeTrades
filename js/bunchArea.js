@@ -119,8 +119,8 @@ function BunchReset() {
 
 function BunchChanges() {
     $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
-    document.querySelector("#NotificationArea").style.display = "block";
-    document.querySelector(".BunchPokemonAdded").style.display = "block";
+    //document.querySelector("#NotificationArea").style.display = "block";
+    //document.querySelector(".BunchPokemonAdded").style.display = "block";
     PostGenerateSelectionData();
 
 }
