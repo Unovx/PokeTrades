@@ -197,10 +197,10 @@
           </tr>
           <tr style="height: 30px;">
             <td>
-              <text class="PA-OldSpritesText">Generational Sprites</text>
+              <text class="PA-OldSpritesText">Generational Designs</text>
             </td>
             <td>
-              <button class="PA-OldSpritesButton">Off</button>
+              <button class="PA-GenerationalSpritesButton">Off</button>
             </td>
           </tr>
           <tr style="height: 30px;">
@@ -390,7 +390,9 @@
           <input class="LA-ImportInput" type="file" enctype="multipart/form-data" accept-charset="utf-8" accept=".csv"
             onchange="ImportData(this.files[0])">
         </form>
-        <text class="LA-LoggedInNotify">Account Created.</text>
+        <text class="LA-LoggedInNotify">Account Created.<br>Join the <a href="https://discord.gg/KapqJKGMRy"
+            target="_blank">Discord</a> If you need help getting started or
+          to hang out and chat!</text>
         <button class="LA-DeleteAllData">Delete All Data</button>
       </div>
       <div class="LA-RegisterArea">
@@ -637,28 +639,28 @@
         </div>
         <div class="DA-PokemonDetails">
           <img class="DA-PokemonImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
-          <select class="DA-PokemonDropdown"></select>
-          <input class="DA-Nickname" type="text" maxlength="12" placeholder="Nickname...">
-          <table class="DA-Tables">
-            <tr class="DA-AbilityRow">
-              <td class="DA-TableTextOrange">
-                <text>Ability:</text>
-              </td>
-              <td>
-                <select class="DA-AbilityDropdown">
-                </select>
-              </td>
-            </tr>
-            <tr class="DA-NatureRow">
-              <td class="DA-TableTextOrange">
-                <text>Nature:</text>
-              </td>
-              <td>
-                <select class="DA-NatureDropdown"></select>
-              </td>
-            </tr>
-          </table>
         </div>
+        <select class="DA-PokemonDropdown"></select>
+        <input class="DA-Nickname" type="text" maxlength="12" placeholder="Nickname...">
+        <table class="DA-Tables">
+          <tr class="DA-AbilityRow">
+            <td class="DA-TableTextOrange">
+              <text>Ability:</text>
+            </td>
+            <td>
+              <select class="DA-AbilityDropdown">
+              </select>
+            </td>
+          </tr>
+          <tr class="DA-NatureRow">
+            <td class="DA-TableTextOrange">
+              <text>Nature:</text>
+            </td>
+            <td>
+              <select class="DA-NatureDropdown"></select>
+            </td>
+          </tr>
+        </table>
         <table class="DA-Tables">
           <tr class="DA-OTRow">
             <td class="DA-TableTextYellow">

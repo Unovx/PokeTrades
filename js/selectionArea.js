@@ -14,7 +14,7 @@ var movingPokemon;
 var moving = false;
 var copying = false;
 //The Number of Arrays used in for statements in other scripts for outlining
-var numberOfArrays;
+//var numberOfArrays;
 //The Array data for Pokemon Generation (Not Bunch) used in  for statements for other scripts for outlining
 var arrayData;
 
@@ -25,6 +25,9 @@ var oldPosition = "";
 var newPosition = "";
 
 var limitWidth = 768;
+
+var insideDetails = true;
+var storedValue;
 
 //This is needed so I can get the visible height of elements.
 $.fn.visibleHeight = function () {
@@ -82,8 +85,9 @@ function oneSecondFunction() {
 }
 
 $(".SA-Searchbar").keyup(function () {
-    ShowLoading();
-    PostGenerateSelection();
+    SearchbarFilter();
+    //ShowLoading();
+    //PostGenerateSelection();
 });
 
 $('.SA-MainMenu').click(function () {
@@ -143,6 +147,10 @@ $('.SA-CreateButton').click(function () {
     selectedPokemon = null;
     pokemonDetails = null;
     AssigningOutline();
+    var cols = document.getElementsByClassName("insideDetails" + (storedValue));
+    for (j = 0; j < cols.length; j++) {
+        cols[j].style.display = "none";
+    }
     templateSelection.value = "(No Template)";
 });
 
@@ -222,7 +230,7 @@ $('.SA-SelectionHelp').click(function () {
 function AssigningOutline() {
     //Makes sure arrayData isn't null so an error doesn't get brought up in specific cases like on the bunch area
     if (arrayData != null) {
-        for (let i = 0; i < numberOfArrays; i++) {
+        for (let i = 0; i < arrayData["Rows"].length; i++) {
             //document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 5px #0096c3";
             if (currentlyRearranging == true && movingPokemon == document.getElementById("GenerationGridDiv" + (i))) {
 
@@ -231,15 +239,23 @@ function AssigningOutline() {
             else if (selectedPokemon == null) {
                 document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
                 document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
+                var cols = document.getElementsByClassName("insideDetails" + (i));
+                document.getElementById("GenerationGridDiv" + (i)).style.height = "100px";
             }
             //If it finds a generated row that has the same creation id as the current viewing id, it gives that div a outline
             else if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id) {
                 selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
                 document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
                 document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
+                var cols = document.getElementsByClassName("insideDetails" + (i));
+                for (j = 0; j < cols.length; j++) {
+                    cols[j].style.display = "flex";
+                }
+                document.getElementById("GenerationGridDiv" + (i)).style.height = "200px";
             } else {
                 document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
                 document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
+                document.getElementById("GenerationGridDiv" + (i)).style.height = "100px";
             }
         }
     }
@@ -338,7 +354,7 @@ function CopyFinished() {
 
 //Setting Opacity to half to show that moving is in progress.
 function OpacityHalf() {
-    for (let i = 0; i < numberOfArrays; i++) {
+    for (let i = 0; i < arrayData["Rows"].length; i++) {
         document.getElementById("GenerationGridDiv" + (i)).style.opacity = "50%";
     }
 
@@ -352,7 +368,7 @@ function OpacityHalf() {
 }
 //Setting Opacity to normal to show that moving is done.
 function OpacityFull() {
-    for (let i = 0; i < numberOfArrays; i++) {
+    for (let i = 0; i < arrayData["Rows"].length; i++) {
         document.getElementById("GenerationGridDiv" + (i)).style.opacity = "100%";
     }
 
@@ -375,17 +391,13 @@ function GenerateSelection(data) {
     //Using Jquery to parse the data and getting the length.
     arrayData = jQuery.parseJSON(data);
 
-    numberOfArrays = arrayData["Rows"].length;
-    console.log(numberOfArrays);
-    numberOfArrays = numberOfArrays;
-
     //Removing the grid container so I can create a new one and making it a child of GeneratedSelection.
     $("#GridContainer").remove();
     gridTest = document.createElement("div");
     gridTest.setAttribute("id", "GridContainer");
     document.getElementById("GeneratedSelection").appendChild(gridTest);
 
-    for (let i = 0; i < numberOfArrays; i++) {
+    for (let i = 0; i < arrayData["Rows"].length; i++) {
 
         //Creating newDivs for each pokemon and making them children of the GridContainer
         newDiv = document.createElement("div");
@@ -394,8 +406,13 @@ function GenerateSelection(data) {
         //newDiv.className += "Lozad";
         document.getElementById("GridContainer").appendChild(newDiv);
         newDiv.setAttribute("width", "100");
-        newDiv.setAttribute("height", "100");
+        //newDiv.setAttribute("height", "100");
 
+        if (insideDetails) {
+            //document.getElementById("GenerationGridDiv" + (i)).style.height = "200px";
+        }
+
+        document.getElementById("GenerationGridDiv" + (i)).style.overflow = "hidden";
         document.getElementById("GenerationGridDiv" + (i)).style.display = "flex";
         document.getElementById("GenerationGridDiv" + (i)).style.position = "relative";
         /*document.getElementById("GenerationGridDiv" + (i)).style.backgroundImage = "url('https://poketrades.org/Resources/Designs/Unselected Holder.png')";
@@ -599,11 +616,28 @@ function GenerateSelection(data) {
 
                 td.appendChild(pokemon);
 
+                if (insideDetails && loopArray.nickname != "") {
+                    var tr = newTable.insertRow();
+                    tr.setAttribute("class", "insideDetails" + (i));
+                    tr.style.display = "none";
+                    var td = tr.insertCell();
+                    nickname = document.createElement("Text");
+                    td.setAttribute("height", "13px");
+                    nickname.setAttribute("height", "13px");
+                    nickname.innerHTML = loopArray.nickname;
+                    nickname.style.fontWeight = "bold";
+                    nickname.style.color = "white";
+                    nickname.style.fontFamily = "Arial, Helvetica, sans-serif";
+                    nickname.style.fontSize = "60%";
+
+                    td.appendChild(nickname);
+                }
+
                 newDiv.appendChild(newTable);
 
             }
 
-            if (previewBall || previewGender || previewShiny || previewMint || previewMisc || previewMark) {
+            /*if (previewBall || previewGender || previewShiny || previewMint || previewMisc || previewMark) {
                 var tr = newTable.insertRow();
                 newTable.bottom = "unset";
                 tr.style.display = "flex";
@@ -685,7 +719,102 @@ function GenerateSelection(data) {
                     td.appendChild(mark);
                 }
                 newDiv.appendChild(newTable);
+            }*/
+
+            var tr = newTable.insertRow();
+            newTable.bottom = "unset";
+            tr.style.display = "flex";
+            if (previewIVs) {
+                newTable.style.top = "65px";
+            } else {
+                newTable.style.top = "79px";
             }
+
+            var td = tr.insertCell();
+            ball = document.createElement("IMG");
+            td.setAttribute("width", "13px");
+            td.setAttribute("height", "13px");
+            ball.setAttribute("width", "13px");
+            ball.setAttribute("height", "13px");
+            ball.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Items/" + loopArray.pokeball + ".png");
+            if (!previewBall) {
+                td.setAttribute("class", "insideDetails" + (i));
+                td.style.display = "none";
+            }
+
+            td.appendChild(ball);
+
+            var td = tr.insertCell();
+            gender = document.createElement("IMG");
+            td.setAttribute("width", "13px");
+            td.setAttribute("height", "13px");
+            gender.setAttribute("width", "13px");
+            gender.setAttribute("height", "13px");
+            gender.setAttribute("src", url + "/Resources/Misc/" + loopArray.gender + ".png");
+            if (!previewGender) {
+                td.setAttribute("class", "insideDetails" + (i));
+                td.style.display = "none";
+            }
+
+            td.appendChild(gender);
+
+            var td = tr.insertCell();
+            shiny = document.createElement("IMG");
+            td.setAttribute("width", "13px");
+            td.setAttribute("height", "13px");
+            shiny.setAttribute("width", "13px");
+            shiny.setAttribute("height", "13px");
+            shiny.setAttribute("src", url + "/Resources/Misc/" + loopArray.shiny + ".png");
+            if (!previewShiny) {
+                td.setAttribute("class", "insideDetails" + (i));
+                td.style.display = "none";
+            }
+
+            td.appendChild(shiny);
+
+            var td = tr.insertCell();
+            mint = document.createElement("IMG");
+            td.setAttribute("width", "13px");
+            td.setAttribute("height", "13px");
+            mint.setAttribute("width", "13px");
+            mint.setAttribute("height", "13px");
+            mint.setAttribute("src", url + "/Resources/Misc/" + loopArray.mint + ".png");
+            if (!previewMint) {
+                td.setAttribute("class", "insideDetails" + (i));
+                td.style.display = "none";
+            }
+
+            td.appendChild(mint);
+
+            var td = tr.insertCell();
+            misc = document.createElement("IMG");
+            td.setAttribute("width", "13px");
+            td.setAttribute("height", "13px");
+            misc.setAttribute("width", "13px");
+            misc.setAttribute("height", "13px");
+            misc.setAttribute("src", url + "/Resources/Misc/" + loopArray.misc + ".png");
+            if (!previewMisc) {
+                td.setAttribute("class", "insideDetails" + (i));
+                td.style.display = "none";
+            }
+
+            td.appendChild(misc);
+
+            var td = tr.insertCell();
+            mark = document.createElement("IMG");
+            td.setAttribute("width", "13px");
+            td.setAttribute("height", "13px");
+            mark.setAttribute("width", "13px");
+            mark.setAttribute("height", "13px");
+            mark.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Marks/" + loopArray.mark + ".png");
+            if (!previewMark) {
+                td.setAttribute("class", "insideDetails" + (i));
+                td.style.display = "none";
+            }
+
+            td.appendChild(mark);
+
+            newDiv.appendChild(newTable);
 
             if (previewIVs == true) {
                 if (exactIVs) {
@@ -695,7 +824,7 @@ function GenerateSelection(data) {
                     textIVs = document.createElement("Text");
                     td.setAttribute("height", "13px");
                     textIVs.setAttribute("height", "13px");
-                    textIVs.innerHTML = loopArray.iv_hp + "/" + loopArray.iv_att + "/" + loopArray.iv_def + "/" + loopArray.iv_spa + "/" + loopArray.iv_spd + "/" + loopArray.iv_spe;
+                    textIVs.innerHTML = "IVS: " + loopArray.iv_hp + "/" + loopArray.iv_att + "/" + loopArray.iv_def + "/" + loopArray.iv_spa + "/" + loopArray.iv_spd + "/" + loopArray.iv_spe;
                     textIVs.style.fontWeight = "bold";
                     textIVs.style.color = "white";
                     textIVs.style.fontFamily = "Arial, Helvetica, sans-serif";
@@ -862,6 +991,23 @@ function GenerateSelection(data) {
 
                     newDiv.appendChild(newTable);
                 }
+
+                if (insideDetails) {
+                    var tr = newTable.insertRow();
+                    tr.setAttribute("class", "insideDetails" + (i));
+                    tr.style.display = "none";
+                    var td = tr.insertCell();
+                    evsText = document.createElement("Text");
+                    td.setAttribute("height", "13px");
+                    evsText.setAttribute("height", "13px");
+                    evsText.innerHTML = loopArray.ev_hp + "/" + loopArray.ev_att + "/" + loopArray.ev_def + "/" + loopArray.ev_spa + "/" + loopArray.ev_spd + "/" + loopArray.ev_spe;
+                    evsText.style.fontWeight = "bold";
+                    evsText.style.color = "white";
+                    evsText.style.fontFamily = "Arial, Helvetica, sans-serif";
+                    evsText.style.fontSize = "60%";
+
+                    td.appendChild(evsText);
+                }
             }
 
 
@@ -933,10 +1079,211 @@ function GenerateSelection(data) {
 
                 td.appendChild(nature);
 
+                if (insideDetails) {
+                    if (loopArray.game_ot != "") {
+                        var tr = newTable.insertRow();
+                        tr.setAttribute("class", "insideDetails" + (i));
+                        tr.style.display = "none";
+                        var td = tr.insertCell();
+                        gameOT = document.createElement("Text");
+                        td.setAttribute("height", "13px");
+                        gameOT.setAttribute("height", "13px");
+                        gameOT.innerHTML = "OT: " + loopArray.game_ot;
+                        gameOT.style.fontWeight = "bold";
+                        gameOT.style.color = "white";
+                        gameOT.style.fontFamily = "Arial, Helvetica, sans-serif";
+                        gameOT.style.fontSize = "60%";
+
+                        td.appendChild(gameOT);
+                    }
+
+                    if (loopArray.game_id != "") {
+                        var tr = newTable.insertRow();
+                        tr.setAttribute("class", "insideDetails" + (i));
+                        tr.style.display = "none";
+                        var td = tr.insertCell();
+                        gameID = document.createElement("Text");
+                        td.setAttribute("height", "13px");
+                        gameID.setAttribute("height", "13px");
+                        gameID.innerHTML = "ID: " + loopArray.game_id;
+                        gameID.style.fontWeight = "bold";
+                        gameID.style.color = "white";
+                        gameID.style.fontFamily = "Arial, Helvetica, sans-serif";
+                        gameID.style.fontSize = "60%";
+
+                        td.appendChild(gameID);
+                    }
+
+                    var tr = newTable.insertRow();
+                    tr.setAttribute("class", "insideDetails" + (i));
+                    tr.style.display = "none";
+                    var td = tr.insertCell();
+                    statusInfo = document.createElement("Text");
+                    td.setAttribute("height", "13px");
+                    statusInfo.setAttribute("height", "13px");
+                    statusInfo.innerHTML = loopArray.status;
+                    statusInfo.style.fontWeight = "bold";
+                    statusInfo.style.color = "white";
+                    statusInfo.style.fontFamily = "Arial, Helvetica, sans-serif";
+                    statusInfo.style.fontSize = "60%";
+
+                    td.appendChild(statusInfo);
+
+                    if (loopArray.event_info != "(Not Event)" && loopArray.event_info != "(Any/No Event)") {
+                        var tr = newTable.insertRow();
+                        tr.setAttribute("class", "insideDetails" + (i));
+                        tr.style.display = "none";
+                        var td = tr.insertCell();
+                        eventInfo = document.createElement("Text");
+                        td.setAttribute("height", "13px");
+                        eventInfo.setAttribute("height", "13px");
+                        eventInfo.innerHTML = loopArray.event_info;
+                        eventInfo.style.fontWeight = "bold";
+                        eventInfo.style.color = "white";
+                        eventInfo.style.fontFamily = "Arial, Helvetica, sans-serif";
+                        eventInfo.style.fontSize = "60%";
+
+                        td.appendChild(eventInfo);
+                    }
+                }
+
                 newDiv.appendChild(newTable);
             }
         }
 
+        if (insideDetails) {
+            newTable = document.createElement("table");
+            newTable.style.position = "absolute";
+            newTable.style.zIndex = "1";
+            newTable.style.top = "50%";
+            newTable.style.left = "10px";
+
+            /*var tr = newTable.insertRow();
+            tr.setAttribute("class", "insideDetails" + (i));
+            tr.style.display = "flex";
+            var td = tr.insertCell();
+            movesTitle = document.createElement("Text");
+            td.setAttribute("height", "13px");
+            movesTitle.setAttribute("height", "13px");
+            movesTitle.innerHTML = "Pokemon Moves";
+            movesTitle.style.fontWeight = "bold";
+            movesTitle.style.color = "white";
+            movesTitle.style.fontFamily = "Arial, Helvetica, sans-serif";
+            movesTitle.style.fontSize = "60%";
+
+            td.appendChild(movesTitle);*/
+
+            if (loopArray.move_1 != "(No Move)" && loopArray.move_1 != "(Any Move)") {
+                var tr = newTable.insertRow();
+                tr.setAttribute("class", "insideDetails" + (i));
+                tr.style.display = "none";
+                var td = tr.insertCell();
+                move = document.createElement("Text");
+                td.setAttribute("height", "13px");
+                move.setAttribute("height", "13px");
+                move.innerHTML = loopArray.move_1;
+                move.style.fontWeight = "bold";
+                move.style.color = "white";
+                move.style.fontFamily = "Arial, Helvetica, sans-serif";
+                move.style.fontSize = "60%";
+
+                td.appendChild(move);
+            }
+
+            if (loopArray.move_2 != "(No Move)" && loopArray.move_2 != "(Any Move)") {
+                var tr = newTable.insertRow();
+                tr.setAttribute("class", "insideDetails" + (i));
+                tr.style.display = "none";
+                var td = tr.insertCell();
+                move = document.createElement("Text");
+                td.setAttribute("height", "13px");
+                move.setAttribute("height", "13px");
+                move.innerHTML = loopArray.move_2;
+                move.style.fontWeight = "bold";
+                move.style.color = "white";
+                move.style.fontFamily = "Arial, Helvetica, sans-serif";
+                move.style.fontSize = "60%";
+
+                td.appendChild(move);
+            }
+
+            if (loopArray.move_3 != "(No Move)" && loopArray.move_3 != "(Any Move)") {
+                var tr = newTable.insertRow();
+                tr.setAttribute("class", "insideDetails" + (i));
+                tr.style.display = "none";
+                var td = tr.insertCell();
+                move = document.createElement("Text");
+                td.setAttribute("height", "13px");
+                move.setAttribute("height", "13px");
+                move.innerHTML = loopArray.move_3;
+                move.style.fontWeight = "bold";
+                move.style.color = "white";
+                move.style.fontFamily = "Arial, Helvetica, sans-serif";
+                move.style.fontSize = "60%";
+
+                td.appendChild(move);
+            }
+
+            if (loopArray.move_4 != "(No Move)" && loopArray.move_4 != "(Any Move)") {
+                var tr = newTable.insertRow();
+                tr.setAttribute("class", "insideDetails" + (i));
+                tr.style.display = "none";
+                var td = tr.insertCell();
+                move = document.createElement("Text");
+                td.setAttribute("height", "13px");
+                move.setAttribute("height", "13px");
+                move.innerHTML = loopArray.move_4;
+                move.style.fontWeight = "bold";
+                move.style.color = "white";
+                move.style.fontFamily = "Arial, Helvetica, sans-serif";
+                move.style.fontSize = "60%";
+
+                td.appendChild(move);
+            }
+
+            var tr = newTable.insertRow();
+            tr.setAttribute("class", "insideDetails" + (i));
+            tr.style.display = "none";
+            var td = tr.insertCell();
+            td.setAttribute("height", "13px");
+
+            newDiv.appendChild(newTable);
+
+
+        }
+
+        if (insideDetails) {
+            newTable = document.createElement("table");
+            newTable.style.position = "absolute";
+            newTable.style.zIndex = "1";
+            newTable.style.bottom = "5%";
+            newTable.style.left = "10px";
+
+            if (loopArray.proof != "") {
+                var tr = newTable.insertRow();
+                tr.setAttribute("class", "insideDetails" + (i));
+                tr.style.display = "none";
+                var td = tr.insertCell();
+                td.setAttribute("width", "180px");
+                td.style.overflowX = "clip";
+                td.style.whiteSpace = "no-wrap";
+                proof = document.createElement("a");
+                proof.setAttribute("href", loopArray.proof);
+                proof.setAttribute("target", "_blank");
+                td.setAttribute("height", "13px");
+                proof.setAttribute("height", "13px");
+                proof.innerHTML = loopArray.proof;
+                proof.style.fontWeight = "bold";
+                proof.style.color = "white";
+                proof.style.fontFamily = "Arial, Helvetica, sans-serif";
+                proof.style.fontSize = "60%";
+
+                td.appendChild(proof);
+            }
+
+            newDiv.appendChild(newTable);
+
+        }
 
 
 
@@ -951,32 +1298,42 @@ function GenerateSelection(data) {
             if (loopArray.gender == "Male" || loopArray.gender == "(Any Gender)") {
                 //console.log("WOOOORK")
                 if (loopArray.shiny.includes("Normal")) {
-                    if (oldSprites) {
+                    if (generationalSprites) {
                         if (loopArray.game_obtained == "R/B/Y") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "G/S/C") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen2Sprites/Gen2/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen3Sprites/Gen3/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
                             if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4/" + loopArray.pokemon + ".png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + loopArray.pokemon + ".png");
                             } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4/" + loopArray.pokemon + "-Male.png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + loopArray.pokemon + "-Male.png");
                             }
                         }
                         else if (loopArray.game_obtained == "BW/BW2") {
                             if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen5Sprites/Gen4/" + loopArray.pokemon + ".png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen4/" + loopArray.pokemon + ".png");
                             } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen5Sprites/Gen4/" + loopArray.pokemon + "-Male.png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen4/" + loopArray.pokemon + "-Male.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "LGP/LGE") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + loopArray.pokemon + "-Male.png");
                             }
                         }
                         else if (loopArray.game_obtained == "BD/SP") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/BDSP/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSP/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "LA") {
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + loopArray.pokemon + "-Male.png");
                         }
                         else {
                             theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Male.png");
@@ -989,32 +1346,42 @@ function GenerateSelection(data) {
                     };
                 }
                 else if (!loopArray.shiny.includes("Normal")) {
-                    if (oldSprites) {
+                    if (generationalSprites) {
                         if (loopArray.game_obtained == "R/B/Y") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "G/S/C") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen3Sprites/Gen3Shiny/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
                             if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + ".png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + ".png");
                             } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + "-Male.png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + "-Male.png");
                             }
                         }
                         else if (loopArray.game_obtained == "BW/BW2") {
                             if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + ".png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + ".png");
                             } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + "-Male.png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + "-Male.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "LGP/LGE") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + loopArray.pokemon + "-Male.png");
                             }
                         }
                         else if (loopArray.game_obtained == "BD/SP") {
                             theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Shiny.png");
+                        }
+                        else if (loopArray.game_obtained == "LA") {
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + loopArray.pokemon + "-Male.png");
                         }
                         else {
                             theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Male-Shiny.png");
@@ -1029,32 +1396,42 @@ function GenerateSelection(data) {
             }
             else if (loopArray.gender == "Female") {
                 if (loopArray.shiny.includes("Normal")) {
-                    if (oldSprites) {
+                    if (generationalSprites) {
                         if (loopArray.game_obtained == "R/B/Y") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "G/S/C") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen2Sprites/Gen2/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen3Sprites/Gen3/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
                             if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4/" + loopArray.pokemon + ".png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + loopArray.pokemon + ".png");
                             } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4/" + loopArray.pokemon + "-Female.png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + loopArray.pokemon + "-Female.png");
                             }
                         }
                         else if (loopArray.game_obtained == "BW/BW2") {
                             if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen5Sprites/Gen5/" + loopArray.pokemon + ".png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + loopArray.pokemon + ".png");
                             } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen5Sprites/Gen5/" + loopArray.pokemon + "-Female.png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + loopArray.pokemon + "-Female.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "LGP/LGE") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + loopArray.pokemon + "-Female.png");
                             }
                         }
                         else if (loopArray.game_obtained == "BD/SP") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/BDSP/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSP/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "LA") {
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + loopArray.pokemon + "-Female.png");
                         }
                         else {
                             theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Female.png");
@@ -1067,28 +1444,38 @@ function GenerateSelection(data) {
                     };
                 }
                 else if (!loopArray.shiny.includes("Normal")) {
-                    if (oldSprites) {
+                    if (generationalSprites) {
                         if (loopArray.game_obtained == "R/B/Y") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "G/S/C") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen3Sprites/Gen3Shiny/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
                             if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + ".png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + ".png");
                             } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + "-Female.png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + "-Female.png");
                             }
                         }
                         else if (loopArray.game_obtained == "BW/BW2") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + "-Female.png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + "-Female.png");
+                        }
+                        else if (loopArray.game_obtained == "LGP/LGE") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + loopArray.pokemon + "-Female.png");
+                            }
                         }
                         else if (loopArray.game_obtained == "BD/SP") {
                             theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Female-Shiny.png");
+                        }
+                        else if (loopArray.game_obtained == "LA") {
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + loopArray.pokemon + "-Female.png");
                         }
                         else {
                             theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Female-Shiny.png");
@@ -1103,24 +1490,30 @@ function GenerateSelection(data) {
             }
         } else {
             if (loopArray.shiny.includes("Normal")) {
-                if (oldSprites) {
+                if (generationalSprites) {
                     if (loopArray.game_obtained == "R/B/Y") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
+                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
                     }
                     else if (loopArray.game_obtained == "G/S/C") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen2Sprites/Gen2/" + loopArray.pokemon + ".png");
+                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + loopArray.pokemon + ".png");
                     }
                     else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen3Sprites/Gen3/" + loopArray.pokemon + ".png");
+                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + loopArray.pokemon + ".png");
                     }
                     else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4/" + loopArray.pokemon + ".png");
+                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + loopArray.pokemon + ".png");
                     }
                     else if (loopArray.game_obtained == "BW/BW2") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen5Sprites/Gen5/" + loopArray.pokemon + ".png");
+                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + loopArray.pokemon + ".png");
+                    }
+                    else if (loopArray.game_obtained == "LGP/LGE") {
+                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + loopArray.pokemon + ".png");
                     }
                     else if (loopArray.game_obtained == "BD/SP") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalSprites/BDSP/" + loopArray.pokemon + ".png");
+                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSP/" + loopArray.pokemon + ".png");
+                    }
+                    else if (loopArray.game_obtained == "LA") {
+                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + loopArray.pokemon + ".png");
                     }
                     else {
                         theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + ".png")
@@ -1157,24 +1550,30 @@ function GenerateSelection(data) {
                     }
                 }
                 else {
-                    if (oldSprites) {
+                    if (generationalSprites) {
                         if (loopArray.game_obtained == "R/B/Y") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "G/S/C") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen3Sprites/Gen3Shiny/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "BW/BW2") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalSprites/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + ".png");
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "LGP/LGE") {
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "BD/SP") {
                             theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Shiny.png");
+                        }
+                        else if (loopArray.game_obtained == "LA") {
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + loopArray.pokemon + ".png");
                         }
                         else {
                             theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Shiny.png")
@@ -1203,13 +1602,26 @@ function GenerateSelection(data) {
                     } else {
                         pokemonDetails = arrayData["Rows"][i];
                         if (selectedPokemon != null) {
+                            //alert("HERE");
                             selectedPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
                             selectedPokemon.style.backgroundColor = "#084f65";
+
+                            var cols = document.getElementsByClassName("insideDetails" + (storedValue));
+                            for (j = 0; j < cols.length; j++) {
+                                cols[j].style.display = "none";
+                            }
+                            document.getElementById("GenerationGridDiv" + (storedValue)).style.height = "100px";
                         }
                         selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
+                        storedValue = i;
                         console.log(selectedPokemon);
                         selectedPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
                         selectedPokemon.style.backgroundColor = "#2E2D2D";
+                        var cols = document.getElementsByClassName("insideDetails" + (i));
+                        for (j = 0; j < cols.length; j++) {
+                            cols[j].style.display = "flex";
+                        }
+                        document.getElementById("GenerationGridDiv" + (i)).style.height = "200px";
                         //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
                         ShowPokemonDetails();
                     }
@@ -1254,7 +1666,7 @@ function GenerateSelection(data) {
                     }
                 }
             } else {
-                if (placingPokemon){
+                if (placingPokemon) {
                     tempPosition = arrayData["Rows"][i].position - 0.1;
                     document.querySelector(".DA-PlaceInfo").style.display = "none";
                     PlacePokemon();
@@ -1290,13 +1702,20 @@ function GenerateSelection(data) {
             if (pokemonDetails != null && selectedPokemon != null) {
                 if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id) {
                     selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
-                    document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-                    document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
+                    storedValue = i;
+                    selectedPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
+                    selectedPokemon.style.backgroundColor = "#2E2D2D";
+                    var cols = document.getElementsByClassName("insideDetails" + (i));
+                    for (j = 0; j < cols.length; j++) {
+                        cols[j].style.display = "none";
+                    }
+                    document.getElementById("GenerationGridDiv" + (i)).style.height = "100px";
                 }
             }
         }
     }
-
+    SearchbarFilter();
+    FilterResults();
     HideLoading();
 }
 
@@ -1574,7 +1993,7 @@ function ShowPokemonDetails() {
     evSpdSelection.value = pokemonDetails.ev_spd;
     evSpeSelection.value = pokemonDetails.ev_spe;
 
-    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+    /*if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         if (pokemonDetails.ev_hp == "X" && pokemonDetails.ev_att == "X" && pokemonDetails.ev_def == "X" &&
             pokemonDetails.ev_spa == "X" && pokemonDetails.ev_spd == "X" && pokemonDetails.ev_spe == "X") {
 
@@ -1585,7 +2004,7 @@ function ShowPokemonDetails() {
         }
     } else {
         document.querySelector(".DA-RowEVs").style.display = "table-row";
-    }
+    }*/
 
     if (document.querySelector(".DA-RowEVs").style.display == "none" && document.querySelector(".DA-RowIVs").style.display == "none") {
         document.querySelector(".DA-RowEVs").style.display = "table-row";
@@ -1747,4 +2166,15 @@ function ShowAllDropdowns() {
     document.querySelector(".DA-LegacyMove4").style.display = "block";
     document.querySelector(".DA-Proof").style.display = "block";
     document.querySelector(".DA-Note").style.display = "flex";
+}
+
+function SearchbarFilter() {
+    for (let i = 0; i < arrayData["Rows"].length; i++) {
+        if (arrayData["Rows"][i].pokemon.toLowerCase().includes(searchPokemonText.value.toLowerCase())) {
+            document.getElementById("GenerationGridDiv" + (i)).style.display = "flex";
+        } else {
+            document.getElementById("GenerationGridDiv" + (i)).style.display = "none";
+            console.log(arrayData["Rows"][i].pokemon);
+        }
+    }
 }

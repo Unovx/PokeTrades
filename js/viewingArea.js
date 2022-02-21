@@ -374,7 +374,7 @@ function ShowAV6() {
     UpdateViewingDetails();
 };*/
 
-function MatchMaking(data) {
+/*function MatchMaking(data) {
     //console.log("Running Match");
     matchData = jQuery.parseJSON(data);
 
@@ -904,11 +904,11 @@ function MatchMaking(data) {
 
 
         //Setting Image Attributes
-        /*if (selectedPokemon != null) {
-            if (loopArray.creation_id == selectedPokemon.creation_id) {
-                document.querySelector(".MatchMakingDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 5px #8135a9";
-            }
-        }*/
+        //if (selectedPokemon != null) {
+            //if (loopArray.creation_id == selectedPokemon.creation_id) {
+              // document.querySelector(".MatchMakingDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 5px #8135a9";
+            //}
+        //}
 
         //Setting up the onclick to open the viewing area and to set the information required for it.
         theImage.onclick = function () {
@@ -923,4 +923,4 @@ function MatchMaking(data) {
     }
     //Assigning the outline in case a pokemon generated is the one still in the viewing area so the user knows which one it is.
     //AssigningOutline();
-}
+}*/

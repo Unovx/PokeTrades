@@ -352,7 +352,7 @@
     position: relative;
     top: 70px;
     margin: auto;
-    width: 59%;
+    width: 65%;
 }
 
 .PA-OtherSettingsText{
@@ -397,7 +397,7 @@
     text-align: center;
 }
 
-.PA-OldSpritesButton{
+.PA-GenerationalSpritesButton{
     width: 48px;
     height: 22px;
 }

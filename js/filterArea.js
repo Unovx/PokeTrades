@@ -50,8 +50,7 @@ $('.FA-CloseButton').click(function () {
 
 $('.FA-ResetButton').click(function () {
     ResetFilters();
-    ShowLoading();
-    PostGenerateSelection();
+    FilterResults();
 });
 
 
@@ -64,8 +63,8 @@ $(filterDisplay).change(function () {
         filterCheck[0] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterBall).change(function () {
@@ -76,8 +75,8 @@ $(filterBall).change(function () {
         filterCheck[1] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterGender).change(function () {
@@ -88,8 +87,8 @@ $(filterGender).change(function () {
         filterCheck[2] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterShiny).change(function () {
@@ -100,8 +99,8 @@ $(filterShiny).change(function () {
         filterCheck[3] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterMint).change(function () {
@@ -112,8 +111,8 @@ $(filterMint).change(function () {
         filterCheck[4] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterMisc).change(function () {
@@ -124,8 +123,8 @@ $(filterMisc).change(function () {
         filterCheck[5] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterMark).change(function () {
@@ -136,8 +135,8 @@ $(filterMark).change(function () {
         filterCheck[6] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterLanguage).change(function () {
@@ -148,8 +147,8 @@ $(filterLanguage).change(function () {
         filterCheck[7] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterNature).change(function () {
@@ -160,8 +159,8 @@ $(filterNature).change(function () {
         filterCheck[8] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterAbility).change(function () {
@@ -172,8 +171,8 @@ $(filterAbility).change(function () {
         filterCheck[9] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterStatus).change(function () {
@@ -184,8 +183,8 @@ $(filterStatus).change(function () {
         filterCheck[10] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterEvent).change(function () {
@@ -196,8 +195,8 @@ $(filterEvent).change(function () {
         filterCheck[11] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterMove).change(function () {
@@ -208,20 +207,20 @@ $(filterMove).change(function () {
         filterCheck[12] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterHowObtained).change(function () {
-    if (filterHowObtained.value == "(Any Obtained)") {
+    if (filterHowObtained.value == "(Any Method)") {
         filterCheck[13] = "false";
         FilterCheck();
     } else {
         filterCheck[13] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterGameObtained).change(function () {
@@ -232,8 +231,8 @@ $(filterGameObtained).change(function () {
         filterCheck[14] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterNote).change(function () {
@@ -244,8 +243,8 @@ $(filterNote).change(function () {
         filterCheck[15] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterProof).change(function () {
@@ -256,8 +255,8 @@ $(filterProof).change(function () {
         filterCheck[16] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterOT).keyup(function () {
@@ -268,8 +267,8 @@ $(filterOT).keyup(function () {
         filterCheck[17] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterID).keyup(function () {
@@ -280,8 +279,8 @@ $(filterID).keyup(function () {
         filterCheck[18] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterIvHP).change(function () {
@@ -292,8 +291,8 @@ $(filterIvHP).change(function () {
         filterCheck[19] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterIvAtt).change(function () {
@@ -304,8 +303,8 @@ $(filterIvAtt).change(function () {
         filterCheck[20] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterIvDef).change(function () {
@@ -316,8 +315,8 @@ $(filterIvDef).change(function () {
         filterCheck[21] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterIvSpa).change(function () {
@@ -328,8 +327,8 @@ $(filterIvSpa).change(function () {
         filterCheck[22] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterIvSpd).change(function () {
@@ -340,8 +339,8 @@ $(filterIvSpd).change(function () {
         filterCheck[23] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterIvSpe).change(function () {
@@ -352,8 +351,8 @@ $(filterIvSpe).change(function () {
         filterCheck[24] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterEvHP).change(function () {
@@ -364,8 +363,8 @@ $(filterEvHP).change(function () {
         filterCheck[25] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterEvAtt).change(function () {
@@ -376,8 +375,8 @@ $(filterEvAtt).change(function () {
         filterCheck[26] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterEvDef).change(function () {
@@ -388,8 +387,8 @@ $(filterEvDef).change(function () {
         filterCheck[27] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterEvSpa).change(function () {
@@ -400,8 +399,8 @@ $(filterEvSpa).change(function () {
         filterCheck[28] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterEvSpd).change(function () {
@@ -412,8 +411,8 @@ $(filterEvSpd).change(function () {
         filterCheck[29] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $(filterEvSpe).change(function () {
@@ -424,8 +423,8 @@ $(filterEvSpe).change(function () {
         filterCheck[30] = "true";
         FilterCheck();
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $('.FA-Gen6').click(function () {
@@ -440,8 +439,8 @@ $('.FA-Gen6').click(function () {
         FilterCheck();
         document.querySelector(".FA-Gen6").style.backgroundColor = "#EFEFEF";
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $('.FA-Gen7').click(function () {
@@ -456,8 +455,8 @@ $('.FA-Gen7').click(function () {
         FilterCheck();
         document.querySelector(".FA-Gen7").style.backgroundColor = "#EFEFEF";
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $('.FA-Gen8').click(function () {
@@ -472,8 +471,8 @@ $('.FA-Gen8').click(function () {
         FilterCheck();
         document.querySelector(".FA-Gen8").style.backgroundColor = "#EFEFEF";
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 $('.FA-Home').click(function () {
@@ -488,8 +487,8 @@ $('.FA-Home').click(function () {
         FilterCheck();
         document.querySelector(".FA-Home").style.backgroundColor = "#EFEFEF";
     }
-    ShowLoading();
-    PostGenerateSelection();
+    //ShowLoading();
+    FilterResults();
 });
 
 
@@ -527,7 +526,7 @@ function ResetFilters() {
     filterStatus.value = "(Any Status)";
     filterEvent.value = "(Any/No Event)";
     filterMove.value = "(Any Move)";
-    filterHowObtained.value = "(Any Obtained)";
+    filterHowObtained.value = "(Any Method)";
     filterGameObtained.value = "(Any Game)";
     filterNote.value = "(Any/No Note)";
     filterProof.value = "(Any/No Proof)";
@@ -556,4 +555,299 @@ function ResetFilters() {
     }
 
     FilterCheck();
+}
+
+function FilterResults() {
+    for (let i = 0; i < arrayData["Rows"].length; i++) {
+        passedFilter = true;
+        if (filterDisplay.value == "(Public or Private)") {
+
+        } else if (arrayData["Rows"][i].display == filterDisplay.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterBall.value == "(Any Ball)") {
+
+        } else if (arrayData["Rows"][i].pokeball == filterBall.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterGender.value == "(Any Gender)") {
+
+        } else if (arrayData["Rows"][i].gender == filterGender.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterShiny.value == "(Any Shiny or Normal)") {
+
+        } else if (arrayData["Rows"][i].shiny == filterShiny.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterMint.value == "(Any or No Mint)") {
+
+        } else if (arrayData["Rows"][i].mint == filterMint.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterMisc.value == "(No Misc)") {
+
+        } else if (arrayData["Rows"][i].misc == filterMisc.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterMark.value == "(Any or No Mark)") {
+
+        } else if (arrayData["Rows"][i].mark == filterMark.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterLanguage.value == "ANY") {
+
+        } else if (arrayData["Rows"][i].language == filterLanguage.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterNature.value == "(Any Nature)") {
+
+        } else if (arrayData["Rows"][i].nature == filterNature.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterAbility.value == "(Any Ability)") {
+
+        } else if (arrayData["Rows"][i].ability == filterAbility.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterStatus.value == "(Any Status)") {
+
+        } else if (arrayData["Rows"][i].status == filterStatus.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterEvent.value == "(Any/No Event)") {
+
+        } else if (arrayData["Rows"][i].event_info == filterEvent.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterMove.value == "(Any Move)") {
+
+        } else if (arrayData["Rows"][i].move_1 == filterMove.value || arrayData["Rows"][i].move_2 == filterMove.value || arrayData["Rows"][i].move_3 == filterMove.value || arrayData["Rows"][i].move_4 == filterMove.value || arrayData["Rows"][i].legacy_move_1 == filterMove.value || arrayData["Rows"][i].legacy_move_2 == filterMove.value || arrayData["Rows"][i].legacy_move_3 == filterMove.value || arrayData["Rows"][i].legacy_move_4 == filterMove.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterHowObtained.value == "(Any Method)") {
+
+        } else if (arrayData["Rows"][i].how_obtained == filterHowObtained.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterGameObtained.value == "(Any Game)") {
+
+        } else if (arrayData["Rows"][i].game_obtained == filterGameObtained.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterNote.value == "(Any/No Note)") {
+
+        } else if (arrayData["Rows"][i].note == "" && filterNote.value == "(No Note)") {
+
+        } else if (arrayData["Rows"][i].note != "" && filterNote.value == "Has Note") {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterProof.value == "(Any/No Proof)") {
+
+        } else if (arrayData["Rows"][i].proof == "" && filterProof.value == "(No Proof)") {
+
+        } else if (arrayData["Rows"][i].proof != "" && filterProof.value == "Proof") {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterID.value == "") {
+
+        } else if (arrayData["Rows"][i].game_id == filterID.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterOT.value == "") {
+
+        } else if (arrayData["Rows"][i].game_ot == filterOT.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterIvHP.value == "X") {
+
+        } else if (arrayData["Rows"][i].iv_hp == filterIvHP.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterIvAtt.value == "X") {
+
+        } else if (arrayData["Rows"][i].iv_att == filterIvAtt.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterIvDef.value == "X") {
+
+        } else if (arrayData["Rows"][i].iv_def == filterIvDef.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterIvSpa.value == "X") {
+
+        } else if (arrayData["Rows"][i].iv_spa == filterIvSpa.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterIvSpd.value == "X") {
+
+        } else if (arrayData["Rows"][i].iv_spd == filterIvSpd.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterIvSpe.value == "X") {
+
+        } else if (arrayData["Rows"][i].iv_spe == filterIvSpe.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterEvHP.value == "X") {
+
+        } else if (arrayData["Rows"][i].ev_hp == filterEvHP.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterEvAtt.value == "X") {
+
+        } else if (arrayData["Rows"][i].ev_att == filterEvAtt.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterEvDef.value == "X") {
+
+        } else if (arrayData["Rows"][i].ev_def == filterEvDef.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterEvSpa.value == "X") {
+
+        } else if (arrayData["Rows"][i].ev_spa == filterEvSpa.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterEvSpd.value == "X") {
+
+        } else if (arrayData["Rows"][i].ev_spd == filterEvSpd.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterEvSpe.value == "X") {
+
+        } else if (arrayData["Rows"][i].ev_spe == filterEvSpe.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterGen6 == "") {
+
+        } else if (arrayData["Rows"][i].gen6_availability == filterGen6) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterGen7 == "") {
+
+        } else if (arrayData["Rows"][i].gen7_availability == filterGen7) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterGen8 == "") {
+
+        } else if (arrayData["Rows"][i].gen8_availability == filterGen8) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterHome == "") {
+
+        } else if (arrayData["Rows"][i].home_availability == filterHome) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (passedFilter) {
+            document.getElementById("GenerationGridDiv" + (i)).style.display = "flex";
+        } else {
+            document.getElementById("GenerationGridDiv" + (i)).style.display = "none";
+        }
+    }
 }

@@ -1,7 +1,7 @@
 @media only screen and (max-width: 768px) {
     [id*="DetailsArea"]{
       height: auto !important;
-      top: 50% !important;
+      top: 80% !important;
       width: 100% !important;
     }
     [class*="DA-PlaceInfo"]{

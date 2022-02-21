@@ -16,7 +16,7 @@ var extraViewings;
 var panelsPositions;
 var hoverInfo;
 var exactIVs;
-var oldSprites;
+var generationalSprites;
 var emptyBunches;
 var showEmpty;
 
@@ -168,16 +168,16 @@ else if (localStorage.getItem('advancedPreview') == "1") {
     document.querySelector(".PA-AdvancedPreviewButton").innerHTML = "Off";
 }
 
-if (localStorage.getItem('oldSprites') == null) {
-    oldSprites = false;
-    document.querySelector(".PA-OldSpritesButton").innerHTML = "Off";
+if (localStorage.getItem('generationalSprites') == null) {
+    generationalSprites = false;
+    document.querySelector(".PA-GenerationalSpritesButton").innerHTML = "Off";
 }
-else if (localStorage.getItem('oldSprites') == "1") {
-    oldSprites = true;
-    document.querySelector(".PA-OldSpritesButton").innerHTML = "On";
+else if (localStorage.getItem('generationalSprites') == "1") {
+    generationalSprites = true;
+    document.querySelector(".PA-GenerationalSpritesButton").innerHTML = "On";
 } else {
-    oldSprites = false;
-    document.querySelector(".PA-OldSpritesButton").innerHTML = "Off";
+    generationalSprites = false;
+    document.querySelector(".PA-GenerationalSpritesButton").innerHTML = "Off";
 }
 
 if (localStorage.getItem('exactIVs') == null) {
@@ -490,15 +490,15 @@ $('.PA-AdvancedPreviewButton').click(function () {
     }
 });
 
-$('.PA-OldSpritesButton').click(function () {
-    if (oldSprites == false) {
-        oldSprites = true;
-        localStorage.setItem('oldSprites', "1");
-        document.querySelector(".PA-OldSpritesButton").innerHTML = "On";
+$('.PA-GenerationalSpritesButton').click(function () {
+    if (generationalSprites == false) {
+        generationalSprites = true;
+        localStorage.setItem('generationalSprites', "1");
+        document.querySelector(".PA-GenerationalSpritesButton").innerHTML = "On";
     } else {
-        oldSprites = false;
-        localStorage.setItem('oldSprites', "0");
-        document.querySelector(".PA-OldSpritesButton").innerHTML = "Off";
+        generationalSprites = false;
+        localStorage.setItem('generationalSprites', "0");
+        document.querySelector(".PA-GenerationalSpritesButton").innerHTML = "Off";
     }
 });
 
