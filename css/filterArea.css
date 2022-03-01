@@ -43,7 +43,26 @@
     text-align: center;
     top: 10px;
     margin: auto;
-    width: 310px;
+    width: 350px;
+}
+
+.FA-FilterButtons{
+    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
+    border-style: solid;
+    border-color: black;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border-width: 2px;
+    border-radius: 2px;
+    margin-bottom: 7px;
+}
+
+.FA-DropdownOptions {
+    font-weight: initial;
+    font-family: Arial, Helvetica, sans-serif;
+    background: grey;
+    font-size: 14px;
 }
 
 .FA-FilterBall{
@@ -145,86 +164,82 @@
 .FA-IVsEVs{
     position: relative;
     text-align: center;
-    top: 40px;
+    top: 20px;
     margin: auto;
 }
 
 
 
 .FA-IvHP{
-    width: 46px;
+    width: 48px;
 }
 
 .FA-IvAtt{
-    width: 46px;
+    width: 48px;
 }
 
 .FA-IvDef{
-    width: 46px;
+    width: 48px;
 }
 
 .FA-IvSpa{
-    width: 46px;
+    width: 48px;
 }
 
 .FA-IvSpd{
-    width: 46px;
+    width: 48px;
 }
 
 .FA-IvSpe{
-    width: 46px;
+    width: 48px;
 }
 
 .FA-EvHP{
-    width: 46px;
+    width: 48px;
 }
 
 .FA-EvAtt{
-    width: 46px;
+    width: 48px;
 }
 
 .FA-EvDef{
-    width: 46px;
+    width: 48px;
 }
 
 .FA-EvSpa{
-    width: 46px;
+    width: 48px;
 }
 
 .FA-EvSpd{
-    width: 46px;
+    width: 48px;
 }
 
 .FA-EvSpe{
-    width: 46px;
+    width: 48px;
 }
 
 .FA-Availability{
     position: relative;
     text-align: center;
-    top: 60px;
+    top: 40px;
     margin: auto;
     /*width: 310px;*/
 }
 
 .FA-Gen6{
-    background-color: #efefef;
-    border: none;
+    margin: auto;
 }
 
 .FA-Gen7{
-    background-color: #efefef;
-    border: none;
+    margin: auto;
 }
 
 .FA-Gen8{
-    background-color: #efefef;
-    border: none;
+    margin: auto;
 }
 
 .FA-Home{
-    background-color: #efefef;
-    border: none;
+    margin: auto;
 }
 
 .FA-Trade{

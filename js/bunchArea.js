@@ -12,7 +12,6 @@ bunchToRenameDropdown = document.querySelector(".BA-BunchRename");
 $('.BA-CloseButton').click(function () {
     document.querySelector("#BunchArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "block";
-    //document.querySelector("#CreationArea").style.display = "block";
     BunchReset();
 });
 
@@ -133,11 +132,6 @@ function BunchRemoved() {
     $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
     PostGenerateSelection();
     PostGenerateSelectionData();
-    /*if (bunchname == "") {
-        $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
-    } else {
-        $.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
-    }*/
     //document.querySelector(".DA-Close").click();
     //document.querySelector("#NotificationArea").style.display = "block";
     //document.querySelector(".BunchPokemonRemoved").style.display = "block";
@@ -149,11 +143,6 @@ function BunchRenamed(data) {
     ShowLoading();
     PostGenerateSelection();
     PostGenerateSelectionData();
-    /*if (bunchname == "") {
-        $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption }, GenerateBunch);
-    } else {
-        $.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
-    }*/
     //document.querySelector("#NotificationArea").style.display = "block";
     //document.querySelector(".BunchPokemonAdded").style.display = "block";
 }

@@ -77,17 +77,17 @@ function oneSecondFunction() {
             //document.querySelector('#SelectionArea').style.height = "100%"
             document.querySelector('#SelectionArea').style.height = selectionVH - $("#PanelArea").visibleHeight() + "px";
         } else {
-            document.querySelector('#SelectionArea').style.height = "100%"
+            document.querySelector('#SelectionArea').style.height = "100%";
             //document.querySelector('#SelectionArea').style.height = $(selection).visibleHeight() - 1 + "px";
             //alert($(selection).visibleHeight())
         }
+    } else {
+        document.querySelector('#SelectionArea').style.height = "100%";
     }
 }
 
 $(".SA-Searchbar").keyup(function () {
-    SearchbarFilter();
-    //ShowLoading();
-    //PostGenerateSelection();
+    FilterResults();
 });
 
 $('.SA-MainMenu').click(function () {
@@ -102,11 +102,8 @@ $('.SA-MainMenu').click(function () {
     document.querySelector("#DetailsArea").style.display = "none";
     document.querySelector("#SelectionArea").style.height = "100%";
     document.querySelector("#SelectionArea").style.display = "none";
-    //document.querySelector(".SA-ExitBunch").style.pointerEvents = "none";
-    //document.querySelector(".SA-ExitBunch").style.backgroundColor = "grey";
     ResetFilters();
     document.querySelector("#MainArea").style.display = "block";
-    document.querySelector("#CreationArea").style.display = "none";
     document.querySelector("#BunchArea").style.display = "none";
     document.querySelector("#FilterArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "block";
@@ -116,6 +113,7 @@ $('.SA-MainMenu').click(function () {
     BunchReset();
     creationInProgress = false;
     placingPokemon = false;
+    searchPokemonText.value = "";
 });
 
 $('.SA-CreateButton').click(function () {
@@ -123,17 +121,17 @@ $('.SA-CreateButton').click(function () {
     document.querySelector("#FilterArea").style.display = "none";
     document.querySelector("#DetailsArea").style.display = "block";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#313131";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "#313131";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#313131";
     document.querySelector(".DA-Place").style.pointerEvents = "initial";
     document.querySelector(".DA-Place").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     document.querySelector(".DA-Delete").style.pointerEvents = "none";
-    document.querySelector(".DA-Delete").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+    document.querySelector(".DA-Delete").style.background = "#313131";
     document.querySelector(".DA-Lock").style.pointerEvents = "none";
-    document.querySelector(".DA-Lock").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+    document.querySelector(".DA-Lock").style.background = "#313131";
     detailsLocked = false;
     document.querySelector(".DA-Lock").innerHTML = "Lock";
     document.querySelector(".DA-DetailsData").style.pointerEvents = "initial";
@@ -217,7 +215,6 @@ $('.SA-FiltersButton').click(function () {
     //document.querySelector("#SelectionArea").style.width = "100%";
     document.querySelector("#FilterArea").style.display = "block";
     document.querySelector("#DetailsArea").style.display = "none";
-    document.querySelector("#CreationArea").style.display = "none";
     document.querySelector("#BunchArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "none";
 });
@@ -263,46 +260,34 @@ function AssigningOutline() {
 
 function MoveStarted() {
     moving = true;
-    //document.querySelector(".SA-ExitBunch").style.pointerEvents = "none";
-    //document.querySelector(".SA-ExitBunch").style.backgroundColor = "grey";
     document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "grey";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "#313131";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#313131";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#313131";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
-    document.querySelector(".SA-FiltersButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#313131";
     document.querySelector(".SA-Searchbar").disabled = true;
-    document.querySelector(".VA-ModifyButton").style.pointerEvents = "none";
-    document.querySelector(".VA-ModifyButton").style.backgroundColor = "grey";
-    document.querySelector(".VA-DeleteButton").style.pointerEvents = "none";
-    document.querySelector(".VA-DeleteButton").style.backgroundColor = "grey";
     document.querySelector(".PA-Searchbar").disabled = true;
     document.querySelector("#PanelArea").style.pointerEvents = "none";
 }
 
 function MoveFinished() {
     moving = false;
-    //document.querySelector(".SA-ExitBunch").style.pointerEvents = "initial";
-    //document.querySelector(".SA-ExitBunch").style.backgroundColor = "#efefef";
     document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "#6e6e6e";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#6e6e6e";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#6e6e6e";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
     if (filtersApplied) {
-        document.querySelector(".SA-FiltersButton").style.backgroundColor = "orchid";
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#9c6f9b";
     } else {
-        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#efefef";
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#6e6e6e";
     }
     document.querySelector(".SA-Searchbar").disabled = false;
-    document.querySelector(".VA-ModifyButton").style.pointerEvents = "initial";
-    document.querySelector(".VA-ModifyButton").style.backgroundColor = "#efefef";
-    document.querySelector(".VA-DeleteButton").style.pointerEvents = "initial";
-    document.querySelector(".VA-DeleteButton").style.backgroundColor = "#efefef";
     document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
     document.querySelector(".PA-Searchbar").disabled = false;
     document.querySelector("#PanelArea").style.pointerEvents = "initial";
@@ -312,18 +297,14 @@ function MoveFinished() {
 function CopyStarted() {
     copying = true;
     document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "grey";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "#313131";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "#313131";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#313131";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
-    document.querySelector(".SA-FiltersButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#313131";
     document.querySelector(".SA-Searchbar").disabled = true;
-    document.querySelector(".VA-ModifyButton").style.pointerEvents = "none";
-    document.querySelector(".VA-ModifyButton").style.backgroundColor = "grey";
-    document.querySelector(".VA-DeleteButton").style.pointerEvents = "none";
-    document.querySelector(".VA-DeleteButton").style.backgroundColor = "grey";
     document.querySelector(".PA-Searchbar").disabled = true;
     document.querySelector("#PanelArea").style.pointerEvents = "none";
 }
@@ -331,22 +312,18 @@ function CopyStarted() {
 function CopyFinished() {
     copying = false;
     document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "#6e6e6e";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "#6e6e6e";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#6e6e6e";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
     if (filtersApplied) {
-        document.querySelector(".SA-FiltersButton").style.backgroundColor = "orchid";
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#9c6f9b";
     } else {
-        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#efefef";
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#6e6e6e";
     }
     document.querySelector(".SA-Searchbar").disabled = false;
-    document.querySelector(".VA-ModifyButton").style.pointerEvents = "initial";
-    document.querySelector(".VA-ModifyButton").style.backgroundColor = "#efefef";
-    document.querySelector(".VA-DeleteButton").style.pointerEvents = "initial";
-    document.querySelector(".VA-DeleteButton").style.backgroundColor = "#efefef";
     document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
     document.querySelector(".PA-Searchbar").disabled = false;
     document.querySelector("#PanelArea").style.pointerEvents = "initial";
@@ -581,22 +558,6 @@ function GenerateSelection(data) {
                         }
                     }
                 }
-
-                /*for (let j = 0; j < pokemonDataArray.length; j++) {
-                    if (loopArray.pokemon == pokemonDataArray[j].pokemon) {
-                        var td = tr.insertCell();
-                        dexNum = document.createElement("Text");
-                        dexNum.setAttribute("height", "13px");
-                        dexNum.innerHTML = pokemonDataArray[j].pokedex;
-                        dexNum.style.fontWeight = "bold";
-                        dexNum.style.color = "white";
-                        dexNum.style.fontFamily = "Arial, Helvetica, sans-serif";
-                        dexNum.style.fontSize = "60%";
-                        dexNum.style.display = "inline-flex";
-
-                        td.appendChild(dexNum);
-                    }
-                }*/
 
                 var td = tr.insertCell();
                 pokemon = document.createElement("Text");
@@ -1256,7 +1217,7 @@ function GenerateSelection(data) {
             newTable = document.createElement("table");
             newTable.style.position = "absolute";
             newTable.style.zIndex = "1";
-            newTable.style.bottom = "5%";
+            newTable.style.bottom = "4%";
             newTable.style.left = "10px";
 
             if (loopArray.proof != "") {
@@ -1266,11 +1227,12 @@ function GenerateSelection(data) {
                 var td = tr.insertCell();
                 td.setAttribute("width", "180px");
                 td.style.overflowX = "clip";
+                td.style.overflow = "-moz-hidden-unscrollable";
                 td.style.whiteSpace = "no-wrap";
                 proof = document.createElement("a");
                 proof.setAttribute("href", loopArray.proof);
                 proof.setAttribute("target", "_blank");
-                td.setAttribute("height", "13px");
+                td.setAttribute("height", "16px");
                 proof.setAttribute("height", "13px");
                 proof.innerHTML = loopArray.proof;
                 proof.style.fontWeight = "bold";
@@ -1317,9 +1279,30 @@ function GenerateSelection(data) {
                         }
                         else if (loopArray.game_obtained == "BW/BW2") {
                             if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen4/" + loopArray.pokemon + ".png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + loopArray.pokemon + ".png");
                             } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen4/" + loopArray.pokemon + "-Male.png");
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + loopArray.pokemon + "-Male.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "X/Y") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + "-Male.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "OR/AS") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + "-Male.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "SM/USUM") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + "-Male.png");
                             }
                         }
                         else if (loopArray.game_obtained == "LGP/LGE") {
@@ -1368,6 +1351,27 @@ function GenerateSelection(data) {
                                 theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + ".png");
                             } else {
                                 theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + "-Male.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "X/Y") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + "-Male.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "OR/AS") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + "-Male.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "SM/USUM") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + "-Male.png");
                             }
                         }
                         else if (loopArray.game_obtained == "LGP/LGE") {
@@ -1420,6 +1424,27 @@ function GenerateSelection(data) {
                                 theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + loopArray.pokemon + "-Female.png");
                             }
                         }
+                        else if (loopArray.game_obtained == "X/Y") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + "-Female.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "OR/AS") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + "-Female.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "SM/USUM") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + "-Female.png");
+                            }
+                        }
                         else if (loopArray.game_obtained == "LGP/LGE") {
                             if (loopArray.pokemon == "Eevee") {
                                 theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + loopArray.pokemon + ".png");
@@ -1462,7 +1487,32 @@ function GenerateSelection(data) {
                             }
                         }
                         else if (loopArray.game_obtained == "BW/BW2") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + "-Female.png");
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + "-Female.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "X/Y") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + "-Female.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "OR/AS") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + "-Female.png");
+                            }
+                        }
+                        else if (loopArray.game_obtained == "SM/USUM") {
+                            if (loopArray.pokemon == "Eevee") {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
+                            } else {
+                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + "-Female.png");
+                            }
                         }
                         else if (loopArray.game_obtained == "LGP/LGE") {
                             if (loopArray.pokemon == "Eevee") {
@@ -1506,6 +1556,15 @@ function GenerateSelection(data) {
                     else if (loopArray.game_obtained == "BW/BW2") {
                         theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + loopArray.pokemon + ".png");
                     }
+                    else if (loopArray.game_obtained == "X/Y") {
+                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
+                    }
+                    else if (loopArray.game_obtained == "OR/AS") {
+                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
+                    }
+                    else if (loopArray.game_obtained == "SM/USUM") {
+                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
+                    }
                     else if (loopArray.game_obtained == "LGP/LGE") {
                         theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + loopArray.pokemon + ".png");
                     }
@@ -1525,7 +1584,12 @@ function GenerateSelection(data) {
             else {
                 if (shinyExceptionArray.includes(loopArray.pokemon)) {
                     if (loopArray.pokemon.includes("Minior")) {
-                        theImage.setAttribute("src", url + "/Resources/Home/Minior-Shiny.png");
+                        if (generationalSprites) {
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/Minior.png");
+                        }
+                        else {
+                            theImage.setAttribute("src", url + "/Resources/Home/Minior-Shiny.png");
+                        }
                     }
                     else if (loopArray.pokemon.includes("Alcremie-Strawberry")) {
                         theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Strawberry-Shiny.png");
@@ -1565,6 +1629,15 @@ function GenerateSelection(data) {
                         }
                         else if (loopArray.game_obtained == "BW/BW2") {
                             theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "X/Y") {
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "OR/AS") {
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
+                        }
+                        else if (loopArray.game_obtained == "SM/USUM") {
+                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "LGP/LGE") {
                             theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + loopArray.pokemon + ".png");
@@ -1714,7 +1787,6 @@ function GenerateSelection(data) {
             }
         }
     }
-    SearchbarFilter();
     FilterResults();
     HideLoading();
 }
@@ -1804,7 +1876,7 @@ function GettingLFBunches(data) {
 
 function ShowPokemonDetails() {
     document.querySelector(".DA-Place").style.pointerEvents = "none";
-    document.querySelector(".DA-Place").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+    document.querySelector(".DA-Place").style.background = "#313131";
     tempUserID = "";
     if (userData != null) {
         tempUserID = userData.user_id;
@@ -1817,8 +1889,68 @@ function ShowPokemonDetails() {
 
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         document.querySelector(".DA-DetailsData").style.pointerEvents = "none";
+
+        bunchSelection.style.appearance = "none";
+        displaySelection.style.appearance = "none";
+        pokemonSelection.style.appearance = "none";
+        abilitySelection.style.appearance = "none";
+        natureSelection.style.appearance = "none";
+        statusSelection.style.appearance = "none";
+        eventSelection.style.appearance = "none";
+        howObtainedSelection.style.appearance = "none";
+        gameObtainedSelection.style.appearance = "none";
+        ivHpSelection.style.appearance = "none";
+        ivAttSelection.style.appearance = "none";
+        ivDefSelection.style.appearance = "none";
+        ivSpaSelection.style.appearance = "none";
+        ivSpdSelection.style.appearance = "none";
+        ivSpeSelection.style.appearance = "none";
+        evHpSelection.style.appearance = "none";
+        evAttSelection.style.appearance = "none";
+        evDefSelection.style.appearance = "none";
+        evSpaSelection.style.appearance = "none";
+        evSpdSelection.style.appearance = "none";
+        evSpeSelection.style.appearance = "none";
+        move1Selection.style.appearance = "none";
+        move2Selection.style.appearance = "none";
+        move3Selection.style.appearance = "none";
+        move4Selection.style.appearance = "none";
+        legacyMove1Selection.style.appearance = "none";
+        legacyMove2Selection.style.appearance = "none";
+        legacyMove3Selection.style.appearance = "none";
+        legacyMove4Selection.style.appearance = "none";
     } else {
         document.querySelector(".DA-DetailsData").style.pointerEvents = "initial";
+
+        bunchSelection.style.appearance = "auto";
+        displaySelection.style.appearance = "auto";
+        pokemonSelection.style.appearance = "auto";
+        abilitySelection.style.appearance = "auto";
+        natureSelection.style.appearance = "auto";
+        statusSelection.style.appearance = "auto";
+        eventSelection.style.appearance = "auto";
+        howObtainedSelection.style.appearance = "auto";
+        gameObtainedSelection.style.appearance = "auto";
+        ivHpSelection.style.appearance = "auto";
+        ivAttSelection.style.appearance = "auto";
+        ivDefSelection.style.appearance = "auto";
+        ivSpaSelection.style.appearance = "auto";
+        ivSpdSelection.style.appearance = "auto";
+        ivSpeSelection.style.appearance = "auto";
+        evHpSelection.style.appearance = "auto";
+        evAttSelection.style.appearance = "auto";
+        evDefSelection.style.appearance = "auto";
+        evSpaSelection.style.appearance = "auto";
+        evSpdSelection.style.appearance = "auto";
+        evSpeSelection.style.appearance = "auto";
+        move1Selection.style.appearance = "auto";
+        move2Selection.style.appearance = "auto";
+        move3Selection.style.appearance = "auto";
+        move4Selection.style.appearance = "auto";
+        legacyMove1Selection.style.appearance = "auto";
+        legacyMove2Selection.style.appearance = "auto";
+        legacyMove3Selection.style.appearance = "auto";
+        legacyMove4Selection.style.appearance = "auto";
     }
 
     tempTradeOption = "";
@@ -1846,11 +1978,12 @@ function ShowPokemonDetails() {
     gameObtainedSelection.value = pokemonDetails.game_obtained;
     gameObtainedValue = pokemonDetails.game_obtained;
 
+    document.querySelector(".DA-DisplayRow").style.display == "table-row";
     displaySelection.value = pokemonDetails.display;
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
-        displaySelection.style.display = "none";
+        document.querySelector(".DA-DisplayRow").style.visibility = "hidden";
     } else {
-        displaySelection.style.display = "block";
+        document.querySelector(".DA-DisplayRow").style.visibility = "unset";
     }
 
     gen6Data = pokemonDetails.gen6_availability;
@@ -1911,62 +2044,72 @@ function ShowPokemonDetails() {
     abilitySelection.value = pokemonDetails.ability;
     if (pokemonDetails.ability == "(Any Ability)" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.ability == "(Any Ability)" && detailsLocked) {
-        document.querySelector(".DA-AbilityRow").style.display = "none";
+        document.querySelector(".DA-AbilityRow").style.visibility = "hidden";
     } else {
-        document.querySelector(".DA-AbilityRow").style.display = "table-row";
+        document.querySelector(".DA-AbilityRow").style.visibility = "unset";
     }
 
     nicknameSelection.value = pokemonDetails.nickname;
     if (pokemonDetails.nickname == "" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.nickname == "" && detailsLocked) {
-        nicknameSelection.style.display = "none";
+        document.querySelector(".DA-Nickname").style.visibility = "hidden";
     } else {
-        nicknameSelection.style.display = "block";
+        document.querySelector(".DA-Nickname").style.visibility = "unset";
     }
 
     natureSelection.value = pokemonDetails.nature;
     if (pokemonDetails.nature == "(Any Nature)" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.nature == "(Any Nature)" && detailsLocked) {
-        document.querySelector(".DA-NatureRow").style.display = "none";
+        document.querySelector(".DA-NatureRow").style.visibility = "hidden";
     } else {
-        document.querySelector(".DA-NatureRow").style.display = "table-row";
+        document.querySelector(".DA-NatureRow").style.visibility = "unset";
     }
 
     otSelection.value = pokemonDetails.game_ot;
     if (pokemonDetails.game_ot == "" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.game_ot == "" && detailsLocked) {
-        document.querySelector(".DA-OTRow").style.display = "none";
+        document.querySelector(".DA-OTRow").style.visibility = "hidden";
     } else {
-        document.querySelector(".DA-OTRow").style.display = "table-row";
+        document.querySelector(".DA-OTRow").style.visibility = "unset";
     }
 
     idSelection.value = pokemonDetails.game_id;
     if (pokemonDetails.game_id == "" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.game_id == "" && detailsLocked) {
-        document.querySelector(".DA-IDRow").style.display = "none";
+        document.querySelector(".DA-IDRow").style.visibility = "hidden";
     } else {
-        document.querySelector(".DA-IDRow").style.display = "table-row";
+        document.querySelector(".DA-IDRow").style.visibility = "unset";
     }
 
     statusSelection.value = pokemonDetails.status;
+    document.querySelector(".DA-StatHolder").style.display = "flex";
     if (pokemonDetails.status == "(Any Status)" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.status == "(Any Status)" && detailsLocked) {
-        document.querySelector(".DA-StatusRow").style.display = "none";
+        document.querySelector(".DA-StatusRow").style.visibility = "hidden";
     } else {
-        document.querySelector(".DA-StatusRow").style.display = "table-row";
+        document.querySelector(".DA-StatusRow").style.visibility = "unset";
     }
 
+    document.querySelector(".DA-EventRow").style.display == "table-row";
     eventSelection.value = pokemonDetails.event_info;
     if (pokemonDetails.event_info == "(Any/No Event)" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.event_info == "(Any/No Event)" && detailsLocked ||
         pokemonDetails.event_info == "(Not Event)" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.event_info == "(Not Event)" && detailsLocked) {
+        document.querySelector(".DA-EventRow").style.visibility = "hidden";
+    } else {
+        document.querySelector(".DA-EventRow").style.visibility = "unset";
+    }
+
+    if (document.querySelector(".DA-DisplayRow").style.visibility == "hidden" && document.querySelector(".DA-EventRow").style.visibility == "hidden") {
+        document.querySelector(".DA-DisplayRow").style.display = "none";
         document.querySelector(".DA-EventRow").style.display = "none";
     } else {
+        document.querySelector(".DA-DisplayRow").style.display = "table-row";
         document.querySelector(".DA-EventRow").style.display = "table-row";
     }
 
-    document.querySelector(".DA-StatHolder").style.display = "table";
+    document.querySelector(".DA-StatHolder").style.visibility = "unset";
     ivHpSelection.value = pokemonDetails.iv_hp;
     ivAttSelection.value = pokemonDetails.iv_att;
     ivDefSelection.value = pokemonDetails.iv_def;
@@ -1993,7 +2136,7 @@ function ShowPokemonDetails() {
     evSpdSelection.value = pokemonDetails.ev_spd;
     evSpeSelection.value = pokemonDetails.ev_spe;
 
-    /*if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         if (pokemonDetails.ev_hp == "X" && pokemonDetails.ev_att == "X" && pokemonDetails.ev_def == "X" &&
             pokemonDetails.ev_spa == "X" && pokemonDetails.ev_spd == "X" && pokemonDetails.ev_spe == "X") {
 
@@ -2004,7 +2147,7 @@ function ShowPokemonDetails() {
         }
     } else {
         document.querySelector(".DA-RowEVs").style.display = "table-row";
-    }*/
+    }
 
     if (document.querySelector(".DA-RowEVs").style.display == "none" && document.querySelector(".DA-RowIVs").style.display == "none") {
         document.querySelector(".DA-RowEVs").style.display = "table-row";
@@ -2012,15 +2155,13 @@ function ShowPokemonDetails() {
         document.querySelector(".DA-StatHolder").style.display = "none";
     }
 
-    document.querySelector(".DA-PokemonMoves").style.display = "block";
-    document.querySelector(".DA-NormalMoves").style.display = "grid";
+    document.querySelector(".DA-MovesHolder").style.display = "block";
     document.querySelector(".DA-Move1").style.display = "block";
     document.querySelector(".DA-Move2").style.display = "block";
     document.querySelector(".DA-Move3").style.display = "block";
     document.querySelector(".DA-Move4").style.display = "block";
 
-    document.querySelector(".DA-TransferMoves").style.display = "block";
-    document.querySelector(".DA-LegacyMoves").style.display = "grid";
+    document.querySelector(".DA-LegacyMovesHolder").style.display = "block";
     document.querySelector(".DA-LegacyMove1").style.display = "block";
     document.querySelector(".DA-LegacyMove2").style.display = "block";
     document.querySelector(".DA-LegacyMove3").style.display = "block";
@@ -2054,8 +2195,7 @@ function ShowPokemonDetails() {
 
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         if (!move1Null && !move2Null && !move3Null && !move1Null) {
-            document.querySelector(".DA-PokemonMoves").style.display = "none";
-            document.querySelector(".DA-NormalMoves").style.display = "none";
+            document.querySelector(".DA-MovesHolder").style.display = "none";
         } else if (!move3Null && !move4Null) {
             document.querySelector(".DA-Move3").style.display = "none";
             document.querySelector(".DA-Move4").style.display = "none";
@@ -2090,9 +2230,8 @@ function ShowPokemonDetails() {
     }
 
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
-        if (!legacyMove1Null && !legacyMove2Null && !legacyMove3Null && !legacyMove1Null) {
-            document.querySelector(".DA-TransferMoves").style.display = "none";
-            document.querySelector(".DA-LegacyMoves").style.display = "none";
+        if (!legacyMove1Null && !legacyMove2Null && !legacyMove3Null && !legacyMove4Null) {
+            document.querySelector(".DA-LegacyMovesHolder").style.display = "none";
         } else if (!legacyMove3Null && !legacyMove4Null) {
             document.querySelector(".DA-LegacyMove3").style.display = "none";
             document.querySelector(".DA-LegacyMove4").style.display = "none";
@@ -2141,40 +2280,60 @@ function ShowPokemonDetails() {
 }
 
 function ShowAllDropdowns() {
-    displaySelection.style.display = "block";
-    document.querySelector(".DA-AbilityRow").style.display = "table-row";
-    nicknameSelection.style.display = "block";
-    document.querySelector(".DA-NatureRow").style.display = "table-row";
-    document.querySelector(".DA-OTRow").style.display = "table-row";
-    document.querySelector(".DA-IDRow").style.display = "table-row";
-    document.querySelector(".DA-StatusRow").style.display = "table-row";
-    document.querySelector(".DA-EventRow").style.display = "table-row";
-    document.querySelector(".DA-StatHolder").style.display = "table";
+    displaySelection.style.visibility = "unset";
+    document.querySelector(".DA-DisplayRow").style.display == "table-row";
+    document.querySelector(".DA-AbilityRow").style.visibility = "unset";
+    nicknameSelection.style.visibility = "unset";
+    document.querySelector(".DA-NatureRow").style.visibility = "unset";
+    document.querySelector(".DA-OTRow").style.visibility = "unset";
+    document.querySelector(".DA-IDRow").style.visibility = "unset";
+    document.querySelector(".DA-StatusRow").style.visibility = "unset";
+    document.querySelector(".DA-EventRow").style.visibility = "unset";
+    document.querySelector(".DA-EventRow").style.display == "table-row";
+    document.querySelector(".DA-StatHolder").style.visibility = "unset";
+    document.querySelector(".DA-StatHolder").style.display = "flex";
     document.querySelector(".DA-RowIVs").style.display = "table-row";
     document.querySelector(".DA-RowEVs").style.display = "table-row";
-    document.querySelector(".DA-PokemonMoves").style.display = "block";
-    document.querySelector(".DA-NormalMoves").style.display = "grid";
+    document.querySelector(".DA-MovesHolder").style.display = "block";
     document.querySelector(".DA-Move1").style.display = "block";
     document.querySelector(".DA-Move2").style.display = "block";
     document.querySelector(".DA-Move3").style.display = "block";
     document.querySelector(".DA-Move4").style.display = "block";
-    document.querySelector(".DA-TransferMoves").style.display = "block";
-    document.querySelector(".DA-LegacyMoves").style.display = "grid";
+    document.querySelector(".DA-LegacyMovesHolder").style.display = "block";
     document.querySelector(".DA-LegacyMove1").style.display = "block";
     document.querySelector(".DA-LegacyMove2").style.display = "block";
     document.querySelector(".DA-LegacyMove3").style.display = "block";
     document.querySelector(".DA-LegacyMove4").style.display = "block";
     document.querySelector(".DA-Proof").style.display = "block";
     document.querySelector(".DA-Note").style.display = "flex";
-}
 
-function SearchbarFilter() {
-    for (let i = 0; i < arrayData["Rows"].length; i++) {
-        if (arrayData["Rows"][i].pokemon.toLowerCase().includes(searchPokemonText.value.toLowerCase())) {
-            document.getElementById("GenerationGridDiv" + (i)).style.display = "flex";
-        } else {
-            document.getElementById("GenerationGridDiv" + (i)).style.display = "none";
-            console.log(arrayData["Rows"][i].pokemon);
-        }
-    }
+    bunchSelection.style.appearance = "auto";
+    displaySelection.style.appearance = "auto";
+    pokemonSelection.style.appearance = "auto";
+    abilitySelection.style.appearance = "auto";
+    natureSelection.style.appearance = "auto";
+    statusSelection.style.appearance = "auto";
+    eventSelection.style.appearance = "auto";
+    howObtainedSelection.style.appearance = "auto";
+    gameObtainedSelection.style.appearance = "auto";
+    ivHpSelection.style.appearance = "auto";
+    ivAttSelection.style.appearance = "auto";
+    ivDefSelection.style.appearance = "auto";
+    ivSpaSelection.style.appearance = "auto";
+    ivSpdSelection.style.appearance = "auto";
+    ivSpeSelection.style.appearance = "auto";
+    evHpSelection.style.appearance = "auto";
+    evAttSelection.style.appearance = "auto";
+    evDefSelection.style.appearance = "auto";
+    evSpaSelection.style.appearance = "auto";
+    evSpdSelection.style.appearance = "auto";
+    evSpeSelection.style.appearance = "auto";
+    move1Selection.style.appearance = "auto";
+    move2Selection.style.appearance = "auto";
+    move3Selection.style.appearance = "auto";
+    move4Selection.style.appearance = "auto";
+    legacyMove1Selection.style.appearance = "auto";
+    legacyMove2Selection.style.appearance = "auto";
+    legacyMove3Selection.style.appearance = "auto";
+    legacyMove4Selection.style.appearance = "auto";
 }

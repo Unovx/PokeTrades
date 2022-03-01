@@ -15,8 +15,6 @@
   <link href="css/loginArea.css" rel="stylesheet" />
   <link href="css/selectionArea.css" rel="stylesheet" />
   <link href="css/detailsArea.css" rel="stylesheet" />
-  <link href="css/viewingArea.css" rel="stylesheet" />
-  <link href="css/creationArea.css" rel="stylesheet" />
   <link href="css/bunchArea.css" rel="stylesheet" />
   <link href="css/filterArea.css" rel="stylesheet" />
   <link href="css/notificationArea.css" rel="stylesheet" />
@@ -80,14 +78,24 @@
           questions just click on the Discord Button and we'll be happy to help.
           <br><br>
           <br><br>
+          What's New: Feburary 2021
+          <br><br>
+          Legends Arceus support has been added! Additional Viewings are also back and can be accessed via the
+          Settings Area. Clicking on a Pokemon will now open up more details, so you don't have to constantly look at
+          the side for more information. In addition to this, the UI has had a massive design change and Gen6/7 Sprites
+          have now been added.
+          <br><br>
           What's New: December 2021
           <br><br>
-          You can now create Templates for easier creation! By creating a Template, you can then load it while creating
-          a Pokemon to fill in a variety of details like OT and ID, preventing the need to constantly re-type them each
+          You can now create Templates for easier creation! By creating a Template, you can then load it while
+          creating
+          a Pokemon to fill in a variety of details like OT and ID, preventing the need to constantly re-type them
+          each
           time. More details can be found clicking the Unown in the Template Section.
           <br><br>
           The Viewing Area and Creation Area has now been merged, allowing you to make faster edits and have only one
-          view. Should you not want to see other information that is not filled in or you don't want to make changes by
+          view. Should you not want to see other information that is not filled in or you don't want to make changes
+          by
           mistake, click the Lock Button.
           <br><br>
           What's New: November 2021
@@ -97,22 +105,6 @@
           <br><br>
           Routing is now also added! Big thanks to the team who helped, with this, to show users your TradeShop, you
           simply have to copy the URL after typing in your Search ID making it much easier to share.
-          <br><br>
-          What's New: October 2021
-          <br><br>
-          Another option was added which I think you'll love, the option to see sprites instead of the normal Home
-          artwork for gens 1-5. This option is off by default, but once turned on, you will see older sprites depending
-          on
-          the game they were obtained in. If a sprite does not exist for it, the default Home artwork is used.
-          <br><br>
-          What's New: September 2021
-          <br><br>
-          There is now an option to see the Dex Number of the Pokemon in the Selection Area. Additionally the Advanced
-          Preview option also now shows the Pokemon Name and Typing to fill the empty space.
-          <br><br>
-          The way to create and move Bunches has been improved. Now you simply need to click on the buttons above either
-          the For Trade or Looking For Bunches.
-          <br><br>
         </text>
       </div>
       <div class="PA-SettingsPanel">
@@ -420,9 +412,6 @@
       <div id="SA-TopRow">
         <table class="SelectionButtons">
           <tr>
-            <!--<td>
-              <button class="SA-ExitBunch">Exit Bunch</button>
-            </td>-->
             <td>
               <button class="SA-MainMenu">Main Menu</button>
             </td>
@@ -443,24 +432,8 @@
             </td>
           </tr>
         </table>
-        <input class="SA-Searchbar" type="text" placeholder="Search Pokemon..">
+        <input class="SA-Searchbar" type="text" placeholder="Search Pokemon...">
         <text class="SA-Bunch">(No Bunch) </text>
-
-        <!--<div class="SelectionButtons">
-          <div>
-            <button id="SA-ExitBunch">Exit Bunch</button>
-          </div>
-          <div>
-            <button id="SA-MainMenu">Main Menu</button>
-          </div>
-          <div>
-            <button id="SA-CreateButton">Create</button>
-          </div>
-          <div>
-            <button id="SA-FiltersButton">Filters</button>
-          </div>
-        </div>-->
-        <!--<button id="Testing">Try it</button>-->
       </div>
       <div id="SelectionSection">
         <div id="GeneratedSelection"></div>
@@ -555,41 +528,30 @@
       <div class="DA-DetailsData">
 
         <text class="DA-Username">User's TradeShop</text>
-        <select class="DA-BunchDropdown">
-        </select>
-        <div class="DA-ObtainedDropdowns">
-          <select class="DA-HowObtained">
-          </select>
-          <select class="DA-GameObtained"></select>
-        </div>
+        <select class="DA-BunchDropdown"></select>
         <table class="DA-TemplateSection">
           <tr>
-            <td class="DA-TableTextPurple">
+            <td class="DA-TemplateAreas">
               <img class="DA-TemplateHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
             </td>
-            <td class="DA-TableTextPurple">
+            <td class="DA-TemplateAreas">
               <button class="DA-AddTemplate">+</button>
             </td>
-            <td class="DA-TableTextPurple" style="max-width: 115px">
+            <td class="DA-TemplateAreas" style="max-width: 115px">
               <input class="DA-TemplateName" type="text" maxlength="15" placeholder="Type Template...">
             </td>
-            <td class="DA-TableTextPurple">
+            <td class="DA-TemplateAreas">
               <button class="DA-RemoveTemplate">-</button>
             </td>
-            <td class="DA-TableTextPurple" style="max-width: 125px">
+            <td class="DA-TemplateAreas" style="max-width: 125px">
               <select class="DA-TemplateDropdown">
                 <option class="DA-DropdownOptions">(No Template)</option>
               </select>
             </td>
           </tr>
         </table>
-        <select class="DA-DisplayDropdown"></select>
-        <div class="DA-Availability">
-          <button class="DA-Gen6">Gen6</button>
-          <button class="DA-Gen7">Gen7</button>
-          <button class="DA-Gen8">Gen8</button>
-          <button class="DA-Home">Home</button>
-        </div>
+
+
         <div class="DA-IconOptions">
           <div class="DA-SelectedLang">
             <button class="DA-LangIcon">[ENG]</button>
@@ -615,20 +577,6 @@
               src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/(No Mark).png"></img>
           </div>
         </div>
-        <!--<table class="DA-BallDetails">
-          <tr style="height: 25px; width: 25px;">
-            <td style="width: 20px;">
-              <img class="DA-BallExtension" src="https://poketrades.org/Resources/Misc/ExtendDetails.png"></img>
-            </td>
-            <td style="width: 0px;">
-              <img class="DA-SelectedBall"
-                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png"></img>
-            </td>
-            <td>
-              <text class="DA-BallName">Poke Ball</text>
-            </td>
-          </tr>
-        </table>-->
         <div class="DA-LangOptions"></div>
         <div class="DA-BallOptions"></div>
         <div class="DA-GenderOptions"></div>
@@ -639,65 +587,98 @@
         </div>
         <div class="DA-PokemonDetails">
           <img class="DA-PokemonImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
+          <div>
+            <select class="DA-PokemonDropdown"></select>
+            <input class="DA-Nickname" type="text" maxlength="12" placeholder="Nickname...">
+            <table class="DA-Tables">
+              <tr class="DA-AbilityRow">
+                <td class="DA-TableText">
+                  <text>Ability:</text>
+                </td>
+                <td>
+                  <select class="DA-AbilityDropdown">
+                  </select>
+                </td>
+              </tr>
+              <tr class="DA-NatureRow">
+                <td class="DA-TableText">
+                  <text>Nature:</text>
+                </td>
+                <td>
+                  <select class="DA-NatureDropdown"></select>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
-        <select class="DA-PokemonDropdown"></select>
-        <input class="DA-Nickname" type="text" maxlength="12" placeholder="Nickname...">
-        <table class="DA-Tables">
-          <tr class="DA-AbilityRow">
-            <td class="DA-TableTextOrange">
-              <text>Ability:</text>
-            </td>
-            <td>
-              <select class="DA-AbilityDropdown">
-              </select>
-            </td>
-          </tr>
-          <tr class="DA-NatureRow">
-            <td class="DA-TableTextOrange">
-              <text>Nature:</text>
-            </td>
-            <td>
-              <select class="DA-NatureDropdown"></select>
-            </td>
-          </tr>
-        </table>
-        <table class="DA-Tables">
-          <tr class="DA-OTRow">
-            <td class="DA-TableTextYellow">
-              <text>OT:</text>
-            </td>
-            <td>
-              <input class="DA-OT" type="text" maxlength="12" placeholder="Type OT...">
-            </td>
-          </tr>
-          <tr class="DA-IDRow">
-            <td class="DA-TableTextYellow">
-              <text>ID:</text>
-            </td>
-            <td>
-              <input class="DA-ID" type="number" maxlength="6" placeholder="Type ID...">
-            </td>
-          </tr>
-          <tr class="DA-StatusRow">
-            <td class="DA-TableTextYellow">
-              <text>Status:</text>
-            </td>
-            <td>
-              <select class="DA-StatusDropdown"></select>
-            </td>
-          </tr>
-          <tr class="DA-EventRow">
-            <td class="DA-TableTextYellow">
-              <text>Event:</text>
-            </td>
-            <td>
-              <select class="DA-EventDropdown"></select>
-            </td>
-          </tr>
-        </table>
 
 
 
+        <div class="DA-InfoHolder">
+          <table style="width: 50%;">
+            <tr>
+              <td>
+                <div class="DA-Availability">
+                  <button class="DA-Gen6">Gen6</button>
+                  <button class="DA-Gen7">Gen7</button>
+                  <button class="DA-Gen8">Gen8</button>
+                  <button class="DA-Home">Home</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <select class="DA-GameObtained"></select>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <select class="DA-HowObtained">
+                </select>
+              </td>
+            </tr>
+            <tr class="DA-DisplayRow">
+              <td>
+                <select class="DA-DisplayDropdown"></select>
+              </td>
+            </tr>
+
+          </table>
+          <table class="DA-Tables">
+            <tr class="DA-OTRow">
+              <td class="DA-TableText">
+                <text>OT:</text>
+              </td>
+              <td>
+                <input class="DA-OT" type="text" maxlength="12" placeholder="Type OT...">
+              </td>
+            </tr>
+            <tr class="DA-IDRow">
+              <td class="DA-TableText">
+                <text>ID:</text>
+              </td>
+              <td>
+                <input class="DA-ID" type="number" maxlength="6" placeholder="Type ID...">
+              </td>
+            </tr>
+            <tr class="DA-StatusRow">
+              <td class="DA-TableText">
+                <text>Status:</text>
+              </td>
+              <td>
+                <select class="DA-StatusDropdown"></select>
+              </td>
+            </tr>
+            <tr class="DA-EventRow">
+              <td class="DA-TableText">
+                <text>Event:</text>
+              </td>
+              <td>
+                <select class="DA-EventDropdown"></select>
+              </td>
+            </tr>
+          </table>
+        </div>
 
         <div class="DA-StatHolder">
           <table class="DA-IVsEVs">
@@ -772,41 +753,47 @@
             </tr>
           </table>
         </div>
-        <text class="DA-PokemonMoves">Pokemon Moves</text>
-        <div class="DA-NormalMoves">
-          <div>
-            <select class="DA-Move1"></select>
+        <div class="DA-MovesHolder">
+          <text class="DA-PokemonMoves">Pokemon Moves</text>
+          <div class="DA-NormalMoves">
+            <div>
+              <select class="DA-Move1"></select>
+            </div>
+            <div>
+              <select class="DA-Move2"></select>
+            </div>
+            <div>
+              <select class="DA-Move3"></select>
+            </div>
+            <div>
+              <select class="DA-Move4"></select>
+            </div>
           </div>
-          <div>
-            <select class="DA-Move2"></select>
-          </div>
-          <div>
-            <select class="DA-Move3"></select>
-          </div>
-          <div>
-            <select class="DA-Move4"></select>
-          </div>
+
         </div>
-        <text class="DA-TransferMoves">Egg/Transfer Moves</text>
-        <div class="DA-LegacyMoves">
-          <div>
-            <select class="DA-LegacyMove1"></select>
-          </div>
-          <div>
-            <select class="DA-LegacyMove2"></select>
-          </div>
-          <div>
-            <select class="DA-LegacyMove3"></select>
-          </div>
-          <div>
-            <select class="DA-LegacyMove4"></select>
+        <div class="DA-LegacyMovesHolder">
+          <text class="DA-TransferMoves">Egg/Transfer Moves</text>
+          <div class="DA-LegacyMoves">
+            <div>
+              <select class="DA-LegacyMove1"></select>
+            </div>
+            <div>
+              <select class="DA-LegacyMove2"></select>
+            </div>
+            <div>
+              <select class="DA-LegacyMove3"></select>
+            </div>
+            <div>
+              <select class="DA-LegacyMove4"></select>
+            </div>
           </div>
         </div>
       </div>
+
       <div class="DA-Proof">
         <table class="DA-Tables">
           <tr>
-            <td class="DA-TableTextPink">
+            <td class="DA-TableTextGrey">
               <button class="DA-ToggleProof" style="font-size: 16px;">Show Proof</button>
             </td>
             <td>
@@ -822,569 +809,107 @@
         oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'></textarea>
     </div>
 
-    <div id="ViewingArea">
-      <div id="ViewingButtonsArea">
-        <table class="ViewingButtons">
-          <tr>
-            <td>
-              <button class="VA-CloseButton">Close</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button class="VA-ModifyButton">Modify</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button class="VA-DeleteButton">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button class="VA-AddButton">Add</button>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div id="MoreViewings">
-        <table class="ViewingAlign">
-          <tr>
-            <td>
-              <img class="VA-ViewingHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img class="VA-AddAV1" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
-            </td>
-            <td>
-              <img class="VA-AV1"
-                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img class="VA-AddAV2" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
-            </td>
-            <td>
-              <img class="VA-AV2"
-                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img class="VA-AddAV3" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
-            </td>
-            <td>
-              <img class="VA-AV3"
-                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img class="VA-AddAV4" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
-            </td>
-            <td>
-              <img class="VA-AV4"
-                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img class="VA-AddAV5" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
-            </td>
-            <td>
-              <img class="VA-AV5"
-                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img class="VA-AddAV6" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
-            </td>
-            <td>
-              <img class="VA-AV6"
-                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div id="ViewingContent">
-        <text class="VA-Username">Test#0</text>
-        <text class="VA-Bunch">(No Bunch)</text>
-        <text class="VA-ObtainedInfo">Self Obtained(Retail) USUM</text>
-
-        <table class="VA-Availability">
-          <tr>
-            <td>
-              <text class="VA-Lang">[Any]</text>
-            </td>
-            <td>
-              <text class="VA-Gen6">Gen 6</text>
-            </td>
-            <td>
-              <text class="VA-Gen7">Gen 7</text>
-            </td>
-            <td>
-              <text class="VA-Gen8">Gen 8</text>
-            </td>
-            <td>
-              <text class="VA-Home">Home</text>
-            </td>
-          </tr>
-        </table>
-        <table class="VA-ImageAlign">
-          <tr>
-            <td>
-              <img class="VA-Pokeball"
-                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
-            </td>
-            <td>
-              <img class="VA-Gender" src="https://poketrades.org/Resources/Misc/(Any Gender).png"></img>
-            </td>
-            <td>
-              <img class="VA-Shiny" src="https://poketrades.org/Resources/Misc/(Any Shiny or Normal).png"></img>
-            </td>
-            <td>
-              <img class="VA-Mint" src="https://poketrades.org/Resources/Misc/(Any or No Mint).png"></img>
-            </td>
-            <td>
-              <img class="VA-Misc" src="https://poketrades.org/Resources/Misc/(No Misc).png"></img>
-            </td>
-            <td>
-              <img class="VA-Mark"
-                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/(Any or No Mark).png"></img>
-            </td>
-          </tr>
-        </table>
-        <img class="VA-PokemonImage" src="https://poketrades.org/Resources/Fennel2.png"></img>
-
-        <!--<text class="VA-HowObtained">Self Obtained(Retail)</text>
-        <text class="VA-GameObtained">USUM</text>-->
-
-
-
-        <div class="VA-TextAlign">
-          <div>
-            <text class="VA-PokemonName">Pokemon Name</text>
-          </div>
-          <div>
-            <text class="VA-Nickname">(No Nickname)</text>
-          </div>
-          <div>
-            <text class="VA-IVs">31/31/31/31/31/31</text>
-          </div>
-          <div>
-            <text class="VA-EVs">252/252/252/252/252/252</text>
-          </div>
-        </div>
-        <!--<table class="VA-TextAlign">
-          <tr>
-            <td class="VA-PokemonName">Pokemon Name</td>
-          </tr>
-          <tr>
-            <td class="VA-Nickname">(No Nickname)</td>
-          </tr>
-          <tr>
-            <td class="VA-IVs">31/31/31/31/31/31</td>
-          </tr>
-          <tr>
-            <td class="VA-EVs">252/252/252/252/252/252</td>
-          </tr>
-        </table>-->
-
-        <table class="VA-InfoAlign">
-          <tr>
-            <td class="VA-Nature">(Quirky)</td>
-          </tr>
-          <tr>
-            <td class="VA-Ability">(No Ability)</td>
-          </tr>
-          <tr>
-            <td class="VA-OT">(Trainer)</td>
-          </tr>
-          <tr>
-            <td class="VA-ID">(000000)</td>
-          </tr>
-          <tr>
-            <td class="VA-Status">(Untouched)</td>
-          </tr>
-          <tr>
-            <td class="VA-Event">(No Event)</td>
-          </tr>
-          <tr>
-            <td>
-              <a class="ViewingProof" target="_blank">(No Proof)</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button class="VA-ToggleProof">Show Proof</button>
-            </td>
-          </tr>
-        </table>
-        <a class="VA-LinkRedirector" target="_blank"><img class="VA-ProofImage" src=""></img><video
-            class="VA-ProofVideo" src="" controls=true></video></a>
-
-
-        <text class="VA-PokemonMoves">Pokemon Moves</text>
-        <div id="VA-NormalMoves" class="VA-NormalMoves">
-          <div class="VA-Move1">(No Move)</div>
-          <div class="VA-Move2">(No Move)</div>
-          <div class="VA-Move3">(No Move)</div>
-          <div class="VA-Move4">(No Move)</div>
-        </div>
-        <!--<table class="VA-NormalMoves">
-          <tr>
-            <td class="VA-Move1">(No Move)</td>
-            <td class="VA-Move2">(No Move)</td>
-          </tr>
-          <tr>
-            <td class="VA-Move3">(No Move)</td>
-            <td class="VA-Move4">(No Move)</td>
-          </tr>
-        </table>-->
-        <text class="VA-TransferMoves">Egg/Transfer Moves</text>
-        <div id="VA-LegacyMoves" class="VA-LegacyMoves">
-          <div class="VA-LegacyMove1">(No Move)</div>
-          <div class="VA-LegacyMove2">(No Move)</div>
-          <div class="VA-LegacyMove3">(No Move)</div>
-          <div class="VA-LegacyMove4">(No Move)</div>
-        </div>
-        <!--<table class="VA-LegacyMoves">
-          <tr>
-            <td class="VA-LegacyMove1">(No Move)</td>
-            <td class="VA-LegacyMove2">(No Move)</td>
-          </tr>
-          <tr>
-            <td class="VA-LegacyMove3">(No Move)</td>
-            <td class="VA-LegacyMove4">(No Move)</td>
-          </tr>
-        </table>-->
-        <table class="VA-Note">
-          <tr>
-            <td>
-              <text>Testing</text>
-            </td>
-          </tr>
-        </table>
-        <text class="VA-PreferredPokemon">Preferred Pokemon in Exchange:</text>
-      </div>
-      <div id="MatchMaking"></div>
-    </div>
-    <div id="CreationArea">
-      <div id="CreationButtonsArea">
-        <table class="CreationButtons">
-          <tr>
-            <td>
-              <button class="CA-CloseButton">Close</button>
-            </td>
-            <td>
-              <button class="CA-CreatePokemon">Create/Save</button>
-            </td>
-            <!--<td>
-              <button class="CA-EditBunches">Edit Bunches</button>
-            </td>-->
-          </tr>
-        </table>
-      </div>
-
-      <div id="CreationContent">
-        <select class="CA-BunchDropdown"></select>
-        <select class="CA-HowObtained"></select>
-        <select class="CA-GameObtained"></select>
-        <select class="CA-Lang"></select>
-        <select class="CA-DisplayDropdown">
-          <!--<option value="Public">Public</option>
-          <option value="Private">Private</option>-->
-        </select>
-
-        <table class="CA-Availability">
-          <tr>
-            <td>
-              <button class="CA-Gen6">Gen 6</button>
-            </td>
-            <td>
-              <button class="CA-Gen7">Gen 7</button>
-            </td>
-            <td>
-              <button class="CA-Gen8">Gen 8</button>
-            </td>
-            <td>
-              <button class="CA-Home">Home</button>
-            </td>
-          </tr>
-        </table>
-        <div class="CA-ImageAlign">
-          <div>
-            <select class="CA-BallDropdown"></select>
-          </div>
-          <div>
-            <select class="CA-GenderDropdown"></select>
-          </div>
-          <div>
-            <select class="CA-ShinyDropdown"></select>
-          </div>
-          <div>
-            <select class="CA-MintDropdown"></select>
-          </div>
-          <div>
-            <select class="CA-MiscDropdown"></select>
-          </div>
-          <div>
-            <select class="CA-MarkDropdown"></select>
-          </div>
-        </div>
-        <img class="CA-PokemonImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
-
-        <select class="CA-PokemonDropdown"></select>
-        <input class="CA-Nickname" type="text" maxlength="12" placeholder="Nickname..">
-
-        <table class="CA-IVsEVs">
-          <tr>
-            <td>
-              <text></text>
-            </td>
-            <td>
-              <text class="CA-IvEvText">HP</text>
-            </td>
-            <td>
-              <text class="CA-IvEvText">Att</text>
-            </td>
-            <td>
-              <text class="CA-IvEvText">Def</text>
-            </td>
-            <td>
-              <text class="CA-IvEvText">Spa</text>
-            </td>
-            <td>
-              <text class="CA-IvEvText">Spd</text>
-            </td>
-            <td>
-              <text class="CA-IvEvText">Spe</text>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <text class="CA-IvText">IVs</text>
-            </td>
-            <td>
-              <select class="CA-IvHP"></select>
-            </td>
-            <td>
-              <select class="CA-IvAtt"></select>
-            </td>
-            <td>
-              <select class="CA-IvDef"></select>
-            </td>
-            <td>
-              <select class="CA-IvSpa"></select>
-            </td>
-            <td>
-              <select class="CA-IvSpd"></select>
-            </td>
-            <td>
-              <select class="CA-IvSpe"></select>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <text class="CA-EvText">EVs</text>
-            </td>
-            <td>
-              <select class="CA-EvHP"></select>
-            </td>
-            <td>
-              <select class="CA-EvAtt"></select>
-            </td>
-            <td>
-              <select class="CA-EvDef"></select>
-            </td>
-            <td>
-              <select class="CA-EvSpa"></select>
-            </td>
-            <td>
-              <select class="CA-EvSpd"></select>
-            </td>
-            <td>
-              <select class="CA-EvSpe"></select>
-            </td>
-          </tr>
-        </table>
-
-        <table class="DropdownAlign">
-          <tr>
-            <td>
-              <select class="CA-NatureDropdown"></select>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <select class="CA-AbilityDropdown"></select>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input class="CA-OT" type="text" maxlength="=12" placeholder="OT...">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input class="CA-ID" type="number" maxlength="6" placeholder="ID...">
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <select class="CA-StatusDropdown"></select>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <select class="CA-EventDropdown"></select>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <input class="CA-Proof" type="text" placeholder="Proof..">
-            </td>
-          </tr>
-        </table>
-
-        <text class="CA-PokemonMoves">Pokemon Moves</text>
-        <div class="CA-NormalMoves">
-          <div>
-            <select class="CA-Move1"></select>
-          </div>
-          <div>
-            <select class="CA-Move2"></select>
-          </div>
-          <div>
-            <select class="CA-Move3"></select>
-          </div>
-          <div>
-            <select class="CA-Move4"></select>
-          </div>
-        </div>
-        <text class="CA-TransferMoves">Egg/Transfer Moves</text>
-        <div class="CA-LegacyMoves">
-          <div>
-            <select class="CA-LegacyMove1"></select>
-          </div>
-          <div>
-            <select class="CA-LegacyMove2"></select>
-          </div>
-          <div>
-            <select class="CA-LegacyMove3"></select>
-          </div>
-          <div>
-            <select class="CA-LegacyMove4"></select>
-          </div>
-        </div>
-        <textarea class="NoteField" placeholder="Type Note.." maxlength="150"
-          oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'></textarea>
-      </div>
-    </div>
     <div id="BunchArea">
-      <button class="BA-CloseButton">Return to Main Area</button>
+      <button class="BA-CloseButton BA-BunchButtons">Return to Main Area</button>
       <text class="BA-SelectIconText">Select the Icon to display for your Bunch</text>
-      <div class="BA-IconOptions">
+      <div class="BA-IconOptions BA-BunchButtons">
         <div>
-          <select class="BA-GenderDropdown"></select>
+          <select class="BA-GenderDropdown BA-BunchButtons"></select>
         </div>
         <div>
-          <select class="BA-ShinyDropdown"></select>
+          <select class="BA-ShinyDropdown BA-BunchButtons"></select>
         </div>
       </div>
       <img class="BA-IconImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
-      <select class="BA-IconDropdown"></select>
+      <select class="BA-IconDropdown BA-BunchButtons"></select>
       <text class="BA-TrioBunchText">Type in the Bunch to Add, Update, Remove</text>
-      <input class="BA-BunchInput" type="text" maxlength="30" placeholder="Type Bunch to Add, Update or Remove..">
+      <input class="BA-BunchInput BA-BunchButtons" type="text" maxlength="30"
+        placeholder="Type Bunch to Add, Update or Remove..">
       <div class="BA-BunchOptions">
         <div>
-          <button class="BA-AddBunch">Add/Update Bunch</button>
+          <button class="BA-AddBunch BA-BunchButtons">Add/Update Bunch</button>
         </div>
         <div>
-          <button class="BA-RemoveBunch">Remove Bunch</button>
+          <button class="BA-RemoveBunch BA-BunchButtons">Remove Bunch</button>
         </div>
       </div>
       <text class="BA-RenameText">This is the area to Rename Bunches</text>
-      <select class="BA-BunchRename"></select>
-      <input class="BA-BunchNewName" type="text" maxlength="30" placeholder="Type New Bunch Name..">
-      <button class="BA-RenameBunch">Rename Bunch</button>
+      <select class="BA-BunchRename BA-BunchButtons"></select>
+      <input class="BA-BunchNewName BA-BunchButtons" type="text" maxlength="30" placeholder="Type New Bunch Name..">
+      <button class="BA-RenameBunch BA-BunchButtons">Rename Bunch</button>
     </div>
     <div id="FilterArea">
       <table class="FA-TopRow">
         <tr>
           <td>
-            <button class="FA-CloseButton">Close</button>
+            <button class="FA-CloseButton FA-FilterButtons">Close</button>
           </td>
           <td>
-            <select class="FA-FilterDisplay" disabled="true">
-              <option>(Public or Private)</option>
-              <option>Public</option>
-              <option>Private</option>
+            <select class="FA-FilterDisplay FA-FilterButtons" disabled="true">
+              <option class="FA-DropdownOptions">(Public or Private)</option>
+              <option class="FA-DropdownOptions">Public</option>
+              <option class="FA-DropdownOptions">Private</option>
             </select>
           </td>
           <td>
-            <button class="FA-ResetButton">Reset</button>
+            <button class="FA-ResetButton FA-FilterButtons">Reset</button>
           </td>
         </tr>
       </table>
       <div class="FA-FilterOptions">
         <div>
-          <select class="FA-FilterBall"></select>
+          <select class="FA-FilterBall FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterGender"></select>
+          <select class="FA-FilterGender FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterShiny"></select>
+          <select class="FA-FilterShiny FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterMint"></select>
+          <select class="FA-FilterMint FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterMisc"></select>
+          <select class="FA-FilterMisc FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterMark"></select>
+          <select class="FA-FilterMark FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterLanguage"></select>
+          <select class="FA-FilterLanguage FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterNature"></select>
+          <select class="FA-FilterNature FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterAbility"></select>
+          <select class="FA-FilterAbility FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterStatus"></select>
+          <select class="FA-FilterStatus FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterEvent"></select>
+          <select class="FA-FilterEvent FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterMove"></select>
+          <select class="FA-FilterMove FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterHowObtained"></select>
+          <select class="FA-FilterHowObtained FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterGameObtained"></select>
+          <select class="FA-FilterGameObtained FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterNote"></select>
+          <select class="FA-FilterNote FA-FilterButtons"></select>
         </div>
         <div>
-          <select class="FA-FilterProof"></select>
+          <select class="FA-FilterProof FA-FilterButtons"></select>
         </div>
         <div>
-          <input class="FA-FilterOT" type="text" maxlength="=12" placeholder="Filter OT..."></input>
+          <input class="FA-FilterOT FA-FilterButtons" type="text" maxlength="=12" placeholder="Filter OT..."></input>
         </div>
         <div>
-          <input class="FA-FilterID" type="number" maxlength="=6" placeholder="Filter ID..."></input>
+          <input class="FA-FilterID FA-FilterButtons" type="number" maxlength="=6" placeholder="Filter ID..."></input>
         </div>
       </div>
       <table class="FA-IVsEVs">
@@ -1416,22 +941,22 @@
             <text class="FA-IvText">IVs</text>
           </td>
           <td>
-            <select class="FA-IvHP"></select>
+            <select class="FA-IvHP FA-FilterButtons"></select>
           </td>
           <td>
-            <select class="FA-IvAtt"></select>
+            <select class="FA-IvAtt FA-FilterButtons"></select>
           </td>
           <td>
-            <select class="FA-IvDef"></select>
+            <select class="FA-IvDef FA-FilterButtons"></select>
           </td>
           <td>
-            <select class="FA-IvSpa"></select>
+            <select class="FA-IvSpa FA-FilterButtons"></select>
           </td>
           <td>
-            <select class="FA-IvSpd"></select>
+            <select class="FA-IvSpd FA-FilterButtons"></select>
           </td>
           <td>
-            <select class="FA-IvSpe"></select>
+            <select class="FA-IvSpe FA-FilterButtons"></select>
           </td>
         </tr>
         <tr>
@@ -1439,22 +964,22 @@
             <text class="FA-EvText">EVs</text>
           </td>
           <td>
-            <select class="FA-EvHP"></select>
+            <select class="FA-EvHP FA-FilterButtons"></select>
           </td>
           <td>
-            <select class="FA-EvAtt"></select>
+            <select class="FA-EvAtt FA-FilterButtons"></select>
           </td>
           <td>
-            <select class="FA-EvDef"></select>
+            <select class="FA-EvDef FA-FilterButtons"></select>
           </td>
           <td>
-            <select class="FA-EvSpa"></select>
+            <select class="FA-EvSpa FA-FilterButtons"></select>
           </td>
           <td>
-            <select class="FA-EvSpd"></select>
+            <select class="FA-EvSpd FA-FilterButtons"></select>
           </td>
           <td>
-            <select class="FA-EvSpe"></select>
+            <select class="FA-EvSpe FA-FilterButtons"></select>
           </td>
         </tr>
       </table>
@@ -1464,16 +989,16 @@
             <text class="FA-Trade">Can Trade In</text>
           </td>
           <td>
-            <button class="FA-Gen6">Gen 6</button>
+            <button class="FA-Gen6 FA-FilterButtons">Gen 6</button>
           </td>
           <td>
-            <button class="FA-Gen7">Gen 7</button>
+            <button class="FA-Gen7 FA-FilterButtons">Gen 7</button>
           </td>
           <td>
-            <button class="FA-Gen8">Gen 8</button>
+            <button class="FA-Gen8 FA-FilterButtons">Gen 8</button>
           </td>
           <td>
-            <button class="FA-Home">Home</button>
+            <button class="FA-Home FA-FilterButtons">Home</button>
           </td>
         </tr>
       </table>
@@ -1721,8 +1246,6 @@
       <script src="js/selectionArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/detailsArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/listHolder.js?v=<?=time();?"></scriptsrc>"</script>
-      <script src="js/viewingArea.js?v=<?=time();?"></scriptsrc>"</script>
-      <script src="js/creationArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/bunchArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/filterArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/notificationArea.js?v=<?=time();?"></scriptsrc>"</script>

@@ -117,6 +117,13 @@
     bottom: 100px;
 }
 
+.PA-Searchbar{
+    color: white;
+    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 .PA-TradeShopInfo{
     position: relative;
     color: white;
@@ -150,6 +157,7 @@
     width: 380px;
     top: 50px;
     color: black;
+    background: #afafaf;
 }
 
 .PA-BunchHelp{
@@ -171,16 +179,30 @@
     margin-top: 20px;
     width: 175px;
     pointer-events: none;
-    background-color: grey;
-    border: none;
+    background: #313131;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #939393;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    border-radius: 2px;
 }
 
 .PA-ForTradeBunchMove{
     margin-top: 20px;
     width: 175px;
     pointer-events: none;
-    background-color: grey;
-    border: none;
+    background: #313131;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #939393;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    border-radius: 2px;
 }
 
 .PA-FTAvailableBunchesText{
@@ -197,16 +219,30 @@
     margin-top: 20px;
     width: 175px;
     pointer-events: none;
-    background-color: grey;
-    border: none;
+    background: #313131;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #939393;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    border-radius: 2px;
 }
 
 .PA-LookingForBunchMove{
     margin-top: 20px;
     width: 175px;
     pointer-events: none;
-    background-color: grey;
-    border: none;
+    background: #313131;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #939393;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    border-radius: 2px;
 }
 
 .PA-LFAvailableBunchesText{

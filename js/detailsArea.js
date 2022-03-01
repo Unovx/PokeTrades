@@ -16,6 +16,7 @@ viewing4Username = "";
 viewing5Username = "";
 viewing6Username = "";
 
+var toggleOn = false;
 
 var gameObtainedValue = "(Any Game)";
 var langData = "ENG";
@@ -146,11 +147,11 @@ $('.DA-Close').click(function () {
     document.querySelector("#DetailsArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "block";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#6e6e6e";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "#6e6e6e";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#6e6e6e";
     creationInProgress = false;
 });
 
@@ -712,13 +713,10 @@ function CreateLangOptions() {
     for (let i = 0; i < languageOptionsArray.length; i++) {
         newDiv = document.createElement("div");
         newDiv.setAttribute("class", "DA-" + languageOptionsArray[i].replace(/\s/g, ''));
-        newDiv.style.webkitBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.mozBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.boxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.background = "linear-gradient(0deg, rgb(255 0 0 / 30%), rgb(255 85 85 / 20%))";
+        newDiv.style.background = "#404040";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
-        newDiv.style.borderColor = "#f53e3e";
+        newDiv.style.borderColor = "#949494";
         newDiv.style.textAlign = "center";
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
@@ -746,13 +744,10 @@ function CreateBallOptions() {
         } else {
             newDiv.setAttribute("class", "DA-" + allBallsArray[i].replace(/\s/g, ''));
         }
-        newDiv.style.webkitBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.mozBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.boxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.background = "linear-gradient(0deg, rgb(255 0 0 / 30%), rgb(255 85 85 / 20%))";
+        newDiv.style.background = "#404040";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
-        newDiv.style.borderColor = "#f53e3e";
+        newDiv.style.borderColor = "#949494";
         newDiv.style.textAlign = "center";
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
@@ -794,13 +789,10 @@ function CreateGenderOptions() {
         } else {
             newDiv.setAttribute("class", "DA-" + genderOptionsArray[i].replace(/\s/g, ''));
         }
-        newDiv.style.webkitBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.mozBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.boxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.background = "linear-gradient(0deg, rgb(255 0 0 / 30%), rgb(255 85 85 / 20%))";
+        newDiv.style.background = "#404040";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
-        newDiv.style.borderColor = "#f53e3e";
+        newDiv.style.borderColor = "#949494";
         newDiv.style.textAlign = "center";
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
@@ -834,13 +826,10 @@ function CreateShinyOptions() {
         } else {
             newDiv.setAttribute("class", "DA-" + shinyOptionsArray[i].replace(/\s/g, ''));
         }
-        newDiv.style.webkitBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.mozBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.boxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.background = "linear-gradient(0deg, rgb(255 0 0 / 30%), rgb(255 85 85 / 20%))";
+        newDiv.style.background = "#404040";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
-        newDiv.style.borderColor = "#f53e3e";
+        newDiv.style.borderColor = "#949494";
         newDiv.style.textAlign = "center";
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
@@ -874,13 +863,10 @@ function CreateMintOptions() {
         } else {
             newDiv.setAttribute("class", "DA-" + mintOptionsArray[i].replace(/\s/g, ''));
         }
-        newDiv.style.webkitBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.mozBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.boxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.background = "linear-gradient(0deg, rgb(255 0 0 / 30%), rgb(255 85 85 / 20%))";
+        newDiv.style.background = "#404040";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
-        newDiv.style.borderColor = "#f53e3e";
+        newDiv.style.borderColor = "#949494";
         newDiv.style.textAlign = "center";
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
@@ -913,13 +899,10 @@ function CreateMiscOptions() {
         } else {
             newDiv.setAttribute("class", "DA-" + miscOptionsArray[i].replace(/\s/g, ''));
         }
-        newDiv.style.webkitBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.mozBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.boxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.background = "linear-gradient(0deg, rgb(255 0 0 / 30%), rgb(255 85 85 / 20%))";
+        newDiv.style.background = "#404040";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
-        newDiv.style.borderColor = "#f53e3e";
+        newDiv.style.borderColor = "#949494";
         newDiv.style.textAlign = "center";
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
@@ -954,13 +937,10 @@ function CreateMarkOptions() {
         } else {
             newDiv.setAttribute("class", "DA-" + allMarksArray[i].replace(/\s/g, ''));
         }
-        newDiv.style.webkitBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.mozBoxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.boxShadow = "0px 0px 8px #fc4141";
-        newDiv.style.background = "linear-gradient(0deg, rgb(255 0 0 / 30%), rgb(255 85 85 / 20%))";
+        newDiv.style.background = "#404040";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
-        newDiv.style.borderColor = "#f53e3e";
+        newDiv.style.borderColor = "#949494";
         newDiv.style.textAlign = "center";
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
@@ -994,7 +974,11 @@ function PokemonValidation() {
     if (shinyExceptionArray.includes(pokemonData) && !shinyData.includes("Normal")) {
         if (pokemonData.includes("Minior")) {
             if (genderData.includes("Genderless") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/Home/Minior-Shiny.png");
+                if (generationalSprites) {
+                    pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/Minior.png");
+                } else {
+                    pokemonSprite.setAttribute("src", url + "/Resources/Home/Minior-Shiny.png");
+                }
             } else {
                 pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
             }
@@ -1072,6 +1056,15 @@ function PokemonValidation() {
                     else if (gameObtainedValue == "BW/BW2") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + ".png");
                     }
+                    else if (gameObtainedValue == "X/Y") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "OR/AS") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "SM/USUM") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                    }
                     else if (gameObtainedValue == "LGP/LGE") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + ".png");
                     }
@@ -1107,6 +1100,15 @@ function PokemonValidation() {
                     }
                     else if (gameObtainedValue == "BW/BW2") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "X/Y") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "OR/AS") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "SM/USUM") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "LGP/LGE") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + ".png");
@@ -1148,6 +1150,15 @@ function PokemonValidation() {
                     else if (gameObtainedValue == "BW/BW2") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + ".png");
                     }
+                    else if (gameObtainedValue == "X/Y") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "OR/AS") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "SM/USUM") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                    }
                     else if (gameObtainedValue == "LGP/LGE") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + ".png");
                     }
@@ -1183,6 +1194,15 @@ function PokemonValidation() {
                     }
                     else if (gameObtainedValue == "BW/BW2") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "X/Y") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "OR/AS") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "SM/USUM") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "LGP/LGE") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + ".png");
@@ -1223,6 +1243,15 @@ function PokemonValidation() {
                     else if (gameObtainedValue == "BW/BW2") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + ".png");
                     }
+                    else if (gameObtainedValue == "X/Y") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "OR/AS") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "SM/USUM") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                    }
                     else if (gameObtainedValue == "LGP/LGE") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + ".png");
                     }
@@ -1258,6 +1287,15 @@ function PokemonValidation() {
                     }
                     else if (gameObtainedValue == "BW/BW2") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "X/Y") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "OR/AS") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "SM/USUM") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "LGP/LGE") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + ".png");
@@ -1307,6 +1345,27 @@ function PokemonValidation() {
                             pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + "-Male.png");
                         }
                     }
+                    else if (gameObtainedValue == "X/Y") {
+                        if (pokemonData == "Eevee") {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                        } else {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + "-Male.png");
+                        }
+                    }
+                    else if (gameObtainedValue == "OR/AS") {
+                        if (pokemonData == "Eevee") {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                        } else {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + "-Male.png");
+                        }
+                    }
+                    else if (gameObtainedValue == "SM/USUM") {
+                        if (pokemonData == "Eevee") {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                        } else {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + "-Male.png");
+                        }
+                    }
                     else if (gameObtainedValue == "LGP/LGE") {
                         if (pokemonData == "Eevee") {
                             pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + ".png");
@@ -1352,6 +1411,27 @@ function PokemonValidation() {
                             pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + ".png");
                         } else {
                             pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + "-Male.png");
+                        }
+                    }
+                    else if (gameObtainedValue == "X/Y") {
+                        if (pokemonData == "Eevee") {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                        } else {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + "-Male.png");
+                        }
+                    }
+                    else if (gameObtainedValue == "OR/AS") {
+                        if (pokemonData == "Eevee") {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                        } else {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + "-Male.png");
+                        }
+                    }
+                    else if (gameObtainedValue == "SM/USUM") {
+                        if (pokemonData == "Eevee") {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                        } else {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + "-Male.png");
                         }
                     }
                     else if (gameObtainedValue == "LGP/LGE") {
@@ -1402,6 +1482,27 @@ function PokemonValidation() {
                             pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + "-Female.png");
                         }
                     }
+                    else if (gameObtainedValue == "X/Y") {
+                        if (pokemonData == "Eevee") {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                        } else {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + "-Female.png");
+                        }
+                    }
+                    else if (gameObtainedValue == "OR/AS") {
+                        if (pokemonData == "Eevee") {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                        } else {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + "-Female.png");
+                        }
+                    }
+                    else if (gameObtainedValue == "SM/USUM") {
+                        if (pokemonData == "Eevee") {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                        } else {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + "-Female.png");
+                        }
+                    }
                     else if (gameObtainedValue == "LGP/LGE") {
                         if (pokemonData == "Eevee") {
                             pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + ".png");
@@ -1449,6 +1550,27 @@ function PokemonValidation() {
                             pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + "-Female.png");
                         }
                     }
+                    else if (gameObtainedValue == "X/Y") {
+                        if (pokemonData == "Eevee") {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                        } else {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + "-Female.png");
+                        }
+                    }
+                    else if (gameObtainedValue == "OR/AS") {
+                        if (pokemonData == "Eevee") {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                        } else {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + "-Female.png");
+                        }
+                    }
+                    else if (gameObtainedValue == "SM/USUM") {
+                        if (pokemonData == "Eevee") {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                        } else {
+                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + "-Female.png");
+                        }
+                    }
                     else if (gameObtainedValue == "LGP/LGE") {
                         if (pokemonData == "Eevee") {
                             pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + ".png");
@@ -1494,6 +1616,15 @@ function PokemonValidation() {
                     else if (gameObtainedValue == "BW/BW2") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + ".png");
                     }
+                    else if (gameObtainedValue == "X/Y") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "OR/AS") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "SM/USUM") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
+                    }
                     else if (gameObtainedValue == "LGP/LGE") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + ".png");
                     }
@@ -1528,6 +1659,15 @@ function PokemonValidation() {
                     }
                     else if (gameObtainedValue == "BW/BW2") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "X/Y") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "OR/AS") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
+                    }
+                    else if (gameObtainedValue == "SM/USUM") {
+                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "LGP/LGE") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + ".png");
@@ -1745,10 +1885,10 @@ function CreationReset() {
 
 function CreatePokemon() {
     //Making sure that if its For Trade, none of the "Any" options are allowed.
-    if (document.querySelector(".CA-PokemonImage").getAttribute("src") != url + "/Resources/Fennel2.png") {
+    if (document.querySelector(".DA-PokemonImage").getAttribute("src") != url + "/Resources/Fennel2.png") {
         console.log("NO FENNEL");
         if (displaySelection.value == "Private") {
-            $.post(url + "/PHP/create_or_update_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameInput.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, CreatedPokemon);
+            $.post(url + "/PHP/create_or_update_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, CreatedPokemon);
             ShowLoading();
         }
         else if (tradeOption == "For Trade") {
@@ -1756,8 +1896,8 @@ function CreatePokemon() {
                 document.querySelector("#NotificationArea").style.display = "block";
                 document.querySelector(".CreationPokemonError").style.display = "block";
             } else {
-                /*if (nicknameInput.value == "") {
-                    nicknameInput.value = "(No Nickname)";
+                /*if (nicknameSelection.value == "") {
+                    nicknameSelection.value = "(No Nickname)";
                 }
                 if (proofSelection.value == "") {
                     proofSelection.value = "(No Proof)";
@@ -1765,12 +1905,12 @@ function CreatePokemon() {
                 if (noteSelection.value == "") {
                     noteSelection.value = "(No Note)";
                 }*/
-                $.post(url + "/PHP/create_or_update_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameInput.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, CreatedPokemon);
+                $.post(url + "/PHP/create_or_update_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, CreatedPokemon);
                 ShowLoading();
             }
         } else if (tradeOption == "Looking For") {
-            /*if (nicknameInput.value == "") {
-                nicknameInput.value = "(No Nickname)";
+            /*if (nicknameSelection.value == "") {
+                nicknameSelection.value = "(No Nickname)";
             }
             if (proofSelection.value == "") {
                 proofSelection.value = "(No Proof)";
@@ -1778,7 +1918,7 @@ function CreatePokemon() {
             if (noteSelection.value == "") {
                 noteSelection.value = "(No Note)";
             }*/
-            $.post(url + "/PHP/create_or_update_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameInput.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, CreatedPokemon);
+            $.post(url + "/PHP/create_or_update_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, CreatedPokemon);
             ShowLoading();
         }
     } else {
@@ -1791,11 +1931,11 @@ function CreatedPokemon() {
     document.querySelector("#DetailsArea").style.display = "none";
     //document.querySelector("#SelectionArea").style.width = "100%";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#6e6e6e";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "#6e6e6e";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#6e6e6e";
 
     creationID = "";
     selectedPokemon = null;
@@ -1811,11 +1951,11 @@ function CreatedPokemon() {
 function PlacePokemon() {
 
     //Making sure that if its For Trade, none of the "Any" options are allowed.
-    if (document.querySelector(".CA-PokemonImage").getAttribute("src") != url + "/Resources/Fennel2.png") {
+    if (document.querySelector(".DA-PokemonImage").getAttribute("src") != url + "/Resources/Fennel2.png") {
         console.log("NO FENNEL");
         if (displaySelection.value == "Private") {
             ShowLoading();
-            $.post(url + "/PHP/place_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameInput.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, PlacedPokemon);
+            $.post(url + "/PHP/place_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, PlacedPokemon);
         }
         else if (tradeOption == "For Trade") {
             if (howObtainedSelection.value.includes("(Any Obtained") || gameObtainedSelection.value.includes("(Any Game)") || langData.includes("ANY") || ballData.includes("(Any Ball)") || genderData.includes("(Any Gender)") || shinyData.includes("(Any Shiny or Normal)") || mintData.includes("(Any or No Mint)") || markData.includes("Any or No Mark") || natureSelection.value.includes("(Any Nature") || abilitySelection.value.includes("(Any Ability)") || otSelection.value == "" || idSelection.value.length < 4 || idSelection.value.length > 6 || statusSelection.value.includes("(Any Status)") || eventSelection.value.includes("(Any Event)") || move1Selection.value.includes("(No Move)") || move1Selection.value.includes("(Any Move)") || move2Selection.value.includes("(Any Move)") || move3Selection.value.includes("(Any Move)") || move4Selection.value.includes("(Any Move)") || legacyMove1Selection.value.includes("(Any Move)") || legacyMove2Selection.value.includes("(Any Move)") || legacyMove3Selection.value.includes("(Any Move)") || legacyMove4Selection.value.includes("(Any Move)")) {
@@ -1823,11 +1963,11 @@ function PlacePokemon() {
                 document.querySelector(".CreationPokemonError").style.display = "block";
             } else {
                 ShowLoading();
-                $.post(url + "/PHP/place_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameInput.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, PlacedPokemon);
+                $.post(url + "/PHP/place_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, PlacedPokemon);
             }
         } else if (tradeOption == "Looking For") {
             ShowLoading();
-            $.post(url + "/PHP/place_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameInput.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, PlacedPokemon);
+            $.post(url + "/PHP/place_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, PlacedPokemon);
         }
     } else {
         document.querySelector("#NotificationArea").style.display = "block";
@@ -1846,11 +1986,11 @@ function PlacedPokemon() {
     //document.querySelector("#DetailsArea").style.display = "none";
     //document.querySelector("#SelectionArea").style.width = "100%";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#6e6e6e";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "#6e6e6e";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#6e6e6e";
     document.querySelector(".DA-AdditionalViewings").style.pointerEvents = "initial";
     document.querySelector(".DA-Place").innerHTML = "Place";
     placingPokemon = false;

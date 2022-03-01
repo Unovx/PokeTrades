@@ -183,3 +183,25 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+    height: 5px;
+}
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #3b3b3b;
+}
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(105, 105, 105);
+    border-radius: 2px;
+}
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

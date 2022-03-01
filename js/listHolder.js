@@ -84,10 +84,6 @@ function UserBunches(data) {
     userBunchArray = arrayInfo["Rows"];
     console.log(userBunchArray);
 
-    while (bunchDropdown.lastElementChild) {
-        bunchDropdown.removeChild(bunchDropdown.lastElementChild);
-    }
-
     bunchRename = document.querySelector(".BA-BunchRename");
     while (bunchRename.lastElementChild) {
         bunchRename.removeChild(bunchRename.lastElementChild);
@@ -166,6 +162,7 @@ function AllBalls(data) {
         const filterOption = document.createElement("option");
         filterOption.value = allBallsArray[i];
         filterOption.textContent = allBallsArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterBall.appendChild(filterOption);
     }
 }
@@ -215,6 +212,7 @@ function AllMoves(data) {
         const filterOption = document.createElement("option");
         filterOption.value = allMovesArray[i];
         filterOption.textContent = allMovesArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterMove.appendChild(filterOption);
 
         const detailsOptionMove1 = document.createElement("option");
@@ -269,6 +267,7 @@ function AllNatures(data) {
         const filterOption = document.createElement("option");
         filterOption.value = allNaturesArray[i];
         filterOption.textContent = allNaturesArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterNature.appendChild(filterOption);
 
         const detailsOption = document.createElement("option");
@@ -288,6 +287,7 @@ function AllAbilities(data) {
         const filterOption = document.createElement("option");
         filterOption.value = allAbilitiesArray[i];
         filterOption.textContent = allAbilitiesArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterAbility.appendChild(filterOption);
 
         const detailsOption = document.createElement("option");
@@ -314,6 +314,7 @@ function AllMarks(data) {
         const filterOption = document.createElement("option");
         filterOption.value = allMarksArray[i];
         filterOption.textContent = allMarksArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterMark.appendChild(filterOption);
     }
 }
@@ -327,6 +328,7 @@ function HowObtained(data) {
         const filterOption = document.createElement("option");
         filterOption.value = howObtainedArray[i];
         filterOption.textContent = howObtainedArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterHowObtained.appendChild(filterOption);
 
         const detailsOption = document.createElement("option");
@@ -346,6 +348,7 @@ function GameObtained(data) {
         const filterOption = document.createElement("option");
         filterOption.value = gameObtainedArray[i];
         filterOption.textContent = gameObtainedArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterGameObtained.appendChild(filterOption);
 
         const detailsOption = document.createElement("option");
@@ -400,6 +403,13 @@ function IvValues(data) {
         filterOptionSpd.textContent = ivValuesArray[i];
         filterOptionSpe.value = ivValuesArray[i];
         filterOptionSpe.textContent = ivValuesArray[i];
+
+        filterOptionHP.setAttribute("class", "FA-DropdownOptions");
+        filterOptionAtt.setAttribute("class", "FA-DropdownOptions");
+        filterOptionDef.setAttribute("class", "FA-DropdownOptions");
+        filterOptionSpa.setAttribute("class", "FA-DropdownOptions");
+        filterOptionSpd.setAttribute("class", "FA-DropdownOptions");
+        filterOptionSpe.setAttribute("class", "FA-DropdownOptions");
 
         filterIvHP.appendChild(filterOptionHP);
         filterIvAtt.appendChild(filterOptionAtt);
@@ -474,6 +484,13 @@ function EvValues(data) {
         filterOptionSpe.value = evValuesArray[i];
         filterOptionSpe.textContent = evValuesArray[i];
 
+        filterOptionHP.setAttribute("class", "FA-DropdownOptions");
+        filterOptionAtt.setAttribute("class", "FA-DropdownOptions");
+        filterOptionDef.setAttribute("class", "FA-DropdownOptions");
+        filterOptionSpa.setAttribute("class", "FA-DropdownOptions");
+        filterOptionSpd.setAttribute("class", "FA-DropdownOptions");
+        filterOptionSpe.setAttribute("class", "FA-DropdownOptions");
+
         filterEvHP.appendChild(filterOptionHP);
         filterEvAtt.appendChild(filterOptionAtt);
         filterEvDef.appendChild(filterOptionDef);
@@ -544,6 +561,7 @@ function EventOptions(data) {
         const filterOption = document.createElement("option");
         filterOption.value = eventOptionsArray[i];
         filterOption.textContent = eventOptionsArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterEvent.appendChild(filterOption);
 
         const detailsOption = document.createElement("option");
@@ -569,6 +587,7 @@ function GenderOptions(data) {
         const filterOption = document.createElement("option");
         filterOption.value = genderOptionsArray[i];
         filterOption.textContent = genderOptionsArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterGender.appendChild(filterOption);
     }
 }
@@ -583,6 +602,7 @@ function MiscOptions(data) {
         const filterOption = document.createElement("option");
         filterOption.value = miscOptionsArray[i];
         filterOption.textContent = miscOptionsArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterMisc.appendChild(filterOption);
     }
 }
@@ -602,6 +622,7 @@ function ShinyOptions(data) {
         const filterOption = document.createElement("option");
         filterOption.value = shinyOptionsArray[i];
         filterOption.textContent = shinyOptionsArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterShiny.appendChild(filterOption);
     }
 }
@@ -616,6 +637,7 @@ function MintOptions(data) {
         const filterOption = document.createElement("option");
         filterOption.value = mintOptionsArray[i];
         filterOption.textContent = mintOptionsArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterMint.appendChild(filterOption);
     }
 }
@@ -629,6 +651,7 @@ function StatusOptions(data) {
         const filterOption = document.createElement("option");
         filterOption.value = statusOptionsArray[i];
         filterOption.textContent = statusOptionsArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterStatus.appendChild(filterOption);
 
         const detailsOption = document.createElement("option");
@@ -648,6 +671,7 @@ function NoteOptions(data) {
         const filterOption = document.createElement("option");
         filterOption.value = noteOptionsArray[i];
         filterOption.textContent = noteOptionsArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterNote.appendChild(filterOption);
     }
 }
@@ -661,6 +685,7 @@ function ProofOptions(data) {
         const filterOption = document.createElement("option");
         filterOption.value = proofOptionsArray[i];
         filterOption.textContent = proofOptionsArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterProof.appendChild(filterOption);
     }
 }
@@ -675,6 +700,7 @@ function LanguagesOptions(data) {
         const filterOption = document.createElement("option");
         filterOption.value = languageOptionsArray[i];
         filterOption.textContent = languageOptionsArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
         filterLanguage.appendChild(filterOption);
     }
 }

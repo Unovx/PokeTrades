@@ -120,7 +120,14 @@ body {
     pointer-events: none;
     background-color: grey;
     height: 22px;
-    border: none;
+    background: #313131;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #444444;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
   }
 
   .SA-MoveButton{
@@ -129,7 +136,14 @@ body {
     background-color: grey;
     height: 22px;
     width: 55px;
-    border: none;
+    background: #313131;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #444444;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
   }
 
   .SA-CopyButton{
@@ -138,21 +152,40 @@ body {
     background-color: grey;
     height: 22px;
     width: 55px;
-    border: none;
+    background: #313131;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #444444;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
   }
 
   .SA-MainMenu{
     position: relative;
-    background-color: #efefef;
     height: 22px;
-    border: none;
+    background: #6e6e6e;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #444444;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
   }
 
   .SA-FiltersButton{
-    position: relative; 
-    background-color: #efefef;
+    position: relative;
     height: 22px;
-    border: none;
+    background: #6e6e6e;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #444444;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
   }
 
   .SA-SelectionHelp{
@@ -162,7 +195,11 @@ body {
   }
 
   .SA-Searchbar{
-    position: relative; 
+    position: relative;
+    color: white;
+    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
+    border-radius: 5px;
+    font-weight: bold; 
   }
 
   #GridContainer{

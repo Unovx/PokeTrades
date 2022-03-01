@@ -219,7 +219,6 @@ $(".PA-Searchbar").keyup(function () {
     $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
     $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
-    $.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchInfoText, tradeOption: "Looking For" }, MatchMaking);
 
     localStorage.setItem('searchID', searchInfoText);
     if (document.querySelector(".PA-Searchbar").value != "") {
@@ -248,9 +247,9 @@ $('.PA-ForTradeBunchMove').click(function () {
         document.querySelector("#GeneratedSelection").style.pointerEvents = "none";
         BunchMoveStarted();
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
-        document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "grey";
+        document.querySelector(".PA-LookingForBunchEdit").style.background = "#313131";
         document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "none";
-        document.querySelector(".PA-LookingForBunchMove").style.backgroundColor = "grey";
+        document.querySelector(".PA-LookingForBunchMove").style.background = "#313131";
         document.querySelector("#PA-LookingForBunches").style.pointerEvents = "none";
     } else {
         currentlyRearranging = false;
@@ -262,9 +261,9 @@ $('.PA-ForTradeBunchMove').click(function () {
         RemoveBunchOutline();
         BunchMoveFinished();
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
-        document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-LookingForBunchEdit").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
         document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
-        document.querySelector(".PA-LookingForBunchMove").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-LookingForBunchMove").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
         document.querySelector("#PA-LookingForBunches").style.pointerEvents = "initial";
     }
 });
@@ -283,9 +282,9 @@ $('.PA-LookingForBunchMove').click(function () {
         document.querySelector("#GeneratedSelection").style.pointerEvents = "none";
         BunchMoveStarted();
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
-        document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "grey";
+        document.querySelector(".PA-ForTradeBunchEdit").style.background = "#313131";
         document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "none";
-        document.querySelector(".PA-ForTradeBunchMove").style.backgroundColor = "grey";
+        document.querySelector(".PA-ForTradeBunchMove").style.background = "#313131";
         document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "none";
     } else {
         currentlyRearranging = false;
@@ -297,9 +296,9 @@ $('.PA-LookingForBunchMove').click(function () {
         RemoveBunchOutline();
         BunchMoveFinished();
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
-        document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-ForTradeBunchEdit").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
         document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
-        document.querySelector(".PA-ForTradeBunchMove").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-ForTradeBunchMove").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
         document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "initial";
     }
 });
@@ -417,7 +416,6 @@ function PanelsRight() {
     document.querySelector("#PanelArea").style.right = "0";
     document.querySelector("#LoginArea").style.right = "0";
     document.querySelector("#DetailsArea").style.right = "0";
-    document.querySelector("#CreationArea").style.right = "0";
     document.querySelector("#FilterArea").style.right = "0";
     document.querySelector("#BunchArea").style.right = "0";
 
@@ -427,7 +425,6 @@ function PanelsRight() {
     document.querySelector("#PanelArea").style.left = "unset";
     document.querySelector("#LoginArea").style.left = "unset";
     document.querySelector("#DetailsArea").style.left = "unset";
-    document.querySelector("#CreationArea").style.left = "unset";
     document.querySelector("#FilterArea").style.left = "unset";
     document.querySelector("#BunchArea").style.left = "unset";
 }
@@ -439,7 +436,6 @@ function PanelsLeft() {
     document.querySelector("#PanelArea").style.left = "0";
     document.querySelector("#LoginArea").style.left = "0";
     document.querySelector("#DetailsArea").style.left = "0";
-    document.querySelector("#CreationArea").style.left = "0";
     document.querySelector("#FilterArea").style.left = "0";
     document.querySelector("#BunchArea").style.left = "0";
 
@@ -449,7 +445,6 @@ function PanelsLeft() {
     document.querySelector("#PanelArea").style.right = "unset";
     document.querySelector("#LoginArea").style.right = "unset";
     document.querySelector("#DetailsArea").style.right = "unset";
-    document.querySelector("#CreationArea").style.right = "unset";
     document.querySelector("#FilterArea").style.right = "unset";
     document.querySelector("#BunchArea").style.right = "unset";
 }
@@ -575,22 +570,22 @@ function TradeShopInfo(data) {
 function ModifyCheck(data) {
     if (data != "" && searchInfoText != "") {
         document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
-        document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+        document.querySelector(".SA-MoveButton").style.background = "#6e6e6e";
         document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
-        document.querySelector(".SA-CopyButton").style.backgroundColor = "#efefef";
+        document.querySelector(".SA-CopyButton").style.background = "#6e6e6e";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-        document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+        document.querySelector(".SA-CreateButton").style.background = "#6e6e6e";
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
-        document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-ForTradeBunchEdit").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
         document.querySelector(".PA-ForTradeBunchEdit").style.visibility = "visible";
         document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
-        document.querySelector(".PA-ForTradeBunchMove").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-ForTradeBunchMove").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
         document.querySelector(".PA-ForTradeBunchMove").style.visibility = "visible";
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
-        document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-LookingForBunchEdit").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
         document.querySelector(".PA-LookingForBunchEdit").style.visibility = "visible";
         document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
-        document.querySelector(".PA-LookingForBunchMove").style.backgroundColor = "#efefef";
+        document.querySelector(".PA-LookingForBunchMove").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
         document.querySelector(".PA-LookingForBunchMove").style.visibility = "visible";
         document.querySelector(".PA-BunchHelp").style.visibility = "visible";
         $.post(url + "/PHP/generate_templates.php", { token: token }, GetTemplateOptions);
@@ -600,22 +595,22 @@ function ModifyCheck(data) {
         }
     } else {
         document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
-        document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+        document.querySelector(".SA-MoveButton").style.background = "#313131";
         document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
-        document.querySelector(".SA-CopyButton").style.backgroundColor = "grey";
+        document.querySelector(".SA-CopyButton").style.background = "#313131";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-        document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+        document.querySelector(".SA-CreateButton").style.background = "#313131";
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
-        document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "grey";
+        document.querySelector(".PA-ForTradeBunchEdit").style.background = "#313131";
         document.querySelector(".PA-ForTradeBunchEdit").style.visibility = "hidden";
         document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "none";
-        document.querySelector(".PA-ForTradeBunchMove").style.backgroundColor = "grey";
+        document.querySelector(".PA-ForTradeBunchMove").style.background = "#313131";
         document.querySelector(".PA-ForTradeBunchMove").style.visibility = "hidden";
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
-        document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "grey";
+        document.querySelector(".PA-LookingForBunchEdit").style.background = "#313131";
         document.querySelector(".PA-LookingForBunchEdit").style.visibility = "hidden";
         document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "none";
-        document.querySelector(".PA-LookingForBunchMove").style.backgroundColor = "grey";
+        document.querySelector(".PA-LookingForBunchMove").style.background = "#313131";
         document.querySelector(".PA-LookingForBunchMove").style.visibility = "hidden";
         document.querySelector(".PA-BunchHelp").style.visibility = "hidden";
         filterDisplay.disabled = true;
@@ -633,26 +628,26 @@ function ModifyCheckViewing(data) {
         document.querySelector(".DA-Reset").style.pointerEvents = "initial";
         document.querySelector(".DA-Reset").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
         document.querySelector(".DA-Add").style.pointerEvents = "none";
-        document.querySelector(".DA-Add").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+        document.querySelector(".DA-Add").style.background = "#313131";
         document.querySelector(".DA-Lock").style.pointerEvents = "initial";
         document.querySelector(".DA-Lock").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         document.querySelector(".DA-Save").style.pointerEvents = "none";
-        document.querySelector(".DA-Save").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+        document.querySelector(".DA-Save").style.background = "#313131";
         document.querySelector(".DA-Place").style.pointerEvents = "none";
-        document.querySelector(".DA-Place").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+        document.querySelector(".DA-Place").style.background = "#313131";
         document.querySelector(".DA-Delete").style.pointerEvents = "none";
-        document.querySelector(".DA-Delete").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+        document.querySelector(".DA-Delete").style.background = "#313131";
         document.querySelector(".DA-Reset").style.pointerEvents = "none";
-        document.querySelector(".DA-Reset").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+        document.querySelector(".DA-Reset").style.background = "#313131";
         document.querySelector(".DA-Lock").style.pointerEvents = "none";
-        document.querySelector(".DA-Lock").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+        document.querySelector(".DA-Lock").style.background = "#313131";
         if (token != null) {
             document.querySelector(".DA-Add").style.pointerEvents = "initial";
             document.querySelector(".DA-Add").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
         } else {
             document.querySelector(".DA-Add").style.pointerEvents = "none";
-            document.querySelector(".DA-Add").style.background = "linear-gradient(0deg, rgb(0 0 0 / 30%), rgb(0 0 0 / 20%))";
+            document.querySelector(".DA-Add").style.background = "#313131";
         }
     }
 }
@@ -664,51 +659,51 @@ function UpdatePersonalText() {
 
 function BunchMoveStarted() {
     document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "grey";
+    document.querySelector(".SA-MainMenu").style.background = "#313131";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-CreateButton").style.background = "#313131";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-MoveButton").style.background = "#313131";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-CopyButton").style.background = "#313131";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
-    document.querySelector(".SA-FiltersButton").style.backgroundColor = "grey";
+    document.querySelector(".SA-FiltersButton").style.background = "#313131";
     document.querySelector(".SA-Searchbar").disabled = true;
     document.querySelector(".PA-Searchbar").disabled = true;
     document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
-    document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "grey";
+    document.querySelector(".PA-ForTradeBunchEdit").style.background = "#313131";
     document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
-    document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "grey";
+    document.querySelector(".PA-LookingForBunchEdit").style.background = "#313131";
     document.querySelector("#MainArea").style.pointerEvents = "none";
 }
 
 function BunchMoveFinished() {
     document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-MainMenu").style.background = "#6e6e6e";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CreateButton").style.background = "#6e6e6e";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-MoveButton").style.background = "#6e6e6e";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "#efefef";
+    document.querySelector(".SA-CopyButton").style.background = "#6e6e6e";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
     if (filtersApplied) {
-        document.querySelector(".SA-FiltersButton").style.backgroundColor = "orchid";
+        document.querySelector(".SA-FiltersButton").style.background = "#9c6f9b";
     } else {
-        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#efefef";
+        document.querySelector(".SA-FiltersButton").style.background = "#6e6e6e";
     }
     document.querySelector(".SA-Searchbar").disabled = false;
     document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
     document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "initial";
     document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
-    document.querySelector(".PA-ForTradeBunchEdit").style.backgroundColor = "#efefef";
+    document.querySelector(".PA-ForTradeBunchEdit").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
-    document.querySelector(".PA-ForTradeBunchMove").style.backgroundColor = "#efefef";
+    document.querySelector(".PA-ForTradeBunchMove").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     document.querySelector("#PA-LookingForBunches").style.pointerEvents = "initial";
     document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
-    document.querySelector(".PA-LookingForBunchEdit").style.backgroundColor = "#efefef";
+    document.querySelector(".PA-LookingForBunchEdit").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
-    document.querySelector(".PA-LookingForBunchMove").style.backgroundColor = "#efefef";
+    document.querySelector(".PA-LookingForBunchMove").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     document.querySelector("#MainArea").style.pointerEvents = "initial";
     document.querySelector(".PA-Searchbar").disabled = false;
 
@@ -785,7 +780,6 @@ function ForTradeData(data) {
             ShowLoading();
             PostGenerateSelection();
             $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-            //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
         }
     }
     //Using Jquery to parse the data and getting the length.
@@ -1005,7 +999,6 @@ function LookingForData(data) {
             ShowLoading();
             PostGenerateSelection();
             $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-            //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
         }
     }
     //Using Jquery to parse the data and getting the length.
@@ -1139,7 +1132,6 @@ function LookingForData(data) {
                     ShowLoading();
                     PostGenerateSelection();
                     $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-                    //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, tradeOption: tradeOption, bunchname: bunch }, GenerateSelection);
                 } else {
                     if (oldPosition == "") {
                         oldPosition = lfData["Rows"][i].position;

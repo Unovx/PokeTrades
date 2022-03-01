@@ -59,9 +59,11 @@ $(filterDisplay).change(function () {
     if (filterDisplay.value == "(Public or Private)") {
         filterCheck[0] = "false";
         FilterCheck();
+        filterDisplay.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[0] = "true";
         FilterCheck();
+        filterDisplay.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -71,9 +73,11 @@ $(filterBall).change(function () {
     if (filterBall.value == "(Any Ball)") {
         filterCheck[1] = "false";
         FilterCheck();
+        filterBall.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[1] = "true";
         FilterCheck();
+        filterBall.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -83,9 +87,11 @@ $(filterGender).change(function () {
     if (filterGender.value == "(Any Gender)") {
         filterCheck[2] = "false";
         FilterCheck();
+        filterGender.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[2] = "true";
         FilterCheck();
+        filterGender.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -95,9 +101,11 @@ $(filterShiny).change(function () {
     if (filterShiny.value == "(Any Shiny or Normal)") {
         filterCheck[3] = "false";
         FilterCheck();
+        filterShiny.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[3] = "true";
         FilterCheck();
+        filterShiny.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -107,9 +115,11 @@ $(filterMint).change(function () {
     if (filterMint.value == "(Any or No Mint") {
         filterCheck[4] = "false";
         FilterCheck();
+        filterMint.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[4] = "true";
         FilterCheck();
+        filterMint.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -119,9 +129,11 @@ $(filterMisc).change(function () {
     if (filterMisc.value == "(No Misc)") {
         filterCheck[5] = "false";
         FilterCheck();
+        filterMisc.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[5] = "true";
         FilterCheck();
+        filterMisc.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -131,9 +143,11 @@ $(filterMark).change(function () {
     if (filterMark.value == "(Any or No Mark)") {
         filterCheck[6] = "false";
         FilterCheck();
+        filterMark.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[6] = "true";
         FilterCheck();
+        filterMark.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -143,9 +157,11 @@ $(filterLanguage).change(function () {
     if (filterLanguage.value == "ANY") {
         filterCheck[7] = "false";
         FilterCheck();
+        filterLanguage.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[7] = "true";
         FilterCheck();
+        filterLanguage.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -155,9 +171,11 @@ $(filterNature).change(function () {
     if (filterNature.value == "(Any Nature)") {
         filterCheck[8] = "false";
         FilterCheck();
+        filterNature.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[8] = "true";
         FilterCheck();
+        filterNature.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -167,9 +185,11 @@ $(filterAbility).change(function () {
     if (filterAbility.value == "(Any Ability") {
         filterCheck[9] = "false";
         FilterCheck();
+        filterAbility.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[9] = "true";
         FilterCheck();
+        filterAbility.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -179,9 +199,11 @@ $(filterStatus).change(function () {
     if (filterStatus.value == "(Any Status)") {
         filterCheck[10] = "false";
         FilterCheck();
+        filterStatus.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[10] = "true";
         FilterCheck();
+        filterStatus.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -191,9 +213,11 @@ $(filterEvent).change(function () {
     if (filterEvent.value == "(Any or No Mark)") {
         filterCheck[11] = "false";
         FilterCheck();
+        filterEvent.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[11] = "true";
         FilterCheck();
+        filterEvent.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -203,9 +227,11 @@ $(filterMove).change(function () {
     if (filterMove.value == "(Any Move)") {
         filterCheck[12] = "false";
         FilterCheck();
+        filterMove.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[12] = "true";
         FilterCheck();
+        filterMove.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -215,9 +241,11 @@ $(filterHowObtained).change(function () {
     if (filterHowObtained.value == "(Any Method)") {
         filterCheck[13] = "false";
         FilterCheck();
+        filterHowObtained.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[13] = "true";
         FilterCheck();
+        filterHowObtained.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -227,9 +255,11 @@ $(filterGameObtained).change(function () {
     if (filterGameObtained.value == "(Any Game)") {
         filterCheck[14] = "false";
         FilterCheck();
+        filterGameObtained.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[14] = "true";
         FilterCheck();
+        filterGameObtained.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -239,9 +269,11 @@ $(filterNote).change(function () {
     if (filterNote.value == "(Any/No Note)") {
         filterCheck[15] = "false";
         FilterCheck();
+        filterNote.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[15] = "true";
         FilterCheck();
+        filterNote.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -251,9 +283,11 @@ $(filterProof).change(function () {
     if (filterProof.value == "(Any/No Proof)") {
         filterCheck[16] = "false";
         FilterCheck();
+        filterProof.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[16] = "true";
         FilterCheck();
+        filterProof.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -263,9 +297,11 @@ $(filterOT).keyup(function () {
     if (filterOT.value == "") {
         filterCheck[17] = "false";
         FilterCheck();
+        filterOT.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[17] = "true";
         FilterCheck();
+        filterOT.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -275,9 +311,11 @@ $(filterID).keyup(function () {
     if (filterID.value == "") {
         filterCheck[18] = "false";
         FilterCheck();
+        filterID.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[18] = "true";
         FilterCheck();
+        filterID.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -287,9 +325,11 @@ $(filterIvHP).change(function () {
     if (filterIvHP.value == "X") {
         filterCheck[19] = "false";
         FilterCheck();
+        filterIvHP.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[19] = "true";
         FilterCheck();
+        filterIvHP.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -299,9 +339,11 @@ $(filterIvAtt).change(function () {
     if (filterIvAtt.value == "X") {
         filterCheck[20] = "false";
         FilterCheck();
+        filterIvAtt.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[20] = "true";
         FilterCheck();
+        filterIvAtt.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -311,9 +353,11 @@ $(filterIvDef).change(function () {
     if (filterIvDef.value == "X") {
         filterCheck[21] = "false";
         FilterCheck();
+        filterIvDef.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[21] = "true";
         FilterCheck();
+        filterIvDef.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -323,9 +367,11 @@ $(filterIvSpa).change(function () {
     if (filterIvSpa.value == "X") {
         filterCheck[22] = "false";
         FilterCheck();
+        filterIvSpa.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[22] = "true";
         FilterCheck();
+        filterIvSpa.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -335,9 +381,11 @@ $(filterIvSpd).change(function () {
     if (filterIvSpd.value == "X") {
         filterCheck[23] = "false";
         FilterCheck();
+        filterIvSpd.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[23] = "true";
         FilterCheck();
+        filterIvSpd.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -347,9 +395,11 @@ $(filterIvSpe).change(function () {
     if (filterIvSpe.value == "X") {
         filterCheck[24] = "false";
         FilterCheck();
+        filterIvSpe.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[24] = "true";
         FilterCheck();
+        filterIvSpe.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -359,9 +409,11 @@ $(filterEvHP).change(function () {
     if (filterEvHP.value == "X") {
         filterCheck[25] = "false";
         FilterCheck();
+        filterEvHP.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[25] = "true";
         FilterCheck();
+        filterEvHP.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -371,9 +423,11 @@ $(filterEvAtt).change(function () {
     if (filterEvAtt.value == "X") {
         filterCheck[26] = "false";
         FilterCheck();
+        filterEvAtt.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[26] = "true";
         FilterCheck();
+        filterEvAtt.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -383,9 +437,11 @@ $(filterEvDef).change(function () {
     if (filterEvDef.value == "X") {
         filterCheck[27] = "false";
         FilterCheck();
+        filterEvDef.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[27] = "true";
         FilterCheck();
+        filterEvDef.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -395,9 +451,11 @@ $(filterEvSpa).change(function () {
     if (filterEvSpa.value == "X") {
         filterCheck[28] = "false";
         FilterCheck();
+        filterEvSpa.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[28] = "true";
         FilterCheck();
+        filterEvSpa.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -407,9 +465,11 @@ $(filterEvSpd).change(function () {
     if (filterEvSpd.value == "X") {
         filterCheck[29] = "false";
         FilterCheck();
+        filterEvSpd.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[29] = "true";
         FilterCheck();
+        filterEvSpd.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -419,9 +479,11 @@ $(filterEvSpe).change(function () {
     if (filterEvSpe.value == "X") {
         filterCheck[30] = "false";
         FilterCheck();
+        filterEvSpe.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
         filterCheck[30] = "true";
         FilterCheck();
+        filterEvSpe.style.background = "#797979";
     }
     //ShowLoading();
     FilterResults();
@@ -432,12 +494,12 @@ $('.FA-Gen6').click(function () {
         filterGen6 = "Available";
         filterCheck[31] = "true";
         FilterCheck();
-        document.querySelector(".FA-Gen6").style.backgroundColor = "#36E26E";
+        document.querySelector(".FA-Gen6").style.backgroundColor = "#046925";
     } else {
         filterGen6 = "";
         filterCheck[31] = "false";
         FilterCheck();
-        document.querySelector(".FA-Gen6").style.backgroundColor = "#EFEFEF";
+        document.querySelector(".FA-Gen6").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     }
     //ShowLoading();
     FilterResults();
@@ -448,12 +510,12 @@ $('.FA-Gen7').click(function () {
         filterGen7 = "Available";
         filterCheck[32] = "true";
         FilterCheck();
-        document.querySelector(".FA-Gen7").style.backgroundColor = "#36E26E";
+        document.querySelector(".FA-Gen7").style.backgroundColor = "#046925";
     } else {
         filterGen7 = "";
         filterCheck[32] = "false";
         FilterCheck();
-        document.querySelector(".FA-Gen7").style.backgroundColor = "#EFEFEF";
+        document.querySelector(".FA-Gen7").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     }
     //ShowLoading();
     FilterResults();
@@ -464,12 +526,12 @@ $('.FA-Gen8').click(function () {
         filterGen8 = "Available";
         filterCheck[33] = "true";
         FilterCheck();
-        document.querySelector(".FA-Gen8").style.backgroundColor = "#36E26E";
+        document.querySelector(".FA-Gen8").style.backgroundColor = "#046925";
     } else {
         filterGen8 = "";
         filterCheck[33] = "false";
         FilterCheck();
-        document.querySelector(".FA-Gen8").style.backgroundColor = "#EFEFEF";
+        document.querySelector(".FA-Gen8").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     }
     //ShowLoading();
     FilterResults();
@@ -480,12 +542,12 @@ $('.FA-Home').click(function () {
         filterHome = "Available";
         filterCheck[34] = "true";
         FilterCheck();
-        document.querySelector(".FA-Home").style.backgroundColor = "#36E26E";
+        document.querySelector(".FA-Home").style.backgroundColor = "#046925";
     } else {
         filterHome = "";
         filterCheck[34] = "false";
         FilterCheck();
-        document.querySelector(".FA-Home").style.backgroundColor = "#EFEFEF";
+        document.querySelector(".FA-Home").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     }
     //ShowLoading();
     FilterResults();
@@ -493,12 +555,12 @@ $('.FA-Home').click(function () {
 
 
 function FilterCheck() {
-    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#EFEFEF";
+    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#6e6e6e";
     filtersApplied = false;
     for (let i = 0; i < filterCheck.length; i++) {
         if (filterCheck[i] != "false") {
             filtersApplied = true;
-            document.querySelector(".SA-FiltersButton").style.backgroundColor = "orchid";
+            document.querySelector(".SA-FiltersButton").style.backgroundColor = "#9c6f9b";
         }
     }
 }
@@ -514,41 +576,76 @@ function PostGenerateSelection() {
 
 function ResetFilters() {
     filterDisplay.value = "(Public or Private)";
+    filterDisplay.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterBall.value = "(Any Ball)";
+    filterBall.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterGender.value = "(Any Gender)";
+    filterGender.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterShiny.value = "(Any Shiny or Normal)";
+    filterShiny.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterMint.value = "(Any or No Mint)";
+    filterMint.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterMisc.value = "(No Misc)";
+    filterMisc.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterMark.value = "(Any or No Mark)";
+    filterMark.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterLanguage.value = "ANY";
+    filterLanguage.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterNature.value = "(Any Nature)";
+    filterNature.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterAbility.value = "(Any Ability)";
+    filterAbility.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterStatus.value = "(Any Status)";
+    filterStatus.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterEvent.value = "(Any/No Event)";
+    filterEvent.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterMove.value = "(Any Move)";
+    filterMove.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterHowObtained.value = "(Any Method)";
+    filterHowObtained.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterGameObtained.value = "(Any Game)";
+    filterGameObtained.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterNote.value = "(Any/No Note)";
+    filterNote.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterProof.value = "(Any/No Proof)";
+    filterProof.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterOT.value = "";
+    filterOT.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterID.value = "";
+    filterID.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterIvHP.value = "X";
+    filterIvHP.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterIvAtt.value = "X";
+    filterIvAtt.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterIvDef.value = "X";
+    filterIvDef.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterIvSpa.value = "X";
+    filterIvSpa.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterIvSpd.value = "X";
+    filterIvSpd.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterIvSpe.value = "X";
+    filterIvSpe.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterEvHP.value = "X";
+    filterEvHP.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterEvAtt.value = "X";
+    filterEvAtt.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterEvDef.value = "X";
+    filterEvDef.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterEvSpa.value = "X";
+    filterEvSpa.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterEvSpd.value = "X";
+    filterEvSpd.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterEvSpe.value = "X";
+    filterEvSpe.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
 
     filterGen6 = "";
+    document.querySelector(".FA-Gen6").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterGen7 = "";
+    document.querySelector(".FA-Gen7").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterGen8 = "";
+    document.querySelector(".FA-Gen8").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterHome = "";
+    document.querySelector(".FA-Home").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
 
     for (let i = 0; i < filterCheck.length; i++) {
         filterCheck[i] = "false";
@@ -560,6 +657,14 @@ function ResetFilters() {
 function FilterResults() {
     for (let i = 0; i < arrayData["Rows"].length; i++) {
         passedFilter = true;
+        if (searchPokemonText.value == "") {
+
+        } else if (arrayData["Rows"][i].pokemon.toLowerCase().includes(searchPokemonText.value.toLowerCase())) {
+
+        } else {
+            passedFilter = false;
+        }
+
         if (filterDisplay.value == "(Public or Private)") {
 
         } else if (arrayData["Rows"][i].display == filterDisplay.value) {
