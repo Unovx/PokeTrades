@@ -71,7 +71,9 @@ $(document).ready(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "note_types", table: "note_options" }, NoteOptions);
     $.post(url + "/PHP/get_list_names.php", { column: "proof_types", table: "proof_options" }, ProofOptions);
     $.post(url + "/PHP/get_list_names.php", { column: "languages", table: "languages_options" }, LanguagesOptions);
-    $.post(url + "/PHP/generate_templates.php", { token: token }, GetTemplateOptions);
+    if (token != null) {
+        $.post(url + "/PHP/generate_templates.php", { token: token }, GetTemplateOptions);
+    }
 });
 
 
