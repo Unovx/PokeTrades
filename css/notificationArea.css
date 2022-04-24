@@ -1,4 +1,9 @@
 @media only screen and (max-width: 768px) {
+    [class*="RefreshPrompt"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
     [class*="SelectionHelp"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
@@ -68,11 +73,17 @@
     [class*="BunchPokemonAdded"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
+        margin: auto !important;
+        right: unset !important;
+        position: relative !important;
     }
 
     [class*="BunchPokemonRemoved"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
+        margin: auto !important;
+        right: unset !important;
+        position: relative !important;
     }
 
     [class*="TradeShopImported"] {
@@ -110,6 +121,37 @@
     overflow: auto;
 }
 
+#RefreshPage{
+    position: fixed; 
+    display: none;
+    height: 100%;
+    z-index: 15;
+    width:100%;
+    overflow: auto;
+}
+
+.RefreshPrompt {
+    position: relative;
+    display: none;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(192 192 192 / 95%);
+    padding: 10px;
+    width: 500px;
+    top: 30%;
+    text-align: center;
+}
+
+.NA-RefreshText {
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+}
+
 .SelectionHelp{
     position: relative;
     display: none;
@@ -135,6 +177,7 @@
 .NA-SelectionClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -164,6 +207,7 @@
 .NA-ViewingAdditionalClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -199,10 +243,12 @@
 
 .NA-ConfirmDeleteButton{
     position: relative;
+    cursor: pointer;
 }
 
 .NA-CloseConfirmButton{
     position: relative;
+    cursor: pointer;
 }
 
 .ViewingPokemonAdded{
@@ -230,6 +276,7 @@
 .NA-PokemonAddedClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -257,6 +304,7 @@
 .NA-CreationPokemonClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -287,6 +335,7 @@
 .NA-TemplateHelpClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -317,6 +366,7 @@
 .NA-TemplateAddedClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -347,6 +397,7 @@
 .NA-TemplateRemovedClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -377,6 +428,7 @@
 .NA-TemplateAddedErrorClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -407,6 +459,7 @@
 .NA-TemplateRemovedErrorClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -434,14 +487,15 @@
 .NA-BunchIconClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
 
 .BunchPokemonAdded{
-    position: relative;
+    position: absolute;
     display: none;
-    margin: auto;
+    right: 50px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -463,14 +517,15 @@
 .NA-BunchAddedClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
 
 .BunchPokemonRemoved{
-    position: relative;
+    position: absolute;
     display: none;
-    margin: auto;
+    right: 50px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -492,6 +547,7 @@
 .NA-BunchRemovedClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -521,6 +577,7 @@
 .NA-ImportedSuccessClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -561,6 +618,7 @@
 
 .NA-CloseDeleteAll{
     position: relative;
+    cursor: pointer;
 }
 
 .DeleteAllSuccess{
@@ -588,6 +646,7 @@
 .NA-SuccessDeleteAllClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -617,6 +676,7 @@
 .NA-BunchMoveHelpClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }
@@ -644,6 +704,7 @@
 .NA-TrackingHelpClose{
     position: relative;
     display: block;
+    cursor: pointer;
     margin: auto;
     top: 10px;
 }

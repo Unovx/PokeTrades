@@ -27,6 +27,7 @@
 .LA-LoginClose{
     position: relative;
     display: block;
+    cursor: pointer;
     top: 195px;
     width: 100px;
     text-align: center;
@@ -79,6 +80,7 @@
 
 .LA-LoginButton{
     position: relative;
+    cursor: pointer;
     top: 76px;
     width: 50%;
     display: block;
@@ -87,6 +89,7 @@
 
 .LA-LoginRegisterButton{
     position: relative;
+    cursor: pointer;
     top: 89px;
     width: 50%;
     display: block;
@@ -123,6 +126,7 @@
 
 .LA-LogOut{
     position: relative;
+    cursor: pointer;
     display: block;
     top: 30px;
     margin: auto;
@@ -131,6 +135,7 @@
 
 .LA-ChangeDetails{
     position: relative;
+    cursor: pointer;
     display: block;
     top: 45px;
     text-align: center;
@@ -145,26 +150,18 @@
     margin: auto;
 }
 
-/*.LA-Import{
-    position: relative;
-    top: 63px;
-    left: 117px;
-    text-align: center;
-    width: 66px;
-}*/
+.LA-Import{
+    cursor: pointer;
+}
 
 .LA-ImportInput{
     position: relative;
     visibility: hidden;
 }
 
-/*.LA-Export{
-    position: relative;
-    top: 63px;
-    left: 188px;
-    text-align: center;
-    width: 66px;
-}*/
+.LA-Export{
+    cursor: pointer;
+}
 
 .LA-LoggedInNotify{
     position: relative;
@@ -181,6 +178,7 @@
 .LA-DeleteAllData{
     position: relative;
     display: block;
+    cursor: pointer;
     top: 95px;
     text-align: center;
     margin: auto;
@@ -238,6 +236,7 @@
 
 .LA-RegisterButton{
     position: relative;
+    cursor: pointer;
     top: 89px;
     width: 50%;
     display: block;
@@ -246,6 +245,7 @@
 
 .LA-RegisterBackButton{
     position: relative;
+    cursor: pointer;
     top: 102px;
     width: 50%;
     display: block;
@@ -314,6 +314,7 @@
 
 .LA-ConfirmUpdate{
     position: relative;
+    cursor: pointer;
     top: 72px;
     width: 50%;
     display: block;
@@ -322,6 +323,7 @@
 
 .LA-UpdateBackButton{
     position: relative;
+    cursor: pointer;
     top: 85px;
     width: 50%;
     display: block;

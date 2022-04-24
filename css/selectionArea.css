@@ -118,6 +118,7 @@ body {
   .SA-CreateButton{
     position: relative; 
     pointer-events: none;
+    cursor: pointer;
     background-color: grey;
     height: 22px;
     background: #313131;
@@ -133,6 +134,7 @@ body {
   .SA-MoveButton{
     position: relative; 
     pointer-events: none;
+    cursor: pointer;
     background-color: grey;
     height: 22px;
     width: 55px;
@@ -149,6 +151,7 @@ body {
   .SA-CopyButton{
     position: relative; 
     pointer-events: none;
+    cursor: pointer;
     background-color: grey;
     height: 22px;
     width: 55px;
@@ -164,6 +167,7 @@ body {
 
   .SA-MainMenu{
     position: relative;
+    cursor: pointer;
     height: 22px;
     background: #6e6e6e;
     border-width: 2px;
@@ -177,6 +181,7 @@ body {
 
   .SA-FiltersButton{
     position: relative;
+    cursor: pointer;
     height: 22px;
     background: #6e6e6e;
     border-width: 2px;
@@ -189,6 +194,7 @@ body {
   }
 
   .SA-SelectionHelp{
+    cursor: pointer;
     max-width: 22px; 
     max-height: 22px;
     align-items: center;

@@ -119,6 +119,7 @@ $('.SA-MainMenu').click(function () {
 $('.SA-CreateButton').click(function () {
     //document.querySelector("#SelectionArea").style.width = "100%"
     document.querySelector("#FilterArea").style.display = "none";
+    document.querySelector("#PanelArea").style.display = "none";
     document.querySelector("#DetailsArea").style.display = "block";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
     document.querySelector(".SA-CreateButton").style.backgroundColor = "#313131";
@@ -150,6 +151,10 @@ $('.SA-CreateButton').click(function () {
         cols[j].style.display = "none";
     }
     templateSelection.value = "(No Template)";
+
+    if (document.querySelector(".SA-Bunch").innerHTML != "All Pokemon") {
+        bunchSelection.value = document.querySelector(".SA-Bunch").innerHTML;
+    }
 });
 
 $('.SA-MoveButton').click(function () {
@@ -373,6 +378,7 @@ function GenerateSelection(data) {
     gridTest = document.createElement("div");
     gridTest.setAttribute("id", "GridContainer");
     document.getElementById("GeneratedSelection").appendChild(gridTest);
+    console.log(arrayData["Rows"].length + " Pokemon in " + bunchname)
 
     for (let i = 0; i < arrayData["Rows"].length; i++) {
 
@@ -392,6 +398,7 @@ function GenerateSelection(data) {
         document.getElementById("GenerationGridDiv" + (i)).style.overflow = "hidden";
         document.getElementById("GenerationGridDiv" + (i)).style.display = "flex";
         document.getElementById("GenerationGridDiv" + (i)).style.position = "relative";
+        document.getElementById("GenerationGridDiv" + (i)).style.cursor = "pointer";
         /*document.getElementById("GenerationGridDiv" + (i)).style.backgroundImage = "url('https://poketrades.org/Resources/Designs/Unselected Holder.png')";
         document.getElementById("GenerationGridDiv" + (i)).style.backgroundSize = "contain";*/
         document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
@@ -465,652 +472,566 @@ function GenerateSelection(data) {
         }
 
 
-        if (previewBall || previewGender || previewShiny || previewMint || previewMisc || previewMark || previewIVs || advancedPreview) {
-            newTable = document.createElement("table");
-            newTable.style.position = "absolute";
-            newTable.style.zIndex = "1";
+        newTable = document.createElement("table");
+        newTable.style.position = "absolute";
+        newTable.style.zIndex = "1";
 
-            if (advancedPreview) {
-                //newTable.style.bottom = "8px";
-                newTable.style.top = "unset";
-                gridTest.style.gridTemplateColumns = "repeat( auto-fill, minmax(200px, 1fr) )"
-                newDiv.style.width = "100%";
-                newTable.style.left = "50%";
-                var tr = newTable.insertRow();
-                tr.style.marginBottom = "10px";
-                tr.style.display = "flex";
-                var dataPokemon = null;
+        //newTable.style.bottom = "8px";
+        newTable.style.top = "unset";
+        gridTest.style.gridTemplateColumns = "repeat( auto-fill, minmax(200px, 1fr) )"
+        newDiv.style.width = "100%";
+        newTable.style.left = "50%";
+        var tr = newTable.insertRow();
+        tr.style.marginBottom = "10px";
+        tr.style.display = "flex";
+        var dataPokemon = null;
 
-                for (let j = 0; j < pokemonDataArray.length; j++) {
-                    if (loopArray.pokemon == "Meowstic") {
-                        for (let k = 0; k < pokemonDataArray.length; k++) {
-                            if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
-                                dataPokemon = pokemonDataArray[k];
-                                //console.log(dataPokemon);
-                            }
-                        }
-                    }
-
-                    if (loopArray.pokemon == "Indeedee") {
-                        for (let k = 0; k < pokemonDataArray.length; k++) {
-                            if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
-                                dataPokemon = pokemonDataArray[k];
-                                //console.log(dataPokemon);
-                            }
-                        }
-                    }
-
-                    if (loopArray.pokemon == pokemonDataArray[j].pokemon || dataPokemon != null) {
-                        var td = tr.insertCell();
-                        type1 = document.createElement("IMG");
-                        type1.setAttribute("class", "TypeDisplay");
-                        td.setAttribute("width", "13px");
-                        td.setAttribute("height", "13px");
-                        type1.style.verticalAlign = "middle";
-                        type1.setAttribute("width", "13px");
-                        type1.setAttribute("height", "13px");
-                        if (dataPokemon == null) {
-                            type1.setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[j].type_1 + ".png");
-                        } else {
-                            type1.setAttribute("src", url + "/Resources/Misc/HP " + dataPokemon.type_1 + ".png");
-                        }
-
-
-                        td.appendChild(type1);
-                        //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
-                        break;
+        for (let j = 0; j < pokemonDataArray.length; j++) {
+            if (loopArray.pokemon == "Meowstic") {
+                for (let k = 0; k < pokemonDataArray.length; k++) {
+                    if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
+                        dataPokemon = pokemonDataArray[k];
+                        //console.log(dataPokemon);
                     }
                 }
+            }
 
-                for (let j = 0; j < pokemonDataArray.length; j++) {
-                    if (loopArray.pokemon == pokemonDataArray[j].pokemon) {
-                        if (pokemonDataArray[j].type_2 != null) {
-                            var td = tr.insertCell();
-                            type2 = document.createElement("IMG");
-                            type2.setAttribute("class", "TypeDisplay");
-                            td.setAttribute("width", "13px");
-                            td.setAttribute("height", "13px");
-                            type2.style.verticalAlign = "middle";
-                            type2.setAttribute("width", "13px");
-                            type2.setAttribute("height", "13px");
-                            type2.setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[j].type_2 + ".png");
-
-                            td.appendChild(type2);
-                            //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
-                            break;
-                        }
-
-                        if (dataPokemon != null) {
-                            if (dataPokemon.type_2 != null) {
-                                var td = tr.insertCell();
-                                type2 = document.createElement("IMG");
-                                type2.setAttribute("class", "TypeDisplay");
-                                td.setAttribute("width", "13px");
-                                td.setAttribute("height", "13px");
-                                type2.style.verticalAlign = "middle";
-                                type2.setAttribute("width", "13px");
-                                type2.setAttribute("height", "13px");
-                                type2.setAttribute("src", url + "/Resources/Misc/HP " + dataPokemon.type_2 + ".png");
-                                td.appendChild(type2);
-                            }
-                            //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
-                            break;
-                        }
+            if (loopArray.pokemon == "Indeedee") {
+                for (let k = 0; k < pokemonDataArray.length; k++) {
+                    if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
+                        dataPokemon = pokemonDataArray[k];
+                        //console.log(dataPokemon);
                     }
                 }
+            }
 
+            if (loopArray.pokemon == pokemonDataArray[j].pokemon || dataPokemon != null) {
                 var td = tr.insertCell();
-                pokemon = document.createElement("Text");
-
-
-                td.setAttribute("height", "auto");
-                td.setAttribute("id", "Pokemon" + (i));
-                pokemon.style.height = "13px";
-
-                pokemon.innerHTML = loopArray.pokemon;
-
-                pokemon.style.fontWeight = "bold";
-                pokemon.style.color = "white";
-                pokemon.style.fontFamily = "Arial, Helvetica, sans-serif";
-                pokemon.style.fontSize = "60%";
-                pokemon.style.display = "inline-flex";
-
-                td.appendChild(pokemon);
-
-                if (insideDetails && loopArray.nickname != "") {
-                    var tr = newTable.insertRow();
-                    tr.setAttribute("class", "insideDetails" + (i));
-                    tr.style.display = "none";
-                    var td = tr.insertCell();
-                    nickname = document.createElement("Text");
-                    td.setAttribute("height", "13px");
-                    nickname.setAttribute("height", "13px");
-                    nickname.innerHTML = loopArray.nickname;
-                    nickname.style.fontWeight = "bold";
-                    nickname.style.color = "white";
-                    nickname.style.fontFamily = "Arial, Helvetica, sans-serif";
-                    nickname.style.fontSize = "60%";
-
-                    td.appendChild(nickname);
-                }
-
-                newDiv.appendChild(newTable);
-
-            }
-
-            /*if (previewBall || previewGender || previewShiny || previewMint || previewMisc || previewMark) {
-                var tr = newTable.insertRow();
-                newTable.bottom = "unset";
-                tr.style.display = "flex";
-                if (previewIVs) {
-                    newTable.style.top = "65px";
-                } else {
-                    newTable.style.top = "79px";
-                }
-
-                if (previewBall) {
-                    var td = tr.insertCell();
-                    ball = document.createElement("IMG");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    ball.setAttribute("width", "13px");
-                    ball.setAttribute("height", "13px");
-                    ball.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Items/" + loopArray.pokeball + ".png");
-
-                    td.appendChild(ball);
-                }
-
-                if (previewGender) {
-                    var td = tr.insertCell();
-                    gender = document.createElement("IMG");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    gender.setAttribute("width", "13px");
-                    gender.setAttribute("height", "13px");
-                    gender.setAttribute("src", url + "/Resources/Misc/" + loopArray.gender + ".png");
-
-                    td.appendChild(gender);
-                }
-
-                if (previewShiny) {
-                    var td = tr.insertCell();
-                    shiny = document.createElement("IMG");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    shiny.setAttribute("width", "13px");
-                    shiny.setAttribute("height", "13px");
-                    shiny.setAttribute("src", url + "/Resources/Misc/" + loopArray.shiny + ".png");
-
-                    td.appendChild(shiny);
-                }
-
-                if (previewMint) {
-                    var td = tr.insertCell();
-                    mint = document.createElement("IMG");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    mint.setAttribute("width", "13px");
-                    mint.setAttribute("height", "13px");
-                    mint.setAttribute("src", url + "/Resources/Misc/" + loopArray.mint + ".png");
-
-                    td.appendChild(mint);
-                }
-
-                if (previewMisc) {
-                    var td = tr.insertCell();
-                    misc = document.createElement("IMG");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    misc.setAttribute("width", "13px");
-                    misc.setAttribute("height", "13px");
-                    misc.setAttribute("src", url + "/Resources/Misc/" + loopArray.misc + ".png");
-
-                    td.appendChild(misc);
-                }
-
-                if (previewMark) {
-                    var td = tr.insertCell();
-                    mark = document.createElement("IMG");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    mark.setAttribute("width", "13px");
-                    mark.setAttribute("height", "13px");
-                    mark.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Marks/" + loopArray.mark + ".png");
-
-                    td.appendChild(mark);
-                }
-                newDiv.appendChild(newTable);
-            }*/
-
-            var tr = newTable.insertRow();
-            newTable.bottom = "unset";
-            tr.style.display = "flex";
-            if (previewIVs) {
-                newTable.style.top = "65px";
-            } else {
-                newTable.style.top = "79px";
-            }
-
-            var td = tr.insertCell();
-            ball = document.createElement("IMG");
-            td.setAttribute("width", "13px");
-            td.setAttribute("height", "13px");
-            ball.setAttribute("width", "13px");
-            ball.setAttribute("height", "13px");
-            ball.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Items/" + loopArray.pokeball + ".png");
-            if (!previewBall) {
-                td.setAttribute("class", "insideDetails" + (i));
-                td.style.display = "none";
-            }
-
-            td.appendChild(ball);
-
-            var td = tr.insertCell();
-            gender = document.createElement("IMG");
-            td.setAttribute("width", "13px");
-            td.setAttribute("height", "13px");
-            gender.setAttribute("width", "13px");
-            gender.setAttribute("height", "13px");
-            gender.setAttribute("src", url + "/Resources/Misc/" + loopArray.gender + ".png");
-            if (!previewGender) {
-                td.setAttribute("class", "insideDetails" + (i));
-                td.style.display = "none";
-            }
-
-            td.appendChild(gender);
-
-            var td = tr.insertCell();
-            shiny = document.createElement("IMG");
-            td.setAttribute("width", "13px");
-            td.setAttribute("height", "13px");
-            shiny.setAttribute("width", "13px");
-            shiny.setAttribute("height", "13px");
-            shiny.setAttribute("src", url + "/Resources/Misc/" + loopArray.shiny + ".png");
-            if (!previewShiny) {
-                td.setAttribute("class", "insideDetails" + (i));
-                td.style.display = "none";
-            }
-
-            td.appendChild(shiny);
-
-            var td = tr.insertCell();
-            mint = document.createElement("IMG");
-            td.setAttribute("width", "13px");
-            td.setAttribute("height", "13px");
-            mint.setAttribute("width", "13px");
-            mint.setAttribute("height", "13px");
-            mint.setAttribute("src", url + "/Resources/Misc/" + loopArray.mint + ".png");
-            if (!previewMint) {
-                td.setAttribute("class", "insideDetails" + (i));
-                td.style.display = "none";
-            }
-
-            td.appendChild(mint);
-
-            var td = tr.insertCell();
-            misc = document.createElement("IMG");
-            td.setAttribute("width", "13px");
-            td.setAttribute("height", "13px");
-            misc.setAttribute("width", "13px");
-            misc.setAttribute("height", "13px");
-            misc.setAttribute("src", url + "/Resources/Misc/" + loopArray.misc + ".png");
-            if (!previewMisc) {
-                td.setAttribute("class", "insideDetails" + (i));
-                td.style.display = "none";
-            }
-
-            td.appendChild(misc);
-
-            var td = tr.insertCell();
-            mark = document.createElement("IMG");
-            td.setAttribute("width", "13px");
-            td.setAttribute("height", "13px");
-            mark.setAttribute("width", "13px");
-            mark.setAttribute("height", "13px");
-            mark.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Marks/" + loopArray.mark + ".png");
-            if (!previewMark) {
-                td.setAttribute("class", "insideDetails" + (i));
-                td.style.display = "none";
-            }
-
-            td.appendChild(mark);
-
-            newDiv.appendChild(newTable);
-
-            if (previewIVs == true) {
-                if (exactIVs) {
-                    var tr = newTable.insertRow();
-                    tr.style.display = "flex";
-                    var td = tr.insertCell();
-                    textIVs = document.createElement("Text");
-                    td.setAttribute("height", "13px");
-                    textIVs.setAttribute("height", "13px");
-                    textIVs.innerHTML = "IVS: " + loopArray.iv_hp + "/" + loopArray.iv_att + "/" + loopArray.iv_def + "/" + loopArray.iv_spa + "/" + loopArray.iv_spd + "/" + loopArray.iv_spe;
-                    textIVs.style.fontWeight = "bold";
-                    textIVs.style.color = "white";
-                    textIVs.style.fontFamily = "Arial, Helvetica, sans-serif";
-                    textIVs.style.fontSize = "60%";
-
-                    td.appendChild(textIVs);
-
-                    newDiv.appendChild(newTable);
-                } else {
-                    //newTable.setAttribute("width", "100");
-                    //newTable.setAttribute("height", "100");
-                    var tr = newTable.insertRow();
-                    tr.style.display = "flex";
-                    var td = tr.insertCell();
-                    ivHP = document.createElement("IMG");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    ivHP.setAttribute("width", "13px");
-                    ivHP.setAttribute("height", "13px");
-                    if (loopArray.iv_hp == "31") {
-                        ivHP.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
-                    }
-                    else if (loopArray.iv_hp == "30") {
-                        ivHP.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
-                    }
-                    else if (loopArray.iv_hp == "0") {
-                        ivHP.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
-                    }
-                    else if (loopArray.iv_hp == "1") {
-                        ivHP.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
-                    }
-                    else if (loopArray.iv_hp == "HT") {
-                        ivHP.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
-                    } else {
-                        ivHP.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
-                    }
-                    td.appendChild(ivHP);
-
-
-                    var td = tr.insertCell();
-                    ivAtt = document.createElement("IMG");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    ivAtt.setAttribute("width", "13px");
-                    ivAtt.setAttribute("height", "13px");
-                    if (loopArray.iv_att == "31") {
-                        ivAtt.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
-                    }
-                    else if (loopArray.iv_att == "30") {
-                        ivAtt.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
-                    }
-                    else if (loopArray.iv_att == "0") {
-                        ivAtt.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
-                    }
-                    else if (loopArray.iv_att == "1") {
-                        ivAtt.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
-                    }
-                    else if (loopArray.iv_att == "HT") {
-                        ivAtt.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
-                    } else {
-                        ivAtt.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
-                    }
-                    td.appendChild(ivAtt);
-
-                    var td = tr.insertCell();
-                    ivDef = document.createElement("IMG");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    ivDef.setAttribute("width", "13px");
-                    ivDef.setAttribute("height", "13px");
-                    if (loopArray.iv_def == "31") {
-                        ivDef.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
-                    }
-                    else if (loopArray.iv_def == "30") {
-                        ivDef.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
-                    }
-                    else if (loopArray.iv_def == "0") {
-                        ivDef.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
-                    }
-                    else if (loopArray.iv_def == "1") {
-                        ivDef.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
-                    }
-                    else if (loopArray.iv_def == "HT") {
-                        ivDef.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
-                    } else {
-                        ivDef.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
-                    }
-                    td.appendChild(ivDef);
-
-                    var td = tr.insertCell();
-                    ivSpa = document.createElement("IMG");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    ivSpa.setAttribute("width", "13px");
-                    ivSpa.setAttribute("height", "13px");
-                    if (loopArray.iv_spa == "31") {
-                        ivSpa.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
-                    }
-                    else if (loopArray.iv_spa == "30") {
-                        ivSpa.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
-                    }
-                    else if (loopArray.iv_spa == "0") {
-                        ivSpa.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
-                    }
-                    else if (loopArray.iv_spa == "1") {
-                        ivSpa.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
-                    }
-                    else if (loopArray.iv_spa == "HT") {
-                        ivSpa.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
-                    } else {
-                        ivSpa.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
-                    }
-                    td.appendChild(ivSpa);
-
-                    var td = tr.insertCell();
-                    ivSpd = document.createElement("IMG");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    ivSpd.setAttribute("width", "13px");
-                    ivSpd.setAttribute("height", "13px");
-                    if (loopArray.iv_spd == "31") {
-                        ivSpd.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
-                    }
-                    else if (loopArray.iv_spd == "30") {
-                        ivSpd.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
-                    }
-                    else if (loopArray.iv_spd == "0") {
-                        ivSpd.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
-                    }
-                    else if (loopArray.iv_spd == "1") {
-                        ivSpd.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
-                    }
-                    else if (loopArray.iv_spd == "HT") {
-                        ivSpd.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
-                    } else {
-                        ivSpd.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
-                    }
-                    td.appendChild(ivSpd);
-
-                    var td = tr.insertCell();
-                    ivSpe = document.createElement("IMG");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    ivSpe.setAttribute("width", "13px");
-                    ivSpe.setAttribute("height", "13px");
-                    if (loopArray.iv_spe == "31") {
-                        ivSpe.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
-                    }
-                    else if (loopArray.iv_spe == "30") {
-                        ivSpe.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
-                    }
-                    else if (loopArray.iv_spe == "0") {
-                        ivSpe.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
-                    }
-                    else if (loopArray.iv_spe == "1") {
-                        ivSpe.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
-                    }
-                    else if (loopArray.iv_spe == "HT") {
-                        ivSpe.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
-                    } else {
-                        ivSpe.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
-                    }
-                    td.appendChild(ivSpe);
-
-                    newDiv.appendChild(newTable);
-                }
-
-                if (insideDetails) {
-                    var tr = newTable.insertRow();
-                    tr.setAttribute("class", "insideDetails" + (i));
-                    tr.style.display = "none";
-                    var td = tr.insertCell();
-                    evsText = document.createElement("Text");
-                    td.setAttribute("height", "13px");
-                    evsText.setAttribute("height", "13px");
-                    evsText.innerHTML = loopArray.ev_hp + "/" + loopArray.ev_att + "/" + loopArray.ev_def + "/" + loopArray.ev_spa + "/" + loopArray.ev_spd + "/" + loopArray.ev_spe;
-                    evsText.style.fontWeight = "bold";
-                    evsText.style.color = "white";
-                    evsText.style.fontFamily = "Arial, Helvetica, sans-serif";
-                    evsText.style.fontSize = "60%";
-
-                    td.appendChild(evsText);
-                }
-            }
-
-
-            if (advancedPreview) {
-                //newTable.style.bottom = "8px";
-                newTable.style.top = "unset";
-                gridTest.style.gridTemplateColumns = "repeat( auto-fill, minmax(200px, 1fr) )"
-                newDiv.style.width = "100%";
-                newTable.style.left = "50%";
-
-
-                for (let j = 0; j < pokemonDataArray.length; j++) {
-                    if (loopArray.pokemon == pokemonDataArray[j].pokemon || dataPokemon != null) {
-                        var tr = newTable.insertRow();
-                        tr.style.display = "flex";
-                        var td = tr.insertCell();
-                        ability = document.createElement("Text");
-                        td.setAttribute("height", "13px");
-                        ability.setAttribute("height", "13px");
-                        ability.style.fontWeight = "bold";
-                        ability.style.color = "white";
-                        ability.style.fontFamily = "Arial, Helvetica, sans-serif";
-                        ability.style.fontSize = "60%";
-                        if (dataPokemon == null) {
-                            if (loopArray.ability == pokemonDataArray[j].ability_1 || loopArray.ability == pokemonDataArray[j].ability_2 || loopArray.ability == pokemonDataArray[j].hidden_ability_1 || loopArray.ability == pokemonDataArray[j].hidden_ability_2) {
-                                if (loopArray.ability == pokemonDataArray[j].hidden_ability_1 || loopArray.ability == pokemonDataArray[j].hidden_ability_2) {
-                                    ability.innerHTML = loopArray.ability + " (H)";
-                                    td.appendChild(ability);
-                                } else {
-                                    ability.innerHTML = loopArray.ability;
-                                    td.appendChild(ability);
-                                }
-
-                            }
-                            //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
-                            break;
-                        } else {
-                            if (loopArray.ability == dataPokemon.ability_1 || loopArray.ability == dataPokemon.ability_2 || loopArray.ability == dataPokemon.hidden_ability_1 || loopArray.ability == dataPokemon.hidden_ability_2) {
-                                if (loopArray.ability == dataPokemon.hidden_ability_1 || loopArray.ability == dataPokemon.hidden_ability_2) {
-                                    ability.innerHTML = loopArray.ability + " (H)";
-                                    td.appendChild(ability);
-                                } else {
-                                    ability.innerHTML = loopArray.ability;
-                                    td.appendChild(ability);
-                                }
-
-                            }
-                            //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
-                            break;
-                        }
-
-                    }
-                }
-
-
-
-
-                var tr = newTable.insertRow();
-                tr.style.display = "flex";
-                var td = tr.insertCell();
-                nature = document.createElement("Text");
+                type1 = document.createElement("IMG");
+                type1.setAttribute("class", "TypeDisplay");
+                td.setAttribute("width", "13px");
                 td.setAttribute("height", "13px");
-                nature.setAttribute("height", "13px");
-                nature.innerHTML = loopArray.nature;
-                nature.style.fontWeight = "bold";
-                nature.style.color = "white";
-                nature.style.fontFamily = "Arial, Helvetica, sans-serif";
-                nature.style.fontSize = "60%";
-
-                td.appendChild(nature);
-
-                if (insideDetails) {
-                    if (loopArray.game_ot != "") {
-                        var tr = newTable.insertRow();
-                        tr.setAttribute("class", "insideDetails" + (i));
-                        tr.style.display = "none";
-                        var td = tr.insertCell();
-                        gameOT = document.createElement("Text");
-                        td.setAttribute("height", "13px");
-                        gameOT.setAttribute("height", "13px");
-                        gameOT.innerHTML = "OT: " + loopArray.game_ot;
-                        gameOT.style.fontWeight = "bold";
-                        gameOT.style.color = "white";
-                        gameOT.style.fontFamily = "Arial, Helvetica, sans-serif";
-                        gameOT.style.fontSize = "60%";
-
-                        td.appendChild(gameOT);
-                    }
-
-                    if (loopArray.game_id != "") {
-                        var tr = newTable.insertRow();
-                        tr.setAttribute("class", "insideDetails" + (i));
-                        tr.style.display = "none";
-                        var td = tr.insertCell();
-                        gameID = document.createElement("Text");
-                        td.setAttribute("height", "13px");
-                        gameID.setAttribute("height", "13px");
-                        gameID.innerHTML = "ID: " + loopArray.game_id;
-                        gameID.style.fontWeight = "bold";
-                        gameID.style.color = "white";
-                        gameID.style.fontFamily = "Arial, Helvetica, sans-serif";
-                        gameID.style.fontSize = "60%";
-
-                        td.appendChild(gameID);
-                    }
-
-                    var tr = newTable.insertRow();
-                    tr.setAttribute("class", "insideDetails" + (i));
-                    tr.style.display = "none";
-                    var td = tr.insertCell();
-                    statusInfo = document.createElement("Text");
-                    td.setAttribute("height", "13px");
-                    statusInfo.setAttribute("height", "13px");
-                    statusInfo.innerHTML = loopArray.status;
-                    statusInfo.style.fontWeight = "bold";
-                    statusInfo.style.color = "white";
-                    statusInfo.style.fontFamily = "Arial, Helvetica, sans-serif";
-                    statusInfo.style.fontSize = "60%";
-
-                    td.appendChild(statusInfo);
-
-                    if (loopArray.event_info != "(Not Event)" && loopArray.event_info != "(Any/No Event)") {
-                        var tr = newTable.insertRow();
-                        tr.setAttribute("class", "insideDetails" + (i));
-                        tr.style.display = "none";
-                        var td = tr.insertCell();
-                        eventInfo = document.createElement("Text");
-                        td.setAttribute("height", "13px");
-                        eventInfo.setAttribute("height", "13px");
-                        eventInfo.innerHTML = loopArray.event_info;
-                        eventInfo.style.fontWeight = "bold";
-                        eventInfo.style.color = "white";
-                        eventInfo.style.fontFamily = "Arial, Helvetica, sans-serif";
-                        eventInfo.style.fontSize = "60%";
-
-                        td.appendChild(eventInfo);
-                    }
+                type1.style.verticalAlign = "middle";
+                type1.setAttribute("width", "13px");
+                type1.setAttribute("height", "13px");
+                if (dataPokemon == null) {
+                    type1.setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[j].type_1 + ".png");
+                } else {
+                    type1.setAttribute("src", url + "/Resources/Misc/HP " + dataPokemon.type_1 + ".png");
                 }
 
-                newDiv.appendChild(newTable);
+
+                td.appendChild(type1);
+                //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
+                break;
             }
         }
+
+        for (let j = 0; j < pokemonDataArray.length; j++) {
+            if (loopArray.pokemon == pokemonDataArray[j].pokemon) {
+                if (pokemonDataArray[j].type_2 != null) {
+                    var td = tr.insertCell();
+                    type2 = document.createElement("IMG");
+                    type2.setAttribute("class", "TypeDisplay");
+                    td.setAttribute("width", "13px");
+                    td.setAttribute("height", "13px");
+                    type2.style.verticalAlign = "middle";
+                    type2.setAttribute("width", "13px");
+                    type2.setAttribute("height", "13px");
+                    type2.setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[j].type_2 + ".png");
+
+                    td.appendChild(type2);
+                    //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
+                    break;
+                }
+
+                if (dataPokemon != null) {
+                    if (dataPokemon.type_2 != null) {
+                        var td = tr.insertCell();
+                        type2 = document.createElement("IMG");
+                        type2.setAttribute("class", "TypeDisplay");
+                        td.setAttribute("width", "13px");
+                        td.setAttribute("height", "13px");
+                        type2.style.verticalAlign = "middle";
+                        type2.setAttribute("width", "13px");
+                        type2.setAttribute("height", "13px");
+                        type2.setAttribute("src", url + "/Resources/Misc/HP " + dataPokemon.type_2 + ".png");
+                        td.appendChild(type2);
+                    }
+                    //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
+                    break;
+                }
+            }
+        }
+
+        var td = tr.insertCell();
+        pokemon = document.createElement("Text");
+
+
+        td.setAttribute("height", "auto");
+        td.setAttribute("id", "Pokemon" + (i));
+        pokemon.style.height = "13px";
+
+        pokemon.innerHTML = loopArray.pokemon;
+
+        pokemon.style.fontWeight = "bold";
+        pokemon.style.color = "white";
+        pokemon.style.fontFamily = "Arial, Helvetica, sans-serif";
+        pokemon.style.fontSize = "60%";
+        pokemon.style.display = "inline-flex";
+
+        td.appendChild(pokemon);
+
+        if (insideDetails && loopArray.nickname != "") {
+            var tr = newTable.insertRow();
+            tr.setAttribute("class", "insideDetails" + (i));
+            tr.style.display = "none";
+            var td = tr.insertCell();
+            nickname = document.createElement("Text");
+            td.setAttribute("height", "13px");
+            nickname.setAttribute("height", "13px");
+            nickname.innerHTML = loopArray.nickname;
+            nickname.style.fontWeight = "bold";
+            nickname.style.color = "white";
+            nickname.style.fontFamily = "Arial, Helvetica, sans-serif";
+            nickname.style.fontSize = "60%";
+
+            td.appendChild(nickname);
+        }
+
+        newDiv.appendChild(newTable);
+
+
+
+        var tr = newTable.insertRow();
+        newTable.bottom = "unset";
+        tr.style.display = "flex";
+        if (previewIVs) {
+            newTable.style.top = "65px";
+        } else {
+            newTable.style.top = "79px";
+        }
+
+        var td = tr.insertCell();
+        ball = document.createElement("IMG");
+        td.setAttribute("width", "13px");
+        td.setAttribute("height", "13px");
+        ball.setAttribute("width", "13px");
+        ball.setAttribute("height", "13px");
+        ball.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Items/" + loopArray.pokeball + ".png");
+        if (!previewBall) {
+            td.setAttribute("class", "insideDetails" + (i));
+            td.style.display = "none";
+        }
+
+        td.appendChild(ball);
+
+        var td = tr.insertCell();
+        gender = document.createElement("IMG");
+        td.setAttribute("width", "13px");
+        td.setAttribute("height", "13px");
+        gender.setAttribute("width", "13px");
+        gender.setAttribute("height", "13px");
+        gender.setAttribute("src", url + "/Resources/Misc/" + loopArray.gender + ".png");
+        if (!previewGender) {
+            td.setAttribute("class", "insideDetails" + (i));
+            td.style.display = "none";
+        }
+
+        td.appendChild(gender);
+
+        var td = tr.insertCell();
+        shiny = document.createElement("IMG");
+        td.setAttribute("width", "13px");
+        td.setAttribute("height", "13px");
+        shiny.setAttribute("width", "13px");
+        shiny.setAttribute("height", "13px");
+        shiny.setAttribute("src", url + "/Resources/Misc/" + loopArray.shiny + ".png");
+        if (!previewShiny) {
+            td.setAttribute("class", "insideDetails" + (i));
+            td.style.display = "none";
+        }
+
+        td.appendChild(shiny);
+
+        var td = tr.insertCell();
+        mint = document.createElement("IMG");
+        td.setAttribute("width", "13px");
+        td.setAttribute("height", "13px");
+        mint.setAttribute("width", "13px");
+        mint.setAttribute("height", "13px");
+        mint.setAttribute("src", url + "/Resources/Misc/" + loopArray.mint + ".png");
+        if (!previewMint) {
+            td.setAttribute("class", "insideDetails" + (i));
+            td.style.display = "none";
+        }
+
+        td.appendChild(mint);
+
+        var td = tr.insertCell();
+        misc = document.createElement("IMG");
+        td.setAttribute("width", "13px");
+        td.setAttribute("height", "13px");
+        misc.setAttribute("width", "13px");
+        misc.setAttribute("height", "13px");
+        misc.setAttribute("src", url + "/Resources/Misc/" + loopArray.misc + ".png");
+        if (!previewMisc) {
+            td.setAttribute("class", "insideDetails" + (i));
+            td.style.display = "none";
+        }
+
+        td.appendChild(misc);
+
+        var td = tr.insertCell();
+        mark = document.createElement("IMG");
+        td.setAttribute("width", "13px");
+        td.setAttribute("height", "13px");
+        mark.setAttribute("width", "13px");
+        mark.setAttribute("height", "13px");
+        mark.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Marks/" + loopArray.mark + ".png");
+        if (!previewMark) {
+            td.setAttribute("class", "insideDetails" + (i));
+            td.style.display = "none";
+        }
+
+        td.appendChild(mark);
+
+        newDiv.appendChild(newTable);
+
+        if (previewIVs == true) {
+            if (exactIVs) {
+                var tr = newTable.insertRow();
+                tr.style.display = "flex";
+                var td = tr.insertCell();
+                textIVs = document.createElement("Text");
+                td.setAttribute("height", "13px");
+                textIVs.setAttribute("height", "13px");
+                textIVs.innerHTML = "IVS: " + loopArray.iv_hp + "/" + loopArray.iv_att + "/" + loopArray.iv_def + "/" + loopArray.iv_spa + "/" + loopArray.iv_spd + "/" + loopArray.iv_spe;
+                textIVs.style.fontWeight = "bold";
+                textIVs.style.color = "white";
+                textIVs.style.fontFamily = "Arial, Helvetica, sans-serif";
+                textIVs.style.fontSize = "60%";
+                textIVs.style.whiteSpace = "nowrap";
+
+                td.appendChild(textIVs);
+
+                newDiv.appendChild(newTable);
+            } else {
+                //newTable.setAttribute("width", "100");
+                //newTable.setAttribute("height", "100");
+                var tr = newTable.insertRow();
+                tr.style.display = "flex";
+                var td = tr.insertCell();
+                ivHP = document.createElement("IMG");
+                td.setAttribute("width", "13px");
+                td.setAttribute("height", "13px");
+                ivHP.setAttribute("width", "13px");
+                ivHP.setAttribute("height", "13px");
+                if (loopArray.iv_hp == "31") {
+                    ivHP.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
+                }
+                else if (loopArray.iv_hp == "30") {
+                    ivHP.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
+                }
+                else if (loopArray.iv_hp == "0") {
+                    ivHP.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
+                }
+                else if (loopArray.iv_hp == "1") {
+                    ivHP.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
+                }
+                else if (loopArray.iv_hp == "HT") {
+                    ivHP.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
+                } else {
+                    ivHP.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
+                }
+                td.appendChild(ivHP);
+
+
+                var td = tr.insertCell();
+                ivAtt = document.createElement("IMG");
+                td.setAttribute("width", "13px");
+                td.setAttribute("height", "13px");
+                ivAtt.setAttribute("width", "13px");
+                ivAtt.setAttribute("height", "13px");
+                if (loopArray.iv_att == "31") {
+                    ivAtt.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
+                }
+                else if (loopArray.iv_att == "30") {
+                    ivAtt.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
+                }
+                else if (loopArray.iv_att == "0") {
+                    ivAtt.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
+                }
+                else if (loopArray.iv_att == "1") {
+                    ivAtt.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
+                }
+                else if (loopArray.iv_att == "HT") {
+                    ivAtt.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
+                } else {
+                    ivAtt.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
+                }
+                td.appendChild(ivAtt);
+
+                var td = tr.insertCell();
+                ivDef = document.createElement("IMG");
+                td.setAttribute("width", "13px");
+                td.setAttribute("height", "13px");
+                ivDef.setAttribute("width", "13px");
+                ivDef.setAttribute("height", "13px");
+                if (loopArray.iv_def == "31") {
+                    ivDef.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
+                }
+                else if (loopArray.iv_def == "30") {
+                    ivDef.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
+                }
+                else if (loopArray.iv_def == "0") {
+                    ivDef.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
+                }
+                else if (loopArray.iv_def == "1") {
+                    ivDef.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
+                }
+                else if (loopArray.iv_def == "HT") {
+                    ivDef.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
+                } else {
+                    ivDef.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
+                }
+                td.appendChild(ivDef);
+
+                var td = tr.insertCell();
+                ivSpa = document.createElement("IMG");
+                td.setAttribute("width", "13px");
+                td.setAttribute("height", "13px");
+                ivSpa.setAttribute("width", "13px");
+                ivSpa.setAttribute("height", "13px");
+                if (loopArray.iv_spa == "31") {
+                    ivSpa.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
+                }
+                else if (loopArray.iv_spa == "30") {
+                    ivSpa.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
+                }
+                else if (loopArray.iv_spa == "0") {
+                    ivSpa.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
+                }
+                else if (loopArray.iv_spa == "1") {
+                    ivSpa.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
+                }
+                else if (loopArray.iv_spa == "HT") {
+                    ivSpa.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
+                } else {
+                    ivSpa.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
+                }
+                td.appendChild(ivSpa);
+
+                var td = tr.insertCell();
+                ivSpd = document.createElement("IMG");
+                td.setAttribute("width", "13px");
+                td.setAttribute("height", "13px");
+                ivSpd.setAttribute("width", "13px");
+                ivSpd.setAttribute("height", "13px");
+                if (loopArray.iv_spd == "31") {
+                    ivSpd.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
+                }
+                else if (loopArray.iv_spd == "30") {
+                    ivSpd.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
+                }
+                else if (loopArray.iv_spd == "0") {
+                    ivSpd.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
+                }
+                else if (loopArray.iv_spd == "1") {
+                    ivSpd.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
+                }
+                else if (loopArray.iv_spd == "HT") {
+                    ivSpd.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
+                } else {
+                    ivSpd.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
+                }
+                td.appendChild(ivSpd);
+
+                var td = tr.insertCell();
+                ivSpe = document.createElement("IMG");
+                td.setAttribute("width", "13px");
+                td.setAttribute("height", "13px");
+                ivSpe.setAttribute("width", "13px");
+                ivSpe.setAttribute("height", "13px");
+                if (loopArray.iv_spe == "31") {
+                    ivSpe.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
+                }
+                else if (loopArray.iv_spe == "30") {
+                    ivSpe.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
+                }
+                else if (loopArray.iv_spe == "0") {
+                    ivSpe.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
+                }
+                else if (loopArray.iv_spe == "1") {
+                    ivSpe.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
+                }
+                else if (loopArray.iv_spe == "HT") {
+                    ivSpe.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
+                } else {
+                    ivSpe.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
+                }
+                td.appendChild(ivSpe);
+
+                newDiv.appendChild(newTable);
+            }
+
+            if (insideDetails) {
+                var tr = newTable.insertRow();
+                tr.setAttribute("class", "insideDetails" + (i));
+                tr.style.display = "none";
+                var td = tr.insertCell();
+                evsText = document.createElement("Text");
+                td.setAttribute("height", "13px");
+                evsText.setAttribute("height", "13px");
+                evsText.innerHTML = loopArray.ev_hp + "/" + loopArray.ev_att + "/" + loopArray.ev_def + "/" + loopArray.ev_spa + "/" + loopArray.ev_spd + "/" + loopArray.ev_spe;
+                evsText.style.fontWeight = "bold";
+                evsText.style.color = "white";
+                evsText.style.fontFamily = "Arial, Helvetica, sans-serif";
+                evsText.style.fontSize = "60%";
+
+                td.appendChild(evsText);
+            }
+        }
+
+
+        //newTable.style.bottom = "8px";
+        newTable.style.top = "unset";
+        gridTest.style.gridTemplateColumns = "repeat( auto-fill, minmax(200px, 1fr) )"
+        newDiv.style.width = "100%";
+        newTable.style.left = "50%";
+
+
+        for (let j = 0; j < pokemonDataArray.length; j++) {
+            if (loopArray.pokemon == pokemonDataArray[j].pokemon || dataPokemon != null) {
+                var tr = newTable.insertRow();
+                tr.style.display = "flex";
+                var td = tr.insertCell();
+                ability = document.createElement("Text");
+                td.setAttribute("height", "13px");
+                ability.setAttribute("height", "13px");
+                ability.style.fontWeight = "bold";
+                ability.style.color = "white";
+                ability.style.fontFamily = "Arial, Helvetica, sans-serif";
+                ability.style.fontSize = "60%";
+                if (dataPokemon == null) {
+                    if (loopArray.ability == pokemonDataArray[j].ability_1 || loopArray.ability == pokemonDataArray[j].ability_2 || loopArray.ability == pokemonDataArray[j].hidden_ability_1 || loopArray.ability == pokemonDataArray[j].hidden_ability_2) {
+                        if (loopArray.ability == pokemonDataArray[j].hidden_ability_1 || loopArray.ability == pokemonDataArray[j].hidden_ability_2) {
+                            ability.innerHTML = loopArray.ability + " (H)";
+                            td.appendChild(ability);
+                        } else {
+                            ability.innerHTML = loopArray.ability;
+                            td.appendChild(ability);
+                        }
+
+                    }
+                    //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
+                    break;
+                } else {
+                    if (loopArray.ability == dataPokemon.ability_1 || loopArray.ability == dataPokemon.ability_2 || loopArray.ability == dataPokemon.hidden_ability_1 || loopArray.ability == dataPokemon.hidden_ability_2) {
+                        if (loopArray.ability == dataPokemon.hidden_ability_1 || loopArray.ability == dataPokemon.hidden_ability_2) {
+                            ability.innerHTML = loopArray.ability + " (H)";
+                            td.appendChild(ability);
+                        } else {
+                            ability.innerHTML = loopArray.ability;
+                            td.appendChild(ability);
+                        }
+
+                    }
+                    //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
+                    break;
+                }
+
+            }
+        }
+
+
+
+
+        var tr = newTable.insertRow();
+        tr.style.display = "flex";
+        var td = tr.insertCell();
+        nature = document.createElement("Text");
+        td.setAttribute("height", "13px");
+        nature.setAttribute("height", "13px");
+        nature.innerHTML = loopArray.nature;
+        nature.style.fontWeight = "bold";
+        nature.style.color = "white";
+        nature.style.fontFamily = "Arial, Helvetica, sans-serif";
+        nature.style.fontSize = "60%";
+
+        td.appendChild(nature);
+
+        if (insideDetails) {
+            if (loopArray.game_ot != "") {
+                var tr = newTable.insertRow();
+                tr.setAttribute("class", "insideDetails" + (i));
+                tr.style.display = "none";
+                var td = tr.insertCell();
+                gameOT = document.createElement("Text");
+                td.setAttribute("height", "13px");
+                gameOT.setAttribute("height", "13px");
+                gameOT.innerHTML = "OT: " + loopArray.game_ot;
+                gameOT.style.fontWeight = "bold";
+                gameOT.style.color = "white";
+                gameOT.style.fontFamily = "Arial, Helvetica, sans-serif";
+                gameOT.style.fontSize = "60%";
+
+                td.appendChild(gameOT);
+            }
+
+            if (loopArray.game_id != "") {
+                var tr = newTable.insertRow();
+                tr.setAttribute("class", "insideDetails" + (i));
+                tr.style.display = "none";
+                var td = tr.insertCell();
+                gameID = document.createElement("Text");
+                td.setAttribute("height", "13px");
+                gameID.setAttribute("height", "13px");
+                gameID.innerHTML = "ID: " + loopArray.game_id;
+                gameID.style.fontWeight = "bold";
+                gameID.style.color = "white";
+                gameID.style.fontFamily = "Arial, Helvetica, sans-serif";
+                gameID.style.fontSize = "60%";
+
+                td.appendChild(gameID);
+            }
+
+            var tr = newTable.insertRow();
+            tr.setAttribute("class", "insideDetails" + (i));
+            tr.style.display = "none";
+            var td = tr.insertCell();
+            statusInfo = document.createElement("Text");
+            td.setAttribute("height", "13px");
+            statusInfo.setAttribute("height", "13px");
+            statusInfo.innerHTML = loopArray.status;
+            statusInfo.style.fontWeight = "bold";
+            statusInfo.style.color = "white";
+            statusInfo.style.fontFamily = "Arial, Helvetica, sans-serif";
+            statusInfo.style.fontSize = "60%";
+
+            td.appendChild(statusInfo);
+
+            if (loopArray.event_info != "(Not Event)" && loopArray.event_info != "(Any/No Event)") {
+                var tr = newTable.insertRow();
+                tr.setAttribute("class", "insideDetails" + (i));
+                tr.style.display = "none";
+                var td = tr.insertCell();
+                eventInfo = document.createElement("Text");
+                td.setAttribute("height", "13px");
+                eventInfo.setAttribute("height", "13px");
+                eventInfo.innerHTML = loopArray.event_info;
+                eventInfo.style.fontWeight = "bold";
+                eventInfo.style.color = "white";
+                eventInfo.style.fontFamily = "Arial, Helvetica, sans-serif";
+                eventInfo.style.fontSize = "60%";
+
+                td.appendChild(eventInfo);
+            }
+        }
+
+        newDiv.appendChild(newTable);
+
+
 
         if (insideDetails) {
             newTable = document.createElement("table");
@@ -1671,8 +1592,10 @@ function GenerateSelection(data) {
                 if (!currentlyRearranging) {
                     if (selectedPokemon != null && pokemonDetails.creation_id == arrayData["Rows"][i].creation_id) {
                         $('.DA-Close').click();
+                        CloseDetailOptions();
                         return;
                     } else {
+                        CloseDetailOptions();
                         pokemonDetails = arrayData["Rows"][i];
                         if (selectedPokemon != null) {
                             //alert("HERE");
@@ -1972,6 +1895,7 @@ function ShowPokemonDetails() {
     }
 
     templateName.value = null;
+    document.querySelector(".DA-TemplateDropdown").value = "(No Template)";
 
     document.querySelector(".DA-LangIcon").innerHTML = "[" + pokemonDetails.language + "]";
     howObtainedSelection.value = pokemonDetails.how_obtained;
@@ -2034,6 +1958,36 @@ function ShowPokemonDetails() {
     document.querySelector(".DA-MiscIcon").setAttribute("src", url + "/Resources/Misc/" + pokemonDetails.misc + ".png");
     markData = pokemonDetails.mark;
     document.querySelector(".DA-MarkIcon").setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Marks/" + pokemonDetails.mark + ".png");
+
+    var cols = document.getElementsByClassName("Ribbons");
+    document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
+    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+        for (i = 0; i < cols.length; i++) {
+            cols[i].style.background = "#404040";
+            cols[i].style.display = "none";
+        }
+    } else {
+        for (i = 0; i < cols.length; i++) {
+            cols[i].style.background = "#404040";
+            cols[i].style.display = "block";
+        }
+    }
+    ribbonData = new Array(103);
+    ribbonString = "";
+    if (pokemonDetails.ribbons != null) {
+        var arrayTempRibbons = pokemonDetails.ribbons.split(",");
+        for (let i = 0; i < ribbonOptionsArray.length; i++) {
+            for (let j = 0; j < arrayTempRibbons.length; j++) {
+                if (ribbonOptionsArray[i] == arrayTempRibbons[j]) {
+                    ribbonData[i] = ribbonOptionsArray[i];
+                    document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[i] + ".png";
+                    document.getElementById("DA-" + ribbonOptionsArray[i]).style.background = "#1e5578";
+                    document.getElementById("DA-" + ribbonOptionsArray[i]).style.display = "block";
+                    //console.log(ribbonData);
+                }
+            }
+        }
+    }
 
     pokemonData = pokemonDetails.pokemon;
     pokemonSelection.value = pokemonDetails.pokemon;
@@ -2258,6 +2212,7 @@ function ShowPokemonDetails() {
         document.querySelector(".DA-Proof").style.display = "block";
         if (toggleOn) {
             DisplayProof();
+            $('.DA-ProofURL').keyup();
         }
     }
 

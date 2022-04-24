@@ -109,36 +109,43 @@
 .MA-SettingsImage{
     position: relative;
     max-width: 100%;
+    cursor: pointer;
 }
 
 .MA-SearchTradeShopsImage{
     position: relative;
     max-width: 100%;
+    cursor: pointer;
 }
 
 .MA-UserLoginImage{
     position: relative;
     max-width: 100%;
+    cursor: pointer;
 }
 
 .MA-FAQImage{
     position: relative;
     max-width: 100%;
+    cursor: pointer;
 }
 
 .MA-ImportingTradeShopImage{
     position: relative;
     max-width: 100%;
+    cursor: pointer;
 }
 
 .MA-OtherImage{
     position: relative;
     max-width: 100%;
+    cursor: pointer;
 }
 
 .MA-TrackingImage{
     position: relative;
     max-width: 100%;
+    cursor: pointer;
     display: none;
 }
 

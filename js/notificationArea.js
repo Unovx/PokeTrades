@@ -66,11 +66,17 @@ $('.NA-BunchIconClose').click(function () {
 $('.NA-BunchAddedClose').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".BunchPokemonAdded").style.display = "none";
+    PostGenerateSelectionData();
 });
 
 $('.NA-BunchRemovedClose').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".BunchPokemonRemoved").style.display = "none";
+
+    ShowLoading();
+    PostGenerateSelection();
+    PostGenerateSelectionData();
+    //document.querySelector(".DA-Close").click();
 });
 
 $('.NA-ImportedSuccessClose').click(function () {

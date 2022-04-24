@@ -179,6 +179,7 @@
     margin-top: 20px;
     width: 175px;
     pointer-events: none;
+    cursor: pointer;
     background: #313131;
     border-width: 2px;
     border-style: solid;
@@ -194,6 +195,7 @@
     margin-top: 20px;
     width: 175px;
     pointer-events: none;
+    cursor: pointer;
     background: #313131;
     border-width: 2px;
     border-style: solid;
@@ -219,6 +221,7 @@
     margin-top: 20px;
     width: 175px;
     pointer-events: none;
+    cursor: pointer;
     background: #313131;
     border-width: 2px;
     border-style: solid;
@@ -234,6 +237,7 @@
     margin-top: 20px;
     width: 175px;
     pointer-events: none;
+    cursor: pointer;
     background: #313131;
     border-width: 2px;
     border-style: solid;
@@ -341,6 +345,30 @@
     margin: auto;
 }
 
+.PA-BallButton{
+    cursor: pointer;
+}
+
+.PA-GenderButton{
+    cursor: pointer;
+}
+
+.PA-ShinyButton{
+    cursor: pointer;
+}
+
+.PA-MintButton{
+    cursor: pointer;
+}
+
+.PA-MiscButton{
+    cursor: pointer;
+}
+
+.PA-MarkButton{
+    cursor: pointer;
+}
+
 .PA-BallImage{
     max-width: 24px;
     max-height: 24px;
@@ -412,6 +440,7 @@
 .PA-DexNumberButton{
     width: 48px;
     height: 22px;
+    cursor: pointer;
 }
 
 .PA-AdvancedPreviewText{
@@ -424,6 +453,7 @@
 .PA-AdvancedPreviewButton{
     width: 48px;
     height: 22px;
+    cursor: pointer;
 }
 
 .PA-OldSpritesText{
@@ -436,6 +466,7 @@
 .PA-GenerationalSpritesButton{
     width: 48px;
     height: 22px;
+    cursor: pointer;
 }
 
 .PA-ExtraViewingsText{
@@ -449,6 +480,7 @@
 .PA-ExtraViewingsButton{
     width: 48px;
     height: 22px;
+    cursor: pointer;
 }
 
 .PA-PanelPositionText{
@@ -475,6 +507,7 @@
 .PA-HoverButton{
     width: 48px;
     height: 22px;
+    cursor: pointer;
 }
 
 .PA-ExactIVsText{
@@ -488,6 +521,7 @@
 .PA-ExactIVsButton{
     width: 48px;
     height: 22px;
+    cursor: pointer;
 }
 
 .PA-EmptyBunchesText{
@@ -501,11 +535,13 @@
 .PA-EmptyBunchesButton{
     width: 48px;
     height: 22px;
+    cursor: pointer;
 }
 
 .PA-CloseSettings{
     position: relative;
     display: block;
+    cursor: pointer;
     top: 100px;
     margin: auto;
 }

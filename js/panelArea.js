@@ -156,7 +156,7 @@ else if (localStorage.getItem('dexNumber') == "1") {
     document.querySelector(".PA-DexNumberButton").innerHTML = "Off";
 }
 
-if (localStorage.getItem('advancedPreview') == null) {
+/*') == null) {
     advancedPreview = true;
     document.querySelector(".PA-AdvancedPreviewButton").innerHTML = "On";
 }
@@ -166,7 +166,7 @@ else if (localStorage.getItem('advancedPreview') == "1") {
 } else {
     advancedPreview = false;
     document.querySelector(".PA-AdvancedPreviewButton").innerHTML = "Off";
-}
+}*/
 
 if (localStorage.getItem('generationalSprites') == null) {
     generationalSprites = false;
@@ -220,12 +220,7 @@ $(".PA-Searchbar").keyup(function () {
     $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
 
-    localStorage.setItem('searchID', searchInfoText);
-    if (document.querySelector(".PA-Searchbar").value != "") {
-        window.location.hash = "users/" + searchInfoText;
-    } else {
-        RemoveHash();
-    }
+
 });
 
 $('.PA-BunchHelp').click(function () {
@@ -551,6 +546,7 @@ function TradeShopInfo(data) {
         document.querySelector(".PA-Message").style.height = "";
         document.querySelector(".PA-Message").style.height = document.querySelector(".PA-Message").scrollHeight - 25 + "px";
         PostGenerateSelectionData();
+        window.location.hash = "users/" + searchData.uuid;
     } else if (searchInfoText == "") {
         document.querySelector(".PA-TradeShopInfo").innerHTML = " Search TradeShops";
 
@@ -558,12 +554,15 @@ function TradeShopInfo(data) {
         $(".PA-Message").keyup();
         document.querySelector(".PA-Message").style.height = "";
         document.querySelector(".PA-Message").style.height = document.querySelector(".PA-Message").scrollHeight - 25 + "px";
+        RemoveHash();
     } else {
         document.querySelector(".PA-TradeShopInfo").innerHTML = " Search TradeShops";
         customMessage.value = "(No Personal Message)";
         document.querySelector(".PA-Message").style.height = "";
         document.querySelector(".PA-Message").style.height = document.querySelector(".PA-Message").scrollHeight - 25 + "px";
+        RemoveHash();
     }
+    localStorage.setItem('searchID', searchInfoText);
 }
 
 //Checking if the user is allowed to create and move data in the selection area.
@@ -764,6 +763,7 @@ function ForTradeData(data) {
     document.querySelector(".ForTradeGridDiv").style.borderBottomRightRadius = "15px";
     document.querySelector(".ForTradeGridDiv").style.width = "100%";
     document.querySelector(".ForTradeGridDiv").style.height = "100%";
+    document.querySelector(".ForTradeGridDiv").style.cursor = "pointer";
 
     theText = document.createElement("P")
     theText.setAttribute("class", "theText");
@@ -807,6 +807,7 @@ function ForTradeData(data) {
             document.querySelector(".ForTradeGridDiv" + (i)).style.borderBottomRightRadius = "15px";
             document.querySelector(".ForTradeGridDiv" + (i)).style.width = "100%";
             document.querySelector(".ForTradeGridDiv" + (i)).style.height = "100%";
+            document.querySelector(".ForTradeGridDiv" + (i)).style.cursor = "pointer";
 
             //Storing each bunch in a array.
             bunchArray = [];
@@ -821,6 +822,9 @@ function ForTradeData(data) {
                 }
                 else if (bunchArray.icon.includes("HP")) {
                     theImage.setAttribute("src", url + "/Resources/Misc/" + bunchArray.icon + ".png");
+                }
+                else if (bunchArray.icon.includes("Ribbon")) {
+                    theImage.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/Ribbons/" + bunchArray.icon + ".png");
                 } else {
                     if (bunchArray.shiny == "Shiny") {
                         theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Shiny" + ".png");
@@ -975,6 +979,7 @@ function LookingForData(data) {
     document.querySelector(".LookingForGridDiv").style.borderBottomRightRadius = "15px";
     document.querySelector(".LookingForGridDiv").style.width = "100%";
     document.querySelector(".LookingForGridDiv").style.height = "100%";
+    document.querySelector(".LookingForGridDiv").style.cursor = "pointer";
 
     theImage = document.createElement("IMG");
     theImage.setAttribute("id", "GeneratedBunches All");
@@ -1026,6 +1031,7 @@ function LookingForData(data) {
             document.querySelector(".LookingForGridDiv" + (i)).style.borderBottomRightRadius = "15px";
             document.querySelector(".LookingForGridDiv" + (i)).style.width = "100%";
             document.querySelector(".LookingForGridDiv" + (i)).style.height = "100%";
+            document.querySelector(".LookingForGridDiv" + (i)).style.cursor = "pointer";
 
             //Storing each bunch in a array.
             bunchArray = [];

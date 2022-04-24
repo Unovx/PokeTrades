@@ -118,9 +118,9 @@ function BunchReset() {
 
 function BunchChanges() {
     $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
-    //document.querySelector("#NotificationArea").style.display = "block";
-    //document.querySelector(".BunchPokemonAdded").style.display = "block";
-    PostGenerateSelectionData();
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".BunchPokemonAdded").style.display = "block";
+    //PostGenerateSelectionData(); is now in the button click.
 
 }
 
@@ -128,13 +128,13 @@ function BunchRemoved() {
     if (bunchname == document.querySelector(".BA-BunchInput").value) {
         bunchname = "(No Bunch)";
     }
-    ShowLoading();
     $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: tradeOption }, UserBunches);
-    PostGenerateSelection();
+    //The Below is now in the button click.
+    /*PostGenerateSelection();
     PostGenerateSelectionData();
-    //document.querySelector(".DA-Close").click();
-    //document.querySelector("#NotificationArea").style.display = "block";
-    //document.querySelector(".BunchPokemonRemoved").style.display = "block";
+    //document.querySelector(".DA-Close").click();*/
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".BunchPokemonRemoved").style.display = "block";
 }
 
 function BunchRenamed(data) {
@@ -150,11 +150,14 @@ function BunchRenamed(data) {
 function ValidateIcon() {
 
     if (iconExclusivesArray.includes(bunchIcon)) {
-        if (allBallsArray.includes(bunchIcon) || bunchIcon.value == "Egg") {
+        if (allBallsArray.includes(bunchIcon) || bunchIcon == "Egg") {
             document.querySelector(".BA-IconImage").setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/" + bunchIcon + ".png");
         }
         else if (bunchIcon.includes("HP")) {
             document.querySelector(".BA-IconImage").setAttribute("src", url + "/Resources/Misc/" + bunchIcon + ".png");
+        }
+        else if (bunchIcon.includes("Ribbon")) {
+            document.querySelector(".BA-IconImage").setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/Ribbons/" + bunchIcon + ".png");
         }
         else {
             if (!bunchShiny.includes("Normal")) {

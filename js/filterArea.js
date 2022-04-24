@@ -1,4 +1,4 @@
-filterCheck = new Array("false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false");
+filterCheck = new Array("false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false", "false");
 filtersApplied = false;
 
 filterDisplay = document.querySelector(".FA-FilterDisplay");
@@ -8,6 +8,8 @@ filterShiny = document.querySelector(".FA-FilterShiny");
 filterMint = document.querySelector(".FA-FilterMint");
 filterMisc = document.querySelector(".FA-FilterMisc");
 filterMark = document.querySelector(".FA-FilterMark");
+filterType = document.querySelector(".FA-FilterType");
+filterRibbon = document.querySelector(".FA-FilterRibbon");
 filterLanguage = document.querySelector(".FA-FilterLanguage");
 filterNature = document.querySelector(".FA-FilterNature");
 filterAbility = document.querySelector(".FA-FilterAbility");
@@ -153,13 +155,41 @@ $(filterMark).change(function () {
     FilterResults();
 });
 
+$(filterType).change(function () {
+    if (filterType.value == "(Any Type)") {
+        filterCheck[7] = "false";
+        FilterCheck();
+        filterType.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+    } else {
+        filterCheck[7] = "true";
+        FilterCheck();
+        filterType.style.background = "#797979";
+    }
+    //ShowLoading();
+    FilterResults();
+});
+
+$(filterRibbon).change(function () {
+    if (filterRibbon.value == "(Any or No Ribbon)") {
+        filterCheck[8] = "false";
+        FilterCheck();
+        filterRibbon.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+    } else {
+        filterCheck[8] = "true";
+        FilterCheck();
+        filterRibbon.style.background = "#797979";
+    }
+    //ShowLoading();
+    FilterResults();
+});
+
 $(filterLanguage).change(function () {
     if (filterLanguage.value == "ANY") {
-        filterCheck[7] = "false";
+        filterCheck[9] = "false";
         FilterCheck();
         filterLanguage.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[7] = "true";
+        filterCheck[9] = "true";
         FilterCheck();
         filterLanguage.style.background = "#797979";
     }
@@ -169,11 +199,11 @@ $(filterLanguage).change(function () {
 
 $(filterNature).change(function () {
     if (filterNature.value == "(Any Nature)") {
-        filterCheck[8] = "false";
+        filterCheck[10] = "false";
         FilterCheck();
         filterNature.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[8] = "true";
+        filterCheck[10] = "true";
         FilterCheck();
         filterNature.style.background = "#797979";
     }
@@ -183,11 +213,11 @@ $(filterNature).change(function () {
 
 $(filterAbility).change(function () {
     if (filterAbility.value == "(Any Ability") {
-        filterCheck[9] = "false";
+        filterCheck[11] = "false";
         FilterCheck();
         filterAbility.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[9] = "true";
+        filterCheck[11] = "true";
         FilterCheck();
         filterAbility.style.background = "#797979";
     }
@@ -197,11 +227,11 @@ $(filterAbility).change(function () {
 
 $(filterStatus).change(function () {
     if (filterStatus.value == "(Any Status)") {
-        filterCheck[10] = "false";
+        filterCheck[12] = "false";
         FilterCheck();
         filterStatus.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[10] = "true";
+        filterCheck[12] = "true";
         FilterCheck();
         filterStatus.style.background = "#797979";
     }
@@ -211,11 +241,11 @@ $(filterStatus).change(function () {
 
 $(filterEvent).change(function () {
     if (filterEvent.value == "(Any or No Mark)") {
-        filterCheck[11] = "false";
+        filterCheck[13] = "false";
         FilterCheck();
         filterEvent.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[11] = "true";
+        filterCheck[13] = "true";
         FilterCheck();
         filterEvent.style.background = "#797979";
     }
@@ -225,11 +255,11 @@ $(filterEvent).change(function () {
 
 $(filterMove).change(function () {
     if (filterMove.value == "(Any Move)") {
-        filterCheck[12] = "false";
+        filterCheck[14] = "false";
         FilterCheck();
         filterMove.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[12] = "true";
+        filterCheck[14] = "true";
         FilterCheck();
         filterMove.style.background = "#797979";
     }
@@ -239,11 +269,11 @@ $(filterMove).change(function () {
 
 $(filterHowObtained).change(function () {
     if (filterHowObtained.value == "(Any Method)") {
-        filterCheck[13] = "false";
+        filterCheck[15] = "false";
         FilterCheck();
         filterHowObtained.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[13] = "true";
+        filterCheck[15] = "true";
         FilterCheck();
         filterHowObtained.style.background = "#797979";
     }
@@ -253,11 +283,11 @@ $(filterHowObtained).change(function () {
 
 $(filterGameObtained).change(function () {
     if (filterGameObtained.value == "(Any Game)") {
-        filterCheck[14] = "false";
+        filterCheck[16] = "false";
         FilterCheck();
         filterGameObtained.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[14] = "true";
+        filterCheck[16] = "true";
         FilterCheck();
         filterGameObtained.style.background = "#797979";
     }
@@ -267,11 +297,11 @@ $(filterGameObtained).change(function () {
 
 $(filterNote).change(function () {
     if (filterNote.value == "(Any/No Note)") {
-        filterCheck[15] = "false";
+        filterCheck[17] = "false";
         FilterCheck();
         filterNote.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[15] = "true";
+        filterCheck[17] = "true";
         FilterCheck();
         filterNote.style.background = "#797979";
     }
@@ -281,11 +311,11 @@ $(filterNote).change(function () {
 
 $(filterProof).change(function () {
     if (filterProof.value == "(Any/No Proof)") {
-        filterCheck[16] = "false";
+        filterCheck[18] = "false";
         FilterCheck();
         filterProof.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[16] = "true";
+        filterCheck[18] = "true";
         FilterCheck();
         filterProof.style.background = "#797979";
     }
@@ -295,11 +325,11 @@ $(filterProof).change(function () {
 
 $(filterOT).keyup(function () {
     if (filterOT.value == "") {
-        filterCheck[17] = "false";
+        filterCheck[19] = "false";
         FilterCheck();
         filterOT.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[17] = "true";
+        filterCheck[19] = "true";
         FilterCheck();
         filterOT.style.background = "#797979";
     }
@@ -309,11 +339,11 @@ $(filterOT).keyup(function () {
 
 $(filterID).keyup(function () {
     if (filterID.value == "") {
-        filterCheck[18] = "false";
+        filterCheck[20] = "false";
         FilterCheck();
         filterID.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[18] = "true";
+        filterCheck[20] = "true";
         FilterCheck();
         filterID.style.background = "#797979";
     }
@@ -323,11 +353,11 @@ $(filterID).keyup(function () {
 
 $(filterIvHP).change(function () {
     if (filterIvHP.value == "X") {
-        filterCheck[19] = "false";
+        filterCheck[21] = "false";
         FilterCheck();
         filterIvHP.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[19] = "true";
+        filterCheck[21] = "true";
         FilterCheck();
         filterIvHP.style.background = "#797979";
     }
@@ -337,11 +367,11 @@ $(filterIvHP).change(function () {
 
 $(filterIvAtt).change(function () {
     if (filterIvAtt.value == "X") {
-        filterCheck[20] = "false";
+        filterCheck[22] = "false";
         FilterCheck();
         filterIvAtt.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[20] = "true";
+        filterCheck[22] = "true";
         FilterCheck();
         filterIvAtt.style.background = "#797979";
     }
@@ -351,11 +381,11 @@ $(filterIvAtt).change(function () {
 
 $(filterIvDef).change(function () {
     if (filterIvDef.value == "X") {
-        filterCheck[21] = "false";
+        filterCheck[23] = "false";
         FilterCheck();
         filterIvDef.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[21] = "true";
+        filterCheck[23] = "true";
         FilterCheck();
         filterIvDef.style.background = "#797979";
     }
@@ -365,11 +395,11 @@ $(filterIvDef).change(function () {
 
 $(filterIvSpa).change(function () {
     if (filterIvSpa.value == "X") {
-        filterCheck[22] = "false";
+        filterCheck[24] = "false";
         FilterCheck();
         filterIvSpa.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[22] = "true";
+        filterCheck[24] = "true";
         FilterCheck();
         filterIvSpa.style.background = "#797979";
     }
@@ -379,11 +409,11 @@ $(filterIvSpa).change(function () {
 
 $(filterIvSpd).change(function () {
     if (filterIvSpd.value == "X") {
-        filterCheck[23] = "false";
+        filterCheck[25] = "false";
         FilterCheck();
         filterIvSpd.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[23] = "true";
+        filterCheck[25] = "true";
         FilterCheck();
         filterIvSpd.style.background = "#797979";
     }
@@ -393,11 +423,11 @@ $(filterIvSpd).change(function () {
 
 $(filterIvSpe).change(function () {
     if (filterIvSpe.value == "X") {
-        filterCheck[24] = "false";
+        filterCheck[26] = "false";
         FilterCheck();
         filterIvSpe.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[24] = "true";
+        filterCheck[26] = "true";
         FilterCheck();
         filterIvSpe.style.background = "#797979";
     }
@@ -407,11 +437,11 @@ $(filterIvSpe).change(function () {
 
 $(filterEvHP).change(function () {
     if (filterEvHP.value == "X") {
-        filterCheck[25] = "false";
+        filterCheck[27] = "false";
         FilterCheck();
         filterEvHP.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[25] = "true";
+        filterCheck[27] = "true";
         FilterCheck();
         filterEvHP.style.background = "#797979";
     }
@@ -421,11 +451,11 @@ $(filterEvHP).change(function () {
 
 $(filterEvAtt).change(function () {
     if (filterEvAtt.value == "X") {
-        filterCheck[26] = "false";
+        filterCheck[28] = "false";
         FilterCheck();
         filterEvAtt.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[26] = "true";
+        filterCheck[28] = "true";
         FilterCheck();
         filterEvAtt.style.background = "#797979";
     }
@@ -435,11 +465,11 @@ $(filterEvAtt).change(function () {
 
 $(filterEvDef).change(function () {
     if (filterEvDef.value == "X") {
-        filterCheck[27] = "false";
+        filterCheck[29] = "false";
         FilterCheck();
         filterEvDef.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[27] = "true";
+        filterCheck[29] = "true";
         FilterCheck();
         filterEvDef.style.background = "#797979";
     }
@@ -449,11 +479,11 @@ $(filterEvDef).change(function () {
 
 $(filterEvSpa).change(function () {
     if (filterEvSpa.value == "X") {
-        filterCheck[28] = "false";
+        filterCheck[30] = "false";
         FilterCheck();
         filterEvSpa.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[28] = "true";
+        filterCheck[30] = "true";
         FilterCheck();
         filterEvSpa.style.background = "#797979";
     }
@@ -463,11 +493,11 @@ $(filterEvSpa).change(function () {
 
 $(filterEvSpd).change(function () {
     if (filterEvSpd.value == "X") {
-        filterCheck[29] = "false";
+        filterCheck[31] = "false";
         FilterCheck();
         filterEvSpd.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[29] = "true";
+        filterCheck[31] = "true";
         FilterCheck();
         filterEvSpd.style.background = "#797979";
     }
@@ -477,11 +507,11 @@ $(filterEvSpd).change(function () {
 
 $(filterEvSpe).change(function () {
     if (filterEvSpe.value == "X") {
-        filterCheck[30] = "false";
+        filterCheck[32] = "false";
         FilterCheck();
         filterEvSpe.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     } else {
-        filterCheck[30] = "true";
+        filterCheck[32] = "true";
         FilterCheck();
         filterEvSpe.style.background = "#797979";
     }
@@ -492,12 +522,12 @@ $(filterEvSpe).change(function () {
 $('.FA-Gen6').click(function () {
     if (filterGen6 == "") {
         filterGen6 = "Available";
-        filterCheck[31] = "true";
+        filterCheck[33] = "true";
         FilterCheck();
         document.querySelector(".FA-Gen6").style.backgroundColor = "#046925";
     } else {
         filterGen6 = "";
-        filterCheck[31] = "false";
+        filterCheck[33] = "false";
         FilterCheck();
         document.querySelector(".FA-Gen6").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     }
@@ -508,12 +538,12 @@ $('.FA-Gen6').click(function () {
 $('.FA-Gen7').click(function () {
     if (filterGen7 == "") {
         filterGen7 = "Available";
-        filterCheck[32] = "true";
+        filterCheck[34] = "true";
         FilterCheck();
         document.querySelector(".FA-Gen7").style.backgroundColor = "#046925";
     } else {
         filterGen7 = "";
-        filterCheck[32] = "false";
+        filterCheck[34] = "false";
         FilterCheck();
         document.querySelector(".FA-Gen7").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     }
@@ -524,12 +554,12 @@ $('.FA-Gen7').click(function () {
 $('.FA-Gen8').click(function () {
     if (filterGen8 == "") {
         filterGen8 = "Available";
-        filterCheck[33] = "true";
+        filterCheck[35] = "true";
         FilterCheck();
         document.querySelector(".FA-Gen8").style.backgroundColor = "#046925";
     } else {
         filterGen8 = "";
-        filterCheck[33] = "false";
+        filterCheck[35] = "false";
         FilterCheck();
         document.querySelector(".FA-Gen8").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     }
@@ -540,12 +570,12 @@ $('.FA-Gen8').click(function () {
 $('.FA-Home').click(function () {
     if (filterHome == "") {
         filterHome = "Available";
-        filterCheck[34] = "true";
+        filterCheck[36] = "true";
         FilterCheck();
         document.querySelector(".FA-Home").style.backgroundColor = "#046925";
     } else {
         filterHome = "";
-        filterCheck[34] = "false";
+        filterCheck[36] = "false";
         FilterCheck();
         document.querySelector(".FA-Home").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     }
@@ -589,6 +619,10 @@ function ResetFilters() {
     filterMisc.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterMark.value = "(Any or No Mark)";
     filterMark.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+    filterType.value = "(Any Type)";
+    filterType.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+    filterRibbon.value = "(Any or No Ribbon)";
+    filterRibbon.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterLanguage.value = "ANY";
     filterLanguage.style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
     filterNature.value = "(Any Nature)";
@@ -716,6 +750,40 @@ function FilterResults() {
         if (filterMark.value == "(Any or No Mark)") {
 
         } else if (arrayData["Rows"][i].mark == filterMark.value) {
+
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterType.value == "(Any Type)") {
+
+        } else if (filterType.value != "(Any Type)") {
+            for (let j = 0; j < pokemonDataArray.length; j++) {
+                if (arrayData["Rows"][i].pokemon == "Meowstic" || arrayData["Rows"][i].pokemon == "Indeedee") {
+                    if (arrayData["Rows"][i].pokemon + "-" + arrayData["Rows"][i].gender == pokemonDataArray[j].pokemon) {
+                        if (pokemonDataArray[j].type_1 == filterType.value || pokemonDataArray[j].type_2 == filterType.value) {
+                            break;
+                        } else {
+                            passedFilter = false;
+                        }
+                    }
+
+                }
+                else if (arrayData["Rows"][i].pokemon == pokemonDataArray[j].pokemon) {
+                    if (pokemonDataArray[j].type_1 == filterType.value || pokemonDataArray[j].type_2 == filterType.value) {
+                        break;
+                    } else {
+                        passedFilter = false;
+                    }
+                }
+            }
+        } else {
+            passedFilter = false;
+        }
+
+        if (filterRibbon.value == "(Any or No Ribbon)") {
+
+        } else if (arrayData["Rows"][i].ribbons.includes(filterRibbon.value)) {
 
         } else {
             passedFilter = false;

@@ -17,12 +17,32 @@ window.addEventListener("load", () => {
         return node;
     }
 
+    function GetUserInfo(data) {
+        if (data != "") {
+            searchData = jQuery.parseJSON(data);
+            document.querySelector(".PA-Searchbar").value = searchData.user_id;
+            searchInfoText = searchData.user_id;
+            localStorage.setItem('searchID', searchInfoText);
+            $('.MA-SearchTradeShopsImage').click();
+            //$(".PA-Searchbar").keyup();
+            if (document.querySelector(".PA-Searchbar").value == "") {
+                window.location.href = window.location.href.split('#')[0];
+            }
+        }
+    }
+
     const render = (view, props) => {
         view.render(clear(rootEl), props);
     }
 
     router
-        .on("/users/:id", async (match) => {
+        .on("/users/:uuid", async (match) => {
+            $(document).ready(function () {
+                var uuid = match.data.uuid;
+                $.post(url + "/PHP/get_user_info.php", { uuid: uuid }, GetUserInfo);
+            });
+        })
+        /*.on("/users/:id", async (match) => {
             $(document).ready(function () {
                 var id = match.data.id;
                 document.querySelector(".PA-Searchbar").value = id;
@@ -34,7 +54,7 @@ window.addEventListener("load", () => {
                     window.location.href = window.location.href.split('#')[0];
                 }
             });
-        })
+        })*/
         .on((match) => {
             //alert("2")
             //render();

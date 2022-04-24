@@ -83,6 +83,7 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    cursor: pointer;
 }
 
 .DA-Save {
@@ -99,6 +100,7 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    cursor: pointer;
 }
 
 .DA-Place {
@@ -114,6 +116,7 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    cursor: pointer;
 }
 
 .DA-PlaceInfo{
@@ -160,6 +163,7 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    cursor: pointer;
 }
 
 .DA-Reset {
@@ -176,6 +180,7 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    cursor: pointer;
 }
 
 .DA-Add {
@@ -192,6 +197,7 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    cursor: pointer;
 }
 
 .DA-Lock {
@@ -208,6 +214,7 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    cursor: pointer;
 }
 
 .DA-AdditionalViewings{
@@ -638,6 +645,12 @@
     max-width: 20px;
 }
 
+.DA-RibbonIcon{
+    vertical-align: top;
+    max-height: 20px;
+    max-width: 20px;
+}
+
 .DA-IconImage{
     vertical-align: top;;
     max-height: 20px;
@@ -685,6 +698,7 @@
     color: #399BC8;
     font-size: 16px;
     height: 20px;
+    cursor: pointer;
 }
 
 .DA-SelectedBall{
@@ -701,6 +715,7 @@
     border-color: #949494;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
+    cursor: pointer;
 }
 
 .DA-SelectedGender{
@@ -717,6 +732,7 @@
     border-color: #949494;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
+    cursor: pointer;
 }
 
 .DA-SelectedShiny{
@@ -733,6 +749,7 @@
     border-color: #949494;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
+    cursor: pointer;
 }
 
 .DA-SelectedMint{
@@ -749,6 +766,7 @@
     border-color: #949494;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
+    cursor: pointer;
 }
 
 .DA-SelectedMisc{
@@ -765,6 +783,7 @@
     border-color: #949494;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
+    cursor: pointer;
 }
 
 .DA-SelectedMark{
@@ -781,6 +800,25 @@
     border-color: #949494;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
+    cursor: pointer;
+}
+
+.DA-SelectedRibbon{
+    /*-webkit-box-shadow: 0px 0px 4px #fc4141;
+    -moz-box-shadow: 0px 5px 2px #fc4141;
+    box-shadow: 0px 0px 8px #fc4141;
+    background: linear-gradient(0deg, rgb(255 0 0 / 30%), rgb(255 85 85 / 20%));
+    border-width: 2px;
+    border-style: solid;
+    border-color: #f53e3e;*/
+    background-color: #404040;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #949494;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    pointer-events: initial !important;
+    cursor: pointer;
 }
 
 .DA-LangOptions{
@@ -832,6 +870,14 @@
 }
 
 .DA-MarkOptions{
+    display: none;
+    grid-template-columns: repeat( auto-fit, minmax(60px, 1fr) );
+
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.DA-RibbonOptions{
     display: none;
     grid-template-columns: repeat( auto-fit, minmax(60px, 1fr) );
 
@@ -1724,6 +1770,7 @@
     border: none;
     margin: auto;
     padding-top: 0;
+    cursor: pointer;
 }
 
 .DA-ProofURL {
@@ -1769,6 +1816,7 @@
     max-width: 200px;
     max-height: 200px;
     margin: auto;
+    cursor: pointer;
 }
 
 .DA-ProofVideo{
@@ -1777,6 +1825,7 @@
     max-width: 200px !important;
     max-height: 200px !important;
     margin: auto;
+    cursor: pointer;
 }
 
 .DA-Note {

@@ -1,5 +1,7 @@
 var userData = null;
 var token = localStorage.getItem('token');
+var registerUUID;
+
 document.querySelector(".PA-Searchbar").value = localStorage.getItem('searchID');
 searchInfoText = (document.querySelector(".PA-Searchbar").value);
 $(document).ready(function () {
@@ -21,6 +23,12 @@ function LastSession(data) {
         document.querySelector(".TA-UserCollection").style.pointerEvents = "initial";
         document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
     }
+}
+
+function uuidv4() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
 }
 
 
@@ -145,7 +153,8 @@ $('.LA-RegisterButton').click(function () {
     var registerConfirmPassword = (document.querySelector(".LA-RegisterConfirmPassword").value);
     if (registerUsername != "" && registerPassword != "" && registerConfirmPassword != "") {
         if (registerPassword == registerConfirmPassword) {
-            $.post(url + "/PHP/register_account.php", { username: registerUsername, password: registerPassword }, RegisterAccount);
+            var registerUUID = uuidv4();
+            $.post(url + "/PHP/register_account.php", { username: registerUsername, password: registerPassword, uuid: registerUUID }, RegisterAccount);
         } else {
             document.querySelector(".LA-RegisterFailed").style.display = "block";
             document.querySelector(".LA-RegisterFailed").innerHTML = "Passwords do not match.";

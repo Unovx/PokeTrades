@@ -31,6 +31,8 @@ var noteOptionsArray;
 var proofOptionsArray;
 var languageOptionsArray;
 var templateOptionsArray;
+var ribbonOptionsArray;
+var allTypesArray;
 
 /*$('#Testing').click(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "genderless", table: "genderless_pokemon" }, GenderlessPokemon);
@@ -71,6 +73,8 @@ $(document).ready(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "note_types", table: "note_options" }, NoteOptions);
     $.post(url + "/PHP/get_list_names.php", { column: "proof_types", table: "proof_options" }, ProofOptions);
     $.post(url + "/PHP/get_list_names.php", { column: "languages", table: "languages_options" }, LanguagesOptions);
+    $.post(url + "/PHP/get_list_names.php", { column: "ribbons", table: "ribbon_options" }, RibbonOptions);
+    $.post(url + "/PHP/get_list_names.php", { column: "types", table: "type_names" }, AllTypes);
     if (token != null) {
         $.post(url + "/PHP/generate_templates.php", { token: token }, GetTemplateOptions);
     }
@@ -100,13 +104,14 @@ function UserBunches(data) {
         const detailsOption = document.createElement("option");
         bunchOption.value = userBunchArray[i].name;
         bunchOption.textContent = userBunchArray[i].name;
+        bunchOption.setAttribute("class", "BA-DropdownOptions");
         detailsOption.value = userBunchArray[i].name;
         detailsOption.textContent = userBunchArray[i].name;
         detailsOption.setAttribute("class", "DA-DropdownOptions");
         bunchToRenameDropdown.appendChild(bunchOption);
         bunchSelection.appendChild(detailsOption);
     }
-
+    bunchIconDropdown.value = "Abomasnow";
 
 }
 
@@ -370,6 +375,7 @@ function AllIcons(data) {
         const bunchOption = document.createElement("option");
         bunchOption.value = allIconsArray[i];
         bunchOption.textContent = allIconsArray[i];
+        bunchOption.setAttribute("class", "BA-DropdownOptions");
         bunchIconDropdown.appendChild(bunchOption);
     }
 }
@@ -584,6 +590,7 @@ function GenderOptions(data) {
         const bunchOption = document.createElement("option");
         bunchOption.value = genderOptionsArray[i];
         bunchOption.textContent = genderOptionsArray[i];
+        bunchOption.setAttribute("class", "BA-DropdownOptions");
         bunchGenderDropdown.appendChild(bunchOption);
 
         const filterOption = document.createElement("option");
@@ -619,6 +626,7 @@ function ShinyOptions(data) {
         const bunchOption = document.createElement("option");
         bunchOption.value = shinyOptionsArray[i];
         bunchOption.textContent = shinyOptionsArray[i];
+        bunchOption.setAttribute("class", "BA-DropdownOptions");
         bunchShinyDropdown.appendChild(bunchOption);
 
         const filterOption = document.createElement("option");
@@ -704,5 +712,34 @@ function LanguagesOptions(data) {
         filterOption.textContent = languageOptionsArray[i];
         filterOption.setAttribute("class", "FA-DropdownOptions")
         filterLanguage.appendChild(filterOption);
+    }
+}
+
+function RibbonOptions(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    ribbonOptionsArray = arrayInfo["Rows"];
+    CreateRibbonOptions();
+    //console.log(ribbonOptionsArray);
+
+    for (let i = 0; i < ribbonOptionsArray.length; i++) {
+        const filterOption = document.createElement("option");
+        filterOption.value = ribbonOptionsArray[i];
+        filterOption.textContent = ribbonOptionsArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
+        filterRibbon.appendChild(filterOption);
+    }
+}
+
+function AllTypes(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    allTypesArray = arrayInfo["Rows"];
+    //console.log(allTypesArray);
+
+    for (let i = 0; i < allTypesArray.length; i++) {
+        const filterOption = document.createElement("option");
+        filterOption.value = allTypesArray[i];
+        filterOption.textContent = allTypesArray[i];
+        filterOption.setAttribute("class", "FA-DropdownOptions")
+        filterType.appendChild(filterOption);
     }
 }

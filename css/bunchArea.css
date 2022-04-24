@@ -109,6 +109,13 @@
     right: 0;
 }
 
+.BA-DropdownOptions {
+    font-weight: initial;
+    font-family: Arial, Helvetica, sans-serif;
+    background: grey;
+    font-size: 14px;
+}
+
 .BA-BunchButtons{
     background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
     border-style: solid;
@@ -126,6 +133,7 @@
     width: 310px;
     top: 2px;
     margin: auto;
+    cursor: pointer;
 }
 
 .BA-IconOptions{
@@ -217,10 +225,12 @@
 }
 
 .BA-AddBunch{
+    cursor: pointer;
     width: 100%; 
 }
   
 .BA-RemoveBunch{
+    cursor: pointer;
     width: 100%; 
 }
 
@@ -244,6 +254,7 @@
 .BA-RenameBunch{
     position: relative;
     display: block;
+    cursor: pointer;
     width: 310px;
     top: 60px;
     margin: auto;

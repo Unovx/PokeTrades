@@ -32,6 +32,14 @@
     margin: auto;
 }
 
+.FA-CloseButton{
+    cursor: pointer;
+}
+
+.FA-ResetButton{
+    cursor: pointer;
+}
+
 .FA-Display{
     width: 155px;
 }
@@ -86,6 +94,14 @@
 }
 
 .FA-FilterMark{
+    width: 100%;
+}
+
+.FA-FilterType{
+    width: 100%;
+}
+
+.FA-FilterRibbon{
     width: 100%;
 }
 
@@ -227,18 +243,22 @@
 }
 
 .FA-Gen6{
+    cursor: pointer;
     margin: auto;
 }
 
 .FA-Gen7{
+    cursor: pointer;
     margin: auto;
 }
 
 .FA-Gen8{
+    cursor: pointer;
     margin: auto;
 }
 
 .FA-Home{
+    cursor: pointer;
     margin: auto;
 }
 
