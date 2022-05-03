@@ -1,0 +1,333 @@
+@media only screen and (max-width: 768px) {
+    [id*="InformationArea"]{
+      height: auto !important;
+      top: 80% !important;
+      width: 100% !important;
+    }
+}
+
+#InformationArea{
+    background-color: #2E2D2D;
+    position: absolute; 
+    display: none;
+    height: 100%;
+    z-index: 5;
+    width:420px;
+    overflow: auto;
+    right: 0;
+}
+
+.IA-DropdownOptions {
+    font-weight: initial;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 14px;
+    background: grey;
+}
+
+.IA-Buttons{
+    display: flex;
+    border-style: solid;
+    border-color: #5c5c5c;
+    text-align: center;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+}
+
+.IA-Close {
+    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
+    border-width: 2px;
+    border-style: solid;
+    border-color: #5c5c5c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.IA-ShinyButton {
+    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
+    border-width: 2px;
+    border-style: solid;
+    border-color: #5c5c5c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.IA-ShinySprite{
+    max-width: 20px;
+    max-height: 20px;
+    vertical-align: top;
+}
+
+.IA-InfoButton {
+    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
+    border-width: 2px;
+    border-style: solid;
+    border-color: #5c5c5c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.IA-InfoSprite{
+    max-width: 20px;
+    max-height: 20px;
+    vertical-align: top;
+}
+
+.IA-PokemonDetails {
+    display: flex;
+    border-radius: 9px;
+    background-color: rgb(55 68 72);
+    /*height: 125px;*/
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(105 118 122);
+    margin-bottom: 20px;
+}
+
+.IA-DexText{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    width: 46px !important;
+    position: absolute;
+    bottom: 4px;
+}
+
+.IA-AbilityText{
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    /*margin-top: 4px;*/
+    margin-bottom: 5px;
+    display: block;
+}
+
+.IA-MaleGenderText{
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #97c3f9;
+    font-size: 12px;
+    border: 0px;
+}
+
+.IA-FemaleGenderText{
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #f99797;
+    font-size: 12px;
+    border: 0px;
+}
+
+.IA-GenderlessText{
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #d4d4d4;
+    font-size: 12px;
+    border: 0px;
+}
+
+.IA-InfoTable{
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+}
+
+.IA-Tables{
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    border-spacing: 0px;
+}
+
+.IA-InfoText{
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 11px;
+    border: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
+}
+
+.IA-PokemonDropdown {
+    background-color: rgb(55 68 72);
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 15px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 20px;
+}
+
+.IA-PokemonName {
+    background-color: rgb(55 68 72);
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 15px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 20px;
+    display: block;
+}
+
+
+.IA-PokemonImage{
+    display: block;
+    top: 50px; 
+    max-width: 115px; 
+    max-height: 115px;
+    padding-top: 20px;
+}
+
+.IA-TypeIcon{
+    max-width: 20px;
+    max-height: 20px;
+    margin-right: 3px;
+}
+
+.IA-StandardImage{
+    display: block;
+    top: 50px; 
+    max-width: 80px; 
+    max-height: 80px;
+    margin: auto;
+}
+
+.IA-Stats{
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.IA-StatText{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    width: 46px !important;
+}
+
+.IA-StatDesign{
+    font-size: 15px;
+    background-color: #404040;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    appearance: none;
+    pointer-events: none;
+    width: 46px !important;
+}
+
+#IA-InfoSection{
+    overflow: hidden;
+    display: block;
+    position: relative;
+    box-shadow: rgb(105 118 122) 0px 0px 0px 2.5px inset;
+    background-color: rgb(55 68 72);
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.IA-EvoTitleText{
+    overflow: hidden;
+    display: block;
+    position: relative;
+    box-shadow: rgb(105 118 122) 0px 0px 0px 2.5px inset;
+    background-color: rgb(55 68 72);
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.IA-InfoGrid{
+    display: grid;
+    /* auto-fill into of auto-fit so it starts from the corner of the screen*/
+    grid-template-columns: repeat( auto-fit, minmax(80px, 1fr) );
+    /* needing to prevent bunches and to an slight extent mons looking crowded*/
+    grid-gap: 1rem;
+    place-items: center;
+    /*background-color: #163944;*/
+}
+
+.IA-InfoHolder{
+    overflow: hidden;
+    display: block;
+    position: relative;
+    /*cursor: pointer;*/
+    background-color: rgb(55 68 72);
+    border-radius: 15px;
+    text-align: center;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    height: -webkit-fill-available;
+    height: -moz-available; 
+    border-width: 3px;
+    border-color: #69767a;
+    border-style: solid;
+}
+
+.IA-InteractableHolder{
+    overflow: hidden;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    background-color: rgb(69 86 91);
+    border-radius: 15px;
+    text-align: center;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    height: -webkit-fill-available;
+    height: -moz-available; 
+    border-width: 3px;
+    border-color: #69767a;
+    border-style: solid;
+}

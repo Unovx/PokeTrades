@@ -223,6 +223,18 @@ $('.DA-ViewingHelp').click(function () {
     document.querySelector(".ViewingAdditionalHelp").style.display = "block";
 });
 
+$(".DA-PokemonImage").click(function () {
+    IAPokemonDropdown.value = pokemonSelection.value;
+    if (shinyData.includes("Normal")) {
+        shinyStatus = "";
+    } else {
+        shinyStatus = "-Shiny";
+    }
+    $('.IA-PokemonDropdown').change();
+    document.querySelector("#InformationArea").style.display = "block";
+    document.querySelector("#DetailsArea").style.display = "none";
+});
+
 $('.DA-AddAV1').click(function () {
     SetAV1();
 });

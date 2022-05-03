@@ -1,6 +1,6 @@
 var searchData;
 var tradeOption;
-var version = 1.25;
+var version = 1.26;
 
 ////customMessage = document.querySelector(".MA-Message");
 //document.querySelector(".MA-Searchbar").value = localStorage.getItem('searchID');

@@ -395,6 +395,7 @@
     max-height: 22px;
     align-items: center;
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .DA-AddTemplate{
@@ -406,6 +407,7 @@
     border:none;
     background: center;
     width: 20px;
+    cursor: pointer;
 }
 
 .DA-TemplateName{
@@ -430,6 +432,7 @@
     border:none;
     background: center;
     width: 20px;
+    cursor: pointer;
 }
 
 .DA-TemplateDropdown{
@@ -915,6 +918,8 @@
     top: 50px; 
     max-width: 115px; 
     max-height: 115px;
+    cursor: pointer;
+    pointer-events: initial;
 }
 
 .DA-PokemonDropdown {

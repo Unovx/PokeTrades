@@ -1,5 +1,6 @@
 var url = "https://poketrades.org";
 var pokemonDataArray;
+var informationPokemonArray;
 var allPokemonArray;
 var allBallsArray;
 var genderlessPokemonArray;
@@ -33,6 +34,7 @@ var languageOptionsArray;
 var templateOptionsArray;
 var ribbonOptionsArray;
 var allTypesArray;
+var evoDataArray;
 
 /*$('#Testing').click(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "genderless", table: "genderless_pokemon" }, GenderlessPokemon);
@@ -45,6 +47,7 @@ var allTypesArray;
 $(document).ready(function () {
     $.post(url + "/PHP/pokemon_data.php", PokemonData);
     $.post(url + "/PHP/get_list_names.php", { column: "pokemon", table: "pokemon_names" }, AllPokemon);
+    $.post(url + "/PHP/get_list_names.php", { column: "pokemon", table: "pokemon_names", order: "dex" }, InformationPokemon);
     $.post(url + "/PHP/get_list_names.php", { column: "balls", table: "ball_names" }, AllBalls);
     $.post(url + "/PHP/get_list_names.php", { column: "genderless", table: "genderless_pokemon" }, GenderlessPokemon);
     $.post(url + "/PHP/get_list_names.php", { column: "female_only", table: "female_only_pokemon" }, FemaleOnlyPokemon);
@@ -75,6 +78,7 @@ $(document).ready(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "languages", table: "languages_options" }, LanguagesOptions);
     $.post(url + "/PHP/get_list_names.php", { column: "ribbons", table: "ribbon_options" }, RibbonOptions);
     $.post(url + "/PHP/get_list_names.php", { column: "types", table: "type_names" }, AllTypes);
+    $.post(url + "/PHP/evolution_data.php", EvoLines);
     if (token != null) {
         $.post(url + "/PHP/generate_templates.php", { token: token }, GetTemplateOptions);
     }
@@ -142,7 +146,7 @@ function GetTemplateOptions(data) {
 function PokemonData(data) {
     arrayInfo = jQuery.parseJSON(data);
     pokemonDataArray = arrayInfo["Rows"];
-    //console.log(pokemonDataArray);
+    console.log(pokemonDataArray);
 }
 
 function AllPokemon(data) {
@@ -156,6 +160,20 @@ function AllPokemon(data) {
         detailsOption.textContent = allPokemonArray[i];
         detailsOption.setAttribute("class", "DA-DropdownOptions")
         pokemonSelection.appendChild(detailsOption);
+    }
+}
+
+function InformationPokemon(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    informationPokemonArray = arrayInfo["Rows"];
+    //console.log(informationPokemonArray);
+
+    for (let i = 0; i < informationPokemonArray.length; i++) {
+        const informationOption = document.createElement("option");
+        informationOption.value = informationPokemonArray[i];
+        informationOption.textContent = informationPokemonArray[i];
+        informationOption.setAttribute("class", "IA-DropdownOptions")
+        document.querySelector(".IA-PokemonDropdown").appendChild(informationOption);
     }
 }
 
@@ -742,4 +760,10 @@ function AllTypes(data) {
         filterOption.setAttribute("class", "FA-DropdownOptions")
         filterType.appendChild(filterOption);
     }
+}
+
+function EvoLines(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    evoDataArray = arrayInfo["Rows"];
+    //console.log(evoDataArray);
 }

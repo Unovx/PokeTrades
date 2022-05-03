@@ -20,7 +20,7 @@
     position: absolute; 
     display: none;
     height: 100%;
-    z-index: 5;
+    z-index: 6;
     width:420px;
     right: 0;
     overflow: auto;

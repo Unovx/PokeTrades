@@ -18,10 +18,21 @@
   <link href="css/bunchArea.css" rel="stylesheet" />
   <link href="css/filterArea.css" rel="stylesheet" />
   <link href="css/notificationArea.css" rel="stylesheet" />
+  <link href="css/informationArea.css" rel="stylesheet" />
   <link href="css/trackingArea.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
   <script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HKM82SNW46"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-HKM82SNW46');
+  </script>
 </head>
 
 <body>
@@ -584,7 +595,8 @@
         <div class="DA-MarkOptions"></div>
         <div class="DA-RibbonOptions"></div>
         <div class="DA-PokemonDetails">
-          <img class="DA-PokemonImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
+          <img class="DA-PokemonImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"
+            title="Click to see more Information about this Pokemon"></img>
           <div>
             <select class="DA-PokemonDropdown"></select>
             <input class="DA-Nickname" type="text" maxlength="12" placeholder="Nickname...">
@@ -836,6 +848,302 @@
       <input class="BA-BunchNewName BA-BunchButtons" type="text" maxlength="30" placeholder="Type New Bunch Name..">
       <button class="BA-RenameBunch BA-BunchButtons">Rename Bunch</button>
     </div>
+    <div id="InformationArea">
+      <div class="IA-TopArea" style="display:block">
+        <div class="IA-Buttons">
+          <button class="IA-Close">Close</button>
+          <button class="IA-ShinyButton">
+            <img class="IA-ShinySprite" src="https://poketrades.org/Resources/Misc/Normal.png"></img>
+          </button>
+          <button class="IA-InfoButton">
+            <img class="IA-InfoSprite" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
+          </button>
+        </div>
+      </div>
+      <div class="IA-PokemonDetails">
+        <div style="position: Absolute">
+          <img class="IA-TypeIcon IA-Pokemon1_Type1"
+            src="https://poketrades.org/Resources/Misc/HP Electric.png"></img><img class="IA-TypeIcon IA-Pokemon1_Type2"
+            src="https://poketrades.org/Resources/Misc/HP Electric.png"></img><text
+            class="IA-DexText IA-Pokemon1_Dex">#25</text>
+        </div>
+        <img class="IA-PokemonImage IA-PokemonImage_1"
+          src="https://poketrades.org/Resources/Home/Pikachu-Male.png"></img>
+        <div class="IA-InfoTable">
+          <select class="IA-PokemonDropdown"></select>
+          <table class="IA-Tables">
+            <tr>
+              <td style="text-align:center">
+                <text class="IA-MaleGenderText IA-Pokemon1_MaleGender">50% Male</text><text
+                  class="IA-FemaleGenderText IA-Pokemon1_FemaleGender">50% Female</text><text
+                  class="IA-GenderlessText IA-Pokemon1_Genderless">Genderless</text><text class="IA-AbilityText"></text>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <text class="IA-AbilityText IA-Pokemon1_Ability_1">Static</text>
+              </td>
+            </tr>
+            <tr class="IA-Pokemon1_A2_Row">
+              <td>
+                <text class="IA-AbilityText IA-Pokemon1_Ability_2"> </text>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <text class="IA-AbilityText IA-Pokemon1_Ability_Hidden_1">Lightning Rod (H)</text>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <text class="IA-AbilityText IA-Pokemon1_Ability_Hidden_2"></text>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div id="IA-InfoSection">
+        <table class="IA-Stats">
+          <tr>
+            <td></td>
+            <td>
+              <text class="IA-StatText">HP</text>
+            </td>
+            <td>
+              <text class="IA-StatText">Att</text>
+            </td>
+            <td>
+              <text class="IA-StatText">Def</text>
+            </td>
+            <td>
+              <text class="IA-StatText">Spa</text>
+            </td>
+            <td>
+              <text class="IA-StatText">Spd</text>
+            </td>
+            <td>
+              <text class="IA-StatText">Spe</text>
+            </td>
+          </tr>
+          <tr class="DA-RowIVs">
+            <td>
+              <text class="IA-StatText">Stats</text>
+            </td>
+            <td>
+              <select class="IA-StatHP IA-StatDesign">
+                <option class="IA-Pokemon1_Stat_HP">35</option>
+              </select>
+            </td>
+            <td>
+              <select class="IA-StatAtt IA-StatDesign">
+                <option class="IA-Pokemon1_Stat_Att">55</option>
+              </select>
+            </td>
+            <td>
+              <select class="IA-StatDef IA-StatDesign">
+                <option class="IA-Pokemon1_Stat_Def">40</option>
+              </select>
+            </td>
+            <td>
+              <select class="IA-StatSpa IA-StatDesign">
+                <option class="IA-Pokemon1_Stat_Spa">50</option>
+              </select>
+            </td>
+            <td>
+              <select class="IA-StatSpd IA-StatDesign">
+                <option class="IA-Pokemon1_Stat_Spd">50</option>
+              </select>
+            </td>
+            <td>
+              <select class="IA-StatSpe IA-StatDesign">
+                <option class="IA-Pokemon1_Stat_Spe">90</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!--<div class="IA-Pokemon2">
+        <div class="IA-PokemonDetails">
+          <div style="position: Absolute">
+            <img class="IA-TypeIcon IA-Pokemon2_Type1"
+              src="https://poketrades.org/Resources/Misc/HP Electric.png"></img>
+            <img class="IA-TypeIcon IA-Pokemon2_Type2"
+              src="https://poketrades.org/Resources/Misc/HP Electric.png"></img>
+          </div>
+          <img class="IA-PokemonImage" src="https://poketrades.org/Resources/Home/Pikachu-Male.png"></img>
+          <div class="IA-InfoTable">
+            <text class="IA-PokemonName IA-PokemonName_2"></text>
+            <table class="IA-Tables">
+              <tr>
+                <td>
+                  <text class="IA-AbilityText IA-Pokemon2_Ability_1">Static</text>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <text class="IA-AbilityText IA-Pokemon2_Ability_2"> </text>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <text class="IA-AbilityText IA-Pokemon2_Ability_Hidden_1">Lightning Rod (H)</text>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <text class="IA-AbilityText IA-Pokemon2_Ability_Hidden_2"></text>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div id="IA-InfoSection">
+          <table class="IA-Stats">
+            <tr>
+              <td></td>
+              <td>
+                <text class="IA-StatText">HP</text>
+              </td>
+              <td>
+                <text class="IA-StatText">Att</text>
+              </td>
+              <td>
+                <text class="IA-StatText">Def</text>
+              </td>
+              <td>
+                <text class="IA-StatText">Spa</text>
+              </td>
+              <td>
+                <text class="IA-StatText">Spd</text>
+              </td>
+              <td>
+                <text class="IA-StatText">Spe</text>
+              </td>
+            </tr>
+            <tr class="DA-RowIVs">
+              <td>
+                <text class="IA-StatText">Stats</text>
+              </td>
+              <td>
+                <select class="IA-StatHP IA-StatDesign">
+                  <option class="IA-Pokemon2_Stat_HP">35</option>
+                </select>
+              </td>
+              <td>
+                <select class="IA-StatAtt IA-StatDesign">
+                  <option class="IA-Pokemon2_Stat_Att">55</option>
+                </select>
+              </td>
+              <td>
+                <select class="IA-StatDef IA-StatDesign">
+                  <option class="IA-Pokemon2_Stat_Def">40</option>
+                </select>
+              </td>
+              <td>
+                <select class="IA-StatSpa IA-StatDesign">
+                  <option class="IA-Pokemon2_Stat_Spa">50</option>
+                </select>
+              </td>
+              <td>
+                <select class="IA-StatSpd IA-StatDesign">
+                  <option class="IA-Pokemon2_Stat_Spd">50</option>
+                </select>
+              </td>
+              <td>
+                <select class="IA-StatSpe IA-StatDesign">
+                  <option class="IA-Pokemon2_Stat_Spe">90</option>
+                </select>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>-->
+      <div id="IA-InfoSection" class="IA-EvolutionsDiv">
+        <div class="IA-EvoTitleText">
+          <text class="IA-InfoText">Evolutionary Line</text>
+        </div>
+        <div id="IA-EvolutionsHolder" class="IA-InfoGrid">
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pichu.png"></img>
+            <text class="IA-InfoText">Baby Pokemon</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-Male.png"></img>
+            <text class="IA-InfoText">Friendship</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Raichu-Male.png"></img>
+            <text class="IA-InfoText">Thunder Stone</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Raichu-Alola.png"></img>
+            <text class="IA-InfoText">Thunder Stone (Alola Region)</text>
+          </div>
+        </div>
+      </div>
+      <div id="IA-InfoSection" class="IA-GendersDiv">
+        <div class="IA-EvoTitleText">
+          <text class="IA-InfoText">Gender Differences</text>
+        </div>
+        <div id="IA-GendersHolder" class="IA-InfoGrid">
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-Male.png"></img>
+            <text class="IA-InfoText">Male</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-Female.png"></img>
+            <text class="IA-InfoText">Female</text>
+          </div>
+        </div>
+      </div>
+      <div id="IA-InfoSection" class="IA-FormsDiv">
+        <div class="IA-EvoTitleText">
+          <text class="IA-InfoText">Forms</text>
+        </div>
+        <div id="IA-FormsHolder" class="IA-InfoGrid">
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-Male.png"></img>
+            <text class="IA-InfoText">Pikachu</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-OriginalCap.png"></img>
+            <text class="IA-InfoText">Original Cap</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-HoennCap.png"></img>
+            <text class="IA-InfoText">Hoenn Cap</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-SinnohCap.png"></img>
+            <text class="IA-InfoText">Sinnoh Cap</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-UnovaCap.png"></img>
+            <text class="IA-InfoText">Unova Cap</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-KalosCap.png"></img>
+            <text class="IA-InfoText">Kalos Cap</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-AlolaCap.png"></img>
+            <text class="IA-InfoText">Alola Cap</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-PartnerCap.png"></img>
+            <text class="IA-InfoText">Partner Cap</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-WorldCap.png"></img>
+            <text class="IA-InfoText">World Cap</text>
+          </div>
+          <div class="IA-InfoHolder">
+            <img class="IA-StandardImage" src="https://poketrades.org/Resources/Home/Pikachu-GMax.png"></img>
+            <text class="IA-InfoText">Gigantamax</text>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="FilterArea">
       <table class="FA-TopRow">
         <tr>
@@ -1017,7 +1325,8 @@
           To interact with your Pokemon to toggle proof, update or delete for example, that Pokemon must first be
           selected by clicking on it.
           <br> <br>
-          To move a Pokemon, click on the Move button, then click the Pokemon you want to move and then the Pokemon you
+          To move a Pokemon, click on the Move button, then click the Pokemon you want to move and then the Pokemon
+          you
           want it to be in front of.
           <br> <br>
           To copy a Pokemon, click on the Copy button and select the Pokemon twice.</text>
@@ -1074,9 +1383,13 @@
         <button class="NA-CreationPokemonClose">Close</button>
       </div>
       <div class="TemplateHelpInfo">
-        <text class="NA-TemplateHelpText">Information for creating a Pokemon can be stored in a Template and then be
+        <text class="NA-TemplateHelpText">By clicking on the Pokemon Image, you can bring up an Information Area to see
+          stats and other information.
+          <br><br>
+          Information for creating a Pokemon can be stored in a Template and then be
           accessed by selecting the Template in the dropdown option. To create a Template, type in a name for it and
-          then click on the + Button beside it. You can then select it from the dropdown. To remove a Template, type in
+          then click on the + Button beside it. You can then select it from the dropdown. To remove a Template, type
+          in
           its name and then press the - Button.
           <br><br>
           What can be stored in the Template is:
@@ -1194,6 +1507,18 @@
         </text>
         <button class="NA-TrackingHelpClose">Close</button>
       </div>
+      <div class="InformationAreaHelp">
+        <text class="NA-InformationAreaText">This Area will show you basic information about a Pokemon such as gender
+          rates, abilities and stats.
+          <br><br>
+          For evolutions, you can click on them to load up their information. For forms also in that same brighter
+          background, they can also be clicked on to bring up that data directly underneath the current pokemon, and can
+          click on them again to hide that information.
+          <br><br>
+          You can also press the Shiny Button to toggle the shiny forms on or off.
+        </text>
+        <button class="NA-InformationAreaClose">Close</button>
+      </div>
       <div class="LoadingData">
         <img class="NA-LoadingImage" src="https://poketrades.org/Resources/Misc/Loading Icon.png"></img>
         <!--<text class="NA-LoadingText">Loading Data</text>-->
@@ -1260,6 +1585,7 @@
       <script src="js/bunchArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/filterArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/notificationArea.js?v=<?=time();?"></scriptsrc>"</script>
+      <script src="js/informationArea.js"></scriptsrc>"</script>
       <script src="js/trackingArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/router.js?v=<?=time();?"></scriptsrc>"</script>
     </div>

@@ -106,6 +106,11 @@ $('.NA-BunchMoveHelpClose').click(function () {
     document.querySelector(".BunchesMoveHelp").style.display = "none";
 });
 
+$('.NA-InformationAreaClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".InformationAreaHelp").style.display = "none";
+});
+
 $('.NA-TrackingHelpClose').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".TrackingInformation").style.display = "none";

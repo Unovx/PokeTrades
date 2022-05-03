@@ -413,6 +413,7 @@ function PanelsRight() {
     document.querySelector("#DetailsArea").style.right = "0";
     document.querySelector("#FilterArea").style.right = "0";
     document.querySelector("#BunchArea").style.right = "0";
+    document.querySelector("#InformationArea").style.right = "0";
 
     document.querySelector(".MainSection").style.marginLeft = "unset";
     document.querySelector("#SA-TopRow").style.marginLeft = "unset";
@@ -422,6 +423,7 @@ function PanelsRight() {
     document.querySelector("#DetailsArea").style.left = "unset";
     document.querySelector("#FilterArea").style.left = "unset";
     document.querySelector("#BunchArea").style.left = "unset";
+    document.querySelector("#InformationArea").style.left = "unset";
 }
 
 function PanelsLeft() {
@@ -433,6 +435,7 @@ function PanelsLeft() {
     document.querySelector("#DetailsArea").style.left = "0";
     document.querySelector("#FilterArea").style.left = "0";
     document.querySelector("#BunchArea").style.left = "0";
+    document.querySelector("#InformationArea").style.left = "0";
 
     document.querySelector(".MainSection").style.marginRight = "unset";
     document.querySelector("#SA-TopRow").style.marginRight = "unset";
@@ -442,6 +445,7 @@ function PanelsLeft() {
     document.querySelector("#DetailsArea").style.right = "unset";
     document.querySelector("#FilterArea").style.right = "unset";
     document.querySelector("#BunchArea").style.right = "unset";
+    document.querySelector("#InformationArea").style.right = "unset";
 }
 
 $('.PA-HoverButton').click(function () {

@@ -106,6 +106,7 @@ $('.SA-MainMenu').click(function () {
     document.querySelector("#MainArea").style.display = "block";
     document.querySelector("#BunchArea").style.display = "none";
     document.querySelector("#FilterArea").style.display = "none";
+    document.querySelector("#InformationArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "block";
     document.querySelector(".DA-Place").style.pointerEvents = "initial";
     document.querySelector(".DA-Place").innerHTML = "Place";
@@ -120,6 +121,7 @@ $('.SA-CreateButton').click(function () {
     //document.querySelector("#SelectionArea").style.width = "100%"
     document.querySelector("#FilterArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "none";
+    document.querySelector("#InformationArea").style.display = "none";
     document.querySelector("#DetailsArea").style.display = "block";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
     document.querySelector(".SA-CreateButton").style.backgroundColor = "#313131";
