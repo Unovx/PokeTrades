@@ -42,10 +42,16 @@ $('.IA-InfoButton').click(function () {
 $('.IA-PokemonDropdown').change(function () {
     DeleteFormData();
     InformationAreaImages(document.querySelector(".IA-PokemonImage_1"), IAPokemonDropdown.value);
+    let pokemonAbilities = new Array(4);
     //Setting looping through the data array so I can get the right data for each pokemon. 
     for (let i = 0; i < pokemonDataArray.length; i++) {
         if (pokemonDataArray[i].pokemon == IAPokemonDropdown.value || pokemonDataArray[i].pokemon == "Meowstic-Male" && IAPokemonDropdown.value == "Meowstic" || pokemonDataArray[i].pokemon == "Indeedee-Male" && IAPokemonDropdown.value == "Indeedee" || pokemonDataArray[i].pokemon == "Basculegion-Male" && IAPokemonDropdown.value == "Basculegion") {
             document.querySelector(".IA-Pokemon1_Type1").setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[i].type_1 + ".png");
+            //Setting the abilities array as this will be needed later to deciding whenever to display forms.
+            pokemonAbilities[0] = pokemonDataArray[i].ability_1;
+            pokemonAbilities[1] = pokemonDataArray[i].ability_2;
+            pokemonAbilities[2] = pokemonDataArray[i].hidden_ability_1;
+            pokemonAbilities[3] = pokemonDataArray[i].hidden_ability_2;
             if (pokemonDataArray[i].type_2 != null) {
                 document.querySelector(".IA-Pokemon1_Type2").setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[i].type_2 + ".png");
                 document.querySelector(".IA-Pokemon1_Type2").style.display = "unset";
@@ -237,8 +243,22 @@ $('.IA-PokemonDropdown').change(function () {
                         for (let l = 0; l < pokemonDataArray.length; l++) {
                             if (arrayTempForms[k] == pokemonDataArray[l].pokemon) {
                                 var formStats = pokemonDataArray[l].stat_hp + "/" + pokemonDataArray[l].stat_att + "/" + pokemonDataArray[l].stat_def + "/" + pokemonDataArray[l].stat_spa + "/" + pokemonDataArray[l].stat_spd + "/" + pokemonDataArray[l].stat_spe;
-                                //Regional Forms and Toxtricity forms have different Abilities and so should be included as innteractable, AlolaCap Pikachu doesn't have anything different so we exlcude it here as -Alola would include it. While the last three actually aren't forms, we include it as forms so they'll have data created for gender differences which results in less code even if it is less cleaner.
-                                if (formStats != dropdownStats || arrayTempForms[k].includes("Toxtricity-Amped") && !IAPokemonDropdown.value.includes(arrayTempForms[k]) || arrayTempForms[k].includes("Toxtricity-LowKey") && !IAPokemonDropdown.value.includes(arrayTempForms[k]) || arrayTempForms[k].includes("-Alola") && !arrayTempForms[k].includes("AlolaCap") || arrayTempForms[k].includes("-Galar") || arrayTempForms[k].includes("-Hisui") || arrayTempForms[k].includes("Meowstic") || arrayTempForms[k].includes("Indedee") || arrayTempForms[k].includes("Basculegion")) {
+                                let formAbilities = new Array(4);
+                                formAbilities[0] = pokemonDataArray[l].ability_1;
+                                formAbilities[1] = pokemonDataArray[l].ability_2;
+                                formAbilities[2] = pokemonDataArray[l].hidden_ability_1;
+                                formAbilities[3] = pokemonDataArray[l].hidden_ability_2;
+
+                                //This part of the code will check to see if a pokemon form has different abilities, because some forms have different abilities even if the same stats, and we want to show this form data.
+                                let differentAbilities = false;
+
+                                for (let m = 0; m < formAbilities.length; m++) {
+                                    if (!pokemonAbilities.includes(formAbilities[m])) {
+                                        differentAbilities = true;
+                                    }
+                                }
+                                //Checking to see if the form stats or the form abilities are different to the base pokemon.
+                                if (formStats != dropdownStats || differentAbilities) {
                                     formDisplayed++;
                                     extraFormData++;
                                     noticeableChange = true;

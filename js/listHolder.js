@@ -146,7 +146,7 @@ function GetTemplateOptions(data) {
 function PokemonData(data) {
     arrayInfo = jQuery.parseJSON(data);
     pokemonDataArray = arrayInfo["Rows"];
-    console.log(pokemonDataArray);
+    //console.log(pokemonDataArray);
 }
 
 function AllPokemon(data) {
