@@ -1,6 +1,6 @@
 var searchData;
 var tradeOption;
-var version = 1.26;
+var version = 1.27;
 
 ////customMessage = document.querySelector(".MA-Message");
 //document.querySelector(".MA-Searchbar").value = localStorage.getItem('searchID');
@@ -13,6 +13,10 @@ $(function UpdateWebsite() {
 $(document).ready(function () {
     ForceRefresh();
 });
+
+window.onload = function () {
+    document.querySelector(".MA-CTSImage").style.pointerEvents = "initial";
+}
 
 function ForceRefresh() {
     $.post(url + "/PHP/version_check.php", { version: version }, CheckVersion);
@@ -74,6 +78,27 @@ $('.MA-FAQImage').click(function () {
 $('.MA-ImportingTradeShopImage').click(function () {
     CloseAllStartingAreas();
     document.querySelector(".PA-ImportingPanel").style.display = "block";
+});
+
+$('.MA-PokemonDataImage').click(function () {
+    //CloseAllStartingAreas();
+    IAPokemonDropdown.value = "Bulbasaur";
+    shinyStatus = "";
+    document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
+    $('.IA-PokemonDropdown').change();
+    document.querySelector("#InformationArea").style.display = "block";
+    document.querySelector("#PanelArea").style.display = "none";
+});
+
+$('.MA-CTSImage').click(function () {
+    CloseAllStartingAreas();
+    ctsSeaching = true;
+    //ctsPokemonDropdown.value = "Abomasnow";
+    $('.CTS-PokemonDropdown').change();
+    document.querySelector("#MainArea").style.display = "none";
+    document.querySelector("#PanelArea").style.display = "none";
+    document.querySelector("#CTSArea").style.display = "block";
+    document.querySelector("#SelectionArea").style.display = "grid";
 });
 
 $('.MA-OtherImage').click(function () {

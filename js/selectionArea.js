@@ -102,12 +102,16 @@ $('.SA-MainMenu').click(function () {
     document.querySelector("#DetailsArea").style.display = "none";
     document.querySelector("#SelectionArea").style.height = "100%";
     document.querySelector("#SelectionArea").style.display = "none";
+    document.querySelector("#CTSArea").style.display = "none";
     ResetFilters();
     document.querySelector("#MainArea").style.display = "block";
     document.querySelector("#BunchArea").style.display = "none";
     document.querySelector("#FilterArea").style.display = "none";
     document.querySelector("#InformationArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "block";
+    if (document.querySelector(".PA-TradeShopPanel").style.display == "none") {
+        document.querySelector(".PA-WhatsNewPanel").style.display = "block";
+    }
     document.querySelector(".DA-Place").style.pointerEvents = "initial";
     document.querySelector(".DA-Place").innerHTML = "Place";
     CreationReset();
@@ -115,6 +119,7 @@ $('.SA-MainMenu').click(function () {
     creationInProgress = false;
     placingPokemon = false;
     searchPokemonText.value = "";
+    ctsSeaching = false;
 });
 
 $('.SA-CreateButton').click(function () {
@@ -380,7 +385,11 @@ function GenerateSelection(data) {
     gridTest = document.createElement("div");
     gridTest.setAttribute("id", "GridContainer");
     document.getElementById("GeneratedSelection").appendChild(gridTest);
-    console.log(arrayData["Rows"].length + " Pokemon in " + bunchname)
+    if (ctsSeaching) {
+        console.log(arrayData["Rows"].length + " Pokemon in CTS Search");
+    } else {
+        console.log(arrayData["Rows"].length + " Pokemon in " + bunchname);
+    }
 
     for (let i = 0; i < arrayData["Rows"].length; i++) {
 
@@ -1172,10 +1181,9 @@ function GenerateSelection(data) {
 
 
 
-        //Setting up the preview IVs
+        SetImage(theImage, loopArray.pokemon, loopArray.gender, loopArray.shiny, loopArray.game_obtained);
 
-
-        if (shinyLockedArray.includes(loopArray.pokemon) && !loopArray.shiny.includes("Normal")) {
+        /*if (shinyLockedArray.includes(loopArray.pokemon) && !loopArray.shiny.includes("Normal")) {
             theImage.setAttribute("src", url + "/Resources/Fennel2.png");
         }
 
@@ -1585,7 +1593,8 @@ function GenerateSelection(data) {
 
                 }
             }
-        }
+        }*/
+
 
         //Setting up the onclick to open the details area and to set the information required for it.
         newDiv.onclick = function () {
@@ -1807,7 +1816,7 @@ function ShowPokemonDetails() {
         tempUserID = userData.user_id;
     }
     creationID = pokemonDetails.creation_id;
-    if (document.querySelector("#DetailsArea").style.display != "block" && document.querySelector("#FilterArea").style.display != "block") {
+    if (document.querySelector("#DetailsArea").style.display != "block" && document.querySelector("#FilterArea").style.display != "block" && document.querySelector("#InformationArea").style.display != "block") {
         document.querySelector("#DetailsArea").style.display = "block";
         document.querySelector("#PanelArea").style.display = "none";
     }
@@ -1881,7 +1890,8 @@ function ShowPokemonDetails() {
     tempTradeOption = "";
     tempTradeOption = pokemonDetails.trade_option;
 
-    document.querySelector(".DA-Username").innerHTML = searchData.username + "#" + pokemonDetails.user_id;
+    document.querySelector(".DA-Username").innerHTML = pokemonDetails.username + "#" + pokemonDetails.user_id;
+    //document.querySelector(".DA-Username").innerHTML = searchData.username + "#" + pokemonDetails.user_id;
 
     if (tempUserID == pokemonDetails.user_id) {
         bunchSelection.value = pokemonDetails.bunch;
@@ -2293,4 +2303,771 @@ function ShowAllDropdowns() {
     legacyMove2Selection.style.appearance = "auto";
     legacyMove3Selection.style.appearance = "auto";
     legacyMove4Selection.style.appearance = "auto";
+}
+
+function SetImage(image, imageName, gender, shiny, gameObtained) {
+
+    if (iconExclusivesArray.includes(imageName)) {
+        if (allBallsArray.includes(imageName) || imageName == "Egg") {
+            image.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/" + imageName + ".png");
+        }
+        else if (bunchIcon.includes("HP")) {
+            image.setAttribute("src", url + "/Resources/Misc/" + imageName + ".png");
+        }
+        else if (imageName.includes("Ribbon")) {
+            image.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/Ribbons/" + imageName + ".png");
+        }
+        else {
+            if (!shiny.includes("Normal")) {
+                image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+            } else {
+                image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+            }
+        }
+    }
+
+
+    else if (shinyLockedArray.includes(imageName) && !shiny.includes("Normal")) {
+        image.setAttribute("src", url + "/Resources/Fennel2.png");
+    }
+
+    else if (shinyExceptionArray.includes(imageName) && !shiny.includes("Normal")) {
+        if (imageName.includes("Minior")) {
+            if (gender.includes("Genderless") || gender.includes("Any Gender")) {
+                if (generationalSprites) {
+                    image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/Minior.png");
+                } else {
+                    image.setAttribute("src", url + "/Resources/HomeShiny/Minior.png");
+                }
+            } else {
+                image.setAttribute("src", url + "/Resources/Fennel2.png");
+            }
+        } else if (imageName.includes("Alcremie-Strawberry")) {
+            if (gender.includes("Female") || gender.includes("Any Gender")) {
+                image.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Strawberry.png");
+            } else {
+                image.setAttribute("src", url + "/Resources/Fennel2.png");
+            }
+        }
+        else if (imageName.includes("Alcremie-Berry")) {
+            if (gender.includes("Female") || gender.includes("Any Gender")) {
+                image.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Berry.png");
+            } else {
+                image.setAttribute("src", url + "/Resources/Fennel2.png");
+            }
+        }
+        else if (imageName.includes("Alcremie-Love")) {
+            if (gender.includes("Female") || gender.includes("Any Gender")) {
+                image.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Love.png");
+            } else {
+                image.setAttribute("src", url + "/Resources/Fennel2.png");
+            }
+        }
+        else if (imageName.includes("Alcremie-Star")) {
+            if (gender.includes("Female") || gender.includes("Any Gender")) {
+                image.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Star.png");
+            } else {
+                image.setAttribute("src", url + "/Resources/Fennel2.png");
+            }
+        }
+        else if (imageName.includes("Alcremie-Clover")) {
+            if (gender.includes("Female") || gender.includes("Any Gender")) {
+                image.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Clover.png");
+            } else {
+                image.setAttribute("src", url + "/Resources/Fennel2.png");
+            }
+        }
+        else if (imageName.includes("Alcremie-Flower")) {
+            if (gender.includes("Female") || gender.includes("Any Gender")) {
+                image.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Flower.png");
+            } else {
+                image.setAttribute("src", url + "/Resources/Fennel2.png");
+            }
+        }
+        else if (imageName.includes("Alcremie-Ribbon")) {
+            if (gender.includes("Female") || gender.includes("Any Gender")) {
+                image.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Ribbon.png");
+            } else {
+                image.setAttribute("src", url + "/Resources/Fennel2.png");
+            }
+        }
+    }
+
+    else if (genderlessPokemonArray.includes(imageName)) {
+        if (gender.includes("Genderless") || gender.includes("(Any Gender)")) {
+            if (shiny.includes("Normal")) {
+                if (generationalSprites) {
+                    if (gameObtained == "R/B/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "G/S/C") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BW/BW2") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "X/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "OR/AS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "SM/USUM") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LGP/LGE") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BD/SP") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSP/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LA") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + ".png");
+                    }
+                    else {
+                        image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                    }
+                    image.onerror = function () {
+                        image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                    }
+                } else {
+                    image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                }
+
+            } else {
+                if (generationalSprites) {
+                    if (gameObtained == "R/B/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "G/S/C") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BW/BW2") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "X/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "OR/AS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "SM/USUM") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LGP/LGE") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BD/SP") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LA") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + ".png");
+                    }
+                    else {
+                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                    }
+                    image.onerror = function () {
+                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                    }
+                } else {
+                    image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                }
+            }
+
+        } else {
+            image.setAttribute("src", url + "/Resources/Fennel2.png");
+        }
+    }
+    else if (maleOnlyPokemonArray.includes(imageName)) {
+        if (gender.includes("Male") || gender.includes("(Any Gender)")) {
+            if (shiny.includes("Normal")) {
+                if (generationalSprites) {
+                    if (gameObtained == "R/B/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "G/S/C") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BW/BW2") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "X/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "OR/AS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "SM/USUM") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LGP/LGE") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BD/SP") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSP/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LA") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + ".png");
+                    }
+                    else {
+                        image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                    }
+                    image.onerror = function () {
+                        image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                    }
+                } else {
+                    image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                }
+
+            } else {
+                if (generationalSprites) {
+                    if (gameObtained == "R/B/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "G/S/C") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BW/BW2") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "X/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "OR/AS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "SM/USUM") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LGP/LGE") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BD/SP") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LA") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + ".png");
+                    }
+                    else {
+                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                    }
+                    image.onerror = function () {
+                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                    }
+                } else {
+                    image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                }
+            }
+        } else {
+            image.setAttribute("src", url + "/Resources/Fennel2.png");
+        }
+    }
+    else if (femaleOnlyPokemonArray.includes(imageName)) {
+        if (gender.includes("Female") || gender.includes("(Any Gender)")) {
+            if (shiny.includes("Normal")) {
+                if (generationalSprites) {
+                    if (gameObtained == "R/B/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "G/S/C") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BW/BW2") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "X/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "OR/AS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "SM/USUM") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LGP/LGE") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BD/SP") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSP/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LA") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + ".png");
+                    }
+                    else {
+                        image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                    }
+                    image.onerror = function () {
+                        image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                    }
+                } else {
+                    image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                }
+
+            } else {
+                if (generationalSprites) {
+                    if (gameObtained == "R/B/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "G/S/C") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BW/BW2") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "X/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "OR/AS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "SM/USUM") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LGP/LGE") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BD/SP") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LA") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + ".png");
+                    }
+                    else {
+                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                    }
+                    image.onerror = function () {
+                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                    }
+                } else {
+                    image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                }
+            }
+
+        } else {
+            image.setAttribute("src", url + "/Resources/Fennel2.png");
+        }
+    }
+    else if (genderDifferencesArray.includes(imageName)) {
+        if (gender.includes("Male") || gender.includes("(Any Gender)")) {
+            if (shiny.includes("Normal")) {
+                if (generationalSprites) {
+                    if (gameObtained == "R/B/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "G/S/C") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + "-Male.png");
+                        }
+                    }
+                    else if (gameObtained == "BW/BW2") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + "-Male.png");
+                        }
+                    }
+                    else if (gameObtained == "X/Y") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + "-Male.png");
+                        }
+                    }
+                    else if (gameObtained == "OR/AS") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + "-Male.png");
+                        }
+                    }
+                    else if (gameObtained == "SM/USUM") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + "-Male.png");
+                        }
+                    }
+                    else if (gameObtained == "LGP/LGE") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + "-Male.png");
+                        }
+                    }
+                    else if (gameObtained == "BD/SP") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSP/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LA") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + "-Male.png");
+                    }
+                    else {
+                        image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Male.png");
+                    }
+                } else {
+                    image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Male.png");
+                }
+                image.onerror = function () {
+                    image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Male.png")
+                };
+            } else {
+                if (generationalSprites) {
+                    if (gameObtained == "R/B/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "G/S/C") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + "-Male.png");
+                        }
+                    }
+                    else if (gameObtained == "BW/BW2") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + "-Male.png");
+                        }
+                    }
+                    else if (gameObtained == "X/Y") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + "-Male.png");
+                        }
+                    }
+                    else if (gameObtained == "OR/AS") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + "-Male.png");
+                        }
+                    }
+                    else if (gameObtained == "SM/USUM") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + "-Male.png");
+                        }
+                    }
+                    else if (gameObtained == "LGP/LGE") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + "-Male.png");
+                        }
+                    }
+                    else if (gameObtained == "BD/SP") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LA") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + "-Male.png");
+                    }
+                    else {
+                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Male.png");
+                    }
+                } else {
+                    image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Male.png");
+                }
+                image.onerror = function () {
+                    image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Male.png")
+                };
+            }
+
+        }
+        else if (gender.includes("Female") || gender.includes("(Any Gender)")) {
+            if (shiny.includes("Normal")) {
+                if (generationalSprites) {
+                    if (gameObtained == "R/B/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "G/S/C") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + "-.png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + "-Female.png");
+                        }
+                    }
+                    else if (gameObtained == "BW/BW2") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + "-Female.png");
+                        }
+                    }
+                    else if (gameObtained == "X/Y") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + "-Female.png");
+                        }
+                    }
+                    else if (gameObtained == "OR/AS") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + "-Female.png");
+                        }
+                    }
+                    else if (gameObtained == "SM/USUM") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + "-Female.png");
+                        }
+                    }
+                    else if (gameObtained == "LGP/LGE") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + "-Female.png");
+                        }
+                    }
+                    else if (gameObtained == "BD/SP") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSP/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LA") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + "-Female.png");
+                    }
+                    else {
+                        image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Female.png");
+                    }
+                } else {
+                    image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Female.png");
+                }
+                image.onerror = function () {
+                    image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Female.png")
+                };
+            } else {
+                if (generationalSprites) {
+                    if (gameObtained == "R/B/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "G/S/C") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + "-Female.png");
+                        }
+                    }
+                    else if (gameObtained == "BW/BW2") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + "-Female.png");
+                        }
+                    }
+                    else if (gameObtained == "X/Y") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + "-Female.png");
+                        }
+                    }
+                    else if (gameObtained == "OR/AS") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + "-Female.png");
+                        }
+                    }
+                    else if (gameObtained == "SM/USUM") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + "-Female.png");
+                        }
+                    }
+                    else if (gameObtained == "LGP/LGE") {
+                        if (imageName == "Eevee") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + ".png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + "-Female.png");
+                        }
+                    }
+                    else if (gameObtained == "BD/SP") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LA") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + "-Female.png");
+                    }
+                    else {
+                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Female.png");
+                    }
+                } else {
+                    image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Female.png");
+                }
+                image.onerror = function () {
+                    image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Female.png")
+                };
+            }
+
+        } else {
+            image.setAttribute("src", url + "/Resources/Fennel2.png");
+        }
+    }
+    //For Normal pokemon without any gender differences or specific genders
+    else if (!genderlessPokemonArray.includes(imageName)) {
+        if (!gender.includes("Genderless") || gender.includes("(Any Gender)")) {
+            if (shiny.includes("Normal")) {
+                if (generationalSprites) {
+                    if (gameObtained == "R/B/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "G/S/C") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BW/BW2") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "X/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "OR/AS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "SM/USUM") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LGP/LGE") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BD/SP") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSP/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LA") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + ".png");
+                    }
+                    else {
+                        image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                    }
+                    image.onerror = function () {
+                        image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                    }
+                } else {
+                    image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                }
+            } else {
+                if (generationalSprites) {
+                    if (gameObtained == "R/B/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "G/S/C") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BW/BW2") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "X/Y") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "OR/AS") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "SM/USUM") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LGP/LGE") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "BD/SP") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/" + imageName + ".png");
+                    }
+                    else if (gameObtained == "LA") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + ".png");
+                    }
+                    else {
+                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                    }
+                    image.onerror = function () {
+                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                    }
+                } else {
+                    image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                }
+            }
+
+        } else {
+            image.setAttribute("src", url + "/Resources/Fennel2.png");
+        }
+    } else {
+        image.setAttribute("src", url + "/Resources/Fennel2.png");
+    }
+
+    if (!allIconsArray.includes(imageName)) {
+        image.setAttribute("src", url + "/Resources/Fennel2.png");
+    }
 }

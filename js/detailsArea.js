@@ -9,12 +9,6 @@ AdditionalViewing3 = [];
 AdditionalViewing4 = [];
 AdditionalViewing5 = [];
 AdditionalViewing6 = [];
-viewing1Username = "";
-viewing2Username = "";
-viewing3Username = "";
-viewing4Username = "";
-viewing5Username = "";
-viewing6Username = "";
 
 var toggleOn = false;
 
@@ -124,7 +118,7 @@ function SetHiddenPower() {
         calcSpe = ivSpeSelection.value;
         console.log(types[calculateTypeHP(calcHP, calcAtt, calcDef, calcSpa, calcSpd, calcSpe)]);
         miscData = "HP " + types[calculateTypeHP(calcHP, calcAtt, calcDef, calcSpa, calcSpd, calcSpe)];
-        document.querySelector(".DA-MiscIcon").src = "https://poketrades.org/Resources/Misc/" + miscData + ".png";
+        document.querySelector(".DA-MiscIcon").src = url + "/Resources/Misc/" + miscData + ".png";
     }
 }
 
@@ -147,7 +141,9 @@ $('.DA-Close').click(function () {
     storedValue = null;
     document.querySelector("#SelectionArea").style.width = "100%";
     document.querySelector("#DetailsArea").style.display = "none";
-    document.querySelector("#PanelArea").style.display = "block";
+    if (document.querySelector("#InformationArea").style.display != "block") {
+        document.querySelector("#PanelArea").style.display = "block";
+    }
     $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     creationInProgress = false;
     document.querySelector(".DA-TemplateName").value = "";
@@ -227,8 +223,10 @@ $(".DA-PokemonImage").click(function () {
     IAPokemonDropdown.value = pokemonSelection.value;
     if (shinyData.includes("Normal")) {
         shinyStatus = "";
+        document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
     } else {
         shinyStatus = "-Shiny";
+        document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Misc/Star Shiny.png");
     }
     $('.IA-PokemonDropdown').change();
     document.querySelector("#InformationArea").style.display = "block";
@@ -646,37 +644,31 @@ function DisplayProof() {
 
 function SetAV1() {
     AdditionalViewing1 = pokemonDetails;
-    viewing1Username = searchData.username;
     document.querySelector(".DA-AV1").src = url + "/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png";
 }
 
 function SetAV2() {
     AdditionalViewing2 = pokemonDetails;
-    viewing2Username = searchData.username;
     document.querySelector(".DA-AV2").src = url + "/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png";
 }
 
 function SetAV3() {
     AdditionalViewing3 = pokemonDetails;
-    viewing3Username = searchData.username;
     document.querySelector(".DA-AV3").src = url + "/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png";
 }
 
 function SetAV4() {
     AdditionalViewing4 = pokemonDetails;
-    viewing4Username = searchData.username;
     document.querySelector(".DA-AV4").src = url + "/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png";
 }
 
 function SetAV5() {
     AdditionalViewing5 = pokemonDetails;
-    viewing5Username = searchData.username;
     document.querySelector(".DA-AV5").src = url + "/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png";
 }
 
 function SetAV6() {
     AdditionalViewing6 = pokemonDetails;
-    viewing6Username = searchData.username;
     document.querySelector(".DA-AV6").src = url + "/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png";
 }
 
@@ -684,42 +676,36 @@ function ShowAV1() {
     pokemonDetails = AdditionalViewing1;
     ShowPokemonDetails();
     ModifyCheckViewing();
-    document.querySelector(".DA-Username").innerHTML = viewing1Username + "#" + pokemonDetails.user_id;
 }
 
 function ShowAV2() {
     pokemonDetails = AdditionalViewing2;
     ShowPokemonDetails();
     ModifyCheckViewing();
-    document.querySelector(".DA-Username").innerHTML = viewing2Username + "#" + pokemonDetails.user_id;
 }
 
 function ShowAV3() {
     pokemonDetails = AdditionalViewing3;
     ShowPokemonDetails();
     ModifyCheckViewing();
-    document.querySelector(".DA-Username").innerHTML = viewing3Username + "#" + pokemonDetails.user_id;
 }
 
 function ShowAV4() {
     pokemonDetails = AdditionalViewing4;
     ShowPokemonDetails();
     ModifyCheckViewing();
-    document.querySelector(".DA-Username").innerHTML = viewing4Username + "#" + pokemonDetails.user_id;
 }
 
 function ShowAV5() {
     pokemonDetails = AdditionalViewing5;
     ShowPokemonDetails();
     ModifyCheckViewing();
-    document.querySelector(".DA-Username").innerHTML = viewing5Username + "#" + pokemonDetails.user_id;
 }
 
 function ShowAV6() {
     pokemonDetails = AdditionalViewing6;
     ShowPokemonDetails();
     ModifyCheckViewing();
-    document.querySelector(".DA-Username").innerHTML = viewing6Username + "#" + pokemonDetails.user_id;
 };
 
 function CloseDetailOptions() {
@@ -782,7 +768,7 @@ function CreateBallOptions() {
 
         theImage = document.createElement("IMG");
         theImage.setAttribute("class", "DA-IconImage");
-        theImage.setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/" + allBallsArray[i] + ".png")
+        theImage.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Items/" + allBallsArray[i] + ".png")
         newDiv.appendChild(theImage);
 
         theText = document.createElement("text");
@@ -801,7 +787,7 @@ function CreateBallOptions() {
 
         newDiv.onclick = function () {
             ballData = allBallsArray[i];
-            document.querySelector(".DA-BallIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/" + allBallsArray[i] + ".png";
+            document.querySelector(".DA-BallIcon").src = url + "/Resources/Images/Dreamworld Artwork/Items/" + allBallsArray[i] + ".png";
             CloseDetailOptions();
         };
     }
@@ -828,7 +814,7 @@ function CreateGenderOptions() {
 
         theImage = document.createElement("IMG");
         theImage.setAttribute("class", "DA-IconImage");
-        theImage.setAttribute("src", "https://poketrades.org/Resources/Misc/" + genderOptionsArray[i] + ".png")
+        theImage.setAttribute("src", url + "/Resources/Misc/" + genderOptionsArray[i] + ".png")
         newDiv.appendChild(theImage);
 
         theText = document.createElement("text");
@@ -838,7 +824,7 @@ function CreateGenderOptions() {
 
         newDiv.onclick = function () {
             genderData = genderOptionsArray[i];
-            document.querySelector(".DA-GenderIcon").src = "https://poketrades.org/Resources/Misc/" + genderOptionsArray[i] + ".png";
+            document.querySelector(".DA-GenderIcon").src = url + "/Resources/Misc/" + genderOptionsArray[i] + ".png";
             CloseDetailOptions();
             PokemonValidation();
         };
@@ -866,7 +852,7 @@ function CreateShinyOptions() {
 
         theImage = document.createElement("IMG");
         theImage.setAttribute("class", "DA-IconImage");
-        theImage.setAttribute("src", "https://poketrades.org/Resources/Misc/" + shinyOptionsArray[i] + ".png")
+        theImage.setAttribute("src", url + "/Resources/Misc/" + shinyOptionsArray[i] + ".png")
         newDiv.appendChild(theImage);
 
         theText = document.createElement("text");
@@ -876,7 +862,7 @@ function CreateShinyOptions() {
 
         newDiv.onclick = function () {
             shinyData = shinyOptionsArray[i];
-            document.querySelector(".DA-ShinyIcon").src = "https://poketrades.org/Resources/Misc/" + shinyOptionsArray[i] + ".png";
+            document.querySelector(".DA-ShinyIcon").src = url + "/Resources/Misc/" + shinyOptionsArray[i] + ".png";
             CloseDetailOptions();
             PokemonValidation();
         };
@@ -904,7 +890,7 @@ function CreateMintOptions() {
 
         theImage = document.createElement("IMG");
         theImage.setAttribute("class", "DA-IconImage");
-        theImage.setAttribute("src", "https://poketrades.org/Resources/Misc/" + mintOptionsArray[i] + ".png")
+        theImage.setAttribute("src", url + "/Resources/Misc/" + mintOptionsArray[i] + ".png")
         newDiv.appendChild(theImage);
 
         theText = document.createElement("text");
@@ -914,7 +900,7 @@ function CreateMintOptions() {
 
         newDiv.onclick = function () {
             mintData = mintOptionsArray[i];
-            document.querySelector(".DA-MintIcon").src = "https://poketrades.org/Resources/Misc/" + mintOptionsArray[i] + ".png";
+            document.querySelector(".DA-MintIcon").src = url + "/Resources/Misc/" + mintOptionsArray[i] + ".png";
             CloseDetailOptions();
         };
     }
@@ -941,7 +927,7 @@ function CreateMiscOptions() {
 
         theImage = document.createElement("IMG");
         theImage.setAttribute("class", "DA-IconImage");
-        theImage.setAttribute("src", "https://poketrades.org/Resources/Misc/" + miscOptionsArray[i] + ".png")
+        theImage.setAttribute("src", url + "/Resources/Misc/" + miscOptionsArray[i] + ".png")
         newDiv.appendChild(theImage);
 
         theText = document.createElement("text");
@@ -951,7 +937,7 @@ function CreateMiscOptions() {
 
         newDiv.onclick = function () {
             miscData = miscOptionsArray[i];
-            document.querySelector(".DA-MiscIcon").src = "https://poketrades.org/Resources/Misc/" + miscOptionsArray[i] + ".png";
+            document.querySelector(".DA-MiscIcon").src = url + "/Resources/Misc/" + miscOptionsArray[i] + ".png";
             CloseDetailOptions();
         };
     }
@@ -980,7 +966,7 @@ function CreateMarkOptions() {
 
         theImage = document.createElement("IMG");
         theImage.setAttribute("class", "DA-IconImage");
-        theImage.setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/" + allMarksArray[i] + ".png")
+        theImage.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Marks/" + allMarksArray[i] + ".png")
         newDiv.appendChild(theImage);
 
         theText = document.createElement("text");
@@ -995,7 +981,7 @@ function CreateMarkOptions() {
 
         newDiv.onclick = function () {
             markData = allMarksArray[i];
-            document.querySelector(".DA-MarkIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/" + allMarksArray[i] + ".png";
+            document.querySelector(".DA-MarkIcon").src = url + "/Resources/Images/Dreamworld Artwork/Marks/" + allMarksArray[i] + ".png";
             CloseDetailOptions();
         };
     }
@@ -1019,7 +1005,7 @@ function CreateRibbonOptions() {
 
         theImage = document.createElement("IMG");
         theImage.setAttribute("class", "DA-IconImage");
-        theImage.setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[i] + ".png")
+        theImage.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[i] + ".png")
         newDiv.appendChild(theImage);
 
         theText = document.createElement("text");
@@ -1036,13 +1022,13 @@ function CreateRibbonOptions() {
         newDiv.onclick = function () {
             if (ribbonData[i] != ribbonOptionsArray[i]) {
                 ribbonData[i] = ribbonOptionsArray[i];
-                //document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[i] + ".png";
+                //document.querySelector(".DA-RibbonIcon").src = url + "/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[i] + ".png";
                 ribbonString = "";
                 if (ribbonData[i] == "(No Ribbon)") {
                     ribbonData = new Array(103);
                     ribbonData[1] = "(No Ribbon)";
                     ribbonString = "(No Ribbon)";
-                    document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
+                    document.querySelector(".DA-RibbonIcon").src = url + "/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
                     document.getElementById("DA-" + ribbonOptionsArray[i]).style.background = "#1e5578";
                     for (let j = 0; j < ribbonData.length; j++) {
                         if (ribbonData[j] != "(No Ribbon)") {
@@ -1055,7 +1041,7 @@ function CreateRibbonOptions() {
                     ribbonData = new Array(103);
                     ribbonData[0] = "(Any or No Ribbon)";
                     ribbonString = "(Any or No Ribbon)";
-                    document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/(Any or No Ribbon).png";
+                    document.querySelector(".DA-RibbonIcon").src = url + "/Resources/Images/Dreamworld Artwork/Ribbons/(Any or No Ribbon).png";
                     document.getElementById("DA-" + ribbonOptionsArray[i]).style.background = "#1e5578";
                     for (let j = 0; j < ribbonData.length; j++) {
                         if (ribbonData[j] != "(Any or No Ribbon)") {
@@ -1070,7 +1056,7 @@ function CreateRibbonOptions() {
                     document.getElementById("DA-" + ribbonOptionsArray[1]).style.background = "#404040";
                     for (let j = 0; j < ribbonData.length; j++) {
                         if (ribbonData[j] != null) {
-                            document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[j] + ".png";
+                            document.querySelector(".DA-RibbonIcon").src = url + "/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[j] + ".png";
                             if (ribbonString == "") {
                                 ribbonString += ribbonData[j];
                             } else {
@@ -1083,11 +1069,11 @@ function CreateRibbonOptions() {
                 }
             } else {
                 ribbonData[i] = null;
-                document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
+                document.querySelector(".DA-RibbonIcon").src = url + "/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
                 ribbonString = "";
                 for (let j = 0; j < ribbonData.length; j++) {
                     if (ribbonData[j] != null) {
-                        document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[j] + ".png";
+                        document.querySelector(".DA-RibbonIcon").src = url + "/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[j] + ".png";
                         if (ribbonString == "") {
                             ribbonString += ribbonData[j];
                         } else {
@@ -1109,62 +1095,65 @@ function CreateRibbonOptions() {
 }
 
 function PokemonValidation() {
-    if (shinyExceptionArray.includes(pokemonData) && !shinyData.includes("Normal")) {
+
+    SetImage(pokemonSprite, pokemonData, genderData, shinyData, gameObtainedValue);
+
+    /*if (shinyExceptionArray.includes(pokemonData) && !shinyData.includes("Normal")) {
         if (pokemonData.includes("Minior")) {
             if (genderData.includes("Genderless") || genderData.includes("Any Gender")) {
                 if (generationalSprites) {
                     pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/Minior.png");
                 } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/Minior-Shiny.png");
+                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Minior.png");
                 }
             } else {
                 pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
             }
         } else if (pokemonData.includes("Alcremie-Strawberry")) {
             if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/Home/Alcremie-Strawberry-Shiny.png");
+                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Strawberry.png");
             } else {
                 pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
             }
         }
         else if (pokemonData.includes("Alcremie-Berry")) {
             if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/Home/Alcremie-Berry-Shiny.png");
+                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Berry.png");
             } else {
                 pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
             }
         }
         else if (pokemonData.includes("Alcremie-Love")) {
             if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/Home/Alcremie-Love-Shiny.png");
+                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Love.png");
             } else {
                 pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
             }
         }
         else if (pokemonData.includes("Alcremie-Star")) {
             if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/Home/Alcremie-Star-Shiny.png");
+                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Star.png");
             } else {
                 pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
             }
         }
         else if (pokemonData.includes("Alcremie-Clover")) {
             if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/Home/Alcremie-Clover-Shiny.png");
+                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Clover.png");
             } else {
                 pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
             }
         }
         else if (pokemonData.includes("Alcremie-Flower")) {
             if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/Home/Alcremie-Flower-Shiny.png");
+                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Flower.png");
             } else {
                 pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
             }
         }
         else if (pokemonData.includes("Alcremie-Ribbon")) {
             if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/Home/Alcremie-Ribbon-Shiny.png");
+                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Ribbon.png");
             } else {
                 pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
             }
@@ -1255,13 +1244,13 @@ function PokemonValidation() {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + pokemonData + ".png");
                     }
                     else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Shiny.png");
+                        pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
                     }
                     document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Shiny.png");
+                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
                     }
                 } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Shiny.png");
+                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
                 }
             }
 
@@ -1349,13 +1338,13 @@ function PokemonValidation() {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + pokemonData + ".png");
                     }
                     else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Shiny.png");
+                        pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
                     }
                     document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Shiny.png");
+                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
                     }
                 } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Shiny.png");
+                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
                 }
             }
         } else {
@@ -1442,13 +1431,13 @@ function PokemonValidation() {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + pokemonData + ".png");
                     }
                     else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Shiny.png");
+                        pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
                     }
                     document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Shiny.png");
+                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
                     }
                 } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Shiny.png");
+                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
                 }
             }
 
@@ -1583,13 +1572,13 @@ function PokemonValidation() {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + pokemonData + "-Male.png");
                     }
                     else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Male-Shiny.png");
+                        pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + "-Male.png");
                     }
                 } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Male-Shiny.png");
+                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + "-Male.png");
                 }
                 document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Male-Shiny.png")
+                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + "-Male.png")
                 };
             }
 
@@ -1720,13 +1709,13 @@ function PokemonValidation() {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + pokemonData + "-Female.png");
                     }
                     else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Female-Shiny.png");
+                        pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + "-Female.png");
                     }
                 } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Female-Shiny.png");
+                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + "-Female.png");
                 }
                 document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Female-Shiny.png")
+                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + "-Female.png")
                 };
             }
 
@@ -1814,13 +1803,13 @@ function PokemonValidation() {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + pokemonData + ".png");
                     }
                     else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Shiny.png");
+                        pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
                     }
                     document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Shiny.png");
+                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
                     }
                 } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Shiny.png");
+                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
                 }
             }
 
@@ -1830,6 +1819,7 @@ function PokemonValidation() {
     } else {
         pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
     }
+    */
 }
 
 function AbilityOptions() {
@@ -1891,13 +1881,13 @@ function CreationReset() {
     } else {
         genderData = "(Any Gender)";
     }
-    document.querySelector(".DA-GenderIcon").src = "https://poketrades.org/Resources/Misc/" + genderData + ".png";
+    document.querySelector(".DA-GenderIcon").src = url + "/Resources/Misc/" + genderData + ".png";
     if (tradeOption == "For Trade") {
         shinyData = "Normal";
     } else {
         shinyData = "(Any Shiny or Normal)";
     }
-    document.querySelector(".DA-ShinyIcon").src = "https://poketrades.org/Resources/Misc/" + shinyData + ".png";
+    document.querySelector(".DA-ShinyIcon").src = url + "/Resources/Misc/" + shinyData + ".png";
     nicknameSelection.value = "";
     otSelection.value = "";
     idSelection.value = "";
@@ -1926,23 +1916,23 @@ function CreationReset() {
     } else {
         ballData = "(Any Ball)";
     }
-    document.querySelector(".DA-BallIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/" + ballData + ".png";
+    document.querySelector(".DA-BallIcon").src = url + "/Resources/Images/Dreamworld Artwork/Items/" + ballData + ".png";
     if (tradeOption == "For Trade") {
         mintData = "Not Minted";
     } else {
         mintData = "(Any or No Mint)";
     }
-    document.querySelector(".DA-MintIcon").src = "https://poketrades.org/Resources/Misc/" + mintData + ".png";
+    document.querySelector(".DA-MintIcon").src = url + "/Resources/Misc/" + mintData + ".png";
     miscData = "(No Misc)";
     if (tradeOption == "For Trade") {
         markData = "(No Mark)";
     } else {
         markData = "(Any or No Mark)";
     }
-    document.querySelector(".DA-MiscIcon").src = "https://poketrades.org/Resources/Misc/" + miscData + ".png";
-    document.querySelector(".DA-MarkIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/" + markData + ".png";
+    document.querySelector(".DA-MiscIcon").src = url + "/Resources/Misc/" + miscData + ".png";
+    document.querySelector(".DA-MarkIcon").src = url + "/Resources/Images/Dreamworld Artwork/Marks/" + markData + ".png";
     var cols = document.getElementsByClassName("Ribbons");
-    document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
+    document.querySelector(".DA-RibbonIcon").src = url + "/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
     for (i = 0; i < cols.length; i++) {
         cols[i].style.background = "#404040";
         cols[i].style.display = "block";

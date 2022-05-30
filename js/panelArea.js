@@ -414,6 +414,7 @@ function PanelsRight() {
     document.querySelector("#FilterArea").style.right = "0";
     document.querySelector("#BunchArea").style.right = "0";
     document.querySelector("#InformationArea").style.right = "0";
+    document.querySelector("#CTSArea").style.right = "0";
 
     document.querySelector(".MainSection").style.marginLeft = "unset";
     document.querySelector("#SA-TopRow").style.marginLeft = "unset";
@@ -424,6 +425,7 @@ function PanelsRight() {
     document.querySelector("#FilterArea").style.left = "unset";
     document.querySelector("#BunchArea").style.left = "unset";
     document.querySelector("#InformationArea").style.left = "unset";
+    document.querySelector("#CTSArea").style.left = "unset";
 }
 
 function PanelsLeft() {
@@ -436,6 +438,7 @@ function PanelsLeft() {
     document.querySelector("#FilterArea").style.left = "0";
     document.querySelector("#BunchArea").style.left = "0";
     document.querySelector("#InformationArea").style.left = "0";
+    document.querySelector("#CTSArea").style.left = "0";
 
     document.querySelector(".MainSection").style.marginRight = "unset";
     document.querySelector("#SA-TopRow").style.marginRight = "unset";
@@ -446,6 +449,7 @@ function PanelsLeft() {
     document.querySelector("#FilterArea").style.right = "unset";
     document.querySelector("#BunchArea").style.right = "unset";
     document.querySelector("#InformationArea").style.right = "unset";
+    document.querySelector("#CTSArea").style.right = "unset";
 }
 
 $('.PA-HoverButton').click(function () {
@@ -820,7 +824,10 @@ function ForTradeData(data) {
             theImage.setAttribute("id", "GeneratedBunches " + (i));
 
             //Setting the Icon
-            if (iconExclusivesArray.includes(bunchArray.icon)) {
+
+            SetImage(theImage, bunchArray.icon, bunchArray.gender, bunchArray.shiny);
+
+            /*if (iconExclusivesArray.includes(bunchArray.icon)) {
                 if (allBallsArray.includes(bunchArray.icon) || bunchArray.icon == "Egg") {
                     theImage.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/" + bunchArray.icon + ".png");
                 }
@@ -831,7 +838,7 @@ function ForTradeData(data) {
                     theImage.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/Ribbons/" + bunchArray.icon + ".png");
                 } else {
                     if (bunchArray.shiny == "Shiny") {
-                        theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Shiny" + ".png");
+                        theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + ".png");
                     } else {
                         theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + ".png");
                     }
@@ -844,7 +851,7 @@ function ForTradeData(data) {
                             theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Male.png");
                         }
                         else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Male-Shiny.png");
+                            theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + "-Male.png");
                         }
                     }
                     else if (bunchArray.gender == "Female") {
@@ -852,7 +859,7 @@ function ForTradeData(data) {
                             theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Female.png");
                         }
                         else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Female-Shiny.png");
+                            theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + "-Female.png");
                         }
                     }
                 } else {
@@ -862,36 +869,36 @@ function ForTradeData(data) {
                     else {
                         if (shinyExceptionArray.includes(bunchArray.icon)) {
                             if (bunchArray.icon.includes("Minior")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Minior-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Minior.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Strawberry")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Strawberry-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Strawberry.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Berry")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Berry-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Berry.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Love")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Love-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Love.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Star")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Star-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Star.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Clover")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Clover-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Clover.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Flower")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Flower-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Flower.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Ribbon")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Ribbon-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Ribbon.png");
                             }
                         }
                         else {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Shiny.png")
+                            theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + ".png")
                         }
                     }
                 }
-            }
+            }*/
 
             //Setting Image and Text Attributes
             theImage.setAttribute("width", "100");
@@ -1044,7 +1051,10 @@ function LookingForData(data) {
             theImage.setAttribute("id", "GeneratedBunches " + (i));
 
             //Setting the Icon
-            if (iconExclusivesArray.includes(bunchArray.icon)) {
+
+            SetImage(theImage, bunchArray.icon, bunchArray.gender, bunchArray.shiny);
+
+            /*if (iconExclusivesArray.includes(bunchArray.icon)) {
                 if (allBallsArray.includes(bunchArray.icon) || bunchArray.icon == "Egg") {
                     theImage.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/" + bunchArray.icon + ".png");
                 }
@@ -1052,7 +1062,7 @@ function LookingForData(data) {
                     theImage.setAttribute("src", url + "/Resources/Misc/" + bunchArray.icon + ".png");
                 } else {
                     if (bunchArray.shiny == "Shiny") {
-                        theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Shiny" + ".png");
+                        theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + ".png");
                     } else {
                         theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + ".png");
                     }
@@ -1065,7 +1075,7 @@ function LookingForData(data) {
                             theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Male.png");
                         }
                         else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Male-Shiny.png");
+                            theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + "-Male.png");
                         }
                     }
                     else if (bunchArray.gender == "Female") {
@@ -1073,7 +1083,7 @@ function LookingForData(data) {
                             theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Female.png");
                         }
                         else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Female-Shiny.png");
+                            theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + "-Female.png");
                         }
                     }
                 } else {
@@ -1083,36 +1093,36 @@ function LookingForData(data) {
                     else {
                         if (shinyExceptionArray.includes(bunchArray.icon)) {
                             if (bunchArray.icon.includes("Minior")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Minior-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Minior.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Strawberry")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Strawberry-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Strawberry.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Berry")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Berry-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Berry.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Love")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Love-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Love.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Star")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Star-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Star.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Clover")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Clover-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Clover.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Flower")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Flower-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Flower.png");
                             }
                             else if (bunchArray.icon.includes("Alcremie-Ribbon")) {
-                                theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Ribbon-Shiny.png");
+                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Ribbon.png");
                             }
                         }
                         else {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Shiny.png")
+                            theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + ".png")
                         }
                     }
                 }
-            }
+            }*/
 
             //Setting Image and Text Attributes
             theImage.setAttribute("width", "100");

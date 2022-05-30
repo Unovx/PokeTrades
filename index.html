@@ -19,6 +19,7 @@
   <link href="css/filterArea.css" rel="stylesheet" />
   <link href="css/notificationArea.css" rel="stylesheet" />
   <link href="css/informationArea.css" rel="stylesheet" />
+  <link href="css/ctsArea.css" rel="stylesheet" />
   <link href="css/trackingArea.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
@@ -68,12 +69,14 @@
             <img class="MA-ImportingTradeShopImage"
               src="https://poketrades.org/Resources/Designs/Import_Icon.png"></img>
           </div>
-
+          <div class="MA-PokemonData">
+            <img class="MA-PokemonDataImage" src="https://poketrades.org/Resources/Designs/Pokemon_Data_Icon.png"></img>
+          </div>
+          <div class="MA-CTS">
+            <img class="MA-CTSImage" src="https://poketrades.org/Resources/Designs/Staff_Icon.png"></img>
+          </div>
           <div class="MA-Other">
             <img class="MA-OtherImage" src="https://poketrades.org/Resources/Designs/Discord_Icon.png"></img>
-          </div>
-          <div>
-
           </div>
           <div class="MA-Tracking">
             <img class="MA-TrackingImage" src="https://poketrades.org/Resources/Designs/Legality_List_Icon.png"></img>
@@ -265,7 +268,7 @@
           oninput='this.style.height = ""; this.style.height = this.scrollHeight - 20 + "px"'>Type in a SearchID in the InputField to bring up their TradeShop. Afterwards, (scroll down if on mobile) click on any of the Bunches below to open them and see the Pokemon within.</textarea>
 
         <div class="PA-GeneratedBunches">
-          <img class="PA-BunchHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
+          <img class="PA-BunchHelp" src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
           <div id="PA-ForTradeBunches">
             <button class="PA-ForTradeBunchEdit">Edit For Trade Bunches</button>
             <button class="PA-ForTradeBunchMove">Move For Trade Bunches</button>
@@ -433,7 +436,7 @@
               <button class="SA-FiltersButton">Filters</button>
             </td>
             <td>
-              <img class="SA-SelectionHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
+              <img class="SA-SelectionHelp" src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
             </td>
           </tr>
         </table>
@@ -451,40 +454,25 @@
           when it is created, or click on the button again to cancel.</text>
       </div>
       <div class="DA-TopData">
-        <table class="DA-Buttons">
-          <tr>
-            <td>
-              <button class="DA-Close">Close</button>
-            </td>
-            <td>
-              <button class="DA-Save">Save</button>
-            </td>
-            <td>
-              <button class="DA-Place">Place</button>
-            </td>
-            <td>
-              <button class="DA-Delete">Delete</button>
-            </td>
-            <td>
-              <button class="DA-Reset">Reset</button>
-            </td>
-            <td>
-              <button class="DA-Add">Add</button>
-            </td>
-            <td>
-              <button class="DA-Lock">Lock</button>
-            </td>
-          </tr>
-        </table>
+        <div class="CTS-Buttons">
+          <button class="DA-Close">Close</button>
+          <button class="DA-Save">Save</button>
+          <button class="DA-Place">Place</button>
+          <button class="DA-Delete">Delete</button>
+          <button class="DA-Reset">Reset</button>
+          <button class="DA-Add">Add</button>
+          <button class="DA-Lock">Lock</button>
+        </div>
+
       </div>
       <table class="DA-AdditionalViewings">
         <tr>
           <td>
-            <img class="DA-ViewingHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
+            <img class="DA-ViewingHelp" src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
           </td>
           <td>
             <img class="DA-ViewingHelp" style="visibility: hidden;"
-              src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
+              src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
           </td>
           <td>
             <img class="DA-AddAV DA-AddAV1" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
@@ -537,7 +525,7 @@
         <table class="DA-TemplateSection">
           <tr>
             <td class="DA-TemplateAreas">
-              <img class="DA-TemplateHelp" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
+              <img class="DA-TemplateHelp" src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
             </td>
             <td class="DA-TemplateAreas">
               <button class="DA-AddTemplate">+</button>
@@ -819,6 +807,241 @@
         oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'></textarea>
     </div>
 
+    <div id="CTSArea">
+      <div class="CTS-Buttons">
+        <button class="CTS-CloseButton">Close</button>
+        <button class="CTS-SearchButton">Search</button>
+        <button class="CTS-ResetButton">Reset</button>
+        <button class="CTS-HelpButton">
+          <img class="CTS-HelpSprite" src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
+        </button>
+      </div>
+      <div class="CTS-IconOptions">
+        <div class="CTS-SelectedLang">
+          <button class="CTS-LangIcon">[ANY]</button>
+        </div>
+        <div class="CTS-SelectedBall">
+          <img class="CTS-BallIcon"
+            src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/(Any Ball).png"></img>
+        </div>
+        <div class="CTS-SelectedGender">
+          <img class="CTS-GenderIcon" src="https://poketrades.org/Resources/Misc/(Any Gender).png"></img>
+        </div>
+        <div class="CTS-SelectedShiny">
+          <img class="CTS-ShinyIcon" src="https://poketrades.org/Resources/Misc/(Any Shiny or Normal).png"></img>
+        </div>
+        <div class="CTS-SelectedMint">
+          <img class="CTS-MintIcon" src="https://poketrades.org/Resources/Misc/(Any or No Mint).png"></img>
+        </div>
+        <div class="CTS-SelectedMisc">
+          <img class="CTS-MiscIcon" src="https://poketrades.org/Resources/Misc/(No Misc).png"></img>
+        </div>
+        <div class="CTS-SelectedMark">
+          <img class="CTS-MarkIcon"
+            src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/(No Mark).png"></img>
+        </div>
+        <div class="CTS-SelectedRibbon">
+          <img class="CTS-RibbonIcon"
+            src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png"></img>
+        </div>
+      </div>
+      <div class="CTS-LangOptions CTS-OptionsContainer"></div>
+      <div class="CTS-BallOptions CTS-OptionsContainer"></div>
+      <div class="CTS-GenderOptions CTS-OptionsContainer"></div>
+      <div class="CTS-ShinyOptions CTS-OptionsContainer"></div>
+      <div class="CTS-MintOptions CTS-OptionsContainer"></div>
+      <div class="CTS-MiscOptions CTS-OptionsContainer"></div>
+      <div class="CTS-MarkOptions CTS-OptionsContainer"></div>
+      <div class="CTS-RibbonOptions CTS-OptionsContainer"></div>
+      <div class="CTS-PokemonDetails">
+        <img class="CTS-PokemonImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
+        <div>
+          <select class="CTS-PokemonDropdown"></select>
+          <select class="CTS-NicknameDropdown"></select>
+          <table class="CTS-Tables">
+            <tr class="CTS-AbilityRow">
+              <td class="CTS-TableText">
+                <text>Ability:</text>
+              </td>
+              <td>
+                <select class="CTS-AbilityDropdown">
+                </select>
+              </td>
+            </tr>
+            <tr class="CTS-NatureRow">
+              <td class="CTS-TableText">
+                <text>Nature:</text>
+              </td>
+              <td>
+                <select class="CTS-NatureDropdown"></select>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="CTS-InfoHolder">
+        <table style="width: 50%;">
+          <tr>
+            <td>
+              <div class="CTS-Availability">
+                <button class="CTS-Gen6">Gen6</button>
+                <button class="CTS-Gen7">Gen7</button>
+                <button class="CTS-Gen8">Gen8</button>
+                <button class="CTS-Home">Home</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <select class="CTS-GameObtainedDropdown"></select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <select class="CTS-HowObtainedDropdown">
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+
+            </td>
+          </tr>
+        </table>
+        <table class="CTS-Tables">
+          <tr class="CTS-OTRow">
+            <td class="CTS-TableText">
+              <text>OT:</text>
+            </td>
+            <td>
+              <input class="CTS-OT" type="text" maxlength="12" placeholder="Type OT...">
+            </td>
+          </tr>
+          <tr class="CTS-IDRow">
+            <td class="CTS-TableText">
+              <text>ID:</text>
+            </td>
+            <td>
+              <input class="CTS-ID" type="number" maxlength="6" placeholder="Type ID...">
+            </td>
+          </tr>
+          <tr class="CTS-StatusRow">
+            <td class="CTS-TableText">
+              <text>Status:</text>
+            </td>
+            <td>
+              <select class="CTS-StatusDropdown"></select>
+            </td>
+          </tr>
+          <tr class="CTS-EventRow">
+            <td class="CTS-TableText">
+              <text>Event:</text>
+            </td>
+            <td>
+              <select class="CTS-EventDropdown"></select>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="CTS-InfoGridHolder">
+        <select class="CTS-FormDropdown"></select>
+        <select class="CTS-EvoDropdown"></select>
+      </div>
+      <div class="CTS-StatHolder">
+        <table class="CTS-IVsEVs">
+          <tr>
+            <td>
+              <text></text>
+            </td>
+            <td>
+              <text class="CTS-IvEvText">HP</text>
+            </td>
+            <td>
+              <text class="CTS-IvEvText">Att</text>
+            </td>
+            <td>
+              <text class="CTS-IvEvText">Def</text>
+            </td>
+            <td>
+              <text class="CTS-IvEvText">Spa</text>
+            </td>
+            <td>
+              <text class="CTS-IvEvText">Spd</text>
+            </td>
+            <td>
+              <text class="CTS-IvEvText">Spe</text>
+            </td>
+          </tr>
+          <tr class="CTS-RowIVs">
+            <td>
+              <text class="CTS-IvText">IVs</text>
+            </td>
+            <td>
+              <select class="CTS-IvHP CTS-IvEvDesign"></select>
+            </td>
+            <td>
+              <select class="CTS-IvAtt CTS-IvEvDesign"></select>
+            </td>
+            <td>
+              <select class="CTS-IvDef CTS-IvEvDesign"></select>
+            </td>
+            <td>
+              <select class="CTS-IvSpa CTS-IvEvDesign"></select>
+            </td>
+            <td>
+              <select class="CTS-IvSpd CTS-IvEvDesign"></select>
+            </td>
+            <td>
+              <select class="CTS-IvSpe CTS-IvEvDesign"></select>
+            </td>
+          </tr>
+          <tr class="CTS-RowEVs">
+            <td>
+              <text class="CTS-EvText">EVs</text>
+            </td>
+            <td>
+              <select class="CTS-EvHP CTS-IvEvDesign"></select>
+            </td>
+            <td>
+              <select class="CTS-EvAtt CTS-IvEvDesign"></select>
+            </td>
+            <td>
+              <select class="CTS-EvDef CTS-IvEvDesign"></select>
+            </td>
+            <td>
+              <select class="CTS-EvSpa CTS-IvEvDesign"></select>
+            </td>
+            <td>
+              <select class="CTS-EvSpd CTS-IvEvDesign"></select>
+            </td>
+            <td>
+              <select class="CTS-EvSpe CTS-IvEvDesign"></select>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="CTS-MovesHolder">
+        <text class="CTS-PokemonMoves">Desired Moves</text>
+        <div class="CTS-NormalMoves">
+          <div>
+            <select class="CTS-Move1"></select>
+          </div>
+          <div>
+            <select class="CTS-Move2"></select>
+          </div>
+          <div>
+            <select class="CTS-Move3"></select>
+          </div>
+          <div>
+            <select class="CTS-Move4"></select>
+          </div>
+        </div>
+      </div>
+      <div class="CTS-InfoGridHolder">
+        <select class="CTS-ProofDropdown"></select>
+        <select class="CTS-NoteDropdown"></select>
+      </div>
+    </div>
     <div id="BunchArea">
       <button class="BA-CloseButton BA-BunchButtons">Return to Main Area</button>
       <text class="BA-SelectIconText">Select the Icon to display for your Bunch</text>
@@ -853,10 +1076,10 @@
         <div class="IA-Buttons">
           <button class="IA-Close">Close</button>
           <button class="IA-ShinyButton">
-            <img class="IA-ShinySprite" src="https://poketrades.org/Resources/Misc/Normal.png"></img>
+            <img class="IA-ShinySprite" src="https://poketrades.org/Resources/Misc/X IV Icon.png"></img>
           </button>
           <button class="IA-InfoButton">
-            <img class="IA-InfoSprite" src="https://poketrades.org/Resources/Home/Unown-Question-Shiny.png"></img>
+            <img class="IA-InfoSprite" src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
           </button>
         </div>
       </div>
@@ -1358,7 +1581,8 @@
         </table>
       </div>
       <div class="ViewingPokemonAdded">
-        <text class="NA-PokemonAddedText">Sucessfully added the Pokemon to your Tradesheet.</text>
+        <text class="NA-PokemonAddedText">Sucessfully added the Pokemon to your Tradesheet (Can be found inside (No
+          Bunch) in For Trade).</text>
         <button class="NA-PokemonAddedClose">Close</button>
       </div>
       <div class="CreationPokemonError">
@@ -1519,6 +1743,17 @@
         </text>
         <button class="NA-InformationAreaClose">Close</button>
       </div>
+      <div class="CTSInfo">
+        <text class="NA-CTSInfoText">This is an area to search for any Pokemon on PokeTrades across all users.
+          <br><br>
+          Clicking on the Icons on the Rows below will open up areas where you can multi-select what you are searching
+          for; such as clicking on Beast and Poke Balls to inidicate you are looking for the Pokemon in those.
+          <br><br>
+          The order of the desired moves do not matter, and when multi-selecting Ribbons, currently it is a combination
+          of all Ribbons, not any one of those Ribbons.
+        </text>
+        <button class="NA-CTSInfoClose">Close</button>
+      </div>
       <div class="LoadingData">
         <img class="NA-LoadingImage" src="https://poketrades.org/Resources/Misc/Loading Icon.png"></img>
         <!--<text class="NA-LoadingText">Loading Data</text>-->
@@ -1586,6 +1821,7 @@
       <script src="js/filterArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/notificationArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/informationArea.js"></scriptsrc>"</script>
+      <script src="js/ctsArea.js"></scriptsrc>"</script>
       <script src="js/trackingArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/router.js?v=<?=time();?"></scriptsrc>"</script>
     </div>

@@ -21,6 +21,7 @@
     overflow: auto;
 }
 
+
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: rgb(160, 160, 160);
     opacity: 1; /* Firefox */
@@ -84,6 +85,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     cursor: pointer;
+    margin: 3px;
 }
 
 .DA-Save {
@@ -101,6 +103,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     cursor: pointer;
+    margin: 3px;
 }
 
 .DA-Place {
@@ -111,12 +114,14 @@
     border-width: 2px;
     border-style: solid;
     border-color: #5c5c5c;
-    width: 63px;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     cursor: pointer;
+    margin: 3px;
 }
 
 .DA-PlaceInfo{
@@ -159,11 +164,13 @@
     border-color: #5c5c5c;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
+    min-width: 63px;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     cursor: pointer;
+    margin: 3px;
 }
 
 .DA-Reset {
@@ -181,6 +188,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     cursor: pointer;
+    margin: 3px;
 }
 
 .DA-Add {
@@ -198,6 +206,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     cursor: pointer;
+    margin: 3px;
 }
 
 .DA-Lock {
@@ -215,6 +224,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     cursor: pointer;
+    margin: 3px;
 }
 
 .DA-AdditionalViewings{

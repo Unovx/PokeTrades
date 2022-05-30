@@ -34,6 +34,9 @@ var languageOptionsArray;
 var templateOptionsArray;
 var ribbonOptionsArray;
 var allTypesArray;
+var nicknameOptionsArray;
+var formOptionsArray;
+var evoOptionsArray;
 var evoDataArray;
 
 /*$('#Testing').click(function () {
@@ -78,6 +81,9 @@ $(document).ready(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "languages", table: "languages_options" }, LanguagesOptions);
     $.post(url + "/PHP/get_list_names.php", { column: "ribbons", table: "ribbon_options" }, RibbonOptions);
     $.post(url + "/PHP/get_list_names.php", { column: "types", table: "type_names" }, AllTypes);
+    $.post(url + "/PHP/get_list_names.php", { column: "nickname_types", table: "nickname_options" }, NicknameOptions);
+    $.post(url + "/PHP/get_list_names.php", { column: "form_types", table: "form_options" }, FormOptions);
+    $.post(url + "/PHP/get_list_names.php", { column: "evo_types", table: "evo_options" }, EvoOptions);
     $.post(url + "/PHP/evolution_data.php", EvoLines);
     if (token != null) {
         $.post(url + "/PHP/generate_templates.php", { token: token }, GetTemplateOptions);
@@ -160,7 +166,15 @@ function AllPokemon(data) {
         detailsOption.textContent = allPokemonArray[i];
         detailsOption.setAttribute("class", "DA-DropdownOptions")
         pokemonSelection.appendChild(detailsOption);
+
+
+        const ctsOption = document.createElement("option");
+        ctsOption.value = allPokemonArray[i];
+        ctsOption.textContent = allPokemonArray[i];
+        ctsOption.setAttribute("class", "CTS-DropdownOptions")
+        document.querySelector(".CTS-PokemonDropdown").appendChild(ctsOption);
     }
+    ctsPokemonDropdown.value = "Abomasnow";
 }
 
 function InformationPokemon(data) {
@@ -181,6 +195,9 @@ function AllBalls(data) {
     arrayInfo = jQuery.parseJSON(data);
     allBallsArray = arrayInfo["Rows"];
     CreateBallOptions();
+
+    ctsBallArray = new Array(allBallsArray.length - 1);
+    CTSBallOptions();
     //console.log(allBallsArray);
 
     for (let i = 0; i < allBallsArray.length; i++) {
@@ -280,6 +297,27 @@ function AllMoves(data) {
         legacyMove2Selection.appendChild(detailsOptionLegacyMove2);
         legacyMove3Selection.appendChild(detailsOptionLegacyMove3);
         legacyMove4Selection.appendChild(detailsOptionLegacyMove4);
+
+        const ctsOptionMove1 = document.createElement("option");
+        const ctsOptionMove2 = document.createElement("option");
+        const ctsOptionMove3 = document.createElement("option");
+        const ctsOptionMove4 = document.createElement("option");
+        ctsOptionMove1.value = allMovesArray[i];
+        ctsOptionMove1.textContent = allMovesArray[i];
+        ctsOptionMove2.value = allMovesArray[i];
+        ctsOptionMove2.textContent = allMovesArray[i];
+        ctsOptionMove3.value = allMovesArray[i];
+        ctsOptionMove3.textContent = allMovesArray[i];
+        ctsOptionMove4.value = allMovesArray[i];
+        ctsOptionMove4.textContent = allMovesArray[i];
+        ctsOptionMove1.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionMove2.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionMove3.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionMove4.setAttribute("class", "CTS-DropdownOptions");
+        ctsMove1Dropdown.appendChild(ctsOptionMove1);
+        ctsMove2Dropdown.appendChild(ctsOptionMove2);
+        ctsMove3Dropdown.appendChild(ctsOptionMove3);
+        ctsMove4Dropdown.appendChild(ctsOptionMove4);
     }
 }
 
@@ -300,6 +338,12 @@ function AllNatures(data) {
         detailsOption.textContent = allNaturesArray[i];
         detailsOption.setAttribute("class", "DA-DropdownOptions");
         natureSelection.appendChild(detailsOption);
+
+        const ctsOption = document.createElement("option");
+        ctsOption.value = allNaturesArray[i];
+        ctsOption.textContent = allNaturesArray[i];
+        ctsOption.setAttribute("class", "CTS-DropdownOptions");
+        ctsNatureDropdown.appendChild(ctsOption);
     }
 }
 
@@ -320,6 +364,12 @@ function AllAbilities(data) {
         detailsOption.textContent = allAbilitiesArray[i];
         detailsOption.setAttribute("class", "DA-DropdownOptions");
         abilitySelection.appendChild(detailsOption);
+
+        const ctsOption = document.createElement("option");
+        ctsOption.value = allAbilitiesArray[i];
+        ctsOption.textContent = allAbilitiesArray[i];
+        ctsOption.setAttribute("class", "DA-DropdownOptions");
+        ctsAbilityDropdown.appendChild(ctsOption);
     }
 }
 
@@ -333,6 +383,9 @@ function AllMarks(data) {
     arrayInfo = jQuery.parseJSON(data);
     allMarksArray = arrayInfo["Rows"];
     CreateMarkOptions();
+
+    ctsMarkArray = new Array(allMarksArray.length - 1);
+    CTSMarkOptions();
     //console.log(allMarksArray);
 
     for (let i = 0; i < allMarksArray.length; i++) {
@@ -361,6 +414,12 @@ function HowObtained(data) {
         detailsOption.textContent = howObtainedArray[i];
         detailsOption.setAttribute("class", "DA-DropdownOptions");
         howObtainedSelection.appendChild(detailsOption);
+
+        const ctsOption = document.createElement("option");
+        ctsOption.value = howObtainedArray[i];
+        ctsOption.textContent = howObtainedArray[i];
+        ctsOption.setAttribute("class", "CTS-DropdownOptions");
+        ctsHowObtainedDropdown.appendChild(ctsOption);
     }
 }
 
@@ -381,6 +440,12 @@ function GameObtained(data) {
         detailsOption.textContent = gameObtainedArray[i];
         detailsOption.setAttribute("class", "DA-DropdownOptions");
         gameObtainedSelection.appendChild(detailsOption);
+
+        const ctsOption = document.createElement("option");
+        ctsOption.value = gameObtainedArray[i];
+        ctsOption.textContent = gameObtainedArray[i];
+        ctsOption.setAttribute("class", "CTS-DropdownOptions");
+        ctsGameObtainedDropdown.appendChild(ctsOption);
     }
 }
 
@@ -474,6 +539,37 @@ function IvValues(data) {
         ivSpaSelection.appendChild(detailsOptionSpa);
         ivSpdSelection.appendChild(detailsOptionSpd);
         ivSpeSelection.appendChild(detailsOptionSpe);
+
+        const ctsOptionHP = document.createElement("option");
+        const ctsOptionAtt = document.createElement("option");
+        const ctsOptionDef = document.createElement("option");
+        const ctsOptionSpa = document.createElement("option");
+        const ctsOptionSpd = document.createElement("option");
+        const ctsOptionSpe = document.createElement("option");
+        ctsOptionHP.value = ivValuesArray[i];
+        ctsOptionHP.textContent = ivValuesArray[i];
+        ctsOptionAtt.value = ivValuesArray[i];
+        ctsOptionAtt.textContent = ivValuesArray[i];
+        ctsOptionDef.value = ivValuesArray[i];
+        ctsOptionDef.textContent = ivValuesArray[i];
+        ctsOptionSpa.value = ivValuesArray[i];
+        ctsOptionSpa.textContent = ivValuesArray[i];
+        ctsOptionSpd.value = ivValuesArray[i];
+        ctsOptionSpd.textContent = ivValuesArray[i];
+        ctsOptionSpe.value = ivValuesArray[i];
+        ctsOptionSpe.textContent = ivValuesArray[i];
+        ctsOptionHP.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionAtt.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionDef.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionSpa.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionSpd.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionSpe.setAttribute("class", "CTS-DropdownOptions");
+        ctsIvHP.appendChild(ctsOptionHP);
+        ctsIvAtt.appendChild(ctsOptionAtt);
+        ctsIvDef.appendChild(ctsOptionDef);
+        ctsIvSpa.appendChild(ctsOptionSpa);
+        ctsIvSpd.appendChild(ctsOptionSpd);
+        ctsIvSpe.appendChild(ctsOptionSpe);
     }
 
     filterIvHP.value = "X";
@@ -482,6 +578,13 @@ function IvValues(data) {
     filterIvSpa.value = "X";
     filterIvSpd.value = "X";
     filterIvSpe.value = "X";
+
+    ctsIvHP.value = "X";
+    ctsIvAtt.value = "X";
+    ctsIvDef.value = "X";
+    ctsIvSpa.value = "X";
+    ctsIvSpd.value = "X";
+    ctsIvSpe.value = "X";
 }
 
 function EvValues(data) {
@@ -554,6 +657,37 @@ function EvValues(data) {
         evSpaSelection.appendChild(detailsOptionSpa);
         evSpdSelection.appendChild(detailsOptionSpd);
         evSpeSelection.appendChild(detailsOptionSpe);
+
+        const ctsOptionHP = document.createElement("option");
+        const ctsOptionAtt = document.createElement("option");
+        const ctsOptionDef = document.createElement("option");
+        const ctsOptionSpa = document.createElement("option");
+        const ctsOptionSpd = document.createElement("option");
+        const ctsOptionSpe = document.createElement("option");
+        ctsOptionHP.value = evValuesArray[i];
+        ctsOptionHP.textContent = evValuesArray[i];
+        ctsOptionAtt.value = evValuesArray[i];
+        ctsOptionAtt.textContent = evValuesArray[i];
+        ctsOptionDef.value = evValuesArray[i];
+        ctsOptionDef.textContent = evValuesArray[i];
+        ctsOptionSpa.value = evValuesArray[i];
+        ctsOptionSpa.textContent = evValuesArray[i];
+        ctsOptionSpd.value = evValuesArray[i];
+        ctsOptionSpd.textContent = evValuesArray[i];
+        ctsOptionSpe.value = evValuesArray[i];
+        ctsOptionSpe.textContent = evValuesArray[i];
+        ctsOptionHP.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionAtt.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionDef.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionSpa.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionSpd.setAttribute("class", "CTS-DropdownOptions");
+        ctsOptionSpe.setAttribute("class", "CTS-DropdownOptions");
+        ctsEvHP.appendChild(ctsOptionHP);
+        ctsEvAtt.appendChild(ctsOptionAtt);
+        ctsEvDef.appendChild(ctsOptionDef);
+        ctsEvSpa.appendChild(ctsOptionSpa);
+        ctsEvSpd.appendChild(ctsOptionSpd);
+        ctsEvSpe.appendChild(ctsOptionSpe);
     }
 
     filterEvHP.value = "X";
@@ -562,6 +696,13 @@ function EvValues(data) {
     filterEvSpa.value = "X";
     filterEvSpd.value = "X";
     filterEvSpe.value = "X";
+
+    ctsEvHP.value = "X";
+    ctsEvAtt.value = "X";
+    ctsEvDef.value = "X";
+    ctsEvSpa.value = "X";
+    ctsEvSpd.value = "X";
+    ctsEvSpe.value = "X";
 }
 
 function DisplayOptions(data) {
@@ -595,6 +736,12 @@ function EventOptions(data) {
         detailsOption.textContent = eventOptionsArray[i];
         detailsOption.setAttribute("class", "DA-DropdownOptions");
         eventSelection.appendChild(detailsOption);
+
+        const ctsOption = document.createElement("option");
+        ctsOption.value = eventOptionsArray[i];
+        ctsOption.textContent = eventOptionsArray[i];
+        ctsOption.setAttribute("class", "CTS-DropdownOptions");
+        ctsEventDropdown.appendChild(ctsOption);
     }
 }
 
@@ -602,6 +749,9 @@ function GenderOptions(data) {
     arrayInfo = jQuery.parseJSON(data);
     genderOptionsArray = arrayInfo["Rows"];
     CreateGenderOptions();
+
+    //ctsGenderArray = new Array(genderOptionsArray.length);
+    CTSGenderOptions();
     //console.log(genderOptionsArray);
 
     for (let i = 0; i < genderOptionsArray.length; i++) {
@@ -623,6 +773,9 @@ function MiscOptions(data) {
     arrayInfo = jQuery.parseJSON(data);
     miscOptionsArray = arrayInfo["Rows"];
     CreateMiscOptions();
+
+    ctsMiscArray = new Array(miscOptionsArray.length - 1);
+    CTSMiscOptions();
     //console.log(miscOptionsArray);
 
     for (let i = 0; i < miscOptionsArray.length; i++) {
@@ -638,6 +791,9 @@ function ShinyOptions(data) {
     arrayInfo = jQuery.parseJSON(data);
     shinyOptionsArray = arrayInfo["Rows"];
     CreateShinyOptions();
+
+    //ctsShinyArray = new Array(shinyOptionsArray.length);
+    CTSShinyOptions();
     //console.log(shinyOptionsArray);
 
     for (let i = 0; i < shinyOptionsArray.length; i++) {
@@ -659,6 +815,8 @@ function MintOptions(data) {
     arrayInfo = jQuery.parseJSON(data);
     mintOptionsArray = arrayInfo["Rows"];
     CreateMintOptions();
+
+    CTSMintOptions();
     //console.log(mintOptionsArray);
 
     for (let i = 0; i < mintOptionsArray.length; i++) {
@@ -687,6 +845,12 @@ function StatusOptions(data) {
         detailsOption.textContent = statusOptionsArray[i];
         detailsOption.setAttribute("class", "DA-DropdownOptions");
         statusSelection.appendChild(detailsOption);
+
+        const ctsOption = document.createElement("option");
+        ctsOption.value = statusOptionsArray[i];
+        ctsOption.textContent = statusOptionsArray[i];
+        ctsOption.setAttribute("class", "CTS-DropdownOptions");
+        ctsStatusDropdown.appendChild(ctsOption);
     }
 }
 
@@ -701,6 +865,12 @@ function NoteOptions(data) {
         filterOption.textContent = noteOptionsArray[i];
         filterOption.setAttribute("class", "FA-DropdownOptions")
         filterNote.appendChild(filterOption);
+
+        const ctsOption = document.createElement("option");
+        ctsOption.value = noteOptionsArray[i];
+        ctsOption.textContent = noteOptionsArray[i];
+        ctsOption.setAttribute("class", "CTS-DropdownOptions")
+        ctsNoteDropdown.appendChild(ctsOption);
     }
 }
 
@@ -715,6 +885,12 @@ function ProofOptions(data) {
         filterOption.textContent = proofOptionsArray[i];
         filterOption.setAttribute("class", "FA-DropdownOptions")
         filterProof.appendChild(filterOption);
+
+        const ctsOption = document.createElement("option");
+        ctsOption.value = proofOptionsArray[i];
+        ctsOption.textContent = proofOptionsArray[i];
+        ctsOption.setAttribute("class", "CTS-DropdownOptions")
+        ctsProofDropdown.appendChild(ctsOption);
     }
 }
 
@@ -722,6 +898,9 @@ function LanguagesOptions(data) {
     arrayInfo = jQuery.parseJSON(data);
     languageOptionsArray = arrayInfo["Rows"];
     CreateLangOptions();
+
+    ctsLangArray = new Array(languageOptionsArray.length - 1);
+    CTSLangOptions();
     //console.log(languageOptionsArray);
 
     for (let i = 0; i < languageOptionsArray.length; i++) {
@@ -737,6 +916,9 @@ function RibbonOptions(data) {
     arrayInfo = jQuery.parseJSON(data);
     ribbonOptionsArray = arrayInfo["Rows"];
     CreateRibbonOptions();
+
+    ctsRibbonArray = new Array(ribbonOptionsArray.length - 1);
+    CTSRibbonOptions();
     //console.log(ribbonOptionsArray);
 
     for (let i = 0; i < ribbonOptionsArray.length; i++) {
@@ -759,6 +941,48 @@ function AllTypes(data) {
         filterOption.textContent = allTypesArray[i];
         filterOption.setAttribute("class", "FA-DropdownOptions")
         filterType.appendChild(filterOption);
+    }
+}
+
+function NicknameOptions(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    nicknameOptionsArray = arrayInfo["Rows"];
+    //console.log(nicknameOptionsArray);
+
+    for (let i = 0; i < nicknameOptionsArray.length; i++) {
+        const ctsOption = document.createElement("option");
+        ctsOption.value = nicknameOptionsArray[i];
+        ctsOption.textContent = nicknameOptionsArray[i];
+        ctsOption.setAttribute("class", "CTS-DropdownOptions")
+        ctsNicknameDropdown.appendChild(ctsOption);
+    }
+}
+
+function FormOptions(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    formOptionsArray = arrayInfo["Rows"];
+    //console.log(formOptionsArray);
+
+    for (let i = 0; i < formOptionsArray.length; i++) {
+        const ctsOption = document.createElement("option");
+        ctsOption.value = formOptionsArray[i];
+        ctsOption.textContent = formOptionsArray[i];
+        ctsOption.setAttribute("class", "CTS-DropdownOptions")
+        ctsFormDropdown.appendChild(ctsOption);
+    }
+}
+
+function EvoOptions(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    evoOptionsArray = arrayInfo["Rows"];
+    //console.log(evoOptionsArray);
+
+    for (let i = 0; i < evoOptionsArray.length; i++) {
+        const ctsOption = document.createElement("option");
+        ctsOption.value = evoOptionsArray[i];
+        ctsOption.textContent = evoOptionsArray[i];
+        ctsOption.setAttribute("class", "CTS-DropdownOptions")
+        ctsEvoDropdown.appendChild(ctsOption);
     }
 }
 

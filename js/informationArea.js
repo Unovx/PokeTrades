@@ -19,13 +19,15 @@ $('.IA-Close').click(function () {
     document.querySelector("#InformationArea").style.display = "none";
     if (creationInProgress || selectedPokemon) {
         document.querySelector("#DetailsArea").style.display = "block";
+    } else {
+        document.querySelector("#PanelArea").style.display = "block";
     }
 });
 
 $('.IA-ShinyButton').click(function () {
     if (shinyStatus == "-Shiny") {
         shinyStatus = "";
-        document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Misc/Normal.png");
+        document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
     } else {
         shinyStatus = "-Shiny";
         document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Misc/Star Shiny.png");
@@ -43,6 +45,7 @@ $('.IA-PokemonDropdown').change(function () {
     DeleteFormData();
     InformationAreaImages(document.querySelector(".IA-PokemonImage_1"), IAPokemonDropdown.value);
     let pokemonAbilities = new Array(4);
+    let pokemonTypes = new Array(2);
     //Setting looping through the data array so I can get the right data for each pokemon. 
     for (let i = 0; i < pokemonDataArray.length; i++) {
         if (pokemonDataArray[i].pokemon == IAPokemonDropdown.value || pokemonDataArray[i].pokemon == "Meowstic-Male" && IAPokemonDropdown.value == "Meowstic" || pokemonDataArray[i].pokemon == "Indeedee-Male" && IAPokemonDropdown.value == "Indeedee" || pokemonDataArray[i].pokemon == "Basculegion-Male" && IAPokemonDropdown.value == "Basculegion") {
@@ -52,6 +55,8 @@ $('.IA-PokemonDropdown').change(function () {
             pokemonAbilities[1] = pokemonDataArray[i].ability_2;
             pokemonAbilities[2] = pokemonDataArray[i].hidden_ability_1;
             pokemonAbilities[3] = pokemonDataArray[i].hidden_ability_2;
+            pokemonTypes[0] = pokemonDataArray[i].type_1;
+            pokemonTypes[1] = pokemonDataArray[i].type_2;
             if (pokemonDataArray[i].type_2 != null) {
                 document.querySelector(".IA-Pokemon1_Type2").setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[i].type_2 + ".png");
                 document.querySelector(".IA-Pokemon1_Type2").style.display = "unset";
@@ -173,15 +178,19 @@ $('.IA-PokemonDropdown').change(function () {
                             tempString += arrayTempEvo[k];
                             InformationAreaImages(newImage, arrayTempEvo[k] + "-Male");
                             newDiv.onclick = function () {
-                                IAPokemonDropdown.value = tempString;
-                                $('.IA-PokemonDropdown').change();
+                                if (IAPokemonDropdown.value != tempString) {
+                                    IAPokemonDropdown.value = tempString;
+                                    $('.IA-PokemonDropdown').change();
+                                }
                             }
                         }
                         if (arrayTempEvo[k] == pokemonDataArray[l].pokemon) {
                             InformationAreaImages(newImage, arrayTempEvo[k]);
                             newDiv.onclick = function () {
-                                IAPokemonDropdown.value = pokemonDataArray[l].pokemon;
-                                $('.IA-PokemonDropdown').change();
+                                if (IAPokemonDropdown.value != pokemonDataArray[l].pokemon) {
+                                    IAPokemonDropdown.value = pokemonDataArray[l].pokemon;
+                                    $('.IA-PokemonDropdown').change();
+                                }
                             }
                         }
                     }
@@ -249,7 +258,11 @@ $('.IA-PokemonDropdown').change(function () {
                                 formAbilities[2] = pokemonDataArray[l].hidden_ability_1;
                                 formAbilities[3] = pokemonDataArray[l].hidden_ability_2;
 
-                                //This part of the code will check to see if a pokemon form has different abilities, because some forms have different abilities even if the same stats, and we want to show this form data.
+                                let formTypes = new Array(2);
+                                formTypes[0] = pokemonDataArray[l].type_1;
+                                formTypes[1] = pokemonDataArray[l].type_2;
+
+                                //This part of the code will check to see if a pokemon form has different abilities or types, because some forms have those differences even if the same stats, and we want to show this form data.
                                 let differentAbilities = false;
 
                                 for (let m = 0; m < formAbilities.length; m++) {
@@ -257,8 +270,17 @@ $('.IA-PokemonDropdown').change(function () {
                                         differentAbilities = true;
                                     }
                                 }
-                                //Checking to see if the form stats or the form abilities are different to the base pokemon.
-                                if (formStats != dropdownStats || differentAbilities) {
+
+                                let differentTypes = false;
+
+                                for (let m = 0; m < formTypes.length; m++) {
+                                    if (!pokemonTypes.includes(formTypes[m])) {
+                                        differentTypes = true;
+                                    }
+                                }
+
+                                //Checking to see if the form stats, abilities or types are different to the base pokemon.
+                                if (formStats != dropdownStats || differentAbilities || differentTypes) {
                                     formDisplayed++;
                                     extraFormData++;
                                     noticeableChange = true;
@@ -658,40 +680,40 @@ function InformationAreaImages(element, pokemon) {
 
     if (shinyStatus == "-Shiny") {
         if (pokemon.includes("Minior")) {
-            element.setAttribute("src", url + "/Resources/Home/Minior-Shiny.png");
+            element.setAttribute("src", url + "/Resources/HomeShiny/Minior.png");
         }
         else if (pokemon.includes("Alcremie-Strawberry")) {
-            element.setAttribute("src", url + "/Resources/Home/Alcremie-Strawberry-Shiny.png");
+            element.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Strawberry.png");
         }
         else if (pokemon.includes("Alcremie-Berry")) {
-            element.setAttribute("src", url + "/Resources/Home/Alcremie-Berry-Shiny.png");
+            element.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Berry.png");
         }
         else if (pokemon.includes("Alcremie-Love")) {
-            element.setAttribute("src", url + "/Resources/Home/Alcremie-Love-Shiny.png");
+            element.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Love.png");
         }
         else if (pokemon.includes("Alcremie-Star")) {
-            element.setAttribute("src", url + "/Resources/Home/Alcremie-Star-Shiny.png");
+            element.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Star.png");
         }
         else if (pokemon.includes("Alcremie-Clover")) {
-            element.setAttribute("src", url + "/Resources/Home/Alcremie-Clover-Shiny.png");
+            element.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Clover.png");
         }
         else if (pokemon.includes("Alcremie-Flower")) {
-            element.setAttribute("src", url + "/Resources/Home/Alcremie-Flower-Shiny.png");
+            element.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Flower.png");
         }
         else if (pokemon.includes("Alcremie-Ribbon")) {
-            element.setAttribute("src", url + "/Resources/Home/Alcremie-Ribbon-Shiny.png");
+            element.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Ribbon.png");
         } else {
             if (genderDifferencesArray.includes(pokemon)) {
-                element.setAttribute("src", url + "/Resources/Home/" + pokemon + "-Male" + shinyStatus + ".png")
+                element.setAttribute("src", url + "/Resources/HomeShiny/" + pokemon + "-Male" + ".png")
             } else {
-                element.setAttribute("src", url + "/Resources/Home/" + pokemon + shinyStatus + ".png");
+                element.setAttribute("src", url + "/Resources/HomeShiny/" + pokemon + ".png");
             }
         }
     } else {
         if (genderDifferencesArray.includes(pokemon)) {
-            element.setAttribute("src", url + "/Resources/Home/" + pokemon + "-Male" + shinyStatus + ".png")
+            element.setAttribute("src", url + "/Resources/Home/" + pokemon + "-Male" + ".png")
         } else {
-            element.setAttribute("src", url + "/Resources/Home/" + pokemon + shinyStatus + ".png");
+            element.setAttribute("src", url + "/Resources/Home/" + pokemon + ".png");
         }
     }
 }
@@ -701,40 +723,40 @@ function UpdateInformationImages() {
     for (let i = 0; i < informationImages.length; i++) {
         if (shinyStatus == "-Shiny") {
             if (informationPokemon[i].includes("Minior")) {
-                informationImages[i].setAttribute("src", url + "/Resources/Home/Minior-Shiny.png");
+                informationImages[i].setAttribute("src", url + "/Resources/HomeShiny/Minior.png");
             }
             else if (informationPokemon[i].includes("Alcremie-Strawberry")) {
-                informationImages[i].setAttribute("src", url + "/Resources/Home/Alcremie-Strawberry-Shiny.png");
+                informationImages[i].setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Strawberry.png");
             }
             else if (informationPokemon[i].includes("Alcremie-Berry")) {
-                informationImages[i].setAttribute("src", url + "/Resources/Home/Alcremie-Berry-Shiny.png");
+                informationImages[i].setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Berry.png");
             }
             else if (informationPokemon[i].includes("Alcremie-Love")) {
-                informationImages[i].setAttribute("src", url + "/Resources/Home/Alcremie-Love-Shiny.png");
+                informationImages[i].setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Love.png");
             }
             else if (informationPokemon[i].includes("Alcremie-Star")) {
-                informationImages[i].setAttribute("src", url + "/Resources/Home/Alcremie-Star-Shiny.png");
+                informationImages[i].setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Star.png");
             }
             else if (informationPokemon[i].includes("Alcremie-Clover")) {
-                informationImages[i].setAttribute("src", url + "/Resources/Home/Alcremie-Clover-Shiny.png");
+                informationImages[i].setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Clover.png");
             }
             else if (informationPokemon[i].includes("Alcremie-Flower")) {
-                informationImages[i].setAttribute("src", url + "/Resources/Home/Alcremie-Flower-Shiny.png");
+                informationImages[i].setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Flower.png");
             }
             else if (informationPokemon[i].includes("Alcremie-Ribbon")) {
-                informationImages[i].setAttribute("src", url + "/Resources/Home/Alcremie-Ribbon-Shiny.png");
+                informationImages[i].setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Ribbon.png");
             } else {
                 if (genderDifferencesArray.includes(informationPokemon[i])) {
-                    informationImages[i].setAttribute("src", url + "/Resources/Home/" + informationPokemon[i] + "-Male" + shinyStatus + ".png")
+                    informationImages[i].setAttribute("src", url + "/Resources/HomeShiny/" + informationPokemon[i] + "-Male" + ".png")
                 } else {
-                    informationImages[i].setAttribute("src", url + "/Resources/Home/" + informationPokemon[i] + shinyStatus + ".png");
+                    informationImages[i].setAttribute("src", url + "/Resources/HomeShiny/" + informationPokemon[i] + ".png");
                 }
             }
         } else {
             if (genderDifferencesArray.includes(informationPokemon[i])) {
-                informationImages[i].setAttribute("src", url + "/Resources/Home/" + informationPokemon[i] + "-Male" + shinyStatus + ".png")
+                informationImages[i].setAttribute("src", url + "/Resources/Home/" + informationPokemon[i] + "-Male" + ".png")
             } else {
-                informationImages[i].setAttribute("src", url + "/Resources/Home/" + informationPokemon[i] + shinyStatus + ".png");
+                informationImages[i].setAttribute("src", url + "/Resources/Home/" + informationPokemon[i] + ".png");
             }
         }
     }
