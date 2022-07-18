@@ -67,6 +67,7 @@ $(document).ready(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "game_obtained", table: "game_obtained_options" }, GameObtained);
     $.post(url + "/PHP/get_list_names.php", { column: "icons", table: "icon_names" }, AllIcons);
     $.post(url + "/PHP/get_list_names.php", { column: "icon_exclusives", table: "icon_exclusive_icons" }, IconExclusives);
+    $.post(url + "/PHP/get_giveaway_data.php", GiveawayData);
     $.post(url + "/PHP/get_list_names.php", { column: "ivs", table: "iv_values" }, IvValues);
     $.post(url + "/PHP/get_list_names.php", { column: "evs", table: "ev_values" }, EvValues);
     $.post(url + "/PHP/get_list_names.php", { column: "display_types", table: "display_options" }, DisplayOptions);
@@ -121,7 +122,7 @@ function UserBunches(data) {
         bunchToRenameDropdown.appendChild(bunchOption);
         bunchSelection.appendChild(detailsOption);
     }
-    bunchIconDropdown.value = "Abomasnow";
+    //bunchIconDropdown.value = "Abomasnow";
 
 }
 
@@ -435,6 +436,12 @@ function GameObtained(data) {
         filterOption.setAttribute("class", "FA-DropdownOptions")
         filterGameObtained.appendChild(filterOption);
 
+        const bunchOption = document.createElement("option");
+        bunchOption.value = gameObtainedArray[i];
+        bunchOption.textContent = gameObtainedArray[i];
+        bunchOption.setAttribute("class", "BA-DropdownOptions")
+        bunchGameDropdown.appendChild(bunchOption);
+
         const detailsOption = document.createElement("option");
         detailsOption.value = gameObtainedArray[i];
         detailsOption.textContent = gameObtainedArray[i];
@@ -461,6 +468,7 @@ function AllIcons(data) {
         bunchOption.setAttribute("class", "BA-DropdownOptions");
         bunchIconDropdown.appendChild(bunchOption);
     }
+    bunchIconDropdown.value = "Abomasnow";
 }
 
 function IconExclusives(data) {
@@ -990,4 +998,14 @@ function EvoLines(data) {
     arrayInfo = jQuery.parseJSON(data);
     evoDataArray = arrayInfo["Rows"];
     //console.log(evoDataArray);
+}
+
+function GiveawayData(data) {
+    if (data != "") {
+        arrayData = jQuery.parseJSON(data);
+        console.log(arrayData["Rows"][0]);
+        giveawayDetails = arrayData["Rows"][0];
+        document.querySelector(".MA-Giveaway").style.display = "block";
+        SetImage(document.querySelector(".MA-GiveawayImage"), giveawayDetails.pokemon, giveawayDetails.gender, giveawayDetails.shiny, giveawayDetails.game_obtained);
+    }
 }

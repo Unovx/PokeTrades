@@ -1,235 +1,184 @@
 body {
-    /*height: 100vh;*/
-    display: block;
-    align-items: center;
-    /*background: linear-gradient(to top left, #28b487, #7dd56f);
+  /*height: 100vh;*/
+  display: block;
+  align-items: center;
+  /*background: linear-gradient(to top left, #28b487, #7dd56f);
     background: rgb(0, 0, 0);*/
-    overflow: hidden;
-    margin: 0;
+  overflow: hidden;
+  margin: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    overflow: auto !important;
   }
 
-  @media only screen and (max-width: 768px) {
-    body{
-      overflow: auto !important;
-    }
+  [id*="SA-TopRow"] {
+    margin-bottom: 5px !important;
+    margin-right: unset !important;
+    margin-left: unset !important;
+  }
 
-    [id*="SA-TopRow"]{
-      margin-bottom: 5px !important;
-      margin-right: unset !important;
-      margin-left: unset !important;
-    }
-    [class*="SA-Bunch"]{
-      display: flex !important;
-      width: 100% !important;
-      place-content: center;
-    }
-    [class*="SA-Searchbar"]{
-      display: flex !important;
-      width: -webkit-fill-available;
-      width: -moz-available;
-      align-items: center;
-    }
-    [class*="SelectionButtons"]{
-      bottom: 0% !important;
-      left: 0% !important;
-      display: flex !important;
-      width: 100% !important;
-      place-content: center;
-    }
-    [id*="SelectionSection"]{
-      margin: unset !important;
-    }
-    [id*="GridContainer"]{
-      /* larger font size is looks better on mobile devices*/
-      font-size: 82%;
-      /* Spacing issues aren't an issue on mobile devices*/
-      grid-gap: 0.5rem !important;
-    }
-    /*[class*="TypeDisplay"]{
+  [class*="SA-Bunch"] {
+    display: flex !important;
+    width: 100% !important;
+    place-content: center;
+    margin-left: unset !important;
+  }
+
+  [class*="SA-Searchbar"] {
+    display: flex !important;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    align-items: center;
+  }
+
+  [class*="SelectionButtons"] {
+    bottom: 0% !important;
+    left: 0% !important;
+    display: flex !important;
+    width: 100% !important;
+    place-content: center;
+  }
+
+  [id*="SelectionSection"] {
+    margin: unset !important;
+  }
+
+  [id*="GridContainer"] {
+    /* larger font size is looks better on mobile devices*/
+    font-size: 82%;
+    /* Spacing issues aren't an issue on mobile devices*/
+    grid-gap: 0.5rem !important;
+  }
+
+
+
+  /*[class*="TypeDisplay"]{
       vertical-align: -webkit-baseline-middle !important;
       vertical-align: -moz-middle-with-baseline !important;
     }*/
-  }
+}
 
-  #SelectionArea{
-    position: fixed;
-    z-index: 0;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
-    display: none;
-    top: 0.5px;
-    bottom: 0.5px;
-    align-content: baseline;
-    /*background-color: #163944;*/
-  }
+#SelectionArea {
+  position: fixed;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  display: none;
+  top: 52px;
+  bottom: 0.5px;
+  align-content: baseline;
+  /*background-color: #163944;*/
+}
 
-  #SelectionSection{
-    overflow: auto;
-    margin-right: 420px;
-  }
+#SelectionSection {
+  overflow: auto;
+  margin-right: 420px;
+  margin-bottom: 52px !important;
+}
 
-  #SA-TopRow{
-    /* sticky and 0; are so it acts like its fixed, as fixed has issues with overflow elements*/
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    /*background-color: #163944;*/
-    /* So it doesn't look crowded at the top with tall icons*/
-    margin-bottom: 5px;
-  }
+#SA-TopRow {
+  /* sticky and 0; are so it acts like its fixed, as fixed has issues with overflow elements*/
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  /*background-color: #163944;*/
+  /* So it doesn't look crowded at the top with tall icons*/
+  margin-bottom: 5px;
+}
 
-  .SelectionButtons{
-    position: relative;
-    text-align: center;
-    vertical-align: middle;
-    vertical-align: -moz-middle-with-baseline;
-    display: initial;
-  }
+.SelectionButtons {
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  vertical-align: -moz-middle-with-baseline;
+  display: initial;
+}
 
-  #GeneratedSelection{
-    z-index: -1;
-    height: inherit;
-  }
+.SA-ButtonDesign {
+  background: #171d2c;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #2e3850;
+  text-align: center;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #536c9f;
+  cursor: pointer;
+  margin: 3px;
+  box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+  border-radius: 5px;
+}
 
-  .SA-Bunch{
-    position: relative;
-    color: white;
-    /*background-color: #163944;*/
-    opacity: 0%;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    /*So it doesn't cut into the top part of the outline in the top Row*/
-    top: 2px;
-    width: auto;
-    display: block;
-  }
+#GeneratedSelection {
+  z-index: -1;
+  height: inherit;
+  margin-left: 2px;
+  margin-right: 5px;
+  padding-bottom: 10px;
+}
 
-  /*.SA-ExitBunch{
-    position: relative; 
-    visibility: hidden;
-    pointer-events: none;
-    background-color: grey;
-    height: 22px;
-    border: none;
+.SA-Bunch {
+  position: relative;
+  color: #e0e0e0;
+  /*background-color: #163944;*/
+  opacity: 0%;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  /*So it doesn't cut into the top part of the outline in the top Row*/
+  top: 2px;
+  width: auto;
+  display: block;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
 
-  }*/
+.SA-SelectionHelp {
+  cursor: pointer;
+  max-width: 17px;
+  max-height: 17px;
+  vertical-align: bottom;
+}
 
-  .SA-CreateButton{
-    position: relative; 
-    pointer-events: none;
-    cursor: pointer;
-    background-color: grey;
-    height: 22px;
-    background: #313131;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #444444;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #ffffff;
-  }
+.SA-Searchbar {
+  position: relative;
+  color: #e0e0e0;
+}
 
-  .SA-MoveButton{
-    position: relative; 
-    pointer-events: none;
-    cursor: pointer;
-    background-color: grey;
-    height: 22px;
-    width: 55px;
-    background: #313131;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #444444;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #ffffff;
-  }
+#GridContainer {
+  display: grid;
+  /* auto-fill into of auto-fit so it starts from the corner of the screen*/
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  /* this is so it fills all available space without an parts being cut off on any device*/
+  height: inherit;
+  /* needing to prevent bunches and to an slight extent mons looking crowded*/
+  grid-gap: 1rem;
+  place-items: center;
+  /*background-color: #163944;*/
+}
 
-  .SA-CopyButton{
-    position: relative; 
-    pointer-events: none;
-    cursor: pointer;
-    background-color: grey;
-    height: 22px;
-    width: 55px;
-    background: #313131;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #444444;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #ffffff;
-  }
+.GenerationGridDiv {
+  /* for some reason this centers the image which is needed*/
+  text-align-last: center;
+}
 
-  .SA-MainMenu{
-    position: relative;
-    cursor: pointer;
-    height: 22px;
-    background: #6e6e6e;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #444444;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #ffffff;
-  }
+.SA-PokemonDiv {
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  box-shadow: rgb(0 0 0) 5px 5px 0px 1px;
+  background-color: #343f5f;
+  border-radius: 15px;
+  width: 100%;
+}
 
-  .SA-FiltersButton{
-    position: relative;
-    cursor: pointer;
-    height: 22px;
-    background: #6e6e6e;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #444444;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #ffffff;
-  }
+.TextColour {
+  color: cornsilk;
+}
 
-  .SA-SelectionHelp{
-    cursor: pointer;
-    max-width: 22px; 
-    max-height: 22px;
-    align-items: center;
-  }
-
-  .SA-Searchbar{
-    position: relative;
-    color: white;
-    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
-    border-radius: 5px;
-    font-weight: bold; 
-  }
-
-  #GridContainer{
-    display: grid;
-    /* auto-fill into of auto-fit so it starts from the corner of the screen*/
-    grid-template-columns: repeat( auto-fill, minmax(100px, 1fr) );
-    /* this is so it fills all available space without an parts being cut off on any device*/
-    height: inherit;
-    /* needing to prevent bunches and to an slight extent mons looking crowded*/
-    grid-gap: 1rem;
-    place-items: center;
-    /*background-color: #163944;*/
-  }
-
-  .GenerationGridDiv{
-    /* for some reason this centers the image which is needed*/
-    text-align-last: center;
-  }
-
-  .TextColour{
-      color: cornsilk;
-  }
-
-  .TopText{
-    color: cornsilk;
-  }
-
+.TopText {
+  color: cornsilk;
+}

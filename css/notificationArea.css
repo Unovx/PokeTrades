@@ -121,24 +121,42 @@
     [class*="CTSInfo"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
+        right: unset !important;
     }
 }
 
-#NotificationArea{
-    position: fixed; 
+#NotificationArea {
+    position: fixed;
     display: none;
-    height: 100%;
+    height: calc(100% - 52px);
     z-index: 10;
-    width:100%;
+    width: 100%;
     overflow: auto;
 }
 
-#RefreshPage{
-    position: fixed; 
+.NA-ButtonDesign {
+    background: #171d2c;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #2e3850;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #536c9f;
+    cursor: pointer;
+    margin-bottom: 3px !important;
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
+}
+
+#RefreshPage {
+    position: fixed;
     display: none;
     height: 100%;
     z-index: 15;
-    width:100%;
+    width: 100%;
     overflow: auto;
 }
 
@@ -150,7 +168,7 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 500px;
     top: 30%;
@@ -162,9 +180,10 @@
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.SelectionHelp{
+.SelectionHelp {
     position: relative;
     display: none;
     margin: auto;
@@ -172,21 +191,22 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 500px;
     top: 10%;
     text-align: center;
 }
 
-.NA-SelectionText{
+.NA-SelectionText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-SelectionClose{
+.NA-SelectionClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -194,7 +214,7 @@
     top: 10px;
 }
 
-.ViewingAdditionalHelp{
+.ViewingAdditionalHelp {
     position: relative;
     display: none;
     margin: auto;
@@ -202,21 +222,22 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 500px;
     top: 20%;
     text-align: center;
 }
 
-.NA-ViewingAdditionalText{
+.NA-ViewingAdditionalText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-ViewingAdditionalClose{
+.NA-ViewingAdditionalClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -224,7 +245,7 @@
     top: 10px;
 }
 
-.ViewingConfirmDelete{
+.ViewingConfirmDelete {
     position: relative;
     display: none;
     margin: auto;
@@ -232,38 +253,39 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 500px;
     top: 20%;
     text-align: center;
 }
 
-.NA-ConfirmDeleteButtons{
+.NA-ConfirmDeleteButtons {
     position: relative;
     width: 100%;
     top: 10px;
     text-align: center;
 }
 
-.NA-ConfirmDeleteText{
+.NA-ConfirmDeleteText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-ConfirmDeleteButton{
+.NA-ConfirmDeleteButton {
     position: relative;
     cursor: pointer;
 }
 
-.NA-CloseConfirmButton{
+.NA-CloseConfirmButton {
     position: relative;
     cursor: pointer;
 }
 
-.ViewingPokemonAdded{
+.ViewingPokemonAdded {
     position: relative;
     display: none;
     margin: auto;
@@ -271,21 +293,22 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 500px;
     top: 20%;
     text-align: center;
 }
 
-.NA-PokemonAddedText{
+.NA-PokemonAddedText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-PokemonAddedClose{
+.NA-PokemonAddedClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -293,7 +316,7 @@
     top: 10px;
 }
 
-.CreationPokemonError{
+.CreationPokemonError {
     position: relative;
     display: none;
     margin: auto;
@@ -301,19 +324,20 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 500px;
     top: 20%;
 }
 
-.NA-CreationPokemonText{
+.NA-CreationPokemonText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
+    color: #e0e0e0;
 }
 
-.NA-CreationPokemonClose{
+.NA-CreationPokemonClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -321,7 +345,7 @@
     top: 10px;
 }
 
-.TemplateHelpInfo{
+.TemplateHelpInfo {
     position: absolute;
     display: none;
     margin: auto;
@@ -329,7 +353,7 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 375px;
     top: 130px;
@@ -337,14 +361,15 @@
     text-align: center;
 }
 
-.NA-TemplateHelpText{
+.NA-TemplateHelpText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-TemplateHelpClose{
+.NA-TemplateHelpClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -352,7 +377,7 @@
     top: 10px;
 }
 
-.TemplateAdded{
+.TemplateAdded {
     position: absolute;
     display: none;
     margin: auto;
@@ -360,7 +385,7 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 300px;
     top: 130px;
@@ -368,14 +393,15 @@
     text-align: center;
 }
 
-.NA-TemplateAddedText{
+.NA-TemplateAddedText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-TemplateAddedClose{
+.NA-TemplateAddedClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -383,7 +409,7 @@
     top: 10px;
 }
 
-.TemplateRemoved{
+.TemplateRemoved {
     position: absolute;
     display: none;
     margin: auto;
@@ -391,7 +417,7 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 300px;
     top: 130px;
@@ -399,14 +425,15 @@
     text-align: center;
 }
 
-.NA-TemplateRemovedText{
+.NA-TemplateRemovedText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-TemplateRemovedClose{
+.NA-TemplateRemovedClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -414,7 +441,7 @@
     top: 10px;
 }
 
-.TemplateAddedError{
+.TemplateAddedError {
     position: absolute;
     display: none;
     margin: auto;
@@ -422,7 +449,7 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 300px;
     top: 130px;
@@ -430,14 +457,15 @@
     text-align: center;
 }
 
-.NA-TemplateAddedErrorText{
+.NA-TemplateAddedErrorText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-TemplateAddedErrorClose{
+.NA-TemplateAddedErrorClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -445,7 +473,7 @@
     top: 10px;
 }
 
-.TemplateRemovedError{
+.TemplateRemovedError {
     position: absolute;
     display: none;
     margin: auto;
@@ -453,7 +481,7 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 300px;
     top: 130px;
@@ -461,14 +489,15 @@
     text-align: center;
 }
 
-.NA-TemplateRemovedErrorText{
+.NA-TemplateRemovedErrorText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-TemplateRemovedErrorClose{
+.NA-TemplateRemovedErrorClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -476,7 +505,7 @@
     top: 10px;
 }
 
-.BunchIconError{
+.BunchIconError {
     position: relative;
     display: none;
     margin: auto;
@@ -484,19 +513,20 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 500px;
     top: 20%;
 }
 
-.NA-BunchIconText{
+.NA-BunchIconText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
+    color: #e0e0e0;
 }
 
-.NA-BunchIconClose{
+.NA-BunchIconClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -504,7 +534,7 @@
     top: 10px;
 }
 
-.BunchPokemonAdded{
+.BunchPokemonAdded {
     position: absolute;
     display: none;
     right: 50px;
@@ -512,21 +542,22 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 300px;
     top: 20%;
     text-align: center;
 }
 
-.NA-BunchAddedText{
+.NA-BunchAddedText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-BunchAddedClose{
+.NA-BunchAddedClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -534,7 +565,7 @@
     top: 10px;
 }
 
-.BunchPokemonRemoved{
+.BunchPokemonRemoved {
     position: absolute;
     display: none;
     right: 50px;
@@ -542,21 +573,22 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 300px;
     top: 20%;
     text-align: center;
 }
 
-.NA-BunchRemovedText{
+.NA-BunchRemovedText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-BunchRemovedClose{
+.NA-BunchRemovedClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -564,7 +596,7 @@
     top: 10px;
 }
 
-.TradeShopImported{
+.TradeShopImported {
     position: relative;
     display: none;
     margin: auto;
@@ -572,21 +604,22 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 300px;
     top: 20%;
     text-align: center;
 }
 
-.NA-ImportedSuccessText{
+.NA-ImportedSuccessText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-ImportedSuccessClose{
+.NA-ImportedSuccessClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -594,7 +627,7 @@
     top: 10px;
 }
 
-.DeleteAllConfirm{
+.DeleteAllConfirm {
     position: relative;
     display: none;
     margin: auto;
@@ -602,90 +635,61 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
-    padding: 10px;
-    width: 500px;
-    top: 20%;
-    text-align: center;
-}
-
-.NA-DeleteAllButtons{
-    position: relative;
-    width: 100%;
-    top: 10px;
-    text-align: center;
-}
-
-.NA-DeleteAllText{
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: crimson;
-}
-
-.NA-ConfirmDeleteAll{
-    position: relative;
-}
-
-.NA-CloseDeleteAll{
-    position: relative;
-    cursor: pointer;
-}
-
-.DeleteAllSuccess{
-    position: relative;
-    display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
-    padding: 10px;
-    width: 300px;
-    top: 20%;
-    text-align: center;
-}
-
-.NA-SuccessDeleteAllText{
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-}
-
-.NA-SuccessDeleteAllClose{
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
-}
-
-.BunchesMoveHelp{
-    position: relative;
-    display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 500px;
     top: 20%;
     text-align: center;
 }
 
-.NA-BunchMoveHelpText{
+.NA-DeleteAllButtons {
+    position: relative;
+    width: 100%;
+    top: 10px;
+    text-align: center;
+}
+
+.NA-DeleteAllText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #b96161;
 }
 
-.NA-BunchMoveHelpClose{
+.NA-ConfirmDeleteAll {
+    position: relative;
+}
+
+.NA-CloseDeleteAll {
+    position: relative;
+    cursor: pointer;
+}
+
+.DeleteAllSuccess {
+    position: relative;
+    display: none;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: #3a4a6a;
+    padding: 10px;
+    width: 300px;
+    top: 20%;
+    text-align: center;
+}
+
+.NA-SuccessDeleteAllText {
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+    color: #e0e0e0;
+}
+
+.NA-SuccessDeleteAllClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -693,7 +697,38 @@
     top: 10px;
 }
 
-.InformationAreaHelp{
+.BunchesMoveHelp {
+    position: relative;
+    display: none;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: #3a4a6a;
+    padding: 10px;
+    width: 500px;
+    top: 20%;
+    text-align: center;
+}
+
+.NA-BunchMoveHelpText {
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    text-align: center;
+    color: #e0e0e0;
+}
+
+.NA-BunchMoveHelpClose {
+    position: relative;
+    display: block;
+    cursor: pointer;
+    margin: auto;
+    top: 10px;
+}
+
+.InformationAreaHelp {
     position: absolute;
     display: none;
     margin: auto;
@@ -701,7 +736,7 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 375px;
     top: 130px;
@@ -709,14 +744,15 @@
     text-align: center;
 }
 
-.NA-InformationAreaText{
+.NA-InformationAreaText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-InformationAreaClose{
+.NA-InformationAreaClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -724,7 +760,7 @@
     top: 10px;
 }
 
-.TrackingInformation{
+.TrackingInformation {
     position: relative;
     display: none;
     margin: auto;
@@ -732,19 +768,20 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 500px;
     top: 20%;
 }
 
-.NA-TrackingHelpText{
+.NA-TrackingHelpText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
+    color: #e0e0e0;
 }
 
-.NA-TrackingHelpClose{
+.NA-TrackingHelpClose {
     position: relative;
     display: block;
     cursor: pointer;
@@ -752,7 +789,7 @@
     top: 10px;
 }
 
-.LoadingData{
+.LoadingData {
     position: relative;
     display: none;
     margin: auto;
@@ -762,30 +799,30 @@
     text-align: center;
 }
 
-.NA-LoadingImage{
+.NA-LoadingImage {
     position: relative;
-    display: block; 
-    max-width: 256px; 
+    display: block;
+    max-width: 256px;
     max-height: 256px;
     margin: auto;
 }
 
-.NA-LoadingText{
+.NA-LoadingText {
     position: relative;
     display: block;
     color: white;
     text-shadow:
-    -1px -1px 0 #000,  
-     1px -1px 0 #000,
-     -1px 1px 0 #000,
-      1px 1px 0 #000;
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     font-size: 20px;
 }
 
-.CTSInfo{
+.CTSInfo {
     position: absolute;
     display: none;
     margin: auto;
@@ -793,7 +830,7 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(192 192 192 / 95%);
+    background: #3a4a6a;
     padding: 10px;
     width: 375px;
     top: 130px;
@@ -801,14 +838,15 @@
     text-align: center;
 }
 
-.NA-CTSInfoText{
+.NA-CTSInfoText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     text-align: center;
+    color: #e0e0e0;
 }
 
-.NA-CTSInfoClose{
+.NA-CTSInfoClose {
     position: relative;
     display: block;
     cursor: pointer;

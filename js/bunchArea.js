@@ -1,32 +1,35 @@
-bunchIcon = "Abomasnow";
-bunchShiny = "(Any Shiny or Normal)";
-bunchGender = "(Any Gender)";
-
 bunchIconDropdown = document.querySelector(".BA-IconDropdown");
 bunchGenderDropdown = document.querySelector(".BA-GenderDropdown");
 bunchShinyDropdown = document.querySelector(".BA-ShinyDropdown");
+bunchGameDropdown = document.querySelector(".BA-GameDropdown");
 bunchInput = document.querySelector(".BA-BunchInput");
 bunchNewName = document.querySelector(".BA-BunchNewName");
 bunchToRenameDropdown = document.querySelector(".BA-BunchRename");
 
 $('.BA-CloseButton').click(function () {
+    /*CloseAll();
+    document.querySelector("#MainArea").style.display = "block";
+    document.querySelector("#PanelArea").style.display = "block";*/
+    document.querySelector("#MainArea").style.position = "absolute";
     document.querySelector("#BunchArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "block";
+    document.querySelector(".PA-TradeShopPanel").style.display = "block";
     BunchReset();
 });
 
 $('.BA-IconDropdown').change(function () {
-    bunchIcon = bunchIconDropdown.value;
     ValidateIcon();
 });
 
 $('.BA-GenderDropdown').change(function () {
-    bunchGender = bunchGenderDropdown.value;
     ValidateIcon();
 });
 
 $('.BA-ShinyDropdown').change(function () {
-    bunchShiny = bunchShinyDropdown.value;
+    ValidateIcon();
+});
+
+$('.BA-GameDropdown').change(function () {
     ValidateIcon();
 });
 
@@ -39,7 +42,7 @@ $('.BA-AddBunch').click(function () {
                 break;
             }
         }
-        $.post(url + "/PHP/create_or_update_bunch.php", { token: token, creationID: tempCreationID, name: bunchInput.value, icon: bunchIcon, gender: bunchGender, shiny: bunchShiny, tradeOption: tradeOption }, BunchChanges);
+        $.post(url + "/PHP/create_or_update_bunch.php", { token: token, creationID: tempCreationID, name: bunchInput.value, icon: bunchIconDropdown.value, gender: bunchGenderDropdown.value, shiny: bunchShinyDropdown.value, game: bunchGameDropdown.value, tradeOption: tradeOption }, BunchChanges);
     } else {
         document.querySelector("#NotificationArea").style.display = "block";
         document.querySelector(".BunchIconError").style.display = "block";
@@ -102,12 +105,9 @@ $('.BA-RenameBunch').click(function () {
 });
 
 function BunchReset() {
-    bunchIcon = "Abomasnow";
-    bunchShiny = "(Any Shiny or Normal)";
-    bunchGender = "(Any Gender)";
-
     document.querySelector(".BA-GenderDropdown").value = "(Any Gender)";
     document.querySelector(".BA-ShinyDropdown").value = "(Any Shiny or Normal)";
+    document.querySelector(".BA-GameDropdown").value = "(Any Game)";
     document.querySelector(".BA-IconDropdown").value = "Abomasnow";
     document.querySelector(".BA-BunchInput").value = "";
     document.querySelector(".BA-BunchRename").value = "(No Bunch)";
@@ -149,7 +149,7 @@ function BunchRenamed(data) {
 
 function ValidateIcon() {
 
-    SetImage(document.querySelector(".BA-IconImage"), bunchIcon, bunchGender, bunchShiny)
+    SetImage(document.querySelector(".BA-IconImage"), bunchIconDropdown.value, bunchGenderDropdown.value, bunchShinyDropdown.value, bunchGameDropdown.value);
 
     /*if (iconExclusivesArray.includes(bunchIcon)) {
         if (allBallsArray.includes(bunchIcon) || bunchIcon == "Egg") {

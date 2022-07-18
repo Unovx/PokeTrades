@@ -1,5 +1,7 @@
 //Need ctsSearching so it can change the Selection Area as needed.
 let ctsSeaching = false;
+let ctsOffset = document.querySelector(".CTS-Offset");
+let ctsLimit = document.querySelector(".CTS-Limit");
 let ctsLangArray = new Array();
 let ctsBallArray = new Array();
 let ctsGenderOption = "(Any Gender)";
@@ -50,16 +52,14 @@ $(".CTS-CloseButton").click(function () {
     ctsSeaching = false;
     CTSResetFilters();
     document.querySelector("#CTSArea").style.display = "none";
+    document.querySelector(".SA-Bunch").style.opacity = "0%";
     ResetFilters();
-    document.querySelector("#FilterArea").style.display = "none";
-    document.querySelector("#SelectionArea").style.display = "none";
+    CloseAll();
     document.querySelector("#MainArea").style.display = "block";
-    document.querySelector("#PanelArea").style.display = "block";
-    document.querySelector(".PA-WhatsNewPanel").style.display = "block";
 });
 
 $(".CTS-SearchButton").click(function () {
-    $.post(url + "/PHP/cts_search.php", { pokemon: ctsPokemonDropdown.value, lang: ctsLangArray, ball: ctsBallArray, gender: ctsGenderOption, shiny: ctsShinyOption, mint: ctsMintOption, misc: ctsMiscArray, mark: ctsMarkArray, ribbons: ctsRibbonArray, nickname: ctsNicknameDropdown.value, ability: ctsAbilityDropdown.value, nature: ctsNatureDropdown.value, gen6: cstGen6, gen7: cstGen7, gen8: cstGen8, home: cstHome, gameObtained: ctsGameObtainedDropdown.value, howObtained: ctsHowObtainedDropdown.value, formEvos: ctsFormEvos, forms: ctsForms, formOption: ctsFormDropdown.value, evos: ctsEvos, evoOption: ctsEvoDropdown.value, OT: ctsOT.value, ID: ctsID.value, status: ctsStatusDropdown.value, event: ctsEventDropdown.value, ivhp: ctsIvHP.value, ivatt: ctsIvAtt.value, ivdef: ctsIvDef.value, ivspa: ctsIvSpa.value, ivspd: ctsIvSpd.value, ivspe: ctsIvSpe.value, evhp: ctsEvHP.value, evatt: ctsEvAtt.value, evdef: ctsEvDef.value, evspa: ctsEvSpa.value, evspd: ctsEvSpd.value, evspe: ctsEvSpe.value, move1: ctsMove1Dropdown.value, move2: ctsMove2Dropdown.value, move3: ctsMove3Dropdown.value, move4: ctsMove4Dropdown.value, proof: ctsProofDropdown.value, note: ctsNoteDropdown.value }, GenerateSelection);
+    $.post(url + "/PHP/cts_search.php", { offset: ctsOffset.value, limit: ctsLimit.value, pokemon: ctsPokemonDropdown.value, lang: ctsLangArray, ball: ctsBallArray, gender: ctsGenderOption, shiny: ctsShinyOption, mint: ctsMintOption, misc: ctsMiscArray, mark: ctsMarkArray, ribbons: ctsRibbonArray, nickname: ctsNicknameDropdown.value, ability: ctsAbilityDropdown.value, nature: ctsNatureDropdown.value, gen6: cstGen6, gen7: cstGen7, gen8: cstGen8, home: cstHome, gameObtained: ctsGameObtainedDropdown.value, howObtained: ctsHowObtainedDropdown.value, formEvos: ctsFormEvos, forms: ctsForms, formOption: ctsFormDropdown.value, evos: ctsEvos, evoOption: ctsEvoDropdown.value, OT: ctsOT.value, ID: ctsID.value, status: ctsStatusDropdown.value, event: ctsEventDropdown.value, ivhp: ctsIvHP.value, ivatt: ctsIvAtt.value, ivdef: ctsIvDef.value, ivspa: ctsIvSpa.value, ivspd: ctsIvSpd.value, ivspe: ctsIvSpe.value, evhp: ctsEvHP.value, evatt: ctsEvAtt.value, evdef: ctsEvDef.value, evspa: ctsEvSpa.value, evspd: ctsEvSpd.value, evspe: ctsEvSpe.value, move1: ctsMove1Dropdown.value, move2: ctsMove2Dropdown.value, move3: ctsMove3Dropdown.value, move4: ctsMove4Dropdown.value, proof: ctsProofDropdown.value, note: ctsNoteDropdown.value }, GenerateSelection);
     //$.post(ur, move1: ctsMove1Dropdown.valuel + "/PHP/cts_search.php", { ball: ctsBallArray }, GenerateSelection);
 });
 

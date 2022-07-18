@@ -126,8 +126,8 @@ function SetHiddenPower() {
 $('.DA-Close').click(function () {
     pokemonDetails = null;
     if (selectedPokemon != null) {
-        selectedPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-        selectedPokemon.style.backgroundColor = "#084f65";
+        selectedPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+        selectedPokemon.style.backgroundColor = "#343f5f";
     }
     selectedPokemon = null;
     //Looking for the element showing the additional details and turning them off and changing the height to normal.
@@ -141,7 +141,14 @@ $('.DA-Close').click(function () {
     storedValue = null;
     document.querySelector("#SelectionArea").style.width = "100%";
     document.querySelector("#DetailsArea").style.display = "none";
-    if (document.querySelector("#InformationArea").style.display != "block") {
+    if (ctsSeaching) {
+        document.querySelector("#CTSArea").style.display = "block";
+    }
+    if (showingGiveaway) {
+        showingGiveaway = false;
+        document.querySelector("#DetailsArea").style.display = "none";
+    }
+    else if (document.querySelector("#InformationArea").style.display != "block") {
         document.querySelector("#PanelArea").style.display = "block";
     }
     $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
@@ -217,6 +224,20 @@ $('.DA-Lock').click(function () {
 $('.DA-ViewingHelp').click(function () {
     document.querySelector("#NotificationArea").style.display = "block";
     document.querySelector(".ViewingAdditionalHelp").style.display = "block";
+});
+
+$('.DA-Username').click(function () {
+    if (ctsSeaching) {
+        document.querySelector(".PA-Searchbar").value = pokemonDetails.user_id;
+        searchInfoText = pokemonDetails.user_id;
+        localStorage.setItem('searchID', searchInfoText);
+        CloseAll();
+        document.querySelector("#MainArea").style.display = "block";
+        document.querySelector("#PanelArea").style.display = "block";
+        document.querySelector(".PA-TradeShopPanel").style.display = "block";
+        document.querySelector("#MainArea").style.position = "fixed";
+        $(".PA-Searchbar").keyup();
+    }
 });
 
 $(".DA-PokemonImage").click(function () {
@@ -598,48 +619,41 @@ $('.DA-ProofURL').blur(function () {
 });
 
 function DisplayProof() {
-    if (!proofSelection.value.includes("imgur")) {
+    //if (!proofSelection.value.includes("imgur")) {
 
-        if (proofSelection.value.includes(".mp4") || proofSelection.value.includes(".MP4")) {
-            if (document.querySelector(".DA-ProofVideo").getAttribute("src") != proofSelection.value || document.querySelector(".DA-ProofVideo").innerHTML != proofSelection.value) {
-                document.querySelector(".DA-ProofVideo").setAttribute("src", proofSelection.value);
-                //document.querySelector(".DA-ToggleProof").style.display = "block";
-                document.querySelector(".DA-ProofImage").style.display = "none";
-                document.querySelector(".DA-ProofVideo").style.display = "block";
-                document.querySelector(".DA-LinkRedirector").setAttribute("href", proofSelection.value);
-                document.querySelector(".DA-ProofVideo").onerror = function () {
-                    document.querySelector(".DA-LinkRedirector").style.display = "none";
-                    //document.querySelector(".DA-ToggleProof").style.display = "none";
-                    document.querySelector(".DA-LinkRedirector").setAttribute("href", null);
-                }
-                if (toggleOn) {
-                    document.querySelector(".DA-LinkRedirector").style.display = "flex";
-                }
-            }
-
-
-
-        } else {
-            if (document.querySelector(".DA-ProofImage").getAttribute("src") != proofSelection.value || document.querySelector(".DA-ProofImage").innerHTML != proofSelection.value) {
-                document.querySelector(".DA-ProofImage").setAttribute("src", proofSelection.value);
-                document.querySelector(".DA-LinkRedirector").style.display = "none";
-                document.querySelector(".DA-ProofVideo").style.display = "none";
-                document.querySelector(".DA-ProofImage").style.display = "block";
-                //document.querySelector(".DA-ToggleProof").style.display = "block";
-                document.querySelector(".DA-LinkRedirector").setAttribute("href", proofSelection.value);
-                document.querySelector(".DA-ProofImage").onerror = function () {
-                    document.querySelector(".DA-LinkRedirector").style.display = "none";
-                    document.querySelector(".DA-LinkRedirector").setAttribute("href", null);
-                }
-                if (toggleOn) {
-                    document.querySelector(".DA-LinkRedirector").style.display = "flex";
-                }
-            }
+    if (proofSelection.value.includes(".mp4") || proofSelection.value.includes(".MP4")) {
+        document.querySelector(".DA-ProofVideo").setAttribute("src", proofSelection.value);
+        document.querySelector(".DA-ProofImage").style.display = "none";
+        document.querySelector(".DA-ProofVideo").style.display = "block";
+        document.querySelector(".DA-LinkRedirector").setAttribute("href", proofSelection.value);
+        if (toggleOn) {
+            document.querySelector(".DA-LinkRedirector").style.display = "flex";
+        }
+        document.querySelector(".DA-ProofVideo").onerror = function () {
+            document.querySelector(".DA-LinkRedirector").style.display = "none";
+            //document.querySelector(".DA-ToggleProof").style.display = "none";
+            document.querySelector(".DA-LinkRedirector").setAttribute("href", null);
         }
 
+
+
     } else {
-        document.querySelector(".DA-LinkRedirector").style.display = "none";
+        document.querySelector(".DA-ProofImage").setAttribute("src", proofSelection.value);
+        document.querySelector(".DA-ProofVideo").style.display = "none";
+        document.querySelector(".DA-ProofImage").style.display = "block";
+        document.querySelector(".DA-LinkRedirector").setAttribute("href", proofSelection.value);
+        if (toggleOn) {
+            document.querySelector(".DA-LinkRedirector").style.display = "flex";
+        }
+        document.querySelector(".DA-ProofImage").onerror = function () {
+            document.querySelector(".DA-LinkRedirector").style.display = "none";
+            document.querySelector(".DA-LinkRedirector").setAttribute("href", null);
+        }
     }
+
+    /*} else {
+        document.querySelector(".DA-LinkRedirector").style.display = "none";
+    }*/
 }
 
 function SetAV1() {
@@ -723,7 +737,8 @@ function CreateLangOptions() {
     for (let i = 0; i < languageOptionsArray.length; i++) {
         newDiv = document.createElement("div");
         newDiv.setAttribute("class", "DA-" + languageOptionsArray[i].replace(/\s/g, ''));
-        newDiv.style.background = "#404040";
+        newDiv.classList.add("DA-IconSelects");
+        /*newDiv.style.background = "#243048";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -731,7 +746,7 @@ function CreateLangOptions() {
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
         newDiv.style.borderRight = "solid";
-        newDiv.style.cursor = "pointer";
+        newDiv.style.cursor = "pointer";*/
         document.querySelector(".DA-LangOptions").appendChild(newDiv);
 
         theText = document.createElement("button");
@@ -755,7 +770,8 @@ function CreateBallOptions() {
         } else {
             newDiv.setAttribute("class", "DA-" + allBallsArray[i].replace(/\s/g, ''));
         }
-        newDiv.style.background = "#404040";
+        newDiv.classList.add("DA-IconSelects");
+        /*newDiv.style.background = "#243048";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -763,7 +779,7 @@ function CreateBallOptions() {
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
         newDiv.style.borderRight = "solid";
-        newDiv.style.cursor = "pointer";
+        newDiv.style.cursor = "pointer";*/
         document.querySelector(".DA-BallOptions").appendChild(newDiv);
 
         theImage = document.createElement("IMG");
@@ -801,7 +817,8 @@ function CreateGenderOptions() {
         } else {
             newDiv.setAttribute("class", "DA-" + genderOptionsArray[i].replace(/\s/g, ''));
         }
-        newDiv.style.background = "#404040";
+        newDiv.classList.add("DA-IconSelects");
+        /*newDiv.style.background = "#243048";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -809,7 +826,7 @@ function CreateGenderOptions() {
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
         newDiv.style.borderRight = "solid";
-        newDiv.style.cursor = "pointer";
+        newDiv.style.cursor = "pointer";*/
         document.querySelector(".DA-GenderOptions").appendChild(newDiv);
 
         theImage = document.createElement("IMG");
@@ -839,7 +856,8 @@ function CreateShinyOptions() {
         } else {
             newDiv.setAttribute("class", "DA-" + shinyOptionsArray[i].replace(/\s/g, ''));
         }
-        newDiv.style.background = "#404040";
+        newDiv.classList.add("DA-IconSelects");
+        /*newDiv.style.background = "#243048";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -847,7 +865,7 @@ function CreateShinyOptions() {
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
         newDiv.style.borderRight = "solid";
-        newDiv.style.cursor = "pointer";
+        newDiv.style.cursor = "pointer";*/
         document.querySelector(".DA-ShinyOptions").appendChild(newDiv);
 
         theImage = document.createElement("IMG");
@@ -877,7 +895,8 @@ function CreateMintOptions() {
         } else {
             newDiv.setAttribute("class", "DA-" + mintOptionsArray[i].replace(/\s/g, ''));
         }
-        newDiv.style.background = "#404040";
+        newDiv.classList.add("DA-IconSelects");
+        /*newDiv.style.background = "#243048";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -885,7 +904,7 @@ function CreateMintOptions() {
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
         newDiv.style.borderRight = "solid";
-        newDiv.style.cursor = "pointer";
+        newDiv.style.cursor = "pointer";*/
         document.querySelector(".DA-MintOptions").appendChild(newDiv);
 
         theImage = document.createElement("IMG");
@@ -914,7 +933,8 @@ function CreateMiscOptions() {
         } else {
             newDiv.setAttribute("class", "DA-" + miscOptionsArray[i].replace(/\s/g, ''));
         }
-        newDiv.style.background = "#404040";
+        newDiv.classList.add("DA-IconSelects");
+        /*newDiv.style.background = "#243048";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -922,7 +942,7 @@ function CreateMiscOptions() {
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
         newDiv.style.borderRight = "solid";
-        newDiv.style.cursor = "pointer";
+        newDiv.style.cursor = "pointer";*/
         document.querySelector(".DA-MiscOptions").appendChild(newDiv);
 
         theImage = document.createElement("IMG");
@@ -953,7 +973,8 @@ function CreateMarkOptions() {
         } else {
             newDiv.setAttribute("class", "DA-" + allMarksArray[i].replace(/\s/g, ''));
         }
-        newDiv.style.background = "#404040";
+        newDiv.classList.add("DA-IconSelects");
+        /*newDiv.style.background = "#243048";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -961,7 +982,7 @@ function CreateMarkOptions() {
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
         newDiv.style.borderRight = "solid";
-        newDiv.style.cursor = "pointer";
+        newDiv.style.cursor = "pointer";*/
         document.querySelector(".DA-MarkOptions").appendChild(newDiv);
 
         theImage = document.createElement("IMG");
@@ -992,7 +1013,8 @@ function CreateRibbonOptions() {
         newDiv = document.createElement("div");
         newDiv.setAttribute("id", "DA-" + ribbonOptionsArray[i]);
         newDiv.setAttribute("class", "Ribbons");
-        newDiv.style.background = "#404040";
+        newDiv.classList.add("DA-IconSelects");
+        /*newDiv.style.background = "#243048";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -1000,7 +1022,7 @@ function CreateRibbonOptions() {
         newDiv.style.paddingTop = "3px";
         newDiv.style.borderBottom = "solid";
         newDiv.style.borderRight = "solid";
-        newDiv.style.cursor = "pointer";
+        newDiv.style.cursor = "pointer";*/
         document.querySelector(".DA-RibbonOptions").appendChild(newDiv);
 
         theImage = document.createElement("IMG");
@@ -1032,7 +1054,7 @@ function CreateRibbonOptions() {
                     document.getElementById("DA-" + ribbonOptionsArray[i]).style.background = "#1e5578";
                     for (let j = 0; j < ribbonData.length; j++) {
                         if (ribbonData[j] != "(No Ribbon)") {
-                            document.getElementById("DA-" + ribbonOptionsArray[j]).style.background = "#404040";
+                            document.getElementById("DA-" + ribbonOptionsArray[j]).style.background = "#243048";
                         }
                     }
                     //console.log(ribbonString);
@@ -1045,15 +1067,15 @@ function CreateRibbonOptions() {
                     document.getElementById("DA-" + ribbonOptionsArray[i]).style.background = "#1e5578";
                     for (let j = 0; j < ribbonData.length; j++) {
                         if (ribbonData[j] != "(Any or No Ribbon)") {
-                            document.getElementById("DA-" + ribbonOptionsArray[j]).style.background = "#404040";
+                            document.getElementById("DA-" + ribbonOptionsArray[j]).style.background = "#243048";
                         }
                     }
                     //console.log(ribbonString);
                 } else {
                     ribbonData[0] = null;
                     ribbonData[1] = null;
-                    document.getElementById("DA-" + ribbonOptionsArray[0]).style.background = "#404040";
-                    document.getElementById("DA-" + ribbonOptionsArray[1]).style.background = "#404040";
+                    document.getElementById("DA-" + ribbonOptionsArray[0]).style.background = "#243048";
+                    document.getElementById("DA-" + ribbonOptionsArray[1]).style.background = "#243048";
                     for (let j = 0; j < ribbonData.length; j++) {
                         if (ribbonData[j] != null) {
                             document.querySelector(".DA-RibbonIcon").src = url + "/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[j] + ".png";
@@ -1082,7 +1104,7 @@ function CreateRibbonOptions() {
                         console.log(ribbonString);
                     }
                 }
-                document.getElementById("DA-" + ribbonOptionsArray[i]).style.background = "#404040";
+                document.getElementById("DA-" + ribbonOptionsArray[i]).style.background = "#243048";
             }
             if (ribbonString == "") {
                 ribbonString = "(No Ribbon)";
@@ -1934,7 +1956,7 @@ function CreationReset() {
     var cols = document.getElementsByClassName("Ribbons");
     document.querySelector(".DA-RibbonIcon").src = url + "/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
     for (i = 0; i < cols.length; i++) {
-        cols[i].style.background = "#404040";
+        cols[i].style.background = "#243048";
         cols[i].style.display = "block";
     }
     document.getElementById("DA-" + ribbonOptionsArray[1]).style.background = "#1e5578";

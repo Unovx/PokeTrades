@@ -1,5 +1,5 @@
 //Hotfix for now, if it isn't set to block manually the resizing code fails.
-document.querySelector('#PanelArea').style.display = "block";
+//document.querySelector('#PanelArea').style.display = "block";
 customMessage = document.querySelector(".PA-Message");
 let lfBunches = 0;
 let ftBunches = 0;
@@ -207,6 +207,12 @@ else if (localStorage.getItem('emptyBunches') == "1") {
     document.querySelector(".PA-EmptyBunchesButton").innerHTML = "Off";
 }
 
+$('.PA-TradeShopClose').click(function () {
+    CloseAll();
+    document.querySelector("#MainArea").style.display = "block";
+
+});
+
 
 $(".PA-Searchbar").keyup(function () {
     document.querySelector(".PA-Message").disabled = true;
@@ -218,18 +224,20 @@ $(".PA-Searchbar").keyup(function () {
     searchData = null;
     $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
     $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-    $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
+    //$.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
 
 
 });
 
-$('.PA-BunchHelp').click(function () {
+$('.PA-BunchHelpButton').click(function () {
     document.querySelector("#NotificationArea").style.display = "block";
     document.querySelector(".BunchesMoveHelp").style.display = "block";
 });
 
 $('.PA-ForTradeBunchEdit').click(function () {
     $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
+    //CloseAll();
+    document.querySelector("#MainArea").style.position = "fixed";
     document.querySelector("#BunchArea").style.display = "block";
     document.querySelector("#PanelArea").style.display = "none";
     tradeOption = "For Trade";
@@ -242,9 +250,9 @@ $('.PA-ForTradeBunchMove').click(function () {
         document.querySelector("#GeneratedSelection").style.pointerEvents = "none";
         BunchMoveStarted();
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
-        document.querySelector(".PA-LookingForBunchEdit").style.background = "#313131";
+        document.querySelector(".PA-LookingForBunchEdit").style.background = "#1e1e1e";
         document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "none";
-        document.querySelector(".PA-LookingForBunchMove").style.background = "#313131";
+        document.querySelector(".PA-LookingForBunchMove").style.background = "#1e1e1e";
         document.querySelector("#PA-LookingForBunches").style.pointerEvents = "none";
     } else {
         currentlyRearranging = false;
@@ -256,17 +264,18 @@ $('.PA-ForTradeBunchMove').click(function () {
         RemoveBunchOutline();
         BunchMoveFinished();
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
-        document.querySelector(".PA-LookingForBunchEdit").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+        document.querySelector(".PA-LookingForBunchEdit").style.background = "#171d2c";
         document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
-        document.querySelector(".PA-LookingForBunchMove").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+        document.querySelector(".PA-LookingForBunchMove").style.background = "#171d2c";
         document.querySelector("#PA-LookingForBunches").style.pointerEvents = "initial";
     }
 });
 
 $('.PA-LookingForBunchEdit').click(function () {
     $.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "Looking For" }, UserBunches);
+    //CloseAll();
+    document.querySelector("#MainArea").style.position = "fixed";
     document.querySelector("#BunchArea").style.display = "block";
-    document.querySelector("#PanelArea").style.display = "none";
     tradeOption = "Looking For";
 });
 
@@ -277,9 +286,9 @@ $('.PA-LookingForBunchMove').click(function () {
         document.querySelector("#GeneratedSelection").style.pointerEvents = "none";
         BunchMoveStarted();
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
-        document.querySelector(".PA-ForTradeBunchEdit").style.background = "#313131";
+        document.querySelector(".PA-ForTradeBunchEdit").style.background = "#1e1e1e";
         document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "none";
-        document.querySelector(".PA-ForTradeBunchMove").style.background = "#313131";
+        document.querySelector(".PA-ForTradeBunchMove").style.background = "#1e1e1e";
         document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "none";
     } else {
         currentlyRearranging = false;
@@ -291,16 +300,16 @@ $('.PA-LookingForBunchMove').click(function () {
         RemoveBunchOutline();
         BunchMoveFinished();
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
-        document.querySelector(".PA-ForTradeBunchEdit").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+        document.querySelector(".PA-ForTradeBunchEdit").style.background = "#171d2c";
         document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
-        document.querySelector(".PA-ForTradeBunchMove").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+        document.querySelector(".PA-ForTradeBunchMove").style.background = "#171d2c";
         document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "initial";
     }
 });
 
 $('.PA-CloseSettings').click(function () {
-    CloseAllStartingAreas();
-    document.querySelector(".PA-WhatsNewPanel").style.display = "block";
+    CloseAll();
+    document.querySelector("#MainArea").style.display = "block";
 
 });
 
@@ -545,7 +554,7 @@ $('.PA-EmptyBunchesButton').click(function () {
 function TradeShopInfo(data) {
     if (data != "") {
         searchData = jQuery.parseJSON(data);
-        console.log(searchData);
+        //console.log(searchData);
         document.querySelector(".PA-TradeShopInfo").innerHTML = searchData.username + "'s " + "TradeShop";
         customMessage.value = searchData.personal_text;
         if (searchData.personal_text == null) {
@@ -575,26 +584,26 @@ function TradeShopInfo(data) {
 
 //Checking if the user is allowed to create and move data in the selection area.
 function ModifyCheck(data) {
-    if (data != "" && searchInfoText != "") {
+    if (data != "" && searchInfoText != "" && !currentlyImporting) {
         document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
-        document.querySelector(".SA-MoveButton").style.background = "#6e6e6e";
+        document.querySelector(".SA-MoveButton").style.background = "#171d2c";
         document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
-        document.querySelector(".SA-CopyButton").style.background = "#6e6e6e";
+        document.querySelector(".SA-CopyButton").style.background = "#171d2c";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-        document.querySelector(".SA-CreateButton").style.background = "#6e6e6e";
+        document.querySelector(".SA-CreateButton").style.background = "#171d2c";
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
-        document.querySelector(".PA-ForTradeBunchEdit").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+        document.querySelector(".PA-ForTradeBunchEdit").style.background = "#171d2c";
         document.querySelector(".PA-ForTradeBunchEdit").style.visibility = "visible";
         document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
-        document.querySelector(".PA-ForTradeBunchMove").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+        document.querySelector(".PA-ForTradeBunchMove").style.background = "#171d2c";
         document.querySelector(".PA-ForTradeBunchMove").style.visibility = "visible";
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
-        document.querySelector(".PA-LookingForBunchEdit").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+        document.querySelector(".PA-LookingForBunchEdit").style.background = "#171d2c";
         document.querySelector(".PA-LookingForBunchEdit").style.visibility = "visible";
         document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
-        document.querySelector(".PA-LookingForBunchMove").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+        document.querySelector(".PA-LookingForBunchMove").style.background = "#171d2c";
         document.querySelector(".PA-LookingForBunchMove").style.visibility = "visible";
-        document.querySelector(".PA-BunchHelp").style.visibility = "visible";
+        document.querySelector(".PA-BunchHelpButton").style.visibility = "visible";
         $.post(url + "/PHP/generate_templates.php", { token: token }, GetTemplateOptions);
         filterDisplay.disabled = false;
         if (searchInfoText != "") {
@@ -602,24 +611,24 @@ function ModifyCheck(data) {
         }
     } else {
         document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
-        document.querySelector(".SA-MoveButton").style.background = "#313131";
+        document.querySelector(".SA-MoveButton").style.background = "#1e1e1e";
         document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
-        document.querySelector(".SA-CopyButton").style.background = "#313131";
+        document.querySelector(".SA-CopyButton").style.background = "#1e1e1e";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-        document.querySelector(".SA-CreateButton").style.background = "#313131";
+        document.querySelector(".SA-CreateButton").style.background = "#1e1e1e";
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
-        document.querySelector(".PA-ForTradeBunchEdit").style.background = "#313131";
+        document.querySelector(".PA-ForTradeBunchEdit").style.background = "#1e1e1e";
         document.querySelector(".PA-ForTradeBunchEdit").style.visibility = "hidden";
         document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "none";
-        document.querySelector(".PA-ForTradeBunchMove").style.background = "#313131";
+        document.querySelector(".PA-ForTradeBunchMove").style.background = "#1e1e1e";
         document.querySelector(".PA-ForTradeBunchMove").style.visibility = "hidden";
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
-        document.querySelector(".PA-LookingForBunchEdit").style.background = "#313131";
+        document.querySelector(".PA-LookingForBunchEdit").style.background = "#1e1e1e";
         document.querySelector(".PA-LookingForBunchEdit").style.visibility = "hidden";
         document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "none";
-        document.querySelector(".PA-LookingForBunchMove").style.background = "#313131";
+        document.querySelector(".PA-LookingForBunchMove").style.background = "#1e1e1e";
         document.querySelector(".PA-LookingForBunchMove").style.visibility = "hidden";
-        document.querySelector(".PA-BunchHelp").style.visibility = "hidden";
+        document.querySelector(".PA-BunchHelpButton").style.visibility = "hidden";
         filterDisplay.disabled = true;
         document.querySelector(".PA-Message").disabled = true;
     }
@@ -627,34 +636,34 @@ function ModifyCheck(data) {
 
 //Checking if the user is allowed to modify and delete data in the viewing area.
 function ModifyCheckViewing(data) {
-    if (data != "") {
+    if (data != "" && !currentlyImporting) {
         document.querySelector(".DA-Save").style.pointerEvents = "initial";
-        document.querySelector(".DA-Save").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+        document.querySelector(".DA-Save").style.background = "#171d2c";
         document.querySelector(".DA-Delete").style.pointerEvents = "initial";
-        document.querySelector(".DA-Delete").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+        document.querySelector(".DA-Delete").style.background = "#171d2c";
         document.querySelector(".DA-Reset").style.pointerEvents = "initial";
-        document.querySelector(".DA-Reset").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+        document.querySelector(".DA-Reset").style.background = "#171d2c";
         document.querySelector(".DA-Add").style.pointerEvents = "none";
-        document.querySelector(".DA-Add").style.background = "#313131";
+        document.querySelector(".DA-Add").style.background = "#1e1e1e";
         document.querySelector(".DA-Lock").style.pointerEvents = "initial";
-        document.querySelector(".DA-Lock").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+        document.querySelector(".DA-Lock").style.background = "#171d2c";
     } else {
         document.querySelector(".DA-Save").style.pointerEvents = "none";
-        document.querySelector(".DA-Save").style.background = "#313131";
+        document.querySelector(".DA-Save").style.background = "#1e1e1e";
         document.querySelector(".DA-Place").style.pointerEvents = "none";
-        document.querySelector(".DA-Place").style.background = "#313131";
+        document.querySelector(".DA-Place").style.background = "#1e1e1e";
         document.querySelector(".DA-Delete").style.pointerEvents = "none";
-        document.querySelector(".DA-Delete").style.background = "#313131";
+        document.querySelector(".DA-Delete").style.background = "#1e1e1e";
         document.querySelector(".DA-Reset").style.pointerEvents = "none";
-        document.querySelector(".DA-Reset").style.background = "#313131";
+        document.querySelector(".DA-Reset").style.background = "#1e1e1e";
         document.querySelector(".DA-Lock").style.pointerEvents = "none";
-        document.querySelector(".DA-Lock").style.background = "#313131";
-        if (token != null) {
+        document.querySelector(".DA-Lock").style.background = "#1e1e1e";
+        if (token != null && !currentlyImporting) {
             document.querySelector(".DA-Add").style.pointerEvents = "initial";
-            document.querySelector(".DA-Add").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+            document.querySelector(".DA-Add").style.background = "#171d2c";
         } else {
             document.querySelector(".DA-Add").style.pointerEvents = "none";
-            document.querySelector(".DA-Add").style.background = "#313131";
+            document.querySelector(".DA-Add").style.background = "#1e1e1e";
         }
     }
 }
@@ -666,51 +675,51 @@ function UpdatePersonalText() {
 
 function BunchMoveStarted() {
     document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
-    document.querySelector(".SA-MainMenu").style.background = "#313131";
+    document.querySelector(".SA-MainMenu").style.background = "#1e1e1e";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.background = "#313131";
+    document.querySelector(".SA-CreateButton").style.background = "#1e1e1e";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
-    document.querySelector(".SA-MoveButton").style.background = "#313131";
+    document.querySelector(".SA-MoveButton").style.background = "#1e1e1e";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CopyButton").style.background = "#313131";
+    document.querySelector(".SA-CopyButton").style.background = "#1e1e1e";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
-    document.querySelector(".SA-FiltersButton").style.background = "#313131";
+    document.querySelector(".SA-FiltersButton").style.background = "#1e1e1e";
     document.querySelector(".SA-Searchbar").disabled = true;
     document.querySelector(".PA-Searchbar").disabled = true;
     document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
-    document.querySelector(".PA-ForTradeBunchEdit").style.background = "#313131";
+    document.querySelector(".PA-ForTradeBunchEdit").style.background = "#1e1e1e";
     document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
-    document.querySelector(".PA-LookingForBunchEdit").style.background = "#313131";
+    document.querySelector(".PA-LookingForBunchEdit").style.background = "#1e1e1e";
     document.querySelector("#MainArea").style.pointerEvents = "none";
 }
 
 function BunchMoveFinished() {
     document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
-    document.querySelector(".SA-MainMenu").style.background = "#6e6e6e";
+    document.querySelector(".SA-MainMenu").style.background = "#171d2c";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.background = "#6e6e6e";
+    document.querySelector(".SA-CreateButton").style.background = "#171d2c";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-MoveButton").style.background = "#6e6e6e";
+    document.querySelector(".SA-MoveButton").style.background = "#171d2c";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CopyButton").style.background = "#6e6e6e";
+    document.querySelector(".SA-CopyButton").style.background = "#171d2c";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
     if (filtersApplied) {
         document.querySelector(".SA-FiltersButton").style.background = "#9c6f9b";
     } else {
-        document.querySelector(".SA-FiltersButton").style.background = "#6e6e6e";
+        document.querySelector(".SA-FiltersButton").style.background = "#171d2c";
     }
     document.querySelector(".SA-Searchbar").disabled = false;
     document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
     document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "initial";
     document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
-    document.querySelector(".PA-ForTradeBunchEdit").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+    document.querySelector(".PA-ForTradeBunchEdit").style.background = "#171d2c";
     document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
-    document.querySelector(".PA-ForTradeBunchMove").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+    document.querySelector(".PA-ForTradeBunchMove").style.background = "#171d2c";
     document.querySelector("#PA-LookingForBunches").style.pointerEvents = "initial";
     document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
-    document.querySelector(".PA-LookingForBunchEdit").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+    document.querySelector(".PA-LookingForBunchEdit").style.background = "#171d2c";
     document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
-    document.querySelector(".PA-LookingForBunchMove").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+    document.querySelector(".PA-LookingForBunchMove").style.background = "#171d2c";
     document.querySelector("#MainArea").style.pointerEvents = "initial";
     document.querySelector(".PA-Searchbar").disabled = false;
 
@@ -726,13 +735,13 @@ function PostGenerateSelectionData() {
 
 function RemoveBunchOutline() {
     for (let i = 0; i < ftBunches; i++) {
-        document.querySelector(".ForTradeGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #AF9946";
-        document.querySelector(".ForTradeGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
+        document.querySelector(".ForTradeGridDiv" + (i)).style.boxShadow = "rgb(175 153 70) 3px 3px 1px 0px";
+        document.querySelector(".ForTradeGridDiv" + (i)).style.backgroundColor = "#293144";
     }
 
     for (let i = 0; i < lfBunches; i++) {
-        document.querySelector(".LookingForGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #AF9946";
-        document.querySelector(".LookingForGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
+        document.querySelector(".LookingForGridDiv" + (i)).style.boxShadow = "rgb(175 153 70) 3px 3px 1px 0px";
+        document.querySelector(".LookingForGridDiv" + (i)).style.backgroundColor = "#293144";
     }
 }
 
@@ -754,8 +763,9 @@ function ForTradeData(data) {
     newDiv = document.createElement("div");
     newDiv.setAttribute("class", "ForTradeGridDiv");
     document.getElementById("ForTradeContainer").appendChild(newDiv);
-    newDiv.setAttribute("width", "100");
-    newDiv.setAttribute("height", "100");
+    newDiv.classList.add("PA-BunchHolder");
+    /*newDiv.setAttribute("width", "100");
+    newDiv.setAttribute("height", "100");*/
 
     theImage = document.createElement("IMG");
     theImage.setAttribute("id", "GeneratedBunches All");
@@ -763,7 +773,7 @@ function ForTradeData(data) {
     theImage.setAttribute("min-width", "100");
     theImage.setAttribute("height", "100");
     newDiv.appendChild(theImage);
-    document.querySelector(".ForTradeGridDiv").style.boxShadow = "inset 0px 0px 0px 3.5px #AF9946";
+    /*document.querySelector(".ForTradeGridDiv").style.boxShadow = "inset 0px 0px 0px 3.5px #AF9946";
     document.querySelector(".ForTradeGridDiv").style.backgroundColor = "#2E2D2D";
     document.querySelector(".ForTradeGridDiv").style.borderTopLeftRadius = "15px";
     document.querySelector(".ForTradeGridDiv").style.borderTopRightRadius = "15px";
@@ -771,7 +781,7 @@ function ForTradeData(data) {
     document.querySelector(".ForTradeGridDiv").style.borderBottomRightRadius = "15px";
     document.querySelector(".ForTradeGridDiv").style.width = "100%";
     document.querySelector(".ForTradeGridDiv").style.height = "100%";
-    document.querySelector(".ForTradeGridDiv").style.cursor = "pointer";
+    document.querySelector(".ForTradeGridDiv").style.cursor = "pointer";*/
 
     theText = document.createElement("P")
     theText.setAttribute("class", "theText");
@@ -805,7 +815,8 @@ function ForTradeData(data) {
             newDiv = document.createElement("div");
             newDiv.setAttribute("class", "ForTradeGridDiv" + (i));
             document.getElementById("ForTradeContainer").appendChild(newDiv);
-            newDiv.setAttribute("width", "100");
+            newDiv.classList.add("PA-BunchHolder");
+            /*newDiv.setAttribute("width", "100");
             newDiv.setAttribute("height", "100");
             document.querySelector(".ForTradeGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #AF9946";
             document.querySelector(".ForTradeGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
@@ -815,7 +826,7 @@ function ForTradeData(data) {
             document.querySelector(".ForTradeGridDiv" + (i)).style.borderBottomRightRadius = "15px";
             document.querySelector(".ForTradeGridDiv" + (i)).style.width = "100%";
             document.querySelector(".ForTradeGridDiv" + (i)).style.height = "100%";
-            document.querySelector(".ForTradeGridDiv" + (i)).style.cursor = "pointer";
+            document.querySelector(".ForTradeGridDiv" + (i)).style.cursor = "pointer";*/
 
             //Storing each bunch in a array.
             bunchArray = [];
@@ -825,7 +836,7 @@ function ForTradeData(data) {
 
             //Setting the Icon
 
-            SetImage(theImage, bunchArray.icon, bunchArray.gender, bunchArray.shiny);
+            SetImage(theImage, bunchArray.icon, bunchArray.gender, bunchArray.shiny, bunchArray.game);
 
             /*if (iconExclusivesArray.includes(bunchArray.icon)) {
                 if (allBallsArray.includes(bunchArray.icon) || bunchArray.icon == "Egg") {
@@ -936,8 +947,8 @@ function ForTradeData(data) {
                         oldPosition = ftData["Rows"][i].position;
                         tempCreationID = ftData["Rows"][i].creation_id;
                         console.log(oldPosition);
-                        document.querySelector(".ForTradeGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
-                        document.querySelector(".ForTradeGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
+                        document.querySelector(".ForTradeGridDiv" + (i)).style.boxShadow = "rgb(147 147 147) 3px 3px 1px 0px";
+                        document.querySelector(".ForTradeGridDiv" + (i)).style.backgroundColor = "#3a4154";
                         document.querySelector(".ForTradeGridDiv" + (i)).style.opacity = "100%";
                         document.querySelector("#PA-LookingForBunches").style.pointerEvents = "none";
                     } else {
@@ -980,7 +991,8 @@ function LookingForData(data) {
     newDiv = document.createElement("div");
     newDiv.setAttribute("class", "LookingForGridDiv");
     document.getElementById("LookingForContainer").appendChild(newDiv);
-    newDiv.setAttribute("width", "100");
+    newDiv.classList.add("PA-BunchHolder");
+    /*newDiv.setAttribute("width", "100");
     newDiv.setAttribute("height", "100");
     document.querySelector(".LookingForGridDiv").style.boxShadow = "inset 0px 0px 0px 3.5px #AF9946";
     document.querySelector(".LookingForGridDiv").style.backgroundColor = "#2E2D2D";
@@ -990,7 +1002,7 @@ function LookingForData(data) {
     document.querySelector(".LookingForGridDiv").style.borderBottomRightRadius = "15px";
     document.querySelector(".LookingForGridDiv").style.width = "100%";
     document.querySelector(".LookingForGridDiv").style.height = "100%";
-    document.querySelector(".LookingForGridDiv").style.cursor = "pointer";
+    document.querySelector(".LookingForGridDiv").style.cursor = "pointer";*/
 
     theImage = document.createElement("IMG");
     theImage.setAttribute("id", "GeneratedBunches All");
@@ -1032,7 +1044,8 @@ function LookingForData(data) {
             newDiv = document.createElement("div");
             newDiv.setAttribute("class", "LookingForGridDiv" + (i));
             document.getElementById("LookingForContainer").appendChild(newDiv);
-            newDiv.setAttribute("width", "100");
+            newDiv.classList.add("PA-BunchHolder");
+            /*newDiv.setAttribute("width", "100");
             newDiv.setAttribute("height", "100");
             document.querySelector(".LookingForGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #AF9946";
             document.querySelector(".LookingForGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
@@ -1042,7 +1055,7 @@ function LookingForData(data) {
             document.querySelector(".LookingForGridDiv" + (i)).style.borderBottomRightRadius = "15px";
             document.querySelector(".LookingForGridDiv" + (i)).style.width = "100%";
             document.querySelector(".LookingForGridDiv" + (i)).style.height = "100%";
-            document.querySelector(".LookingForGridDiv" + (i)).style.cursor = "pointer";
+            document.querySelector(".LookingForGridDiv" + (i)).style.cursor = "pointer";*/
 
             //Storing each bunch in a array.
             bunchArray = [];
@@ -1157,8 +1170,8 @@ function LookingForData(data) {
                         oldPosition = lfData["Rows"][i].position;
                         tempCreationID = lfData["Rows"][i].creation_id;
                         console.log(oldPosition);
-                        document.querySelector(".LookingForGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
-                        document.querySelector(".LookingForGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
+                        document.querySelector(".LookingForGridDiv" + (i)).style.boxShadow = "rgb(147 147 147) 3px 3px 1px 0px";
+                        document.querySelector(".LookingForGridDiv" + (i)).style.backgroundColor = "#3a4154";
                         document.querySelector(".LookingForGridDiv" + (i)).style.opacity = "100%";
                         document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "none";
                     } else {

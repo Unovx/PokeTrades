@@ -48,7 +48,7 @@ console.log(document.querySelector('#SelectionArea').clientWidth);
 
 document.querySelector('#DetailsArea').onmouseover = function () {
     if (!creationInProgress) {
-        if (selectedPokemon == null && hoverInfo == true) {
+        if (selectedPokemon == null && hoverInfo == true && !showingGiveaway) {
             $('.DA-Close').click();
         }
     }
@@ -72,6 +72,14 @@ function oneSecondFunction() {
         else if (document.querySelector('#DetailsArea').style.display == "block") {
             //document.querySelector('#SelectionArea').style.height = "100%"
             document.querySelector('#SelectionArea').style.height = selectionVH - $("#DetailsArea").visibleHeight() + "px";
+        }
+        else if (document.querySelector('#CTSArea').style.display == "block") {
+            //document.querySelector('#SelectionArea').style.height = "100%"
+            document.querySelector('#SelectionArea').style.height = selectionVH - $("#CTSArea").visibleHeight() + "px";
+        }
+        else if (document.querySelector('#ImportArea').style.display == "block") {
+            //document.querySelector('#SelectionArea').style.height = "100%"
+            document.querySelector('#SelectionArea').style.height = selectionVH - $("#ImportArea").visibleHeight() + "px";
         }
         else if (document.querySelector('#PanelArea').style.display == "block") {
             //document.querySelector('#SelectionArea').style.height = "100%"
@@ -99,19 +107,9 @@ $('.SA-MainMenu').click(function () {
     //AssigningOutline();
     //Removing the GridContainer so a new one can be created later
     $("#GridContainer").remove();
-    document.querySelector("#DetailsArea").style.display = "none";
-    document.querySelector("#SelectionArea").style.height = "100%";
-    document.querySelector("#SelectionArea").style.display = "none";
-    document.querySelector("#CTSArea").style.display = "none";
     ResetFilters();
+    CloseAll();
     document.querySelector("#MainArea").style.display = "block";
-    document.querySelector("#BunchArea").style.display = "none";
-    document.querySelector("#FilterArea").style.display = "none";
-    document.querySelector("#InformationArea").style.display = "none";
-    document.querySelector("#PanelArea").style.display = "block";
-    if (document.querySelector(".PA-TradeShopPanel").style.display == "none") {
-        document.querySelector(".PA-WhatsNewPanel").style.display = "block";
-    }
     document.querySelector(".DA-Place").style.pointerEvents = "initial";
     document.querySelector(".DA-Place").innerHTML = "Place";
     CreationReset();
@@ -120,6 +118,7 @@ $('.SA-MainMenu').click(function () {
     placingPokemon = false;
     searchPokemonText.value = "";
     ctsSeaching = false;
+    currentlyImporting = false;
 });
 
 $('.SA-CreateButton').click(function () {
@@ -129,22 +128,20 @@ $('.SA-CreateButton').click(function () {
     document.querySelector("#InformationArea").style.display = "none";
     document.querySelector("#DetailsArea").style.display = "block";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#313131";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "#313131";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "#313131";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".DA-Place").style.pointerEvents = "initial";
-    document.querySelector(".DA-Place").style.background = "linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%))";
+    document.querySelector(".DA-Place").style.background = "#171d2c";
     document.querySelector(".DA-Delete").style.pointerEvents = "none";
-    document.querySelector(".DA-Delete").style.background = "#313131";
+    document.querySelector(".DA-Delete").style.background = "#1e1e1e";
     document.querySelector(".DA-Lock").style.pointerEvents = "none";
-    document.querySelector(".DA-Lock").style.background = "#313131";
+    document.querySelector(".DA-Lock").style.background = "#1e1e1e";
     detailsLocked = false;
     document.querySelector(".DA-Lock").innerHTML = "Lock";
     document.querySelector(".DA-DetailsData").style.pointerEvents = "initial";
-
-    ShowAllDropdowns();
 
     //So it doesn't add to an already existing row
     creationID = "";
@@ -162,6 +159,29 @@ $('.SA-CreateButton').click(function () {
     if (document.querySelector(".SA-Bunch").innerHTML != "All Pokemon") {
         bunchSelection.value = document.querySelector(".SA-Bunch").innerHTML;
     }
+
+    //ShowPokemonDetails();
+    ShowAllDropdowns();
+
+    var cols = document.getElementsByClassName("Ribbons");
+    document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
+    if (tempUserID != userData.user_id || detailsLocked) {
+        for (i = 0; i < cols.length; i++) {
+            cols[i].style.background = "#243048";
+            cols[i].style.display = "none";
+        }
+    } else {
+        for (i = 0; i < cols.length; i++) {
+            cols[i].style.background = "#243048";
+            cols[i].style.display = "block";
+        }
+    }
+    ribbonData = new Array(103);
+    ribbonString = "";
+
+    if (toggleOn) {
+        $('.DA-ToggleProof').click();
+    }
 });
 
 $('.SA-MoveButton').click(function () {
@@ -175,11 +195,11 @@ $('.SA-MoveButton').click(function () {
         moving = false;
         currentlyRearranging = false;
         if (movingPokemon == selectedPokemon && movingPokemon != null) {
-            movingPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-            movingPokemon.style.backgroundColor = "#2E2D2D";
+            movingPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+            movingPokemon.style.backgroundColor = "#353d54";
         } else if (movingPokemon != null) {
-            movingPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-            movingPokemon.style.backgroundColor = "#084f65";
+            movingPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+            movingPokemon.style.backgroundColor = "#343f5f";
         }
         movingPokemon = null;
         oldPosition = "";
@@ -204,11 +224,11 @@ $('.SA-CopyButton').click(function () {
         copying = false;
         currentlyRearranging = false;
         if (movingPokemon == selectedPokemon && movingPokemon != null) {
-            movingPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-            movingPokemon.style.backgroundColor = "#2E2D2D";
+            movingPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+            movingPokemon.style.backgroundColor = "#353d54";
         } else if (movingPokemon != null) {
-            movingPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-            movingPokemon.style.backgroundColor = "#084f65";
+            movingPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+            movingPokemon.style.backgroundColor = "#343f5f";
         }
         movingPokemon = null;
         oldPosition = "";
@@ -229,6 +249,7 @@ $('.SA-FiltersButton').click(function () {
     document.querySelector("#DetailsArea").style.display = "none";
     document.querySelector("#BunchArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "none";
+    document.querySelector("#CTSArea").style.display = "none";
 });
 
 $('.SA-SelectionHelp').click(function () {
@@ -240,30 +261,29 @@ function AssigningOutline() {
     //Makes sure arrayData isn't null so an error doesn't get brought up in specific cases like on the bunch area
     if (arrayData != null) {
         for (let i = 0; i < arrayData["Rows"].length; i++) {
-            //document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 5px #0096c3";
             if (currentlyRearranging == true && movingPokemon == document.getElementById("GenerationGridDiv" + (i))) {
 
             }
             //if no pokemon is selected, then no pokemon need an outline
             else if (selectedPokemon == null) {
-                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
+                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#343f5f";
                 var cols = document.getElementsByClassName("insideDetails" + (i));
                 document.getElementById("GenerationGridDiv" + (i)).style.height = "100px";
             }
             //If it finds a generated row that has the same creation id as the current viewing id, it gives that div a outline
             else if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id) {
                 selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
-                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
+                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#353d54";
                 var cols = document.getElementsByClassName("insideDetails" + (i));
                 for (j = 0; j < cols.length; j++) {
                     cols[j].style.display = "flex";
                 }
                 document.getElementById("GenerationGridDiv" + (i)).style.height = "200px";
             } else {
-                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
+                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#343f5f";
                 document.getElementById("GenerationGridDiv" + (i)).style.height = "100px";
             }
         }
@@ -273,13 +293,13 @@ function AssigningOutline() {
 function MoveStarted() {
     moving = true;
     document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "#313131";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "#313131";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#313131";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
-    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#313131";
+    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-Searchbar").disabled = true;
     document.querySelector(".PA-Searchbar").disabled = true;
     document.querySelector("#PanelArea").style.pointerEvents = "none";
@@ -288,16 +308,16 @@ function MoveStarted() {
 function MoveFinished() {
     moving = false;
     document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "#6e6e6e";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "#6e6e6e";
+    document.querySelector(".SA-CopyButton").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#6e6e6e";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
     if (filtersApplied) {
         document.querySelector(".SA-FiltersButton").style.backgroundColor = "#9c6f9b";
     } else {
-        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#6e6e6e";
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#171d2c";
     }
     document.querySelector(".SA-Searchbar").disabled = false;
     document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
@@ -309,13 +329,13 @@ function MoveFinished() {
 function CopyStarted() {
     copying = true;
     document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "#313131";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "#313131";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#313131";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
-    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#313131";
+    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-Searchbar").disabled = true;
     document.querySelector(".PA-Searchbar").disabled = true;
     document.querySelector("#PanelArea").style.pointerEvents = "none";
@@ -324,16 +344,16 @@ function CopyStarted() {
 function CopyFinished() {
     copying = false;
     document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "#6e6e6e";
+    document.querySelector(".SA-MainMenu").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "#6e6e6e";
+    document.querySelector(".SA-MoveButton").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#6e6e6e";
+    document.querySelector(".SA-CreateButton").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
     if (filtersApplied) {
         document.querySelector(".SA-FiltersButton").style.backgroundColor = "#9c6f9b";
     } else {
-        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#6e6e6e";
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#171d2c";
     }
     document.querySelector(".SA-Searchbar").disabled = false;
     document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
@@ -372,7 +392,8 @@ function OpacityFull() {
 
 function GenerateSelection(data) {
     numberOfBunches = null;
-    if (bunchname != "") {
+
+    if (bunchname != "" && !ctsSeaching) {
         //Showing the bunch name and setting up the ability to exit out the bunch.
         document.querySelector(".SA-Bunch").style.opacity = "100%";
     }
@@ -397,6 +418,7 @@ function GenerateSelection(data) {
         newDiv = document.createElement("div");
         newDiv.setAttribute("id", "GenerationGridDiv" + (i));
         newDiv.setAttribute("class", "Lozad");
+        newDiv.classList.add("SA-PokemonDiv");
         //newDiv.className += "Lozad";
         document.getElementById("GridContainer").appendChild(newDiv);
         newDiv.setAttribute("width", "100");
@@ -406,18 +428,18 @@ function GenerateSelection(data) {
             //document.getElementById("GenerationGridDiv" + (i)).style.height = "200px";
         }
 
-        document.getElementById("GenerationGridDiv" + (i)).style.overflow = "hidden";
+        /*document.getElementById("GenerationGridDiv" + (i)).style.overflow = "hidden";
         document.getElementById("GenerationGridDiv" + (i)).style.display = "flex";
         document.getElementById("GenerationGridDiv" + (i)).style.position = "relative";
-        document.getElementById("GenerationGridDiv" + (i)).style.cursor = "pointer";
+        document.getElementById("GenerationGridDiv" + (i)).style.cursor = "pointer";*/
         /*document.getElementById("GenerationGridDiv" + (i)).style.backgroundImage = "url('https://poketrades.org/Resources/Designs/Unselected Holder.png')";
         document.getElementById("GenerationGridDiv" + (i)).style.backgroundSize = "contain";*/
-        document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-        document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
+        /*document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+        document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#343f5f";
         document.getElementById("GenerationGridDiv" + (i)).style.borderTopLeftRadius = "15px";
         document.getElementById("GenerationGridDiv" + (i)).style.borderTopRightRadius = "15px";
         document.getElementById("GenerationGridDiv" + (i)).style.borderBottomLeftRadius = "15px";
-        document.getElementById("GenerationGridDiv" + (i)).style.borderBottomRightRadius = "15px";
+        document.getElementById("GenerationGridDiv" + (i)).style.borderBottomRightRadius = "15px";*/
 
         //Storing each pokemon in a array.
         loopArray = [];
@@ -1158,7 +1180,7 @@ function GenerateSelection(data) {
                 tr.style.display = "none";
                 var td = tr.insertCell();
                 td.setAttribute("width", "180px");
-                td.style.overflowX = "clip";
+                td.style.overflow = "hidden";
                 td.style.overflow = "-moz-hidden-unscrollable";
                 td.style.whiteSpace = "no-wrap";
                 proof = document.createElement("a");
@@ -1610,8 +1632,8 @@ function GenerateSelection(data) {
                         pokemonDetails = arrayData["Rows"][i];
                         if (selectedPokemon != null) {
                             //alert("HERE");
-                            selectedPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-                            selectedPokemon.style.backgroundColor = "#084f65";
+                            selectedPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+                            selectedPokemon.style.backgroundColor = "#343f5f";
 
                             var cols = document.getElementsByClassName("insideDetails" + (storedValue));
                             for (j = 0; j < cols.length; j++) {
@@ -1622,8 +1644,8 @@ function GenerateSelection(data) {
                         selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
                         storedValue = i;
                         console.log(selectedPokemon);
-                        selectedPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-                        selectedPokemon.style.backgroundColor = "#2E2D2D";
+                        //selectedPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+                        selectedPokemon.style.backgroundColor = "#353d54";
                         var cols = document.getElementsByClassName("insideDetails" + (i));
                         for (j = 0; j < cols.length; j++) {
                             cols[j].style.display = "flex";
@@ -1631,9 +1653,16 @@ function GenerateSelection(data) {
                         document.getElementById("GenerationGridDiv" + (i)).style.height = "200px";
                         //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
                         ShowPokemonDetails();
+                        document.querySelector("#CTSArea").style.display = "none";
+                        document.querySelector("#FilterArea").style.display = "none";
                     }
 
-                    $.post(url + "/PHP/modify_check.php", { token: token, searchID: pokemonDetails.user_id }, ModifyCheckViewing);
+                    if (ctsSeaching) {
+                        $.post(url + "/PHP/modify_check.php", { token: token, searchID: 0 }, ModifyCheckViewing);
+                    } else {
+                        $.post(url + "/PHP/modify_check_viewing.php", { token: token, searchID: pokemonDetails.user_id }, ModifyCheckViewing);
+                    }
+
                 } else {
                     if (oldPosition == "") {
                         movingPokemon = document.getElementById("GenerationGridDiv" + (i));
@@ -1641,17 +1670,17 @@ function GenerateSelection(data) {
                         tempCreationID = arrayData["Rows"][i].creation_id;
                         if (pokemonDetails != null && selectedPokemon != null) {
                             if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id && selectedPokemon != null) {
-                                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
-                                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#2E2D2D";
+                                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(147 147 147) 3px 3px 1px 0px";
+                                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#353d54";
                                 console.log(arrayData["Rows"][i].creation_id);
                             } else {
-                                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
-                                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
+                                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(147 147 147) 3px 3px 1px 0px";
+                                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#343f5f";
                                 console.log(arrayData["Rows"][i].creation_id);
                             }
                         } else {
-                            document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "inset 0px 0px 0px 3.5px #989898ff";
-                            document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#084f65";
+                            document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(147 147 147) 3px 3px 1px 0px";
+                            document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#343f5f";
                             console.log(arrayData["Rows"][i].creation_id);
                         }
                         document.getElementById("GenerationGridDiv" + (i)).style.opacity = "100%";
@@ -1688,6 +1717,7 @@ function GenerateSelection(data) {
                     //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
 
                     ShowPokemonDetails();
+                    document.querySelector("#CTSArea").style.display = "none";
 
                     if (window.innerWidth < limitWidth) {
                         //Making it so when you click on a mon and Details Area hides it, that mon is scrolled to the new bottom.
@@ -1701,7 +1731,11 @@ function GenerateSelection(data) {
                             console.log("Else " + imageViewTop)
                         }
                     }
-                    $.post(url + "/PHP/modify_check.php", { token: token, searchID: pokemonDetails.user_id }, ModifyCheckViewing);
+                    if (ctsSeaching) {
+                        $.post(url + "/PHP/modify_check.php", { token: token, searchID: 0 }, ModifyCheckViewing);
+                    } else {
+                        $.post(url + "/PHP/modify_check_viewing.php", { token: token, searchID: pokemonDetails.user_id }, ModifyCheckViewing);
+                    }
                 }
             }
         }
@@ -1710,8 +1744,8 @@ function GenerateSelection(data) {
                 if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id) {
                     selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
                     storedValue = i;
-                    selectedPokemon.style.boxShadow = "inset 0px 0px 0px 3.5px #0096c3";
-                    selectedPokemon.style.backgroundColor = "#2E2D2D";
+                    selectedPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+                    selectedPokemon.style.backgroundColor = "#353d54";
                     var cols = document.getElementsByClassName("insideDetails" + (i));
                     for (j = 0; j < cols.length; j++) {
                         cols[j].style.display = "none";
@@ -1810,16 +1844,24 @@ function GettingLFBunches(data) {
 
 function ShowPokemonDetails() {
     document.querySelector(".DA-Place").style.pointerEvents = "none";
-    document.querySelector(".DA-Place").style.background = "#313131";
+    document.querySelector(".DA-Place").style.background = "#1e1e1e";
     tempUserID = "";
-    if (userData != null) {
+    if (ctsSeaching) {
+
+    }
+    else if (userData != null) {
         tempUserID = userData.user_id;
     }
-    creationID = pokemonDetails.creation_id;
-    if (document.querySelector("#DetailsArea").style.display != "block" && document.querySelector("#FilterArea").style.display != "block" && document.querySelector("#InformationArea").style.display != "block") {
+    if (pokemonDetails != null) {
+        creationID = pokemonDetails.creation_id;
+    }
+    /*if (document.querySelector("#DetailsArea").style.display != "block" && document.querySelector("#FilterArea").style.display != "block" && document.querySelector("#InformationArea").style.display != "block") {
         document.querySelector("#DetailsArea").style.display = "block";
         document.querySelector("#PanelArea").style.display = "none";
-    }
+    }*/
+    document.querySelector("#DetailsArea").style.display = "block";
+    document.querySelector("#PanelArea").style.display = "none";
+    document.querySelector("#InformationArea").style.display = "none";
 
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         document.querySelector(".DA-DetailsData").style.pointerEvents = "none";
@@ -1896,9 +1938,11 @@ function ShowPokemonDetails() {
     if (tempUserID == pokemonDetails.user_id) {
         bunchSelection.value = pokemonDetails.bunch;
     }
-    $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: pokemonDetails.trade_option, showEmpty: "Yes" }, GettingFTBunches);
+    if (!showingGiveaway) {
+        $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: pokemonDetails.trade_option, showEmpty: "Yes" }, GettingFTBunches);
 
-    $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: pokemonDetails.trade_option, showEmpty: "Yes" }, GettingLFBunches);
+        $.post(url + "/PHP/generate_bunch_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: pokemonDetails.trade_option, showEmpty: "Yes" }, GettingLFBunches);
+    }
 
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         document.querySelector(".DA-TemplateSection").style.display = "none";
@@ -1975,12 +2019,12 @@ function ShowPokemonDetails() {
     document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         for (i = 0; i < cols.length; i++) {
-            cols[i].style.background = "#404040";
+            cols[i].style.background = "#243048";
             cols[i].style.display = "none";
         }
     } else {
         for (i = 0; i < cols.length; i++) {
-            cols[i].style.background = "#404040";
+            cols[i].style.background = "#243048";
             cols[i].style.display = "block";
         }
     }
@@ -2205,27 +2249,23 @@ function ShowPokemonDetails() {
     }
 
     proofSelection.value = pokemonDetails.proof;
-    document.querySelector(".DA-ProofURL").setAttribute("src", pokemonDetails.proof);
-    document.querySelector(".DA-ProofVideo").setAttribute("src", pokemonDetails.proof);
-    document.querySelector(".DA-ProofImage").setAttribute("src", pokemonDetails.proof);
-    //document.querySelector(".DA-ProofImage").setAttribute("src", "");
-    //document.querySelector(".DA-ProofVideo").setAttribute("src", "");
 
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         if (pokemonDetails.proof == "") {
             document.querySelector(".DA-Proof").style.display = "none";
         } else {
-            document.querySelector(".DA-Proof").style.display = "block";
-            if (toggleOn) {
-                DisplayProof();
-            }
+            document.querySelector(".DA-Proof").style.display = "flex";
         }
+        DisplayProof();
     } else {
-        document.querySelector(".DA-Proof").style.display = "block";
-        if (toggleOn) {
-            DisplayProof();
-            $('.DA-ProofURL').keyup();
-        }
+        document.querySelector(".DA-Proof").style.display = "flex";
+        DisplayProof();
+    }
+
+    if (detailsLocked || ctsSeaching) {
+        document.querySelector(".DA-ProofURL").style.textDecoration = "underline";
+    } else {
+        document.querySelector(".DA-ProofURL").style.textDecoration = "unset";
     }
 
     document.querySelector(".DA-Note").style.display = "flex";
@@ -2247,8 +2287,8 @@ function ShowPokemonDetails() {
 }
 
 function ShowAllDropdowns() {
-    displaySelection.style.visibility = "unset";
-    document.querySelector(".DA-DisplayRow").style.display == "table-row";
+    document.querySelector(".DA-DisplayRow").style.visibility = "unset";
+    document.querySelector(".DA-DisplayRow").style.display = "table-row";
     document.querySelector(".DA-AbilityRow").style.visibility = "unset";
     nicknameSelection.style.visibility = "unset";
     document.querySelector(".DA-NatureRow").style.visibility = "unset";
@@ -2256,7 +2296,7 @@ function ShowAllDropdowns() {
     document.querySelector(".DA-IDRow").style.visibility = "unset";
     document.querySelector(".DA-StatusRow").style.visibility = "unset";
     document.querySelector(".DA-EventRow").style.visibility = "unset";
-    document.querySelector(".DA-EventRow").style.display == "table-row";
+    document.querySelector(".DA-EventRow").style.display = "table-row";
     document.querySelector(".DA-StatHolder").style.visibility = "unset";
     document.querySelector(".DA-StatHolder").style.display = "flex";
     document.querySelector(".DA-RowIVs").style.display = "table-row";
@@ -2271,8 +2311,10 @@ function ShowAllDropdowns() {
     document.querySelector(".DA-LegacyMove2").style.display = "block";
     document.querySelector(".DA-LegacyMove3").style.display = "block";
     document.querySelector(".DA-LegacyMove4").style.display = "block";
-    document.querySelector(".DA-Proof").style.display = "block";
+    document.querySelector(".DA-Proof").style.display = "flex";
     document.querySelector(".DA-Note").style.display = "flex";
+    document.querySelector(".DA-ProofURL").style.textDecoration = "unset";
+    document.querySelector(".DA-TemplateSection").style.display = "table";
 
     bunchSelection.style.appearance = "auto";
     displaySelection.style.appearance = "auto";
@@ -2307,11 +2349,11 @@ function ShowAllDropdowns() {
 
 function SetImage(image, imageName, gender, shiny, gameObtained) {
 
-    if (iconExclusivesArray.includes(imageName)) {
+    if (iconExclusivesArray.includes(imageName) && imageName != "Egg-Manaphy") {
         if (allBallsArray.includes(imageName) || imageName == "Egg") {
             image.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/" + imageName + ".png");
         }
-        else if (bunchIcon.includes("HP")) {
+        else if (imageName.includes("HP")) {
             image.setAttribute("src", url + "/Resources/Misc/" + imageName + ".png");
         }
         else if (imageName.includes("Ribbon")) {

@@ -1,36 +1,33 @@
-
 @media only screen and (max-width: 768px) {
-    [id*="PanelArea"]{
-      height: auto !important;
-      top: 80% !important;
-      width: 100% !important;
+    [id*="PanelArea"] {
+        height: auto !important;
+        top: 80% !important;
+        width: 100% !important;
     }
 
-    [class*="PA-WhatsNewPanel"]{
+    [class*="PA-WhatsNewPanel"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
         overflow: unset;
         height: unset;
     }
 
-    [class*="PA-SettingsPanel"]{
+    [class*="PA-SettingsPanel"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
     }
 
-    [class*="PA-PanelPositionButton"]{
+    [class*="PA-PanelPositionButton"] {
         pointer-events: none !important;
-        background-color: grey !important;
-        border: none !important;
+        background-color: #1e1e1e !important;
     }
 
-    [class*="PA-HoverButton"]{
+    [class*="PA-HoverButton"] {
         pointer-events: none !important;
-        background-color: grey !important;
-        border: none !important;
+        background-color: #1e1e1e !important;
     }
 
-    [class*="PA-TradeShopPanel"]{
+    [class*="PA-TradeShopPanel"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
         min-height: 170px !important;
@@ -38,24 +35,24 @@
         overflow: unset !important;
     }
 
-    [class*="PA-Message"]{
+    [class*="PA-Message"] {
         top: 0 !important;
         width: -webkit-fill-available !important;
         width: -moz-available !important;
     }
 
-    [class*="PA-GeneratedBunches"]{
+    [class*="PA-GeneratedBunches"] {
         top: 15px !important;
     }
 
-    [class*="PA-FAQPanel"]{
+    [class*="PA-FAQPanel"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
         overflow: unset;
         height: unset;
     }
 
-    [class*="PA-ImportingPanel"]{
+    [class*="PA-ImportingPanel"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
         overflow: unset;
@@ -63,18 +60,38 @@
     }
 }
 
-#PanelArea{
+#PanelArea {
     position: absolute;
-    display: block;
-    /*background-color: #2E2D2D;*/
+    display: none;
+    background-color: #1a233a;
     width: 420px;
+    height: calc(100% - 52px);
     right: 0;
     z-index: 1;
+    overflow: auto;
+    margin-top: 52px;
 }
 
-.PA-WhatsNewPanel{
-    background: rgb(192 192 192 / 95%);
-    /*height: 100%;*/
+.PA-ButtonDesign {
+    background: #171d2c;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #2e3850;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #536c9f;
+    cursor: pointer;
+    margin: 3px;
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
+}
+
+.PA-WhatsNewPanel {
+    /*background: rgb(192 192 192 / 95%);
+    height: 100%;*/
     border-top-left-radius: 35px;
     border-top-right-radius: 35px;
     border-bottom-left-radius: 35px;
@@ -82,25 +99,21 @@
     width: 380px;
     right: 0;
     padding: 10px;
-    margin: 10px;
-    height: 500px;
     /*visibility: hidden;*/
 }
 
-.WhatsNewText{
-    position: relative;
+.WhatsNewText {
     display: block;
-    color: black;
-    /*font-weight: bold;*/
+    color: #afafaf;
+    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     padding: 10px;
-    height: 480px;
     overflow: auto;
 }
 
-.PA-TradeShopPanel{
-    background-color: #2E2D2D;
+.PA-TradeShopPanel {
+    /*background-color: #2E2D2D;*/
     z-index: 1;
     height: 100%;
     min-height: 275px;
@@ -108,23 +121,25 @@
     right: 0;
     display: none;
     position: fixed;
-    overflow: auto;    
+    overflow: auto;
+    position: absolute;
+    margin-bottom: 52px;
 }
 
-.PA-SearchInfo{
+.PA-SearchInfo {
     text-align: center;
     margin: auto;
     bottom: 100px;
 }
 
-.PA-Searchbar{
+.PA-Searchbar {
     color: white;
     background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
     border-radius: 5px;
     font-weight: bold;
 }
 
-.PA-TradeShopInfo{
+.PA-TradeShopInfo {
     position: relative;
     color: white;
     font-weight: bold;
@@ -132,7 +147,7 @@
     font-size: 20px;
 }
 
-.PA-UserID{
+.PA-UserID {
     position: relative;
     opacity: 0%;
     color: white;
@@ -141,7 +156,7 @@
     font-size: 20px;
 }
 
-.PA-Message{
+.PA-Message {
     position: relative;
     display: block;
     overflow: hidden;
@@ -155,59 +170,90 @@
     font-size: 15px;
     padding: 10px;
     width: 380px;
-    top: 50px;
-    color: black;
-    background: #afafaf;
+    top: 35px;
+    color: #61759e;
+    background: #11192c;
 }
 
-.PA-BunchHelp{
+.PA-BunchHelpButton {
+
+    background: #171d2c;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #2e3850;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #536c9f;
+    cursor: pointer;
+    margin: 3px;
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
+
+}
+
+.PA-BunchHelp {
     position: relative;
     display: block;
-    max-width: 22px; 
+    max-width: 22px;
     max-height: 22px;
     align-items: center;
 }
 
-.PA-GeneratedBunches{
+.PA-BunchHolder {
+    box-shadow: rgb(175 153 70) 3px 3px 1px 0px;
+    /*background-color: rgb(38 45 64);*/
+    background-color: rgb(41 49 68);
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.PA-GeneratedBunches {
     position: relative;
-    top: 75px;
+    top: 60px;
     text-align: -webkit-center;
     text-align: -moz-center;
+    margin-left: 5px;
+    margin-right: 10px;
 }
 
-.PA-ForTradeBunchEdit{
-    margin-top: 20px;
-    width: 175px;
-    pointer-events: none;
-    cursor: pointer;
-    background: #313131;
+.PA-ForTradeBunchEdit {
+    background: #171d2c;
     border-width: 2px;
     border-style: solid;
-    border-color: #939393;
+    border-color: #2e3850;
+    margin-top: 20px !important;
+    width: 175px;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    border-radius: 2px;
+    color: #536c9f;
+    cursor: pointer;
+    margin: 3px;
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
 }
 
-.PA-ForTradeBunchMove{
-    margin-top: 20px;
-    width: 175px;
-    pointer-events: none;
-    cursor: pointer;
-    background: #313131;
+.PA-ForTradeBunchMove {
+    background: #171d2c;
     border-width: 2px;
     border-style: solid;
-    border-color: #939393;
+    border-color: #2e3850;
+    margin-top: 20px !important;
+    width: 175px;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    border-radius: 2px;
+    color: #536c9f;
+    cursor: pointer;
+    margin: 3px;
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
 }
 
-.PA-FTAvailableBunchesText{
+.PA-FTAvailableBunchesText {
     color: white;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -217,39 +263,41 @@
     padding-bottom: 10px;
 }
 
-.PA-LookingForBunchEdit{
-    margin-top: 20px;
-    width: 175px;
-    pointer-events: none;
-    cursor: pointer;
-    background: #313131;
+.PA-LookingForBunchEdit {
+    background: #171d2c;
     border-width: 2px;
     border-style: solid;
-    border-color: #939393;
+    border-color: #2e3850;
+    margin-top: 20px !important;
+    width: 175px;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    border-radius: 2px;
+    color: #536c9f;
+    cursor: pointer;
+    margin: 3px;
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
 }
 
-.PA-LookingForBunchMove{
-    margin-top: 20px;
-    width: 175px;
-    pointer-events: none;
-    cursor: pointer;
-    background: #313131;
+.PA-LookingForBunchMove {
+    background: #171d2c;
     border-width: 2px;
     border-style: solid;
-    border-color: #939393;
+    border-color: #2e3850;
+    margin-top: 20px !important;
+    width: 175px;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    border-radius: 2px;
+    color: #536c9f;
+    cursor: pointer;
+    margin: 3px;
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
 }
 
-.PA-LFAvailableBunchesText{
+.PA-LFAvailableBunchesText {
     color: white;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -259,11 +307,11 @@
     padding-bottom: 10px;
 }
 
-#ForTradeContainer{
-    background-color: #2E2D2D;
+#ForTradeContainer {
+    /*background-color: #2E2D2D;*/
     display: grid;
     /* auto-fill into of auto-fit so it starts from the corner of the screen*/
-    grid-template-columns: repeat( auto-fill, minmax(100px, 1fr) );
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     /* this is so it fills all available space without an parts being cut off on any device*/
     height: inherit;
     /* needing to prevent bunches and to an slight extent mons looking crowded*/
@@ -271,19 +319,20 @@
     place-items: center;
 }
 
-#LookingForContainer{
-    background-color: #2E2D2D;
+#LookingForContainer {
+    /*background-color: #2E2D2D;*/
     display: grid;
     /* auto-fill into of auto-fit so it starts from the corner of the screen*/
-    grid-template-columns: repeat( auto-fill, minmax(100px, 1fr) );
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     /* this is so it fills all available space without an parts being cut off on any device*/
     height: inherit;
     /* needing to prevent bunches and to an slight extent mons looking crowded*/
     grid-gap: 1rem;
     place-items: center;
+    padding-bottom: 10px;
 }
 
-.theText{
+.theText {
     position: relative;
     margin: 0%;
     color: white;
@@ -296,281 +345,269 @@
     width: 90%;
 }
 
-.PA-FAQPanel{
-    background: rgb(192 192 192 / 95%);
+.PA-FAQPanel {
     z-index: 1;
     border-top-left-radius: 35px;
     border-top-right-radius: 35px;
     border-bottom-left-radius: 35px;
     border-bottom-right-radius: 35px;
     width: 380px;
-    height: 100%;
     right: 0;
     padding: 10px;
-    margin: 10px;
     overflow: auto;
-    display: none;    
+    display: none;
 }
 
-.PA-SettingsPanel{
-    background: rgb(192 192 192 / 95%);
+.PA-SettingsPanel {
     z-index: 1;
     border-top-left-radius: 35px;
     border-top-right-radius: 35px;
     border-bottom-left-radius: 35px;
     border-bottom-right-radius: 35px;
     width: 380px;
-    min-height: 660px;   
     right: 0;
     padding: 10px;
-    margin: 10px;
     overflow: auto;
-    display: none; 
+    display: none;
 }
 
-.PA-PreviewText{
-    position: relative;
+.PA-PreviewText {
     display: block;
-    color: black;
+    color: #afafaf;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     top: 10px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
-.PreviewAlign{
-    position: relative;
+.PreviewAlign {
     top: 30px;
     margin: auto;
 }
 
-.PA-BallButton{
+.PA-BallButton {
     cursor: pointer;
 }
 
-.PA-GenderButton{
+.PA-GenderButton {
     cursor: pointer;
 }
 
-.PA-ShinyButton{
+.PA-ShinyButton {
     cursor: pointer;
 }
 
-.PA-MintButton{
+.PA-MintButton {
     cursor: pointer;
 }
 
-.PA-MiscButton{
+.PA-MiscButton {
     cursor: pointer;
 }
 
-.PA-MarkButton{
+.PA-MarkButton {
     cursor: pointer;
 }
 
-.PA-BallImage{
+.PA-BallImage {
     max-width: 24px;
     max-height: 24px;
     vertical-align: bottom;
 }
 
-.PA-GenderImage{
+.PA-GenderImage {
     max-width: 24px;
     max-height: 24px;
     vertical-align: bottom;
 }
 
-.PA-ShinyImage{
+.PA-ShinyImage {
     max-width: 24px;
     max-height: 24px;
     vertical-align: bottom;
 }
 
-.PA-MintImage{
+.PA-MintImage {
     max-width: 24px;
     max-height: 24px;
     vertical-align: bottom;
 }
 
-.PA-MiscImage{
+.PA-MiscImage {
     max-width: 24px;
     max-height: 24px;
     vertical-align: bottom;
 }
 
-.PA-MarkImage{
+.PA-MarkImage {
     max-width: 24px;
     max-height: 24px;
     vertical-align: bottom;
 }
 
-.PA-IVsText{
-    color: black;
+.PA-IVsText {
+    color: #afafaf;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
-.SettingsAlign{
-    position: relative;
+.SettingsAlign {
     top: 70px;
     margin: auto;
     width: 65%;
 }
 
-.PA-OtherSettingsText{
-    position: relative;
+.PA-OtherSettingsText {
     display: block;
-    color: black;
+    color: #afafaf;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     top: 55px;
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.PA-DexNumberText{
-    color: black;
+.PA-DexNumberText {
+    color: #afafaf;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
-.PA-DexNumberButton{
+.PA-DexNumberButton {
     width: 48px;
     height: 22px;
     cursor: pointer;
 }
 
-.PA-AdvancedPreviewText{
-    color: black;
+.PA-AdvancedPreviewText {
+    color: #afafaf;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
-.PA-AdvancedPreviewButton{
+.PA-AdvancedPreviewButton {
     width: 48px;
     height: 22px;
     cursor: pointer;
 }
 
-.PA-OldSpritesText{
-    color: black;
+.PA-OldSpritesText {
+    color: #afafaf;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
-.PA-GenerationalSpritesButton{
+.PA-GenerationalSpritesButton {
     width: 48px;
     height: 22px;
     cursor: pointer;
 }
 
-.PA-ExtraViewingsText{
-    color: black;
+.PA-ExtraViewingsText {
+    color: #afafaf;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     height: 24px;
 }
 
-.PA-ExtraViewingsButton{
+.PA-ExtraViewingsButton {
     width: 48px;
     height: 22px;
     cursor: pointer;
 }
 
-.PA-PanelPositionText{
-    color: black;
+.PA-PanelPositionText {
+    color: #afafaf;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     height: 24px;
 }
 
-.PA-PanelPositionButton{
+.PA-PanelPositionButton {
     width: 48px;
     height: 22px;
 }
 
-.PA-HoverText{
-    color: black;
+.PA-HoverText {
+    color: #afafaf;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     height: 24px;
 }
 
-.PA-HoverButton{
+.PA-HoverButton {
     width: 48px;
     height: 22px;
     cursor: pointer;
 }
 
-.PA-ExactIVsText{
-    color: black;
+.PA-ExactIVsText {
+    color: #afafaf;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     height: 24px;
 }
 
-.PA-ExactIVsButton{
+.PA-ExactIVsButton {
     width: 48px;
     height: 22px;
     cursor: pointer;
 }
 
-.PA-EmptyBunchesText{
-    color: black;
+.PA-EmptyBunchesText {
+    color: #afafaf;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     height: 24px;
 }
 
-.PA-EmptyBunchesButton{
+.PA-EmptyBunchesButton {
     width: 48px;
     height: 22px;
     cursor: pointer;
 }
 
-.PA-CloseSettings{
-    position: relative;
+.PA-CloseSettings {
     display: block;
     cursor: pointer;
     top: 100px;
     margin: auto;
+    margin-bottom: 30px;
 }
 
-.PA-ImportingPanel{
-    background: rgb(192 192 192 / 95%);
+.PA-ImportingPanel {
     z-index: 1;
     border-top-left-radius: 35px;
     border-top-right-radius: 35px;
     border-bottom-left-radius: 35px;
     border-bottom-right-radius: 35px;
     width: 380px;
-    height: 100%;
     right: 0;
     padding: 10px;
-    margin: 10px;
     overflow: auto;
     display: none;
-    height: 500;
 }
 
-.PA-ImportingText{
+.PA-ImportingText {
     position: relative;
     display: block;
-    color: black;
-    /*font-weight: bold;*/
+    color: #afafaf;
+    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     padding: 10px;
-    height: 480px;
     overflow: auto;
 }

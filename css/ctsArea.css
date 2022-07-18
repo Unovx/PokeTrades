@@ -1,111 +1,79 @@
 @media only screen and (max-width: 768px) {
-    [id*="CTSArea"]{
-      height: auto !important;
-      top: 80% !important;
-      width: 100% !important;
+    [id*="CTSArea"] {
+        height: auto !important;
+        top: 80% !important;
+        width: 100% !important;
     }
 }
 
-#CTSArea{
-    background-color: #2E2D2D;
-    position: absolute; 
+#CTSArea {
+    background-color: #1a233a;
+    position: absolute;
     display: none;
-    height: 100%;
+    height: calc(100% - 52px);
     z-index: 2;
     width: 420px;
     right: 0;
     overflow: auto;
+    margin-top: 52px;
 }
 
 .CTS-DropdownOptions {
     font-weight: initial;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 14px;
-    background: grey;
+    background: #2a3757;
 }
 
-.CTS-Buttons{
+.CTS-Buttons {
     display: flex;
-    border-style: solid;
-    border-color: #5c5c5c;
+    /*border-style: solid;
+    border-color: #5c5c5c;*/
     text-align: center;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
-    position: sticky;
+    /*position: sticky;*/
     top: 0px;
     z-index: 10;
 }
 
-.CTS-CloseButton {
-    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
+.CTS-ButtonDesign {
+    background: #171d2c;
     border-width: 2px;
     border-style: solid;
-    border-color: #5c5c5c;
+    border-color: #2e3850;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #536c9f;
     cursor: pointer;
     margin: 3px;
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
 }
 
-.CTS-SearchButton {
-    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #5c5c5c;
+.CTS-LoadLimits {
+    display: flex;
+    text-align: center;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    cursor: pointer;
-    margin: 3px;
+    /*position: sticky;*/
+    top: 0px;
+    z-index: 10;
 }
 
-.CTS-ResetButton {
-    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #5c5c5c;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    cursor: pointer;
-    margin: 3px;
-}
-
-.CTS-HelpButton {
-    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #5c5c5c;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    cursor: pointer;
-    margin: 3px;
-}
-
-.CTS-HelpSprite{
+.CTS-HelpSprite {
     max-width: 20px;
     max-height: 20px;
     vertical-align: top;
 }
 
-.CTS-IconOptions{
+.CTS-IconOptions {
     display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(50px, 1fr) );
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     text-align: center;
     width: auto;
     place-items: center;
@@ -114,87 +82,87 @@
     margin-bottom: 5px;
 }
 
-.CTS-SelectedLang{
-    background-color: #404040;
+.CTS-SelectedLang {
+    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: #399BC8;
+    color: #2c7b9f;
     font-size: 16px;
     height: 20px;
     cursor: pointer;
 }
 
-.CTS-SelectedBall{
-    background-color: #404040;
+.CTS-SelectedBall {
+    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     cursor: pointer;
 }
 
-.CTS-SelectedGender{
-    background-color: #404040;
+.CTS-SelectedGender {
+    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     cursor: pointer;
 }
 
-.CTS-SelectedShiny{
-    background-color: #404040;
+.CTS-SelectedShiny {
+    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     cursor: pointer;
 }
 
-.CTS-SelectedMint{
-    background-color: #404040;
+.CTS-SelectedMint {
+    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     cursor: pointer;
 }
 
-.CTS-SelectedMisc{
-    background-color: #404040;
+.CTS-SelectedMisc {
+    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     cursor: pointer;
 }
 
-.CTS-SelectedMark{
-    background-color: #404040;
+.CTS-SelectedMark {
+    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     cursor: pointer;
 }
 
-.CTS-SelectedRibbon{
-    background-color: #404040;
+.CTS-SelectedRibbon {
+    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     pointer-events: initial !important;
@@ -211,43 +179,43 @@
     padding: 0;
 }
 
-.CTS-BallIcon{
+.CTS-BallIcon {
     vertical-align: top;
     max-height: 20px;
     max-width: 20px;
 }
 
-.CTS-GenderIcon{
+.CTS-GenderIcon {
     vertical-align: top;
     max-height: 20px;
     max-width: 20px;
 }
 
-.CTS-ShinyIcon{
+.CTS-ShinyIcon {
     vertical-align: top;
     max-height: 20px;
     max-width: 20px;
 }
 
-.CTS-MintIcon{
+.CTS-MintIcon {
     vertical-align: top;
     max-height: 20px;
     max-width: 20px;
 }
 
-.CTS-MiscIcon{
+.CTS-MiscIcon {
     vertical-align: top;
     max-height: 20px;
     max-width: 20px;
 }
 
-.CTS-MarkIcon{
+.CTS-MarkIcon {
     vertical-align: top;
     max-height: 20px;
     max-width: 20px;
 }
 
-.CTS-RibbonIcon{
+.CTS-RibbonIcon {
     vertical-align: top;
     max-height: 20px;
     max-width: 20px;
@@ -255,66 +223,66 @@
 
 .CTS-OptionsContainer {
     display: grid;
-    grid-template-columns: repeat( auto-fill, minmax(30px, 1fr) );
+    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
     border-radius: 9px;
-    background-color: #404040;
+    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     margin-bottom: 10px;
 }
 
-.CTS-LangOptions{
+.CTS-LangOptions {
     display: none;
 }
 
-.CTS-BallOptions{
+.CTS-BallOptions {
     display: none;
 }
 
-.CTS-GenderOptions{
+.CTS-GenderOptions {
     display: none;
 }
 
-.CTS-ShinyOptions{
+.CTS-ShinyOptions {
     display: none;
 }
 
-.CTS-MintOptions{
+.CTS-MintOptions {
     display: none;
 }
 
-.CTS-MiscOptions{
+.CTS-MiscOptions {
     display: none;
 }
 
-.CTS-MarkOptions{
+.CTS-MarkOptions {
     display: none;
 }
 
-.CTS-RibbonOptions{
+.CTS-RibbonOptions {
     display: none;
 }
 
-.CTS-PokemonDetails{
+.CTS-PokemonDetails {
     display: flex;
     border-radius: 9px;
-    background-color: #404040;
+    background-color: #243048;
     height: 125px;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     margin-bottom: 10px;
 }
 
-.CTS-IconContainer{
+.CTS-IconContainer {
     display: flex;
     /*border-radius: 30px;*/
     border-radius: 8px;
     background-color: #9f5e5e;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     height: 25px;
     width: 25px;
     text-align-last: center;
@@ -325,14 +293,14 @@
     justify-self: center;
 }
 
-.CTS-Icon{
+.CTS-Icon {
     max-width: 20px;
     max-height: 20px;
 }
 
-.CTS-IconButton{
+.CTS-IconButton {
     display: block;
-    color: white;
+    color: #e0e0e0;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -342,21 +310,21 @@
     margin: auto;
 }
 
-.CTS-PokemonImage{
+.CTS-PokemonImage {
     display: block;
-    top: 50px; 
-    max-width: 115px; 
-    max-height: 115px;
+    top: 50px;
+    width: 115px;
+    height: 115px;
 }
 
 .CTS-PokemonDropdown {
-    background: #404040;
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
@@ -364,7 +332,7 @@
 }
 
 .CTS-NicknameDropdown {
-    background: #404040;
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
@@ -377,18 +345,18 @@
     margin-bottom: 4px;
 }
 
-.CTS-Tables{
+.CTS-Tables {
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     border-spacing: 0px;
 }
 
-.CTS-TableText{
-    background: #404040;
+.CTS-TableText {
+    background: #243048;
     text-align: end;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     width: 140px;
     display: table-cell;
@@ -398,12 +366,12 @@
 }
 
 .CTS-AbilityDropdown {
-    background: #404040;
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
@@ -411,43 +379,43 @@
 }
 
 .CTS-NatureDropdown {
-    background: #404040;
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
-.CTS-InfoHolder{
+.CTS-InfoHolder {
     border-radius: 9px;
-    background-color: #404040;
+    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     margin-bottom: 10px;
     display: flex;
 }
 
-.CTS-Availability{
+.CTS-Availability {
     display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(40px, 1fr) );
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
     text-align: center;
     width: auto;
 }
 
-.CTS-Gen6{
-    background: #404040;
+.CTS-Gen6 {
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 14px;
     border: 0px;
     margin-top: 4px;
@@ -455,14 +423,14 @@
     padding: 0px;
 }
 
-.CTS-Gen7{
-    background: #404040;
+.CTS-Gen7 {
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 14px;
     border: 0px;
     margin-top: 4px;
@@ -470,14 +438,14 @@
     padding: 0px;
 }
 
-.CTS-Gen8{
-    background: #404040;
+.CTS-Gen8 {
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 14px;
     border: 0px;
     margin-top: 4px;
@@ -485,14 +453,14 @@
     padding: 0px;
 }
 
-.CTS-Home{
-    background: #404040;
+.CTS-Home {
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 14px;
     border: 0px;
     margin-top: 4px;
@@ -500,37 +468,37 @@
     padding: 0px;
 }
 
-.CTS-GameObtainedDropdown{
-    background: #404040;
+.CTS-GameObtainedDropdown {
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
-.CTS-HowObtainedDropdown{
-    background: #404040;
+.CTS-HowObtainedDropdown {
+    background: #243048;
     /*width: -webkit-fill-available !important;
     width: -moz-available !important;*/
     width: 171px;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
-.CTS-FormDropdown{
-    background: #404040;
+.CTS-FormDropdown {
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
@@ -543,8 +511,8 @@
     margin-bottom: 4px;
 }
 
-.CTS-EvoDropdown{
-    background: #404040;
+.CTS-EvoDropdown {
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
@@ -558,11 +526,11 @@
 }
 
 .CTS-OT {
-    background: #404040;
+    background: #243048;
     width: 148px !important;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
@@ -570,11 +538,11 @@
 }
 
 .CTS-ID {
-    background: #404040;
+    background: #243048;
     width: 148px !important;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
@@ -582,12 +550,12 @@
 }
 
 .CTS-StatusDropdown {
-    background: #404040;
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
@@ -595,55 +563,55 @@
 }
 
 .CTS-EventDropdown {
-    background: #404040;
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
-.CTS-StatHolder{
+.CTS-StatHolder {
     border-radius: 9px;
-    background-color: #7e7e7e;
+    background-color: #35425c;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     margin-bottom: 10px;
     display: flex;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
 }
 
-.CTS-IvEvDesign{
+.CTS-IvEvDesign {
     font-size: 15px;
-    background-color: #404040;
+    background-color: #243048;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
 }
 
-.CTS-IvText{
-    color: white;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-}
-
-.CTS-EvText{
-    color: white;
+.CTS-IvText {
+    color: #e0e0e0;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
-.CTS-IvEvText{
-    color: white;
+.CTS-EvText {
+    color: #e0e0e0;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.CTS-IvEvText {
+    color: #e0e0e0;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
@@ -651,170 +619,170 @@
 }
 
 
-.CTS-IVsEVs{
+.CTS-IVsEVs {
     text-align: center;
     margin: auto;
 }
 
 
 
-.CTS-IvHP{
+.CTS-IvHP {
     width: 49px !important;
 }
 
-.CTS-IvAtt{
+.CTS-IvAtt {
     width: 49px !important;
 }
 
-.CTS-IvDef{
+.CTS-IvDef {
     width: 49px !important;
 }
 
-.CTS-IvSpa{
+.CTS-IvSpa {
     width: 49px !important;
 }
 
-.CTS-IvSpd{
+.CTS-IvSpd {
     width: 49px !important;
 }
 
-.CTS-IvSpe{
+.CTS-IvSpe {
     width: 49px !important;
 }
 
-.CTS-EvHP{
+.CTS-EvHP {
     width: 49px !important;
 }
 
-.CTS-EvAtt{
+.CTS-EvAtt {
     width: 49px !important;
 }
 
-.CTS-EvDef{
+.CTS-EvDef {
     width: 49px !important;
 }
 
-.CTS-EvSpa{
+.CTS-EvSpa {
     width: 49px !important;
 }
 
-.CTS-EvSpd{
+.CTS-EvSpd {
     width: 49px !important;
 }
 
-.CTS-EvSpe{
+.CTS-EvSpe {
     width: 49px !important;
 }
 
-.CTS-MovesHolder{
+.CTS-MovesHolder {
     border-radius: 9px;
-    background-color: #404040;
+    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     margin-bottom: 10px;
 }
 
 .CTS-PokemonMoves {
     display: block;
-    background: #404040;
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
-.CTS-NormalMoves{
+.CTS-NormalMoves {
     display: grid;
-    grid-template-columns: repeat( 2, minmax(100px, 1fr) );
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
     text-align: center;
     width: auto;
 }
 
-.CTS-Move1{
-    background: #404040;
+.CTS-Move1 {
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
-.CTS-Move2{
-    background: #404040;
+.CTS-Move2 {
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
-.CTS-Move3{
-    background: #404040;
+.CTS-Move3 {
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
-.CTS-Move4{
-    background: #404040;
+.CTS-Move4 {
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
-.CTS-InfoGridHolder{
+.CTS-InfoGridHolder {
     display: grid;
-    grid-template-columns: repeat( 2, minmax(100px, 1fr) );
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
     text-align: center;
     border-radius: 9px;
-    background-color: #404040;
+    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #949494;
+    border-color: #171d2c;
     margin-bottom: 10px;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
 }
 
 .CTS-ProofDropdown {
-    background: #404040;
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align-last: center;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;
@@ -822,13 +790,13 @@
 }
 
 .CTS-NoteDropdown {
-    background: #404040;
+    background: #243048;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align-last: center;
-    color: white;
+    color: #e0e0e0;
     font-size: 15px;
     border: 0px;
     margin-top: 4px;

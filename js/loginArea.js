@@ -22,6 +22,7 @@ function LastSession(data) {
         document.querySelector(".PA-UserID").innerHTML = "Your ID is: " + userData.user_id;
         document.querySelector(".TA-UserCollection").style.pointerEvents = "initial";
         document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
+        document.querySelector(".MA-ImportTradeSheet").style.pointerEvents = "initial";
     }
 }
 
@@ -94,6 +95,7 @@ $('.LA-LogOut').click(function () {
     token = null;
     localStorage.setItem('token', null);
     $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+    document.querySelector(".MA-ImportTradeSheet").style.pointerEvents = "none";
 });
 
 $('.LA-ChangeDetails').click(function () {
@@ -294,7 +296,7 @@ function CloseLoginArea() {
     document.querySelector(".LA-NewPassword").value = "";
     document.querySelector(".LA-ConfirmNewPassword").value = "";
     document.querySelector(".LA-UpdateFailed").style.display = "none";
-    document.querySelector(".LA-PreviewArea").style.display = "none";
+    document.querySelector("#MainArea").style.position = "absolute";
 }
 
 function UserLogin(data) {
@@ -314,6 +316,7 @@ function UserLogin(data) {
         document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
 
         $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+        document.querySelector(".MA-ImportTradeSheet").style.pointerEvents = "initial";
     } else {
         document.querySelector(".LA-LoginFailed").style.display = "block";
         document.querySelector(".LA-LoginFailed").innerHTML = "Wrong Username or Password.";
@@ -341,6 +344,7 @@ function RegisterAccount(data) {
         document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
 
         $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+        document.querySelector(".MA-ImportTradeSheet").style.pointerEvents = "initial";
     } else {
         document.querySelector(".LA-RegisterFailed").style.display = "block";
         document.querySelector(".LA-RegisterFailed").innerHTML = "Username already taken.";

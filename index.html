@@ -20,6 +20,7 @@
   <link href="css/notificationArea.css" rel="stylesheet" />
   <link href="css/informationArea.css" rel="stylesheet" />
   <link href="css/ctsArea.css" rel="stylesheet" />
+  <link href="css/importArea.css" rel="stylesheet" />
   <link href="css/trackingArea.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
@@ -41,7 +42,26 @@
     <div id="Background">
       <img>
     </div>
+    <div class="MA-TopRow">
+      <text class="MA-TitleText">PokeTrades</text>
+      <table class="MA-ButtonTable">
+        <tr>
+          <td>
+            <img class="MA-TopRowImage MA-UserLogin" src="https://poketrades.org/Resources/Designs/User Icon.png"></img>
+          </td>
+          <td>
+            <img class="MA-TopRowImage MA-Settings"
+              src="https://poketrades.org/Resources/Designs/Settings Icon.png"></img>
+          </td>
+          <td>
+            <img class="MA-TopRowImage MA-Discord"
+              src="https://poketrades.org/Resources/Designs/Discord Icon.png"></img>
+          </td>
+        </tr>
+      </table>
+    </div>
     <div id="MainArea">
+
       <div class="MainSection">
         <div class="MA-MainTextHolder">
           <img class="MA-PokeTradesTextIcon" src="https://poketrades.org/Resources/Misc/PokeTrades Icon Text.png"></img>
@@ -49,7 +69,107 @@
         <img class="MA-LoginButton" src="https://poketrades.org/Resources/Home/Klang.png"></img>
 
         <div class="StartingSections">
-          <div class="MA-Settings">
+          <div class="MA-SectionDiv MA-CTS">
+            <text class="MA-SectionText">Search for any Pokemon</text>
+            <div class="MA-Divider"></div>
+            <div class="MA-SectionHolderDiv">
+              <text class="MA-SectionCTSTitleText">CTS</text>
+              <img class="MA-SectionImage" src="https://poketrades.org/Resources/Designs/CTS Icon.png"></img>
+            </div>
+          </div>
+          <div class="MA-SectionDiv MA-SearchTradeShops">
+            <text class="MA-SectionText">Create, Edit or View TradeShops</text>
+            <div class="MA-Divider"></div>
+            <div class="MA-SectionHolderDiv">
+              <text class="MA-SectionTitleText">Search TradeShops</text>
+              <img class="MA-SectionImage" src="https://poketrades.org/Resources/Designs/TradeShop Icon.png"></img>
+            </div>
+          </div>
+          <div class="MA-SectionDiv MA-PokemonData">
+            <text class="MA-SectionText">See Pokemon Abilities, Forms & More </text>
+            <div class="MA-Divider"></div>
+            <div class="MA-SectionHolderDiv">
+              <text class="MA-SectionTitleText">Pokemon Data</text>
+              <img class="MA-SectionImage" src="https://poketrades.org/Resources/Designs/Pokemon_Data Icon.png"></img>
+            </div>
+          </div>
+          <div class="MA-SectionDiv MA-ImportTradeSheet">
+            <text class="MA-SectionText">Import TradeSheet (Must Log in) </text>
+            <div class="MA-Divider"></div>
+            <div class="MA-SectionHolderDiv">
+              <text class="MA-SectionTitleText">Import Pokemon</text>
+              <img class="MA-SectionImage" src="https://poketrades.org/Resources/Designs/Import Icon.png"></img>
+            </div>
+          </div>
+          <div class="MA-SectionDiv MA-Giveaway">
+            <text class="MA-SectionText">See the Current Giveaway </text>
+            <div class="MA-Divider"></div>
+            <div class="MA-SectionHolderDiv">
+              <text class="MA-InfoText">Click here to see the details of the current Giveaway, To claim, join the
+                discord and request it in the Giveaway channel</text>
+              <img class="MA-SectionImage MA-GiveawayImage"></img>
+            </div>
+          </div>
+          <div class="MA-SectionDiv">
+            <text class="MA-SectionText">What is PokeTrades? </text>
+            <div class="MA-Divider"></div>
+            <text class="MA-InfoText"><br>PokeTrades was designed to be a better alternative to Google Sheets.
+              With Mobile Support, the
+              ability to view other's TradeShops and more, why not sign up? Any
+              questions just click on the Discord Button.</text>
+          </div>
+          <!--<div class="MA-SectionDiv">
+            <text class="MA-SectionText">The CTS (Community Trade Station) is a way to search for any Pokemon you are looking for across all Pokemon in PokeTrades with a range wide of filters. Click here to start!</text>
+            <div class="MA-Divider"></div>
+            <table class="MA-SectionTable">
+              <tr>
+                <td>
+                  <img class="MA-SectionImage" src="https://poketrades.org/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/Giratina-Altered.png"></img>
+                </td>
+                <td>
+                  <text class="MA-SectionTitleText">Search CTS</text>
+                </td>
+                <td>
+                  <img class="MA-SectionImage" src="https://poketrades.org/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/Giratina-Altered.png"></img>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="MA-SectionDiv">
+            <text class="MA-SectionText">If you want to create or edit your own TradeShop or view what others have to offer in theirs, click on here and enter a Search ID.</text>
+            <div class="MA-Divider"></div>
+            <table class="MA-SectionTable">
+              <tr>
+                <td>
+                  <img class="MA-SectionImage" src="https://poketrades.org/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/Giratina-Altered.png"></img>
+                </td>
+                <td>
+                  <text class="MA-SectionTitleText">TradeShops</text>
+                </td>
+                <td>
+                  <img class="MA-SectionImage" src="https://poketrades.org/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/Giratina-Altered.png"></img>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="MA-SectionDiv">
+            <text class="MA-SectionText">If you need any help on getting started, want to give feedback or if you just want to chat with us, join our discord by clicking here.</text>
+            <div class="MA-Divider"></div>
+            <table class="MA-SectionTable">
+              <tr>
+                <td>
+                  <img class="MA-SectionImage" src="https://poketrades.org/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/Giratina-Altered.png"></img>
+                </td>
+                <td>
+                  <text class="MA-SectionTitleText">Discord</text>
+                </td>
+                <td>
+                  <img class="MA-SectionImage" src="https://poketrades.org/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/Giratina-Altered.png"></img>
+                </td>
+              </tr>
+            </table>
+          </div>-->
+          <!--<div class="MA-Settings">
             <img class="MA-SettingsImage" src="https://poketrades.org/Resources/Designs/Settings_Icon.png"></img>
           </div>
           <div class="MA-SearchTradeShops">
@@ -80,7 +200,7 @@
           </div>
           <div class="MA-Tracking">
             <img class="MA-TrackingImage" src="https://poketrades.org/Resources/Designs/Legality_List_Icon.png"></img>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
@@ -116,6 +236,7 @@
         </text>
       </div>
       <div class="PA-SettingsPanel">
+        <button class="PA-CloseSettings PA-ButtonDesign">Close</button>
         <text class="PA-PreviewText">Preview Settings</text>
         <table class="PreviewAlign">
           <tr style="height: 30px;">
@@ -124,7 +245,7 @@
                 src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png"></img>
             </td>
             <td>
-              <button class="PA-BallButton">On</button>
+              <button class="PA-BallButton PA-ButtonDesign">On</button>
             </td>
           </tr>
           <tr style="height: 30px;">
@@ -132,7 +253,7 @@
               <img class="PA-GenderImage" src="https://poketrades.org/Resources/Misc/Male.png"></img>
             </td>
             <td>
-              <button class="PA-GenderButton">Off</button>
+              <button class="PA-GenderButton PA-ButtonDesign">Off</button>
             </td>
           </tr>
           <tr style="height: 30px;">
@@ -140,7 +261,7 @@
               <img class="PA-ShinyImage" src="https://poketrades.org/Resources/Misc/Star Shiny.png"></img>
             </td>
             <td>
-              <button class="PA-ShinyButton">Off</button>
+              <button class="PA-ShinyButton PA-ButtonDesign">Off</button>
             </td>
           </tr>
           <tr style="height: 30px;">
@@ -148,7 +269,7 @@
               <img class="PA-MintImage" src="https://poketrades.org/Resources/Misc/Minted.png"></img>
             </td>
             <td>
-              <button class="PA-MintButton">Off</button>
+              <button class="PA-MintButton PA-ButtonDesign">Off</button>
             </td>
           </tr>
           <tr style="height: 30px;">
@@ -156,7 +277,7 @@
               <img class="PA-MiscImage" src="https://poketrades.org/Resources/Misc/Gigantamax.png"></img>
             </td>
             <td>
-              <button class="PA-MiscButton">Off</button>
+              <button class="PA-MiscButton PA-ButtonDesign">Off</button>
             </td>
           </tr>
           <tr style="height: 30px;">
@@ -165,7 +286,7 @@
                 src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/Zero Energy Mark.png"></img>
             </td>
             <td>
-              <button class="PA-MarkButton">Off</button>
+              <button class="PA-MarkButton PA-ButtonDesign">Off</button>
             </td>
           </tr>
           <tr style="height: 30px;">
@@ -173,7 +294,7 @@
               <text class="PA-IVsText">IVs</text>
             </td>
             <td>
-              <button class="PA-IVsButton">On</button>
+              <button class="PA-IVsButton PA-ButtonDesign">On</button>
             </td>
           </tr>
         </table>
@@ -184,7 +305,7 @@
               <text class="PA-DexNumberText">Dex Number</text>
             </td>
             <td>
-              <button class="PA-DexNumberButton">Off</button>
+              <button class="PA-DexNumberButton PA-ButtonDesign">Off</button>
             </td>
           </tr>
           <!--<tr style="height: 30px;">
@@ -200,7 +321,7 @@
               <text class="PA-OldSpritesText">Generational Designs</text>
             </td>
             <td>
-              <button class="PA-GenerationalSpritesButton">Off</button>
+              <button class="PA-GenerationalSpritesButton PA-ButtonDesign">Off</button>
             </td>
           </tr>
           <tr style="height: 30px;">
@@ -208,7 +329,7 @@
               <text class="PA-ExtraViewingsText">Extra Viewings</text>
             </td>
             <td>
-              <button class="PA-ExtraViewingsButton">Off</button>
+              <button class="PA-ExtraViewingsButton PA-ButtonDesign">Off</button>
             </td>
           </tr>
           <tr style="height: 30px;">
@@ -216,7 +337,7 @@
               <text class="PA-PanelPositionText">Panel Position</text>
             </td>
             <td>
-              <button class="PA-PanelPositionButton">Right</button>
+              <button class="PA-PanelPositionButton PA-ButtonDesign">Right</button>
             </td>
           </tr>
           <tr style="height: 30px;">
@@ -224,7 +345,7 @@
               <text class="PA-HoverText">See Info on Hover</text>
             </td>
             <td>
-              <button class="PA-HoverButton">Off</button>
+              <button class="PA-HoverButton PA-ButtonDesign">Off</button>
             </td>
           </tr>
           <tr style="height: 30px;">
@@ -232,7 +353,7 @@
               <text class="PA-ExactIVsText">See Exact IVs</text>
             </td>
             <td>
-              <button class="PA-ExactIVsButton">Off</button>
+              <button class="PA-ExactIVsButton PA-ButtonDesign">Off</button>
             </td>
           </tr>
           <tr style="height: 30px;">
@@ -240,13 +361,13 @@
               <text class="PA-EmptyBunchesText">See Empty Bunch</text>
             </td>
             <td>
-              <button class="PA-EmptyBunchesButton">On</button>
+              <button class="PA-EmptyBunchesButton PA-ButtonDesign">On</button>
             </td>
           </tr>
         </table>
-        <button class="PA-CloseSettings">Close</button>
       </div>
       <div class="PA-TradeShopPanel">
+        <button class="PA-TradeShopClose PA-ButtonDesign">Close</button>
         <table class="PA-SearchInfo">
           <tr>
             <td>
@@ -264,11 +385,13 @@
             </td>
           </tr>
         </table>
-        <textarea class="PA-Message" maxlength="350" disabled="true" spellcheck="false" onblur="UpdatePersonalText()"
+        <textarea class="PA-Message" maxlength="700" disabled="true" spellcheck="false" onblur="UpdatePersonalText()"
           oninput='this.style.height = ""; this.style.height = this.scrollHeight - 20 + "px"'>Type in a SearchID in the InputField to bring up their TradeShop. Afterwards, (scroll down if on mobile) click on any of the Bunches below to open them and see the Pokemon within.</textarea>
 
         <div class="PA-GeneratedBunches">
-          <img class="PA-BunchHelp" src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
+          <button class="PA-BunchHelpButton">
+            <img class="PA-BunchHelp" src="https://poketrades.org/Resources/Designs/Question Icon.png"></img>
+          </button>
           <div id="PA-ForTradeBunches">
             <button class="PA-ForTradeBunchEdit">Edit For Trade Bunches</button>
             <button class="PA-ForTradeBunchMove">Move For Trade Bunches</button>
@@ -361,86 +484,118 @@
       </div>
     </div>
     <div id="LoginArea">
+      <button class="LA-LoginClose LA-ButtonDesign">Close</button>
       <div class="LA-LoginArea">
         <text class="LA-LoginText">Log In</text>
-        <input class="LA-LoginUsername" type="text" maxlength="15" placeholder="Username...">
-        <input class="LA-LoginPassword" type="password" maxlength="50" placeholder="Password...">
-        <button class="LA-LoginButton">Log In</button>
-        <button class="LA-LoginRegisterButton">Register</button>
+        <input class="LA-LoginUsername LA-ButtonDesign" type="text" maxlength="15" placeholder="Username...">
+        <input class="LA-LoginPassword LA-ButtonDesign" type="password" maxlength="50" placeholder="Password...">
+        <button class="LA-LoginButton LA-ButtonDesign">Log In</button>
+        <button class="LA-LoginRegisterButton LA-ButtonDesign">Register</button>
 
         <text class="LA-LoginFailed">Wrong Username or Password.</text>
       </div>
       <div class="LA-LoggedInArea">
         <text class="LA-LoggedInText">Logged In As:</text>
         <text class="LA-Username">Test</text>
-        <button class="LA-LogOut">Log Out</button>
-        <button class="LA-ChangeDetails">Change Username or Password</button>
-        <table class="LA-ImportExportButtons">
-          <tr>
-            <td>
-              <button class="LA-Import">Import</button>
-            </td>
-            <td>
-              <button class="LA-Export">Export</button>
-            </td>
-          </tr>
-        </table>
+        <button class="LA-LogOut LA-ButtonDesign">Log Out</button>
+        <button class="LA-ChangeDetails LA-ButtonDesign">Change Username or Password</button>
+        <button class="LA-Export LA-ButtonDesign">Export</button>
 
         <form method="post" enctype="multipart/form-data" style="display: none;">
           <input class="LA-ImportInput" type="file" enctype="multipart/form-data" accept-charset="utf-8" accept=".csv"
             onchange="ImportData(this.files[0])">
         </form>
-        <text class="LA-LoggedInNotify">Account Created.<br>Join the <a href="https://discord.gg/KapqJKGMRy"
-            target="_blank">Discord</a> If you need help getting started or
-          to hang out and chat!</text>
-        <button class="LA-DeleteAllData">Delete All Data</button>
+        <text class="LA-LoggedInNotify">Account Created.<br>Join the Discord for help getting started or
+          to chat!</text>
+        <button class="LA-DeleteAllData LA-ButtonDesign">Delete All Data</button>
       </div>
       <div class="LA-RegisterArea">
         <text class="LA-CreateAccount">Create Account</text>
-        <input class="LA-RegisterUsername" type="text" maxlength="15" placeholder="Enter Username...">
-        <input class="LA-RegisterPassword" type="password" maxlength="50" placeholder="Enter Password...">
-        <input class="LA-RegisterConfirmPassword" type="password" maxlength="50" placeholder="Confirm Password...">
-        <button class="LA-RegisterButton">Sign Up</button>
-        <button class="LA-RegisterBackButton">Back</button>
+        <input class="LA-RegisterUsername LA-ButtonDesign" type="text" maxlength="15" placeholder="Enter Username...">
+        <input class="LA-RegisterPassword LA-ButtonDesign" type="password" maxlength="50"
+          placeholder="Enter Password...">
+        <input class="LA-RegisterConfirmPassword LA-ButtonDesign" type="password" maxlength="50"
+          placeholder="Confirm Password...">
+        <button class="LA-RegisterButton LA-ButtonDesign">Sign Up</button>
+        <button class="LA-RegisterBackButton LA-ButtonDesign">Back</button>
         <text class="LA-RegisterFailed">Passwords do not match.</text>
       </div>
       <div class="LA-UpdateArea">
         <text class="LA-UpdateText">Change Username or Password</text>
-        <input class="LA-UpdateUsername" type="text" maxlength="15" placeholder="Enter New Username...">
-        <input class="LA-OldPassword" type="password" maxlength="50" placeholder="Enter Old Password...">
-        <input class="LA-NewPassword" type="password" maxlength="50" placeholder="Enter New Password...">
-        <input class="LA-ConfirmNewPassword" type="password" maxlength="50" placeholder="Confirm New Password...">
-        <button class="LA-ConfirmUpdate">Confirm</button>
-        <button class="LA-UpdateBackButton">Back</button>
+        <input class="LA-UpdateUsername LA-ButtonDesign" type="text" maxlength="15" placeholder="Enter New Username...">
+        <input class="LA-OldPassword LA-ButtonDesign" type="password" maxlength="50"
+          placeholder="Enter Old Password...">
+        <input class="LA-NewPassword LA-ButtonDesign" type="password" maxlength="50"
+          placeholder="Enter New Password...">
+        <input class="LA-ConfirmNewPassword LA-ButtonDesign" type="password" maxlength="50"
+          placeholder="Confirm New Password...">
+        <button class="LA-ConfirmUpdate LA-ButtonDesign">Confirm</button>
+        <button class="LA-UpdateBackButton LA-ButtonDesign">Back</button>
         <text class="LA-UpdateFailed">Passwords do not match.</text>
       </div>
-      <button class="LA-LoginClose">Close</button>
+    </div>
+    <div id="ImportArea">
+      <div class="Import-Buttons">
+        <button class="Import-CloseButton Import-ButtonDesign">Close</button>
+        <button class="Import-PreviewButton Import-ButtonDesign">Preview</button>
+        <button class="Import-ImportButton Import-ButtonDesign">Import</button>
+        <!--<button class="Import-HelpButton Import-ButtonDesign">
+          <img class="Import-InfoSprite" src="https://poketrades.org/Resources/Designs/Question Icon.png"></img>
+        </button>-->
+      </div>
+      <div class="Import-InfoArea">
+        <text>Before Importing, it is recommended that you export your PokeTrades TradeShop first as this will give you
+          the order of the columns that must be followed. Keep in mind that the first row of the import will be ignored
+          as it is reversed for the headings.
+          <br><br>To preview the Pokemon you want to Import, click on the Preview Button and select your TradeSheet.
+          (Keep in mind it must be saved as a CSV file).
+          <br><br>
+          You do not have to fill in every column, defaults will be used in their place if left empty. If the Bunch Name
+          dropdown is blank, it means that the you have chosen a bunch name but not created a Bunch with that name yet.
+          <br><br>
+          Keep in mind that you cannot save any changes to the Pokemon previewed here; any mistakes or issues will have
+          to be
+          fixed on your CSV file.
+          <br><br> To import, simply click on the Import Button and select the same File. You will then be taken back
+          to your area to view your Pokemon.
+          <br><br>
+          Any questions or problems, just click on the Discord Icon and ask for Help. </text>
+      </div>
+      <form method="post" enctype="multipart/form-data" style="display: none;">
+        <input class="Import-ImportInput" type="file" enctype="multipart/form-data" accept-charset="utf-8" accept=".csv"
+          onchange="ImportData(this.files[0])">
+      </form>
+      <form method="post" enctype="multipart/form-data" style="display: none;">
+        <input class="Import-ConfirmInput" type="file" enctype="multipart/form-data" accept-charset="utf-8"
+          accept=".csv" onchange="ConfirmData(this.files[0])">
+      </form>
     </div>
     <div id=SelectionArea>
       <div id="SA-TopRow">
         <table class="SelectionButtons">
           <tr>
             <td>
-              <button class="SA-MainMenu">Main Menu</button>
+              <button class="SA-MainMenu SA-ButtonDesign">Main Menu</button>
             </td>
             <td>
-              <button class="SA-CreateButton">Create</button>
+              <button class="SA-CreateButton SA-ButtonDesign">Create</button>
             </td>
             <td>
-              <button class="SA-MoveButton">Move</button>
+              <button class="SA-MoveButton SA-ButtonDesign">Move</button>
             </td>
             <td>
-              <button class="SA-CopyButton">Copy</button>
+              <button class="SA-CopyButton SA-ButtonDesign">Copy</button>
             </td>
             <td>
-              <button class="SA-FiltersButton">Filters</button>
+              <button class="SA-FiltersButton SA-ButtonDesign">Filters</button>
             </td>
             <td>
-              <img class="SA-SelectionHelp" src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
+              <img class="SA-SelectionHelp SA-ButtonDesign"
+                src="https://poketrades.org/Resources/Designs/Question Icon.png"></img>
             </td>
           </tr>
         </table>
-        <input class="SA-Searchbar" type="text" placeholder="Search Pokemon...">
+        <input class="SA-Searchbar SA-ButtonDesign" type="text" placeholder="Search Pokemon...">
         <text class="SA-Bunch">(No Bunch) </text>
       </div>
       <div id="SelectionSection">
@@ -455,24 +610,24 @@
       </div>
       <div class="DA-TopData">
         <div class="CTS-Buttons">
-          <button class="DA-Close">Close</button>
-          <button class="DA-Save">Save</button>
-          <button class="DA-Place">Place</button>
-          <button class="DA-Delete">Delete</button>
-          <button class="DA-Reset">Reset</button>
-          <button class="DA-Add">Add</button>
-          <button class="DA-Lock">Lock</button>
+          <button class="DA-Close DA-ButtonDesign">Close</button>
+          <button class="DA-Save DA-ButtonDesign">Save</button>
+          <button class="DA-Place DA-ButtonDesign">Place</button>
+          <button class="DA-Delete DA-ButtonDesign">Delete</button>
+          <button class="DA-Reset DA-ButtonDesign">Reset</button>
+          <button class="DA-Add DA-ButtonDesign">Add</button>
+          <button class="DA-Lock DA-ButtonDesign">Lock</button>
         </div>
 
       </div>
       <table class="DA-AdditionalViewings">
         <tr>
           <td>
-            <img class="DA-ViewingHelp" src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
+            <img class="DA-ViewingHelp" src="https://poketrades.org/Resources/Designs/Question Icon.png"></img>
           </td>
           <td>
             <img class="DA-ViewingHelp" style="visibility: hidden;"
-              src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
+              src="https://poketrades.org/Resources/Designs/Question Icon.png"></img>
           </td>
           <td>
             <img class="DA-AddAV DA-AddAV1" src="https://poketrades.org/Resources/Misc/Add Viewing.png"></img>
@@ -525,7 +680,7 @@
         <table class="DA-TemplateSection">
           <tr>
             <td class="DA-TemplateAreas">
-              <img class="DA-TemplateHelp" src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
+              <img class="DA-TemplateHelp" src="https://poketrades.org/Resources/Designs/Question Icon.png"></img>
             </td>
             <td class="DA-TemplateAreas">
               <button class="DA-AddTemplate">+</button>
@@ -786,35 +941,31 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="DA-Proof">
-        <table class="DA-Tables">
-          <tr>
-            <td class="DA-TableTextGrey">
-              <button class="DA-ToggleProof" style="font-size: 16px;">Show Proof</button>
-            </td>
-            <td>
-              <input class="DA-ProofURL" type="text" placeholder="Type Proof..">
-              </select>
-            </td>
-          </tr>
-        </table>
+        <div class="DA-Proof">
+          <button class="DA-ToggleProof" style="font-size: 16px;">Show Proof</button>
+          <input class="DA-ProofURL" type="text" placeholder="Type Proof..">
+        </div>
         <a class="DA-LinkRedirector" target="_blank"><img class="DA-ProofImage" src=""></img><video
             class="DA-ProofVideo" src="" controls=true></video></a>
+        <textarea class="DA-Note" placeholder="Type Note.." maxlength="150"
+          oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'></textarea>
       </div>
-      <textarea class="DA-Note" placeholder="Type Note.." maxlength="150"
-        oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'></textarea>
+
+
     </div>
 
     <div id="CTSArea">
       <div class="CTS-Buttons">
-        <button class="CTS-CloseButton">Close</button>
-        <button class="CTS-SearchButton">Search</button>
-        <button class="CTS-ResetButton">Reset</button>
-        <button class="CTS-HelpButton">
-          <img class="CTS-HelpSprite" src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
+        <button class="CTS-CloseButton CTS-ButtonDesign">Close</button>
+        <button class="CTS-SearchButton CTS-ButtonDesign">Search</button>
+        <button class="CTS-ResetButton CTS-ButtonDesign">Reset</button>
+        <button class="CTS-HelpButton CTS-ButtonDesign">
+          <img class="CTS-HelpSprite" src="https://poketrades.org/Resources/Designs/Question Icon.png"></img>
         </button>
+      </div>
+      <div class="CTS-LoadLimits">
+        <input class="CTS-Offset CTS-ButtonDesign" type="number" maxlength="10" placeholder="Offset (0 Default)...">
+        <input class="CTS-Limit CTS-ButtonDesign" type="number" maxlength="10" placeholder="Limit (500 Default)...">
       </div>
       <div class="CTS-IconOptions">
         <div class="CTS-SelectedLang">
@@ -1045,12 +1196,15 @@
     <div id="BunchArea">
       <button class="BA-CloseButton BA-BunchButtons">Return to Main Area</button>
       <text class="BA-SelectIconText">Select the Icon to display for your Bunch</text>
-      <div class="BA-IconOptions BA-BunchButtons">
+      <div class="BA-IconOptions">
         <div>
           <select class="BA-GenderDropdown BA-BunchButtons"></select>
         </div>
         <div>
           <select class="BA-ShinyDropdown BA-BunchButtons"></select>
+        </div>
+        <div>
+          <select class="BA-GameDropdown BA-BunchButtons"></select>
         </div>
       </div>
       <img class="BA-IconImage" src="https://poketrades.org/Resources/Home/Abomasnow-Male.png"></img>
@@ -1074,16 +1228,16 @@
     <div id="InformationArea">
       <div class="IA-TopArea" style="display:block">
         <div class="IA-Buttons">
-          <button class="IA-Close">Close</button>
-          <button class="IA-ShinyButton">
+          <button class="IA-Close IA-ButtonDesign">Close</button>
+          <button class="IA-ShinyButton IA-ButtonDesign">
             <img class="IA-ShinySprite" src="https://poketrades.org/Resources/Misc/X IV Icon.png"></img>
           </button>
-          <button class="IA-InfoButton">
-            <img class="IA-InfoSprite" src="https://poketrades.org/Resources/HomeShiny/Unown-Question.png"></img>
+          <button class="IA-InfoButton IA-ButtonDesign">
+            <img class="IA-InfoSprite" src="https://poketrades.org/Resources/Designs/Question Icon.png"></img>
           </button>
         </div>
       </div>
-      <div class="IA-PokemonDetails">
+      <div class="IA-PokemonDetails" style="margin-top: 0px;">
         <div style="position: Absolute">
           <img class="IA-TypeIcon IA-Pokemon1_Type1"
             src="https://poketrades.org/Resources/Misc/HP Electric.png"></img><img class="IA-TypeIcon IA-Pokemon1_Type2"
@@ -1552,8 +1706,8 @@
           you
           want it to be in front of.
           <br> <br>
-          To copy a Pokemon, click on the Copy button and select the Pokemon twice.</text>
-        <button class="NA-SelectionClose">Close</button>
+          To copy a Pokemon, click on the Copy button and select the Pokemon twice.
+          <button class="NA-SelectionClose NA-ButtonDesign">Close</button>
       </div>
       <div class="ViewingAdditionalHelp">
         <text class="NA-ViewingAdditionalText">
@@ -1565,25 +1719,25 @@
           To access this viewing at any time, just click on it. Clicking on the + Button next to it will replace it
           with
           the current viewing.</text>
-        <button class="NA-ViewingAdditionalClose">Close</button>
+        <button class="NA-ViewingAdditionalClose NA-ButtonDesign">Close</button>
       </div>
       <div class="ViewingConfirmDelete">
         <text class="NA-ConfirmDeleteText">Are you sure you want to delete this Pokemon?</text>
         <table class="NA-ConfirmDeleteButtons">
           <tr>
             <td>
-              <button class="NA-ConfirmDeleteButton">Delete</button>
+              <button class="NA-ConfirmDeleteButton NA-ButtonDesign">Delete</button>
             </td>
             <td>
-              <button class="NA-CloseConfirmButton">Close</button>
+              <button class="NA-CloseConfirmButton NA-ButtonDesign">Close</button>
             </td>
           </tr>
         </table>
       </div>
       <div class="ViewingPokemonAdded">
         <text class="NA-PokemonAddedText">Sucessfully added the Pokemon to your Tradesheet (Can be found inside (No
-          Bunch) in For Trade).</text>
-        <button class="NA-PokemonAddedClose">Close</button>
+          Bunch).</text>
+        <button class="NA-PokemonAddedClose NA-ButtonDesign">Close</button>
       </div>
       <div class="CreationPokemonError">
         <text class="NA-CreationPokemonText">Cannot create Pokemon!
@@ -1604,7 +1758,7 @@
           Check the ID, OT InputFields are filled.
           <br>
           Check the Move1 field is filled.</text>
-        <button class="NA-CreationPokemonClose">Close</button>
+        <button class="NA-CreationPokemonClose NA-ButtonDesign">Close</button>
       </div>
       <div class="TemplateHelpInfo">
         <text class="NA-TemplateHelpText">By clicking on the Pokemon Image, you can bring up an Information Area to see
@@ -1634,26 +1788,26 @@
           <br>
           IVs and EVs
         </text>
-        <button class="NA-TemplateHelpClose">Close</button>
+        <button class="NA-TemplateHelpClose NA-ButtonDesign">Close</button>
       </div>
       <div class="TemplateAdded">
         <text class="NA-TemplateAddedText">Template successfully Added/Updated.</text>
-        <button class="NA-TemplateAddedClose">Close</button>
+        <button class="NA-TemplateAddedClose NA-ButtonDesign">Close</button>
       </div>
       <div class="TemplateRemoved">
         <text class="NA-TemplateRemovedText">Template successfully Removed.</text>
-        <button class="NA-TemplateRemovedClose">Close</button>
+        <button class="NA-TemplateRemovedClose NA-ButtonDesign">Close</button>
       </div>
       <div class="TemplateAddedError">
         <text class="NA-TemplateAddedErrorText">Cannot create Template!
           <br><br>Make sure the InputField is not blank or "(No Template)".</text>
-        <button class="NA-TemplateAddedErrorClose">Close</button>
+        <button class="NA-TemplateAddedErrorClose NA-ButtonDesign">Close</button>
       </div>
       <div class="TemplateRemovedError">
         <text class="NA-TemplateRemovedErrorText">Cannot remove Template!
           <br><br>Make sure the InputField is not blank or ("No Template").
         </text>
-        <button class="NA-TemplateRemovedErrorClose">Close</button>
+        <button class="NA-TemplateRemovedErrorClose NA-ButtonDesign">Close</button>
       </div>
       <div class="BunchIconError">
         <text class="NA-BunchIconText">Cannot Create/Delete Bunch or Rename!
@@ -1670,21 +1824,21 @@
           <br>
           Make sure that the InputField is filled and does not contain All Pokemon or (No Bunch) and that the new name
           does not already exist.</text>
-        <button class="NA-BunchIconClose">Close</button>
+        <button class="NA-BunchIconClose NA-ButtonDesign">Close</button>
       </div>
       <div class="BunchPokemonAdded">
         <text class="NA-BunchAddedText">Bunch successfully Added/Updated.</text>
-        <button class="NA-BunchAddedClose">Close</button>
+        <button class="NA-BunchAddedClose NA-ButtonDesign">Close</button>
       </div>
       <div class="BunchPokemonRemoved">
         <text class="NA-BunchRemovedText">Bunch successfully Removed.</text>
-        <button class="NA-BunchRemovedClose">Close</button>
+        <button class="NA-BunchRemovedClose NA-ButtonDesign">Close</button>
       </div>
       <div class="TradeShopImported">
         <text class="NA-ImportedSuccessText">TradeShop successfully imported, please check your collection. Any
           problems,
           please contact me on the discord.</text>
-        <button class="NA-ImportedSuccessClose">Close</button>
+        <button class="NA-ImportedSuccessClose NA-ButtonDesign">Close</button>
       </div>
       <div class="DeleteAllConfirm">
         <text class="NA-DeleteAllText">Are you sure you want to delete ALL DATA? This cannot be undone. (This will not
@@ -1693,17 +1847,17 @@
         <table class="NA-DeleteAllButtons">
           <tr>
             <td>
-              <button class="NA-ConfirmDeleteAll">Delete</button>
+              <button class="NA-ConfirmDeleteAll NA-ButtonDesign">Delete</button>
             </td>
             <td>
-              <button class="NA-CloseDeleteAll">Close</button>
+              <button class="NA-CloseDeleteAll NA-ButtonDesign">Close</button>
             </td>
           </tr>
         </table>
       </div>
       <div class="DeleteAllSuccess">
         <text class="NA-SuccessDeleteAllText">Deleted data successfully.</text>
-        <button class="NA-SuccessDeleteAllClose">Close</button>
+        <button class="NA-SuccessDeleteAllClose NA-ButtonDesign">Close</button>
       </div>
       <div class="BunchesMoveHelp">
         <text class="NA-BunchMoveHelpText">To move a Bunch, click on
@@ -1711,7 +1865,7 @@
           from
           the
           Trade Option linked to the Button.</text>
-        <button class="NA-BunchMoveHelpClose">Close</button>
+        <button class="NA-BunchMoveHelpClose NA-ButtonDesign">Close</button>
       </div>
       <div class="TrackingInformation">
         <text class="NA-TrackingHelpText">This area shows you both a legality list for ball combinations and what
@@ -1729,7 +1883,7 @@
           <br>
           Greyscale: Obtainable (Your Collection)
         </text>
-        <button class="NA-TrackingHelpClose">Close</button>
+        <button class="NA-TrackingHelpClose NA-ButtonDesign">Close</button>
       </div>
       <div class="InformationAreaHelp">
         <text class="NA-InformationAreaText">This Area will show you basic information about a Pokemon such as gender
@@ -1741,10 +1895,13 @@
           <br><br>
           You can also press the Shiny Button to toggle the shiny forms on or off.
         </text>
-        <button class="NA-InformationAreaClose">Close</button>
+        <button class="NA-InformationAreaClose NA-ButtonDesign">Close</button>
       </div>
       <div class="CTSInfo">
-        <text class="NA-CTSInfoText">This is an area to search for any Pokemon on PokeTrades across all users.
+        <text class="NA-CTSInfoText">This is an area to search for any Pokemon on PokeTrades across all users, clicking
+          on the username when viewing any Pokemon will take you to their TradeShop.
+          <br><br>
+          Offset is where the starting point and limit is the max amount loaded.
           <br><br>
           Clicking on the Icons on the Rows below will open up areas where you can multi-select what you are searching
           for; such as clicking on Beast and Poke Balls to inidicate you are looking for the Pokemon in those.
@@ -1752,7 +1909,7 @@
           The order of the desired moves do not matter, and when multi-selecting Ribbons, currently it is a combination
           of all Ribbons, not any one of those Ribbons.
         </text>
-        <button class="NA-CTSInfoClose">Close</button>
+        <button class="NA-CTSInfoClose NA-ButtonDesign">Close</button>
       </div>
       <div class="LoadingData">
         <img class="NA-LoadingImage" src="https://poketrades.org/Resources/Misc/Loading Icon.png"></img>
@@ -1822,6 +1979,7 @@
       <script src="js/notificationArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/informationArea.js"></scriptsrc>"</script>
       <script src="js/ctsArea.js"></scriptsrc>"</script>
+      <script src="js/importArea.js"></scriptsrc>"</script>
       <script src="js/trackingArea.js?v=<?=time();?"></scriptsrc>"</script>
       <script src="js/router.js?v=<?=time();?"></scriptsrc>"</script>
     </div>

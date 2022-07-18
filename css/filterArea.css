@@ -1,183 +1,188 @@
 @media only screen and (max-width: 768px) {
-    [id*="FilterArea"]{
-        top: 50% !important;
-        height: 50% !important;
-        width:100% !important;
+    [id*="FilterArea"] {
+        top: 80% !important;
+        height: auto !important;
+        width: 100% !important;
     }
-    [class*="FA"]{
+
+    [class*="FA"] {
         top: 0px !important;
     }
 }
 
 @media only screen and (max-height: 600px) {
-    [id*="FilterArea"]{
+    [id*="FilterArea"] {
         height: auto !important;
     }
 }
 
-#FilterArea{
-    background-color: #2E2D2D;
-    position: absolute; 
+#FilterArea {
+    background-color: #1a233a;
+    position: absolute;
     display: none;
-    height: 100%;
+    height: calc(100% - 52px);
     z-index: 6;
-    width:420px;
+    width: 420px;
     right: 0;
     overflow: auto;
+    margin-top: 52px;
 }
 
-.FA-TopRow{
+.FA-TopRow {
     position: relative;
     text-align: center;
     margin: auto;
 }
 
-.FA-CloseButton{
+.FA-CloseButton {
     cursor: pointer;
 }
 
-.FA-ResetButton{
+.FA-ResetButton {
     cursor: pointer;
 }
 
-.FA-Display{
+.FA-Display {
     width: 155px;
 }
 
-.FA-FilterOptions{
+.FA-FilterOptions {
     position: relative;
     display: grid;
-    grid-template-columns: repeat( 2, minmax(155px, 1fr) );
+    grid-template-columns: repeat(2, minmax(155px, 1fr));
     text-align: center;
     top: 10px;
     margin: auto;
     width: 350px;
 }
 
-.FA-FilterButtons{
-    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
-    border-style: solid;
-    border-color: black;
-    text-align: center;
-    color: white;
-    font-weight: bold;
+.FA-FilterButtons {
+    background: #171d2c;
     border-width: 2px;
-    border-radius: 2px;
-    margin-bottom: 7px;
+    border-style: solid;
+    border-color: #2e3850;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #e0e0e0;
+    cursor: pointer;
+    margin: 3px;
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
 }
 
 .FA-DropdownOptions {
     font-weight: initial;
     font-family: Arial, Helvetica, sans-serif;
-    background: grey;
+    background: #2a3757;
     font-size: 14px;
 }
 
-.FA-FilterBall{
+.FA-FilterBall {
     width: 100%;
 }
 
-.FA-FilterShiny{
+.FA-FilterShiny {
     width: 100%;
 }
 
-.FA-FilterGender{
+.FA-FilterGender {
     width: 100%;
 }
 
-.FA-FilterMint{
+.FA-FilterMint {
     width: 100%;
 }
 
-.FA-FilterMisc{
+.FA-FilterMisc {
     width: 100%;
 }
 
-.FA-FilterMark{
+.FA-FilterMark {
     width: 100%;
 }
 
-.FA-FilterType{
+.FA-FilterType {
     width: 100%;
 }
 
-.FA-FilterRibbon{
+.FA-FilterRibbon {
     width: 100%;
 }
 
-.FA-FilterLanguage{
+.FA-FilterLanguage {
     width: 100%;
 }
 
-.FA-FilterNature{
+.FA-FilterNature {
     width: 100%;
 }
 
-.FA-FilterAbility{
+.FA-FilterAbility {
     width: 100%;
 }
 
-.FA-FilterStatus{
+.FA-FilterStatus {
     width: 100%;
 }
 
-.FA-FilterEvent{
+.FA-FilterEvent {
     width: 100%;
 }
 
-.FA-FilterMove{
+.FA-FilterMove {
     width: 100%;
 }
 
-.FA-FilterHowObtained{
+.FA-FilterHowObtained {
     width: 100%;
 }
 
-.FA-FilterGameObtained{
+.FA-FilterGameObtained {
     width: 100%;
 }
 
-.FA-FilterNote{
+.FA-FilterNote {
     width: 100%;
 }
 
-.FA-FilterProof{
+.FA-FilterProof {
     width: 100%;
 }
 
-.FA-FilterOT{
+.FA-FilterOT {
     width: -webkit-fill-available;
     width: -moz-available;
 }
 
-.FA-FilterID{
+.FA-FilterID {
     width: -webkit-fill-available;
     width: -moz-available;
 }
 
-.FA-IvText{
-    color: white;
+.FA-IvText {
+    color: #e0e0e0;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
-.FA-EvText{
-    color: white;
+.FA-EvText {
+    color: #e0e0e0;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
-.FA-IvEvText{
-    color: white;
+.FA-IvEvText {
+    color: #e0e0e0;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
 
-.FA-IVsEVs{
+.FA-IVsEVs {
     position: relative;
     text-align: center;
     top: 20px;
@@ -186,55 +191,55 @@
 
 
 
-.FA-IvHP{
+.FA-IvHP {
     width: 48px;
 }
 
-.FA-IvAtt{
+.FA-IvAtt {
     width: 48px;
 }
 
-.FA-IvDef{
+.FA-IvDef {
     width: 48px;
 }
 
-.FA-IvSpa{
+.FA-IvSpa {
     width: 48px;
 }
 
-.FA-IvSpd{
+.FA-IvSpd {
     width: 48px;
 }
 
-.FA-IvSpe{
+.FA-IvSpe {
     width: 48px;
 }
 
-.FA-EvHP{
+.FA-EvHP {
     width: 48px;
 }
 
-.FA-EvAtt{
+.FA-EvAtt {
     width: 48px;
 }
 
-.FA-EvDef{
+.FA-EvDef {
     width: 48px;
 }
 
-.FA-EvSpa{
+.FA-EvSpa {
     width: 48px;
 }
 
-.FA-EvSpd{
+.FA-EvSpd {
     width: 48px;
 }
 
-.FA-EvSpe{
+.FA-EvSpe {
     width: 48px;
 }
 
-.FA-Availability{
+.FA-Availability {
     position: relative;
     text-align: center;
     top: 40px;
@@ -242,28 +247,28 @@
     /*width: 310px;*/
 }
 
-.FA-Gen6{
+.FA-Gen6 {
     cursor: pointer;
     margin: auto;
 }
 
-.FA-Gen7{
+.FA-Gen7 {
     cursor: pointer;
     margin: auto;
 }
 
-.FA-Gen8{
+.FA-Gen8 {
     cursor: pointer;
     margin: auto;
 }
 
-.FA-Home{
+.FA-Home {
     cursor: pointer;
     margin: auto;
 }
 
-.FA-Trade{
-    color: white;
+.FA-Trade {
+    color: #e0e0e0;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
 }

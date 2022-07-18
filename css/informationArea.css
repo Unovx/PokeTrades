@@ -1,20 +1,21 @@
 @media only screen and (max-width: 768px) {
-    [id*="InformationArea"]{
-      height: auto !important;
-      top: 80% !important;
-      width: 100% !important;
+    [id*="InformationArea"] {
+        height: auto !important;
+        top: 80% !important;
+        width: 100% !important;
     }
 }
 
-#InformationArea{
-    background-color: #2E2D2D;
-    position: absolute; 
+#InformationArea {
+    background-color: #1a233a;
+    position: absolute;
     display: none;
-    height: 100%;
+    height: calc(100% - 52px);
     z-index: 5;
-    width:420px;
+    width: 420px;
     overflow: auto;
     right: 0;
+    margin-top: 52px;
 }
 
 .IA-DropdownOptions {
@@ -22,73 +23,45 @@
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: 14px;
-    background: grey;
+    background: #2a3757;
 }
 
-.IA-Buttons{
+.IA-Buttons {
     display: flex;
-    border-style: solid;
-    border-color: #5c5c5c;
+    /*border-style: solid;
+    border-color: #5c5c5c;*/
     text-align: center;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
-    position: sticky;
+    /*position: sticky;*/
     top: 0px;
     z-index: 10;
 }
 
-.IA-Close {
-    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
+.IA-ButtonDesign {
+    background: #171d2c;
     border-width: 2px;
     border-style: solid;
-    border-color: #5c5c5c;
+    border-color: #2e3850;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: #536c9f;
     cursor: pointer;
     margin: 3px;
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
 }
 
-.IA-ShinyButton {
-    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #5c5c5c;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    cursor: pointer;
-    margin: 3px;
-}
-
-.IA-ShinySprite{
+.IA-ShinySprite {
     max-width: 20px;
     max-height: 20px;
     vertical-align: top;
 }
 
-.IA-InfoButton {
-    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #5c5c5c;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    cursor: pointer;
-    margin: 3px;
-}
-
-.IA-InfoSprite{
+.IA-InfoSprite {
     max-width: 20px;
     max-height: 20px;
     vertical-align: top;
@@ -97,15 +70,15 @@
 .IA-PokemonDetails {
     display: flex;
     border-radius: 9px;
-    background-color: rgb(55 68 72);
+    background-color: rgb(36 48 72);
     /*height: 125px;*/
     border-width: 2px;
     border-style: solid;
-    border-color: rgb(105 118 122);
-    margin-bottom: 20px;
+    border-color: rgb(23 29 44);
+    margin-top: 20px;
 }
 
-.IA-DexText{
+.IA-DexText {
     color: white;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -115,7 +88,7 @@
     bottom: 4px;
 }
 
-.IA-AbilityText{
+.IA-AbilityText {
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
@@ -129,7 +102,7 @@
     display: block;
 }
 
-.IA-MaleGenderText{
+.IA-MaleGenderText {
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
@@ -140,7 +113,7 @@
     border: 0px;
 }
 
-.IA-FemaleGenderText{
+.IA-FemaleGenderText {
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
@@ -151,7 +124,7 @@
     border: 0px;
 }
 
-.IA-GenderlessText{
+.IA-GenderlessText {
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
@@ -162,18 +135,18 @@
     border: 0px;
 }
 
-.IA-InfoTable{
+.IA-InfoTable {
     width: -webkit-fill-available !important;
     width: -moz-available !important;
 }
 
-.IA-Tables{
+.IA-Tables {
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     border-spacing: 0px;
 }
 
-.IA-InfoText{
+.IA-InfoText {
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
@@ -188,7 +161,7 @@
 }
 
 .IA-PokemonDropdown {
-    background-color: rgb(55 68 72);
+    background-color: rgb(36 48 72);
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
@@ -202,7 +175,7 @@
 }
 
 .IA-PokemonName {
-    background-color: rgb(55 68 72);
+    background-color: rgb(36 48 72);
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
@@ -217,36 +190,36 @@
 }
 
 
-.IA-PokemonImage{
+.IA-PokemonImage {
     display: block;
-    top: 50px; 
-    max-width: 115px; 
+    top: 50px;
+    max-width: 115px;
     max-height: 115px;
     padding-top: 20px;
 }
 
-.IA-TypeIcon{
+.IA-TypeIcon {
     max-width: 20px;
     max-height: 20px;
     margin-right: 3px;
 }
 
-.IA-StandardImage{
+.IA-StandardImage {
     display: block;
-    top: 50px; 
-    max-width: 80px; 
+    top: 50px;
+    max-width: 80px;
     max-height: 80px;
     margin: auto;
 }
 
-.IA-Stats{
+.IA-Stats {
     text-align: center;
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.IA-StatText{
+.IA-StatText {
     color: white;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -254,9 +227,9 @@
     width: 46px !important;
 }
 
-.IA-StatDesign{
+.IA-StatDesign {
     font-size: 15px;
-    background-color: #404040;
+    background-color: #19213285;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -266,68 +239,68 @@
     width: 46px !important;
 }
 
-#IA-InfoSection{
+#IA-InfoSection {
     overflow: hidden;
     display: block;
     position: relative;
-    box-shadow: rgb(105 118 122) 0px 0px 0px 2.5px inset;
-    background-color: rgb(55 68 72);
+    box-shadow: rgb(25 32 48) 0px 0px 0px 2px inset;
+    background-color: rgb(36 48 72);
     border-radius: 15px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-.IA-EvoTitleText{
+.IA-EvoTitleText {
     overflow: hidden;
     display: block;
     position: relative;
-    box-shadow: rgb(105 118 122) 0px 0px 0px 2.5px inset;
-    background-color: rgb(55 68 72);
+    box-shadow: rgb(25 32 48) 0px 0px 0px 2px inset;
+    background-color: rgb(36 48 72);
     border-radius: 15px;
     text-align: center;
     margin-bottom: 10px;
 }
 
-.IA-InfoGrid{
+.IA-InfoGrid {
     display: grid;
     /* auto-fill into of auto-fit so it starts from the corner of the screen*/
-    grid-template-columns: repeat( auto-fit, minmax(80px, 1fr) );
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     /* needing to prevent bunches and to an slight extent mons looking crowded*/
     grid-gap: 1rem;
     place-items: center;
     /*background-color: #163944;*/
 }
 
-.IA-InfoHolder{
+.IA-InfoHolder {
     overflow: hidden;
     display: block;
     position: relative;
     /*cursor: pointer;*/
-    background-color: rgb(55 68 72);
+    background-color: rgb(36 48 72);
     border-radius: 15px;
     text-align: center;
     width: -webkit-fill-available;
     width: -moz-available;
     height: -webkit-fill-available;
-    height: -moz-available; 
-    border-width: 3px;
-    border-color: #69767a;
+    height: -moz-available;
+    border-width: 2px;
+    border-color: rgb(23 29 44);
     border-style: solid;
 }
 
-.IA-InteractableHolder{
+.IA-InteractableHolder {
     overflow: hidden;
     display: block;
     position: relative;
     cursor: pointer;
-    background-color: rgb(69 86 91);
+    background-color: rgb(53 66 92);
     border-radius: 15px;
     text-align: center;
     width: -webkit-fill-available;
     width: -moz-available;
     height: -webkit-fill-available;
-    height: -moz-available; 
-    border-width: 3px;
-    border-color: #69767a;
+    height: -moz-available;
+    border-width: 2px;
+    border-color: rgb(23 29 44);
     border-style: solid;
 }

@@ -16,21 +16,26 @@ let informationImages = new Array();
 let informationPokemon = new Array();
 
 $('.IA-Close').click(function () {
+    document.querySelector("#MainArea").style.position = "absolute";
     document.querySelector("#InformationArea").style.display = "none";
     if (creationInProgress || selectedPokemon) {
         document.querySelector("#DetailsArea").style.display = "block";
     } else {
         document.querySelector("#PanelArea").style.display = "block";
     }
+
+    if (document.querySelector("#MainArea").style.display == "block") {
+        document.querySelector("#PanelArea").style.display = "none";
+    }
 });
 
 $('.IA-ShinyButton').click(function () {
     if (shinyStatus == "-Shiny") {
         shinyStatus = "";
-        document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
+        document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Designs/Not Shiny Icon.png");
     } else {
         shinyStatus = "-Shiny";
-        document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Misc/Star Shiny.png");
+        document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Designs/Shiny Icon.png");
     }
     //$('.IA-PokemonDropdown').change();
     UpdateInformationImages();

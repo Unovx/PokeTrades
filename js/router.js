@@ -1,4 +1,4 @@
-
+var initialLoad = false;
 
 
 function RemoveHash() {
@@ -23,7 +23,7 @@ window.addEventListener("load", () => {
             document.querySelector(".PA-Searchbar").value = searchData.user_id;
             searchInfoText = searchData.user_id;
             localStorage.setItem('searchID', searchInfoText);
-            $('.MA-SearchTradeShopsImage').click();
+            $('.MA-SearchTradeShops').click();
             //$(".PA-Searchbar").keyup();
             if (document.querySelector(".PA-Searchbar").value == "") {
                 window.location.href = window.location.href.split('#')[0];
@@ -38,8 +38,12 @@ window.addEventListener("load", () => {
     router
         .on("/users/:uuid", async (match) => {
             $(document).ready(function () {
-                var uuid = match.data.uuid;
-                $.post(url + "/PHP/get_user_info.php", { uuid: uuid }, GetUserInfo);
+                //If I don't have this if statement, it always runs when you type in the searchbar, meaning it runs twice in 2 different methods which can cause it to get stuck at points.
+                if (!initialLoad) {
+                    initialLoad = true;
+                    var uuid = match.data.uuid;
+                    $.post(url + "/PHP/get_user_info.php", { uuid: uuid }, GetUserInfo);
+                }
             });
         })
         /*.on("/users/:id", async (match) => {

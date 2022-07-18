@@ -1,9 +1,10 @@
 @media only screen and (max-width: 768px) {
 
-    [id*="BunchArea"]{
-        top: 50% !important;
-        height: 60% !important;
+    [id*="BunchArea"] {
+        top: 90% !important;
         width: 100% !important;
+        height: auto !important;
+        overflow: unset !important;
     }
 
     [class*="BA-CloseButton"] {
@@ -25,16 +26,16 @@
         display: flex;
         place-content: center !important;
     }
-    
+
     [class*="BA-IconDropdown"] {
-      width: -webkit-fill-available !important;
-      width: -moz-available !important;
-      left: 0% !important;
-      right: 0%;
-      position: relative !important;
-      display: flex !important;
-      place-content: center !important;
-      height: auto !important;
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        left: 0% !important;
+        right: 0%;
+        position: relative !important;
+        display: flex !important;
+        place-content: center !important;
+        height: auto !important;
     }
 
     [class*="BA-BunchInput"] {
@@ -90,56 +91,63 @@
 }
 
 @media only screen and (max-height: 600px) {
-    [id*="BunchArea"]{
+    [id*="BunchArea"] {
         height: auto !important;
     }
-    [class*="BA"]{
+
+    [class*="BA"] {
         top: 0px !important;
     }
 }
 
-#BunchArea{
-    background-color: #2E2D2D;
-    position: absolute; 
+#BunchArea {
+    background-color: #1a233a;
+    position: absolute;
     display: none;
-    height: 100%;
+    height: calc(100% - 52px);
     z-index: 4;
-    width:420px;
+    width: 420px;
     overflow: auto;
     right: 0;
+    margin-top: 52px;
 }
 
 .BA-DropdownOptions {
     font-weight: initial;
     font-family: Arial, Helvetica, sans-serif;
-    background: grey;
+    background: #2a3757;
     font-size: 14px;
 }
 
-.BA-BunchButtons{
-    background: linear-gradient(0deg, rgb(149 149 149 / 30%), rgb(255 255 255 / 20%));
-    border-style: solid;
-    border-color: black;
-    text-align: center;
-    color: white;
-    font-weight: bold;
+.BA-BunchButtons {
+    background: #171d2c;
     border-width: 2px;
-    border-radius: 2px;
+    border-style: solid;
+    border-color: #2e3850;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #e0e0e0;
+    cursor: pointer;
+    /*margin: 3px;*/
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
 }
 
-.BA-CloseButton{
+.BA-CloseButton {
     position: relative;
     display: block;
     width: 310px;
     top: 2px;
     margin: auto;
     cursor: pointer;
+    color: #536c9f;
 }
 
-.BA-IconOptions{
+.BA-IconOptions {
     position: relative;
     display: grid;
-    grid-template-columns: repeat( 2, minmax(155px, 1fr) );
+    grid-template-columns: repeat(2, minmax(155px, 1fr));
     text-align: center;
     top: 5px;
     margin: auto;
@@ -147,7 +155,7 @@
     border: 0px;
 }
 
-.BA-SelectIconText{
+.BA-SelectIconText {
     color: #ababab;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -158,7 +166,7 @@
     position: relative;
 }
 
-.BA-TrioBunchText{
+.BA-TrioBunchText {
     color: #ababab;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -167,9 +175,10 @@
     padding-top: 10px;
     top: 28px;
     position: relative;
+    display: none;
 }
 
-.BA-RenameText{
+.BA-RenameText {
     color: #ababab;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -180,33 +189,39 @@
     position: relative;
 }
 
-.BA-GenderDropdown{
-    width: 100%; 
-}
-  
-.BA-ShinyDropdown{
-    width: 100%; 
+.BA-GenderDropdown {
+    width: 100%;
 }
 
-.BA-IconImage{
-    position: relative; 
+.BA-ShinyDropdown {
+    width: 100%;
+}
+
+.BA-GameDropdown {
+    width: 100%;
+}
+
+.BA-IconImage {
+    position: relative;
     display: block;
-    top: 15px; 
-    max-width: 128px; 
+    top: 15px;
+    max-width: 128px;
     max-height: 128px;
     margin: auto;
 }
 
-.BA-IconDropdown{
+.BA-IconDropdown {
     position: relative;
     display: block;
     top: 25px;
     width: 310px;
-    height: 20px;;
+    height: 20px;
+    ;
     margin: auto;
+    margin-bottom: 30px;
 }
 
-.BA-BunchInput{
+.BA-BunchInput {
     position: relative;
     display: block;
     width: 302px;
@@ -214,36 +229,37 @@
     margin: auto;
 }
 
-.BA-BunchOptions{
+.BA-BunchOptions {
     position: relative;
     display: grid;
-    grid-template-columns: repeat( 2, minmax(155px, 1fr) );
+    grid-template-columns: repeat(2, minmax(155px, 1fr));
     text-align: center;
     top: 35px;
     margin: auto;
     width: 310px;
 }
 
-.BA-AddBunch{
+.BA-AddBunch {
     cursor: pointer;
-    width: 100%; 
-}
-  
-.BA-RemoveBunch{
-    cursor: pointer;
-    width: 100%; 
+    width: 100%;
 }
 
-.BA-BunchRename{
+.BA-RemoveBunch {
+    cursor: pointer;
+    width: 100%;
+}
+
+.BA-BunchRename {
     position: relative;
     display: block;
     top: 50px;
     width: 310px;
-    height: 20px;;
+    height: 20px;
+    ;
     margin: auto;
 }
 
-.BA-BunchNewName{
+.BA-BunchNewName {
     position: relative;
     display: block;
     width: 302px;
@@ -251,7 +267,7 @@
     margin: auto;
 }
 
-.BA-RenameBunch{
+.BA-RenameBunch {
     position: relative;
     display: block;
     cursor: pointer;
@@ -259,4 +275,3 @@
     top: 60px;
     margin: auto;
 }
-    

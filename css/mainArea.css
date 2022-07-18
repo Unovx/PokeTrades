@@ -1,86 +1,155 @@
 @media only screen and (max-width: 768px) {
 
-    [class*="MA-MainTextHolder"]{
+    [class*="MA-MainTextHolder"] {
         width: 90% !important;
         margin: auto;
     }
 
-    [class*="MainSection"]{
+    [class*="MainSection"] {
         margin-right: 0% !important;
     }
 
-    [class*="StartingSections"]{
-        width: 80% !important;
+    [class*="StartingSections"] {
+        /*width: 80% !important;*/
         grid-gap: 3rem !important;
     }
 }
 
 @media only screen and (max-width: 768px) {
-    [class*="MA-PokeTradesTextIcon"]{
+    [class*="MA-PokeTradesTextIcon"] {
         width: 100% !important;
     }
-    [class*="TradingAreas"]{
+
+    [class*="TradingAreas"] {
         grid-gap: 1rem;
         width: 100% !important;
         top: 20px !important;
     }
-    [class*=MA-ForTradeImage]{
+
+    [class*=MA-ForTradeImage] {
         max-width: 100% !important;
     }
-    [class*=MA-LookingForImage]{
+
+    [class*=MA-LookingForImage] {
         max-width: 100% !important;
     }
-    [class*="ForTradeText"]{
+
+    [class*="ForTradeText"] {
         font-size: 20px !important;
     }
-    [class*="LookingForText"]{
+
+    [class*="LookingForText"] {
         font-size: 20px !important;
     }
-    [class*="MA-SearchInfo"]{
+
+    [class*="MA-SearchInfo"] {
         top: 35px !important;
     }
-    [class*="MA-Message"]{
+
+    [class*="MA-Message"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
         top: 50px !important;
         font-size: initial !important;
     }
-    [class*="MA-TutorialAndDiscord"]{
+
+    [class*="MA-TutorialAndDiscord"] {
         width: 100% !important;
     }
 }
 
 
-#Background{
+#Background {
     position: fixed;
-    background-image: url('https://poketrades.org/Resources/Designs/Background.png');
+    /*background-image: url('https://poketrades.org/Resources/Designs/Background.png');*/
     background-size: contain;
     width: 100%;
     height: 100%;
-  }
+    background-color: #243048;
+}
 
-#MainArea{
+#MainArea {
+    position: absolute;
+    /*height: 100%;*/
+    width: 100%;
+    /*overflow: hidden;*/
+    display: block;
+    top: 52px;
+}
+
+.MA-TopRow {
+    width: 100%;
+    height: 50px;
+    background-color: #171d2c;
+    /* border-radius: 0px 0px 15px 10px; */
+    border-style: unset;
+    border-bottom-style: solid;
+    border-color: #141a28;
     position: fixed;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    display: block;
+    z-index: 10;
 }
 
-.TableHolder{
+.MA-TitleText {
+    /*color: #485e8b;
+    font-size: 26px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding-left: 20px;
+    margin: auto;
+    display: flex;
+    height: 100%;
+    align-items: center;*/
+    color: #485e8b;
+    font-size: 26px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding-left: 20px;
+    margin: auto;
+    display: flex;
+    height: inherit;
+    align-items: center;
+    position: absolute;
+}
+
+.MA-ButtonTable {
+    color: #485e8b;
+    font-size: 26px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding-right: 20px;
+    margin: auto;
+    display: flex;
+    height: inherit;
+    align-items: center;
+    position: absolute;
+    right: 0;
+}
+
+.MA-TopRowImage {
+    border-style: solid;
+    border-radius: 9px;
+    width: 40px;
+    vertical-align: middle;
+    margin: 5px;
+    border-color: #35405b;
+    cursor: pointer;
+}
+
+.TableHolder {
     display: block;
     height: 100%;
     width: 100%;
 }
 
-.MA-MainTextHolder{
+.MA-MainTextHolder {
     position: relative;
     width: 100%;
     text-align: center;
     top: 0%;
+    display: none;
 }
 
-.MA-LoginButton{
+.MA-LoginButton {
     position: absolute;
     top: 0%;
     right: 0%;
@@ -89,80 +158,181 @@
     visibility: hidden;
 }
 
-.MainSection{
+.MainSection {
     margin-right: 420px;
 }
 
-.StartingSections{
+.StartingSections {
     display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(100px, 1fr) );
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     text-align: center;
     justify-items: center;
-    width: 70%;
+    width: 100%;
     top: 60px;
     margin: auto;
     position: relative;
-    grid-gap: 5rem;
-    /*z-index: -1;*/
+    grid-gap: 2rem;
+    /* z-index: -1;*/
+    padding-bottom: 10px;
 }
 
-.MA-SettingsImage{
+.MA-SectionDiv {
+    width: 300px;
+    height: 150px;
+    /*background: #c2d0e07a;
+    box-shadow: rgb(78 88 103) 5px 5px 0px 1px;*/
+    border-radius: 10px;
+    background: #131926;
+    box-shadow: rgb(0 0 0) 5px 5px 0px 1px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.MA-SectionDiv:hover {
+    background: #1212127a;
+}
+
+.MA-Divider {
+    width: 100%;
+    border-top-width: 1px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-style: solid;
+    color: #2a3753;
+}
+
+.MA-SectionText {
+    /*color: black;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 50%;
+    display: flex;*/
+    color: #e0e0e0;
+    font-size: 15px;
+    font-family: monospace;
+    display: flex;
+    font-weight: bold;
+    place-content: center;
+}
+
+.MA-SectionHolderDiv {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    text-align: center;
+    width: auto;
+    align-items: center;
+}
+
+.MA-SectionTable {
+    width: 100%;
+}
+
+.MA-SectionImage {
+    /*width: -webkit-fill-available !important;
+    width: -moz-available !important;*/
+    width: 135px;
+    justify-content: center;
+    filter: brightness(0) saturate(100%) invert(19%) sepia(53%) saturate(496%) hue-rotate(185deg) brightness(92%) contrast(94%);
+}
+
+.MA-SectionTitleText {
+    color: #e0e0e0;
+    font-size: 26px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    place-content: center;
+}
+
+.MA-InfoText {
+    color: #61759e;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    place-content: center;
+}
+
+.MA-SectionCTSTitleText {
+    color: #e0e0e0;
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    place-content: center;
+}
+
+.MA-CTS {
+    pointer-events: none;
+}
+
+.MA-PokemonData {
+    pointer-events: none;
+}
+
+.MA-ImportTradeSheet {
+    pointer-events: none;
+}
+
+.MA-Giveaway {
+    display: none;
+}
+
+.MA-SettingsImage {
     position: relative;
     max-width: 100%;
     cursor: pointer;
 }
 
-.MA-SearchTradeShopsImage{
+.MA-SearchTradeShopsImage {
     position: relative;
     max-width: 100%;
     cursor: pointer;
 }
 
-.MA-UserLoginImage{
+.MA-UserLoginImage {
     position: relative;
     max-width: 100%;
     cursor: pointer;
 }
 
-.MA-FAQImage{
+.MA-FAQImage {
     position: relative;
     max-width: 100%;
     cursor: pointer;
 }
 
-.MA-ImportingTradeShopImage{
+.MA-ImportingTradeShopImage {
     position: relative;
     max-width: 100%;
     cursor: pointer;
 }
 
-.MA-PokemonDataImage{
+.MA-PokemonDataImage {
     position: relative;
     max-width: 100%;
     cursor: pointer;
 }
 
-.MA-CTSImage{
+.MA-CTSImage {
     position: relative;
     max-width: 100%;
     cursor: pointer;
     pointer-events: none;
 }
 
-.MA-OtherImage{
+.MA-OtherImage {
     position: relative;
     max-width: 100%;
     cursor: pointer;
 }
 
-.MA-TrackingImage{
+.MA-TrackingImage {
     position: relative;
     max-width: 100%;
     cursor: pointer;
     display: none;
 }
 
-.MA-Text{
+.MA-Text {
     position: relative;
     display: block;
     color: white;
@@ -172,9 +342,9 @@
     width: 100%;
 }
 
-.TradingAreas{
+.TradingAreas {
     display: grid;
-    grid-template-columns: repeat( 2, minmax(100px, 1fr) );
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
     position: relative;
     text-align: center;
     justify-items: center;
@@ -184,7 +354,7 @@
     /*z-index: -1;*/
 }
 
-.MA-PokeTradesTextIcon{
+.MA-PokeTradesTextIcon {
     position: relative;
     top: 10px;
     max-height: 500px;
@@ -195,13 +365,13 @@
 /* Removing the arrows at the end of the search bar that appears with the numbers */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 /* width */
@@ -209,19 +379,19 @@ input[type=number] {
     width: 15px;
     height: 5px;
 }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #3b3b3b;
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #141926;
 }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: rgb(105, 105, 105);
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(52 63 95);
     border-radius: 2px;
 }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #2c3551;
 }
