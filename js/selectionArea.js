@@ -5,6 +5,10 @@ observer.observe();
 
 document.querySelector(".SA-Searchbar").value = "";
 var searchPokemonText = document.querySelector(".SA-Searchbar");
+let selectionOrderDropdown1 = document.querySelector(".SA-OrderDropdown1");
+let selectionOrderDropdown2 = document.querySelector(".SA-OrderDropdown2");
+let selectionOffset = document.querySelector(".SA-Offset");
+let selectionLimit = document.querySelector(".SA-Limit");
 //The Image Displayed in the Viewing Area
 var pokemonImage;
 var bunchname = "";
@@ -119,6 +123,19 @@ $('.SA-MainMenu').click(function () {
     searchPokemonText.value = "";
     ctsSeaching = false;
     currentlyImporting = false;
+    document.querySelector(".SA-CreateButton").style.display = "initial";
+    document.querySelector(".SA-MoveButton").style.display = "initial";
+    document.querySelector(".SA-CopyButton").style.display = "initial";
+    document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "initial";
+    document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-OrderDropdown2").style.pointerEvents = "initial";
+    document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-Offset").style.pointerEvents = "initial";
+    document.querySelector(".SA-Offset").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-Limit").style.pointerEvents = "initial";
+    document.querySelector(".SA-Limit").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-RefreshButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-RefreshButton").style.backgroundColor = "#171d2c";
 });
 
 $('.SA-CreateButton').click(function () {
@@ -133,6 +150,16 @@ $('.SA-CreateButton').click(function () {
     document.querySelector(".SA-MoveButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
     document.querySelector(".SA-CopyButton").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "none";
+    document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-OrderDropdown2").style.pointerEvents = "none";
+    document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-Offset").style.pointerEvents = "none";
+    document.querySelector(".SA-Offset").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-Limit").style.pointerEvents = "none";
+    document.querySelector(".SA-Limit").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-RefreshButton").style.pointerEvents = "none";
+    document.querySelector(".SA-RefreshButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".DA-Place").style.pointerEvents = "initial";
     document.querySelector(".DA-Place").style.background = "#171d2c";
     document.querySelector(".DA-Delete").style.pointerEvents = "none";
@@ -182,6 +209,10 @@ $('.SA-CreateButton').click(function () {
     if (toggleOn) {
         $('.DA-ToggleProof').click();
     }
+
+    UpdateEVs();
+    SetStatColour();
+    SetIVColours();
 });
 
 $('.SA-MoveButton').click(function () {
@@ -257,6 +288,15 @@ $('.SA-SelectionHelp').click(function () {
     document.querySelector(".SelectionHelp").style.display = "block";
 });
 
+$('.SA-RefreshButton').click(function () {
+    ShowLoading();
+    if (!ctsSeaching) {
+        PostGenerateSelection();
+    } else {
+        $.post(url + "/PHP/cts_search.php", { offset: selectionOffset.value, limit: selectionLimit.value, pokemon: ctsPokemonDropdown.value, lang: ctsLangArray, ball: ctsBallArray, gender: ctsGenderOption, shiny: ctsShinyOption, mint: ctsMintOption, misc: ctsMiscArray, mark: ctsMarkArray, ribbons: ctsRibbonArray, nickname: ctsNicknameDropdown.value, ability: ctsAbilityDropdown.value, nature: ctsNatureDropdown.value, gen6: cstGen6, gen7: cstGen7, gen8: cstGen8, home: cstHome, gameObtained: ctsGameObtainedDropdown.value, howObtained: ctsHowObtainedDropdown.value, formEvos: ctsFormEvos, forms: ctsForms, formOption: ctsFormDropdown.value, evos: ctsEvos, evoOption: ctsEvoDropdown.value, OT: ctsOT.value, ID: ctsID.value, status: ctsStatusDropdown.value, event: ctsEventDropdown.value, ivhp: ctsIvHP.value, ivatt: ctsIvAtt.value, ivdef: ctsIvDef.value, ivspa: ctsIvSpa.value, ivspd: ctsIvSpd.value, ivspe: ctsIvSpe.value, evhp: ctsEvHP.value, evatt: ctsEvAtt.value, evdef: ctsEvDef.value, evspa: ctsEvSpa.value, evspd: ctsEvSpd.value, evspe: ctsEvSpe.value, move1: ctsMove1Dropdown.value, move2: ctsMove2Dropdown.value, move3: ctsMove3Dropdown.value, move4: ctsMove4Dropdown.value, proof: ctsProofDropdown.value, note: ctsNoteDropdown.value }, GenerateSelection);
+    }
+});
+
 function AssigningOutline() {
     //Makes sure arrayData isn't null so an error doesn't get brought up in specific cases like on the bunch area
     if (arrayData != null) {
@@ -301,6 +341,16 @@ function MoveStarted() {
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
     document.querySelector(".SA-FiltersButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-Searchbar").disabled = true;
+    document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "none";
+    document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-OrderDropdown2").style.pointerEvents = "none";
+    document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-Offset").style.pointerEvents = "none";
+    document.querySelector(".SA-Offset").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-Limit").style.pointerEvents = "none";
+    document.querySelector(".SA-Limit").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-RefreshButton").style.pointerEvents = "none";
+    document.querySelector(".SA-RefreshButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".PA-Searchbar").disabled = true;
     document.querySelector("#PanelArea").style.pointerEvents = "none";
 }
@@ -319,6 +369,16 @@ function MoveFinished() {
     } else {
         document.querySelector(".SA-FiltersButton").style.backgroundColor = "#171d2c";
     }
+    document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "initial";
+    document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-OrderDropdown2").style.pointerEvents = "initial";
+    document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-Offset").style.pointerEvents = "initial";
+    document.querySelector(".SA-Offset").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-Limit").style.pointerEvents = "initial";
+    document.querySelector(".SA-Limit").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-RefreshButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-RefreshButton").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-Searchbar").disabled = false;
     document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
     document.querySelector(".PA-Searchbar").disabled = false;
@@ -337,6 +397,16 @@ function CopyStarted() {
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
     document.querySelector(".SA-FiltersButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-Searchbar").disabled = true;
+    document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "none";
+    document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-OrderDropdown2").style.pointerEvents = "none";
+    document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-Offset").style.pointerEvents = "none";
+    document.querySelector(".SA-Offset").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-Limit").style.pointerEvents = "none";
+    document.querySelector(".SA-Limit").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-RefreshButton").style.pointerEvents = "none";
+    document.querySelector(".SA-RefreshButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".PA-Searchbar").disabled = true;
     document.querySelector("#PanelArea").style.pointerEvents = "none";
 }
@@ -355,6 +425,16 @@ function CopyFinished() {
     } else {
         document.querySelector(".SA-FiltersButton").style.backgroundColor = "#171d2c";
     }
+    document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "initial";
+    document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-OrderDropdown2").style.pointerEvents = "initial";
+    document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-Offset").style.pointerEvents = "initial";
+    document.querySelector(".SA-Offset").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-Limit").style.pointerEvents = "initial";
+    document.querySelector(".SA-Limit").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-RefreshButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-RefreshButton").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-Searchbar").disabled = false;
     document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
     document.querySelector(".PA-Searchbar").disabled = false;
@@ -405,12 +485,18 @@ function GenerateSelection(data) {
     $("#GridContainer").remove();
     gridTest = document.createElement("div");
     gridTest.setAttribute("id", "GridContainer");
+    gridTest.style.gridTemplateColumns = "repeat( auto-fill, minmax(200px, 1fr) )"
     document.getElementById("GeneratedSelection").appendChild(gridTest);
     if (ctsSeaching) {
         console.log(arrayData["Rows"].length + " Pokemon in CTS Search");
     } else {
         console.log(arrayData["Rows"].length + " Pokemon in " + bunchname);
     }
+
+    arrayData["Rows"] = arrayData["Rows"].sort(SortBy2);
+    arrayData["Rows"] = arrayData["Rows"].sort(SortBy);
+
+    console.log(arrayData["Rows"]);
 
     for (let i = 0; i < arrayData["Rows"].length; i++) {
 
@@ -444,6 +530,37 @@ function GenerateSelection(data) {
         //Storing each pokemon in a array.
         loopArray = [];
         loopArray = arrayData["Rows"][i];
+        var index;
+
+        for (let j = 0; j < pokemonDataArray.length; j++) {
+            if (loopArray.pokemon == "Meowstic") {
+                for (let k = 0; k < pokemonDataArray.length; k++) {
+                    if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
+                        index = k;
+                    }
+                }
+            }
+
+            if (loopArray.pokemon == "Indeedee") {
+                for (let k = 0; k < pokemonDataArray.length; k++) {
+                    if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
+                        index = k;
+                    }
+                }
+            }
+
+            if (loopArray.pokemon == "Oinkologne") {
+                for (let k = 0; k < pokemonDataArray.length; k++) {
+                    if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
+                        index = k;
+                    }
+                }
+            }
+
+            if (loopArray.pokemon == pokemonDataArray[j].pokemon) {
+                index = j;
+            }
+        }
 
 
         //Setting the Image
@@ -469,28 +586,7 @@ function GenerateSelection(data) {
             td.setAttribute("height", "auto");
             td.setAttribute("id", "Dex" + (i));
             dex.style.height = "13px";
-
-            for (let j = 0; j < pokemonDataArray.length; j++) {
-                if (loopArray.pokemon == "Meowstic") {
-                    for (let k = 0; k < pokemonDataArray.length; k++) {
-                        if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
-                            dex.innerHTML = pokemonDataArray[k].pokedex;
-                        }
-                    }
-                }
-
-                if (loopArray.pokemon == "Indeedee") {
-                    for (let k = 0; k < pokemonDataArray.length; k++) {
-                        if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
-                            dex.innerHTML = pokemonDataArray[k].pokedex;
-                        }
-                    }
-                }
-
-                if (loopArray.pokemon == pokemonDataArray[j].pokemon) {
-                    dex.innerHTML = pokemonDataArray[j].pokedex;
-                }
-            }
+            dex.innerHTML = pokemonDataArray[index].pokedex
 
             dex.style.fontWeight = "bold";
             dex.style.color = "white";
@@ -511,7 +607,6 @@ function GenerateSelection(data) {
 
         //newTable.style.bottom = "8px";
         newTable.style.top = "unset";
-        gridTest.style.gridTemplateColumns = "repeat( auto-fill, minmax(200px, 1fr) )"
         newDiv.style.width = "100%";
         newTable.style.left = "50%";
         var tr = newTable.insertRow();
@@ -519,45 +614,73 @@ function GenerateSelection(data) {
         tr.style.display = "flex";
         var dataPokemon = null;
 
-        for (let j = 0; j < pokemonDataArray.length; j++) {
-            if (loopArray.pokemon == "Meowstic") {
-                for (let k = 0; k < pokemonDataArray.length; k++) {
-                    if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
-                        dataPokemon = pokemonDataArray[k];
-                        //console.log(dataPokemon);
+        var td = tr.insertCell();
+        type1 = document.createElement("IMG");
+        type1.setAttribute("class", "TypeDisplay");
+        td.setAttribute("width", "13px");
+        td.setAttribute("height", "13px");
+        type1.style.verticalAlign = "middle";
+        type1.setAttribute("width", "13px");
+        type1.setAttribute("height", "13px");
+        type1.setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[index].type_1 + ".png");
+
+
+        td.appendChild(type1);
+
+        if (pokemonDataArray[index].type_2 != null) {
+            var td = tr.insertCell();
+            type2 = document.createElement("IMG");
+            type2.setAttribute("class", "TypeDisplay");
+            td.setAttribute("width", "13px");
+            td.setAttribute("height", "13px");
+            type2.style.verticalAlign = "middle";
+            type2.setAttribute("width", "13px");
+            type2.setAttribute("height", "13px");
+            type2.setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[index].type_2 + ".png");
+            td.appendChild(type2);
+        }
+
+        /*if (loopArray.pokemon == pokemonDataArray[j].pokemon || dataPokemon != null) {
+
+            for (let j = 0; j < pokemonDataArray.length; j++) {
+                if (loopArray.pokemon == "Meowstic") {
+                    for (let k = 0; k < pokemonDataArray.length; k++) {
+                        if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
+                            dataPokemon = pokemonDataArray[k];
+                            //console.log(dataPokemon);
+                        }
                     }
                 }
-            }
-
-            if (loopArray.pokemon == "Indeedee") {
-                for (let k = 0; k < pokemonDataArray.length; k++) {
-                    if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
-                        dataPokemon = pokemonDataArray[k];
-                        //console.log(dataPokemon);
+    
+                if (loopArray.pokemon == "Indeedee") {
+                    for (let k = 0; k < pokemonDataArray.length; k++) {
+                        if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
+                            dataPokemon = pokemonDataArray[k];
+                            //console.log(dataPokemon);
+                        }
                     }
                 }
-            }
-
-            if (loopArray.pokemon == pokemonDataArray[j].pokemon || dataPokemon != null) {
-                var td = tr.insertCell();
-                type1 = document.createElement("IMG");
-                type1.setAttribute("class", "TypeDisplay");
-                td.setAttribute("width", "13px");
-                td.setAttribute("height", "13px");
-                type1.style.verticalAlign = "middle";
-                type1.setAttribute("width", "13px");
-                type1.setAttribute("height", "13px");
-                if (dataPokemon == null) {
-                    type1.setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[j].type_1 + ".png");
-                } else {
-                    type1.setAttribute("src", url + "/Resources/Misc/HP " + dataPokemon.type_1 + ".png");
+    
+                if (loopArray.pokemon == pokemonDataArray[j].pokemon || dataPokemon != null) {
+                    var td = tr.insertCell();
+                    type1 = document.createElement("IMG");
+                    type1.setAttribute("class", "TypeDisplay");
+                    td.setAttribute("width", "13px");
+                    td.setAttribute("height", "13px");
+                    type1.style.verticalAlign = "middle";
+                    type1.setAttribute("width", "13px");
+                    type1.setAttribute("height", "13px");
+                    if (dataPokemon == null) {
+                        type1.setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[j].type_1 + ".png");
+                    } else {
+                        type1.setAttribute("src", url + "/Resources/Misc/HP " + dataPokemon.type_1 + ".png");
+                    }
+    
+    
+                    td.appendChild(type1);
+                    //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
+                    break;
                 }
-
-
-                td.appendChild(type1);
-                //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
-                break;
-            }
         }
 
         for (let j = 0; j < pokemonDataArray.length; j++) {
@@ -595,7 +718,7 @@ function GenerateSelection(data) {
                     break;
                 }
             }
-        }
+        }*/
 
         var td = tr.insertCell();
         pokemon = document.createElement("Text");
@@ -929,12 +1052,32 @@ function GenerateSelection(data) {
 
         //newTable.style.bottom = "8px";
         newTable.style.top = "unset";
-        gridTest.style.gridTemplateColumns = "repeat( auto-fill, minmax(200px, 1fr) )"
         newDiv.style.width = "100%";
         newTable.style.left = "50%";
 
+        var tr = newTable.insertRow();
+        tr.style.display = "flex";
+        var td = tr.insertCell();
+        ability = document.createElement("Text");
+        td.setAttribute("height", "13px");
+        ability.setAttribute("height", "13px");
+        ability.style.fontWeight = "bold";
+        ability.style.color = "white";
+        ability.style.fontFamily = "Arial, Helvetica, sans-serif";
+        ability.style.fontSize = "60%";
 
-        for (let j = 0; j < pokemonDataArray.length; j++) {
+        if (loopArray.ability == pokemonDataArray[index].hidden_ability_1 || loopArray.ability == pokemonDataArray[index].hidden_ability_2) {
+            ability.innerHTML = loopArray.ability + " (H)";
+            td.appendChild(ability);
+        } else {
+            ability.innerHTML = loopArray.ability;
+            td.appendChild(ability);
+        }
+
+
+
+
+        /*for (let j = 0; j < pokemonDataArray.length; j++) {
             if (loopArray.pokemon == pokemonDataArray[j].pokemon || dataPokemon != null) {
                 var tr = newTable.insertRow();
                 tr.style.display = "flex";
@@ -975,7 +1118,7 @@ function GenerateSelection(data) {
                 }
 
             }
-        }
+        }*/
 
 
 
@@ -1214,7 +1357,7 @@ function GenerateSelection(data) {
                 //console.log("WOOOORK")
                 if (loopArray.shiny.includes("Normal")) {
                     if (generationalSprites) {
-                        if (loopArray.game_obtained == "R/B/Y") {
+                        if (loopArray.game_obtained == "R/G/B/Y") {
                             theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "G/S/C") {
@@ -1283,7 +1426,7 @@ function GenerateSelection(data) {
                 }
                 else if (!loopArray.shiny.includes("Normal")) {
                     if (generationalSprites) {
-                        if (loopArray.game_obtained == "R/B/Y") {
+                        if (loopArray.game_obtained == "R/G/B/Y") {
                             theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "G/S/C") {
@@ -1354,7 +1497,7 @@ function GenerateSelection(data) {
             else if (loopArray.gender == "Female") {
                 if (loopArray.shiny.includes("Normal")) {
                     if (generationalSprites) {
-                        if (loopArray.game_obtained == "R/B/Y") {
+                        if (loopArray.game_obtained == "R/G/B/Y") {
                             theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "G/S/C") {
@@ -1423,7 +1566,7 @@ function GenerateSelection(data) {
                 }
                 else if (!loopArray.shiny.includes("Normal")) {
                     if (generationalSprites) {
-                        if (loopArray.game_obtained == "R/B/Y") {
+                        if (loopArray.game_obtained == "R/G/B/Y") {
                             theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "G/S/C") {
@@ -1494,7 +1637,7 @@ function GenerateSelection(data) {
         } else {
             if (loopArray.shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (loopArray.game_obtained == "R/B/Y") {
+                    if (loopArray.game_obtained == "R/G/B/Y") {
                         theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
                     }
                     else if (loopArray.game_obtained == "G/S/C") {
@@ -1568,7 +1711,7 @@ function GenerateSelection(data) {
                 }
                 else {
                     if (generationalSprites) {
-                        if (loopArray.game_obtained == "R/B/Y") {
+                        if (loopArray.game_obtained == "R/G/B/Y") {
                             theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
                         }
                         else if (loopArray.game_obtained == "G/S/C") {
@@ -1958,13 +2101,14 @@ function ShowPokemonDetails() {
     gameObtainedSelection.value = pokemonDetails.game_obtained;
     gameObtainedValue = pokemonDetails.game_obtained;
 
-    document.querySelector(".DA-DisplayRow").style.display == "table-row";
+    //Commented Out due to redesign
+    /*document.querySelector(".DA-DisplayRow").style.display == "table-row";
     displaySelection.value = pokemonDetails.display;
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         document.querySelector(".DA-DisplayRow").style.visibility = "hidden";
     } else {
         document.querySelector(".DA-DisplayRow").style.visibility = "unset";
-    }
+    }*/
 
     gen6Data = pokemonDetails.gen6_availability;
     gen7Data = pokemonDetails.gen7_availability;
@@ -2075,24 +2219,31 @@ function ShowPokemonDetails() {
         document.querySelector(".DA-NatureRow").style.visibility = "unset";
     }
 
+
+
     otSelection.value = pokemonDetails.game_ot;
-    if (pokemonDetails.game_ot == "" && tempUserID != pokemonDetails.user_id ||
+    //Commented Out due to redesign
+
+    /*if (pokemonDetails.game_ot == "" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.game_ot == "" && detailsLocked) {
         document.querySelector(".DA-OTRow").style.visibility = "hidden";
     } else {
         document.querySelector(".DA-OTRow").style.visibility = "unset";
-    }
+    }*/
 
     idSelection.value = pokemonDetails.game_id;
+    //Commented Out due to redesign
+    /*
     if (pokemonDetails.game_id == "" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.game_id == "" && detailsLocked) {
         document.querySelector(".DA-IDRow").style.visibility = "hidden";
     } else {
         document.querySelector(".DA-IDRow").style.visibility = "unset";
-    }
+    }*/
 
     statusSelection.value = pokemonDetails.status;
-    document.querySelector(".DA-StatHolder").style.display = "flex";
+    //Commented Out due to redesign
+    /*document.querySelector(".DA-StatHolder").style.display = "flex";
     if (pokemonDetails.status == "(Any Status)" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.status == "(Any Status)" && detailsLocked) {
         document.querySelector(".DA-StatusRow").style.visibility = "hidden";
@@ -2100,9 +2251,10 @@ function ShowPokemonDetails() {
         document.querySelector(".DA-StatusRow").style.visibility = "unset";
     }
 
-    document.querySelector(".DA-EventRow").style.display == "table-row";
+    document.querySelector(".DA-EventRow").style.display == "table-row";*/
     eventSelection.value = pokemonDetails.event_info;
-    if (pokemonDetails.event_info == "(Any/No Event)" && tempUserID != pokemonDetails.user_id ||
+    //Commented Out due to redesign
+    /*if (pokemonDetails.event_info == "(Any/No Event)" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.event_info == "(Any/No Event)" && detailsLocked ||
         pokemonDetails.event_info == "(Not Event)" && tempUserID != pokemonDetails.user_id ||
         pokemonDetails.event_info == "(Not Event)" && detailsLocked) {
@@ -2119,7 +2271,7 @@ function ShowPokemonDetails() {
         document.querySelector(".DA-EventRow").style.display = "table-row";
     }
 
-    document.querySelector(".DA-StatHolder").style.visibility = "unset";
+    document.querySelector(".DA-StatHolder").style.visibility = "unset";*/
     ivHpSelection.value = pokemonDetails.iv_hp;
     ivAttSelection.value = pokemonDetails.iv_att;
     ivDefSelection.value = pokemonDetails.iv_def;
@@ -2127,7 +2279,8 @@ function ShowPokemonDetails() {
     ivSpdSelection.value = pokemonDetails.iv_spd;
     ivSpeSelection.value = pokemonDetails.iv_spe;
 
-    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+    //Commented Out due to redesign
+    /*if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         if (pokemonDetails.iv_hp == "X" && pokemonDetails.iv_att == "X" && pokemonDetails.iv_def == "X" &&
             pokemonDetails.iv_spa == "X" && pokemonDetails.iv_spd == "X" && pokemonDetails.iv_spe == "X") {
 
@@ -2137,7 +2290,7 @@ function ShowPokemonDetails() {
         }
     } else {
         document.querySelector(".DA-RowIVs").style.display = "table-row";
-    }
+    }*/
 
     evHpSelection.value = pokemonDetails.ev_hp;
     evAttSelection.value = pokemonDetails.ev_att;
@@ -2146,6 +2299,41 @@ function ShowPokemonDetails() {
     evSpdSelection.value = pokemonDetails.ev_spd;
     evSpeSelection.value = pokemonDetails.ev_spe;
 
+    evHpSelection.style.display = "block";
+    evAttSelection.style.display = "block";
+    evDefSelection.style.display = "block";
+    evSpaSelection.style.display = "block";
+    evSpdSelection.style.display = "block";
+    evSpeSelection.style.display = "block";
+
+    if (tempUserID != pokemonDetails.user_id || detailsLocked || ctsSeaching) {
+        if (evHpSelection.value == 0) {
+            evHpSelection.style.display = "none";
+        }
+
+        if (evAttSelection.value == 0) {
+            evAttSelection.style.display = "none";
+        }
+
+        if (evDefSelection.value == 0) {
+            evDefSelection.style.display = "none";
+        }
+
+        if (evSpaSelection.value == 0) {
+            evSpaSelection.style.display = "none";
+        }
+
+        if (evSpdSelection.value == 0) {
+            evSpdSelection.style.display = "none";
+        }
+
+        if (evSpeSelection.value == 0) {
+            evSpeSelection.style.display = "none";
+        }
+    }
+
+    //Commented Out due to redesign
+    /*
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         if (pokemonDetails.ev_hp == "X" && pokemonDetails.ev_att == "X" && pokemonDetails.ev_def == "X" &&
             pokemonDetails.ev_spa == "X" && pokemonDetails.ev_spd == "X" && pokemonDetails.ev_spe == "X") {
@@ -2175,7 +2363,7 @@ function ShowPokemonDetails() {
     document.querySelector(".DA-LegacyMove1").style.display = "block";
     document.querySelector(".DA-LegacyMove2").style.display = "block";
     document.querySelector(".DA-LegacyMove3").style.display = "block";
-    document.querySelector(".DA-LegacyMove4").style.display = "block";
+    document.querySelector(".DA-LegacyMove4").style.display = "block";*/
 
     move1Selection.value = pokemonDetails.move_1;
     move2Selection.value = pokemonDetails.move_2;
@@ -2186,6 +2374,24 @@ function ShowPokemonDetails() {
     move2Null = true;
     move3Null = true;
     move4Null = true;
+
+    if (tempUserID != pokemonDetails.user_id || detailsLocked || ctsSeaching) {
+        if (pokemonDetails.move_1 == "(Any Move)" || pokemonDetails.move_1 == "(No Move)") {
+            move1Selection.value = "";
+        }
+
+        if (pokemonDetails.move_2 == "(Any Move)" || pokemonDetails.move_2 == "(No Move)") {
+            move2Selection.value = "";
+        }
+
+        if (pokemonDetails.move_3 == "(Any Move)" || pokemonDetails.move_3 == "(No Move)") {
+            move3Selection.value = "";
+        }
+
+        if (pokemonDetails.move_4 == "(Any Move)" || pokemonDetails.move_4 == "(No Move)") {
+            move4Selection.value = "";
+        }
+    }
 
     if (pokemonDetails.move_1 == "(Any Move)" || pokemonDetails.move_1 == "(No Move)") {
         move1Null = false;
@@ -2203,6 +2409,8 @@ function ShowPokemonDetails() {
         move4Null = false;
     }
 
+    //Commented Out due to redesign
+    /*
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         if (!move1Null && !move2Null && !move3Null && !move1Null) {
             document.querySelector(".DA-MovesHolder").style.display = "none";
@@ -2210,7 +2418,7 @@ function ShowPokemonDetails() {
             document.querySelector(".DA-Move3").style.display = "none";
             document.querySelector(".DA-Move4").style.display = "none";
         }
-    }
+    }*/
 
 
     legacyMove1Selection.value = pokemonDetails.legacy_move_1;
@@ -2222,6 +2430,24 @@ function ShowPokemonDetails() {
     legacyMove2Null = true;
     legacyMove3Null = true;
     legacyMove4Null = true;
+
+    if (tempUserID != pokemonDetails.user_id || detailsLocked || ctsSeaching) {
+        if (pokemonDetails.legacy_move_1 == "(Any Move)" || pokemonDetails.legacy_move_1 == "(No Move)") {
+            legacyMove1Selection.value = "";
+        }
+
+        if (pokemonDetails.legacy_move_2 == "(Any Move)" || pokemonDetails.legacy_move_2 == "(No Move)") {
+            legacyMove2Selection.value = "";
+        }
+
+        if (pokemonDetails.legacy_move_3 == "(Any Move)" || pokemonDetails.legacy_move_3 == "(No Move)") {
+            legacyMove3Selection.value = "";
+        }
+
+        if (pokemonDetails.legacy_move_4 == "(Any Move)" || pokemonDetails.legacy_move_4 == "(No Move)") {
+            legacyMove4Selection.value = "";
+        }
+    }
 
     if (pokemonDetails.legacy_move_1 == "(Any Move)" || pokemonDetails.legacy_move_1 == "(No Move)") {
         legacyMove1Null = false;
@@ -2239,6 +2465,8 @@ function ShowPokemonDetails() {
         legacyMove4Null = false;
     }
 
+    //Commented Out due to redesign
+    /*
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         if (!legacyMove1Null && !legacyMove2Null && !legacyMove3Null && !legacyMove4Null) {
             document.querySelector(".DA-LegacyMovesHolder").style.display = "none";
@@ -2246,7 +2474,7 @@ function ShowPokemonDetails() {
             document.querySelector(".DA-LegacyMove3").style.display = "none";
             document.querySelector(".DA-LegacyMove4").style.display = "none";
         }
-    }
+    }*/
 
     proofSelection.value = pokemonDetails.proof;
 
@@ -2284,14 +2512,20 @@ function ShowPokemonDetails() {
             noteSelection.style.height = noteSelection.scrollHeight + "px";
         }
     }
+    UpdateEVs();
+    SetStatColour();
+    SetIVColours();
 }
 
 function ShowAllDropdowns() {
-    document.querySelector(".DA-DisplayRow").style.visibility = "unset";
-    document.querySelector(".DA-DisplayRow").style.display = "table-row";
+    //Commented Out due to redesign
+    /*document.querySelector(".DA-DisplayRow").style.visibility = "unset";
+    document.querySelector(".DA-DisplayRow").style.display = "table-row";*/
     document.querySelector(".DA-AbilityRow").style.visibility = "unset";
     nicknameSelection.style.visibility = "unset";
     document.querySelector(".DA-NatureRow").style.visibility = "unset";
+    //Commented Out due to redesign
+    /*
     document.querySelector(".DA-OTRow").style.visibility = "unset";
     document.querySelector(".DA-IDRow").style.visibility = "unset";
     document.querySelector(".DA-StatusRow").style.visibility = "unset";
@@ -2310,7 +2544,7 @@ function ShowAllDropdowns() {
     document.querySelector(".DA-LegacyMove1").style.display = "block";
     document.querySelector(".DA-LegacyMove2").style.display = "block";
     document.querySelector(".DA-LegacyMove3").style.display = "block";
-    document.querySelector(".DA-LegacyMove4").style.display = "block";
+    document.querySelector(".DA-LegacyMove4").style.display = "block";*/
     document.querySelector(".DA-Proof").style.display = "flex";
     document.querySelector(".DA-Note").style.display = "flex";
     document.querySelector(".DA-ProofURL").style.textDecoration = "unset";
@@ -2337,6 +2571,12 @@ function ShowAllDropdowns() {
     evSpaSelection.style.appearance = "auto";
     evSpdSelection.style.appearance = "auto";
     evSpeSelection.style.appearance = "auto";
+    evHpSelection.style.display = "block";
+    evAttSelection.style.display = "block";
+    evDefSelection.style.display = "block";
+    evSpaSelection.style.display = "block";
+    evSpdSelection.style.display = "block";
+    evSpeSelection.style.display = "block";
     move1Selection.style.appearance = "auto";
     move2Selection.style.appearance = "auto";
     move3Selection.style.appearance = "auto";
@@ -2349,6 +2589,7 @@ function ShowAllDropdowns() {
 
 function SetImage(image, imageName, gender, shiny, gameObtained) {
 
+    var triedOnce = false;
     if (iconExclusivesArray.includes(imageName) && imageName != "Egg-Manaphy") {
         if (allBallsArray.includes(imageName) || imageName == "Egg") {
             image.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/" + imageName + ".png");
@@ -2439,7 +2680,7 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
         if (gender.includes("Genderless") || gender.includes("(Any Gender)")) {
             if (shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtained == "R/B/Y") {
+                    if (gameObtained == "R/G/B/Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
                     }
                     else if (gameObtained == "G/S/C") {
@@ -2472,11 +2713,17 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     else if (gameObtained == "LA") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + ".png");
                     }
+                    else if (gameObtained == "S/V") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + ".png");
+                    }
                     else {
                         image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
                     }
                     image.onerror = function () {
-                        image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                        if (!triedOnce) {
+                            triedOnce = true;
+                            image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                        }
                     }
                 } else {
                     image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
@@ -2484,7 +2731,7 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
 
             } else {
                 if (generationalSprites) {
-                    if (gameObtained == "R/B/Y") {
+                    if (gameObtained == "R/G/B/Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
                     else if (gameObtained == "G/S/C") {
@@ -2517,11 +2764,17 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     else if (gameObtained == "LA") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + ".png");
                     }
+                    else if (gameObtained == "S/V") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + ".png");
+                    }
                     else {
                         image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
                     }
                     image.onerror = function () {
-                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                        if (!triedOnce) {
+                            triedOnce = true;
+                            image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                        }
                     }
                 } else {
                     image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
@@ -2536,7 +2789,7 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
         if (gender.includes("Male") || gender.includes("(Any Gender)")) {
             if (shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtained == "R/B/Y") {
+                    if (gameObtained == "R/G/B/Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
                     }
                     else if (gameObtained == "G/S/C") {
@@ -2569,11 +2822,17 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     else if (gameObtained == "LA") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + ".png");
                     }
+                    else if (gameObtained == "S/V") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + ".png");
+                    }
                     else {
                         image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
                     }
                     image.onerror = function () {
-                        image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                        if (!triedOnce) {
+                            triedOnce = true;
+                            image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                        }
                     }
                 } else {
                     image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
@@ -2581,7 +2840,7 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
 
             } else {
                 if (generationalSprites) {
-                    if (gameObtained == "R/B/Y") {
+                    if (gameObtained == "R/G/B/Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
                     else if (gameObtained == "G/S/C") {
@@ -2614,11 +2873,17 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     else if (gameObtained == "LA") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + ".png");
                     }
+                    else if (gameObtained == "S/V") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + ".png");
+                    }
                     else {
                         image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
                     }
                     image.onerror = function () {
-                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                        if (!triedOnce) {
+                            triedOnce = true;
+                            image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                        }
                     }
                 } else {
                     image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
@@ -2632,7 +2897,7 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
         if (gender.includes("Female") || gender.includes("(Any Gender)")) {
             if (shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtained == "R/B/Y") {
+                    if (gameObtained == "R/G/B/Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
                     }
                     else if (gameObtained == "G/S/C") {
@@ -2665,11 +2930,17 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     else if (gameObtained == "LA") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + ".png");
                     }
+                    else if (gameObtained == "S/V") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + ".png");
+                    }
                     else {
                         image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
                     }
                     image.onerror = function () {
-                        image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                        if (!triedOnce) {
+                            triedOnce = true;
+                            image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                        }
                     }
                 } else {
                     image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
@@ -2677,7 +2948,7 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
 
             } else {
                 if (generationalSprites) {
-                    if (gameObtained == "R/B/Y") {
+                    if (gameObtained == "R/G/B/Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
                     else if (gameObtained == "G/S/C") {
@@ -2710,11 +2981,17 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     else if (gameObtained == "LA") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + ".png");
                     }
+                    else if (gameObtained == "S/V") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + ".png");
+                    }
                     else {
                         image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
                     }
                     image.onerror = function () {
-                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                        if (!triedOnce) {
+                            triedOnce = true;
+                            image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                        }
                     }
                 } else {
                     image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
@@ -2729,7 +3006,7 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
         if (gender.includes("Male") || gender.includes("(Any Gender)")) {
             if (shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtained == "R/B/Y") {
+                    if (gameObtained == "R/G/B/Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
                     }
                     else if (gameObtained == "G/S/C") {
@@ -2786,6 +3063,13 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     else if (gameObtained == "LA") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + "-Male.png");
                     }
+                    else if (gameObtained == "S/V") {
+                        if (imageName == "Oinkologne") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + "-Male.png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + ".png");
+                        }
+                    }
                     else {
                         image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Male.png");
                     }
@@ -2793,11 +3077,14 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Male.png");
                 }
                 image.onerror = function () {
-                    image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Male.png")
-                };
+                    if (!triedOnce) {
+                        triedOnce = true;
+                        image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Male.png");
+                    }
+                }
             } else {
                 if (generationalSprites) {
-                    if (gameObtained == "R/B/Y") {
+                    if (gameObtained == "R/G/B/Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
                     else if (gameObtained == "G/S/C") {
@@ -2854,6 +3141,13 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     else if (gameObtained == "LA") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + "-Male.png");
                     }
+                    else if (gameObtained == "S/V") {
+                        if (imageName == "Oinkologne") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + "-Male.png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + ".png");
+                        }
+                    }
                     else {
                         image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Male.png");
                     }
@@ -2861,15 +3155,18 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Male.png");
                 }
                 image.onerror = function () {
-                    image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Male.png")
-                };
+                    if (!triedOnce) {
+                        triedOnce = true;
+                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Male.png");
+                    }
+                }
             }
 
         }
         else if (gender.includes("Female") || gender.includes("(Any Gender)")) {
             if (shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtained == "R/B/Y") {
+                    if (gameObtained == "R/G/B/Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
                     }
                     else if (gameObtained == "G/S/C") {
@@ -2926,6 +3223,13 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     else if (gameObtained == "LA") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + "-Female.png");
                     }
+                    else if (gameObtained == "S/V") {
+                        if (imageName == "Oinkologne") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + "-Female.png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + ".png");
+                        }
+                    }
                     else {
                         image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Female.png");
                     }
@@ -2933,11 +3237,14 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Female.png");
                 }
                 image.onerror = function () {
-                    image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Female.png")
-                };
+                    if (!triedOnce) {
+                        triedOnce = true;
+                        image.setAttribute("src", url + "/Resources/Home/" + imageName + "-Female.png");
+                    }
+                }
             } else {
                 if (generationalSprites) {
-                    if (gameObtained == "R/B/Y") {
+                    if (gameObtained == "R/G/B/Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
                     else if (gameObtained == "G/S/C") {
@@ -2994,6 +3301,13 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     else if (gameObtained == "LA") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + "-Female.png");
                     }
+                    else if (gameObtained == "S/V") {
+                        if (imageName == "Oinkologne") {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + "-Male.png");
+                        } else {
+                            image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + ".png");
+                        }
+                    }
                     else {
                         image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Female.png");
                     }
@@ -3001,8 +3315,11 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Female.png");
                 }
                 image.onerror = function () {
-                    image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Female.png")
-                };
+                    if (!triedOnce) {
+                        triedOnce = true;
+                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + "-Female.png");
+                    }
+                }
             }
 
         } else {
@@ -3014,7 +3331,7 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
         if (!gender.includes("Genderless") || gender.includes("(Any Gender)")) {
             if (shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtained == "R/B/Y") {
+                    if (gameObtained == "R/G/B/Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
                     }
                     else if (gameObtained == "G/S/C") {
@@ -3047,18 +3364,24 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     else if (gameObtained == "LA") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + ".png");
                     }
+                    else if (gameObtained == "S/V") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + ".png");
+                    }
                     else {
                         image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
                     }
                     image.onerror = function () {
-                        image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                        if (!triedOnce) {
+                            triedOnce = true;
+                            image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
+                        }
                     }
                 } else {
                     image.setAttribute("src", url + "/Resources/Home/" + imageName + ".png");
                 }
             } else {
                 if (generationalSprites) {
-                    if (gameObtained == "R/B/Y") {
+                    if (gameObtained == "R/G/B/Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
                     else if (gameObtained == "G/S/C") {
@@ -3091,11 +3414,17 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                     else if (gameObtained == "LA") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + ".png");
                     }
+                    else if (gameObtained == "S/V") {
+                        image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + ".png");
+                    }
                     else {
                         image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
                     }
                     image.onerror = function () {
-                        image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                        if (!triedOnce) {
+                            triedOnce = true;
+                            image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
+                        }
                     }
                 } else {
                     image.setAttribute("src", url + "/Resources/HomeShiny/" + imageName + ".png");
@@ -3111,5 +3440,89 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
 
     if (!allIconsArray.includes(imageName)) {
         image.setAttribute("src", url + "/Resources/Fennel2.png");
+    }
+}
+
+function SortBy(a, b) {
+    if (selectionOrderDropdown1.value == "(Position)") {
+        /*if (a["position"] === b["position"]) {
+            return 1;
+        }
+        else {
+            return (a["position"] < b["position"]) ? -1 : 1;
+        }*/
+    }
+    else if (selectionOrderDropdown1.value == "Creation") {
+        if (a["creation_id"] === b["creation_id"]) {
+            return 1;
+        }
+        else {
+            return (a["creation_id"] < b["creation_id"]) ? -1 : 1;
+        }
+    }
+    else if (selectionOrderDropdown1.value == "A-Z") {
+        if (a["pokemon"] === b["pokemon"]) {
+            return 1;
+        }
+        else {
+            return (a["pokemon"] < b["pokemon"]) ? -1 : 1;
+        }
+    }
+    else if (selectionOrderDropdown1.value == "Pokeball") {
+        if (a["pokeball"] === b["pokeball"]) {
+            return 1;
+        }
+        else {
+            return (a["pokeball"] < b["pokeball"]) ? -1 : 1;
+        }
+    } else if (selectionOrderDropdown1.value == "Pokedex") {
+        if (a["dex"] === b["dex"]) {
+            return 1;
+        }
+        else {
+            return (a["dex"] < b["dex"]) ? -1 : 1;
+        }
+    }
+}
+
+function SortBy2(a, b) {
+    if (selectionOrderDropdown2.value == "(Position)") {
+        /*if (a["position"] === b["position"]) {
+            return 1;
+        }
+        else {
+            return (a["position"] < b["position"]) ? -1 : 1;
+        }*/
+    }
+    else if (selectionOrderDropdown2.value == "Creation") {
+        if (a["creation_id"] === b["creation_id"]) {
+            return 1;
+        }
+        else {
+            return (a["creation_id"] < b["creation_id"]) ? -1 : 1;
+        }
+    }
+    else if (selectionOrderDropdown2.value == "A-Z") {
+        if (a["pokemon"] === b["pokemon"]) {
+            return 1;
+        }
+        else {
+            return (a["pokemon"] < b["pokemon"]) ? -1 : 1;
+        }
+    }
+    else if (selectionOrderDropdown2.value == "Pokeball") {
+        if (a["pokeball"] === b["pokeball"]) {
+            return 1;
+        }
+        else {
+            return (a["pokeball"] < b["pokeball"]) ? -1 : 1;
+        }
+    } else if (selectionOrderDropdown2.value == "Pokedex") {
+        if (a["dex"] === b["dex"]) {
+            return 1;
+        }
+        else {
+            return (a["dex"] < b["dex"]) ? -1 : 1;
+        }
     }
 }

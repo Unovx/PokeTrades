@@ -134,6 +134,9 @@ $('.MA-CTS').click(function () {
     document.getElementById("GeneratedSelection").appendChild(gridTest);
     document.querySelector(".SA-Bunch").innerHTML = "Community Trade Station";
     document.querySelector(".SA-Bunch").style.opacity = "100%";
+    document.querySelector(".SA-CreateButton").style.display = "none";
+    document.querySelector(".SA-MoveButton").style.display = "none";
+    document.querySelector(".SA-CopyButton").style.display = "none";
 });
 
 $('.MA-ImportTradeSheet').click(function () {
@@ -180,12 +183,12 @@ $('.MA-Giveaway').click(function () {
     $.post(url + "/PHP/modify_check_viewing.php", { token: token, searchID: 0 }, ModifyCheckViewing);
 });
 
-$('.MA-TrackingImage').click(function () {
+$('.MA-Tracker').click(function () {
     CloseAllStartingAreas();
     document.querySelector("#MainArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "none";
     document.querySelector("#TrackingArea").style.display = "grid";
-    window.location.hash = "legalitylist";
+    //window.location.hash = "legalitylist";
 });
 
 function CloseAllStartingAreas() {
@@ -215,6 +218,7 @@ function CloseAll() {
     document.querySelector("#PanelArea").style.display = "none";
     document.querySelector("#SelectionArea").style.display = "none";
     document.querySelector("#ImportArea").style.display = "none";
+    document.querySelector("#TrackingArea").style.display = "none";
 
     document.querySelector(".PA-WhatsNewPanel").style.display = "none";
     document.querySelector(".PA-SettingsPanel").style.display = "none";

@@ -1790,3 +1790,934 @@
     cursor: pointer;
     box-shadow: rgb(26 35 58) 1px 1px 0px 1px inset;
 }
+
+.DA-Username {
+    display: block;
+    background-color: #243048;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    /* color: #FF7B2F; */
+    color: #ff9355;
+    font-size: 14px;
+    cursor: pointer;
+    pointer-events: initial !important;
+}
+
+.DA-BunchDropdown {
+    background-color: #243048;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 14px;
+}
+
+.DA-TemplateName {
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 13px;
+    border: none;
+    background: center;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    z-index: 2;
+}
+
+.DA-TemplateDropdown {
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 13px;
+    border: none;
+    background: center;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+}
+
+#DetailsArea {
+    background-image: linear-gradient(#1c263d, #353d54, #202842);
+}
+
+.DA-PokemonDetails {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(130px, 1fr));
+    border-radius: 9px;
+    background-color: #243048;
+    height: 125px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    margin-bottom: 10px;
+    background-image: linear-gradient(#434d62, #263767);
+}
+
+.DA-StatHPName {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #dfcb2aff;
+    font-size: 10px;
+    border: 0px;
+    margin-top: 5px;
+    left: 64px;
+}
+
+.DA-StatIVHP {
+    background: none;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #db70bd;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    left: 78px;
+    min-width: 24px;
+}
+
+.DA-StatAttName {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #dfcb2aff;
+    font-size: 10px;
+    border: 0px;
+    margin-top: 27px;
+    left: 132px;
+}
+
+.DA-StatIVAtt {
+    background: none;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #db70bd;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 39px;
+    left: 125px;
+    min-width: 24px;
+}
+
+.DA-StatDefName {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #dfcb2aff;
+    font-size: 10px;
+    border: 0px;
+    margin-top: 73px;
+    left: 132px;
+}
+
+.DA-StatIVDef {
+    background: none;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #db70bd;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 85px;
+    left: 125px;
+    min-width: 24px;
+}
+
+.DA-StatSpaName {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #dfcb2aff;
+    font-size: 10px;
+    border: 0px;
+    margin-top: 27px;
+    left: 8px;
+}
+
+.DA-StatIVSpa {
+    background: none;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #db70bd;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 39px;
+    left: 2px;
+    min-width: 24px;
+}
+
+.DA-StatSpdName {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #dfcb2aff;
+    font-size: 10px;
+    border: 0px;
+    margin-top: 73px;
+    left: 8px;
+}
+
+.DA-StatIVSpd {
+    background: none;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #db70bd;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 85px;
+    left: 2px;
+    min-width: 24px;
+}
+
+.DA-StatSpeName {
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #dfcb2aff;
+    font-size: 10px;
+    border: 0px;
+    margin-top: 108.5px;
+    left: 60px;
+}
+
+.DA-StatIVSpe {
+    background: none;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #db70bd;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 107px;
+    left: 78px;
+    min-width: 24px;
+}
+
+.DA-StatEVHP {
+    text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px #000;
+    background: none;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 10.5px;
+    border: 0px;
+    margin-top: 23px;
+    left: 60px;
+    min-width: 39.5px;
+}
+
+.DA-StatEVAtt {
+    text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px #000;
+    background: none;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 10.5px;
+    border: 0px;
+    margin-top: 48px;
+    left: 82px;
+    min-width: 39.5px;
+}
+
+.DA-StatEVDef {
+    text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px #000;
+    background: none;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 10.5px;
+    border: 0px;
+    margin-top: 65px;
+    left: 82px;
+    min-width: 39.5px;
+}
+
+.DA-StatEVSpa {
+    text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px #000;
+    background: none;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 10.5px;
+    border: 0px;
+    margin-top: 48px;
+    left: 36px;
+    min-width: 39.5px;
+}
+
+.DA-StatEVSpd {
+    text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px #000;
+    background: none;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 10.5px;
+    border: 0px;
+    margin-top: 65px;
+    left: 36px;
+    min-width: 39.5px;
+}
+
+.DA-StatEVSpe {
+    text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px #000;
+    background: none;
+    position: absolute;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 10.5px;
+    border: 0px;
+    margin-top: 90px;
+    left: 59px;
+    min-width: 39.5px;
+}
+
+.DA-PokemonImage {
+    display: block;
+    top: 50px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    pointer-events: initial;
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-right: 5px;
+
+    /*width: 95px;
+    height: 95px;
+    margin-right: 9px;*/
+}
+
+.DA-PokemonDropdown {
+    background: none;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+
+
+    /*width: 237px !important;*/
+    margin-left: -104px;
+}
+
+/*.DA-InitialInfo {
+    width: 147px;
+}*/
+
+.DA-Nickname {
+    background: none;
+    width: 120px !important;
+    width: -moz-available !important;
+    text-align: start;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: -3px;
+}
+
+.DA-IconOptions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(19px, 1fr));
+    text-align: center;
+    width: auto;
+    place-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: -5px;
+}
+
+.DA-SelectedBall {
+    background: none;
+    border-width: 0px;
+    border-style: solid;
+    border-color: #171d2c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    cursor: pointer;
+}
+
+.DA-SelectedGender {
+    background: none;
+    border-width: 0px;
+    border-style: solid;
+    border-color: #171d2c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    cursor: pointer;
+}
+
+.DA-SelectedShiny {
+    background: none;
+    border-width: 0px;
+    border-style: solid;
+    border-color: #171d2c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    cursor: pointer;
+}
+
+.DA-SelectedMint {
+    background: none;
+    border-width: 0px;
+    border-style: solid;
+    border-color: #171d2c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    cursor: pointer;
+}
+
+.DA-SelectedMisc {
+    background: none;
+    border-width: 0px;
+    border-style: solid;
+    border-color: #171d2c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    cursor: pointer;
+}
+
+.DA-SelectedMark {
+    background: none;
+    border-width: 0px;
+    border-style: solid;
+    border-color: #171d2c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    cursor: pointer;
+}
+
+.DA-SelectedRibbon {
+    background: none;
+    border-width: 0px;
+    border-style: solid;
+    border-color: #171d2c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    cursor: pointer;
+}
+
+.DA-BallIcon {
+    vertical-align: top;
+    max-height: 15px;
+    max-width: 15px;
+}
+
+.DA-GenderIcon {
+    vertical-align: top;
+    max-height: 15px;
+    max-width: 15px;
+}
+
+.DA-ShinyIcon {
+    vertical-align: top;
+    max-height: 15px;
+    max-width: 15px;
+}
+
+.DA-MintIcon {
+    vertical-align: top;
+    max-height: 15px;
+    max-width: 15px;
+}
+
+.DA-MiscIcon {
+    vertical-align: top;
+    max-height: 15px;
+    max-width: 15px;
+}
+
+.DA-MarkIcon {
+    vertical-align: top;
+    max-height: 15px;
+    max-width: 15px;
+}
+
+.DA-RibbonIcon {
+    vertical-align: top;
+    max-height: 15px;
+    max-width: 15px;
+}
+
+.DA-AbilityDropdown {
+    background: none;
+    width: -webkit-fill-available;
+    width: -moz-available !important;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: -6px;
+}
+
+.DA-NatureDropdown {
+    /* padding-top: 1px; */
+    background: none;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: -6px;
+}
+
+.DA-AlignmentSupport {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(130px, 1fr));
+    justify-items: center;
+    background-image: linear-gradient(#202c4c, #243048);
+}
+
+.DA-TrainerCard {
+    width: 130px;
+    height: 88px;
+    align-self: center;
+    border-radius: 9px;
+    background-color: #343f5f;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    margin-bottom: 5px;
+    margin-left: 3.5px;
+    margin-right: 5px;
+    display: grid;
+    grid-template-columns: 30px 88px;
+    background-image: url(https://poketrades.org/Trainer_Card_Icon.png);
+    background-size: cover;
+}
+
+.DA-TrainerCardImage {
+    height: 30px;
+    width: 30px;
+}
+
+.DA-SelectedLang {
+    background: none;
+    border-width: 0px;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #55b7e4;
+    font-size: 9px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: -6px;
+}
+
+.DA-LangIcon {
+    width: 40px;
+    margin-top: 7px !important;
+    cursor: pointer;
+    color: inherit;
+    background: none;
+    border: none;
+    font-size: inherit;
+    font-weight: inherit;
+    margin: unset;
+    padding: 0;
+}
+
+.DA-IDIcon {
+    height: 20px;
+    width: 25px;
+    place-self: center;
+}
+
+.DA-OT {
+    background: #2430487a;
+    width: 88px !important;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.DA-ID {
+    background: #2430487a;
+    width: 88px !important;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.DA-TrainerCardBorder {
+    border-style: solid;
+    border-radius: 9px;
+    width: 40px;
+    vertical-align: middle;
+    margin: 5px;
+    border-color: #35405b;
+    cursor: pointer;
+}
+
+.DA-NormalMoves {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(121px, 1fr));
+    text-align: center;
+    width: 130px;
+    margin-right: 0px;
+
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+
+    height: 85px;
+    margin-top: -1px;
+    margin-bottom: 6px;
+}
+
+.DA-PokemonMoves {
+    display: block;
+    background: none;
+    /*width: 121px !important;*/
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.DA-Move1 {
+    background: #274582;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 0px;
+    margin-bottom: 4px;
+    height: 14.7px;
+}
+
+.DA-Move2 {
+    background: #3a4e76;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    height: 14.7px;
+}
+
+.DA-Move3 {
+    background: #274582;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    height: 14.7px;
+}
+
+.DA-Move4 {
+    background: #3a4e76;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 0px;
+    height: 14.7px;
+}
+
+.DA-TransferMoves {
+    display: block;
+    background: none;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.DA-LegacyMoves {
+    border-width: 2px;
+    border-color: black;
+    border-style: ridge;
+
+    display: grid;
+    grid-template-columns: repeat(1, minmax(100px, 1fr));
+    text-align: center;
+    width: 130px;
+
+    height: 85px;
+    margin-top: -1px;
+    margin-bottom: 6px;
+}
+
+.DA-LegacyMove1 {
+    background: #3a4e76;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 0px;
+    margin-bottom: 4px;
+}
+
+.DA-LegacyMove2 {
+    background: #274582;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.DA-LegacyMove3 {
+    background: #3a4e76;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.DA-LegacyMove4 {
+    background: #274582;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.DA-DisplayDropdown {
+    background: none;
+    width: 130px !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 0px;
+}
+
+.DA-GameObtained {
+    background: #2430487a;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    width: 91px !important;
+    text-align: initial;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.DA-HowObtained {
+    background: none;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    width: 142px !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.DA-StatusDropdown {
+    background: none;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    width: 135px !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.DA-EventDropdown {
+    /* padding-top: 1px; */
+    background: none;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    width: 134px !important;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.DA-ToggleProof {
+    display: block;
+    width: 140px;
+    color: white;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px !important;
+    background-color: #35425c;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    margin: auto;
+    padding-top: 1px;
+    cursor: pointer;
+    display: inline-flex;
+    pointer-events: initial;
+    justify-content: center;
+}
+
+.DA-ProofURL {
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    height: 14px;
+    background-color: #35425c;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    text-align: center;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 12px;
+    font-size: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-flex;
+}
+
+.DA-Note {
+    background-color: #243048;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #bfbfbf;
+    font-size: 12px;
+    display: flex;
+    overflow: hidden;
+}

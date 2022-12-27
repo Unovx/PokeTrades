@@ -112,6 +112,16 @@ body {
   border-radius: 5px;
 }
 
+.SA-Offset {
+  width: 70px;
+  cursor: unset;
+}
+
+.SA-Limit {
+  width: 70px;
+  cursor: unset;
+}
+
 #GeneratedSelection {
   z-index: -1;
   height: inherit;
@@ -136,6 +146,13 @@ body {
 }
 
 .SA-SelectionHelp {
+  cursor: pointer;
+  max-width: 17px;
+  max-height: 17px;
+  vertical-align: bottom;
+}
+
+.SA-RefreshButton {
   cursor: pointer;
   max-width: 17px;
   max-height: 17px;

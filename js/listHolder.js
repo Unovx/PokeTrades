@@ -38,6 +38,12 @@ var nicknameOptionsArray;
 var formOptionsArray;
 var evoOptionsArray;
 var evoDataArray;
+var orderOptionsArray;
+var progressArray;
+var progressBalls;
+var progressGames;
+var progressGens;
+var progressObtainableOptions;
 
 /*$('#Testing').click(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "genderless", table: "genderless_pokemon" }, GenderlessPokemon);
@@ -85,6 +91,15 @@ $(document).ready(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "nickname_types", table: "nickname_options" }, NicknameOptions);
     $.post(url + "/PHP/get_list_names.php", { column: "form_types", table: "form_options" }, FormOptions);
     $.post(url + "/PHP/get_list_names.php", { column: "evo_types", table: "evo_options" }, EvoOptions);
+    $.post(url + "/PHP/get_list_names.php", { column: "order_types", table: "order_options" }, OrderOptions);
+    $.post(url + "/PHP/progress_data.php", ProgressInfo);
+    $.post(url + "/PHP/get_list_names.php", { column: "ball", table: "progress_ball_options" }, ProgressBallOptions);
+    $.post(url + "/PHP/get_list_names.php", { column: "game", table: "progress_game_options" }, ProgressGameOptions);
+    $.post(url + "/PHP/get_list_names.php", { column: "gen", table: "progress_game_options" }, ProgressGenOptions);
+    $.post(url + "/PHP/get_list_names.php", { column: "method", table: "progress_obtainable_options" }, ProgressObtainableOptions);
+    $.post(url + "/PHP/get_list_names.php", { column: "unavailable", table: "y_swsh_unavailable" }, TempSWSH);
+    $.post(url + "/PHP/get_list_names.php", { column: "unavailable", table: "y_la_unavailable" }, TempLA);
+    $.post(url + "/PHP/get_list_names.php", { column: "unavailable", table: "y_sv_unavailable" }, TempSV);
     $.post(url + "/PHP/evolution_data.php", EvoLines);
     if (token != null) {
         $.post(url + "/PHP/generate_templates.php", { token: token }, GetTemplateOptions);
@@ -480,6 +495,7 @@ function IconExclusives(data) {
 function IvValues(data) {
     arrayInfo = jQuery.parseJSON(data);
     ivValuesArray = arrayInfo["Rows"];
+    ivValuesArray.sort(function (a, b) { return a - b });
     //console.log(ivValuesArray);
 
     for (let i = 0; i < ivValuesArray.length; i++) {
@@ -598,6 +614,7 @@ function IvValues(data) {
 function EvValues(data) {
     arrayInfo = jQuery.parseJSON(data);
     evValuesArray = arrayInfo["Rows"];
+    evValuesArray.sort(function (a, b) { return a - b });
     //console.log(evValuesArray);
 
     for (let i = 0; i < evValuesArray.length; i++) {
@@ -994,6 +1011,26 @@ function EvoOptions(data) {
     }
 }
 
+function OrderOptions(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    orderOptionsArray = arrayInfo["Rows"];
+    //console.log(orderOptionsArray);
+
+    for (let i = 0; i < orderOptionsArray.length; i++) {
+        const selectionOption1 = document.createElement("option");
+        selectionOption1.value = orderOptionsArray[i];
+        selectionOption1.textContent = orderOptionsArray[i];
+        selectionOption1.setAttribute("class", "SA-DropdownOptions1")
+        selectionOrderDropdown1.appendChild(selectionOption1);
+
+        const selectionOption2 = document.createElement("option");
+        selectionOption2.value = orderOptionsArray[i];
+        selectionOption2.textContent = orderOptionsArray[i];
+        selectionOption2.setAttribute("class", "SA-DropdownOptions2")
+        selectionOrderDropdown2.appendChild(selectionOption2);
+    }
+}
+
 function EvoLines(data) {
     arrayInfo = jQuery.parseJSON(data);
     evoDataArray = arrayInfo["Rows"];
@@ -1003,9 +1040,56 @@ function EvoLines(data) {
 function GiveawayData(data) {
     if (data != "") {
         arrayData = jQuery.parseJSON(data);
-        console.log(arrayData["Rows"][0]);
+        //console.log(arrayData["Rows"][0]);
         giveawayDetails = arrayData["Rows"][0];
         document.querySelector(".MA-Giveaway").style.display = "block";
         SetImage(document.querySelector(".MA-GiveawayImage"), giveawayDetails.pokemon, giveawayDetails.gender, giveawayDetails.shiny, giveawayDetails.game_obtained);
     }
+    //document.querySelector(".MA-CTS").style.pointerEvents = "initial";
+    //document.querySelector(".MA-PokemonData").style.pointerEvents = "initial";
+}
+
+function ProgressInfo(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    progressArray = arrayInfo["Rows"];
+    //console.log(progressArray);
+}
+
+function ProgressBallOptions(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    progressBalls = arrayInfo["Rows"];
+    //console.log(progressBalls);
+}
+
+function ProgressGameOptions(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    progressGames = arrayInfo["Rows"];
+    //console.log(progressGames);
+}
+
+function ProgressGenOptions(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    progressGens = arrayInfo["Rows"];
+    //console.log(progressGens);
+}
+
+function ProgressObtainableOptions(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    progressObtainableOptions = arrayInfo["Rows"];
+    //console.log(progressObtainableOptions);
+}
+
+function TempSWSH(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    tempSWSH = arrayInfo["Rows"];
+}
+
+function TempLA(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    tempLA = arrayInfo["Rows"];
+}
+
+function TempSV(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    tempSV = arrayInfo["Rows"];
 }

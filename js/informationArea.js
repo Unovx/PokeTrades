@@ -5,10 +5,11 @@ var formsHolder = document.getElementById("IA-FormsHolder");
 let extraFormData = 1;
 
 //These Pokemon have differences depending on gender for stats and/or abilities and so need to be handled differently
-let pokemonExceptions = new Array(3);
+let pokemonExceptions = new Array(4);
 pokemonExceptions[0] = "Meowstic";
 pokemonExceptions[1] = "Indeedee";
 pokemonExceptions[2] = "Basculegion";
+pokemonExceptions[3] = "Oinkologne";
 let shinyStatus = "";
 
 //Storing the elements and images allow me to change them between shiny/non shiny and also prevents having to re-write code.
@@ -53,7 +54,7 @@ $('.IA-PokemonDropdown').change(function () {
     let pokemonTypes = new Array(2);
     //Setting looping through the data array so I can get the right data for each pokemon. 
     for (let i = 0; i < pokemonDataArray.length; i++) {
-        if (pokemonDataArray[i].pokemon == IAPokemonDropdown.value || pokemonDataArray[i].pokemon == "Meowstic-Male" && IAPokemonDropdown.value == "Meowstic" || pokemonDataArray[i].pokemon == "Indeedee-Male" && IAPokemonDropdown.value == "Indeedee" || pokemonDataArray[i].pokemon == "Basculegion-Male" && IAPokemonDropdown.value == "Basculegion") {
+        if (pokemonDataArray[i].pokemon == IAPokemonDropdown.value || pokemonDataArray[i].pokemon == "Meowstic-Male" && IAPokemonDropdown.value == "Meowstic" || pokemonDataArray[i].pokemon == "Indeedee-Male" && IAPokemonDropdown.value == "Indeedee" || pokemonDataArray[i].pokemon == "Basculegion-Male" && IAPokemonDropdown.value == "Basculegion" || pokemonDataArray[i].pokemon == "Oinkologne-Male" && IAPokemonDropdown.value == "Oinkologne") {
             document.querySelector(".IA-Pokemon1_Type1").setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[i].type_1 + ".png");
             //Setting the abilities array as this will be needed later to deciding whenever to display forms.
             pokemonAbilities[0] = pokemonDataArray[i].ability_1;
@@ -176,7 +177,7 @@ $('.IA-PokemonDropdown').change(function () {
                     newImage.setAttribute("class", "IA-StandardImage");
                     for (let l = 0; l < pokemonDataArray.length; l++) {
                         if (pokemonExceptions.includes(arrayTempEvo[k])) {
-                            if (IAPokemonDropdown.value == "Meowstic" && pokemonDataArray[l].pokemon == "Meowstic-Male" || IAPokemonDropdown.value == "Indeedee" && pokemonDataArray[l].pokemon == "Indeedee-Male" || IAPokemonDropdown.value == "Basculegion" && pokemonDataArray[l].pokemon == "Basculegion-Male") {
+                            if (IAPokemonDropdown.value == "Meowstic" && pokemonDataArray[l].pokemon == "Meowstic-Male" || IAPokemonDropdown.value == "Indeedee" && pokemonDataArray[l].pokemon == "Indeedee-Male" || IAPokemonDropdown.value == "Basculegion" && pokemonDataArray[l].pokemon == "Basculegion-Male" || IAPokemonDropdown.value == "Oinkologne" && pokemonDataArray[l].pokemon == "Oinkologne-Male") {
                                 var arrayTempForms = pokemonDataArray[l].forms.split("|");
                             }
                             let tempString = "";
@@ -655,7 +656,7 @@ $('.IA-PokemonDropdown').change(function () {
 
                         }
                         //If the array holds one of the exceptions, then what happens is the form div is hidden by default since the gender isn't another form but its stored that way in the database to be created and displayed like a form. So hiding it just prevents user confusion.
-                        if (arrayTempForms[0].includes("Meowstic-Female") || arrayTempForms[0].includes("Indeedee-Female") || arrayTempForms[0].includes("Basculegion-Female")) {
+                        if (arrayTempForms[0].includes("Meowstic-Female") || arrayTempForms[0].includes("Indeedee-Female") || arrayTempForms[0].includes("Basculegion-Female") || arrayTempForms[0].includes("Oinkologne-Female")) {
                             document.querySelector(".IA-FormsDiv").style.display = "none";
                         }
                     }

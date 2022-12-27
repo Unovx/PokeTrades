@@ -56,10 +56,14 @@ $(".CTS-CloseButton").click(function () {
     ResetFilters();
     CloseAll();
     document.querySelector("#MainArea").style.display = "block";
+    document.querySelector(".SA-CreateButton").style.display = "initial";
+    document.querySelector(".SA-MoveButton").style.display = "initial";
+    document.querySelector(".SA-CopyButton").style.display = "initial";
 });
 
 $(".CTS-SearchButton").click(function () {
-    $.post(url + "/PHP/cts_search.php", { offset: ctsOffset.value, limit: ctsLimit.value, pokemon: ctsPokemonDropdown.value, lang: ctsLangArray, ball: ctsBallArray, gender: ctsGenderOption, shiny: ctsShinyOption, mint: ctsMintOption, misc: ctsMiscArray, mark: ctsMarkArray, ribbons: ctsRibbonArray, nickname: ctsNicknameDropdown.value, ability: ctsAbilityDropdown.value, nature: ctsNatureDropdown.value, gen6: cstGen6, gen7: cstGen7, gen8: cstGen8, home: cstHome, gameObtained: ctsGameObtainedDropdown.value, howObtained: ctsHowObtainedDropdown.value, formEvos: ctsFormEvos, forms: ctsForms, formOption: ctsFormDropdown.value, evos: ctsEvos, evoOption: ctsEvoDropdown.value, OT: ctsOT.value, ID: ctsID.value, status: ctsStatusDropdown.value, event: ctsEventDropdown.value, ivhp: ctsIvHP.value, ivatt: ctsIvAtt.value, ivdef: ctsIvDef.value, ivspa: ctsIvSpa.value, ivspd: ctsIvSpd.value, ivspe: ctsIvSpe.value, evhp: ctsEvHP.value, evatt: ctsEvAtt.value, evdef: ctsEvDef.value, evspa: ctsEvSpa.value, evspd: ctsEvSpd.value, evspe: ctsEvSpe.value, move1: ctsMove1Dropdown.value, move2: ctsMove2Dropdown.value, move3: ctsMove3Dropdown.value, move4: ctsMove4Dropdown.value, proof: ctsProofDropdown.value, note: ctsNoteDropdown.value }, GenerateSelection);
+    ShowLoading();
+    $.post(url + "/PHP/cts_search.php", { offset: selectionOffset.value, limit: selectionLimit.value, pokemon: ctsPokemonDropdown.value, lang: ctsLangArray, ball: ctsBallArray, gender: ctsGenderOption, shiny: ctsShinyOption, mint: ctsMintOption, misc: ctsMiscArray, mark: ctsMarkArray, ribbons: ctsRibbonArray, nickname: ctsNicknameDropdown.value, ability: ctsAbilityDropdown.value, nature: ctsNatureDropdown.value, gen6: cstGen6, gen7: cstGen7, gen8: cstGen8, home: cstHome, gameObtained: ctsGameObtainedDropdown.value, howObtained: ctsHowObtainedDropdown.value, formEvos: ctsFormEvos, forms: ctsForms, formOption: ctsFormDropdown.value, evos: ctsEvos, evoOption: ctsEvoDropdown.value, OT: ctsOT.value, ID: ctsID.value, status: ctsStatusDropdown.value, event: ctsEventDropdown.value, ivhp: ctsIvHP.value, ivatt: ctsIvAtt.value, ivdef: ctsIvDef.value, ivspa: ctsIvSpa.value, ivspd: ctsIvSpd.value, ivspe: ctsIvSpe.value, evhp: ctsEvHP.value, evatt: ctsEvAtt.value, evdef: ctsEvDef.value, evspa: ctsEvSpa.value, evspd: ctsEvSpd.value, evspe: ctsEvSpe.value, move1: ctsMove1Dropdown.value, move2: ctsMove2Dropdown.value, move3: ctsMove3Dropdown.value, move4: ctsMove4Dropdown.value, proof: ctsProofDropdown.value, note: ctsNoteDropdown.value }, GenerateSelection);
     //$.post(ur, move1: ctsMove1Dropdown.valuel + "/PHP/cts_search.php", { ball: ctsBallArray }, GenerateSelection);
 });
 
@@ -487,6 +491,10 @@ function CTSAbilityOptions() {
 
         if (ctsPokemonDropdown.value == "Indeedee") {
             dataPokemon = ctsPokemonDropdown.value + "-" + genderData
+        }
+
+        if (pokemonData == "Oinkologne") {
+            dataPokemon = pokemonData + "-" + genderData
         }
 
         if (ctsPokemonDropdown.value == pokemonDataArray[i].pokemon || dataPokemon == pokemonDataArray[i].pokemon) {

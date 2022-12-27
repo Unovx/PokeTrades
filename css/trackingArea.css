@@ -1,36 +1,42 @@
 @media only screen and (max-width: 768px) {
-    [id*="TA-TopRow"]{
+    [id*="TA-TopRow"] {
         margin-bottom: 5px !important;
         margin-right: unset !important;
         margin-left: unset !important;
     }
-    [class*="TA-TitleText"]{
+
+    [class*="TA-TitleText"] {
         display: flex !important;
         width: 100% !important;
         place-content: center;
     }
-    [class*="TrackingButtons"]{
+
+    [class*="TrackingButtons"] {
         bottom: 0% !important;
         left: 0% !important;
         display: flex !important;
         width: 100% !important;
         place-content: center;
     }
-    [id*="TrackingContainer"]{
+
+    [id*="TrackingContainer"] {
         /* Spacing issues aren't an issue on mobile devices*/
         grid-gap: 0.5rem !important;
     }
-    [class*="TA-PokemonDetails"]{
+
+    [class*="TA-PokemonDetails"] {
         height: auto !important;
         top: 80% !important;
         width: 100% !important;
         min-height: 200px;
-    }[id*="TrackingSelection"]{
+    }
+
+    [id*="TrackingSelection"] {
         margin-right: unset !important;
     }
 }
 
-#TrackingArea{
+#TrackingArea {
     position: fixed;
     z-index: 0;
     height: 100%;
@@ -40,10 +46,11 @@
     top: 0.5px;
     bottom: 0.5px;
     align-content: baseline;
+    margin-top: 52px;
     /*background-color: #163944;*/
 }
 
-#TA-TopRow{
+#TA-TopRow {
     /* sticky and 0; are so it acts like its fixed, as fixed has issues with overflow elements*/
     position: sticky;
     top: 0;
@@ -52,18 +59,22 @@
     margin-bottom: 5px;
 }
 
-.TA-TitleText{
+.TA-TitleText {
     position: relative;
-    color: white;
+    color: #e0e0e0;
+    /*background-color: #163944;*/
+    opacity: 0%;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     /*So it doesn't cut into the top part of the outline in the top Row*/
     top: 2px;
     width: auto;
     display: block;
+    margin-left: 15px;
+    margin-bottom: 5px;
 }
 
-.TrackingButtons{
+.TrackingButtons {
     position: relative;
     text-align: center;
     vertical-align: middle;
@@ -71,54 +82,78 @@
     display: initial;
 }
 
-.TA-MainMenu{
+.TA-ButtonDesign {
+    background: #171d2c;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #2e3850;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #536c9f;
+    cursor: pointer;
+    margin: 3px;
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
+}
+
+.TA-DropdownOptions {
+    font-weight: initial;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #2a3757;
+    font-size: 14px;
+}
+
+/*.TA-MainMenu {
     position: relative;
     background-color: #efefef;
     height: 22px;
     border: none;
 }
 
-.TA-LegalityChecker{
+.TA-LegalityChecker {
     position: relative;
     background-color: #efefef;
     height: 22px;
     border: none;
-}
+}*/
 
-.TA-UserCollection{
-    position: relative; 
+.TA-UserCollection {
+    position: relative;
     pointer-events: none;
     background-color: grey;
     height: 22px;
     border: none;
 }
 
-.TA-InfoButton{
+.TA-InfoButton {
     position: relative;
     background-color: #efefef;
     height: 22px;
     border: none;
 }
 
-#TrackingSelection{
+#TrackingSelection {
     overflow: auto;
-    margin-right: 420px;
-  }
-
-#TrackingData{
-    z-index: -1;
-    height: inherit;
+    /*margin-right: 420px;*/
+    margin-bottom: 52px !important;
 }
 
-.TrackingGridDiv{
+#TrackingData {
+    z-index: -1;
+    height: inherit;
+    padding-bottom: 10px;
+}
+
+.TrackingGridDiv {
     /* for some reason this centers the image which is needed*/
     text-align-last: center;
-  }
+}
 
-#TrackingContainer{
+#TrackingContainer {
     display: grid;
     /* auto-fill into of auto-fit so it starts from the corner of the screen*/
-    grid-template-columns: repeat( auto-fill, minmax(100px, 1fr) );
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     /* this is so it fills all available space without an parts being cut off on any device*/
     height: inherit;
     /* needing to prevent bunches and to an slight extent mons looking crowded*/
@@ -127,61 +162,74 @@
     /*background-color: #163944;*/
 }
 
-.TA-PokemonDetails{
+.TA-PokemonDetails {
     background-color: #2E2D2D;
-    position: absolute; 
-    
+    position: absolute;
+
     height: 100%;
     z-index: 2;
-    width: 420px;;
+    width: 420px;
+    ;
     overflow: auto;
     right: 0;
+    display: none;
 }
 
-.TA-RBY-Section{
+.TA-PokemonDiv {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    /*cursor: pointer;*/
+    box-shadow: rgb(0 0 0) 5px 5px 0px 1px;
+    background-color: #343f5f;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.TA-RBY-Section {
     display: grid;
 }
 
-.TA-RBY-Text{
+.TA-RBY-Text {
     text-align: center;
-    color:white;
+    color: white;
     width: 100%;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.TA-RBY-Balls{
+.TA-RBY-Balls {
     text-align-last: center;
 }
 
-.TA-GSC-Section{
+.TA-GSC-Section {
     display: grid;
 }
 
-.TA-GSC-Text{
+.TA-GSC-Text {
     text-align: center;
-    color:white;
+    color: white;
     width: 100%;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.TA-GSC-Balls{
+.TA-GSC-Balls {
     text-align-last: center;
 }
 
-.TA-RSE-Section{
+.TA-RSE-Section {
     display: grid;
 }
 
-.TA-RSE-Text{
+.TA-RSE-Text {
     text-align: center;
-    color:white;
+    color: white;
     width: 100%;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.TA-RSE-Balls{
+.TA-RSE-Balls {
     text-align-last: center;
 }

@@ -262,6 +262,7 @@
 
 .MA-CTS {
     pointer-events: none;
+    display: none;
 }
 
 .MA-PokemonData {
@@ -360,7 +361,6 @@
     max-height: 500px;
     max-width: 500px;
 }
-
 
 /* Removing the arrows at the end of the search bar that appears with the numbers */
 input::-webkit-outer-spin-button,

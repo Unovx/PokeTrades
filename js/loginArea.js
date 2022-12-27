@@ -20,8 +20,8 @@ function LastSession(data) {
         document.querySelector(".LA-Username").innerHTML = userData.username;
         document.querySelector(".PA-UserID").style.opacity = "100%";
         document.querySelector(".PA-UserID").innerHTML = "Your ID is: " + userData.user_id;
-        document.querySelector(".TA-UserCollection").style.pointerEvents = "initial";
-        document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
+        //document.querySelector(".TA-UserCollection").style.pointerEvents = "initial";
+        //document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
         document.querySelector(".MA-ImportTradeSheet").style.pointerEvents = "initial";
     }
 }

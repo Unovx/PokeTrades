@@ -42,18 +42,30 @@ var otSelection = document.querySelector(".DA-OT");
 var idSelection = document.querySelector(".DA-ID");
 var statusSelection = document.querySelector(".DA-StatusDropdown");
 var eventSelection = document.querySelector(".DA-EventDropdown");
-var ivHpSelection = document.querySelector(".DA-IvHP");
-var ivAttSelection = document.querySelector(".DA-IvAtt");
-var ivDefSelection = document.querySelector(".DA-IvDef");
-var ivSpaSelection = document.querySelector(".DA-IvSpa");
-var ivSpdSelection = document.querySelector(".DA-IvSpd");
-var ivSpeSelection = document.querySelector(".DA-IvSpe");
-var evHpSelection = document.querySelector(".DA-EvHP");
-var evAttSelection = document.querySelector(".DA-EvAtt");
-var evDefSelection = document.querySelector(".DA-EvDef");
-var evSpaSelection = document.querySelector(".DA-EvSpa");
-var evSpdSelection = document.querySelector(".DA-EvSpd");
-var evSpeSelection = document.querySelector(".DA-EvSpe");
+//var ivHpSelection = document.querySelector(".DA-IvHP");
+//var ivAttSelection = document.querySelector(".DA-IvAtt");
+//var ivDefSelection = document.querySelector(".DA-IvDef");
+//var ivSpaSelection = document.querySelector(".DA-IvSpa");
+//var ivSpdSelection = document.querySelector(".DA-IvSpd");
+//var ivSpeSelection = document.querySelector(".DA-IvSpe");
+var ivHpSelection = document.querySelector(".DA-StatIVHP");
+var ivAttSelection = document.querySelector(".DA-StatIVAtt");
+var ivDefSelection = document.querySelector(".DA-StatIVDef");
+var ivSpaSelection = document.querySelector(".DA-StatIVSpa");
+var ivSpdSelection = document.querySelector(".DA-StatIVSpd");
+var ivSpeSelection = document.querySelector(".DA-StatIVSpe");
+//var evHpSelection = document.querySelector(".DA-EvHP");
+//var evAttSelection = document.querySelector(".DA-EvAtt");
+//var evDefSelection = document.querySelector(".DA-EvDef");
+//var evSpaSelection = document.querySelector(".DA-EvSpa");
+//var evSpdSelection = document.querySelector(".DA-EvSpd");
+//var evSpeSelection = document.querySelector(".DA-EvSpe");
+var evHpSelection = document.querySelector(".DA-StatEVHP");
+var evAttSelection = document.querySelector(".DA-StatEVAtt");
+var evDefSelection = document.querySelector(".DA-StatEVDef");
+var evSpaSelection = document.querySelector(".DA-StatEVSpa");
+var evSpdSelection = document.querySelector(".DA-StatEVSpd");
+var evSpeSelection = document.querySelector(".DA-StatEVSpe");
 var move1Selection = document.querySelector(".DA-Move1");
 var move2Selection = document.querySelector(".DA-Move2");
 var move3Selection = document.querySelector(".DA-Move3");
@@ -86,27 +98,38 @@ function calculateTypeHP(calcHP, calcAtt, calcDef, calcSpa, calcSpd, calcSpe) {
 
 $(ivHpSelection).change(function () {
     SetHiddenPower();
+    SetIVColours();
 });
 
 $(ivAttSelection).change(function () {
     SetHiddenPower();
+    SetIVColours();
 });
 
 $(ivDefSelection).change(function () {
     SetHiddenPower();
+    SetIVColours();
 });
 
 $(ivSpaSelection).change(function () {
     SetHiddenPower();
+    SetIVColours();
 });
 
 $(ivSpdSelection).change(function () {
     SetHiddenPower();
+    SetIVColours();
 });
 
 $(ivSpeSelection).change(function () {
     SetHiddenPower();
+    SetIVColours();
 });
+
+$(natureSelection).change(function () {
+    SetStatColour();
+});
+
 
 function SetHiddenPower() {
     if (!ivHpSelection.value.includes("X") && !ivHpSelection.value.includes("HT") && !ivAttSelection.value.includes("X") && !ivAttSelection.value.includes("HT") && !ivDefSelection.value.includes("X") && !ivDefSelection.value.includes("HT") && !ivSpaSelection.value.includes("X") && !ivSpaSelection.value.includes("HT") && !ivSpdSelection.value.includes("X") && !ivSpdSelection.value.includes("HT") && !ivSpeSelection.value.includes("X") && !ivSpeSelection.value.includes("HT") && miscData != "Gigantamax") {
@@ -151,7 +174,7 @@ $('.DA-Close').click(function () {
     else if (document.querySelector("#InformationArea").style.display != "block") {
         document.querySelector("#PanelArea").style.display = "block";
     }
-    $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+    //$.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     creationInProgress = false;
     document.querySelector(".DA-TemplateName").value = "";
     CloseDetailOptions();
@@ -1190,7 +1213,7 @@ function PokemonValidation() {
         if (genderData.includes("Genderless") || genderData.includes("(Any Gender)")) {
             if (shinyData.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtainedValue == "R/B/Y") {
+                    if (gameObtainedValue == "R/G/B/Y") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "G/S/C") {
@@ -1235,7 +1258,7 @@ function PokemonValidation() {
 
             } else {
                 if (generationalSprites) {
-                    if (gameObtainedValue == "R/B/Y") {
+                    if (gameObtainedValue == "R/G/B/Y") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "G/S/C") {
@@ -1284,7 +1307,7 @@ function PokemonValidation() {
         if (genderData.includes("Male") || genderData.includes("(Any Gender)")) {
             if (shinyData.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtainedValue == "R/B/Y") {
+                    if (gameObtainedValue == "R/G/B/Y") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "G/S/C") {
@@ -1329,7 +1352,7 @@ function PokemonValidation() {
 
             } else {
                 if (generationalSprites) {
-                    if (gameObtainedValue == "R/B/Y") {
+                    if (gameObtainedValue == "R/G/B/Y") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "G/S/C") {
@@ -1377,7 +1400,7 @@ function PokemonValidation() {
         if (genderData.includes("Female") || genderData.includes("(Any Gender)")) {
             if (shinyData.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtainedValue == "R/B/Y") {
+                    if (gameObtainedValue == "R/G/B/Y") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "G/S/C") {
@@ -1422,7 +1445,7 @@ function PokemonValidation() {
 
             } else {
                 if (generationalSprites) {
-                    if (gameObtainedValue == "R/B/Y") {
+                    if (gameObtainedValue == "R/G/B/Y") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "G/S/C") {
@@ -1471,7 +1494,7 @@ function PokemonValidation() {
         if (genderData.includes("Male") || genderData.includes("(Any Gender)")) {
             if (shinyData.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtainedValue == "R/B/Y") {
+                    if (gameObtainedValue == "R/G/B/Y") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "G/S/C") {
@@ -1539,7 +1562,7 @@ function PokemonValidation() {
                 };
             } else {
                 if (generationalSprites) {
-                    if (gameObtainedValue == "R/B/Y") {
+                    if (gameObtainedValue == "R/G/B/Y") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "G/S/C") {
@@ -1608,7 +1631,7 @@ function PokemonValidation() {
         else if (genderData.includes("Female") || genderData.includes("(Any Gender)")) {
             if (shinyData.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtainedValue == "R/B/Y") {
+                    if (gameObtainedValue == "R/G/B/Y") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "G/S/C") {
@@ -1676,7 +1699,7 @@ function PokemonValidation() {
                 };
             } else {
                 if (generationalSprites) {
-                    if (gameObtainedValue == "R/B/Y") {
+                    if (gameObtainedValue == "R/G/B/Y") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "G/S/C") {
@@ -1750,7 +1773,7 @@ function PokemonValidation() {
         if (!genderData.includes("Genderless") || genderData.includes("(Any Gender)")) {
             if (shinyData.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtainedValue == "R/B/Y") {
+                    if (gameObtainedValue == "R/G/B/Y") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "G/S/C") {
@@ -1794,7 +1817,7 @@ function PokemonValidation() {
                 }
             } else {
                 if (generationalSprites) {
-                    if (gameObtainedValue == "R/B/Y") {
+                    if (gameObtainedValue == "R/G/B/Y") {
                         pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
                     }
                     else if (gameObtainedValue == "G/S/C") {
@@ -1857,6 +1880,10 @@ function AbilityOptions() {
         }
 
         if (pokemonData == "Indeedee") {
+            dataPokemon = pokemonData + "-" + genderData
+        }
+
+        if (pokemonData == "Oinkologne") {
             dataPokemon = pokemonData + "-" + genderData
         }
 
@@ -2181,3 +2208,138 @@ function PlacedPokemon() {
     placingPokemon = false;
 }
 
+function SetStatColour() {
+    SetStatGold();
+    if (natureSelection.value.includes("-Att")) {
+        document.querySelector(".DA-StatAttName").style.color = "#5c99e7ff";
+    }
+
+    if (natureSelection.value.includes("-Def")) {
+        document.querySelector(".DA-StatDefName").style.color = "#5c99e7ff";
+    }
+
+    if (natureSelection.value.includes("-Spa")) {
+        document.querySelector(".DA-StatSpaName").style.color = "#5c99e7ff";
+    }
+
+    if (natureSelection.value.includes("-Spd")) {
+        document.querySelector(".DA-StatSpdName").style.color = "#5c99e7ff";
+    }
+
+    if (natureSelection.value.includes("-Spe")) {
+        document.querySelector(".DA-StatSpeName").style.color = "#5c99e7ff";
+    }
+
+    if (natureSelection.value.includes("+Att")) {
+        document.querySelector(".DA-StatAttName").style.color = "#ea7171";
+    }
+
+    if (natureSelection.value.includes("+Def")) {
+        document.querySelector(".DA-StatDefName").style.color = "#ea7171";
+    }
+
+    if (natureSelection.value.includes("+Spa")) {
+        document.querySelector(".DA-StatSpaName").style.color = "#ea7171";
+    }
+
+    if (natureSelection.value.includes("+Spd")) {
+        document.querySelector(".DA-StatSpdName").style.color = "#ea7171";
+    }
+
+    if (natureSelection.value.includes("+Spe")) {
+        document.querySelector(".DA-StatSpeName").style.color = "#ea7171";
+    }
+}
+
+function SetStatGold() {
+    document.querySelector(".DA-StatAttName").style.color = "#dfcb2aff";
+    document.querySelector(".DA-StatDefName").style.color = "#dfcb2aff";
+    document.querySelector(".DA-StatSpaName").style.color = "#dfcb2aff";
+    document.querySelector(".DA-StatSpdName").style.color = "#dfcb2aff";
+    document.querySelector(".DA-StatSpeName").style.color = "#dfcb2aff";
+}
+
+function SetIVsWhite() {
+    ivHpSelection.style.color = "white";
+    ivAttSelection.style.color = "white";
+    ivDefSelection.style.color = "white";
+    ivSpaSelection.style.color = "white";
+    ivSpdSelection.style.color = "white";
+    ivSpeSelection.style.color = "white";
+}
+
+function SetIVColours() {
+    SetIVsWhite();
+
+    if (ivHpSelection.value == "31") {
+        ivHpSelection.style.color = "#3bc96a";
+    }
+    else if (ivHpSelection.value == "0") {
+        ivHpSelection.style.color = "#db70bd";
+    }
+
+    if (ivAttSelection.value == "31") {
+        ivAttSelection.style.color = "#3bc96a";
+    }
+    else if (ivAttSelection.value == "0") {
+        ivAttSelection.style.color = "#db70bd";
+    }
+
+    if (ivDefSelection.value == "31") {
+        ivDefSelection.style.color = "#3bc96a";
+    }
+    else if (ivDefSelection.value == "0") {
+        ivDefSelection.style.color = "#db70bd";
+    }
+
+    if (ivSpaSelection.value == "31") {
+        ivSpaSelection.style.color = "#3bc96a";
+    }
+    else if (ivSpaSelection.value == "0") {
+        ivSpaSelection.style.color = "#db70bd";
+    }
+
+    if (ivSpdSelection.value == "31") {
+        ivSpdSelection.style.color = "#3bc96a";
+    }
+    else if (ivSpdSelection.value == "0") {
+        ivSpdSelection.style.color = "#db70bd";
+    }
+
+    if (ivSpeSelection.value == "31") {
+        ivSpeSelection.style.color = "#3bc96a";
+    }
+    else if (ivSpeSelection.value == "0") {
+        ivSpeSelection.style.color = "#db70bd";
+    }
+}
+
+
+
+let inputs = document.getElementsByClassName("EVTest");
+let svg = document.getElementById("EVs");
+//console.log(svg);
+for (i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener("change", function (e) {
+        //console.log(e.target.value);
+        UpdateEVs();
+    })
+}
+UpdateEVs();
+
+function UpdateEVs() {
+    let paths = document.getElementById("EVs").children[0].children.EVss.children;
+    //console.log(paths);
+    let inputs = document.getElementsByClassName("EVTest");
+    for (i = 0; i < inputs.length; i++) {
+        let v = inputs[i].value;
+        let path = paths[i];
+        let p1 = [1, 1];
+        let a1 = Math.PI / inputs.length * (i - 2) * 2;
+        let a2 = Math.PI / inputs.length * (i - 1) * 2;
+        let p2 = [p1[0] + Math.cos(a1) * v / 255, p1[1] + Math.sin(a1) * v / 255];
+        let p3 = [p1[0] + Math.cos(a2) * v / 255, p1[1] + Math.sin(a2) * v / 255];
+        path.setAttribute("d", `M${p1[0]} ${p1[1]} L${p2[0]} ${p2[1]} L${p3[0]} ${p3[1]} L${p1[0]} ${p1[1]}`)
+        //console.log(document.getElementById("EVs").children[1]);
+    }
+}
