@@ -580,6 +580,20 @@
     cursor: pointer;
 }
 
+.PA-ExpandViewText {
+    color: #afafaf;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    height: 24px;
+}
+
+.PA-ExpandViewButton {
+    width: 48px;
+    height: 22px;
+    cursor: pointer;
+}
+
 .PA-CloseSettings {
     display: block;
     cursor: pointer;

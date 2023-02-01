@@ -19,6 +19,7 @@ var exactIVs;
 var generationalSprites;
 var emptyBunches;
 var showEmpty;
+var expandView;
 
 if (localStorage.getItem('previewBall') == null) {
     previewBall = true;
@@ -205,6 +206,18 @@ else if (localStorage.getItem('emptyBunches') == "1") {
     emptyBunches = false;
     showEmpty = "";
     document.querySelector(".PA-EmptyBunchesButton").innerHTML = "Off";
+}
+
+if (localStorage.getItem('expandView') == null) {
+    expandView = true;
+    document.querySelector(".PA-ExpandViewButton").innerHTML = "On";
+}
+else if (localStorage.getItem('expandView') == "1") {
+    expandView = true;
+    document.querySelector(".PA-ExpandViewButton").innerHTML = "On";
+} else {
+    expandView = false;
+    document.querySelector(".PA-ExpandViewButton").innerHTML = "Off";
 }
 
 $('.PA-TradeShopClose').click(function () {
@@ -548,6 +561,18 @@ $('.PA-EmptyBunchesButton').click(function () {
         document.querySelector(".PA-EmptyBunchesButton").innerHTML = "Off";
     }
     console.log(showEmpty);
+});
+
+$('.PA-ExpandViewButton').click(function () {
+    if (expandView == false) {
+        expandView = true;
+        localStorage.setItem('expandView', "1");
+        document.querySelector(".PA-ExpandViewButton").innerHTML = "On";
+    } else {
+        expandView = false;
+        localStorage.setItem('expandView', "0");
+        document.querySelector(".PA-ExpandViewButton").innerHTML = "Off";
+    }
 });
 
 

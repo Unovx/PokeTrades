@@ -2,7 +2,7 @@ var searchData;
 var tradeOption;
 var giveawayDetails;
 let showingGiveaway = false;
-var version = 1.32;
+var version = 1.4;
 
 ////customMessage = document.querySelector(".MA-Message");
 //document.querySelector(".MA-Searchbar").value = localStorage.getItem('searchID');
@@ -40,6 +40,7 @@ function CheckVersion(data) {
 
 
 $('.MA-Settings').click(function () {
+    $('.SA-MainMenu').click();
     CloseAll();
     document.querySelector("#MainArea").style.display = "block";
     document.querySelector("#MainArea").style.position = "fixed";

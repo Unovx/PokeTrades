@@ -1,6 +1,7 @@
 var detailsLocked = false;
 var creationInProgress = false;
 var placingPokemon = false;
+var competitiveView = false;
 var pokemonDetails = [];
 var tempPosition = 0;
 AdditionalViewing1 = [];
@@ -79,6 +80,9 @@ var gameObtainedSelection = document.querySelector(".DA-GameObtained");
 var displaySelection = document.querySelector(".DA-DisplayDropdown");
 var proofSelection = document.querySelector(".DA-ProofURL");
 var noteSelection = document.querySelector(".DA-Note");
+var levelSelection = document.querySelector(".DA-CompLevel");
+var itemDropdown = document.querySelector(".DA-CompItemDropdown");
+var nestInput = document.querySelector(".DA-Nest");
 
 
 let types = ['Fighting', 'Flying', 'Poison', 'Ground', 'Rock', 'Bug', 'Ghost', 'Steel', 'Fire', 'Water', 'Grass', 'Electric', 'Psychic', 'Ice', 'Dragon', 'Dark']
@@ -132,7 +136,7 @@ $(natureSelection).change(function () {
 
 
 function SetHiddenPower() {
-    if (!ivHpSelection.value.includes("X") && !ivHpSelection.value.includes("HT") && !ivAttSelection.value.includes("X") && !ivAttSelection.value.includes("HT") && !ivDefSelection.value.includes("X") && !ivDefSelection.value.includes("HT") && !ivSpaSelection.value.includes("X") && !ivSpaSelection.value.includes("HT") && !ivSpdSelection.value.includes("X") && !ivSpdSelection.value.includes("HT") && !ivSpeSelection.value.includes("X") && !ivSpeSelection.value.includes("HT") && miscData != "Gigantamax") {
+    if (!ivHpSelection.value.includes("X") && !ivHpSelection.value.includes("HT") && !ivAttSelection.value.includes("X") && !ivAttSelection.value.includes("HT") && !ivDefSelection.value.includes("X") && !ivDefSelection.value.includes("HT") && !ivSpaSelection.value.includes("X") && !ivSpaSelection.value.includes("HT") && !ivSpdSelection.value.includes("X") && !ivSpdSelection.value.includes("HT") && !ivSpeSelection.value.includes("X") && !ivSpeSelection.value.includes("HT") && miscData != "Gigantamax" && miscData != "Alpha" && !miscData.includes("Tera")) {
         calcHP = ivHpSelection.value;
         calcAtt = ivAttSelection.value;
         calcDef = ivDefSelection.value;
@@ -174,7 +178,7 @@ $('.DA-Close').click(function () {
     else if (document.querySelector("#InformationArea").style.display != "block") {
         document.querySelector("#PanelArea").style.display = "block";
     }
-    //$.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+    $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     creationInProgress = false;
     document.querySelector(".DA-TemplateName").value = "";
     CloseDetailOptions();
@@ -185,13 +189,13 @@ $('.DA-Close').click(function () {
 $('.DA-Place').click(function () {
     if (document.querySelector(".DA-Place").innerHTML == "Place") {
         document.querySelector(".DA-AdditionalViewings").style.pointerEvents = "none";
-        document.querySelector(".DA-DetailsData").style.pointerEvents = "none";
+        document.querySelector(".DA-DefaultView").style.pointerEvents = "none";
         document.querySelector(".DA-Place").innerHTML = "Cancel";
         document.querySelector(".DA-PlaceInfo").style.display = "block";
         placingPokemon = true;
     } else {
         document.querySelector(".DA-AdditionalViewings").style.pointerEvents = "initial";
-        document.querySelector(".DA-DetailsData").style.pointerEvents = "initial";
+        document.querySelector(".DA-DefaultView").style.pointerEvents = "initial";
         document.querySelector(".DA-Place").innerHTML = "Place";
         document.querySelector(".DA-PlaceInfo").style.display = "none";
         placingPokemon = false;
@@ -260,6 +264,33 @@ $('.DA-Username').click(function () {
         document.querySelector(".PA-TradeShopPanel").style.display = "block";
         document.querySelector("#MainArea").style.position = "fixed";
         $(".PA-Searchbar").keyup();
+    }
+});
+
+$('.DA-CompetitiveViewButton').click(function () {
+    if (competitiveView) {
+        document.querySelector(".DA-CompetitiveViewButton").innerHTML = "Show Competititve View";
+        document.querySelector(".DA-CompetitiveView").style.display = "none";
+        document.querySelector("#DA-NestHolder").style.display = "none";
+        competitiveView = false;
+        document.querySelector(".DA-DefaultView").style.display = "block";
+        document.querySelector(".DA-CompetitiveViewOptions").style.display = "none";
+    } else {
+        document.querySelector(".DA-CompetitiveViewButton").innerHTML = "Hide Competititve View";
+        document.querySelector(".DA-CompetitiveView").style.display = "block";
+        document.querySelector(".DA-CompetitiveViewOptions").style.display = "block";
+        competitiveView = true;
+        //If the details are locked, then if the competitiveView is true, the DefaultView will be hidden and only the nests will show.
+        //Otherwise, it simply updates the nest and makes sure the Pokemon being viewed is not a part of it.
+        if (pokemonDetails.user_id != userData.user_id || detailsLocked) {
+            ShowPokemonDetails();
+        } else {
+            document.querySelector(".DA-CompetitiveView").style.display = "block";
+            if (levelSelection.value != "" && nestInput.value != "") {
+
+                $.post(url + "/PHP/generate_nest_selection.php", { userID: pokemonDetails.user_id, creationID: pokemonDetails.creation_id, tradeOption: tradeOption, nest: pokemonDetails.nest, duplicate: "No" }, GenerateNest);
+            }
+        }
     }
 });
 
@@ -480,6 +511,9 @@ function LoadTemplate() {
             evSpeSelection.value = templateOptionsArray[i].ev_spe;
             PokemonValidation();
             SetHiddenPower();
+            UpdateEVs();
+            SetStatColour();
+            SetIVColours();
             break;
         }
     }
@@ -639,6 +673,10 @@ $('.DA-ProofURL').blur(function () {
     if (toggleOn) {
         DisplayProof();
     }
+});
+
+$('.DA-Nest').keyup(function () {
+    $.post(url + "/PHP/generate_nest_selection.php", { userID: pokemonDetails.user_id, creationID: pokemonDetails.creation_id, tradeOption: tradeOption, nest: nestInput.value, duplicate: "No" }, GenerateNest);
 });
 
 function DisplayProof() {
@@ -2063,6 +2101,10 @@ function CreationReset() {
     }
     displaySelection.value = "Public";
 
+    levelSelection.value = "";
+    itemDropdown.value = "(No Item)";
+    nestInput.value = "";
+
     PokemonValidation();
     AbilityOptions();
 }
@@ -2086,7 +2128,7 @@ function CreatePokemon() {
     if (document.querySelector(".DA-PokemonImage").getAttribute("src") != url + "/Resources/Fennel2.png") {
         console.log("NO FENNEL");
         if (displaySelection.value == "Private") {
-            $.post(url + "/PHP/create_or_update_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, ribbons: ribbonString, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, CreatedPokemon);
+            $.post(url + "/PHP/create_or_update_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, ribbons: ribbonString, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value, level: levelSelection.value, item: itemDropdown.value, nest: nestInput.value }, CreatedPokemon);
             ShowLoading();
         }
         else if (tradeOption == "For Trade") {
@@ -2103,7 +2145,7 @@ function CreatePokemon() {
                 if (noteSelection.value == "") {
                     noteSelection.value = "(No Note)";
                 }*/
-                $.post(url + "/PHP/create_or_update_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, ribbons: ribbonString, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, CreatedPokemon);
+                $.post(url + "/PHP/create_or_update_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, ribbons: ribbonString, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value, level: levelSelection.value, item: itemDropdown.value, nest: nestInput.value }, CreatedPokemon);
                 ShowLoading();
             }
         } else if (tradeOption == "Looking For") {
@@ -2116,7 +2158,7 @@ function CreatePokemon() {
             if (noteSelection.value == "") {
                 noteSelection.value = "(No Note)";
             }*/
-            $.post(url + "/PHP/create_or_update_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, ribbons: ribbonString, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, CreatedPokemon);
+            $.post(url + "/PHP/create_or_update_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, ribbons: ribbonString, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value, level: levelSelection.value, item: itemDropdown.value, nest: nestInput.value }, CreatedPokemon);
             ShowLoading();
         }
     } else {
@@ -2170,7 +2212,7 @@ function PlacePokemon() {
         console.log("NO FENNEL");
         if (displaySelection.value == "Private") {
             ShowLoading();
-            $.post(url + "/PHP/place_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, ribbons: ribbonString, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, PlacedPokemon);
+            $.post(url + "/PHP/place_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, ribbons: ribbonString, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value, level: levelSelection.value, item: itemDropdown.value, nest: nestInput.value }, PlacedPokemon);
         }
         else if (tradeOption == "For Trade") {
             if (howObtainedSelection.value.includes("(Any Obtained") || gameObtainedSelection.value.includes("(Any Game)") || langData.includes("ANY") || ballData.includes("(Any Ball)") || genderData.includes("(Any Gender)") || shinyData.includes("(Any Shiny or Normal)") || mintData.includes("(Any or No Mint)") || markData.includes("Any or No Mark") || natureSelection.value.includes("(Any Nature") || abilitySelection.value.includes("(Any Ability)") || otSelection.value == "" || idSelection.value.length < 4 || idSelection.value.length > 6 || statusSelection.value.includes("(Any Status)") || eventSelection.value.includes("(Any Event)") || move1Selection.value.includes("(No Move)") || move1Selection.value.includes("(Any Move)") || move2Selection.value.includes("(Any Move)") || move3Selection.value.includes("(Any Move)") || move4Selection.value.includes("(Any Move)") || legacyMove1Selection.value.includes("(Any Move)") || legacyMove2Selection.value.includes("(Any Move)") || legacyMove3Selection.value.includes("(Any Move)") || legacyMove4Selection.value.includes("(Any Move)") || ribbonString.includes("(Any or No Ribbon)")) {
@@ -2179,11 +2221,11 @@ function PlacePokemon() {
                 $('.DA-Place').click();
             } else {
                 ShowLoading();
-                $.post(url + "/PHP/place_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, ribbons: ribbonString, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, PlacedPokemon);
+                $.post(url + "/PHP/place_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, ribbons: ribbonString, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value, level: levelSelection.value, item: itemDropdown.value, nest: nestInput.value }, PlacedPokemon);
             }
         } else if (tradeOption == "Looking For") {
             ShowLoading();
-            $.post(url + "/PHP/place_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, ribbons: ribbonString, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value }, PlacedPokemon);
+            $.post(url + "/PHP/place_selection.php", { token: token, creationID: creationID, position: tempPosition, bunchname: bunchSelection.value, tradeOption: tradeOption, pokemon: pokemonSelection.value, nickname: nicknameSelection.value, ball: ballData, gender: genderData, shiny: shinyData, mint: mintData, misc: miscData, mark: markData, ribbons: ribbonString, lang: langData, gen6: gen6Data, gen7: gen7Data, gen8: gen8Data, home: homeData, nature: natureSelection.value, ability: abilitySelection.value, gameOT: otSelection.value, gameID: idSelection.value, status: statusSelection.value, event: eventSelection.value, move1: move1Selection.value, move2: move2Selection.value, move3: move3Selection.value, move4: move4Selection.value, legacymove1: legacyMove1Selection.value, legacymove2: legacyMove2Selection.value, legacymove3: legacyMove3Selection.value, legacymove4: legacyMove4Selection.value, howObtained: howObtainedSelection.value, gameObtained: gameObtainedSelection.value, display: displaySelection.value, proof: proofSelection.value, note: noteSelection.value, ivhp: ivHpSelection.value, ivatt: ivAttSelection.value, ivdef: ivDefSelection.value, ivspa: ivSpaSelection.value, ivspd: ivSpdSelection.value, ivspe: ivSpeSelection.value, evhp: evHpSelection.value, evatt: evAttSelection.value, evdef: evDefSelection.value, evspa: evSpaSelection.value, evspd: evSpdSelection.value, evspe: evSpeSelection.value, level: levelSelection.value, item: itemDropdown.value, nest: nestInput.value }, PlacedPokemon);
         }
     } else {
         document.querySelector("#NotificationArea").style.display = "block";

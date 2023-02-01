@@ -64,7 +64,8 @@ $(document).ready(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "gender_differences", table: "gender_different_pokemon" }, GenderDifferentPokemon);
     $.post(url + "/PHP/get_list_names.php", { column: "shiny_locked", table: "shiny_locked_pokemon" }, ShinyLockedPokemon);
     $.post(url + "/PHP/get_list_names.php", { column: "shiny_exceptions", table: "shiny_exception_pokemon" }, ShinyExceptionPokemon);
-    $.post(url + "/PHP/get_list_names.php", { column: "moves", table: "move_names" }, AllMoves);
+    //$.post(url + "/PHP/get_list_names.php", { column: "moves", table: "move_names" }, AllMoves);
+    $.post(url + "/PHP/get_moves_data.php", AllMoves);
     $.post(url + "/PHP/get_list_names.php", { column: "natures", table: "nature_names" }, AllNatures);
     $.post(url + "/PHP/get_list_names.php", { column: "abilities", table: "ability_names" }, AllAbilities);
     $.post(url + "/PHP/get_list_names.php", { column: "items", table: "item_names" }, AllItems);
@@ -268,8 +269,8 @@ function AllMoves(data) {
 
     for (let i = 0; i < allMovesArray.length; i++) {
         const filterOption = document.createElement("option");
-        filterOption.value = allMovesArray[i];
-        filterOption.textContent = allMovesArray[i];
+        filterOption.value = allMovesArray[i].moves;
+        filterOption.textContent = allMovesArray[i].moves;
         filterOption.setAttribute("class", "FA-DropdownOptions")
         filterMove.appendChild(filterOption);
 
@@ -281,22 +282,22 @@ function AllMoves(data) {
         const detailsOptionLegacyMove2 = document.createElement("option");
         const detailsOptionLegacyMove3 = document.createElement("option");
         const detailsOptionLegacyMove4 = document.createElement("option");
-        detailsOptionMove1.value = allMovesArray[i];
-        detailsOptionMove1.textContent = allMovesArray[i];
-        detailsOptionMove2.value = allMovesArray[i];
-        detailsOptionMove2.textContent = allMovesArray[i];
-        detailsOptionMove3.value = allMovesArray[i];
-        detailsOptionMove3.textContent = allMovesArray[i];
-        detailsOptionMove4.value = allMovesArray[i];
-        detailsOptionMove4.textContent = allMovesArray[i];
-        detailsOptionLegacyMove1.value = allMovesArray[i];
-        detailsOptionLegacyMove1.textContent = allMovesArray[i];
-        detailsOptionLegacyMove2.value = allMovesArray[i];
-        detailsOptionLegacyMove2.textContent = allMovesArray[i];
-        detailsOptionLegacyMove3.value = allMovesArray[i];
-        detailsOptionLegacyMove3.textContent = allMovesArray[i];
-        detailsOptionLegacyMove4.value = allMovesArray[i];
-        detailsOptionLegacyMove4.textContent = allMovesArray[i];
+        detailsOptionMove1.value = allMovesArray[i].moves;
+        detailsOptionMove1.textContent = allMovesArray[i].moves;
+        detailsOptionMove2.value = allMovesArray[i].moves;
+        detailsOptionMove2.textContent = allMovesArray[i].moves;
+        detailsOptionMove3.value = allMovesArray[i].moves;
+        detailsOptionMove3.textContent = allMovesArray[i].moves;
+        detailsOptionMove4.value = allMovesArray[i].moves;
+        detailsOptionMove4.textContent = allMovesArray[i].moves;
+        detailsOptionLegacyMove1.value = allMovesArray[i].moves;
+        detailsOptionLegacyMove1.textContent = allMovesArray[i].moves;
+        detailsOptionLegacyMove2.value = allMovesArray[i].moves;
+        detailsOptionLegacyMove2.textContent = allMovesArray[i].moves;
+        detailsOptionLegacyMove3.value = allMovesArray[i].moves;
+        detailsOptionLegacyMove3.textContent = allMovesArray[i].moves;
+        detailsOptionLegacyMove4.value = allMovesArray[i].moves;
+        detailsOptionLegacyMove4.textContent = allMovesArray[i].moves;
         detailsOptionMove1.setAttribute("class", "DA-DropdownOptions");
         detailsOptionMove2.setAttribute("class", "DA-DropdownOptions");
         detailsOptionMove3.setAttribute("class", "DA-DropdownOptions");
@@ -318,14 +319,14 @@ function AllMoves(data) {
         const ctsOptionMove2 = document.createElement("option");
         const ctsOptionMove3 = document.createElement("option");
         const ctsOptionMove4 = document.createElement("option");
-        ctsOptionMove1.value = allMovesArray[i];
-        ctsOptionMove1.textContent = allMovesArray[i];
-        ctsOptionMove2.value = allMovesArray[i];
-        ctsOptionMove2.textContent = allMovesArray[i];
-        ctsOptionMove3.value = allMovesArray[i];
-        ctsOptionMove3.textContent = allMovesArray[i];
-        ctsOptionMove4.value = allMovesArray[i];
-        ctsOptionMove4.textContent = allMovesArray[i];
+        ctsOptionMove1.value = allMovesArray[i].moves;
+        ctsOptionMove1.textContent = allMovesArray[i].moves;
+        ctsOptionMove2.value = allMovesArray[i].moves;
+        ctsOptionMove2.textContent = allMovesArray[i].moves;
+        ctsOptionMove3.value = allMovesArray[i].moves;
+        ctsOptionMove3.textContent = allMovesArray[i].moves;
+        ctsOptionMove4.value = allMovesArray[i].moves;
+        ctsOptionMove4.textContent = allMovesArray[i].moves;
         ctsOptionMove1.setAttribute("class", "CTS-DropdownOptions");
         ctsOptionMove2.setAttribute("class", "CTS-DropdownOptions");
         ctsOptionMove3.setAttribute("class", "CTS-DropdownOptions");
@@ -392,6 +393,14 @@ function AllAbilities(data) {
 function AllItems(data) {
     arrayInfo = jQuery.parseJSON(data);
     allItemsArray = arrayInfo["Rows"];
+
+    for (let i = 0; i < allItemsArray.length; i++) {
+        const detailsOption = document.createElement("option");
+        detailsOption.value = allItemsArray[i];
+        detailsOption.textContent = allItemsArray[i];
+        detailsOption.setAttribute("class", "DA-DropdownOptions");
+        itemDropdown.appendChild(detailsOption);
+    }
     //console.log(allItemsArray);
 }
 
