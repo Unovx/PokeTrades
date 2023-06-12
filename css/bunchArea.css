@@ -101,7 +101,6 @@
 }
 
 #BunchArea {
-    background-color: #1a233a;
     position: absolute;
     display: none;
     height: calc(100% - 52px);
@@ -110,6 +109,10 @@
     overflow: auto;
     right: 0;
     margin-top: 52px;
+    border-color: rgb(55, 58, 109);
+    border-width: 2px;
+    border-style: solid;
+    background: url(https://poketrades.org/Resources/Designs/Sidebar.png);
 }
 
 .BA-DropdownOptions {
@@ -120,16 +123,17 @@
 }
 
 .BA-BunchButtons {
-    background: #171d2c;
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
     border-width: 2px;
     border-style: solid;
-    border-color: #2e3850;
+    background-size: contain;
+    border-color: #575a87;
     text-align: center;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-family: Arial, Helvetica, sans-serif;
     color: #e0e0e0;
     cursor: pointer;
-    /*margin: 3px;*/
+    margin: 3px;
     box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
     border-radius: 5px;
 }
@@ -141,7 +145,7 @@
     top: 2px;
     margin: auto;
     cursor: pointer;
-    color: #536c9f;
+    color: #e0e0e0;
 }
 
 .BA-IconOptions {
@@ -157,11 +161,12 @@
 
 .BA-SelectIconText {
     color: #ababab;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-family: Arial, Helvetica, sans-serif;
     display: block;
     text-align-last: center;
-    padding-top: 10px;
+    padding-top: 20px;
+    margin-bottom: 5px;
     top: 5px;
     position: relative;
 }
@@ -180,25 +185,29 @@
 
 .BA-RenameText {
     color: #ababab;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-family: Arial, Helvetica, sans-serif;
     display: block;
     text-align-last: center;
     padding-top: 10px;
+    margin-bottom: 10px;
     top: 50px;
     position: relative;
 }
 
 .BA-GenderDropdown {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .BA-ShinyDropdown {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .BA-GameDropdown {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .BA-IconImage {
@@ -241,12 +250,14 @@
 
 .BA-AddBunch {
     cursor: pointer;
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .BA-RemoveBunch {
     cursor: pointer;
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .BA-BunchRename {

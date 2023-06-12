@@ -2,7 +2,7 @@ var searchData;
 var tradeOption;
 var giveawayDetails;
 let showingGiveaway = false;
-var version = 1.4;
+var version = 1.5;
 
 ////customMessage = document.querySelector(".MA-Message");
 //document.querySelector(".MA-Searchbar").value = localStorage.getItem('searchID');
@@ -38,16 +38,46 @@ function CheckVersion(data) {
     }
 }
 
+const promptOff = setTimeout(PromptOff, 5000);
+
+function PromptOn() {
+    document.querySelector(".MA-MessageBlock").style.display = "inline-block";
+    document.querySelector(".MA-MessageArrow").style.display = "inline-block";
+    document.querySelector(".MA-Assistant").src = "https://poketrades.org/Resources/Designs/Assistant_Happy.png";
+}
+
+function PromptOff() {
+    document.querySelector(".MA-MessageBlock").style.display = "none";
+    document.querySelector(".MA-MessageArrow").style.display = "none";
+    document.querySelector(".MA-Assistant").src = "https://poketrades.org/Resources/Designs/Assistant_Normal.png";
+}
+
+$('.MA-Assistant').click(function () {
+    CloseAllMainBlocks();
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".NA-MainOptions").style.display = "block";
+});
+
 
 $('.MA-Settings').click(function () {
-    $('.SA-MainMenu').click();
-    CloseAll();
-    document.querySelector("#MainArea").style.display = "block";
-    document.querySelector("#MainArea").style.position = "fixed";
+    //$('.SA-MainMenu').click();
+    //CloseAll();
+    //document.querySelector("#MainArea").style.display = "block";
+    //document.querySelector("#MainArea").style.position = "fixed";
+    document.querySelector("#BunchArea").style.display = "none";
+    document.querySelector("#CTSArea").style.display = "none";
+    document.querySelector("#DetailsArea").style.display = "none";
+    document.querySelector("#FilterArea").style.display = "none";
+    document.querySelector("#InformationArea").style.display = "none";
+    document.querySelector("#LoginArea").style.display = "none";
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector("#ImportArea").style.display = "none";
+
+    document.querySelector(".PA-TradeShopPanel").style.display = "none";
     document.querySelector("#PanelArea").style.display = "block";
     document.querySelector(".PA-SettingsPanel").style.display = "block";
-    ctsSeaching = false;
-    currentlyImporting = false;
+    //ctsSeaching = false;
+    //currentlyImporting = false;
 });
 
 $('.MA-SearchTradeShops').click(function () {
@@ -64,9 +94,10 @@ $('.MA-SearchTradeShops').click(function () {
         //$(".PA-FTAvailableBunchesText").remove();
         //$(".PA-LFAvailableBunchesText").remove();
         $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
-        $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+        //$.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
         if (document.querySelector(".PA-Searchbar").value != "") {
             window.location.hash = "users/" + searchData.uuid;
+            document.querySelector(".PA-Message").style.height = document.querySelector(".PA-Message").scrollHeight - 25 + "px";
         } else {
             RemoveHash();
         }
@@ -74,27 +105,30 @@ $('.MA-SearchTradeShops').click(function () {
 });
 
 $(".MA-UserLogin").click(function () {
-    CloseAll();
-    ctsSeaching = false;
-    currentlyImporting = false;
-    document.querySelector("#MainArea").style.display = "block";
-    document.querySelector("#MainArea").style.position = "fixed";
+    //CloseAll();
+    //ctsSeaching = false;
+    //currentlyImporting = false;
+    //document.querySelector("#MainArea").style.display = "block";
+    //document.querySelector("#MainArea").style.position = "fixed";
+    //document.querySelector("#LoginArea").style.display = "block";
+
+    document.querySelector("#BunchArea").style.display = "none";
+    document.querySelector("#CTSArea").style.display = "none";
+    document.querySelector("#DetailsArea").style.display = "none";
+    document.querySelector("#FilterArea").style.display = "none";
+    document.querySelector("#InformationArea").style.display = "none";
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector("#ImportArea").style.display = "none";
+
+    document.querySelector(".PA-TradeShopPanel").style.display = "none";
+    document.querySelector(".PA-SettingsPanel").style.display = "none";
     document.querySelector("#LoginArea").style.display = "block";
+
     if (token != null) {
         document.querySelector(".LA-LoggedInArea").style.display = "block";
     } else {
         document.querySelector(".LA-LoginArea").style.display = "block";
     }
-});
-
-$('.MA-FAQImage').click(function () {
-    CloseAllStartingAreas();
-    document.querySelector(".PA-FAQPanel").style.display = "block";
-});
-
-$('.MA-ImportingTradeShopImage').click(function () {
-    CloseAllStartingAreas();
-    document.querySelector(".PA-ImportingPanel").style.display = "block";
 });
 
 $('.MA-PokemonData').click(function () {
@@ -193,12 +227,9 @@ $('.MA-Tracker').click(function () {
 });
 
 function CloseAllStartingAreas() {
-    document.querySelector(".PA-WhatsNewPanel").style.display = "none";
     document.querySelector(".PA-SettingsPanel").style.display = "none";
     document.querySelector(".PA-TradeShopPanel").style.display = "none";
     document.querySelector("#LoginArea").style.display = "none";
-    document.querySelector(".PA-FAQPanel").style.display = "none";
-    document.querySelector(".PA-ImportingPanel").style.display = "none";
     RemoveHash();
 }
 
@@ -221,11 +252,8 @@ function CloseAll() {
     document.querySelector("#ImportArea").style.display = "none";
     document.querySelector("#TrackingArea").style.display = "none";
 
-    document.querySelector(".PA-WhatsNewPanel").style.display = "none";
     document.querySelector(".PA-SettingsPanel").style.display = "none";
     document.querySelector(".PA-TradeShopPanel").style.display = "none";
     document.querySelector("#LoginArea").style.display = "none";
-    document.querySelector(".PA-FAQPanel").style.display = "none";
-    document.querySelector(".PA-ImportingPanel").style.display = "none";
     document.querySelector("#MainArea").style.position = "absolute";
 }

@@ -70,7 +70,7 @@ $('.IA-PokemonDropdown').change(function () {
                 document.querySelector(".IA-Pokemon1_Type2").style.display = "none";
             }
 
-            document.querySelector(".IA-Pokemon1_Dex").innerHTML = pokemonDataArray[i].pokedex;
+            document.querySelector(".IA-Pokemon1_Dex").innerHTML = "#" + pokemonDataArray[i].pokedex;
 
             if (pokemonDataArray[i].gender_ratio_m != null) {
                 document.querySelector(".IA-Pokemon1_MaleGender").style.display = "initial";
@@ -325,7 +325,7 @@ $('.IA-PokemonDropdown').change(function () {
 
                                     dex = document.createElement("Text");
                                     dex.setAttribute("class", "IA-DexText");
-                                    dex.innerHTML = document.querySelector(".IA-Pokemon1_Dex").innerHTML;
+                                    dex.innerHTML = "#" + pokemonDataArray[l].pokedex;
 
                                     typesDiv.appendChild(dex);
 
@@ -475,6 +475,7 @@ $('.IA-PokemonDropdown').change(function () {
                                     newDiv = document.createElement("div");
                                     newDiv.setAttribute("id", "IA-InfoSection");
                                     newDiv.setAttribute("class", "IA-Pokemon" + formDisplayed);
+                                    newDiv.classList.add("IA-StatsInfo");
 
                                     $(newDiv).insertBefore(".IA-EvolutionsDiv");
 

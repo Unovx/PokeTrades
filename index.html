@@ -26,6 +26,11 @@
   <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
   <script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HKM82SNW46"></script>
   <script>
@@ -46,6 +51,18 @@
       <text class="MA-TitleText">PokeTrades</text>
       <table class="MA-ButtonTable">
         <tr>
+          <td>
+            <div class="MA-MessageBlock">
+              <text class="MA-MessageText">Click for Help</text>
+            </div>
+          </td>
+          <td>
+            <div class="MA-MessageArrow"></div>
+          </td>
+          <td>
+            <img class="MA-TopRowImage MA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"
+              style="padding: 0"></img></img>
+          </td>
           <td>
             <img class="MA-TopRowImage MA-UserLogin" src="https://poketrades.org/Resources/Designs/User Icon.png"></img>
           </td>
@@ -117,14 +134,14 @@
               <img class="MA-SectionImage MA-GiveawayImage"></img>
             </div>
           </div>
-          <div class="MA-SectionDiv">
+          <!--<div class="MA-SectionDiv">
             <text class="MA-SectionText">What is PokeTrades? </text>
             <div class="MA-Divider"></div>
             <text class="MA-InfoText"><br>PokeTrades was designed to be a better alternative to Google Sheets.
               With Mobile Support, the
               ability to view other's TradeShops and more, why not sign up? Any
               questions just click on the Discord Button.</text>
-          </div>
+          </div>-->
           <!--<div class="MA-SectionDiv">
             <text class="MA-SectionText">The CTS (Community Trade Station) is a way to search for any Pokemon you are looking for across all Pokemon in PokeTrades with a range wide of filters. Click here to start!</text>
             <div class="MA-Divider"></div>
@@ -212,117 +229,11 @@
       </div>
     </div>
     <div id="PanelArea">
-      <div class="PA-WhatsNewPanel">
-        <text class="WhatsNewText">
-          PokeTrades is a Trading Website designed to be a better alternative to Google Sheets. With Mobile Support, the
-          ability to search and view other people's TradeShops and so much more, why not sign up? Any
-          questions just click on the Discord Button and we'll be happy to help.
-          <br><br>
-          <br><br>
-          What's New: April 2022
-          <br><br>
-          Ribbons have now been added! An overdue change but now any number of ribbons can be given to a Pokemon in
-          addition to filter updates to accomdate for it. Refresh Prompts for big changes have also been added to
-          prevent issues. the URL for linking your own tradesheet has also changed slightly, not using User ID anymore.
-          Other small changes have been added for a better experience.
-          <br><br>
-          What's New: Feburary 2022
-          <br><br>
-          Legends Arceus support has been added! Additional Viewings are also back and can be accessed via the
-          Settings Area. Clicking on a Pokemon will now open up more details, so you don't have to constantly look at
-          the side for more information. In addition to this, the UI has had a massive design change and Gen6/7 Sprites
-          have now been added.
-          <br><br>
-          What's New: December 2021
-          <br><br>
-          You can now create Templates for easier creation! By creating a Template, you can then load it while
-          creating
-          a Pokemon to fill in a variety of details like OT and ID, preventing the need to constantly re-type them
-          each
-          time. More details can be found clicking the Unown in the Template Section.
-        </text>
-      </div>
       <div class="PA-SettingsPanel">
         <button class="PA-CloseSettings PA-ButtonDesign">Close</button>
-        <text class="PA-PreviewText">Preview Settings</text>
-        <table class="PreviewAlign">
-          <tr style="height: 30px;">
-            <td>
-              <img class="PA-BallImage"
-                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Items/Poke Ball.png"></img>
-            </td>
-            <td>
-              <button class="PA-BallButton PA-ButtonDesign">On</button>
-            </td>
-          </tr>
-          <tr style="height: 30px;">
-            <td>
-              <img class="PA-GenderImage" src="https://poketrades.org/Resources/Misc/Male.png"></img>
-            </td>
-            <td>
-              <button class="PA-GenderButton PA-ButtonDesign">Off</button>
-            </td>
-          </tr>
-          <tr style="height: 30px;">
-            <td>
-              <img class="PA-ShinyImage" src="https://poketrades.org/Resources/Misc/Star Shiny.png"></img>
-            </td>
-            <td>
-              <button class="PA-ShinyButton PA-ButtonDesign">Off</button>
-            </td>
-          </tr>
-          <tr style="height: 30px;">
-            <td>
-              <img class="PA-MintImage" src="https://poketrades.org/Resources/Misc/Minted.png"></img>
-            </td>
-            <td>
-              <button class="PA-MintButton PA-ButtonDesign">Off</button>
-            </td>
-          </tr>
-          <tr style="height: 30px;">
-            <td>
-              <img class="PA-MiscImage" src="https://poketrades.org/Resources/Misc/Gigantamax.png"></img>
-            </td>
-            <td>
-              <button class="PA-MiscButton PA-ButtonDesign">Off</button>
-            </td>
-          </tr>
-          <tr style="height: 30px;">
-            <td>
-              <img class="PA-MarkImage"
-                src="https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/Zero Energy Mark.png"></img>
-            </td>
-            <td>
-              <button class="PA-MarkButton PA-ButtonDesign">Off</button>
-            </td>
-          </tr>
-          <tr style="height: 30px;">
-            <td>
-              <text class="PA-IVsText">IVs</text>
-            </td>
-            <td>
-              <button class="PA-IVsButton PA-ButtonDesign">On</button>
-            </td>
-          </tr>
-        </table>
-        <text class="PA-OtherSettingsText">Other Settings</text>
+
+        <text class="PA-OtherSettingsText">Settings</text>
         <table class="SettingsAlign">
-          <tr style="height: 30px;">
-            <td>
-              <text class="PA-DexNumberText">Dex Number</text>
-            </td>
-            <td>
-              <button class="PA-DexNumberButton PA-ButtonDesign">Off</button>
-            </td>
-          </tr>
-          <!--<tr style="height: 30px;">
-            <td>
-              <text class="PA-AdvancedPreviewText">Advanced Preview</text>
-            </td>
-            <td>
-              <button class="PA-AdvancedPreviewButton">Off</button>
-            </td>
-          </tr>-->
           <tr style="height: 30px;">
             <td>
               <text class="PA-OldSpritesText">Generational Designs</text>
@@ -332,6 +243,14 @@
             </td>
           </tr>
           <tr style="height: 30px;">
+            <td>
+              <text class="PA-InitialPromptText">Initial Prompt</text>
+            </td>
+            <td>
+              <button class="PA-InitialPromptButton PA-ButtonDesign">On</button>
+            </td>
+          </tr>
+          <tr style="height: 30px; display: none;">
             <td>
               <text class="PA-ExtraViewingsText">Extra Viewings</text>
             </td>
@@ -349,34 +268,10 @@
           </tr>
           <tr style="height: 30px;">
             <td>
-              <text class="PA-HoverText">See Info on Hover</text>
-            </td>
-            <td>
-              <button class="PA-HoverButton PA-ButtonDesign">Off</button>
-            </td>
-          </tr>
-          <tr style="height: 30px;">
-            <td>
-              <text class="PA-ExactIVsText">See Exact IVs</text>
-            </td>
-            <td>
-              <button class="PA-ExactIVsButton PA-ButtonDesign">Off</button>
-            </td>
-          </tr>
-          <tr style="height: 30px;">
-            <td>
-              <text class="PA-EmptyBunchesText">See Empty Bunch</text>
+              <text class="PA-EmptyBunchesText">See Empty Bunches</text>
             </td>
             <td>
               <button class="PA-EmptyBunchesButton PA-ButtonDesign">On</button>
-            </td>
-          </tr>
-          <tr style="height: 30px;">
-            <td>
-              <text class="PA-ExpandViewText">Expand View</text>
-            </td>
-            <td>
-              <button class="PA-ExpandViewButton PA-ButtonDesign">On</button>
             </td>
           </tr>
         </table>
@@ -404,9 +299,6 @@
           oninput='this.style.height = ""; this.style.height = this.scrollHeight - 20 + "px"'>Type in a SearchID in the InputField to bring up their TradeShop. Afterwards, (scroll down if on mobile) click on any of the Bunches below to open them and see the Pokemon within.</textarea>
 
         <div class="PA-GeneratedBunches">
-          <button class="PA-BunchHelpButton">
-            <img class="PA-BunchHelp" src="https://poketrades.org/Resources/Designs/Question Icon.png"></img>
-          </button>
           <div id="PA-ForTradeBunches">
             <button class="PA-ForTradeBunchEdit">Edit For Trade Bunches</button>
             <button class="PA-ForTradeBunchMove">Move For Trade Bunches</button>
@@ -425,78 +317,6 @@
           </div>
         </div>
       </div>
-      <div class="PA-FAQPanel">
-        <text class="WhatsNewText">
-          FAQs
-          <br><br>
-          Q: None of the below answer my question, where can I get addtional help?
-          <br><br>
-          A: Click on the discord button below to join the discord and speak to me personally.
-          <br><br>
-          Q: What is PokeTrades?
-          <br><br>
-          A: PokeTrades was designed to be a better alternative to options such as Google Sheets. PokeTrades allows you
-          to
-          see all information without scrolling on Desktop, is actually usable on Mobile, and comes with many features
-          from filter options to storing multiple viewings to seeing proof without having to open another tab.
-          <br><br>
-          Q: Does this work on Mobile?
-          <br><br>
-          A: Yes. There is a dedicated mobile view allowing for a comfortable experience.
-          <br><br>
-          Q: How do I re-arrange my Pokemon or Bunches?
-          <br><br>
-          A: To move a Bunch, click on the appropriate button at the top of the bunches, and click on the Bunch you want
-          it to be in front of. To move a Pokemon click on the Move Button, then the Pokemon you want it to be in front
-          of.
-          <br><br>
-          Q: How do I copy a Pokemon?
-          <br><br>
-          A: When you click on the Copy button, click on the same Pokemon twice and it will create a copy right
-          after
-          it.
-          <br><br>
-          Q: How do I create a Bunch?
-          <br><br>
-          A: Click on the "Edit For [Trade Option]" Button and set the Icon and Name for your new Bunch.
-        </text>
-      </div>
-      <div class="PA-ImportingPanel">
-        <text class="PA-ImportingText">
-          Importing your TradeSheet
-          <br><br>
-          For a limited time, if you join the discord (by clicking on the Discord Button), I will personally import for
-          you.
-          Otherwise, read below.
-          <br><br>
-          To get started, you will first need to sign into your account, then in the Login
-          Area, you should see the option to import your TradeSheet. Please make sure it is exported from Google
-          Sheets as
-          a "CSV" file beforehand. When importing into PokeTrades. This can be done with or without Headings, also
-          note
-          that when importing, natures can be simply the name without anything after as PokeTrades will format
-          accordingly.
-          <br><br>
-          Please note that the order MUST BE CORRECT when importing, if you do not know what this order is, then
-          please
-          first export your TradeSheet with the "Export" Button, as when an account is first created, there are
-          initial
-          creation mons, which along with the Headings will show what the order is.
-          <br><br>
-          There are also two more important things to keep in mind. The first is that if you give the Pokemon in the
-          TradeSheet a bunch name you have not yet created, you must create the bunch name to see the pokemon in that
-          bunch area. The trade_option Column MUST BE SET TO "For Trade" OR "Looking For", IF IT IS NONE OF THESE, YOU
-          WILL NOT BE ABLE TO SEE OR MODIFY IT AT ALL!
-          <br><br>
-          If a Pokemon shows up with a Fennel Icon instead of a Pokemon Icon or fails to show up at all, then that
-          Pokemon's image either can't be found or its an invalid combination. An example of this would be "Alcremie".
-          While
-          this is a Pokemon, Alcremie has many different forms, so the current form must be typed in to bring up the
-          right
-          Image. Click on the Pokemon and to make the necessary
-          changes and then click "Save" to save the changes.
-        </text>
-      </div>
     </div>
     <div id="LoginArea">
       <button class="LA-LoginClose LA-ButtonDesign">Close</button>
@@ -514,7 +334,7 @@
         <text class="LA-Username">Test</text>
         <button class="LA-LogOut LA-ButtonDesign">Log Out</button>
         <button class="LA-ChangeDetails LA-ButtonDesign">Change Username or Password</button>
-        <button class="LA-Export LA-ButtonDesign">Export</button>
+        <button class="LA-Export LA-ButtonDesign">Export Tradeshop</button>
 
         <form method="post" enctype="multipart/form-data" style="display: none;">
           <input class="LA-ImportInput" type="file" enctype="multipart/form-data" accept-charset="utf-8" accept=".csv"
@@ -561,7 +381,7 @@
       <div class="Import-InfoArea">
         <text>Before Importing, it is recommended that you export your PokeTrades TradeShop first as this will give you
           the order of the columns that must be followed. Keep in mind that the first row of the import will be ignored
-          as it is reversed for the headings.
+          as it is reserved for the headings.
           <br><br>To preview the Pokemon you want to Import, click on the Preview Button and select your TradeSheet.
           (Keep in mind it must be saved as a CSV file).
           <br><br>
@@ -586,51 +406,83 @@
       </form>
     </div>
     <div id=SelectionArea>
+      <select class="SA-ReusableIvHPDropdown SA-ReusableIvDropdown"></select>
+      <select class="SA-ReusableIvAttDropdown SA-ReusableIvDropdown"></select>
+      <select class="SA-ReusableIvDefDropdown SA-ReusableIvDropdown"></select>
+      <select class="SA-ReusableIvSpaDropdown SA-ReusableIvDropdown"></select>
+      <select class="SA-ReusableIvSpdDropdown SA-ReusableIvDropdown"></select>
+      <select class="SA-ReusableIvSpeDropdown SA-ReusableIvDropdown"></select>
+      <select class="SA-ReusableEvHPDropdown SA-ReusableIvDropdown"></select>
+      <select class="SA-ReusableEvAttDropdown SA-ReusableIvDropdown"></select>
+      <select class="SA-ReusableEvDefDropdown SA-ReusableIvDropdown"></select>
+      <select class="SA-ReusableEvSpaDropdown SA-ReusableIvDropdown"></select>
+      <select class="SA-ReusableEvSpdDropdown SA-ReusableIvDropdown"></select>
+      <select class="SA-ReusableEvSpeDropdown SA-ReusableIvDropdown"></select>
+      <select class="SA-ReusableMove1Dropdown SA-ReusableMoveDropdown"></select>
+      <select class="SA-ReusableMove2Dropdown SA-ReusableMoveDropdown"></select>
+      <select class="SA-ReusableMove3Dropdown SA-ReusableMoveDropdown"></select>
+      <select class="SA-ReusableMove4Dropdown SA-ReusableMoveDropdown"></select>
+      <select class="SA-ReusableTransferMove1Dropdown SA-ReusableMoveDropdown"></select>
+      <select class="SA-ReusableTransferMove2Dropdown SA-ReusableMoveDropdown"></select>
+      <select class="SA-ReusableTransferMove3Dropdown SA-ReusableMoveDropdown"></select>
+      <select class="SA-ReusableTransferMove4Dropdown SA-ReusableMoveDropdown"></select>
       <div id="SA-TopRow">
-        <table class="SelectionButtons">
-          <tr>
-            <td>
-              <button class="SA-MainMenu SA-ButtonDesign">Main Menu</button>
-            </td>
-            <td>
-              <button class="SA-CreateButton SA-ButtonDesign">Create</button>
-            </td>
-            <td>
-              <button class="SA-MoveButton SA-ButtonDesign">Move</button>
-            </td>
-            <td>
-              <button class="SA-CopyButton SA-ButtonDesign">Copy</button>
-            </td>
-            <td>
-              <button class="SA-FiltersButton SA-ButtonDesign">Filters</button>
-            </td>
-            <td>
-              <img class="SA-SelectionHelp SA-ButtonDesign"
-                src="https://poketrades.org/Resources/Designs/Question Icon.png"></img>
-            </td>
-          </tr>
-        </table>
-        <table class="SelectionButtons">
-          <tr>
-            <td>
-              <select class="SA-OrderDropdown1 SA-ButtonDesign">(Position)</button>
-            </td>
-            <td>
-              <select class="SA-OrderDropdown2 SA-ButtonDesign">(Position)</button>
-            </td>
-            <td>
-              <input class="SA-Offset SA-ButtonDesign" type="number" maxlength="10" placeholder="Offset (0)">
-            </td>
-            <td>
-              <input class="SA-Limit SA-ButtonDesign" type="number" maxlength="10" placeholder="Limit (500)">
-            </td>
-            <td>
-              <img class="SA-RefreshButton SA-ButtonDesign"
-                src="https://poketrades.org/Resources/Designs/Refresh Icon.png"></img>
-            </td>
-          </tr>
-        </table>
-        <input class="SA-Searchbar SA-ButtonDesign" type="text" placeholder="Search Pokemon...">
+        <div class="SelectionButtons">
+
+          <div class="SA-MainMenu SA-ButtonDesign">
+            <div class="SA-MainMenuCircle SA-CircleDesign" style="margin-left: 5px;"></div>
+            <text style="margin-left: 5px; margin-right: 5px;">Main Menu</text>
+          </div>
+
+          <div class="SA-CreateButton SA-ButtonDesign">
+            <div class="SA-CreateCircle SA-CircleDesign" style="margin-left: 5px;"></div>
+            <text style="margin-left: 5px; margin-right: 5px;">Create</text>
+          </div>
+
+          <div class="SA-MoveButton SA-ButtonDesign">
+            <div class="SA-MoveCircle SA-CircleDesign" style="margin-left: 5px;"></div>
+            <text class="SA-MoveText" style="margin-left: 5px; margin-right: 5px;">Move</text>
+          </div>
+
+          <div class="SA-CopyButton SA-ButtonDesign">
+            <div class="SA-CopyCircle SA-CircleDesign" style="margin-left: 5px;"></div>
+            <text class="SA-CopyText" style="margin-left: 5px; margin-right: 5px;">Copy</text>
+          </div>
+
+          <div class="SA-FiltersButton SA-ButtonDesign">
+            <div class="SA-FilterCircle SA-CircleDesign" style="margin-left: 5px;"></div>
+            <text style="margin-left: 5px; margin-right: 5px;">Filter</text>
+          </div>
+
+        </div>
+        <div class="SelectionButtons">
+
+          <div class="SA-ButtonDesign" style="cursor: initial;">
+            <div class="SA-Order1Circle SA-CircleDesign" style="margin-left: 5px;"></div>
+            <select class="SA-OrderDropdown1">(Position)</select>
+          </div>
+
+          <div class="SA-ButtonDesign" style="cursor: initial; display: none;">
+            <div class="SA-Order2Circle SA-CircleDesign" style="margin-left: 5px;"></div>
+            <select class="SA-OrderDropdown2">(Position)</select>
+          </div>
+
+          <div class="SA-ButtonDesign" style="cursor: initial;">
+            <div class="SA-OffsetCircle SA-CircleDesign" style="margin-left: 5px;"></div>
+            <input class="SA-Offset" type="number" maxlength="10" placeholder="Offset (0)">
+          </div>
+
+          <div class="SA-ButtonDesign" style="cursor: initial;">
+            <div class="SA-LimitCircle SA-CircleDesign" style="margin-left: 5px;"></div>
+            <input class="SA-Limit" type="number" maxlength="10" placeholder="Limit (2000)">
+          </div>
+
+          <img class="SA-RefreshButton SA-ButtonDesign"
+            src="https://poketrades.org/Resources/Designs/Refresh Icon.png"></img>
+
+        </div>
+        <input class="SA-Searchbar SA-ButtonDesign" style="cursor: initial;" type="text"
+          placeholder="Search Pokemon...">
         <text class="SA-Bunch">(No Bunch) </text>
       </div>
       <div id="SelectionSection">
@@ -650,8 +502,8 @@
           <button class="DA-Place DA-ButtonDesign">Place</button>
           <button class="DA-Delete DA-ButtonDesign">Delete</button>
           <button class="DA-Reset DA-ButtonDesign">Reset</button>
-          <button class="DA-Add DA-ButtonDesign">Add</button>
-          <button class="DA-Lock DA-ButtonDesign">Lock</button>
+          <!--<button class="DA-Add DA-ButtonDesign">Add</button>
+          <button class="DA-Lock DA-ButtonDesign">Lock</button>-->
         </div>
 
       </div>
@@ -717,9 +569,6 @@
         </div>
         <table class="DA-TemplateSection">
           <tr>
-            <td class="DA-TemplateAreas">
-              <img class="DA-TemplateHelp" src="https://poketrades.org/Resources/Designs/Question Icon.png"></img>
-            </td>
             <td class="DA-TemplateAreas">
               <button class="DA-AddTemplate">+</button>
             </td>
@@ -880,18 +729,18 @@
             <div>
               <text class="DA-PokemonMoves">Pokemon Moves</text>
               <div class="DA-NormalMoves">
-                <div>
-                  <select class="DA-Move1"></select>
-                </div>
-                <div>
-                  <select class="DA-Move2"></select>
-                </div>
-                <div>
-                  <select class="DA-Move3"></select>
-                </div>
-                <div>
-                  <select class="DA-Move4"></select>
-                </div>
+
+                <select class="DA-Move1"></select>
+
+
+                <select class="DA-Move2"></select>
+
+
+                <select class="DA-Move3"></select>
+
+
+                <select class="DA-Move4"></select>
+
               </div>
               <select class="DA-StatusDropdown"></select>
             </div>
@@ -936,7 +785,7 @@
                 <input class="DA-Nest" type="text" maxlength="28" placeholder="Enter Nest Name..."></input>
               </div>
             </div>
-            <text class="DA-OptionalViewText">Other Pokemon in Nest</text>
+            <text class="DA-OptionalViewText">Pokemon in Nest</text>
           </div>
         </div>
         <div id="DA-NestHolder">
@@ -1398,7 +1247,7 @@
       </div>
     </div>
     <div id="BunchArea">
-      <button class="BA-CloseButton BA-BunchButtons">Return to Main Area</button>
+      <button class="BA-CloseButton BA-BunchButtons">Close</button>
       <text class="BA-SelectIconText">Select the Icon to display for your Bunch</text>
       <div class="BA-IconOptions">
         <div>
@@ -1483,7 +1332,7 @@
           </table>
         </div>
       </div>
-      <div id="IA-InfoSection">
+      <div id="IA-InfoSection" class="IA-StatsInfo">
         <table class="IA-Stats">
           <tr>
             <td></td>
@@ -1897,187 +1746,422 @@
       </table>
     </div>
     <div id="NotificationArea">
-      <div class="SelectionHelp">
-        <text class="NA-SelectionText">
-          By default on Desktop (But disabled on Mobile devices), the Hover Info setting is On which allows you to see
-          all
-          information about a pokemon by hovering over it. To disable this, go to settings and turn it off.
-          <br> <br>
-          To interact with your Pokemon to toggle proof, update or delete for example, that Pokemon must first be
-          selected by clicking on it.
-          <br> <br>
-          To move a Pokemon, click on the Move button, then click the Pokemon you want to move and then the Pokemon
-          you
-          want it to be in front of.
-          <br> <br>
-          To copy a Pokemon, click on the Copy button and select the Pokemon twice.
-          <br> <br>
-          You can order a Bunch with the two Dropdowns, which by default are set to (Position). Press the Refresh
-          button
-          afterwards to reload the Bunch
-          <br> <br>
-          Offset is where the starting point and limit is the max amount loaded.
+      <div class="NA-MainOptions NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Hello there, I'll be your assistant for PokeTrades. If you have any questions about how
+            to
+            use PokeTrades, I'll be happy to help.
+            <br><br>
+            For convienence, click on any of the options below to bring up tips, tricks and guides for the relevant
+            topics. If you still have questions, reach out to the Discord.
+          </text>
           <br><br>
-          <button class="NA-SelectionClose NA-ButtonDesign">Close</button>
+          <button class="NA-MainOption1 NA-OptionButton">Tradeshop Tips & Tricks</button>
+          <button class="NA-MainOption2 NA-OptionButton">Account Information & Exporting</button>
+          <button class="NA-MainOption3 NA-OptionButton">Other Areas & Options</button>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
-      <div class="ViewingAdditionalHelp">
-        <text class="NA-ViewingAdditionalText">
-          You can now save up to 6 viewings of Pokemon! To do this, once you are viewing a Pokemon you want to view
-          later
-          with ease, click on a + Button next to a Pokeball. That Pokeball will then turn to its normal colour to
-          indicate a viewing is stored there.
-          <br> <br>
-          To access this viewing at any time, just click on it. Clicking on the + Button next to it will replace it
-          with
-          the current viewing.</text>
-        <button class="NA-ViewingAdditionalClose NA-ButtonDesign">Close</button>
-      </div>
-      <div class="ViewingConfirmDelete">
-        <text class="NA-ConfirmDeleteText">Are you sure you want to delete this Pokemon?</text>
-        <table class="NA-ConfirmDeleteButtons">
-          <tr>
-            <td>
-              <button class="NA-ConfirmDeleteButton NA-ButtonDesign">Delete</button>
-            </td>
-            <td>
-              <button class="NA-CloseConfirmButton NA-ButtonDesign">Close</button>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class="ViewingPokemonAdded">
-        <text class="NA-PokemonAddedText">Sucessfully added the Pokemon to your Tradesheet (Can be found inside (No
-          Bunch).</text>
-        <button class="NA-PokemonAddedClose NA-ButtonDesign">Close</button>
-      </div>
-      <div class="CreationPokemonError">
-        <text class="NA-CreationPokemonText">Cannot create Pokemon!
-          <br> <br>
-          If you are creating in Looking For:
-          Check the Pokemon is valid by seeing if the Pokemon's image appears.
-          <br> <br>
-          If you are looking to create this pokemon as a draft due to not filling in the necessary fields, please set
-          that
-          Pokemon to private.
-          <br> <br>
-          If you are creating in For Trade: Check the following:
-          <br> <br>
-          Check the Pokemon is valid by seeing if the Pokemon's image appears.
-          <br>
-          Check none of the Dropdown fields currently contain (Any) apart from the Shiny Dropdown.
-          <br>
-          Check the ID, OT InputFields are filled.
-          <br>
-          Check the Move1 field is filled.</text>
-        <button class="NA-CreationPokemonClose NA-ButtonDesign">Close</button>
-      </div>
-      <div class="TemplateHelpInfo">
-        <text class="NA-TemplateHelpText">By clicking on the Pokemon Image, you can bring up an Information Area to
-          see
-          stats and other information.
+      <div class="NA-TradeShopOptions NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Click on any of these options to see more information!
+          </text>
           <br><br>
-          Information for creating a Pokemon can be stored in a Template and then be
-          accessed by selecting the Template in the dropdown option. To create a Template, type in a name for it and
-          then click on the + Button beside it. You can then select it from the dropdown. To remove a Template, type
-          in
-          its name and then press the - Button.
+          <button class="NA-TradeOption1 NA-OptionButton">Bunch Overview</button>
+          <button class="NA-TradeOption2 NA-OptionButton">Pokemon Creation Overview</button>
+          <button class="NA-TradeOption3 NA-OptionButton">Moving or Copying your Pokemon</button>
+          <button class="NA-TradeOption4 NA-OptionButton">Adding Pokemon from Tradeshops</button>
+          <button class="NA-TradeOption5 NA-OptionButton">Templates for Pokemon Creation</button>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="NA-AccountOptions NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Click on any of these options to see more information!
+          </text>
           <br><br>
-          What can be stored in the Template is:
+          <button class="NA-AccountOption1 NA-OptionButton">Account Creation</button>
+          <button class="NA-AccountOption2 NA-OptionButton">Deleting All Data</button>
+          <button class="NA-AccountOption3 NA-OptionButton">Exporting</button>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="NA-OtherOptions NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Click on any of these options to see more information!
+          </text>
           <br><br>
-          Game Obtained
-          <br>
-          How Obtained
-          <br>
-          Generation Availability
-          <br>
-          Language
-          <br>
-          Nature
-          <br>
-          OT and ID
-          <br>
-          Status and Event Info
-          <br>
-          IVs and EVs
-        </text>
-        <button class="NA-TemplateHelpClose NA-ButtonDesign">Close</button>
+          <button class="NA-OtherOption1 NA-OptionButton">Importing from Tradesheets</button>
+          <button class="NA-OtherOption2 NA-OptionButton">Viewing Pokemon Data</button>
+          <button class="NA-OtherOption3 NA-OptionButton">Showing Generational Sprites</button>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
-      <div class="TemplateAdded">
-        <text class="NA-TemplateAddedText">Template successfully Added/Updated.</text>
-        <button class="NA-TemplateAddedClose NA-ButtonDesign">Close</button>
+      <div class="NA-BunchOverview NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Bunches are essentially folders or tabs that hold Pokemon, and you will always have two;
+            "All Pokemon" and "(No Bunch)" which cannot be deleted or modified. By creating Bunches, you can sort your
+            Pokemon into whatever catergory you define.
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            To create a Bunch, click on the Edit button that is above the trade catergory bunches you wish to add to.
+            You will then be taken to a menu where you can set the Name and Icon for the Bunch. The Icon doesn't have to
+            be a Pokemon as there are Balls, Marks, Ribbons and more.
+          </text>
+          <br><br>
+          <text class="NA-Text">To move a Bunch, click on
+            it and then click on the Bunch you want it to be in front of. Note that you can only select Bunches
+            from the Trade Option linked to the Button.</text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
-      <div class="TemplateRemoved">
-        <text class="NA-TemplateRemovedText">Template successfully Removed.</text>
-        <button class="NA-TemplateRemovedClose NA-ButtonDesign">Close</button>
+      <div class="NA-PokemonCreation NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">You create a Pokemon by clicking in the Bunch you want the Pokemon to be in, then
+            clicking on the "Create" button at the top.
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            While some fields have default selections, some of them will not allow the
+            Pokemon in "For Trade" if it has an option like "(Any Nature)", but "Looking For" will allow
+            this. To change Icons like the Gender, just click on them.
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            When you are finished, clicking "Save" will create the Pokemon and put it at the bottom. If you want to
+            create it in a specific location, then click on the "Place" button and then click on the Pokemon in the
+            Bunch that you want it in front of.
+          </text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
-      <div class="TemplateAddedError">
-        <text class="NA-TemplateAddedErrorText">Cannot create Template!
-          <br><br>Make sure the InputField is not blank or "(No Template)".</text>
-        <button class="NA-TemplateAddedErrorClose NA-ButtonDesign">Close</button>
+      <div class="NA-MoveCopy NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">To copy a Pokemon, click on the "Copy" button and then click on the Pokemon you wish to
+            copy twice. To cancel copying, just press the button again which will show "Cancel".
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            To re-arrange a Pokemon, click on the "Move" button and then click on the Pokemon you wish to move and then
+            the Pokemon you wish for it to be in front of. To cancel moving, just press the button again which will show
+            "Cancel".
+          </text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
-      <div class="TemplateRemovedError">
-        <text class="NA-TemplateRemovedErrorText">Cannot remove Template!
-          <br><br>Make sure the InputField is not blank or ("No Template").
-        </text>
-        <button class="NA-TemplateRemovedErrorClose NA-ButtonDesign">Close</button>
+      <div class="NA-AddHelp NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">To add a Pokemon from another Tradeshop, you must be signed in. You'll then see an "Add"
+            button next to the "Flip" button for each Pokemon. clicking on it will add the Pokemon into your "(No
+            Bunch)" Bunch.
+          </text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
-      <div class="BunchIconError">
-        <text class="NA-BunchIconText">Cannot Create/Delete Bunch or Rename!
-          <br> <br>
-          If you are deleting a Bunch:
-          <br>
-          Check the InputField is filled and does not contain All Pokemon or (No Bunch).
-          <br> <br>
-          If you are creating a new Bunch or updating the Icon of an existing one:
-          <br>
-          The same as above, and check Icon is valid and the image appears
-          <br> <br>
-          If you are renaming a Bunch:
-          <br>
-          Make sure that the InputField is filled and does not contain All Pokemon or (No Bunch) and that the new name
-          does not already exist.</text>
-        <button class="NA-BunchIconClose NA-ButtonDesign">Close</button>
+      <div class="NA-TemplateOverview NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Templates are useful for creating for Pokemon faster if you don't want to repeatedly
+            fill in the same fields such as OT or ID.
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            To create a Template, it currently must be done inside the Pokemon creation menu. Fill in all the fields you
+            want and then fill in the Template Name field. Then you can click the "+" Button next to it. You can also
+            update Templates this way. To remove a Template, just type in its name and click the "-" Button.
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            To set a Template, click on the Template dropdown also on the same row and select which Template you wish
+            for the Pokemon to use. Keep in mind that "(No Template)" cannot be removed or modified.
+          </text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
-      <div class="BunchPokemonAdded">
-        <text class="NA-BunchAddedText">Bunch successfully Added/Updated.</text>
-        <button class="NA-BunchAddedClose NA-ButtonDesign">Close</button>
+      <div class="NA-Account NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">To create an account, click on the User Icon and then click "Register". Usernames
+            currently have a limit of 15 characters must be unique and passwords have a max length of 50.
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            Once registered, you can change your Username or Password at any time.
+          </text>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
-      <div class="BunchPokemonRemoved">
-        <text class="NA-BunchRemovedText">Bunch successfully Removed.</text>
-        <button class="NA-BunchRemovedClose NA-ButtonDesign">Close</button>
+      <div class="NA-DeleteAll NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Currently you cannot delete the account itself, but you can delete all data in it such
+            as the Pokemon, Bunches and Templates. This cannot be undone so it is advised that you export your Tradeshop
+            first in case you regret this later.
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            Once signed in, click on the "Delete All Data" Button and confirm you wish to continue. If you ever wish to
+            use PokeTrades again, your Username, Password and ID will still be the same.
+          </text>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
-      <div class="TradeShopImported">
-        <text class="NA-ImportedSuccessText">TradeShop successfully imported, please check your collection. Any
-          problems,
-          please contact me on the discord.</text>
-        <button class="NA-ImportedSuccessClose NA-ButtonDesign">Close</button>
+      <div class="NA-Exporting NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">To export your Tradeshop, you must be first be signed in. Then click on the User Icon
+            and you'll see a Button to export your selection as a CSV file.
+          </text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
-      <div class="DeleteAllConfirm">
-        <text class="NA-DeleteAllText">Are you sure you want to delete ALL DATA? This cannot be undone. (This will not
-          delete your user account, only all Pokemon and Bunches) It is advised that an export be done first of your
-          current TradeShop as a precaution.</text>
-        <table class="NA-DeleteAllButtons">
-          <tr>
-            <td>
-              <button class="NA-ConfirmDeleteAll NA-ButtonDesign">Delete</button>
-            </td>
-            <td>
-              <button class="NA-CloseDeleteAll NA-ButtonDesign">Close</button>
-            </td>
-          </tr>
-        </table>
+      <div class="NA-Importing NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Detailed Information on how to import a Tradesheet can be found by clicking on the
+            Import Button on the main area after signing in.
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            In short, by saving your Tradesheet as an CSV file, you can then Import your Pokemon with that file.
+          </text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
-      <div class="DeleteAllSuccess">
-        <text class="NA-SuccessDeleteAllText">Deleted data successfully.</text>
-        <button class="NA-SuccessDeleteAllClose NA-ButtonDesign">Close</button>
+      <div class="NA-PokemonData NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">By clicking on the Pokemon Data button or on any Pokemon Icon, you can bring up an area
+            that shows you information about said Pokemon such as Abilities and Stats.
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            Forms can be clicked on to view their information together and to hide that information, simply click again.
+            Clicking on an evolution will display their information instead.
+          </text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
-      <div class="BunchesMoveHelp">
-        <text class="NA-BunchMoveHelpText">To move a Bunch, click on
-          it and then click on the Bunch you want it to be in front of. Note that you can only select Bunches
-          from
-          the
-          Trade Option linked to the Button.</text>
-        <button class="NA-BunchMoveHelpClose NA-ButtonDesign">Close</button>
+      <div class="NA-GenerationalSprites NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">For an improved viewing experience it is possible to see generation sprites of Pokemon.
+            To do this, click on the "Options" button and then turn "Generational Designs".
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            You will then see the the relevant sprite for Pokemon from on the game that they were obtained
+            in. If no sprite is found, Home artwork is used.
+          </text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="ViewingAdditionalHelp NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">You can now save up to 6 viewings of Pokemon! To do this, once you are viewing a Pokemon
+            you want to view
+            later
+            with ease, click on a + Button next to a Pokeball. That Pokeball will then turn to its normal colour to
+            indicate a viewing is stored there.
+            <br> <br>
+            To access this viewing at any time, just click on it. Clicking on the + Button next to it will replace it
+            with
+            the current viewing.
+          </text>
+          <br><br>
+          <button class="NA-ViewingAdditionalClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="ViewingConfirmDelete NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Pained.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Are you sure you want to delete this Pokemon?
+          </text>
+          <br><br>
+          <table class="NA-ConfirmDeleteButtons">
+            <tr>
+              <td>
+                <button class="NA-ConfirmDeleteButton NA-ButtonDesign">Delete</button>
+              </td>
+              <td>
+                <button class="NA-CloseConfirmButton NA-ButtonDesign">Close</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="ViewingPokemonAdded NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Sucessfully added the Pokemon to your Tradesheet (Can be found inside "(No
+            Bunch)").
+          </text>
+          <br><br>
+          <button class="NA-PokemonAddedClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="CreationPokemonError NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Pained.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Cannot create Pokemon!
+            <br> <br>
+            If you are creating in Looking For:
+            Check the Pokemon is valid by seeing if the Pokemon's image appears.
+            <br> <br>
+            If you are looking to create this pokemon as a draft due to not filling in the necessary fields, please set
+            that
+            Pokemon to private.
+            <br> <br>
+            If you are creating in For Trade: Check the following:
+            <br> <br>
+            Check the Pokemon is valid by seeing if the Pokemon's image appears.
+            <br>
+            Check none of the Dropdown fields currently contain (Any) apart from the Shiny Dropdown.
+            <br>
+            Check the ID, OT InputFields are filled.
+            <br>
+            Check the Move1 field is filled.
+          </text>
+          <br><br>
+          <button class="NA-CreationPokemonClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="TemplateAdded NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Template successfully Added/Updated.
+          </text>
+          <br><br>
+          <button class="NA-TemplateAddedClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="TemplateRemoved NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Template successfully Removed.
+          </text>
+          <br><br>
+          <button class="NA-TemplateRemovedClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="TemplateAddedError NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Pained.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Cannot create Template!
+            <br><br>Make sure the InputField is not blank or "(No Template)".
+          </text>
+          <br><br>
+          <button class="NA-TemplateAddedErrorClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="TemplateRemovedError NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Pained.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Cannot remove Template!
+            <br><br>Make sure the InputField is not blank or ("No Template").
+          </text>
+          <br><br>
+          <button class="NA-TemplateRemovedErrorClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="BunchIconError NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Pained.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Cannot Create/Delete Bunch or Rename!
+            <br> <br>
+            If you are deleting a Bunch:
+            <br>
+            Check the InputField is filled and does not contain All Pokemon or (No Bunch).
+            <br> <br>
+            If you are creating a new Bunch or updating the Icon of an existing one:
+            <br>
+            The same as above, and check Icon is valid and the image appears
+            <br> <br>
+            If you are renaming a Bunch:
+            <br>
+            Make sure that the InputField is filled and does not contain All Pokemon or (No Bunch) and that the new name
+            does not already exist.
+          </text>
+          <br><br>
+          <button class="NA-BunchIconClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="BunchPokemonAdded NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Bunch successfully Added/Updated.
+          </text>
+          <br><br>
+          <button class="NA-BunchAddedClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="BunchPokemonRemoved NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Bunch successfully Removed.
+          </text>
+          <br><br>
+          <button class="NA-BunchRemovedClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="TradeShopImported NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">TradeShop successfully imported, please check your collection. Any
+            problems,
+            please contact me on the discord.
+          </text>
+          <br><br>
+          <button class="NA-ImportedSuccessClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="DeleteAllConfirm NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Pained.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-DeleteAllText">Are you sure you want to delete ALL DATA? This cannot be undone. (This will not
+            delete your user account, only all Pokemon and Bunches) It is advised that an export be done first of your
+            current TradeShop as a precaution.
+          </text>
+          <br><br>
+          <table class="NA-DeleteAllButtons">
+            <tr>
+              <td>
+                <button class="NA-ConfirmDeleteAll NA-ButtonDesign">Delete</button>
+              </td>
+              <td>
+                <button class="NA-CloseDeleteAll NA-ButtonDesign">Close</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="DeleteAllSuccess NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Deleted data successfully.
+          </text>
+          <br><br>
+          <button class="NA-SuccessDeleteAllClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
       <div class="TrackingInformation">
         <text class="NA-TrackingHelpText">This area shows you both a legality list for ball combinations and what
@@ -2097,19 +2181,6 @@
         </text>
         <button class="NA-TrackingHelpClose NA-ButtonDesign">Close</button>
       </div>
-      <div class="InformationAreaHelp">
-        <text class="NA-InformationAreaText">This Area will show you basic information about a Pokemon such as gender
-          rates, abilities and stats.
-          <br><br>
-          For evolutions, you can click on them to load up their information. For forms also in that same brighter
-          background, they can also be clicked on to bring up that data directly underneath the current pokemon, and
-          can
-          click on them again to hide that information.
-          <br><br>
-          You can also press the Shiny Button to toggle the shiny forms on or off.
-        </text>
-        <button class="NA-InformationAreaClose NA-ButtonDesign">Close</button>
-      </div>
       <div class="CTSInfo">
         <text class="NA-CTSInfoText">This is an area to search for any Pokemon on PokeTrades across all users,
           clicking
@@ -2124,16 +2195,20 @@
         </text>
         <button class="NA-CTSInfoClose NA-ButtonDesign">Close</button>
       </div>
+    </div>
+    <div id="RefreshPage">
+      <div class="RefreshPrompt NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Pained.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Due to changes, this website needs to be refreshed.
+          </text>
+        </div>
+      </div>
+    </div>
+    <div id="LoadingArea">
       <div class="LoadingData">
         <img class="NA-LoadingImage" src="https://poketrades.org/Resources/Misc/Loading Icon.png"></img>
         <!--<text class="NA-LoadingText">Loading Data</text>-->
-      </div>
-    </div>
-    <div id="RefreshPage">
-      <div class="RefreshPrompt">
-        <text class="NA-RefreshText">
-          Due to changes, this website needs to be refreshed.
-        </text>
       </div>
     </div>
     <div id="TrackingArea">

@@ -1,6 +1,75 @@
-$('.NA-SelectionClose').click(function () {
-    document.querySelector("#NotificationArea").style.display = "none";
-    document.querySelector(".SelectionHelp").style.display = "none";
+$('.NA-MainBlockClose').click(function () {
+    CloseAllMainBlocks();
+});
+
+$('.NA-MainOption1').click(function () {
+    document.querySelector(".NA-MainOptions").style.display = "none";
+    document.querySelector(".NA-TradeShopOptions").style.display = "block";
+});
+
+$('.NA-MainOption2').click(function () {
+    document.querySelector(".NA-MainOptions").style.display = "none";
+    document.querySelector(".NA-AccountOptions").style.display = "block";
+});
+
+$('.NA-MainOption3').click(function () {
+    document.querySelector(".NA-MainOptions").style.display = "none";
+    document.querySelector(".NA-OtherOptions").style.display = "block";
+});
+
+$('.NA-TradeOption1').click(function () {
+    document.querySelector(".NA-TradeShopOptions").style.display = "none";
+    document.querySelector(".NA-BunchOverview").style.display = "block";
+});
+
+$('.NA-TradeOption2').click(function () {
+    document.querySelector(".NA-TradeShopOptions").style.display = "none";
+    document.querySelector(".NA-PokemonCreation").style.display = "block";
+});
+
+$('.NA-TradeOption3').click(function () {
+    document.querySelector(".NA-TradeShopOptions").style.display = "none";
+    document.querySelector(".NA-MoveCopy").style.display = "block";
+});
+
+$('.NA-TradeOption4').click(function () {
+    document.querySelector(".NA-TradeShopOptions").style.display = "none";
+    document.querySelector(".NA-AddHelp").style.display = "block";
+});
+
+$('.NA-TradeOption5').click(function () {
+    document.querySelector(".NA-TradeShopOptions").style.display = "none";
+    document.querySelector(".NA-TemplateOverview").style.display = "block";
+});
+
+$('.NA-AccountOption1').click(function () {
+    document.querySelector(".NA-AccountOptions").style.display = "none";
+    document.querySelector(".NA-Account").style.display = "block";
+});
+
+$('.NA-AccountOption2').click(function () {
+    document.querySelector(".NA-AccountOptions").style.display = "none";
+    document.querySelector(".NA-DeleteAll").style.display = "block";
+});
+
+$('.NA-AccountOption3').click(function () {
+    document.querySelector(".NA-AccountOptions").style.display = "none";
+    document.querySelector(".NA-Exporting").style.display = "block";
+});
+
+$('.NA-OtherOption1').click(function () {
+    document.querySelector(".NA-OtherOptions").style.display = "none";
+    document.querySelector(".NA-Importing").style.display = "block";
+});
+
+$('.NA-OtherOption2').click(function () {
+    document.querySelector(".NA-OtherOptions").style.display = "none";
+    document.querySelector(".NA-PokemonData").style.display = "block";
+});
+
+$('.NA-OtherOption3').click(function () {
+    document.querySelector(".NA-OtherOptions").style.display = "none";
+    document.querySelector(".NA-GenerationalSprites").style.display = "block";
 });
 
 $('.NA-ViewingAdditionalClose').click(function () {
@@ -31,11 +100,6 @@ $('.NA-PokemonAddedClose').click(function () {
 $('.NA-CreationPokemonClose').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".CreationPokemonError").style.display = "none";
-});
-
-$('.NA-TemplateHelpClose').click(function () {
-    document.querySelector("#NotificationArea").style.display = "none";
-    document.querySelector(".TemplateHelpInfo").style.display = "none";
 });
 
 $('.NA-TemplateAddedClose').click(function () {
@@ -101,11 +165,6 @@ $('.NA-SuccessDeleteAllClose').click(function () {
     document.querySelector(".DeleteAllSuccess").style.display = "none";
 });
 
-$('.NA-BunchMoveHelpClose').click(function () {
-    document.querySelector("#NotificationArea").style.display = "none";
-    document.querySelector(".BunchesMoveHelp").style.display = "none";
-});
-
 $('.NA-InformationAreaClose').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".InformationAreaHelp").style.display = "none";
@@ -122,11 +181,30 @@ $('.NA-CTSInfoClose').click(function () {
 });
 
 function ShowLoading() {
-    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector("#LoadingArea").style.display = "block";
     document.querySelector(".LoadingData").style.display = "block";
 }
 
 function HideLoading() {
-    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector("#LoadingArea").style.display = "none";
     document.querySelector(".LoadingData").style.display = "none";
+}
+
+function CloseAllMainBlocks() {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".NA-MainOptions").style.display = "none";
+    document.querySelector(".NA-TradeShopOptions").style.display = "none";
+    document.querySelector(".NA-AccountOptions").style.display = "none";
+    document.querySelector(".NA-OtherOptions").style.display = "none";
+    document.querySelector(".NA-BunchOverview").style.display = "none";
+    document.querySelector(".NA-PokemonCreation").style.display = "none";
+    document.querySelector(".NA-MoveCopy").style.display = "none";
+    document.querySelector(".NA-AddHelp").style.display = "none";
+    document.querySelector(".NA-TemplateOverview").style.display = "none";
+    document.querySelector(".NA-Account").style.display = "none";
+    document.querySelector(".NA-DeleteAll").style.display = "none";
+    document.querySelector(".NA-Exporting").style.display = "none";
+    document.querySelector(".NA-Importing").style.display = "none";
+    document.querySelector(".NA-PokemonData").style.display = "none";
+    document.querySelector(".NA-GenerationalSprites").style.display = "none";
 }

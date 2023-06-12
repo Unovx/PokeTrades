@@ -335,6 +335,54 @@ function AllMoves(data) {
         ctsMove2Dropdown.appendChild(ctsOptionMove2);
         ctsMove3Dropdown.appendChild(ctsOptionMove3);
         ctsMove4Dropdown.appendChild(ctsOptionMove4);
+
+        const resuableMove1Option = document.createElement("option");
+        resuableMove1Option.value = allMovesArray[i].moves;
+        resuableMove1Option.textContent = allMovesArray[i].moves;
+        resuableMove1Option.setAttribute("class", "DA-DropdownOptions");
+        reusableMove1Dropdown.appendChild(resuableMove1Option);
+
+        const resuableMove2Option = document.createElement("option");
+        resuableMove2Option.value = allMovesArray[i].moves;
+        resuableMove2Option.textContent = allMovesArray[i].moves;
+        resuableMove2Option.setAttribute("class", "DA-DropdownOptions");
+        reusableMove2Dropdown.appendChild(resuableMove2Option);
+
+        const resuableMove3Option = document.createElement("option");
+        resuableMove3Option.value = allMovesArray[i].moves;
+        resuableMove3Option.textContent = allMovesArray[i].moves;
+        resuableMove3Option.setAttribute("class", "DA-DropdownOptions");
+        reusableMove3Dropdown.appendChild(resuableMove3Option);
+
+        const resuableMove4Option = document.createElement("option");
+        resuableMove4Option.value = allMovesArray[i].moves;
+        resuableMove4Option.textContent = allMovesArray[i].moves;
+        resuableMove4Option.setAttribute("class", "DA-DropdownOptions");
+        reusableMove4Dropdown.appendChild(resuableMove4Option);
+
+        const resuableTransferMove1Option = document.createElement("option");
+        resuableTransferMove1Option.value = allMovesArray[i].moves;
+        resuableTransferMove1Option.textContent = allMovesArray[i].moves;
+        resuableTransferMove1Option.setAttribute("class", "DA-DropdownOptions");
+        reusableTransferMove1Dropdown.appendChild(resuableTransferMove1Option);
+
+        const resuableTransferMove2Option = document.createElement("option");
+        resuableTransferMove2Option.value = allMovesArray[i].moves;
+        resuableTransferMove2Option.textContent = allMovesArray[i].moves;
+        resuableTransferMove2Option.setAttribute("class", "DA-DropdownOptions");
+        reusableTransferMove2Dropdown.appendChild(resuableTransferMove2Option);
+
+        const resuableTransferMove3Option = document.createElement("option");
+        resuableTransferMove3Option.value = allMovesArray[i].moves;
+        resuableTransferMove3Option.textContent = allMovesArray[i].moves;
+        resuableTransferMove3Option.setAttribute("class", "DA-DropdownOptions");
+        reusableTransferMove3Dropdown.appendChild(resuableTransferMove3Option);
+
+        const resuableTransferMove4Option = document.createElement("option");
+        resuableTransferMove4Option.value = allMovesArray[i].moves;
+        resuableTransferMove4Option.textContent = allMovesArray[i].moves;
+        resuableTransferMove4Option.setAttribute("class", "DA-DropdownOptions");
+        reusableTransferMove4Dropdown.appendChild(resuableTransferMove4Option);
     }
 }
 
@@ -603,6 +651,42 @@ function IvValues(data) {
         ctsIvSpa.appendChild(ctsOptionSpa);
         ctsIvSpd.appendChild(ctsOptionSpd);
         ctsIvSpe.appendChild(ctsOptionSpe);
+
+        const reusableIvHPOption = document.createElement("option");
+        reusableIvHPOption.value = ivValuesArray[i];
+        reusableIvHPOption.textContent = ivValuesArray[i];
+        reusableIvHPOption.setAttribute("class", "DA-DropdownOptions");
+        reusableIvHPDropdown.appendChild(reusableIvHPOption);
+
+        const reusableIvAttOption = document.createElement("option");
+        reusableIvAttOption.value = ivValuesArray[i];
+        reusableIvAttOption.textContent = ivValuesArray[i];
+        reusableIvAttOption.setAttribute("class", "DA-DropdownOptions");
+        reusableIvAttDropdown.appendChild(reusableIvAttOption);
+
+        const reusableIvDefOption = document.createElement("option");
+        reusableIvDefOption.value = ivValuesArray[i];
+        reusableIvDefOption.textContent = ivValuesArray[i];
+        reusableIvDefOption.setAttribute("class", "DA-DropdownOptions");
+        reusableIvDefDropdown.appendChild(reusableIvDefOption);
+
+        const reusableIvSpaOption = document.createElement("option");
+        reusableIvSpaOption.value = ivValuesArray[i];
+        reusableIvSpaOption.textContent = ivValuesArray[i];
+        reusableIvSpaOption.setAttribute("class", "DA-DropdownOptions");
+        reusableIvSpaDropdown.appendChild(reusableIvSpaOption);
+
+        const reusableIvSpdOption = document.createElement("option");
+        reusableIvSpdOption.value = ivValuesArray[i];
+        reusableIvSpdOption.textContent = ivValuesArray[i];
+        reusableIvSpdOption.setAttribute("class", "DA-DropdownOptions");
+        reusableIvSpdDropdown.appendChild(reusableIvSpdOption);
+
+        const reusableIvSpeOption = document.createElement("option");
+        reusableIvSpeOption.value = ivValuesArray[i];
+        reusableIvSpeOption.textContent = ivValuesArray[i];
+        reusableIvSpeOption.setAttribute("class", "DA-DropdownOptions");
+        reusableIvSpeDropdown.appendChild(reusableIvSpeOption);
     }
 
     filterIvHP.value = "X";
@@ -722,6 +806,42 @@ function EvValues(data) {
         ctsEvSpa.appendChild(ctsOptionSpa);
         ctsEvSpd.appendChild(ctsOptionSpd);
         ctsEvSpe.appendChild(ctsOptionSpe);
+
+        const reusableEvHPOption = document.createElement("option");
+        reusableEvHPOption.value = evValuesArray[i];
+        reusableEvHPOption.textContent = evValuesArray[i];
+        reusableEvHPOption.setAttribute("class", "DA-DropdownOptions");
+        reusableEvHPDropdown.appendChild(reusableEvHPOption);
+
+        const reusableEvAttOption = document.createElement("option");
+        reusableEvAttOption.value = evValuesArray[i];
+        reusableEvAttOption.textContent = evValuesArray[i];
+        reusableEvAttOption.setAttribute("class", "DA-DropdownOptions");
+        reusableEvAttDropdown.appendChild(reusableEvAttOption);
+
+        const reusableEvDefOption = document.createElement("option");
+        reusableEvDefOption.value = evValuesArray[i];
+        reusableEvDefOption.textContent = evValuesArray[i];
+        reusableEvDefOption.setAttribute("class", "DA-DropdownOptions");
+        reusableEvDefDropdown.appendChild(reusableEvDefOption);
+
+        const reusableEvSpaOption = document.createElement("option");
+        reusableEvSpaOption.value = evValuesArray[i];
+        reusableEvSpaOption.textContent = evValuesArray[i];
+        reusableEvSpaOption.setAttribute("class", "DA-DropdownOptions");
+        reusableEvSpaDropdown.appendChild(reusableEvSpaOption);
+
+        const reusableEvSpdOption = document.createElement("option");
+        reusableEvSpdOption.value = evValuesArray[i];
+        reusableEvSpdOption.textContent = evValuesArray[i];
+        reusableEvSpdOption.setAttribute("class", "DA-DropdownOptions");
+        reusableEvSpdDropdown.appendChild(reusableEvSpdOption);
+
+        const reusableEvSpeOption = document.createElement("option");
+        reusableEvSpeOption.value = evValuesArray[i];
+        reusableEvSpeOption.textContent = evValuesArray[i];
+        reusableEvSpeOption.setAttribute("class", "DA-DropdownOptions");
+        reusableEvSpeDropdown.appendChild(reusableEvSpeOption);
     }
 
     filterEvHP.value = "X";
@@ -1101,4 +1221,80 @@ function TempLA(data) {
 function TempSV(data) {
     arrayInfo = jQuery.parseJSON(data);
     tempSV = arrayInfo["Rows"];
+}
+
+function SetIVDropdowns(statHP, statAtt, statDef, statSpa, statSpd, statSpe) {
+    for (let i = 0; i < ivValuesArray.length; i++) {
+        const optionHP = document.createElement("option");
+        const optionAtt = document.createElement("option");
+        const optionDef = document.createElement("option");
+        const optionSpa = document.createElement("option");
+        const optionSpd = document.createElement("option");
+        const optionSpe = document.createElement("option");
+
+        optionHP.value = ivValuesArray[i];
+        optionHP.textContent = ivValuesArray[i];
+        optionAtt.value = ivValuesArray[i];
+        optionAtt.textContent = ivValuesArray[i];
+        optionDef.value = ivValuesArray[i];
+        optionDef.textContent = ivValuesArray[i];
+        optionSpa.value = ivValuesArray[i];
+        optionSpa.textContent = ivValuesArray[i];
+        optionSpd.value = ivValuesArray[i];
+        optionSpd.textContent = ivValuesArray[i];
+        optionSpe.value = ivValuesArray[i];
+        optionSpe.textContent = ivValuesArray[i];
+
+        optionHP.setAttribute("class", "DA-DropdownOptions");
+        optionAtt.setAttribute("class", "DA-DropdownOptions");
+        optionDef.setAttribute("class", "DA-DropdownOptions");
+        optionSpa.setAttribute("class", "DA-DropdownOptions");
+        optionSpd.setAttribute("class", "DA-DropdownOptions");
+        optionSpe.setAttribute("class", "DA-DropdownOptions");
+
+        statHP.appendChild(optionHP);
+        statAtt.appendChild(optionAtt);
+        statDef.appendChild(optionDef);
+        statSpa.appendChild(optionSpa);
+        statSpd.appendChild(optionSpd);
+        statSpe.appendChild(optionSpe);
+    }
+}
+
+function SetEvDropdowns(statHP, statAtt, statDef, statSpa, statSpd, statSpe) {
+    for (let i = 0; i < evValuesArray.length; i++) {
+        const optionHP = document.createElement("option");
+        const optionAtt = document.createElement("option");
+        const optionDef = document.createElement("option");
+        const optionSpa = document.createElement("option");
+        const optionSpd = document.createElement("option");
+        const optionSpe = document.createElement("option");
+
+        optionHP.value = evValuesArray[i];
+        optionHP.textContent = evValuesArray[i];
+        optionAtt.value = evValuesArray[i];
+        optionAtt.textContent = evValuesArray[i];
+        optionDef.value = evValuesArray[i];
+        optionDef.textContent = evValuesArray[i];
+        optionSpa.value = evValuesArray[i];
+        optionSpa.textContent = evValuesArray[i];
+        optionSpd.value = evValuesArray[i];
+        optionSpd.textContent = evValuesArray[i];
+        optionSpe.value = evValuesArray[i];
+        optionSpe.textContent = evValuesArray[i];
+
+        optionHP.setAttribute("class", "DA-DropdownOptions");
+        optionAtt.setAttribute("class", "DA-DropdownOptions");
+        optionDef.setAttribute("class", "DA-DropdownOptions");
+        optionSpa.setAttribute("class", "DA-DropdownOptions");
+        optionSpd.setAttribute("class", "DA-DropdownOptions");
+        optionSpe.setAttribute("class", "DA-DropdownOptions");
+
+        statHP.appendChild(optionHP);
+        statAtt.appendChild(optionAtt);
+        statDef.appendChild(optionDef);
+        statSpa.appendChild(optionSpa);
+        statSpd.appendChild(optionSpd);
+        statSpe.appendChild(optionSpe);
+    }
 }

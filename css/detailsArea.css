@@ -13,7 +13,8 @@
 }
 
 #DetailsArea {
-    background-color: #1a233a;
+    /*background-color: #1a233a;*/
+    /*background-image: linear-gradient(#1c263d, #353d54, #202842);*/
     position: absolute;
     display: none;
     height: calc(100% - 52px);
@@ -22,6 +23,10 @@
     right: 0;
     overflow: auto;
     margin-top: 52px;
+    border-color: rgb(55, 58, 109);
+    border-width: 2px;
+    border-style: solid;
+    background: url('https://poketrades.org/Resources/Designs/Sidebar.png');
 }
 
 
@@ -78,20 +83,21 @@
 }
 
 .DA-ButtonDesign {
-    background: #171d2c;
-    border-width: 2px;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    background-size: contain;
+    border-color: #3a416a;
     border-style: solid;
-    border-color: #2e3850;
+    border-width: 2px;
+    color: #dbdbdb;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: #536c9f;
     cursor: pointer;
     margin: 3px;
-    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
     border-radius: 5px;
+    margin-bottom: 5px;
 }
 
 .DA-PlaceInfo {
@@ -160,7 +166,7 @@
 
 .DA-InfoHolder {
     border-radius: 9px;
-    background-color: #243048;
+    background-image: linear-gradient(#293c6c, #112354);
     border-width: 2px;
     border-style: solid;
     border-color: #171d2c;
@@ -169,7 +175,7 @@
 }
 
 .DA-Username {
-    display: block;
+    display: none;
     /*-webkit-box-shadow: 0px 0px 4px #6f41fc;
     -moz-box-shadow: 0px 5px 2px #6f41fc;
     box-shadow: 0px 0px 8px #6f41fc;
@@ -208,7 +214,12 @@
     border-width: 2px;
     border-style: solid;
     border-color: #8e3ef5;*/
-    background-color: #243048;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    height: 23px;
+    background-size: contain;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #2e3850;
     border-width: 2px;
     border-style: solid;
     border-color: #171d2c;
@@ -222,6 +233,7 @@
 }
 
 .DA-CompetitiveViewButton {
+    display: none;
     background-color: #243048;
     border-width: 2px;
     border-style: solid;
@@ -305,13 +317,16 @@
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     border-spacing: 0px;
+    margin-bottom: 5px;
 }
 
 .DA-TemplateAreas {
-    background-color: #243048;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    height: 23px;
+    background-size: contain;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #000000;
     text-align: end;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -319,14 +334,6 @@
     font-size: 15px;
     display: table-cell;
     text-align-last: center;
-}
-
-.DA-TemplateHelp {
-    max-width: 22px;
-    max-height: 22px;
-    align-items: center;
-    vertical-align: middle;
-    cursor: pointer;
 }
 
 .DA-AddTemplate {
@@ -1389,133 +1396,6 @@
     margin-bottom: 4px;
 }
 
-.DA-NormalMoves {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(100px, 1fr));
-    text-align: center;
-    width: auto;
-}
-
-.DA-Move1 {
-    /*-webkit-box-shadow: 0px 0px 4px #4194fc;
-    -moz-box-shadow: 0px 5px 2px #4194fc;
-    box-shadow: 0px 0px 8px #4194fc;
-    background: linear-gradient(0deg, rgb(0 114 255 / 30%), rgb(85 192 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #3eb8f5;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 16px;*/
-    /*height: 25px;
-    line-height: 25px;*/
-    background: #243048;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 15px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
-.DA-Move2 {
-    /*-webkit-box-shadow: 0px 0px 4px #4194fc;
-    -moz-box-shadow: 0px 5px 2px #4194fc;
-    box-shadow: 0px 0px 8px #4194fc;
-    background: linear-gradient(0deg, rgb(0 114 255 / 30%), rgb(85 192 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #3eb8f5;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 16px;*/
-    /*height: 25px;
-    line-height: 25px;*/
-    background: #243048;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 15px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
-.DA-Move3 {
-    /*-webkit-box-shadow: 0px 0px 4px #4194fc;
-    -moz-box-shadow: 0px 5px 2px #4194fc;
-    box-shadow: 0px 0px 8px #4194fc;
-    background: linear-gradient(0deg, rgb(0 114 255 / 30%), rgb(85 192 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #3eb8f5;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 16px;*/
-    /*height: 25px;
-    line-height: 25px;*/
-    background: #243048;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 15px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
-.DA-Move4 {
-    /*-webkit-box-shadow: 0px 0px 4px #4194fc;
-    -moz-box-shadow: 0px 5px 2px #4194fc;
-    box-shadow: 0px 0px 8px #4194fc;
-    background: linear-gradient(0deg, rgb(0 114 255 / 30%), rgb(85 192 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #3eb8f5;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 16px;*/
-    /*height: 25px;
-    line-height: 25px;*/
-    background: #243048;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 15px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
 .DA-TransferMoves {
     /*display: block;
     -webkit-box-shadow: 0px 0px 4px #4194fc;
@@ -1555,126 +1435,6 @@
     width: auto;
 }
 
-.DA-LegacyMove1 {
-    /*-webkit-box-shadow: 0px 0px 4px #4194fc;
-    -moz-box-shadow: 0px 5px 2px #4194fc;
-    box-shadow: 0px 0px 8px #4194fc;
-    background: linear-gradient(0deg, rgb(0 114 255 / 30%), rgb(85 192 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #3eb8f5;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 16px;*/
-    /*height: 25px;
-    line-height: 25px;*/
-    background: #243048;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 15px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
-.DA-LegacyMove2 {
-    /*-webkit-box-shadow: 0px 0px 4px #4194fc;
-    -moz-box-shadow: 0px 5px 2px #4194fc;
-    box-shadow: 0px 0px 8px #4194fc;
-    background: linear-gradient(0deg, rgb(0 114 255 / 30%), rgb(85 192 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #3eb8f5;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 16px;*/
-    /*height: 25px;
-    line-height: 25px;*/
-    background: #243048;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 15px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
-.DA-LegacyMove3 {
-    /*-webkit-box-shadow: 0px 0px 4px #4194fc;
-    -moz-box-shadow: 0px 5px 2px #4194fc;
-    box-shadow: 0px 0px 8px #4194fc;
-    background: linear-gradient(0deg, rgb(0 114 255 / 30%), rgb(85 192 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #3eb8f5;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 16px;*/
-    /*height: 25px;
-    line-height: 25px;*/
-    background: #243048;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 15px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
-.DA-LegacyMove4 {
-    /*-webkit-box-shadow: 0px 0px 4px #4194fc;
-    -moz-box-shadow: 0px 5px 2px #4194fc;
-    box-shadow: 0px 0px 8px #4194fc;
-    background: linear-gradient(0deg, rgb(0 114 255 / 30%), rgb(85 192 255 / 20%));
-    border-width: 2px;
-    border-style: solid;
-    border-color: #3eb8f5;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 16px;*/
-    /*height: 25px;
-    line-height: 25px;*/
-    background: #243048;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    text-align: center;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    font-size: 15px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-}
-
 .DA-Proof {
     /*-webkit-box-shadow: 0px 0px 4px #f941fc;
     -moz-box-shadow: 0px 5px 2px #f941fc;
@@ -1696,10 +1456,12 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 10px;
-    background-color: #35425c;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    height: 23px;
+    background-size: contain;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #000000;
     margin: auto;
     padding-top: 0;
     cursor: pointer;
@@ -1717,10 +1479,12 @@
     border-color: #d23ef5;*/
     width: -webkit-fill-available !important;
     width: -moz-available !important;
-    background-color: #35425c;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    height: 23px;
+    background-size: contain;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #000000;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -1738,11 +1502,11 @@
 .DA-LinkRedirector {
     display: none;
     margin: auto;
-    background-color: #35425c;
-    ;
+    background: linear-gradient(#302b75, #112354);
+    background-size: contain;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #000000;
     border-top-style: none;
     pointer-events: initial;
 }
@@ -1768,7 +1532,7 @@
 }
 
 .DA-Note {
-    background-color: #243048;
+    background-image: linear-gradient(#142961, #233360);
     border-width: 2px;
     border-style: solid;
     border-color: #171d2c;
@@ -1776,10 +1540,10 @@
     width: -moz-available !important;
     margin-top: 5px;
     margin-bottom: 5px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #bfbfbf;
-    font-size: 15px;
+    font-weight: normal;
+    font-family: monospace;
+    color: #e6e6e6;
+    font-size: 12px;
     display: flex;
     overflow: hidden;
 }
@@ -1803,7 +1567,7 @@
 }
 
 .DA-IconSelects {
-    background: #243048;
+    background: linear-gradient(#302b75, #112354);
     border-color: #171d2c;
     border-right: solid;
     border-bottom: solid;
@@ -1815,7 +1579,7 @@
 }
 
 .DA-Username {
-    display: block;
+    display: none;
     background-color: #243048;
     border-width: 2px;
     border-style: solid;
@@ -1871,10 +1635,6 @@
     width: -moz-available !important;
 }
 
-#DetailsArea {
-    background-image: linear-gradient(#1c263d, #353d54, #202842);
-}
-
 .DA-PokemonDetails {
     display: grid;
     grid-template-columns: repeat(3, minmax(130px, 1fr));
@@ -1885,7 +1645,7 @@
     border-style: solid;
     border-color: #171d2c;
     margin-bottom: 10px;
-    background-image: linear-gradient(#434d62, #263767);
+    background-image: linear-gradient(#374978, #233360);
 }
 
 .DA-StatHPName {
@@ -2344,12 +2104,17 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(130px, 1fr));
     justify-items: center;
-    background-image: linear-gradient(#202c4c, #243048);
+    /*background-image: linear-gradient(#202c4c, #243048);*/
+    background-image: linear-gradient(#293c6c, #233360);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    /* border-color: #3d429c; */
 }
 
 .DA-TrainerCard {
     width: 130px;
-    height: 88px;
+    height: 95px;
     align-self: center;
     border-radius: 9px;
     background-color: #343f5f;
@@ -2445,11 +2210,11 @@
     width: 130px;
     margin-right: 0px;
 
-    border-width: 2px;
+    /*border-width: 2px;
     border-color: black;
-    border-style: solid;
+    border-style: solid;*/
 
-    height: 88px;
+    height: 95px;
     margin-top: -1px;
     margin-bottom: 6px;
 }
@@ -2473,14 +2238,15 @@
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
-    font-weight: normal;
-    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
     color: white;
-    font-size: 12px;
-    border: 0px;
-    margin-top: 0px;
-    margin-bottom: 4px;
-    height: 14.7px;
+    font-size: 11px;
+    /*height: 14.7px;*/
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 1px;
+    border: none;
 }
 
 .DA-Move2 {
@@ -2488,14 +2254,15 @@
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
-    font-weight: normal;
-    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
     color: white;
-    font-size: 12px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    height: 14.7px;
+    font-size: 11px;
+    /*height: 14.7px;*/
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 1px;
+    border: none;
 }
 
 .DA-Move3 {
@@ -2503,14 +2270,15 @@
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
-    font-weight: normal;
-    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
     color: white;
-    font-size: 12px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    height: 14.7px;
+    font-size: 11px;
+    /*height: 14.7px;*/
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 1px;
+    border: none;
 }
 
 .DA-Move4 {
@@ -2518,14 +2286,15 @@
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
-    font-weight: normal;
-    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
     color: white;
-    font-size: 12px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    height: 14.7px;
+    font-size: 11px;
+    /*height: 14.7px;*/
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 1px;
+    border: none;
 }
 
 .DA-TransferMoves {
@@ -2544,16 +2313,16 @@
 }
 
 .DA-LegacyMoves {
-    border-width: 2px;
+    /*border-width: 2px;
     border-color: black;
-    border-style: solid;
+    border-style: solid;*/
 
     display: grid;
     grid-template-columns: repeat(1, minmax(100px, 1fr));
     text-align: center;
     width: 130px;
 
-    height: 88px;
+    height: 95px;
     margin-top: -1px;
     margin-bottom: 6px;
 }
@@ -2563,14 +2332,15 @@
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
-    font-weight: normal;
-    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
     color: white;
-    font-size: 12px;
-    border: 0px;
-    margin-top: 0px;
-    margin-bottom: 4px;
-    height: 14.7px;
+    font-size: 11px;
+    /*height: 14.7px;*/
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 1px;
+    border: none;
 }
 
 .DA-LegacyMove2 {
@@ -2578,14 +2348,15 @@
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
-    font-weight: normal;
-    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
     color: white;
-    font-size: 12px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    height: 14.7px;
+    font-size: 11px;
+    /*height: 14.7px;*/
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 1px;
+    border: none;
 }
 
 .DA-LegacyMove3 {
@@ -2593,14 +2364,15 @@
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
-    font-weight: normal;
-    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
     color: white;
-    font-size: 12px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    height: 14.7px;
+    font-size: 11px;
+    /*height: 14.7px;*/
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 1px;
+    border: none;
 }
 
 .DA-LegacyMove4 {
@@ -2608,14 +2380,15 @@
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
-    font-weight: normal;
-    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
     color: white;
-    font-size: 12px;
-    border: 0px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    height: 14.7px;
+    font-size: 11px;
+    /*height: 14.7px;*/
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-bottom: 1px;
+    border: none;
 }
 
 .DA-DisplayDropdown {
@@ -2721,6 +2494,7 @@
     border-width: 2px;
     border-style: solid;
     border-color: #171d2c;
+    height: 17px;
     text-align: center;
     font-weight: normal;
     font-family: Arial, Helvetica, sans-serif;
@@ -2730,23 +2504,6 @@
     white-space: nowrap;
     overflow: hidden;
     display: inline-flex;
-}
-
-.DA-Note {
-    background-color: #243048;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #171d2c;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-weight: normal;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #bfbfbf;
-    font-size: 12px;
-    display: flex;
-    overflow: hidden;
 }
 
 .DA-OptionalViewText {
@@ -2786,10 +2543,11 @@
 
 .DA-CompLevel {
     width: 40px;
-    background-color: #35425c;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    background-size: contain;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #000000;
     text-align: center;
     font-weight: normal;
     font-family: Arial, Helvetica, sans-serif;
@@ -2798,10 +2556,12 @@
 }
 
 .DA-CompItemDropdown {
-    background-color: #35425c;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    height: 23px;
+    background-size: contain;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #000000;
     text-align: center;
     font-weight: normal;
     font-family: Arial, Helvetica, sans-serif;
@@ -2810,10 +2570,11 @@
 }
 
 .DA-Nest {
-    background-color: #35425c;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    background-size: contain;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #000000;
     text-align: center;
     font-weight: normal;
     font-family: Arial, Helvetica, sans-serif;

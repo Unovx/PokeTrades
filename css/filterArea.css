@@ -17,7 +17,6 @@
 }
 
 #FilterArea {
-    background-color: #1a233a;
     position: absolute;
     display: none;
     height: calc(100% - 52px);
@@ -26,6 +25,10 @@
     right: 0;
     overflow: auto;
     margin-top: 52px;
+    border-color: rgb(55, 58, 109);
+    border-width: 2px;
+    border-style: solid;
+    background: url(https://poketrades.org/Resources/Designs/Sidebar.png);
 }
 
 .FA-TopRow {
@@ -57,18 +60,20 @@
 }
 
 .FA-FilterButtons {
-    background: #171d2c;
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
     border-width: 2px;
     border-style: solid;
-    border-color: #2e3850;
+    background-size: contain;
+    border-color: #575a87;
     text-align: center;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-family: Arial, Helvetica, sans-serif;
     color: #e0e0e0;
     cursor: pointer;
     margin: 3px;
     box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
     border-radius: 5px;
+    margin: 4px;
 }
 
 .FA-DropdownOptions {
@@ -79,75 +84,93 @@
 }
 
 .FA-FilterBall {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterShiny {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterGender {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterMint {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterMisc {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterMark {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterType {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterRibbon {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterLanguage {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterNature {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterAbility {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterStatus {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterEvent {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterMove {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterHowObtained {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterGameObtained {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterNote {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterProof {
-    width: 100%;
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 .FA-FilterOT {
@@ -162,21 +185,21 @@
 
 .FA-IvText {
     color: #e0e0e0;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
 .FA-EvText {
     color: #e0e0e0;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
 .FA-IvEvText {
     color: #e0e0e0;
-    font-weight: bold;
+    /*font-weight: bold;*/
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
@@ -240,6 +263,7 @@
 }
 
 .FA-Availability {
+    display: none;
     position: relative;
     text-align: center;
     top: 40px;

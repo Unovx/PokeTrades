@@ -17,6 +17,7 @@ body {
     margin-bottom: 5px !important;
     margin-right: unset !important;
     margin-left: unset !important;
+    width: 100%;
   }
 
   [class*="SA-Bunch"] {
@@ -89,12 +90,58 @@ body {
   margin-bottom: 5px;
 }
 
+.SA-ReusableMoveDropdown {
+  font-weight: bold;
+  color: white;
+  font-family: Orbitron, sans-serif;
+  font-size: 11.8px;
+  margin-left: 4px;
+  margin-bottom: 4px;
+  text-align: center;
+  background: none;
+  z-index: 1;
+  border: none;
+  appearance: none;
+  border-radius: 0px !important;
+  display: none;
+}
+
+.SA-ReusableIvDropdown {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11.8px;
+  color: white;
+  font-weight: bold;
+  background: none;
+  text-align: center;
+  appearance: none;
+  z-index: 1;
+  display: none;
+}
+
+.SA-OrderDropdown1 {
+  background: inherit;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  border: none;
+}
+
+.SA-OrderDropdown2 {
+  background: inherit;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  border: none;
+}
+
 .SelectionButtons {
   position: relative;
   text-align: center;
   vertical-align: middle;
   vertical-align: -moz-middle-with-baseline;
-  display: initial;
+  display: inline-flex;
 }
 
 .SA-ButtonDesign {
@@ -104,22 +151,65 @@ body {
   border-color: #2e3850;
   text-align: center;
   font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #536c9f;
+  /*font-family: 'Orbitron', sans-serif;
+  color: #536c9f;*/
+  font-family: 'Orbitron', sans-serif;
+  /*color: #5471ab;*/
+  color: #7f94bf;
+  font-size: 11px;
   cursor: pointer;
   margin: 3px;
   box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
   border-radius: 5px;
+
+  border-color: #037423;
+  /*background: #373737;*/
+  background: #1e1e1e;
+  color: #d9d9d9;
+  /*padding-left: 5px;
+  padding-right: 5px;*/
+}
+
+.SA-CircleDesign {
+  width: 8px;
+  height: 8px;
+  /*background: #05b50b;*/
+  background: #00ba06;
+  border: none;
+  border-radius: 80px;
+  padding: 0px;
+  box-shadow: 0px 0px 8px #00ff07;
+  /* box-shadow: 0px 0px 10px 4px #00af05; */
+  /* margin-top: 1px; */
+  display: inline-flex;
 }
 
 .SA-Offset {
   width: 70px;
-  cursor: unset;
+  /*cursor: unset;*/
+
+  background: inherit;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  border: none;
+  cursor: initial;
+  text-align: center;
 }
 
 .SA-Limit {
-  width: 70px;
-  cursor: unset;
+  width: 80px;
+  /*cursor: unset;*/
+
+  background: inherit;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  border: none;
+  cursor: initial;
+  text-align: center;
 }
 
 #GeneratedSelection {
@@ -136,7 +226,7 @@ body {
   /*background-color: #163944;*/
   opacity: 0%;
   font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Orbitron', sans-serif;
   /*So it doesn't cut into the top part of the outline in the top Row*/
   top: 2px;
   width: auto;
@@ -145,18 +235,12 @@ body {
   margin-bottom: 5px;
 }
 
-.SA-SelectionHelp {
-  cursor: pointer;
-  max-width: 17px;
-  max-height: 17px;
-  vertical-align: bottom;
-}
-
 .SA-RefreshButton {
   cursor: pointer;
   max-width: 17px;
   max-height: 17px;
   vertical-align: bottom;
+  display: none;
 }
 
 .SA-Searchbar {
@@ -185,11 +269,42 @@ body {
   overflow: hidden;
   display: flex;
   position: relative;
-  cursor: pointer;
-  box-shadow: rgb(0 0 0) 5px 5px 0px 1px;
-  background-color: #343f5f;
+  /*cursor: pointer;*/
+  /*box-shadow: rgb(0 0 0) 5px 5px 0px 1px;*/
+  background: url('https://poketrades.org/Resources/PokemonContainers/Typeless.png');
+  background-size: cover;
   border-radius: 15px;
-  width: 100%;
+  /*width: 100%;*/
+}
+
+.SA-StatHolder {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11.8px;
+  color: #edeaea;
+  font-weight: bold;
+  background: none;
+  text-align: center;
+  appearance: none;
+  border: 1px;
+  border-style: solid;
+  border-color: gainsboro;
+  border-image: initial;
+  padding: 0px;
+}
+
+.SA-DataGrid {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10.3px;
+  color: #c2c2c2;
+  font-weight: bold;
+  background: none;
+  text-align: center;
+  appearance: none;
+  border: 1px;
+  border-style: solid;
+  border-color: grey;
+  border-image: initial;
+  padding: 0px;
 }
 
 .TextColour {
@@ -198,4 +313,346 @@ body {
 
 .TopText {
   color: cornsilk;
+}
+
+.SA-NormalHolder {
+  -webkit-box-shadow: 0px 0px 4px #fffff2;
+  -moz-box-shadow: 0px 5px 2px #fffff2;
+  box-shadow: 0px 0px 8px #fffff2;
+  /*background: linear-gradient(0deg, rgb(207 207 162 / 30%), rgb(207 207 162 / 20%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #cfcfb8;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Normal.png');
+  background-size: cover;
+}
+
+.SA-GrassHolder {
+  -webkit-box-shadow: 0px 0px 4px #41fc7b;
+  -moz-box-shadow: 0px 5px 2px #41fc7b;
+  box-shadow: 0px 0px 8px #41fc7b;
+  /*background: linear-gradient(0deg, rgb(51 255 0 / 30%), rgb(255 226 85 / 20%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #00c936;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Grass.png');
+  background-size: cover;
+}
+
+.SA-FireHolder {
+  -webkit-box-shadow: 0px 0px 4px #fc7541;
+  -moz-box-shadow: 0px 5px 2px #fc7541;
+  box-shadow: 0px 0px 8px #fc7541;
+  /*background: linear-gradient(0deg, rgb(255 71 0 / 30%), rgb(255 132 85 / 20%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #f5723e;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Fire.png');
+  background-size: cover;
+}
+
+.SA-FightingHolder {
+  -webkit-box-shadow: 0px 0px 4px #7e3418;
+  -moz-box-shadow: 0px 5px 2px #7e3418;
+  box-shadow: 0px 0px 8px #f0703f;
+  /*background: linear-gradient(0deg, rgb(182 100 67 / 50%), rgb(112 57 36 / 50%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #e8926a;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Fighting.png');
+  background-size: cover;
+}
+
+.SA-WaterHolder {
+  -webkit-box-shadow: 0px 0px 4px #4194fc;
+  -moz-box-shadow: 0px 5px 2px #4194fc;
+  box-shadow: 0px 0px 8px #4194fc;
+  /*background: linear-gradient(0deg, rgb(0 114 255 / 30%), rgb(85 192 255 / 20%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #00aaff;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Water.png');
+  background-size: cover;
+}
+
+.SA-FlyingHolder {
+  -webkit-box-shadow: 0px 0px 4px #8ba3c1;
+  -moz-box-shadow: 0px 5px 2px #8ba3c1;
+  box-shadow: 0px 0px 8px #8ba3c1;
+  /*background: linear-gradient(0deg, rgb(101 170 255 / 30%), rgb(109 196 248 / 20%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #a4c5d6;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Flying.png');
+  background-size: cover;
+}
+
+.SA-PoisonHolder {
+  -webkit-box-shadow: 0px 0px 4px #9c64ff;
+  -moz-box-shadow: 0px 5px 2px #9c64ff;
+  box-shadow: 0px 0px 8px #9c64ff;
+  /*background: linear-gradient(0deg, rgb(152 55 217 / 30%), rgb(214 108 255 / 20%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #b168fa;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Poison.png');
+  background-size: cover;
+}
+
+.SA-ElectricHolder {
+  -webkit-box-shadow: 0px 0px 4px #fcd441;
+  -moz-box-shadow: 0px 5px 2px #fcd441;
+  box-shadow: 0px 0px 8px #fcd441;
+  /*background: linear-gradient(0deg, rgb(255 224 0 / 30%), rgb(255 226 85 / 20%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #f0d95f;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Electric.png');
+  background-size: cover;
+}
+
+.SA-GroundHolder {
+  -webkit-box-shadow: 0px 0px 4px #d6b640;
+  -moz-box-shadow: 0px 5px 2px #d6b640;
+  box-shadow: 0px 0px 8px #d6b640;
+  /*background: linear-gradient(0deg, rgb(202 154 47 / 50%), rgb(173 143 52 / 30%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #E0C068;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Ground.png');
+  background-size: cover;
+}
+
+.SA-PsychicHolder {
+  -webkit-box-shadow: 0px 0px 4px #f941fc;
+  -moz-box-shadow: 0px 5px 2px #f941fc;
+  box-shadow: 0px 0px 8px #f941fc;
+  /*background: linear-gradient(0deg, rgb(197 14 201 / 30%), rgb(255 85 250 / 20%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #d23ef5;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Psychic.png');
+  background-size: cover;
+}
+
+.SA-RockHolder {
+  -webkit-box-shadow: 0px 0px 4px #b7a348;
+  -moz-box-shadow: 0px 5px 2px #b7a348;
+  box-shadow: 0px 0px 8px #b7a348;
+  /*background: linear-gradient(0deg, rgb(131 119 67 / 60%), rgb(131 119 67 / 40%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #c1ac53;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Rock.png');
+  background-size: cover;
+}
+
+.SA-IceHolder {
+  -webkit-box-shadow: 0px 0px 4px #72abf2;
+  -moz-box-shadow: 0px 5px 2px #72abf2;
+  box-shadow: 0px 0px 8px #72abf2;
+  /*background: linear-gradient(0deg, rgb(0 161 255 / 30%), rgb(85 218 255 / 20%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #3eb8f5;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Ice.png');
+  background-size: cover;
+}
+
+.SA-BugHolder {
+  -webkit-box-shadow: 0px 0px 4px #d6f272;
+  -moz-box-shadow: 0px 5px 2px #d6f272;
+  box-shadow: 0px 0px 8px #d6f272;
+  /*background: linear-gradient(0deg, rgb(169 195 54 / 30%), rgb(192 217 79 / 30%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #a3c25c;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Bug.png');
+  background-size: cover;
+}
+
+.SA-DragonHolder {
+  -webkit-box-shadow: 0px 0px 4px #4541fc;
+  -moz-box-shadow: 0px 5px 2px #4541fc;
+  box-shadow: 0px 0px 8px #4541fc;
+  /*background: linear-gradient(0deg, rgb(116 79 220 / 30%), rgb(93 85 255 / 30%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #5a55e2;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Dragon.png');
+  background-size: cover;
+}
+
+.SA-GhostHolder {
+  -webkit-box-shadow: 0px 0px 4px #6f41fc;
+  -moz-box-shadow: 0px 5px 2px #6f41fc;
+  box-shadow: 0px 0px 8px #6f41fc;
+  /*background: linear-gradient(0deg, rgb(140 79 206 / 30%), rgb(135 85 255 / 20%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #8e3ef5;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Ghost.png');
+  background-size: cover;
+}
+
+.SA-DarkHolder {
+  -webkit-box-shadow: 0px 0px 4px #624c32;
+  -moz-box-shadow: 0px 5px 2px #624c32;
+  box-shadow: 0px 0px 8px #624c32;
+  /*background: linear-gradient(0deg, rgb(25 25 25 / 30%), rgb(98 98 98 / 50%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #6e665f;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Dark.png');
+  background-size: cover;
+}
+
+.SA-SteelHolder {
+  -webkit-box-shadow: 0px 0px 4px #7b7b7b;
+  -moz-box-shadow: 0px 5px 2px #7b7b7b;
+  box-shadow: 0px 0px 8px #7b7b7b;
+  /*background: linear-gradient(0deg, rgb(163 163 163 / 30%), rgb(255 255 255 / 20%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #8a8a8a;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Steel.png');
+  background-size: cover;
+}
+
+.SA-FairyHolder {
+  -webkit-box-shadow: 0px 0px 4px #fd9cff;
+  -moz-box-shadow: 0px 5px 2px #fd9cff;
+  box-shadow: 0px 0px 8px #fd9cff;
+  /*background: linear-gradient(0deg, rgb(254 186 255 / 30%), rgb(255 159 252 / 20%));*/
+  border-width: 2px;
+  border-style: solid;
+  border-color: #da94ea;
+  background: url('https://poketrades.org/Resources/PokemonContainers/Fairy.png');
+  background-size: cover;
+}
+
+.SA-NormalMoveHolder {
+  background: #8e8c78;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #acaeb3;
+}
+
+.SA-FireMoveHolder {
+  background: #8d3f20;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #f5723e;
+}
+
+.SA-FightingMoveHolder {
+  background: rgb(135 62 32);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #e8926a;
+}
+
+.SA-WaterMoveHolder {
+  background: rgb(20 80 154);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #00aaff;
+}
+
+.SA-FlyingMoveHolder {
+  background: rgb(82 132 193);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #a4c5d6;
+}
+
+.SA-GrassMoveHolder {
+  background: #337b49;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #70da8d;
+}
+
+.SA-PoisonMoveHolder {
+  background: rgb(109 44 153);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #b168fa;
+}
+
+.SA-ElectricMoveHolder {
+  background: rgb(158 141 22);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #f0d95f;
+}
+
+.SA-GroundMoveHolder {
+  background: rgb(139 96 1);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #E0C068;
+}
+
+.SA-PsychicMoveHolder {
+  background: rgb(136 58 138);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #d23ef5;
+}
+
+.SA-RockMoveHolder {
+  background: rgb(118 107 59);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #c1ac53;
+}
+
+.SA-IceMoveHolder {
+  background: rgb(95 133 155);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #3eb8f5;
+}
+
+.SA-BugMoveHolder {
+  background: rgb(112 131 30);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #a3c25c;
+}
+
+.SA-DragonMoveHolder {
+  background: rgb(64 40 130);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #5a55e2;
+}
+
+.SA-GhostMoveHolder {
+  background: rgb(75 43 110);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #923eff;
+}
+
+.SA-DarkMoveHolder {
+  background: rgb(74 74 74);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #0b0b0b;
+}
+
+.SA-SteelMoveHolder {
+  background: #7f7c7c;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #c3c3c3;
+}
+
+.SA-FairyMoveHolder {
+  background: rgb(169 130 170);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #da94ea;
 }

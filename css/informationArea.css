@@ -7,7 +7,7 @@
 }
 
 #InformationArea {
-    background-color: #1a233a;
+    background: url('https://poketrades.org/Resources/Designs/Sidebar.png');
     position: absolute;
     display: none;
     height: calc(100% - 52px);
@@ -16,6 +16,9 @@
     overflow: auto;
     right: 0;
     margin-top: 52px;
+    border-color: #373a6d;
+    border-width: 2px;
+    border-style: solid;
 }
 
 .IA-DropdownOptions {
@@ -36,23 +39,26 @@
     /*position: sticky;*/
     top: 0px;
     z-index: 10;
+    margin-bottom: 8px;
 }
 
 .IA-ButtonDesign {
     background: #171d2c;
     border-width: 2px;
     border-style: solid;
-    border-color: #2e3850;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: #536c9f;
+    color: #dbdbdb;
     cursor: pointer;
     margin: 3px;
-    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
     border-radius: 5px;
+
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    background-size: contain;
+    border-color: #3d429c;
 }
 
 .IA-ShinySprite {
@@ -67,15 +73,20 @@
     vertical-align: top;
 }
 
+.IA-InfoButton {
+    display: none;
+}
+
 .IA-PokemonDetails {
     display: flex;
     border-radius: 9px;
-    background-color: rgb(36 48 72);
-    /*height: 125px;*/
     border-width: 2px;
     border-style: solid;
-    border-color: rgb(23 29 44);
     margin-top: 20px;
+    background: url('https://poketrades.org/Resources/Designs/Main_Data_Holder.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-color: #3d429c;
 }
 
 .IA-DexText {
@@ -158,10 +169,12 @@
     padding-top: 10px;
     padding-bottom: 10px;
     display: block;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 .IA-PokemonDropdown {
-    background-color: rgb(36 48 72);
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
@@ -175,7 +188,7 @@
 }
 
 .IA-PokemonName {
-    background-color: rgb(36 48 72);
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
@@ -243,19 +256,24 @@
     overflow: hidden;
     display: block;
     position: relative;
-    box-shadow: rgb(25 32 48) 0px 0px 0px 2px inset;
-    background-color: rgb(36 48 72);
     border-radius: 15px;
     text-align: center;
     margin-top: 20px;
+}
+
+.IA-StatsInfo {
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    background-size: contain;
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
 }
 
 .IA-EvoTitleText {
     overflow: hidden;
     display: block;
     position: relative;
-    box-shadow: rgb(25 32 48) 0px 0px 0px 2px inset;
-    background-color: rgb(36 48 72);
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    background-size: contain;
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
     border-radius: 15px;
     text-align: center;
     margin-bottom: 10px;
@@ -276,7 +294,6 @@
     display: block;
     position: relative;
     /*cursor: pointer;*/
-    background-color: rgb(36 48 72);
     border-radius: 15px;
     text-align: center;
     width: -webkit-fill-available;
@@ -284,8 +301,15 @@
     height: -webkit-fill-available;
     height: -moz-available;
     border-width: 2px;
-    border-color: rgb(23 29 44);
     border-style: solid;
+
+    border-color: #3d429c;
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
+    background: url('https://poketrades.org/Resources/Designs/Info_Data_Holder.png');
+    background-size: cover;
+    border: none;
+    background-position: center;
+    max-width: 130px;
 }
 
 .IA-InteractableHolder {
@@ -293,7 +317,6 @@
     display: block;
     position: relative;
     cursor: pointer;
-    background-color: rgb(53 66 92);
     border-radius: 15px;
     text-align: center;
     width: -webkit-fill-available;
@@ -301,6 +324,13 @@
     height: -webkit-fill-available;
     height: -moz-available;
     border-width: 2px;
-    border-color: rgb(23 29 44);
     border-style: solid;
+
+    border-color: #3d429c;
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
+    background: url('https://poketrades.org/Resources/Designs/Interactive_Data_Holder.png');
+    background-size: cover;
+    border: none;
+    background-position: center;
+    max-width: 130px;
 }

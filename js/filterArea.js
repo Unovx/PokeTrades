@@ -46,9 +46,9 @@ $('.FA-CloseButton').click(function () {
     if (selectedPokemon == null) {
         //document.querySelector("#SelectionArea").style.width = "100%";
         document.querySelector("#PanelArea").style.display = "block";
-    } if (ctsSeaching && selectedPokemon == null) {
+    } else if (ctsSeaching && selectedPokemon == null) {
         document.querySelector("#CTSArea").style.display = "block";
-    } else {
+    } else if (selectedPokemon != null) {
         document.querySelector("#DetailsArea").style.display = "block";
     }
 });
@@ -64,11 +64,11 @@ $(filterDisplay).change(function () {
     if (filterDisplay.value == "(Public or Private)") {
         filterCheck[0] = "false";
         FilterCheck();
-        filterDisplay.style.background = "#171d2c";
+        filterDisplay.style.borderColor = "#575a87";
     } else {
         filterCheck[0] = "true";
         FilterCheck();
-        filterDisplay.style.background = "#434f66";
+        filterDisplay.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -78,11 +78,11 @@ $(filterBall).change(function () {
     if (filterBall.value == "(Any Ball)") {
         filterCheck[1] = "false";
         FilterCheck();
-        filterBall.style.background = "#171d2c";
+        filterBall.style.borderColor = "#575a87";
     } else {
         filterCheck[1] = "true";
         FilterCheck();
-        filterBall.style.background = "#434f66";
+        filterBall.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -92,11 +92,11 @@ $(filterGender).change(function () {
     if (filterGender.value == "(Any Gender)") {
         filterCheck[2] = "false";
         FilterCheck();
-        filterGender.style.background = "#171d2c";
+        filterGender.style.borderColor = "#575a87";
     } else {
         filterCheck[2] = "true";
         FilterCheck();
-        filterGender.style.background = "#434f66";
+        filterGender.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -106,11 +106,11 @@ $(filterShiny).change(function () {
     if (filterShiny.value == "(Any Shiny or Normal)") {
         filterCheck[3] = "false";
         FilterCheck();
-        filterShiny.style.background = "#171d2c";
+        filterShiny.style.borderColor = "#575a87";
     } else {
         filterCheck[3] = "true";
         FilterCheck();
-        filterShiny.style.background = "#434f66";
+        filterShiny.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -120,11 +120,11 @@ $(filterMint).change(function () {
     if (filterMint.value == "(Any or No Mint") {
         filterCheck[4] = "false";
         FilterCheck();
-        filterMint.style.background = "#171d2c";
+        filterMint.style.borderColor = "#575a87";
     } else {
         filterCheck[4] = "true";
         FilterCheck();
-        filterMint.style.background = "#434f66";
+        filterMint.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -134,11 +134,11 @@ $(filterMisc).change(function () {
     if (filterMisc.value == "(No Misc)") {
         filterCheck[5] = "false";
         FilterCheck();
-        filterMisc.style.background = "#171d2c";
+        filterMisc.style.borderColor = "#575a87";
     } else {
         filterCheck[5] = "true";
         FilterCheck();
-        filterMisc.style.background = "#434f66";
+        filterMisc.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -148,11 +148,11 @@ $(filterMark).change(function () {
     if (filterMark.value == "(Any or No Mark)") {
         filterCheck[6] = "false";
         FilterCheck();
-        filterMark.style.background = "#171d2c";
+        filterMark.style.borderColor = "#575a87";
     } else {
         filterCheck[6] = "true";
         FilterCheck();
-        filterMark.style.background = "#434f66";
+        filterMark.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -162,11 +162,11 @@ $(filterType).change(function () {
     if (filterType.value == "(Any Type)") {
         filterCheck[7] = "false";
         FilterCheck();
-        filterType.style.background = "#171d2c";
+        filterType.style.borderColor = "#575a87";
     } else {
         filterCheck[7] = "true";
         FilterCheck();
-        filterType.style.background = "#434f66";
+        filterType.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -176,11 +176,11 @@ $(filterRibbon).change(function () {
     if (filterRibbon.value == "(Any or No Ribbon)") {
         filterCheck[8] = "false";
         FilterCheck();
-        filterRibbon.style.background = "#171d2c";
+        filterRibbon.style.borderColor = "#575a87";
     } else {
         filterCheck[8] = "true";
         FilterCheck();
-        filterRibbon.style.background = "#434f66";
+        filterRibbon.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -190,11 +190,11 @@ $(filterLanguage).change(function () {
     if (filterLanguage.value == "ANY") {
         filterCheck[9] = "false";
         FilterCheck();
-        filterLanguage.style.background = "#171d2c";
+        filterLanguage.style.borderColor = "#575a87";
     } else {
         filterCheck[9] = "true";
         FilterCheck();
-        filterLanguage.style.background = "#434f66";
+        filterLanguage.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -204,11 +204,11 @@ $(filterNature).change(function () {
     if (filterNature.value == "(Any Nature)") {
         filterCheck[10] = "false";
         FilterCheck();
-        filterNature.style.background = "#171d2c";
+        filterNature.style.borderColor = "#575a87";
     } else {
         filterCheck[10] = "true";
         FilterCheck();
-        filterNature.style.background = "#434f66";
+        filterNature.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -218,11 +218,11 @@ $(filterAbility).change(function () {
     if (filterAbility.value == "(Any Ability") {
         filterCheck[11] = "false";
         FilterCheck();
-        filterAbility.style.background = "#171d2c";
+        filterAbility.style.borderColor = "#575a87";
     } else {
         filterCheck[11] = "true";
         FilterCheck();
-        filterAbility.style.background = "#434f66";
+        filterAbility.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -232,11 +232,11 @@ $(filterStatus).change(function () {
     if (filterStatus.value == "(Any Status)") {
         filterCheck[12] = "false";
         FilterCheck();
-        filterStatus.style.background = "#171d2c";
+        filterStatus.style.borderColor = "#575a87";
     } else {
         filterCheck[12] = "true";
         FilterCheck();
-        filterStatus.style.background = "#434f66";
+        filterStatus.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -246,11 +246,11 @@ $(filterEvent).change(function () {
     if (filterEvent.value == "(Any or No Mark)") {
         filterCheck[13] = "false";
         FilterCheck();
-        filterEvent.style.background = "#171d2c";
+        filterEvent.style.borderColor = "#575a87";
     } else {
         filterCheck[13] = "true";
         FilterCheck();
-        filterEvent.style.background = "#434f66";
+        filterEvent.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -260,11 +260,11 @@ $(filterMove).change(function () {
     if (filterMove.value == "(Any Move)") {
         filterCheck[14] = "false";
         FilterCheck();
-        filterMove.style.background = "#171d2c";
+        filterMove.style.borderColor = "#575a87";
     } else {
         filterCheck[14] = "true";
         FilterCheck();
-        filterMove.style.background = "#434f66";
+        filterMove.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -274,11 +274,11 @@ $(filterHowObtained).change(function () {
     if (filterHowObtained.value == "(Any Method)") {
         filterCheck[15] = "false";
         FilterCheck();
-        filterHowObtained.style.background = "#171d2c";
+        filterHowObtained.style.borderColor = "#575a87";
     } else {
         filterCheck[15] = "true";
         FilterCheck();
-        filterHowObtained.style.background = "#434f66";
+        filterHowObtained.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -288,11 +288,11 @@ $(filterGameObtained).change(function () {
     if (filterGameObtained.value == "(Any Game)") {
         filterCheck[16] = "false";
         FilterCheck();
-        filterGameObtained.style.background = "#171d2c";
+        filterGameObtained.style.borderColor = "#575a87";
     } else {
         filterCheck[16] = "true";
         FilterCheck();
-        filterGameObtained.style.background = "#434f66";
+        filterGameObtained.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -302,11 +302,11 @@ $(filterNote).change(function () {
     if (filterNote.value == "(Any/No Note)") {
         filterCheck[17] = "false";
         FilterCheck();
-        filterNote.style.background = "#171d2c";
+        filterNote.style.borderColor = "#575a87";
     } else {
         filterCheck[17] = "true";
         FilterCheck();
-        filterNote.style.background = "#434f66";
+        filterNote.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -316,11 +316,11 @@ $(filterProof).change(function () {
     if (filterProof.value == "(Any/No Proof)") {
         filterCheck[18] = "false";
         FilterCheck();
-        filterProof.style.background = "#171d2c";
+        filterProof.style.borderColor = "#575a87";
     } else {
         filterCheck[18] = "true";
         FilterCheck();
-        filterProof.style.background = "#434f66";
+        filterProof.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -330,11 +330,11 @@ $(filterOT).keyup(function () {
     if (filterOT.value == "") {
         filterCheck[19] = "false";
         FilterCheck();
-        filterOT.style.background = "#171d2c";
+        filterOT.style.borderColor = "#575a87";
     } else {
         filterCheck[19] = "true";
         FilterCheck();
-        filterOT.style.background = "#434f66";
+        filterOT.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -344,11 +344,11 @@ $(filterID).keyup(function () {
     if (filterID.value == "") {
         filterCheck[20] = "false";
         FilterCheck();
-        filterID.style.background = "#171d2c";
+        filterID.style.borderColor = "#575a87";
     } else {
         filterCheck[20] = "true";
         FilterCheck();
-        filterID.style.background = "#434f66";
+        filterID.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -358,11 +358,11 @@ $(filterIvHP).change(function () {
     if (filterIvHP.value == "X") {
         filterCheck[21] = "false";
         FilterCheck();
-        filterIvHP.style.background = "#171d2c";
+        filterIvHP.style.borderColor = "#575a87";
     } else {
         filterCheck[21] = "true";
         FilterCheck();
-        filterIvHP.style.background = "#434f66";
+        filterIvHP.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -372,11 +372,11 @@ $(filterIvAtt).change(function () {
     if (filterIvAtt.value == "X") {
         filterCheck[22] = "false";
         FilterCheck();
-        filterIvAtt.style.background = "#171d2c";
+        filterIvAtt.style.borderColor = "#575a87";
     } else {
         filterCheck[22] = "true";
         FilterCheck();
-        filterIvAtt.style.background = "#434f66";
+        filterIvAtt.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -386,11 +386,11 @@ $(filterIvDef).change(function () {
     if (filterIvDef.value == "X") {
         filterCheck[23] = "false";
         FilterCheck();
-        filterIvDef.style.background = "#171d2c";
+        filterIvDef.style.borderColor = "#575a87";
     } else {
         filterCheck[23] = "true";
         FilterCheck();
-        filterIvDef.style.background = "#434f66";
+        filterIvDef.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -400,11 +400,11 @@ $(filterIvSpa).change(function () {
     if (filterIvSpa.value == "X") {
         filterCheck[24] = "false";
         FilterCheck();
-        filterIvSpa.style.background = "#171d2c";
+        filterIvSpa.style.borderColor = "#575a87";
     } else {
         filterCheck[24] = "true";
         FilterCheck();
-        filterIvSpa.style.background = "#434f66";
+        filterIvSpa.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -414,11 +414,11 @@ $(filterIvSpd).change(function () {
     if (filterIvSpd.value == "X") {
         filterCheck[25] = "false";
         FilterCheck();
-        filterIvSpd.style.background = "#171d2c";
+        filterIvSpd.style.borderColor = "#575a87";
     } else {
         filterCheck[25] = "true";
         FilterCheck();
-        filterIvSpd.style.background = "#434f66";
+        filterIvSpd.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -428,11 +428,11 @@ $(filterIvSpe).change(function () {
     if (filterIvSpe.value == "X") {
         filterCheck[26] = "false";
         FilterCheck();
-        filterIvSpe.style.background = "#171d2c";
+        filterIvSpe.style.borderColor = "#575a87";
     } else {
         filterCheck[26] = "true";
         FilterCheck();
-        filterIvSpe.style.background = "#434f66";
+        filterIvSpe.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -442,11 +442,11 @@ $(filterEvHP).change(function () {
     if (filterEvHP.value == "X") {
         filterCheck[27] = "false";
         FilterCheck();
-        filterEvHP.style.background = "#171d2c";
+        filterEvHP.style.borderColor = "#575a87";
     } else {
         filterCheck[27] = "true";
         FilterCheck();
-        filterEvHP.style.background = "#434f66";
+        filterEvHP.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -456,11 +456,11 @@ $(filterEvAtt).change(function () {
     if (filterEvAtt.value == "X") {
         filterCheck[28] = "false";
         FilterCheck();
-        filterEvAtt.style.background = "#171d2c";
+        filterEvAtt.style.borderColor = "#575a87";
     } else {
         filterCheck[28] = "true";
         FilterCheck();
-        filterEvAtt.style.background = "#434f66";
+        filterEvAtt.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -470,11 +470,11 @@ $(filterEvDef).change(function () {
     if (filterEvDef.value == "X") {
         filterCheck[29] = "false";
         FilterCheck();
-        filterEvDef.style.background = "#171d2c";
+        filterEvDef.style.borderColor = "#575a87";
     } else {
         filterCheck[29] = "true";
         FilterCheck();
-        filterEvDef.style.background = "#434f66";
+        filterEvDef.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -484,11 +484,11 @@ $(filterEvSpa).change(function () {
     if (filterEvSpa.value == "X") {
         filterCheck[30] = "false";
         FilterCheck();
-        filterEvSpa.style.background = "#171d2c";
+        filterEvSpa.style.borderColor = "#575a87";
     } else {
         filterCheck[30] = "true";
         FilterCheck();
-        filterEvSpa.style.background = "#434f66";
+        filterEvSpa.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -498,11 +498,11 @@ $(filterEvSpd).change(function () {
     if (filterEvSpd.value == "X") {
         filterCheck[31] = "false";
         FilterCheck();
-        filterEvSpd.style.background = "#171d2c";
+        filterEvSpd.style.borderColor = "#575a87";
     } else {
         filterCheck[31] = "true";
         FilterCheck();
-        filterEvSpd.style.background = "#434f66";
+        filterEvSpd.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -512,11 +512,11 @@ $(filterEvSpe).change(function () {
     if (filterEvSpe.value == "X") {
         filterCheck[32] = "false";
         FilterCheck();
-        filterEvSpe.style.background = "#171d2c";
+        filterEvSpe.style.borderColor = "#575a87";
     } else {
         filterCheck[32] = "true";
         FilterCheck();
-        filterEvSpe.style.background = "#434f66";
+        filterEvSpe.style.borderColor = "#017f90";
     }
     //ShowLoading();
     FilterResults();
@@ -532,7 +532,7 @@ $('.FA-Gen6').click(function () {
         filterGen6 = "";
         filterCheck[33] = "false";
         FilterCheck();
-        document.querySelector(".FA-Gen6").style.background = "#171d2c";
+        document.querySelector(".FA-Gen6").style.borderColor = "#575a87";
     }
     //ShowLoading();
     FilterResults();
@@ -548,7 +548,7 @@ $('.FA-Gen7').click(function () {
         filterGen7 = "";
         filterCheck[34] = "false";
         FilterCheck();
-        document.querySelector(".FA-Gen7").style.background = "#171d2c";
+        document.querySelector(".FA-Gen7").style.borderColor = "#575a87";
     }
     //ShowLoading();
     FilterResults();
@@ -564,7 +564,7 @@ $('.FA-Gen8').click(function () {
         filterGen8 = "";
         filterCheck[35] = "false";
         FilterCheck();
-        document.querySelector(".FA-Gen8").style.background = "#171d2c";
+        document.querySelector(".FA-Gen8").style.borderColor = "#575a87";
     }
     //ShowLoading();
     FilterResults();
@@ -580,7 +580,7 @@ $('.FA-Home').click(function () {
         filterHome = "";
         filterCheck[36] = "false";
         FilterCheck();
-        document.querySelector(".FA-Home").style.background = "#171d2c";
+        document.querySelector(".FA-Home").style.borderColor = "#575a87";
     }
     //ShowLoading();
     FilterResults();
@@ -588,19 +588,19 @@ $('.FA-Home').click(function () {
 
 
 function FilterCheck() {
-    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#1e1e1e";
     filtersApplied = false;
     for (let i = 0; i < filterCheck.length; i++) {
         if (filterCheck[i] != "false") {
             filtersApplied = true;
-            document.querySelector(".SA-FiltersButton").style.backgroundColor = "#341a39";
+            document.querySelector(".SA-FiltersButton").style.backgroundColor = "#00381b";
         }
     }
 }
 
 function PostGenerateSelection() {
     if (bunchname != "" || filtersApplied == true || searchPokemonText.value != "") {
-        $.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, offset: selectionOffset.value, limit: selectionLimit.value, searchbar: searchPokemonText.value, tradeOption: tradeOption, bunchname: bunchname/*, ball: filterBall.value, gender: filterGender.value, shiny: filterShiny.value, mint: filterMint.value, misc: filterMisc.value, mark: filterMark.value, lang: filterLanguage.value, OT: filterOT.value, ID: filterID.value, gen6: filterGen6, gen7: filterGen7, gen8: filterGen8, home: filterHome, nature: filterNature.value, ability: filterAbility.value, status: filterStatus.value, event: filterEvent.value, move: filterMove.value, howObtained: filterHowObtained.value, gameObtained: filterGameObtained.value, display: filterDisplay.value, note: filterNote.value, proof: filterProof.value, ivhp: filterIvHP.value, ivatt: filterIvAtt.value, ivdef: filterIvDef.value, ivspa: filterIvSpa.value, ivspd: filterIvSpd.value, ivspe: filterIvSpe.value, evhp: filterEvHP.value, evatt: filterEvAtt.value, evdef: filterEvDef.value, evspa: filterEvSpa.value, evspd: filterEvSpd.value, evspe: filterEvSpe.value*/ }, GenerateSelection);
+        $.post(url + "/PHP/generate_selection.php", { token: token, searchID: searchData.user_id, offset: selectionOffset.value, limit: selectionLimit.value, searchbar: searchPokemonText.value, tradeOption: tradeOption, bunchname: bunchname }, GenerateSelection);
         console.log(bunchname);
     } else {
         HideLoading();
@@ -609,80 +609,80 @@ function PostGenerateSelection() {
 
 function ResetFilters() {
     filterDisplay.value = "(Public or Private)";
-    filterDisplay.style.background = "#171d2c";
+    filterDisplay.style.borderColor = "#575a87";
     filterBall.value = "(Any Ball)";
-    filterBall.style.background = "#171d2c";
+    filterBall.style.borderColor = "#575a87";
     filterGender.value = "(Any Gender)";
-    filterGender.style.background = "#171d2c";
+    filterGender.style.borderColor = "#575a87";
     filterShiny.value = "(Any Shiny or Normal)";
-    filterShiny.style.background = "#171d2c";
+    filterShiny.style.borderColor = "#575a87";
     filterMint.value = "(Any or No Mint)";
-    filterMint.style.background = "#171d2c";
+    filterMint.style.borderColor = "#575a87";
     filterMisc.value = "(No Misc)";
-    filterMisc.style.background = "#171d2c";
+    filterMisc.style.borderColor = "#575a87";
     filterMark.value = "(Any or No Mark)";
-    filterMark.style.background = "#171d2c";
+    filterMark.style.borderColor = "#575a87";
     filterType.value = "(Any Type)";
-    filterType.style.background = "#171d2c";
+    filterType.style.borderColor = "#575a87";
     filterRibbon.value = "(Any or No Ribbon)";
-    filterRibbon.style.background = "#171d2c";
+    filterRibbon.style.borderColor = "#575a87";
     filterLanguage.value = "ANY";
-    filterLanguage.style.background = "#171d2c";
+    filterLanguage.style.borderColor = "#575a87";
     filterNature.value = "(Any Nature)";
-    filterNature.style.background = "#171d2c";
+    filterNature.style.borderColor = "#575a87";
     filterAbility.value = "(Any Ability)";
-    filterAbility.style.background = "#171d2c";
+    filterAbility.style.borderColor = "#575a87";
     filterStatus.value = "(Any Status)";
-    filterStatus.style.background = "#171d2c";
+    filterStatus.style.borderColor = "#575a87";
     filterEvent.value = "(Any/No Event)";
-    filterEvent.style.background = "#171d2c";
+    filterEvent.style.borderColor = "#575a87";
     filterMove.value = "(Any Move)";
-    filterMove.style.background = "#171d2c";
+    filterMove.style.borderColor = "#575a87";
     filterHowObtained.value = "(Any Method)";
-    filterHowObtained.style.background = "#171d2c";
+    filterHowObtained.style.borderColor = "#575a87";
     filterGameObtained.value = "(Any Game)";
-    filterGameObtained.style.background = "#171d2c";
+    filterGameObtained.style.borderColor = "#575a87";
     filterNote.value = "(Any/No Note)";
-    filterNote.style.background = "#171d2c";
+    filterNote.style.borderColor = "#575a87";
     filterProof.value = "(Any/No Proof)";
-    filterProof.style.background = "#171d2c";
+    filterProof.style.borderColor = "#575a87";
     filterOT.value = "";
-    filterOT.style.background = "#171d2c";
+    filterOT.style.borderColor = "#575a87";
     filterID.value = "";
-    filterID.style.background = "#171d2c";
+    filterID.style.borderColor = "#575a87";
     filterIvHP.value = "X";
-    filterIvHP.style.background = "#171d2c";
+    filterIvHP.style.borderColor = "#575a87";
     filterIvAtt.value = "X";
-    filterIvAtt.style.background = "#171d2c";
+    filterIvAtt.style.borderColor = "#575a87";
     filterIvDef.value = "X";
-    filterIvDef.style.background = "#171d2c";
+    filterIvDef.style.borderColor = "#575a87";
     filterIvSpa.value = "X";
-    filterIvSpa.style.background = "#171d2c";
+    filterIvSpa.style.borderColor = "#575a87";
     filterIvSpd.value = "X";
-    filterIvSpd.style.background = "#171d2c";
+    filterIvSpd.style.borderColor = "#575a87";
     filterIvSpe.value = "X";
-    filterIvSpe.style.background = "#171d2c";
+    filterIvSpe.style.borderColor = "#575a87";
     filterEvHP.value = "X";
-    filterEvHP.style.background = "#171d2c";
+    filterEvHP.style.borderColor = "#575a87";
     filterEvAtt.value = "X";
-    filterEvAtt.style.background = "#171d2c";
+    filterEvAtt.style.borderColor = "#575a87";
     filterEvDef.value = "X";
-    filterEvDef.style.background = "#171d2c";
+    filterEvDef.style.borderColor = "#575a87";
     filterEvSpa.value = "X";
-    filterEvSpa.style.background = "#171d2c";
+    filterEvSpa.style.borderColor = "#575a87";
     filterEvSpd.value = "X";
-    filterEvSpd.style.background = "#171d2c";
+    filterEvSpd.style.borderColor = "#575a87";
     filterEvSpe.value = "X";
-    filterEvSpe.style.background = "#171d2c";
+    filterEvSpe.style.borderColor = "#575a87";
 
     filterGen6 = "";
-    document.querySelector(".FA-Gen6").style.background = "#171d2c";
+    document.querySelector(".FA-Gen6").style.borderColor = "#575a87";
     filterGen7 = "";
-    document.querySelector(".FA-Gen7").style.background = "#171d2c";
+    document.querySelector(".FA-Gen7").style.borderColor = "#575a87";
     filterGen8 = "";
-    document.querySelector(".FA-Gen8").style.background = "#171d2c";
+    document.querySelector(".FA-Gen8").style.borderColor = "#575a87";
     filterHome = "";
-    document.querySelector(".FA-Home").style.background = "#171d2c";
+    document.querySelector(".FA-Home").style.borderColor = "#575a87";
 
     for (let i = 0; i < filterCheck.length; i++) {
         filterCheck[i] = "false";

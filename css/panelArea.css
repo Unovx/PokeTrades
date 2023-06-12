@@ -5,13 +5,6 @@
         width: 100% !important;
     }
 
-    [class*="PA-WhatsNewPanel"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-        overflow: unset;
-        height: unset;
-    }
-
     [class*="PA-SettingsPanel"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
@@ -45,13 +38,6 @@
         top: 15px !important;
     }
 
-    [class*="PA-FAQPanel"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-        overflow: unset;
-        height: unset;
-    }
-
     [class*="PA-ImportingPanel"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
@@ -70,46 +56,28 @@
     z-index: 1;
     overflow: auto;
     margin-top: 52px;
+    border-color: rgb(55, 58, 109);
+    border-width: 2px;
+    border-style: solid;
+    background: url(https://poketrades.org/Resources/Designs/Sidebar.png);
 }
 
 .PA-ButtonDesign {
-    background: #171d2c;
+    border-radius: 5px;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    background-size: contain;
+    border-color: #3d429c;
     border-width: 2px;
     border-style: solid;
-    border-color: #2e3850;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: #536c9f;
+    color: #dbdbdb;
     cursor: pointer;
     margin: 3px;
-    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
     border-radius: 5px;
-}
-
-.PA-WhatsNewPanel {
-    /*background: rgb(192 192 192 / 95%);
-    height: 100%;*/
-    border-top-left-radius: 35px;
-    border-top-right-radius: 35px;
-    border-bottom-left-radius: 35px;
-    border-bottom-right-radius: 35px;
-    width: 380px;
-    right: 0;
-    padding: 10px;
-    /*visibility: hidden;*/
-}
-
-.WhatsNewText {
-    display: block;
-    color: #afafaf;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    padding: 10px;
-    overflow: auto;
 }
 
 .PA-TradeShopPanel {
@@ -139,6 +107,10 @@
     font-weight: bold;
 }
 
+.PA-TradeShopClose {
+    visibility: hidden;
+}
+
 .PA-TradeShopInfo {
     position: relative;
     color: white;
@@ -165,18 +137,21 @@
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     margin: auto;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
+    font-weight: normal;
+    font-family: monospace;
+    font-size: 13px;
     padding: 10px;
     width: 380px;
     top: 35px;
-    color: #61759e;
-    background: #11192c;
+    color: #e2e2e2;
+    background: #2a3267;
+    border: #585858;
+    border-style: solid;
 }
 
 .PA-BunchHelpButton {
 
+    display: none;
     background: #171d2c;
     border-width: 2px;
     border-style: solid;
@@ -203,11 +178,12 @@
 .PA-BunchHolder {
     box-shadow: rgb(175 153 70) 3px 3px 1px 0px;
     /*background-color: rgb(38 45 64);*/
-    background-color: rgb(41 49 68);
+    /*background-color: rgb(41 49 68);*/
     border-radius: 15px;
     width: 100%;
     height: 100%;
     cursor: pointer;
+    background: url('https://poketrades.org/Resources/Designs/BunchHolder.png');
 }
 
 .PA-GeneratedBunches {
@@ -220,16 +196,19 @@
 }
 
 .PA-ForTradeBunchEdit {
-    background: #171d2c;
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    height: 23px;
+    background-size: contain;
     border-width: 2px;
     border-style: solid;
     border-color: #2e3850;
     margin-top: 20px !important;
-    width: 175px;
+    width: 185px;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #536c9f;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    color: #e0e0e0;
     cursor: pointer;
     margin: 3px;
     box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
@@ -237,16 +216,19 @@
 }
 
 .PA-ForTradeBunchMove {
-    background: #171d2c;
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    height: 23px;
+    background-size: contain;
     border-width: 2px;
     border-style: solid;
     border-color: #2e3850;
     margin-top: 20px !important;
-    width: 175px;
+    width: 185px;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #536c9f;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    color: #e0e0e0;
     cursor: pointer;
     margin: 3px;
     box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
@@ -264,16 +246,19 @@
 }
 
 .PA-LookingForBunchEdit {
-    background: #171d2c;
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    height: 23px;
+    background-size: contain;
     border-width: 2px;
     border-style: solid;
     border-color: #2e3850;
     margin-top: 20px !important;
-    width: 175px;
+    width: 185px;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #536c9f;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    color: #e0e0e0;
     cursor: pointer;
     margin: 3px;
     box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
@@ -281,16 +266,19 @@
 }
 
 .PA-LookingForBunchMove {
-    background: #171d2c;
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    height: 23px;
+    background-size: contain;
     border-width: 2px;
     border-style: solid;
     border-color: #2e3850;
     margin-top: 20px !important;
-    width: 175px;
+    width: 185px;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #536c9f;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    color: #e0e0e0;
     cursor: pointer;
     margin: 3px;
     box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
@@ -337,25 +325,12 @@
     margin: 0%;
     color: white;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     text-align: center;
     /* This is for PC only as otherwise text between the grid columns look too crowded*/
-    font-size: 70%;
+    font-size: 11px;
     padding-bottom: 5px;
     width: 90%;
-}
-
-.PA-FAQPanel {
-    z-index: 1;
-    border-top-left-radius: 35px;
-    border-top-right-radius: 35px;
-    border-bottom-left-radius: 35px;
-    border-bottom-right-radius: 35px;
-    width: 380px;
-    right: 0;
-    padding: 10px;
-    overflow: auto;
-    display: none;
 }
 
 .PA-SettingsPanel {
@@ -506,6 +481,19 @@
 }
 
 .PA-GenerationalSpritesButton {
+    width: 48px;
+    height: 22px;
+    cursor: pointer;
+}
+
+.PA-InitialPromptText {
+    color: #afafaf;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.PA-InitialPromptButton {
     width: 48px;
     height: 22px;
     cursor: pointer;

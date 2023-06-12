@@ -46,13 +46,6 @@
         top: 35px !important;
     }
 
-    [class*="MA-Message"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-        top: 50px !important;
-        font-size: initial !important;
-    }
-
     [class*="MA-TutorialAndDiscord"] {
         width: 100% !important;
     }
@@ -61,11 +54,11 @@
 
 #Background {
     position: fixed;
-    /*background-image: url('https://poketrades.org/Resources/Designs/Background.png');*/
-    background-size: contain;
+    background: url('https://poketrades.org/Resources/Designs/Poketrades_Background.png');
+    background-size: cover;
     width: 100%;
     height: 100%;
-    background-color: #243048;
+    /*background-color: #243048;*/
 }
 
 #MainArea {
@@ -78,15 +71,31 @@
 }
 
 .MA-TopRow {
-    width: 100%;
+    /*width: 100%;
     height: 50px;
     background-color: #171d2c;
-    /* border-radius: 0px 0px 15px 10px; */
     border-style: unset;
     border-bottom-style: solid;
     border-color: #141a28;
     position: fixed;
+    z-index: 10;*/
+
+
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    height: 36px;
+    position: fixed;
     z-index: 10;
+    border-width: 2px;
+    border-style: solid;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    border-radius: 5px;
+    border-color: #373a6d;
+    background: url('https://poketrades.org/Resources/Designs/Sidebar.png');
+
 }
 
 .MA-TitleText {
@@ -99,7 +108,8 @@
     display: flex;
     height: 100%;
     align-items: center;*/
-    color: #485e8b;
+    /*color: #485e8b;*/
+    color: #a0a0a0;
     font-size: 26px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -128,10 +138,13 @@
 .MA-TopRowImage {
     border-style: solid;
     border-radius: 9px;
-    width: 40px;
+    /*width: 40px;*/
+    width: 28px;
     vertical-align: middle;
     margin: 5px;
-    border-color: #35405b;
+    /*border-color: #35405b;*/
+    border-color: rgb(160 160 160);
+    padding: 1px;
     cursor: pointer;
 }
 
@@ -139,6 +152,38 @@
     display: block;
     height: 100%;
     width: 100%;
+}
+
+.MA-MessageBlock {
+    border-color: #6799cd;
+    border-width: 2px;
+    border-style: solid;
+    height: 25px;
+    border-radius: 5px;
+    margin-bottom: 13px;
+    margin-right: -5px;
+    font-size: 14px;
+    font-family: monospace;
+    color: #a0a0a0;
+    background: #1e1e1e;
+    display: inline-block;
+    display: none;
+}
+
+.MA-MessageText {
+    vertical-align: sub;
+    padding: 3px;
+}
+
+.MA-MessageArrow {
+    display: inline-block;
+    display: none;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+
+    border-left: 10px solid #6799cd;
 }
 
 .MA-MainTextHolder {
@@ -182,15 +227,16 @@
     /*background: #c2d0e07a;
     box-shadow: rgb(78 88 103) 5px 5px 0px 1px;*/
     border-radius: 10px;
-    background: #131926;
+    /*background: #131926;*/
     box-shadow: rgb(0 0 0) 5px 5px 0px 1px;
     padding: 5px;
     cursor: pointer;
 }
 
-.MA-SectionDiv:hover {
+
+/*.MA-SectionDiv:hover {
     background: #1212127a;
-}
+}*/
 
 .MA-Divider {
     width: 100%;
@@ -199,7 +245,7 @@
     border-left-width: 0px;
     border-right-width: 0px;
     border-style: solid;
-    color: #2a3753;
+    color: #b1b1b1;
 }
 
 .MA-SectionText {
@@ -234,10 +280,11 @@
     width: 135px;
     justify-content: center;
     filter: brightness(0) saturate(100%) invert(19%) sepia(53%) saturate(496%) hue-rotate(185deg) brightness(92%) contrast(94%);
+    visibility: hidden;
 }
 
 .MA-SectionTitleText {
-    color: #e0e0e0;
+    color: #dadada;
     font-size: 26px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -265,12 +312,21 @@
     display: none;
 }
 
+.MA-SearchTradeShops {
+    background: url("https://poketrades.org/Resources/Designs/MainSearchContainer.png");
+    background-size: cover;
+}
+
 .MA-PokemonData {
     pointer-events: none;
+    background: url("https://poketrades.org/Resources/Designs/PokemonDataContainer.png");
+    background-size: cover;
 }
 
 .MA-ImportTradeSheet {
     pointer-events: none;
+    background: url("https://poketrades.org/Resources/Designs/PokemonImportContainer.png");
+    background-size: cover;
 }
 
 .MA-Giveaway {
@@ -371,7 +427,8 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type=number] {
-    -moz-appearance: textfield;
+    /*-moz-appearance: textfield;*/
+    appearance: textfield;
 }
 
 /* width */

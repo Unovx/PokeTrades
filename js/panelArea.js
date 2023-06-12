@@ -3,107 +3,13 @@
 customMessage = document.querySelector(".PA-Message");
 let lfBunches = 0;
 let ftBunches = 0;
-var previewBall;
-var previewGender;
-var previewShiny;
-var previewMint;
-var previewMisc;
-var previewMark;
-var previewIVs;
-var dexNumber;
-var advancedPreview;
+
 var extraViewings;
 var panelsPositions;
-var hoverInfo;
-var exactIVs;
 var generationalSprites;
+var initialPrompt;
 var emptyBunches;
 var showEmpty;
-var expandView;
-
-if (localStorage.getItem('previewBall') == null) {
-    previewBall = true;
-    document.querySelector(".PA-BallButton").innerHTML = "On";
-}
-else if (localStorage.getItem('previewBall') == "1") {
-    previewBall = true;
-    document.querySelector(".PA-BallButton").innerHTML = "On";
-} else {
-    previewBall = false;
-    document.querySelector(".PA-BallButton").innerHTML = "Off";
-}
-
-if (localStorage.getItem('previewGender') == null) {
-    previewGender = false;
-    document.querySelector(".PA-GenderButton").innerHTML = "Off";
-}
-else if (localStorage.getItem('previewGender') == "1") {
-    previewGender = true;
-    document.querySelector(".PA-GenderButton").innerHTML = "On";
-} else {
-    previewGender = false;
-    document.querySelector(".PA-GenderButton").innerHTML = "Off";
-}
-
-if (localStorage.getItem('previewShiny') == null) {
-    previewShiny = false;
-    document.querySelector(".PA-ShinyButton").innerHTML = "Off";
-}
-else if (localStorage.getItem('previewShiny') == "1") {
-    previewShiny = true;
-    document.querySelector(".PA-ShinyButton").innerHTML = "On";
-} else {
-    previewShiny = false;
-    document.querySelector(".PA-ShinyButton").innerHTML = "Off";
-}
-
-if (localStorage.getItem('previewMint') == null) {
-    previewMint = false;
-    document.querySelector(".PA-MintButton").innerHTML = "Off";
-}
-else if (localStorage.getItem('previewMint') == "1") {
-    previewMint = true;
-    document.querySelector(".PA-MintButton").innerHTML = "On";
-} else {
-    previewMint = false;
-    document.querySelector(".PA-MintButton").innerHTML = "Off";
-}
-
-if (localStorage.getItem('previewMisc') == null) {
-    previewMisc = false;
-    document.querySelector(".PA-MiscButton").innerHTML = "Off";
-}
-else if (localStorage.getItem('previewMisc') == "1") {
-    previewMisc = true;
-    document.querySelector(".PA-MiscButton").innerHTML = "On";
-} else {
-    previewMisc = false;
-    document.querySelector(".PA-MiscButton").innerHTML = "Off";
-}
-
-if (localStorage.getItem('previewMark') == null) {
-    previewMark = false;
-    document.querySelector(".PA-MarkButton").innerHTML = "Off";
-}
-else if (localStorage.getItem('previewMark') == "1") {
-    previewMark = true;
-    document.querySelector(".PA-MarkButton").innerHTML = "On";
-} else {
-    previewMark = false;
-    document.querySelector(".PA-MarkButton").innerHTML = "Off";
-}
-
-if (localStorage.getItem('previewIVs') == null) {
-    previewIVs = true;
-    document.querySelector(".PA-IVsButton").innerHTML = "On";
-}
-else if (localStorage.getItem('previewIVs') == "1") {
-    previewIVs = true;
-    document.querySelector(".PA-IVsButton").innerHTML = "On";
-} else {
-    previewIVs = false;
-    document.querySelector(".PA-IVsButton").innerHTML = "Off";
-}
 
 if (localStorage.getItem('extraViewings') == null) {
     extraViewings = false;
@@ -130,33 +36,6 @@ if (localStorage.getItem('panelPositions') == "left") {
     PanelsRight();
 }
 
-if (window.innerWidth < 768) {
-    hoverInfo = false;
-    document.querySelector(".PA-HoverButton").innerHTML = "N/A";
-} else if (localStorage.getItem('hoverInfo') == null) {
-    hoverInfo = true;
-    document.querySelector(".PA-HoverButton").innerHTML = "On";
-}
-else if (localStorage.getItem('hoverInfo') == "1") {
-    hoverInfo = true;
-    document.querySelector(".PA-HoverButton").innerHTML = "On";
-} else {
-    hoverInfo = false;
-    document.querySelector(".PA-HoverButton").innerHTML = "Off";
-}
-
-if (localStorage.getItem('dexNumber') == null) {
-    dexNumber = false;
-    document.querySelector(".PA-DexNumberButton").innerHTML = "Off";
-}
-else if (localStorage.getItem('dexNumber') == "1") {
-    dexNumber = true;
-    document.querySelector(".PA-DexNumberButton").innerHTML = "On";
-} else {
-    dexNumber = false;
-    document.querySelector(".PA-DexNumberButton").innerHTML = "Off";
-}
-
 /*') == null) {
     advancedPreview = true;
     document.querySelector(".PA-AdvancedPreviewButton").innerHTML = "On";
@@ -180,19 +59,20 @@ else if (localStorage.getItem('generationalSprites') == "1") {
     generationalSprites = false;
     document.querySelector(".PA-GenerationalSpritesButton").innerHTML = "Off";
 }
-
-if (localStorage.getItem('exactIVs') == null) {
-    exactIVs = false;
-    document.querySelector(".PA-ExactIVsButton").innerHTML = "Off";
+if (localStorage.getItem('initialPrompt') == null) {
+    initialPrompt = true;
+    document.querySelector(".PA-InitialPromptButton").innerHTML = "On";
+    PromptOn();
 }
-else if (localStorage.getItem('exactIVs') == "1") {
-    exactIVs = true;
-    document.querySelector(".PA-ExactIVsButton").innerHTML = "On";
+else if (localStorage.getItem('initialPrompt') == "1") {
+    initialPrompt = true;
+    document.querySelector(".PA-InitialPromptButton").innerHTML = "On";
+    PromptOn();
 } else {
-    exactIVs = false;
-    document.querySelector(".PA-ExactIVsButton").innerHTML = "Off";
+    initialPrompt = false;
+    document.querySelector(".PA-InitialPromptButton").innerHTML = "Off";
+    PromptOff();
 }
-
 if (localStorage.getItem('emptyBunches') == null) {
     emptyBunches = true;
     showEmpty = "yes";
@@ -206,18 +86,6 @@ else if (localStorage.getItem('emptyBunches') == "1") {
     emptyBunches = false;
     showEmpty = "";
     document.querySelector(".PA-EmptyBunchesButton").innerHTML = "Off";
-}
-
-if (localStorage.getItem('expandView') == null) {
-    expandView = true;
-    document.querySelector(".PA-ExpandViewButton").innerHTML = "On";
-}
-else if (localStorage.getItem('expandView') == "1") {
-    expandView = true;
-    document.querySelector(".PA-ExpandViewButton").innerHTML = "On";
-} else {
-    expandView = false;
-    document.querySelector(".PA-ExpandViewButton").innerHTML = "Off";
 }
 
 $('.PA-TradeShopClose').click(function () {
@@ -236,15 +104,13 @@ $(".PA-Searchbar").keyup(function () {
     searchInfoText = (document.querySelector(".PA-Searchbar").value);
     searchData = null;
     $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
-    $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+    //$.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+    if (userData != null && searchInfoText == userData.user_id) {
+        document.querySelector(".PA-Message").disabled = false;
+    }
     //$.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
 
 
-});
-
-$('.PA-BunchHelpButton').click(function () {
-    document.querySelector("#NotificationArea").style.display = "block";
-    document.querySelector(".BunchesMoveHelp").style.display = "block";
 });
 
 $('.PA-ForTradeBunchEdit').click(function () {
@@ -263,9 +129,9 @@ $('.PA-ForTradeBunchMove').click(function () {
         document.querySelector("#GeneratedSelection").style.pointerEvents = "none";
         BunchMoveStarted();
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
-        document.querySelector(".PA-LookingForBunchEdit").style.background = "#1e1e1e";
+        //document.querySelector(".PA-LookingForBunchEdit").style.background = "#1e1e1e";
         document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "none";
-        document.querySelector(".PA-LookingForBunchMove").style.background = "#1e1e1e";
+        //document.querySelector(".PA-LookingForBunchMove").style.background = "#1e1e1e";
         document.querySelector("#PA-LookingForBunches").style.pointerEvents = "none";
     } else {
         currentlyRearranging = false;
@@ -277,9 +143,9 @@ $('.PA-ForTradeBunchMove').click(function () {
         RemoveBunchOutline();
         BunchMoveFinished();
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
-        document.querySelector(".PA-LookingForBunchEdit").style.background = "#171d2c";
+        //document.querySelector(".PA-LookingForBunchEdit").style.background = "#171d2c";
         document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
-        document.querySelector(".PA-LookingForBunchMove").style.background = "#171d2c";
+        //document.querySelector(".PA-LookingForBunchMove").style.background = "#171d2c";
         document.querySelector("#PA-LookingForBunches").style.pointerEvents = "initial";
     }
 });
@@ -299,9 +165,9 @@ $('.PA-LookingForBunchMove').click(function () {
         document.querySelector("#GeneratedSelection").style.pointerEvents = "none";
         BunchMoveStarted();
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
-        document.querySelector(".PA-ForTradeBunchEdit").style.background = "#1e1e1e";
+        //document.querySelector(".PA-ForTradeBunchEdit").style.background = "#1e1e1e";
         document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "none";
-        document.querySelector(".PA-ForTradeBunchMove").style.background = "#1e1e1e";
+        //document.querySelector(".PA-ForTradeBunchMove").style.background = "#1e1e1e";
         document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "none";
     } else {
         currentlyRearranging = false;
@@ -313,16 +179,26 @@ $('.PA-LookingForBunchMove').click(function () {
         RemoveBunchOutline();
         BunchMoveFinished();
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
-        document.querySelector(".PA-ForTradeBunchEdit").style.background = "#171d2c";
+        //document.querySelector(".PA-ForTradeBunchEdit").style.background = "#171d2c";
         document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
-        document.querySelector(".PA-ForTradeBunchMove").style.background = "#171d2c";
+        //document.querySelector(".PA-ForTradeBunchMove").style.background = "#171d2c";
         document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "initial";
     }
 });
 
 $('.PA-CloseSettings').click(function () {
-    CloseAll();
-    document.querySelector("#MainArea").style.display = "block";
+    if (selectedPokemon == null) {
+        document.querySelector("#PanelArea").style.display = "block";
+        $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
+    } else if (ctsSeaching && selectedPokemon == null) {
+        document.querySelector("#CTSArea").style.display = "block";
+    } else {
+        document.querySelector("#DetailsArea").style.display = "block";
+    }
+    document.querySelector(".PA-SettingsPanel").style.display = "none";
+    document.querySelector(".PA-TradeShopPanel").style.display = "block";
+    //CloseAll();
+    //document.querySelector("#MainArea").style.display = "block";
 
 });
 
@@ -337,91 +213,6 @@ $('.PA-PanelPositionButton').click(function () {
         localStorage.setItem('panelPositions', "right");
         document.querySelector(".PA-PanelPositionButton").innerHTML = "Right";
         PanelsRight();
-    }
-
-});
-
-$('.PA-BallButton').click(function () {
-    if (previewBall == false) {
-        previewBall = true;
-        localStorage.setItem('previewBall', "1");
-        document.querySelector(".PA-BallButton").innerHTML = "On";
-    } else {
-        previewBall = false;
-        localStorage.setItem('previewBall', "0");
-        document.querySelector(".PA-BallButton").innerHTML = "Off";
-    }
-});
-
-$('.PA-GenderButton').click(function () {
-    if (previewGender == false) {
-        previewGender = true;
-        localStorage.setItem('previewGender', "1");
-        document.querySelector(".PA-GenderButton").innerHTML = "On";
-    } else {
-        previewGender = false;
-        localStorage.setItem('previewGender', "0");
-        document.querySelector(".PA-GenderButton").innerHTML = "Off";
-    }
-});
-
-$('.PA-ShinyButton').click(function () {
-    if (previewShiny == false) {
-        previewShiny = true;
-        localStorage.setItem('previewShiny', "1");
-        document.querySelector(".PA-ShinyButton").innerHTML = "On";
-    } else {
-        previewShiny = false;
-        localStorage.setItem('previewShiny', "0");
-        document.querySelector(".PA-ShinyButton").innerHTML = "Off";
-    }
-});
-
-$('.PA-MintButton').click(function () {
-    if (previewMint == false) {
-        previewMint = true;
-        localStorage.setItem('previewMint', "1");
-        document.querySelector(".PA-MintButton").innerHTML = "On";
-    } else {
-        previewMint = false;
-        localStorage.setItem('previewMint', "0");
-        document.querySelector(".PA-MintButton").innerHTML = "Off";
-    }
-});
-
-$('.PA-MiscButton').click(function () {
-    if (previewMisc == false) {
-        previewMisc = true;
-        localStorage.setItem('previewMisc', "1");
-        document.querySelector(".PA-MiscButton").innerHTML = "On";
-    } else {
-        previewMisc = false;
-        localStorage.setItem('previewMisc', "0");
-        document.querySelector(".PA-MiscButton").innerHTML = "Off";
-    }
-});
-
-$('.PA-MarkButton').click(function () {
-    if (previewMark == false) {
-        previewMark = true;
-        localStorage.setItem('previewMark', "1");
-        document.querySelector(".PA-MarkButton").innerHTML = "On";
-    } else {
-        previewMark = false;
-        localStorage.setItem('previewMark', "0");
-        document.querySelector(".PA-MarkButton").innerHTML = "Off";
-    }
-});
-
-$('.PA-IVsButton').click(function () {
-    if (previewIVs == false) {
-        previewIVs = true;
-        localStorage.setItem('previewIVs', "1");
-        document.querySelector(".PA-IVsButton").innerHTML = "On";
-    } else {
-        previewIVs = false;
-        localStorage.setItem('previewIVs', "0");
-        document.querySelector(".PA-IVsButton").innerHTML = "Off";
     }
 
 });
@@ -474,42 +265,6 @@ function PanelsLeft() {
     document.querySelector("#CTSArea").style.right = "unset";
 }
 
-$('.PA-HoverButton').click(function () {
-    if (hoverInfo == false) {
-        hoverInfo = true;
-        localStorage.setItem('hoverInfo', "1");
-        document.querySelector(".PA-HoverButton").innerHTML = "On";
-    } else {
-        hoverInfo = false;
-        localStorage.setItem('hoverInfo', "0");
-        document.querySelector(".PA-HoverButton").innerHTML = "Off";
-    }
-});
-
-$('.PA-DexNumberButton').click(function () {
-    if (dexNumber == false) {
-        dexNumber = true;
-        localStorage.setItem('dexNumber', "1");
-        document.querySelector(".PA-DexNumberButton").innerHTML = "On";
-    } else {
-        dexNumber = false;
-        localStorage.setItem('dexNumber', "0");
-        document.querySelector(".PA-DexNumberButton").innerHTML = "Off";
-    }
-});
-
-$('.PA-AdvancedPreviewButton').click(function () {
-    if (advancedPreview == false) {
-        advancedPreview = true;
-        localStorage.setItem('advancedPreview', "1");
-        document.querySelector(".PA-AdvancedPreviewButton").innerHTML = "On";
-    } else {
-        advancedPreview = false;
-        localStorage.setItem('advancedPreview', "0");
-        document.querySelector(".PA-AdvancedPreviewButton").innerHTML = "Off";
-    }
-});
-
 $('.PA-GenerationalSpritesButton').click(function () {
     if (generationalSprites == false) {
         generationalSprites = true;
@@ -519,6 +274,18 @@ $('.PA-GenerationalSpritesButton').click(function () {
         generationalSprites = false;
         localStorage.setItem('generationalSprites', "0");
         document.querySelector(".PA-GenerationalSpritesButton").innerHTML = "Off";
+    }
+});
+
+$('.PA-InitialPromptButton').click(function () {
+    if (initialPrompt == false) {
+        initialPrompt = true;
+        localStorage.setItem('initialPrompt', "1");
+        document.querySelector(".PA-InitialPromptButton").innerHTML = "On";
+    } else {
+        initialPrompt = false;
+        localStorage.setItem('initialPrompt', "0");
+        document.querySelector(".PA-InitialPromptButton").innerHTML = "Off";
     }
 });
 
@@ -536,18 +303,6 @@ $('.PA-ExtraViewingsButton').click(function () {
     }
 });
 
-$('.PA-ExactIVsButton').click(function () {
-    if (exactIVs == false) {
-        exactIVs = true;
-        localStorage.setItem('exactIVs', "1");
-        document.querySelector(".PA-ExactIVsButton").innerHTML = "On";
-    } else {
-        exactIVs = false;
-        localStorage.setItem('exactIVs', "0");
-        document.querySelector(".PA-ExactIVsButton").innerHTML = "Off";
-    }
-});
-
 $('.PA-EmptyBunchesButton').click(function () {
     if (emptyBunches == false) {
         emptyBunches = true;
@@ -561,18 +316,6 @@ $('.PA-EmptyBunchesButton').click(function () {
         document.querySelector(".PA-EmptyBunchesButton").innerHTML = "Off";
     }
     console.log(showEmpty);
-});
-
-$('.PA-ExpandViewButton').click(function () {
-    if (expandView == false) {
-        expandView = true;
-        localStorage.setItem('expandView', "1");
-        document.querySelector(".PA-ExpandViewButton").innerHTML = "On";
-    } else {
-        expandView = false;
-        localStorage.setItem('expandView', "0");
-        document.querySelector(".PA-ExpandViewButton").innerHTML = "Off";
-    }
 });
 
 
@@ -611,24 +354,29 @@ function TradeShopInfo(data) {
 function ModifyCheck(data) {
     if (data != "" && searchInfoText != "" && !currentlyImporting) {
         document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
-        document.querySelector(".SA-MoveButton").style.background = "#171d2c";
+        document.querySelector(".SA-MoveCircle").style.background = "#00ba06";
+        document.querySelector(".SA-MoveCircle").style.boxShadow = "0px 0px 8px #00ff07";
+        //document.querySelector(".SA-MoveButton").style.background = "#171d2c";
         document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
-        document.querySelector(".SA-CopyButton").style.background = "#171d2c";
+        document.querySelector(".SA-CopyCircle").style.background = "#00ba06";
+        document.querySelector(".SA-CopyCircle").style.boxShadow = "0px 0px 8px #00ff07";
+        //document.querySelector(".SA-CopyButton").style.background = "#171d2c";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-        document.querySelector(".SA-CreateButton").style.background = "#171d2c";
+        document.querySelector(".SA-CreateCircle").style.background = "#00ba06";
+        document.querySelector(".SA-CreateCircle").style.boxShadow = "0px 0px 8px #00ff07";
+        //document.querySelector(".SA-CreateButton").style.background = "#171d2c";
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
-        document.querySelector(".PA-ForTradeBunchEdit").style.background = "#171d2c";
+        //document.querySelector(".PA-ForTradeBunchEdit").style.background = "#171d2c";
         document.querySelector(".PA-ForTradeBunchEdit").style.visibility = "visible";
         document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
-        document.querySelector(".PA-ForTradeBunchMove").style.background = "#171d2c";
+        //document.querySelector(".PA-ForTradeBunchMove").style.background = "#171d2c";
         document.querySelector(".PA-ForTradeBunchMove").style.visibility = "visible";
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
-        document.querySelector(".PA-LookingForBunchEdit").style.background = "#171d2c";
+        //document.querySelector(".PA-LookingForBunchEdit").style.background = "#171d2c";
         document.querySelector(".PA-LookingForBunchEdit").style.visibility = "visible";
         document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
-        document.querySelector(".PA-LookingForBunchMove").style.background = "#171d2c";
+        //document.querySelector(".PA-LookingForBunchMove").style.background = "#171d2c";
         document.querySelector(".PA-LookingForBunchMove").style.visibility = "visible";
-        document.querySelector(".PA-BunchHelpButton").style.visibility = "visible";
         $.post(url + "/PHP/generate_templates.php", { token: token }, GetTemplateOptions);
         filterDisplay.disabled = false;
         if (searchInfoText != "") {
@@ -636,24 +384,29 @@ function ModifyCheck(data) {
         }
     } else {
         document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
-        document.querySelector(".SA-MoveButton").style.background = "#1e1e1e";
+        document.querySelector(".SA-MoveCircle").style.background = "#4e4e4e";
+        document.querySelector(".SA-MoveCircle").style.boxShadow = "none";
+        //document.querySelector(".SA-MoveButton").style.background = "#1e1e1e";
         document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
-        document.querySelector(".SA-CopyButton").style.background = "#1e1e1e";
+        document.querySelector(".SA-CopyCircle").style.background = "#4e4e4e";
+        document.querySelector(".SA-CopyCircle").style.boxShadow = "none";
+        //document.querySelector(".SA-CopyButton").style.background = "#1e1e1e";
         document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-        document.querySelector(".SA-CreateButton").style.background = "#1e1e1e";
+        document.querySelector(".SA-CreateCircle").style.background = "#4e4e4e";
+        document.querySelector(".SA-CreateCircle").style.boxShadow = "none";
+        //document.querySelector(".SA-CreateButton").style.background = "#1e1e1e";
         document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
-        document.querySelector(".PA-ForTradeBunchEdit").style.background = "#1e1e1e";
+        //document.querySelector(".PA-ForTradeBunchEdit").style.background = "#1e1e1e";
         document.querySelector(".PA-ForTradeBunchEdit").style.visibility = "hidden";
         document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "none";
-        document.querySelector(".PA-ForTradeBunchMove").style.background = "#1e1e1e";
+        //document.querySelector(".PA-ForTradeBunchMove").style.background = "#1e1e1e";
         document.querySelector(".PA-ForTradeBunchMove").style.visibility = "hidden";
         document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
-        document.querySelector(".PA-LookingForBunchEdit").style.background = "#1e1e1e";
+        //document.querySelector(".PA-LookingForBunchEdit").style.background = "#1e1e1e";
         document.querySelector(".PA-LookingForBunchEdit").style.visibility = "hidden";
         document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "none";
-        document.querySelector(".PA-LookingForBunchMove").style.background = "#1e1e1e";
+        //document.querySelector(".PA-LookingForBunchMove").style.background = "#1e1e1e";
         document.querySelector(".PA-LookingForBunchMove").style.visibility = "hidden";
-        document.querySelector(".PA-BunchHelpButton").style.visibility = "hidden";
         filterDisplay.disabled = true;
         document.querySelector(".PA-Message").disabled = true;
     }
@@ -668,10 +421,10 @@ function ModifyCheckViewing(data) {
         document.querySelector(".DA-Delete").style.background = "#171d2c";
         document.querySelector(".DA-Reset").style.pointerEvents = "initial";
         document.querySelector(".DA-Reset").style.background = "#171d2c";
-        document.querySelector(".DA-Add").style.pointerEvents = "none";
-        document.querySelector(".DA-Add").style.background = "#1e1e1e";
-        document.querySelector(".DA-Lock").style.pointerEvents = "initial";
-        document.querySelector(".DA-Lock").style.background = "#171d2c";
+        //document.querySelector(".DA-Add").style.pointerEvents = "none";
+        //document.querySelector(".DA-Add").style.background = "#1e1e1e";
+        //document.querySelector(".DA-Lock").style.pointerEvents = "initial";
+        //document.querySelector(".DA-Lock").style.background = "#171d2c";
     } else {
         document.querySelector(".DA-Save").style.pointerEvents = "none";
         document.querySelector(".DA-Save").style.background = "#1e1e1e";
@@ -681,14 +434,14 @@ function ModifyCheckViewing(data) {
         document.querySelector(".DA-Delete").style.background = "#1e1e1e";
         document.querySelector(".DA-Reset").style.pointerEvents = "none";
         document.querySelector(".DA-Reset").style.background = "#1e1e1e";
-        document.querySelector(".DA-Lock").style.pointerEvents = "none";
-        document.querySelector(".DA-Lock").style.background = "#1e1e1e";
+        //document.querySelector(".DA-Lock").style.pointerEvents = "none";
+        //document.querySelector(".DA-Lock").style.background = "#1e1e1e";
         if (token != null && !currentlyImporting) {
-            document.querySelector(".DA-Add").style.pointerEvents = "initial";
-            document.querySelector(".DA-Add").style.background = "#171d2c";
+            //document.querySelector(".DA-Add").style.pointerEvents = "initial";
+            //document.querySelector(".DA-Add").style.background = "#171d2c";
         } else {
-            document.querySelector(".DA-Add").style.pointerEvents = "none";
-            document.querySelector(".DA-Add").style.background = "#1e1e1e";
+            //document.querySelector(".DA-Add").style.pointerEvents = "none";
+            //document.querySelector(".DA-Add").style.background = "#1e1e1e";
         }
     }
 }
@@ -700,51 +453,71 @@ function UpdatePersonalText() {
 
 function BunchMoveStarted() {
     document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
-    document.querySelector(".SA-MainMenu").style.background = "#1e1e1e";
-    document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.background = "#1e1e1e";
+    document.querySelector(".SA-MainMenuCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-MainMenuCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-MainMenu").style.background = "#1e1e1e";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
-    document.querySelector(".SA-MoveButton").style.background = "#1e1e1e";
+    document.querySelector(".SA-MoveCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-MoveCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-MoveButton").style.background = "#1e1e1e";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CopyButton").style.background = "#1e1e1e";
+    document.querySelector(".SA-CopyCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-CopyCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-CopyButton").style.background = "#1e1e1e";
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
+    document.querySelector(".SA-CreateCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-CreateCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-CreateButton").style.background = "#1e1e1e";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
-    document.querySelector(".SA-FiltersButton").style.background = "#1e1e1e";
+    document.querySelector(".SA-FilterCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-FilterCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-FiltersButton").style.background = "#1e1e1e";
     document.querySelector(".SA-Searchbar").disabled = true;
     document.querySelector(".PA-Searchbar").disabled = true;
     document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
-    document.querySelector(".PA-ForTradeBunchEdit").style.background = "#1e1e1e";
+    //document.querySelector(".PA-ForTradeBunchEdit").style.background = "#1e1e1e";
     document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
-    document.querySelector(".PA-LookingForBunchEdit").style.background = "#1e1e1e";
+    //document.querySelector(".PA-LookingForBunchEdit").style.background = "#1e1e1e";
     document.querySelector("#MainArea").style.pointerEvents = "none";
 }
 
 function BunchMoveFinished() {
     document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
-    document.querySelector(".SA-MainMenu").style.background = "#171d2c";
-    document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.background = "#171d2c";
+    document.querySelector(".SA-MainMenuCircle").style.background = "#00ba06";
+    document.querySelector(".SA-MainMenuCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-MainMenu").style.background = "#171d2c";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-MoveButton").style.background = "#171d2c";
+    document.querySelector(".SA-MoveCircle").style.background = "#00ba06";
+    document.querySelector(".SA-MoveCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-MoveButton").style.background = "#171d2c";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CopyButton").style.background = "#171d2c";
+    document.querySelector(".SA-CopyCircle").style.background = "#00ba06";
+    document.querySelector(".SA-CopyCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-CopyButton").style.background = "#171d2c";
+    document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-CreateCircle").style.background = "#00ba06";
+    document.querySelector(".SA-CreateCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-CreateButton").style.background = "#171d2c";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
+    document.querySelector(".SA-FilterCircle").style.background = "#00ba06";
+    document.querySelector(".SA-FilterCircle").style.boxShadow = "0px 0px 8px #00ff07";
     if (filtersApplied) {
-        document.querySelector(".SA-FiltersButton").style.background = "#9c6f9b";
+        document.querySelector(".SA-FiltersButton").style.background = "#00381b";
     } else {
-        document.querySelector(".SA-FiltersButton").style.background = "#171d2c";
+        document.querySelector(".SA-FiltersButton").style.background = "#1e1e1e";
     }
     document.querySelector(".SA-Searchbar").disabled = false;
     document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
     document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "initial";
     document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
-    document.querySelector(".PA-ForTradeBunchEdit").style.background = "#171d2c";
+    //document.querySelector(".PA-ForTradeBunchEdit").style.background = "#171d2c";
     document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
-    document.querySelector(".PA-ForTradeBunchMove").style.background = "#171d2c";
+    //document.querySelector(".PA-ForTradeBunchMove").style.background = "#171d2c";
     document.querySelector("#PA-LookingForBunches").style.pointerEvents = "initial";
     document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
-    document.querySelector(".PA-LookingForBunchEdit").style.background = "#171d2c";
+    //document.querySelector(".PA-LookingForBunchEdit").style.background = "#171d2c";
     document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
-    document.querySelector(".PA-LookingForBunchMove").style.background = "#171d2c";
+    //document.querySelector(".PA-LookingForBunchMove").style.background = "#171d2c";
     document.querySelector("#MainArea").style.pointerEvents = "initial";
     document.querySelector(".PA-Searchbar").disabled = false;
 
@@ -862,79 +635,6 @@ function ForTradeData(data) {
             //Setting the Icon
 
             SetImage(theImage, bunchArray.icon, bunchArray.gender, bunchArray.shiny, bunchArray.game);
-
-            /*if (iconExclusivesArray.includes(bunchArray.icon)) {
-                if (allBallsArray.includes(bunchArray.icon) || bunchArray.icon == "Egg") {
-                    theImage.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/" + bunchArray.icon + ".png");
-                }
-                else if (bunchArray.icon.includes("HP")) {
-                    theImage.setAttribute("src", url + "/Resources/Misc/" + bunchArray.icon + ".png");
-                }
-                else if (bunchArray.icon.includes("Ribbon")) {
-                    theImage.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/Ribbons/" + bunchArray.icon + ".png");
-                } else {
-                    if (bunchArray.shiny == "Shiny") {
-                        theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + ".png");
-                    } else {
-                        theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + ".png");
-                    }
-                }
-            } else {
-                if (genderDifferencesArray.includes(bunchArray.icon)) {
-                    if (bunchArray.gender == "Male" || bunchArray.gender == "(Any Gender)") {
-                        console.log("WOOOORK")
-                        if (bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Male.png");
-                        }
-                        else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + "-Male.png");
-                        }
-                    }
-                    else if (bunchArray.gender == "Female") {
-                        if (bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Female.png");
-                        }
-                        else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + "-Female.png");
-                        }
-                    }
-                } else {
-                    if (bunchArray.shiny.includes("Normal")) {
-                        theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + ".png")
-                    }
-                    else {
-                        if (shinyExceptionArray.includes(bunchArray.icon)) {
-                            if (bunchArray.icon.includes("Minior")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Minior.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Strawberry")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Strawberry.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Berry")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Berry.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Love")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Love.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Star")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Star.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Clover")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Clover.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Flower")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Flower.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Ribbon")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Ribbon.png");
-                            }
-                        }
-                        else {
-                            theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + ".png")
-                        }
-                    }
-                }
-            }*/
 
             //Setting Image and Text Attributes
             theImage.setAttribute("width", "100");
@@ -1091,76 +791,6 @@ function LookingForData(data) {
             //Setting the Icon
 
             SetImage(theImage, bunchArray.icon, bunchArray.gender, bunchArray.shiny);
-
-            /*if (iconExclusivesArray.includes(bunchArray.icon)) {
-                if (allBallsArray.includes(bunchArray.icon) || bunchArray.icon == "Egg") {
-                    theImage.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/" + bunchArray.icon + ".png");
-                }
-                else if (bunchArray.icon.includes("HP")) {
-                    theImage.setAttribute("src", url + "/Resources/Misc/" + bunchArray.icon + ".png");
-                } else {
-                    if (bunchArray.shiny == "Shiny") {
-                        theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + ".png");
-                    } else {
-                        theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + ".png");
-                    }
-                }
-            } else {
-                if (genderDifferencesArray.includes(bunchArray.icon)) {
-                    if (bunchArray.gender == "Male" || bunchArray.gender == "(Any Gender)") {
-                        console.log("WOOOORK")
-                        if (bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Male.png");
-                        }
-                        else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + "-Male.png");
-                        }
-                    }
-                    else if (bunchArray.gender == "Female") {
-                        if (bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + "-Female.png");
-                        }
-                        else if (!bunchArray.shiny.includes("Normal")) {
-                            theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + "-Female.png");
-                        }
-                    }
-                } else {
-                    if (bunchArray.shiny.includes("Normal")) {
-                        theImage.setAttribute("src", url + "/Resources/Home/" + bunchArray.icon + ".png")
-                    }
-                    else {
-                        if (shinyExceptionArray.includes(bunchArray.icon)) {
-                            if (bunchArray.icon.includes("Minior")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Minior.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Strawberry")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Strawberry.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Berry")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Berry.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Love")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Love.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Star")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Star.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Clover")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Clover.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Flower")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Flower.png");
-                            }
-                            else if (bunchArray.icon.includes("Alcremie-Ribbon")) {
-                                theImage.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Ribbon.png");
-                            }
-                        }
-                        else {
-                            theImage.setAttribute("src", url + "/Resources/HomeShiny/" + bunchArray.icon + ".png")
-                        }
-                    }
-                }
-            }*/
 
             //Setting Image and Text Attributes
             theImage.setAttribute("width", "100");

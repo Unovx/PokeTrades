@@ -9,6 +9,27 @@ let selectionOrderDropdown1 = document.querySelector(".SA-OrderDropdown1");
 let selectionOrderDropdown2 = document.querySelector(".SA-OrderDropdown2");
 let selectionOffset = document.querySelector(".SA-Offset");
 let selectionLimit = document.querySelector(".SA-Limit");
+let reusableIvHPDropdown = document.querySelector(".SA-ReusableIvHPDropdown");
+let reusableIvAttDropdown = document.querySelector(".SA-ReusableIvAttDropdown");
+let reusableIvDefDropdown = document.querySelector(".SA-ReusableIvDefDropdown");
+let reusableIvSpaDropdown = document.querySelector(".SA-ReusableIvSpaDropdown");
+let reusableIvSpdDropdown = document.querySelector(".SA-ReusableIvSpdDropdown");
+let reusableIvSpeDropdown = document.querySelector(".SA-ReusableIvSpeDropdown");
+let reusableEvHPDropdown = document.querySelector(".SA-ReusableEvHPDropdown");
+let reusableEvAttDropdown = document.querySelector(".SA-ReusableEvAttDropdown");
+let reusableEvDefDropdown = document.querySelector(".SA-ReusableEvDefDropdown");
+let reusableEvSpaDropdown = document.querySelector(".SA-ReusableEvSpaDropdown");
+let reusableEvSpdDropdown = document.querySelector(".SA-ReusableEvSpdDropdown");
+let reusableEvSpeDropdown = document.querySelector(".SA-ReusableEvSpeDropdown");
+let reusableMove1Dropdown = document.querySelector(".SA-ReusableMove1Dropdown");
+let reusableMove2Dropdown = document.querySelector(".SA-ReusableMove2Dropdown");
+let reusableMove3Dropdown = document.querySelector(".SA-ReusableMove3Dropdown");
+let reusableMove4Dropdown = document.querySelector(".SA-ReusableMove4Dropdown");
+let reusableTransferMove1Dropdown = document.querySelector(".SA-ReusableTransferMove1Dropdown");
+let reusableTransferMove2Dropdown = document.querySelector(".SA-ReusableTransferMove2Dropdown");
+let reusableTransferMove3Dropdown = document.querySelector(".SA-ReusableTransferMove3Dropdown");
+let reusableTransferMove4Dropdown = document.querySelector(".SA-ReusableTransferMove4Dropdown");
+var previousSpace;
 //The Image Displayed in the Viewing Area
 var pokemonImage;
 var bunchname = "";
@@ -32,6 +53,10 @@ var limitWidth = 768;
 
 var insideDetails = true;
 var storedValue;
+
+$(selectionOrderDropdown1).change(function () {
+    PostGenerateSelection();
+});
 
 //This is needed so I can get the visible height of elements.
 $.fn.visibleHeight = function () {
@@ -114,8 +139,9 @@ $('.SA-MainMenu').click(function () {
     ResetFilters();
     CloseAll();
     document.querySelector("#MainArea").style.display = "block";
-    document.querySelector(".DA-Place").style.pointerEvents = "initial";
+    document.querySelector(".DA-Place").style.display = "block";
     document.querySelector(".DA-Place").innerHTML = "Place";
+    document.querySelector(".DA-Delete").style.display = "block";
     CreationReset();
     BunchReset();
     creationInProgress = false;
@@ -127,15 +153,23 @@ $('.SA-MainMenu').click(function () {
     document.querySelector(".SA-MoveButton").style.display = "initial";
     document.querySelector(".SA-CopyButton").style.display = "initial";
     document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "initial";
-    document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-Order1Circle").style.background = "#00ba06";
+    document.querySelector(".SA-Order1Circle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-OrderDropdown2").style.pointerEvents = "initial";
-    document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-Order2Circle").style.background = "#00ba06";
+    document.querySelector(".SA-Order2Circle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-Offset").style.pointerEvents = "initial";
-    document.querySelector(".SA-Offset").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-OffsetCircle").style.background = "#00ba06";
+    document.querySelector(".SA-OffsetCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-Offset").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-Limit").style.pointerEvents = "initial";
-    document.querySelector(".SA-Limit").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-LimitCircle").style.background = "#00ba06";
+    document.querySelector(".SA-LimitCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-Limit").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-RefreshButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-RefreshButton").style.backgroundColor = "#171d2c";
+    //document.querySelector(".SA-RefreshButton").style.backgroundColor = "#171d2c";
 });
 
 $('.SA-CreateButton').click(function () {
@@ -145,29 +179,41 @@ $('.SA-CreateButton').click(function () {
     document.querySelector("#InformationArea").style.display = "none";
     document.querySelector("#DetailsArea").style.display = "block";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-CreateCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-CreateCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-CreateButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-MoveCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-MoveCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-MoveButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "#1e1e1e";
-    document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "none";
-    document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-CopyCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-CopyCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-CopyButton").style.backgroundColor = "#1e1e1e";
+    /*document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "none";
+    document.querySelector(".SA-Order1Circle").style.background = "#4e4e4e";
+    document.querySelector(".SA-Order1Circle").style.boxShadow = "none";
+    //document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-OrderDropdown2").style.pointerEvents = "none";
-    document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-Order2Circle").style.background = "#4e4e4e";
+    document.querySelector(".SA-Order2Circle").style.boxShadow = "none";
+    //document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-Offset").style.pointerEvents = "none";
-    document.querySelector(".SA-Offset").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-OffsetCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-OffsetCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-Offset").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-Limit").style.pointerEvents = "none";
-    document.querySelector(".SA-Limit").style.backgroundColor = "#1e1e1e";
-    document.querySelector(".SA-RefreshButton").style.pointerEvents = "none";
-    document.querySelector(".SA-RefreshButton").style.backgroundColor = "#1e1e1e";
-    document.querySelector(".DA-Place").style.pointerEvents = "initial";
-    document.querySelector(".DA-Place").style.background = "#171d2c";
-    document.querySelector(".DA-Delete").style.pointerEvents = "none";
-    document.querySelector(".DA-Delete").style.background = "#1e1e1e";
-    document.querySelector(".DA-Lock").style.pointerEvents = "none";
+    document.querySelector(".SA-LimitCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-LimitCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-Limit").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-RefreshButton").style.pointerEvents = "none";*/
+    //document.querySelector(".SA-RefreshButton").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".DA-Place").style.display = "block";
+    document.querySelector(".DA-Delete").style.display = "none";
+    /*document.querySelector(".DA-Lock").style.pointerEvents = "none";
     document.querySelector(".DA-Lock").style.background = "#1e1e1e";
     detailsLocked = false;
-    document.querySelector(".DA-Lock").innerHTML = "Lock";
+    document.querySelector(".DA-Lock").innerHTML = "Lock";*/
     document.querySelector(".DA-DefaultView").style.pointerEvents = "initial";
 
     //So it doesn't add to an already existing row
@@ -180,11 +226,7 @@ $('.SA-CreateButton').click(function () {
     while (document.querySelector("#DA-NestHolder").lastElementChild) {
         document.querySelector("#DA-NestHolder").removeChild(document.querySelector("#DA-NestHolder").lastElementChild);
     }
-    AssigningOutline();
-    var cols = document.getElementsByClassName("insideDetails" + (storedValue));
-    for (j = 0; j < cols.length; j++) {
-        cols[j].style.display = "none";
-    }
+
     templateSelection.value = "(No Template)";
 
     if (document.querySelector(".SA-Bunch").innerHTML != "All Pokemon") {
@@ -196,16 +238,9 @@ $('.SA-CreateButton').click(function () {
 
     var cols = document.getElementsByClassName("Ribbons");
     document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
-    if (tempUserID != userData.user_id || detailsLocked) {
-        for (i = 0; i < cols.length; i++) {
-            cols[i].style.background = "#243048";
-            cols[i].style.display = "none";
-        }
-    } else {
-        for (i = 0; i < cols.length; i++) {
-            cols[i].style.background = "#243048";
-            cols[i].style.display = "block";
-        }
+    for (i = 0; i < cols.length; i++) {
+        cols[i].style.background = "linear-gradient(#302b75, #112354)";
+        cols[i].style.display = "block";
     }
     ribbonData = new Array(103);
     ribbonString = "";
@@ -214,11 +249,11 @@ $('.SA-CreateButton').click(function () {
         $('.DA-ToggleProof').click();
     }
 
-    if (competitiveView) {
+    /*if (competitiveView) {
         document.querySelector(".DA-CompetitiveViewOptions").style.display = "block";
     } else {
         document.querySelector(".DA-CompetitiveViewOptions").style.display = "none";
-    }
+    }*/
 
     UpdateEVs();
     SetStatColour();
@@ -229,26 +264,24 @@ $('.SA-MoveButton').click(function () {
     if (currentlyRearranging == false) {
         moving = true;
         currentlyRearranging = true;
-        document.querySelector(".SA-MoveButton").innerHTML = "Cancel";
+        document.querySelector(".SA-MoveText").innerHTML = "Cancel";
         //OpacityHalf();
         MoveStarted();
     } else {
         moving = false;
         currentlyRearranging = false;
+        AssigningOutline();
         if (movingPokemon == selectedPokemon && movingPokemon != null) {
-            movingPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
-            movingPokemon.style.backgroundColor = "#353d54";
+            movingPokemon.style.opacity = "1px";
         } else if (movingPokemon != null) {
-            movingPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
-            movingPokemon.style.backgroundColor = "#343f5f";
+            movingPokemon.style.opacity = "1px";
         }
         movingPokemon = null;
         oldPosition = "";
         newPosition = "";
-        document.querySelector(".SA-MoveButton").innerHTML = "Move";
+        document.querySelector(".SA-MoveText").innerHTML = "Move";
         //OpacityFull();
-        //AssigningOutline();
-        RemoveBunchOutline();
+        //RemoveBunchOutline();
         MoveFinished();
     }
 
@@ -258,44 +291,37 @@ $('.SA-CopyButton').click(function () {
     if (currentlyRearranging == false) {
         currentlyRearranging = true;
         copying = true;
-        document.querySelector(".SA-CopyButton").innerHTML = "Cancel";
+        document.querySelector(".SA-CopyText").innerHTML = "Cancel";
         //OpacityHalf();
         CopyStarted();
     } else {
         copying = false;
         currentlyRearranging = false;
+        AssigningOutline();
         if (movingPokemon == selectedPokemon && movingPokemon != null) {
-            movingPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
-            movingPokemon.style.backgroundColor = "#353d54";
+            movingPokemon.style.opacity = "1px";
         } else if (movingPokemon != null) {
-            movingPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
-            movingPokemon.style.backgroundColor = "#343f5f";
+            movingPokemon.style.opacity = "1px";
         }
         movingPokemon = null;
         oldPosition = "";
         newPosition = "";
-        document.querySelector(".SA-CopyButton").innerHTML = "Copy";
+        document.querySelector(".SA-CopyText").innerHTML = "Copy";
         //OpacityFull();
-        //AssigningOutline();
-        RemoveBunchOutline();
+        //RemoveBunchOutline();
         CopyFinished();
     }
 
 });
 
 $('.SA-FiltersButton').click(function () {
-    $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+    //$.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     //document.querySelector("#SelectionArea").style.width = "100%";
     document.querySelector("#FilterArea").style.display = "block";
     document.querySelector("#DetailsArea").style.display = "none";
     document.querySelector("#BunchArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "none";
     document.querySelector("#CTSArea").style.display = "none";
-});
-
-$('.SA-SelectionHelp').click(function () {
-    document.querySelector("#NotificationArea").style.display = "block";
-    document.querySelector(".SelectionHelp").style.display = "block";
 });
 
 $('.SA-RefreshButton').click(function () {
@@ -316,14 +342,16 @@ function AssigningOutline() {
             }
             //if no pokemon is selected, then no pokemon need an outline
             else if (selectedPokemon == null) {
-                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+                document.getElementById("GenerationGridDiv" + (i)).style.opacity = "1";
+                /*.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
                 document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#343f5f";
                 var cols = document.getElementsByClassName("insideDetails" + (i));
-                document.getElementById("GenerationGridDiv" + (i)).style.height = "100px";
+                document.getElementById("GenerationGridDiv" + (i)).style.height = "100px";*/
             }
             //If it finds a generated row that has the same creation id as the current viewing id, it gives that div a outline
-            else if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id) {
-                selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
+            else if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id && currentlyRearranging) {
+                document.getElementById("GenerationGridDiv" + (i)).style.opacity = "0.5";
+                /*selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
                 document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
                 document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#353d54";
                 if (expandView) {
@@ -332,11 +360,12 @@ function AssigningOutline() {
                         cols[j].style.display = "flex";
                     }
                     document.getElementById("GenerationGridDiv" + (i)).style.height = "200px";
-                }
+                }*/
             } else {
-                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
+                document.getElementById("GenerationGridDiv" + (i)).style.opacity = "1";
+                /*document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
                 document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#343f5f";
-                document.getElementById("GenerationGridDiv" + (i)).style.height = "100px";
+                document.getElementById("GenerationGridDiv" + (i)).style.height = "100px";*/
             }
         }
     }
@@ -345,24 +374,40 @@ function AssigningOutline() {
 function MoveStarted() {
     moving = true;
     document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-MainMenuCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-MainMenuCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-MainMenu").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-CopyCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-CopyCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-CopyButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-CreateCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-CreateCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-CreateButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
-    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-FilterCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-FilterCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-FiltersButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-Searchbar").disabled = true;
     document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "none";
-    document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-Order1Circle").style.background = "#4e4e4e";
+    document.querySelector(".SA-Order1Circle").style.boxShadow = "none";
+    //document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-OrderDropdown2").style.pointerEvents = "none";
-    document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-Order2Circle").style.background = "#4e4e4e";
+    document.querySelector(".SA-Order2Circle").style.boxShadow = "none";
+    //document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-Offset").style.pointerEvents = "none";
-    document.querySelector(".SA-Offset").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-OffsetCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-OffsetCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-Offset").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-Limit").style.pointerEvents = "none";
-    document.querySelector(".SA-Limit").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-LimitCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-LimitCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-Limit").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-RefreshButton").style.pointerEvents = "none";
-    document.querySelector(".SA-RefreshButton").style.backgroundColor = "#1e1e1e";
+    //document.querySelector(".SA-RefreshButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".PA-Searchbar").disabled = true;
     document.querySelector("#PanelArea").style.pointerEvents = "none";
     document.querySelector(".MA-TopRow").style.pointerEvents = "none";
@@ -371,27 +416,43 @@ function MoveStarted() {
 function MoveFinished() {
     moving = false;
     document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-MainMenuCircle").style.background = "#00ba06";
+    document.querySelector(".SA-MainMenuCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-MainMenu").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-CopyButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CopyButton").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-CopyCircle").style.background = "#00ba06";
+    document.querySelector(".SA-CopyCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-CopyButton").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-CreateCircle").style.background = "#00ba06";
+    document.querySelector(".SA-CreateCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-CreateButton").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
-    if (filtersApplied) {
-        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#9c6f9b";
+    document.querySelector(".SA-FilterCircle").style.background = "#00ba06";
+    document.querySelector(".SA-FilterCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    /*if (filtersApplied) {
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#005c2c";
     } else {
         document.querySelector(".SA-FiltersButton").style.backgroundColor = "#171d2c";
-    }
+    }*/
     document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "initial";
-    document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-Order1Circle").style.background = "#00ba06";
+    document.querySelector(".SA-Order1Circle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-OrderDropdown2").style.pointerEvents = "initial";
-    document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-Order2Circle").style.background = "#00ba06";
+    document.querySelector(".SA-Order2Circle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-Offset").style.pointerEvents = "initial";
-    document.querySelector(".SA-Offset").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-OffsetCircle").style.background = "#00ba06";
+    document.querySelector(".SA-OffsetCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-Offset").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-Limit").style.pointerEvents = "initial";
-    document.querySelector(".SA-Limit").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-LimitCircle").style.background = "#00ba06";
+    document.querySelector(".SA-LimitCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-Limit").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-RefreshButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-RefreshButton").style.backgroundColor = "#171d2c";
+    //document.querySelector(".SA-RefreshButton").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-Searchbar").disabled = false;
     document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
     document.querySelector(".PA-Searchbar").disabled = false;
@@ -403,24 +464,40 @@ function MoveFinished() {
 function CopyStarted() {
     copying = true;
     document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-MainMenuCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-MainMenuCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-MainMenu").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "none";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-MoveCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-MoveCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-MoveButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-CreateCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-CreateCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-CreateButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "none";
-    document.querySelector(".SA-FiltersButton").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-FilterCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-FilterCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-FiltersButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-Searchbar").disabled = true;
     document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "none";
-    document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-Order1Circle").style.background = "#4e4e4e";
+    document.querySelector(".SA-Order1Circle").style.boxShadow = "none";
+    //document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-OrderDropdown2").style.pointerEvents = "none";
-    document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-Order2Circle").style.background = "#4e4e4e";
+    document.querySelector(".SA-Order2Circle").style.boxShadow = "none";
+    //document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-Offset").style.pointerEvents = "none";
-    document.querySelector(".SA-Offset").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-OffsetCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-OffsetCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-Offset").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-Limit").style.pointerEvents = "none";
-    document.querySelector(".SA-Limit").style.backgroundColor = "#1e1e1e";
+    document.querySelector(".SA-LimitCircle").style.background = "#4e4e4e";
+    document.querySelector(".SA-LimitCircle").style.boxShadow = "none";
+    //document.querySelector(".SA-Limit").style.backgroundColor = "#1e1e1e";
     document.querySelector(".SA-RefreshButton").style.pointerEvents = "none";
-    document.querySelector(".SA-RefreshButton").style.backgroundColor = "#1e1e1e";
+    //document.querySelector(".SA-RefreshButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".PA-Searchbar").disabled = true;
     document.querySelector("#PanelArea").style.pointerEvents = "none";
     document.querySelector(".MA-TopRow").style.pointerEvents = "none";
@@ -429,29 +506,45 @@ function CopyStarted() {
 function CopyFinished() {
     copying = false;
     document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
-    document.querySelector(".SA-MainMenu").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-MainMenuCircle").style.background = "#00ba06";
+    document.querySelector(".SA-MainMenuCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-MainMenu").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-MoveButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-MoveButton").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-MoveCircle").style.background = "#00ba06";
+    document.querySelector(".SA-MoveCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-MoveButton").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-CreateCircle").style.background = "#00ba06";
+    document.querySelector(".SA-CreateCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-CreateButton").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-FiltersButton").style.pointerEvents = "initial";
-    if (filtersApplied) {
-        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#9c6f9b";
+    document.querySelector(".SA-FilterCircle").style.background = "#00ba06";
+    document.querySelector(".SA-FilterCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    /*if (filtersApplied) {
+        document.querySelector(".SA-FiltersButton").style.backgroundColor = "#005c2c";
     } else {
         document.querySelector(".SA-FiltersButton").style.backgroundColor = "#171d2c";
-    }
+    }*/
     document.querySelector(".SA-OrderDropdown1").style.pointerEvents = "initial";
-    document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-Order1Circle").style.background = "#00ba06";
+    document.querySelector(".SA-Order1Circle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-OrderDropdown1").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-OrderDropdown2").style.pointerEvents = "initial";
-    document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-Order2Circle").style.background = "#00ba06";
+    document.querySelector(".SA-Order2Circle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-OrderDropdown2").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-Offset").style.pointerEvents = "initial";
-    document.querySelector(".SA-Offset").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-OffsetCircle").style.background = "#00ba06";
+    document.querySelector(".SA-OffsetCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-Offset").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-Limit").style.pointerEvents = "initial";
-    document.querySelector(".SA-Limit").style.backgroundColor = "#171d2c";
+    document.querySelector(".SA-LimitCircle").style.background = "#00ba06";
+    document.querySelector(".SA-LimitCircle").style.boxShadow = "0px 0px 8px #00ff07";
+    //document.querySelector(".SA-Limit").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-RefreshButton").style.pointerEvents = "initial";
-    document.querySelector(".SA-RefreshButton").style.backgroundColor = "#171d2c";
+    //document.querySelector(".SA-RefreshButton").style.backgroundColor = "#171d2c";
     document.querySelector(".SA-Searchbar").disabled = false;
-    document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
+    //document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
     document.querySelector(".PA-Searchbar").disabled = false;
     document.querySelector("#PanelArea").style.pointerEvents = "initial";
     document.querySelector(".MA-TopRow").style.pointerEvents = "initial";
@@ -501,7 +594,8 @@ function GenerateSelection(data) {
     $("#GridContainer").remove();
     gridTest = document.createElement("div");
     gridTest.setAttribute("id", "GridContainer");
-    gridTest.style.gridTemplateColumns = "repeat( auto-fill, minmax(200px, 1fr) )"
+    gridTest.style.gridTemplateColumns = "repeat( auto-fill, minmax(230px, 1fr) )";
+    gridTest.style.marginTop = "5px";
     document.getElementById("GeneratedSelection").appendChild(gridTest);
     if (ctsSeaching) {
         console.log(arrayData["Rows"].length + " Pokemon in CTS Search");
@@ -523,8 +617,12 @@ function GenerateSelection(data) {
         newDiv.classList.add("SA-PokemonDiv");
         //newDiv.className += "Lozad";
         document.getElementById("GridContainer").appendChild(newDiv);
-        newDiv.setAttribute("width", "100");
-        //newDiv.setAttribute("height", "100");
+        newDiv.style.width = "240px";
+        newDiv.style.height = "250px";
+
+        frontSide = document.createElement("div");
+        frontSide.setAttribute("id", "FrontSide " + (i));
+        newDiv.appendChild(frontSide);
 
         if (insideDetails) {
             //document.getElementById("GenerationGridDiv" + (i)).style.height = "200px";
@@ -578,509 +676,317 @@ function GenerateSelection(data) {
             }
         }
 
-
-        //Setting the Image
-        theImage = document.createElement("IMG");
-        theImage.setAttribute("id", "GeneratedSelection " + (i));
-        theImage.setAttribute("width", "100");
-        theImage.setAttribute("height", "100");
-        newDiv.appendChild(theImage);
-
-        if (dexNumber) {
-            newTable = document.createElement("table");
-            newTable.style.position = "absolute";
-            newTable.style.zIndex = "1";
-
-            newDiv.style.width = "100%";
-            newTable.style.left = "5px";
-            var tr = newTable.insertRow();
-            tr.style.marginBottom = "10px";
-            tr.style.display = "flex";
-
-            var td = tr.insertCell();
-            dex = document.createElement("Text");
-            td.setAttribute("height", "auto");
-            td.setAttribute("id", "Dex" + (i));
-            dex.style.height = "13px";
-            dex.innerHTML = pokemonDataArray[index].pokedex
-
-            dex.style.fontWeight = "bold";
-            dex.style.color = "white";
-            dex.style.fontFamily = "Arial, Helvetica, sans-serif";
-            dex.style.fontSize = "60%";
-            //dex.style.display = "inline-flex";
-
-            td.appendChild(dex);
-
-            newDiv.appendChild(newTable);
-
-        }
-
-
-        newTable = document.createElement("table");
-        newTable.style.position = "absolute";
-        newTable.style.zIndex = "1";
-
-        //newTable.style.bottom = "8px";
-        newTable.style.top = "unset";
-        newDiv.style.width = "100%";
-        newTable.style.left = "50%";
-        var tr = newTable.insertRow();
-        tr.style.marginBottom = "10px";
-        tr.style.display = "flex";
         var dataPokemon = null;
 
-        var td = tr.insertCell();
         type1 = document.createElement("IMG");
         type1.setAttribute("class", "TypeDisplay");
-        td.setAttribute("width", "13px");
-        td.setAttribute("height", "13px");
         type1.style.verticalAlign = "middle";
+        //type1.style.marginTop = "5px";
+        type1.style.marginLeft = "5px";
+        type1.style.marginRight = "2px";
         type1.setAttribute("width", "13px");
         type1.setAttribute("height", "13px");
         type1.setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[index].type_1 + ".png");
 
 
-        td.appendChild(type1);
+        frontSide.appendChild(type1);
+
+        newDiv.classList.add("SA-" + pokemonDataArray[index].type_1 + "Holder");
 
         if (pokemonDataArray[index].type_2 != null) {
-            var td = tr.insertCell();
             type2 = document.createElement("IMG");
             type2.setAttribute("class", "TypeDisplay");
-            td.setAttribute("width", "13px");
-            td.setAttribute("height", "13px");
             type2.style.verticalAlign = "middle";
+            //type2.style.marginTop = "5px";
             type2.setAttribute("width", "13px");
             type2.setAttribute("height", "13px");
             type2.setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[index].type_2 + ".png");
-            td.appendChild(type2);
+            frontSide.appendChild(type2);
         }
 
-        /*if (loopArray.pokemon == pokemonDataArray[j].pokemon || dataPokemon != null) {
-
-            for (let j = 0; j < pokemonDataArray.length; j++) {
-                if (loopArray.pokemon == "Meowstic") {
-                    for (let k = 0; k < pokemonDataArray.length; k++) {
-                        if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
-                            dataPokemon = pokemonDataArray[k];
-                            //console.log(dataPokemon);
-                        }
-                    }
-                }
-    
-                if (loopArray.pokemon == "Indeedee") {
-                    for (let k = 0; k < pokemonDataArray.length; k++) {
-                        if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
-                            dataPokemon = pokemonDataArray[k];
-                            //console.log(dataPokemon);
-                        }
-                    }
-                }
-    
-                if (loopArray.pokemon == pokemonDataArray[j].pokemon || dataPokemon != null) {
-                    var td = tr.insertCell();
-                    type1 = document.createElement("IMG");
-                    type1.setAttribute("class", "TypeDisplay");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    type1.style.verticalAlign = "middle";
-                    type1.setAttribute("width", "13px");
-                    type1.setAttribute("height", "13px");
-                    if (dataPokemon == null) {
-                        type1.setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[j].type_1 + ".png");
-                    } else {
-                        type1.setAttribute("src", url + "/Resources/Misc/HP " + dataPokemon.type_1 + ".png");
-                    }
-    
-    
-                    td.appendChild(type1);
-                    //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
-                    break;
-                }
-        }
-
-        for (let j = 0; j < pokemonDataArray.length; j++) {
-            if (loopArray.pokemon == pokemonDataArray[j].pokemon) {
-                if (pokemonDataArray[j].type_2 != null) {
-                    var td = tr.insertCell();
-                    type2 = document.createElement("IMG");
-                    type2.setAttribute("class", "TypeDisplay");
-                    td.setAttribute("width", "13px");
-                    td.setAttribute("height", "13px");
-                    type2.style.verticalAlign = "middle";
-                    type2.setAttribute("width", "13px");
-                    type2.setAttribute("height", "13px");
-                    type2.setAttribute("src", url + "/Resources/Misc/HP " + pokemonDataArray[j].type_2 + ".png");
-
-                    td.appendChild(type2);
-                    //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
-                    break;
-                }
-
-                if (dataPokemon != null) {
-                    if (dataPokemon.type_2 != null) {
-                        var td = tr.insertCell();
-                        type2 = document.createElement("IMG");
-                        type2.setAttribute("class", "TypeDisplay");
-                        td.setAttribute("width", "13px");
-                        td.setAttribute("height", "13px");
-                        type2.style.verticalAlign = "middle";
-                        type2.setAttribute("width", "13px");
-                        type2.setAttribute("height", "13px");
-                        type2.setAttribute("src", url + "/Resources/Misc/HP " + dataPokemon.type_2 + ".png");
-                        td.appendChild(type2);
-                    }
-                    //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
-                    break;
-                }
-            }
-        }*/
-
-        var td = tr.insertCell();
         pokemon = document.createElement("Text");
 
 
-        td.setAttribute("height", "auto");
-        td.setAttribute("id", "Pokemon" + (i));
+        pokemon.setAttribute("height", "auto");
+        pokemon.setAttribute("id", "Pokemon" + (i));
         pokemon.style.height = "13px";
 
         pokemon.innerHTML = loopArray.pokemon;
 
         pokemon.style.fontWeight = "bold";
         pokemon.style.color = "white";
-        pokemon.style.fontFamily = "Arial, Helvetica, sans-serif";
-        pokemon.style.fontSize = "60%";
+        pokemon.style.fontFamily = "'Orbitron', sans-serif";
+        pokemon.style.fontSize = "10.2px";
         pokemon.style.display = "inline-flex";
+        pokemon.style.marginLeft = "5px";
+        pokemon.style.marginTop = "4px";
 
-        td.appendChild(pokemon);
+        frontSide.appendChild(pokemon);
 
-        if (insideDetails && loopArray.nickname != "") {
-            var tr = newTable.insertRow();
-            tr.setAttribute("class", "insideDetails" + (i));
-            tr.style.display = "none";
-            var td = tr.insertCell();
-            nickname = document.createElement("Text");
-            td.setAttribute("height", "13px");
-            nickname.setAttribute("height", "13px");
-            nickname.innerHTML = loopArray.nickname;
-            nickname.style.fontWeight = "bold";
-            nickname.style.color = "white";
-            nickname.style.fontFamily = "Arial, Helvetica, sans-serif";
-            nickname.style.fontSize = "60%";
-
-            td.appendChild(nickname);
+        dex = document.createElement("Text");
+        dex.setAttribute("id", "Dex" + (i));
+        dex.style.height = "13px";
+        for (let j = 0; j < pokemonDataArray.length; j++) {
+            if (pokemonDataArray[j].pokemon == loopArray.pokemon) {
+                dex.innerHTML = "#" + pokemonDataArray[j].pokedex;
+            }
         }
+        dex.style.fontWeight = "bold";
+        dex.style.color = "white";
+        dex.style.fontFamily = "'Orbitron', sans-serif";
+        dex.style.fontSize = "10.2px";
+        //dex.style.display = "inline-flex";
+
+        dex.style.position = "absolute";
+        dex.style.zIndex = "1";
+        dex.style.top = "17px";
+        dex.style.left = "5px";
+        dex.style.display = "flex";
+
+
+        frontSide.appendChild(dex);
+
+
+        //Setting the Image
+        theImage = document.createElement("IMG");
+        theImage.setAttribute("id", "GeneratedSelection " + (i));
+        theImage.setAttribute("width", "100");
+        theImage.setAttribute("height", "100");
+        theImage.style.position = "absolute";
+        theImage.style.top = "20px";
+        theImage.style.cursor = "pointer";
+        newDiv.appendChild(theImage);
+
+        theImage.onclick = function () {
+            IAPokemonDropdown.value = arrayData["Rows"][i].pokemon;
+            if (arrayData["Rows"][i].shiny.includes("Normal")) {
+                shinyStatus = "";
+                document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
+            } else {
+                shinyStatus = "-Shiny";
+                document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Misc/Star Shiny.png");
+            }
+            $('.IA-PokemonDropdown').change();
+            document.querySelector("#InformationArea").style.display = "block";
+            document.querySelector("#DetailsArea").style.display = "none";
+            document.querySelector("#PanelArea").style.display = "none";
+        }
+
+        newTable = document.createElement("table");
+        newTable.style.position = "absolute";
+        newTable.style.zIndex = "1";
+        newTable.style.top = "15px";
+        //newDiv.style.width = "100%";
+        newTable.style.left = "115px";
+        newTable.style.height = "90px";
+        newTable.style.width = "130px";
 
         newDiv.appendChild(newTable);
 
 
+        var tr = newTable.insertRow();
+        tr.style.display = "table-row";
+        tr.style.height = "20px";
+        var td = tr.insertCell();
+        nickname = document.createElement("Text");
+        td.setAttribute("height", "13px");
+        nickname.setAttribute("height", "13px");
+        nickname.innerHTML = loopArray.nickname;
+        nickname.style.fontWeight = "bold";
+        nickname.style.color = "white";
+        nickname.style.fontFamily = "'Orbitron', sans-serif";
+        nickname.style.fontSize = "10.2px";
+
+        td.appendChild(nickname);
 
         var tr = newTable.insertRow();
         newTable.bottom = "unset";
         tr.style.display = "flex";
-        if (previewIVs) {
-            newTable.style.top = "65px";
-        } else {
-            newTable.style.top = "79px";
-        }
+        tr.style.marginBottom = "2px";
 
         var td = tr.insertCell();
         ball = document.createElement("IMG");
-        td.setAttribute("width", "13px");
-        td.setAttribute("height", "13px");
-        ball.setAttribute("width", "13px");
-        ball.setAttribute("height", "13px");
+        td.setAttribute("width", "15px");
+        td.setAttribute("height", "15px");
+        td.style.marginRight = "0.5px";
+        ball.setAttribute("width", "15px");
+        ball.setAttribute("height", "15px");
         ball.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Items/" + loopArray.pokeball + ".png");
-        if (!previewBall) {
-            td.setAttribute("class", "insideDetails" + (i));
-            td.style.display = "none";
-        }
 
         td.appendChild(ball);
 
         var td = tr.insertCell();
         gender = document.createElement("IMG");
-        td.setAttribute("width", "13px");
-        td.setAttribute("height", "13px");
-        gender.setAttribute("width", "13px");
-        gender.setAttribute("height", "13px");
+        td.setAttribute("width", "15px");
+        td.setAttribute("height", "15px");
+        td.style.marginRight = "0.5px";
+        gender.setAttribute("width", "15px");
+        gender.setAttribute("height", "15px");
         gender.setAttribute("src", url + "/Resources/Misc/" + loopArray.gender + ".png");
-        if (!previewGender) {
-            td.setAttribute("class", "insideDetails" + (i));
-            td.style.display = "none";
-        }
 
         td.appendChild(gender);
 
         var td = tr.insertCell();
         shiny = document.createElement("IMG");
-        td.setAttribute("width", "13px");
-        td.setAttribute("height", "13px");
-        shiny.setAttribute("width", "13px");
-        shiny.setAttribute("height", "13px");
+        td.setAttribute("width", "15px");
+        td.setAttribute("height", "15px");
+        td.style.marginRight = "0.5px";
+        shiny.setAttribute("width", "15px");
+        shiny.setAttribute("height", "15px");
         shiny.setAttribute("src", url + "/Resources/Misc/" + loopArray.shiny + ".png");
-        if (!previewShiny) {
-            td.setAttribute("class", "insideDetails" + (i));
-            td.style.display = "none";
+
+        if ((loopArray.shiny == "Normal" || loopArray.shiny == "(Any Shiny or Normal)") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            shiny.style.opacity = "0.5";
         }
 
         td.appendChild(shiny);
 
         var td = tr.insertCell();
         mint = document.createElement("IMG");
-        td.setAttribute("width", "13px");
-        td.setAttribute("height", "13px");
-        mint.setAttribute("width", "13px");
-        mint.setAttribute("height", "13px");
+        td.setAttribute("width", "15px");
+        td.setAttribute("height", "15px");
+        td.style.marginRight = "0.5px";
+        mint.setAttribute("width", "15px");
+        mint.setAttribute("height", "15px");
         mint.setAttribute("src", url + "/Resources/Misc/" + loopArray.mint + ".png");
-        if (!previewMint) {
-            td.setAttribute("class", "insideDetails" + (i));
-            td.style.display = "none";
+
+
+        if ((loopArray.mint == "Not Minted" || loopArray.mint == "(Any or No Mint)") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            mint.style.opacity = "0.5";
         }
 
         td.appendChild(mint);
 
         var td = tr.insertCell();
         misc = document.createElement("IMG");
-        td.setAttribute("width", "13px");
-        td.setAttribute("height", "13px");
-        misc.setAttribute("width", "13px");
-        misc.setAttribute("height", "13px");
+        td.setAttribute("width", "15px");
+        td.setAttribute("height", "15px");
+        td.style.marginRight = "0.5px";
+        misc.setAttribute("width", "15px");
+        misc.setAttribute("height", "15px");
         misc.setAttribute("src", url + "/Resources/Misc/" + loopArray.misc + ".png");
-        if (!previewMisc) {
-            td.setAttribute("class", "insideDetails" + (i));
-            td.style.display = "none";
+
+
+        if ((loopArray.misc == "(No Misc)") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            misc.style.opacity = "0.5";
         }
 
         td.appendChild(misc);
 
         var td = tr.insertCell();
         mark = document.createElement("IMG");
-        td.setAttribute("width", "13px");
-        td.setAttribute("height", "13px");
-        mark.setAttribute("width", "13px");
-        mark.setAttribute("height", "13px");
+        td.setAttribute("width", "15px");
+        td.setAttribute("height", "15px");
+        td.style.marginRight = "0.5px";
+        mark.setAttribute("width", "15px");
+        mark.setAttribute("height", "15px");
         mark.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Marks/" + loopArray.mark + ".png");
-        if (!previewMark) {
-            td.setAttribute("class", "insideDetails" + (i));
-            td.style.display = "none";
+
+
+        if ((loopArray.mark == "(No Mark)" || loopArray.mark == "(Any or No Mark") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            mark.style.opacity = "0.5";
         }
 
         td.appendChild(mark);
 
-        newDiv.appendChild(newTable);
-
-        if (previewIVs == true) {
-            if (exactIVs) {
-                var tr = newTable.insertRow();
-                tr.style.display = "flex";
-                var td = tr.insertCell();
-                textIVs = document.createElement("Text");
-                td.setAttribute("height", "13px");
-                textIVs.setAttribute("height", "13px");
-                textIVs.innerHTML = "IVS: " + loopArray.iv_hp + "/" + loopArray.iv_att + "/" + loopArray.iv_def + "/" + loopArray.iv_spa + "/" + loopArray.iv_spd + "/" + loopArray.iv_spe;
-                textIVs.style.fontWeight = "bold";
-                textIVs.style.color = "white";
-                textIVs.style.fontFamily = "Arial, Helvetica, sans-serif";
-                textIVs.style.fontSize = "60%";
-                textIVs.style.whiteSpace = "nowrap";
-
-                td.appendChild(textIVs);
-
-                newDiv.appendChild(newTable);
-            } else {
-                //newTable.setAttribute("width", "100");
-                //newTable.setAttribute("height", "100");
-                var tr = newTable.insertRow();
-                tr.style.display = "flex";
-                var td = tr.insertCell();
-                ivHP = document.createElement("IMG");
-                td.setAttribute("width", "13px");
-                td.setAttribute("height", "13px");
-                ivHP.setAttribute("width", "13px");
-                ivHP.setAttribute("height", "13px");
-                if (loopArray.iv_hp == "31") {
-                    ivHP.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
-                }
-                else if (loopArray.iv_hp == "30") {
-                    ivHP.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
-                }
-                else if (loopArray.iv_hp == "0") {
-                    ivHP.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
-                }
-                else if (loopArray.iv_hp == "1") {
-                    ivHP.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
-                }
-                else if (loopArray.iv_hp == "HT") {
-                    ivHP.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
-                } else {
-                    ivHP.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
-                }
-                td.appendChild(ivHP);
-
-
-                var td = tr.insertCell();
-                ivAtt = document.createElement("IMG");
-                td.setAttribute("width", "13px");
-                td.setAttribute("height", "13px");
-                ivAtt.setAttribute("width", "13px");
-                ivAtt.setAttribute("height", "13px");
-                if (loopArray.iv_att == "31") {
-                    ivAtt.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
-                }
-                else if (loopArray.iv_att == "30") {
-                    ivAtt.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
-                }
-                else if (loopArray.iv_att == "0") {
-                    ivAtt.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
-                }
-                else if (loopArray.iv_att == "1") {
-                    ivAtt.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
-                }
-                else if (loopArray.iv_att == "HT") {
-                    ivAtt.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
-                } else {
-                    ivAtt.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
-                }
-                td.appendChild(ivAtt);
-
-                var td = tr.insertCell();
-                ivDef = document.createElement("IMG");
-                td.setAttribute("width", "13px");
-                td.setAttribute("height", "13px");
-                ivDef.setAttribute("width", "13px");
-                ivDef.setAttribute("height", "13px");
-                if (loopArray.iv_def == "31") {
-                    ivDef.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
-                }
-                else if (loopArray.iv_def == "30") {
-                    ivDef.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
-                }
-                else if (loopArray.iv_def == "0") {
-                    ivDef.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
-                }
-                else if (loopArray.iv_def == "1") {
-                    ivDef.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
-                }
-                else if (loopArray.iv_def == "HT") {
-                    ivDef.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
-                } else {
-                    ivDef.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
-                }
-                td.appendChild(ivDef);
-
-                var td = tr.insertCell();
-                ivSpa = document.createElement("IMG");
-                td.setAttribute("width", "13px");
-                td.setAttribute("height", "13px");
-                ivSpa.setAttribute("width", "13px");
-                ivSpa.setAttribute("height", "13px");
-                if (loopArray.iv_spa == "31") {
-                    ivSpa.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
-                }
-                else if (loopArray.iv_spa == "30") {
-                    ivSpa.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
-                }
-                else if (loopArray.iv_spa == "0") {
-                    ivSpa.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
-                }
-                else if (loopArray.iv_spa == "1") {
-                    ivSpa.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
-                }
-                else if (loopArray.iv_spa == "HT") {
-                    ivSpa.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
-                } else {
-                    ivSpa.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
-                }
-                td.appendChild(ivSpa);
-
-                var td = tr.insertCell();
-                ivSpd = document.createElement("IMG");
-                td.setAttribute("width", "13px");
-                td.setAttribute("height", "13px");
-                ivSpd.setAttribute("width", "13px");
-                ivSpd.setAttribute("height", "13px");
-                if (loopArray.iv_spd == "31") {
-                    ivSpd.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
-                }
-                else if (loopArray.iv_spd == "30") {
-                    ivSpd.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
-                }
-                else if (loopArray.iv_spd == "0") {
-                    ivSpd.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
-                }
-                else if (loopArray.iv_spd == "1") {
-                    ivSpd.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
-                }
-                else if (loopArray.iv_spd == "HT") {
-                    ivSpd.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
-                } else {
-                    ivSpd.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
-                }
-                td.appendChild(ivSpd);
-
-                var td = tr.insertCell();
-                ivSpe = document.createElement("IMG");
-                td.setAttribute("width", "13px");
-                td.setAttribute("height", "13px");
-                ivSpe.setAttribute("width", "13px");
-                ivSpe.setAttribute("height", "13px");
-                if (loopArray.iv_spe == "31") {
-                    ivSpe.setAttribute("src", url + "/Resources/Misc/Max IV Icon.png");
-                }
-                else if (loopArray.iv_spe == "30") {
-                    ivSpe.setAttribute("src", url + "/Resources/Misc/30 IV Icon.png");
-                }
-                else if (loopArray.iv_spe == "0") {
-                    ivSpe.setAttribute("src", url + "/Resources/Misc/0 IV Icon.png");
-                }
-                else if (loopArray.iv_spe == "1") {
-                    ivSpe.setAttribute("src", url + "/Resources/Misc/1 IV Icon.png");
-                }
-                else if (loopArray.iv_spe == "HT") {
-                    ivSpe.setAttribute("src", url + "/Resources/Misc/HT IV Icon.png");
-                } else {
-                    ivSpe.setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
-                }
-                td.appendChild(ivSpe);
-
-                newDiv.appendChild(newTable);
-            }
-
-            if (insideDetails) {
-                var tr = newTable.insertRow();
-                tr.setAttribute("class", "insideDetails" + (i));
-                tr.style.display = "none";
-                var td = tr.insertCell();
-                evsText = document.createElement("Text");
-                td.setAttribute("height", "13px");
-                evsText.setAttribute("height", "13px");
-                evsText.innerHTML = loopArray.ev_hp + "/" + loopArray.ev_att + "/" + loopArray.ev_def + "/" + loopArray.ev_spa + "/" + loopArray.ev_spd + "/" + loopArray.ev_spe;
-                evsText.style.fontWeight = "bold";
-                evsText.style.color = "white";
-                evsText.style.fontFamily = "Arial, Helvetica, sans-serif";
-                evsText.style.fontSize = "60%";
-
-                td.appendChild(evsText);
-            }
+        var td = tr.insertCell();
+        ribbons = document.createElement("IMG");
+        ribbons.setAttribute("id", "Ribbons " + i);
+        td.setAttribute("width", "15px");
+        td.setAttribute("height", "15px");
+        td.style.marginRight = "0.5px";
+        ribbons.setAttribute("width", "15px");
+        ribbons.setAttribute("height", "15px");
+        if (loopArray.ribbons != "(No Ribbon)" && loopArray.ribbons != "(Any or No Ribbons") {
+            ribbons.style.cursor = "pointer";
         }
 
 
-        //newTable.style.bottom = "8px";
-        newTable.style.top = "unset";
-        newDiv.style.width = "100%";
-        newTable.style.left = "50%";
+        if ((loopArray.ribbons == "(No Ribbon)" || loopArray.ribbons == "(Any or No Ribbons") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            ribbons.style.opacity = "0.5";
+        }
+
+        var arrayTempRibbons = loopArray.ribbons.split(",");
+        if (loopArray.ribbons == "(No Ribbon)") {
+            ribbons.setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png");
+        } else {
+            for (let j = 0; j < ribbonOptionsArray.length; j++) {
+                for (let k = 0; k < arrayTempRibbons.length; k++) {
+                    if (ribbonOptionsArray[j] == arrayTempRibbons[k]) {
+                        ribbons.setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[j] + ".png");
+                        break;
+                    }
+                }
+            }
+        }
+
+        td.appendChild(ribbons);
+
+        ribbonDisplay = document.createElement("div");
+        ribbonDisplay.setAttribute("id", "RibbonDisplay " + i);
+        ribbonDisplay.style.width = "-webkit-fill-available";
+        ribbonDisplay.style.width = "-moz-available";
+        ribbonDisplay.style.display = "none";
+        ribbonDisplay.style.gridTemplateColumns = "repeat(auto-fit, minmax(60px, 1fr)";
+        ribbonDisplay.style.margin = "4px";
+        ribbonDisplay.style.position = "absolute";
+        ribbonDisplay.style.background = "linear-gradient(#302b75, #112354)";
+        ribbonDisplay.style.zIndex = "2";
+        ribbonDisplay.style.top = "55px";
+        for (let j = 0; j < ribbonOptionsArray.length; j++) {
+            for (let k = 0; k < arrayTempRibbons.length; k++) {
+                if (ribbonOptionsArray[j] == arrayTempRibbons[k]) {
+                    ribbonDiv = document.createElement("div");
+                    ribbonDiv.style.textAlign = "center";
+                    ribbonDiv.style.borderStyle = "solid";
+                    ribbonDisplay.appendChild(ribbonDiv);
+                    newRibbon = document.createElement("img");
+                    newRibbon.style.width = "20px";
+                    newRibbon.style.height = "20px";
+                    newRibbon.setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[j] + ".png");
+                    ribbonDiv.appendChild(newRibbon);
+                    theText = document.createElement("text");
+                    theText.style.display = "block";
+                    theText.style.fontWeight = "bold";
+                    theText.style.color = "white";
+                    theText.style.fontFamily = "'Orbitron', sans-serif";
+                    theText.style.fontSize = "8px";
+                    theText.style.marginBottom = "4px";
+                    if (ribbonOptionsArray[j].includes("No Ribbon")) {
+                        theText.innerHTML = ribbonOptionsArray[j];
+                        ribbonDiv.appendChild(theText);
+                    } else {
+                        theText.innerHTML = ribbonOptionsArray[j].replace("Ribbon", '');
+                        ribbonDiv.appendChild(theText);
+                    }
+                }
+            }
+        }
+
+        frontSide.appendChild(ribbonDisplay);
+
+        document.getElementById("Ribbons " + i).onclick = function () {
+            if (document.getElementById("RibbonDisplay " + i).style.display == "none") {
+                document.getElementById("RibbonDisplay " + i).style.display = "grid";
+            } else {
+                document.getElementById("RibbonDisplay " + i).style.display = "none";
+            }
+        }
+
+        frontSide.appendChild(newTable);
+
 
         var tr = newTable.insertRow();
-        tr.style.display = "flex";
+        tr.style.display = "table-row";
         var td = tr.insertCell();
         ability = document.createElement("Text");
         td.setAttribute("height", "13px");
         ability.setAttribute("height", "13px");
         ability.style.fontWeight = "bold";
         ability.style.color = "white";
-        ability.style.fontFamily = "Arial, Helvetica, sans-serif";
-        ability.style.fontSize = "60%";
+        ability.style.fontFamily = "'Orbitron', sans-serif";
+
+        ability.style.fontSize = "10.2px";
 
         if (loopArray.ability == pokemonDataArray[index].hidden_ability_1 || loopArray.ability == pokemonDataArray[index].hidden_ability_2) {
             ability.innerHTML = loopArray.ability + " (H)";
@@ -1091,56 +997,8 @@ function GenerateSelection(data) {
         }
 
 
-
-
-        /*for (let j = 0; j < pokemonDataArray.length; j++) {
-            if (loopArray.pokemon == pokemonDataArray[j].pokemon || dataPokemon != null) {
-                var tr = newTable.insertRow();
-                tr.style.display = "flex";
-                var td = tr.insertCell();
-                ability = document.createElement("Text");
-                td.setAttribute("height", "13px");
-                ability.setAttribute("height", "13px");
-                ability.style.fontWeight = "bold";
-                ability.style.color = "white";
-                ability.style.fontFamily = "Arial, Helvetica, sans-serif";
-                ability.style.fontSize = "60%";
-                if (dataPokemon == null) {
-                    if (loopArray.ability == pokemonDataArray[j].ability_1 || loopArray.ability == pokemonDataArray[j].ability_2 || loopArray.ability == pokemonDataArray[j].hidden_ability_1 || loopArray.ability == pokemonDataArray[j].hidden_ability_2) {
-                        if (loopArray.ability == pokemonDataArray[j].hidden_ability_1 || loopArray.ability == pokemonDataArray[j].hidden_ability_2) {
-                            ability.innerHTML = loopArray.ability + " (H)";
-                            td.appendChild(ability);
-                        } else {
-                            ability.innerHTML = loopArray.ability;
-                            td.appendChild(ability);
-                        }
-
-                    }
-                    //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
-                    break;
-                } else {
-                    if (loopArray.ability == dataPokemon.ability_1 || loopArray.ability == dataPokemon.ability_2 || loopArray.ability == dataPokemon.hidden_ability_1 || loopArray.ability == dataPokemon.hidden_ability_2) {
-                        if (loopArray.ability == dataPokemon.hidden_ability_1 || loopArray.ability == dataPokemon.hidden_ability_2) {
-                            ability.innerHTML = loopArray.ability + " (H)";
-                            td.appendChild(ability);
-                        } else {
-                            ability.innerHTML = loopArray.ability;
-                            td.appendChild(ability);
-                        }
-
-                    }
-                    //Need break to ironically prevent things breaking; creates a ton of break icons if datatype not null
-                    break;
-                }
-
-            }
-        }*/
-
-
-
-
         var tr = newTable.insertRow();
-        tr.style.display = "flex";
+        tr.style.display = "table-row";
         var td = tr.insertCell();
         nature = document.createElement("Text");
         td.setAttribute("height", "13px");
@@ -1148,703 +1006,1824 @@ function GenerateSelection(data) {
         nature.innerHTML = loopArray.nature;
         nature.style.fontWeight = "bold";
         nature.style.color = "white";
-        nature.style.fontFamily = "Arial, Helvetica, sans-serif";
-        nature.style.fontSize = "60%";
+        nature.style.fontFamily = "'Orbitron', sans-serif";
+        nature.style.fontSize = "10.2px";
 
         td.appendChild(nature);
 
-        if (insideDetails) {
-            if (loopArray.game_ot != "") {
-                var tr = newTable.insertRow();
-                tr.setAttribute("class", "insideDetails" + (i));
-                tr.style.display = "none";
-                var td = tr.insertCell();
-                gameOT = document.createElement("Text");
-                td.setAttribute("height", "13px");
-                gameOT.setAttribute("height", "13px");
-                gameOT.innerHTML = "OT: " + loopArray.game_ot;
-                gameOT.style.fontWeight = "bold";
-                gameOT.style.color = "white";
-                gameOT.style.fontFamily = "Arial, Helvetica, sans-serif";
-                gameOT.style.fontSize = "60%";
-
-                td.appendChild(gameOT);
-            }
-
-            if (loopArray.game_id != "") {
-                var tr = newTable.insertRow();
-                tr.setAttribute("class", "insideDetails" + (i));
-                tr.style.display = "none";
-                var td = tr.insertCell();
-                gameID = document.createElement("Text");
-                td.setAttribute("height", "13px");
-                gameID.setAttribute("height", "13px");
-                gameID.innerHTML = "ID: " + loopArray.game_id;
-                gameID.style.fontWeight = "bold";
-                gameID.style.color = "white";
-                gameID.style.fontFamily = "Arial, Helvetica, sans-serif";
-                gameID.style.fontSize = "60%";
-
-                td.appendChild(gameID);
-            }
-
-            var tr = newTable.insertRow();
-            tr.setAttribute("class", "insideDetails" + (i));
-            tr.style.display = "none";
-            var td = tr.insertCell();
-            statusInfo = document.createElement("Text");
-            td.setAttribute("height", "13px");
-            statusInfo.setAttribute("height", "13px");
-            statusInfo.innerHTML = loopArray.status;
-            statusInfo.style.fontWeight = "bold";
-            statusInfo.style.color = "white";
-            statusInfo.style.fontFamily = "Arial, Helvetica, sans-serif";
-            statusInfo.style.fontSize = "60%";
-
-            td.appendChild(statusInfo);
-
-            if (loopArray.event_info != "(Not Event)" && loopArray.event_info != "(Any/No Event)") {
-                var tr = newTable.insertRow();
-                tr.setAttribute("class", "insideDetails" + (i));
-                tr.style.display = "none";
-                var td = tr.insertCell();
-                eventInfo = document.createElement("Text");
-                td.setAttribute("height", "13px");
-                eventInfo.setAttribute("height", "13px");
-                eventInfo.innerHTML = loopArray.event_info;
-                eventInfo.style.fontWeight = "bold";
-                eventInfo.style.color = "white";
-                eventInfo.style.fontFamily = "Arial, Helvetica, sans-serif";
-                eventInfo.style.fontSize = "60%";
-
-                td.appendChild(eventInfo);
-            }
+        var tr = newTable.insertRow();
+        tr.style.display = "table-row";
+        var td = tr.insertCell();
+        item = document.createElement("Text");
+        td.setAttribute("height", "13px");
+        item.setAttribute("height", "13px");
+        if (loopArray.item != "(No Item)") {
+            item.innerHTML = loopArray.item;
         }
+        item.style.fontWeight = "bold";
+        item.style.color = "white";
+        item.style.fontFamily = "'Orbitron', sans-serif";
+        item.style.fontSize = "10.2px";
 
-        newDiv.appendChild(newTable);
+        td.appendChild(item);
 
+        ivGrid = document.createElement("div");
+        ivGrid.setAttribute("id", "IvGrid " + i);
+        ivGrid.style.display = "grid";
+        ivGrid.style.gridTemplateColumns = "repeat( 6, minmax(40px, 1fr) )";
+        ivGrid.style.position = "absolute";
+        ivGrid.style.top = "130px";
+        ivGrid.style.width = "100%";
+        //ivGrid.style.marginLeft = "0.5px";
+        //ivGrid.style.marginRight = "0.5px";
 
+        frontSide.appendChild(ivGrid);
 
-        if (insideDetails) {
-            newTable = document.createElement("table");
-            newTable.style.position = "absolute";
-            newTable.style.zIndex = "1";
-            newTable.style.top = "50%";
-            newTable.style.left = "10px";
+        statIvHP = document.createElement("button");
+        statIvHP.setAttribute("id", "IvHP " + i);
+        statIvHP.setAttribute("class", "SA-StatHolder");
+        statIvHP.style.borderLeft = "none";
 
-            /*var tr = newTable.insertRow();
-            tr.setAttribute("class", "insideDetails" + (i));
-            tr.style.display = "flex";
-            var td = tr.insertCell();
-            movesTitle = document.createElement("Text");
-            td.setAttribute("height", "13px");
-            movesTitle.setAttribute("height", "13px");
-            movesTitle.innerHTML = "Pokemon Moves";
-            movesTitle.style.fontWeight = "bold";
-            movesTitle.style.color = "white";
-            movesTitle.style.fontFamily = "Arial, Helvetica, sans-serif";
-            movesTitle.style.fontSize = "60%";
+        ivGrid.appendChild(statIvHP);
 
-            td.appendChild(movesTitle);*/
+        statIvAtt = document.createElement("button");
+        statIvAtt.setAttribute("id", "IvAtt " + i);
+        statIvAtt.setAttribute("class", "SA-StatHolder");
 
-            if (loopArray.move_1 != "(No Move)" && loopArray.move_1 != "(Any Move)") {
-                var tr = newTable.insertRow();
-                tr.setAttribute("class", "insideDetails" + (i));
-                tr.style.display = "none";
-                var td = tr.insertCell();
-                move = document.createElement("Text");
-                td.setAttribute("height", "13px");
-                move.setAttribute("height", "13px");
-                move.innerHTML = loopArray.move_1;
-                move.style.fontWeight = "bold";
-                move.style.color = "white";
-                move.style.fontFamily = "Arial, Helvetica, sans-serif";
-                move.style.fontSize = "60%";
+        ivGrid.appendChild(statIvAtt);
 
-                td.appendChild(move);
-            }
+        statIvDef = document.createElement("button");
+        statIvDef.setAttribute("id", "IvDef " + i);
+        statIvDef.setAttribute("class", "SA-StatHolder");
 
-            if (loopArray.move_2 != "(No Move)" && loopArray.move_2 != "(Any Move)") {
-                var tr = newTable.insertRow();
-                tr.setAttribute("class", "insideDetails" + (i));
-                tr.style.display = "none";
-                var td = tr.insertCell();
-                move = document.createElement("Text");
-                td.setAttribute("height", "13px");
-                move.setAttribute("height", "13px");
-                move.innerHTML = loopArray.move_2;
-                move.style.fontWeight = "bold";
-                move.style.color = "white";
-                move.style.fontFamily = "Arial, Helvetica, sans-serif";
-                move.style.fontSize = "60%";
+        ivGrid.appendChild(statIvDef);
 
-                td.appendChild(move);
-            }
+        statIvSpa = document.createElement("button");
+        statIvSpa.setAttribute("id", "IvSpa " + i);
+        statIvSpa.setAttribute("class", "SA-StatHolder");
 
-            if (loopArray.move_3 != "(No Move)" && loopArray.move_3 != "(Any Move)") {
-                var tr = newTable.insertRow();
-                tr.setAttribute("class", "insideDetails" + (i));
-                tr.style.display = "none";
-                var td = tr.insertCell();
-                move = document.createElement("Text");
-                td.setAttribute("height", "13px");
-                move.setAttribute("height", "13px");
-                move.innerHTML = loopArray.move_3;
-                move.style.fontWeight = "bold";
-                move.style.color = "white";
-                move.style.fontFamily = "Arial, Helvetica, sans-serif";
-                move.style.fontSize = "60%";
+        ivGrid.appendChild(statIvSpa);
 
-                td.appendChild(move);
-            }
+        statIvSpd = document.createElement("button");
+        statIvSpd.setAttribute("id", "IvSpd " + i);
+        statIvSpd.setAttribute("class", "SA-StatHolder");
 
-            if (loopArray.move_4 != "(No Move)" && loopArray.move_4 != "(Any Move)") {
-                var tr = newTable.insertRow();
-                tr.setAttribute("class", "insideDetails" + (i));
-                tr.style.display = "none";
-                var td = tr.insertCell();
-                move = document.createElement("Text");
-                td.setAttribute("height", "13px");
-                move.setAttribute("height", "13px");
-                move.innerHTML = loopArray.move_4;
-                move.style.fontWeight = "bold";
-                move.style.color = "white";
-                move.style.fontFamily = "Arial, Helvetica, sans-serif";
-                move.style.fontSize = "60%";
+        ivGrid.appendChild(statIvSpd);
 
-                td.appendChild(move);
-            }
+        statIvSpe = document.createElement("button");
+        statIvSpe.setAttribute("id", "IvSpe " + i);
+        statIvSpe.setAttribute("class", "SA-StatHolder");
+        statIvSpe.style.borderRight = "none";
 
-            var tr = newTable.insertRow();
-            tr.setAttribute("class", "insideDetails" + (i));
-            tr.style.display = "none";
-            var td = tr.insertCell();
-            td.setAttribute("height", "13px");
+        ivGrid.appendChild(statIvSpe);
 
-            newDiv.appendChild(newTable);
+        statIvHP.innerHTML = loopArray.iv_hp;
+        statIvAtt.innerHTML = loopArray.iv_att;
+        statIvDef.innerHTML = loopArray.iv_def;
+        statIvSpa.innerHTML = loopArray.iv_spa;
+        statIvSpd.innerHTML = loopArray.iv_spd;
+        statIvSpe.innerHTML = loopArray.iv_spe;
 
-
-        }
-
-        if (insideDetails) {
-            newTable = document.createElement("table");
-            newTable.style.position = "absolute";
-            newTable.style.zIndex = "1";
-            newTable.style.bottom = "4%";
-            newTable.style.left = "10px";
-
-            if (loopArray.proof != "") {
-                var tr = newTable.insertRow();
-                tr.setAttribute("class", "insideDetails" + (i));
-                tr.style.display = "none";
-                var td = tr.insertCell();
-                td.setAttribute("width", "180px");
-                td.style.overflow = "hidden";
-                td.style.overflow = "-moz-hidden-unscrollable";
-                td.style.whiteSpace = "no-wrap";
-                proof = document.createElement("a");
-                proof.setAttribute("href", loopArray.proof);
-                proof.setAttribute("target", "_blank");
-                td.setAttribute("height", "16px");
-                proof.setAttribute("height", "13px");
-                proof.innerHTML = loopArray.proof;
-                proof.style.fontWeight = "bold";
-                proof.style.color = "white";
-                proof.style.fontFamily = "Arial, Helvetica, sans-serif";
-                proof.style.fontSize = "60%";
-
-                td.appendChild(proof);
-            }
-
-            newDiv.appendChild(newTable);
-
-        }
-
-
-
-        SetImage(theImage, loopArray.pokemon, loopArray.gender, loopArray.shiny, loopArray.game_obtained);
-
-        /*if (shinyLockedArray.includes(loopArray.pokemon) && !loopArray.shiny.includes("Normal")) {
-            theImage.setAttribute("src", url + "/Resources/Fennel2.png");
-        }
-
-        else if (genderDifferencesArray.includes(loopArray.pokemon)) {
-            if (loopArray.gender == "Male" || loopArray.gender == "(Any Gender)") {
-                //console.log("WOOOORK")
-                if (loopArray.shiny.includes("Normal")) {
-                    if (generationalSprites) {
-                        if (loopArray.game_obtained == "R/G/B/Y") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "G/S/C") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + loopArray.pokemon + "-Male.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "BW/BW2") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + loopArray.pokemon + "-Male.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "X/Y") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + "-Male.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "OR/AS") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + "-Male.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "SM/USUM") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + "-Male.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "LGP/LGE") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + loopArray.pokemon + "-Male.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "BD/SP") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSP/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "LA") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + loopArray.pokemon + "-Male.png");
-                        }
-                        else {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Male.png");
-                        }
-                    } else {
-                        theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Male.png");
-                    }
-                    document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).onerror = function () {
-                        document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).setAttribute("src", url + "/Resources/Home/" + arrayData["Rows"][i].pokemon + "-Male.png")
-                    };
-                }
-                else if (!loopArray.shiny.includes("Normal")) {
-                    if (generationalSprites) {
-                        if (loopArray.game_obtained == "R/G/B/Y") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "G/S/C") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + "-Male.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "BW/BW2") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + "-Male.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "X/Y") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + "-Male.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "OR/AS") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + "-Male.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "SM/USUM") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + "-Male.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "LGP/LGE") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + loopArray.pokemon + "-Male.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "BD/SP") {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Shiny.png");
-                        }
-                        else if (loopArray.game_obtained == "LA") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + loopArray.pokemon + "-Male.png");
-                        }
-                        else {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Male-Shiny.png");
-                        }
-                    } else {
-                        theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Male-Shiny.png");
-                    }
-                    document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).onerror = function () {
-                        document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).setAttribute("src", url + "/Resources/Home/" + arrayData["Rows"][i].pokemon + "-Male-Shiny.png")
-                    };
-                }
-            }
-            else if (loopArray.gender == "Female") {
-                if (loopArray.shiny.includes("Normal")) {
-                    if (generationalSprites) {
-                        if (loopArray.game_obtained == "R/G/B/Y") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "G/S/C") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + loopArray.pokemon + "-Female.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "BW/BW2") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + loopArray.pokemon + "-Female.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "X/Y") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + "-Female.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "OR/AS") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + "-Female.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "SM/USUM") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + "-Female.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "LGP/LGE") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + loopArray.pokemon + "-Female.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "BD/SP") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSP/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "LA") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + loopArray.pokemon + "-Female.png");
-                        }
-                        else {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Female.png");
-                        }
-                    } else {
-                        theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Female.png");
-                    }
-                    document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).onerror = function () {
-                        document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).setAttribute("src", url + "/Resources/Home/" + arrayData["Rows"][i].pokemon + "-Female.png")
-                    };
-                }
-                else if (!loopArray.shiny.includes("Normal")) {
-                    if (generationalSprites) {
-                        if (loopArray.game_obtained == "R/G/B/Y") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "G/S/C") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + "-Female.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "BW/BW2") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + "-Female.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "X/Y") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + "-Female.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "OR/AS") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + "-Female.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "SM/USUM") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + "-Female.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "LGP/LGE") {
-                            if (loopArray.pokemon == "Eevee") {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + loopArray.pokemon + ".png");
-                            } else {
-                                theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + loopArray.pokemon + "-Female.png");
-                            }
-                        }
-                        else if (loopArray.game_obtained == "BD/SP") {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Female-Shiny.png");
-                        }
-                        else if (loopArray.game_obtained == "LA") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + loopArray.pokemon + "-Female.png");
-                        }
-                        else {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Female-Shiny.png");
-                        }
-                    } else {
-                        theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Female-Shiny.png");
-                    }
-                    document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).onerror = function () {
-                        document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).setAttribute("src", url + "/Resources/Home/" + arrayData["Rows"][i].pokemon + "-Female-Shiny.png")
-                    };
-                }
-            }
+        if (statIvHP.innerHTML == 31) {
+            statIvHP.style.color = "#71c771";
+        } else if (statIvHP.innerHTML == 0) {
+            statIvHP.style.color = "#ff6767";
+        } else if (statIvHP.innerHTML == "HT") {
+            statIvHP.style.color = "#d2b30c";
         } else {
-            if (loopArray.shiny.includes("Normal")) {
-                if (generationalSprites) {
-                    if (loopArray.game_obtained == "R/G/B/Y") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + loopArray.pokemon + ".png");
-                    }
-                    else if (loopArray.game_obtained == "G/S/C") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + loopArray.pokemon + ".png");
-                    }
-                    else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + loopArray.pokemon + ".png");
-                    }
-                    else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + loopArray.pokemon + ".png");
-                    }
-                    else if (loopArray.game_obtained == "BW/BW2") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + loopArray.pokemon + ".png");
-                    }
-                    else if (loopArray.game_obtained == "X/Y") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
-                    }
-                    else if (loopArray.game_obtained == "OR/AS") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
-                    }
-                    else if (loopArray.game_obtained == "SM/USUM") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + loopArray.pokemon + ".png");
-                    }
-                    else if (loopArray.game_obtained == "LGP/LGE") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + loopArray.pokemon + ".png");
-                    }
-                    else if (loopArray.game_obtained == "BD/SP") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSP/" + loopArray.pokemon + ".png");
-                    }
-                    else if (loopArray.game_obtained == "LA") {
-                        theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + loopArray.pokemon + ".png");
-                    }
-                    else {
-                        theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + ".png")
-                    }
-                } else {
-                    theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + ".png")
-                }
-            }
-            else {
-                if (shinyExceptionArray.includes(loopArray.pokemon)) {
-                    if (loopArray.pokemon.includes("Minior")) {
-                        if (generationalSprites) {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/Minior.png");
-                        }
-                        else {
-                            theImage.setAttribute("src", url + "/Resources/Home/Minior-Shiny.png");
-                        }
-                    }
-                    else if (loopArray.pokemon.includes("Alcremie-Strawberry")) {
-                        theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Strawberry-Shiny.png");
-                    }
-                    else if (loopArray.pokemon.includes("Alcremie-Berry")) {
-                        theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Berry-Shiny.png");
-                    }
-                    else if (loopArray.pokemon.includes("Alcremie-Love")) {
-                        theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Love-Shiny.png");
-                    }
-                    else if (loopArray.pokemon.includes("Alcremie-Star")) {
-                        theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Star-Shiny.png");
-                    }
-                    else if (loopArray.pokemon.includes("Alcremie-Clover")) {
-                        theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Clover-Shiny.png");
-                    }
-                    else if (loopArray.pokemon.includes("Alcremie-Flower")) {
-                        theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Flower-Shiny.png");
-                    }
-                    else if (loopArray.pokemon.includes("Alcremie-Ribbon")) {
-                        theImage.setAttribute("src", url + "/Resources/Home/Alcremie-Ribbon-Shiny.png");
-                    }
-                }
-                else {
-                    if (generationalSprites) {
-                        if (loopArray.game_obtained == "R/G/B/Y") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "G/S/C") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "R/S/E" || loopArray.game_obtained == "FR/LG" || loopArray.game_obtained == "Colo/XD") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "D/P/PT" || loopArray.game_obtained == "HG/SS") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "BW/BW2") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "X/Y") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "OR/AS") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "SM/USUM") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "LGP/LGE") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + loopArray.pokemon + ".png");
-                        }
-                        else if (loopArray.game_obtained == "BD/SP") {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Shiny.png");
-                        }
-                        else if (loopArray.game_obtained == "LA") {
-                            theImage.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + loopArray.pokemon + ".png");
-                        }
-                        else {
-                            theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Shiny.png")
-                        }
-                    } else {
-                        theImage.setAttribute("src", url + "/Resources/Home/" + loopArray.pokemon + "-Shiny.png")
-                    }
+            statIvHP.style.color = "#edeaea";
+        }
 
-                    //loopArray does not work properly for some reason, so having to use arrayData.
-                    document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).onerror = function () {
-                        document.querySelector(`#${CSS.escape("GeneratedSelection " + (i))}`).setAttribute("src", url + "/Resources/Home/" + arrayData["Rows"][i].pokemon + "-Shiny.png");
-                    }
+        if (statIvAtt.innerHTML == 31) {
+            statIvAtt.style.color = "#71c771";
+        } else if (statIvAtt.innerHTML == 0) {
+            statIvAtt.style.color = "#ff6767";
+        } else if (statIvAtt.innerHTML == "HT") {
+            statIvAtt.style.color = "#d2b30c";
+        } else {
+            statIvAtt.style.color = "#edeaea";
+        }
 
-                }
-            }
+        if (statIvDef.innerHTML == 31) {
+            statIvDef.style.color = "#71c771";
+        } else if (statIvDef.innerHTML == 0) {
+            statIvDef.style.color = "#ff6767";
+        } else if (statIvDef.innerHTML == "HT") {
+            statIvDef.style.color = "#d2b30c";
+        } else {
+            statIvDef.style.color = "#edeaea";
+        }
+
+        if (statIvSpa.innerHTML == 31) {
+            statIvSpa.style.color = "#71c771";
+        } else if (statIvSpa.innerHTML == 0) {
+            statIvSpa.style.color = "#ff6767";
+        } else if (statIvSpa.innerHTML == "HT") {
+            statIvSpa.style.color = "#d2b30c";
+        } else {
+            statIvSpa.style.color = "#edeaea";
+        }
+
+        if (statIvSpd.innerHTML == 31) {
+            statIvSpd.style.color = "#71c771";
+        } else if (statIvSpd.innerHTML == 0) {
+            statIvSpd.style.color = "#ff6767";
+        } else if (statIvSpd.innerHTML == "HT") {
+            statIvSpd.style.color = "#d2b30c";
+        } else {
+            statIvSpd.style.color = "#edeaea";
+        }
+
+        if (statIvSpe.innerHTML == 31) {
+            statIvSpe.style.color = "#71c771";
+        } else if (statIvSpe.innerHTML == 0) {
+            statIvSpe.style.color = "#ff6767";
+        } else if (statIvSpe.innerHTML == "HT") {
+            statIvSpe.style.color = "#d2b30c";
+        } else {
+            statIvSpe.style.color = "#edeaea";
+        }
+
+        /*if (loopArray.nature.includes("+Att")) {
+            statIvAtt.style.background = "#8f1f2f";
+        } else if (loopArray.nature.includes("-Att")) {
+            statIvAtt.style.background = "#293d8e"
+        } else {
+            statIvAtt.style.background = "none";
+        }
+
+        if (loopArray.nature.includes("+Def")) {
+            statIvDef.style.background = "#8f1f2f";
+        } else if (loopArray.nature.includes("-Def")) {
+            statIvDef.style.background = "#293d8e"
+        } else {
+            statIvDef.style.background = "none";
+        }
+
+        if (loopArray.nature.includes("+Spa")) {
+            statIvSpa.style.background = "#8f1f2f";
+        } else if (loopArray.nature.includes("-Spa")) {
+            statIvSpa.style.background = "#293d8e"
+        } else {
+            statIvSpa.style.background = "none";
+        }
+
+        if (loopArray.nature.includes("+Spd")) {
+            statIvSpd.style.background = "#8f1f2f";
+        } else if (loopArray.nature.includes("-Spd")) {
+            statIvSpd.style.background = "#293d8e"
+        } else {
+            statIvSpd.style.background = "none";
+        }
+
+        if (loopArray.nature.includes("+Spe")) {
+            statIvSpe.style.background = "#8f1f2f";
+        } else if (loopArray.nature.includes("-Spe")) {
+            statIvSpe.style.background = "#293d8e"
+        } else {
+            statIvSpe.style.background = "none";
         }*/
 
+        /*statIvHP.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("IvHP " + correctNum).style.display = "block";
+            }
+            correctNum = this.parentNode.id.substring(7);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("IvGrid " + correctNum).insertBefore(reusableIvHPDropdown, document.getElementById("IvHP " + correctNum));
+                reusableIvHPDropdown.style.display = "initial";
+                reusableIvHPDropdown.value = document.getElementById("IvHP " + i).innerHTML;
+                document.getElementById("IvHP " + correctNum).style.display = "none";
+            }
+        }
 
-        //Setting up the onclick to open the details area and to set the information required for it.
-        newDiv.onclick = function () {
+        reusableIvHPDropdown.onblur = function () {
+            correctNum = this.parentNode.id.substring(7);
+            previousSpace = correctNum;
+            document.getElementById("IvHP " + correctNum).innerHTML = reusableIvHPDropdown.value;
+        }
+
+        statIvAtt.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("IvAtt " + correctNum).style.display = "block";
+            }
+            correctNum = this.parentNode.id.substring(7);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("IvGrid " + correctNum).insertBefore(reusableIvAttDropdown, document.getElementById("IvAtt " + correctNum));
+                reusableIvAttDropdown.style.display = "initial";
+                reusableIvAttDropdown.value = document.getElementById("IvAtt " + i).innerHTML;
+                document.getElementById("IvAtt " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableIvAttDropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(7);
+            previousSpace = correctNum;
+            document.getElementById("IvAtt " + correctNum).innerHTML = reusableIvAttDropdown.value;
+        }
+
+        statIvDef.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("IvDef " + correctNum).style.display = "block";
+            }
+            correctNum = this.parentNode.id.substring(7);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("IvGrid " + correctNum).insertBefore(reusableIvDefDropdown, document.getElementById("IvDef " + correctNum));
+                reusableIvDefDropdown.style.display = "initial";
+                reusableIvDefDropdown.value = document.getElementById("IvDef " + i).innerHTML;
+                document.getElementById("IvDef " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableIvDefDropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(7);
+            previousSpace = correctNum;
+            document.getElementById("IvDef " + correctNum).innerHTML = reusableIvDefDropdown.value;
+        }
+
+        statIvSpa.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("IvSpa " + correctNum).style.display = "block";
+            }
+            correctNum = this.parentNode.id.substring(7);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("IvGrid " + correctNum).insertBefore(reusableIvSpaDropdown, document.getElementById("IvSpa " + correctNum));
+                reusableIvSpaDropdown.style.display = "initial";
+                reusableIvSpaDropdown.value = document.getElementById("IvSpa " + i).innerHTML;
+                document.getElementById("IvSpa " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableIvSpaDropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(7);
+            previousSpace = correctNum;
+            document.getElementById("IvSpa " + correctNum).innerHTML = reusableIvSpaDropdown.value;
+        }
+
+        statIvSpd.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("IvSpd " + correctNum).style.display = "block";
+            }
+            correctNum = this.parentNode.id.substring(7);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("IvGrid " + correctNum).insertBefore(reusableIvSpdDropdown, document.getElementById("IvSpd " + correctNum));
+                reusableIvSpdDropdown.style.display = "initial";
+                reusableIvSpdDropdown.value = document.getElementById("IvSpd " + i).innerHTML;
+                document.getElementById("IvSpd " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableIvSpdDropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(7);
+            previousSpace = correctNum;
+            document.getElementById("IvSpd " + correctNum).innerHTML = reusableIvSpdDropdown.value;
+        }
+
+        statIvSpe.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("IvSpe " + correctNum).style.display = "block";
+            }
+            correctNum = this.parentNode.id.substring(7);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("IvGrid " + correctNum).insertBefore(reusableIvSpeDropdown, document.getElementById("IvSpe " + correctNum));
+                reusableIvSpeDropdown.style.display = "initial";
+                reusableIvSpeDropdown.value = document.getElementById("IvSpe " + i).innerHTML;
+                document.getElementById("IvSpe " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableIvSpeDropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(7);
+            previousSpace = correctNum;
+            document.getElementById("IvSpe " + correctNum).innerHTML = reusableIvSpeDropdown.value;
+        }
+
+        ivGrid.onmouseleave = function () {
+            correctNum = this.id.substring(7);
+            document.querySelector('#SelectionArea').prepend(reusableIvHPDropdown);
+            document.querySelector('#SelectionArea').prepend(reusableIvAttDropdown);
+            document.querySelector('#SelectionArea').prepend(reusableIvDefDropdown);
+            document.querySelector('#SelectionArea').prepend(reusableIvSpaDropdown);
+            document.querySelector('#SelectionArea').prepend(reusableIvSpdDropdown);
+            document.querySelector('#SelectionArea').prepend(reusableIvSpeDropdown);
+            reusableIvHPDropdown.style.display = "none";
+            reusableIvAttDropdown.style.display = "none";
+            reusableIvDefDropdown.style.display = "none";
+            reusableIvSpaDropdown.style.display = "none";
+            reusableIvSpdDropdown.style.display = "none";
+            reusableIvSpeDropdown.style.display = "none";
+            document.getElementById("IvHP " + correctNum).style.display = "block";
+            document.getElementById("IvAtt " + correctNum).style.display = "block";
+            document.getElementById("IvDef " + correctNum).style.display = "block";
+            document.getElementById("IvSpa " + correctNum).style.display = "block";
+            document.getElementById("IvSpd " + correctNum).style.display = "block";
+            document.getElementById("IvSpe " + correctNum).style.display = "block";
+
+        }*/
+
+        evGrid = document.createElement("div");
+        evGrid.setAttribute("id", "EvGrid " + i);
+        evGrid.style.display = "grid";
+        evGrid.style.gridTemplateColumns = "repeat( 6, minmax(40px, 1fr) )";
+        evGrid.style.position = "absolute";
+        evGrid.style.top = "150px";
+        evGrid.style.width = "100%";
+        //evGrid.style.marginLeft = "0.5px";
+        //evGrid.style.marginRight = "0.5px";
+
+        frontSide.appendChild(evGrid);
+
+        statEvHP = document.createElement("button");
+        statEvHP.setAttribute("id", "EvHP " + i);
+        statEvHP.setAttribute("class", "SA-StatHolder");
+        statEvHP.style.borderLeft = "none";
+
+        evGrid.appendChild(statEvHP);
+
+        statEvAtt = document.createElement("button");
+        statEvAtt.setAttribute("id", "EvAtt " + i);
+        statEvAtt.setAttribute("class", "SA-StatHolder");
+
+        evGrid.appendChild(statEvAtt);
+
+        statEvDef = document.createElement("button");
+        statEvDef.setAttribute("id", "EvDef " + i);
+        statEvDef.setAttribute("class", "SA-StatHolder");
+
+        evGrid.appendChild(statEvDef);
+
+        statEvSpa = document.createElement("button");
+        statEvSpa.setAttribute("id", "EvSpa " + i);
+        statEvSpa.setAttribute("class", "SA-StatHolder");
+
+        evGrid.appendChild(statEvSpa);
+
+        statEvSpd = document.createElement("button");
+        statEvSpd.setAttribute("id", "EvSpd " + i);
+        statEvSpd.setAttribute("class", "SA-StatHolder");
+
+        evGrid.appendChild(statEvSpd);
+
+        statEvSpe = document.createElement("button");
+        statEvSpe.setAttribute("id", "EvSpe " + i);
+        statEvSpe.setAttribute("class", "SA-StatHolder");
+        statEvSpe.style.borderRight = "none";
+
+        evGrid.appendChild(statEvSpe);
+
+        statEvHP.innerHTML = loopArray.ev_hp;
+        statEvAtt.innerHTML = loopArray.ev_att;
+        statEvDef.innerHTML = loopArray.ev_def;
+        statEvSpa.innerHTML = loopArray.ev_spa;
+        statEvSpd.innerHTML = loopArray.ev_spd;
+        statEvSpe.innerHTML = loopArray.ev_spe;
+
+        if (statEvHP.innerHTML == 0) {
+            statEvHP.style.color = "#c2c2c2";
+        } else if (statEvHP.innerHTML == 252) {
+            statEvHP.style.color = "#4cb7cd";
+        } else {
+            statEvHP.style.color = "#edeaea";
+        }
+
+        if (statEvAtt.innerHTML == 0) {
+            statEvAtt.style.color = "#c2c2c2";
+        } else if (statEvAtt.innerHTML == 252) {
+            statEvAtt.style.color = "#4cb7cd";
+        } else {
+            statEvAtt.style.color = "#edeaea";
+        }
+
+        if (statEvDef.innerHTML == 0) {
+            statEvDef.style.color = "#c2c2c2";
+        } else if (statEvDef.innerHTML == 252) {
+            statEvDef.style.color = "#4cb7cd";
+        } else {
+            statEvDef.style.color = "#edeaea";
+        }
+
+        if (statEvSpa.innerHTML == 0) {
+            statEvSpa.style.color = "#c2c2c2";
+        } else if (statEvSpa.innerHTML == 252) {
+            statEvSpa.style.color = "#4cb7cd";
+        } else {
+            statEvSpa.style.color = "#edeaea";
+        }
+
+        if (statEvSpd.innerHTML == 0) {
+            statEvSpd.style.color = "#c2c2c2";
+        } else if (statEvSpd.innerHTML == 252) {
+            statEvSpd.style.color = "#4cb7cd";
+        } else {
+            statEvSpd.style.color = "#edeaea";
+        }
+
+        if (statEvSpe.innerHTML == 0) {
+            statEvSpe.style.color = "#c2c2c2";
+        } else if (statEvSpe.innerHTML == 252) {
+            statEvSpe.style.color = "#4cb7cd";
+        } else {
+            statEvSpe.style.color = "#edeaea";
+        }
+
+        /*statEvHP.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("EvHP " + correctNum).style.display = "block";
+            }
+            correctNum = this.parentNode.id.substring(7);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("EvGrid " + correctNum).insertBefore(reusableEvHPDropdown, document.getElementById("EvHP " + correctNum));
+                reusableEvHPDropdown.style.display = "initial";
+                reusableEvHPDropdown.value = document.getElementById("EvHP " + i).innerHTML;
+                document.getElementById("EvHP " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableEvHPDropdown.onblur = function () {
+            correctNum = this.parentNode.id.substring(7);
+            previousSpace = correctNum;
+            document.getElementById("EvHP " + correctNum).innerHTML = reusableEvHPDropdown.value;
+        }
+
+        statEvAtt.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("EvAtt " + correctNum).style.display = "block";
+            }
+            correctNum = this.parentNode.id.substring(7);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("EvGrid " + correctNum).insertBefore(reusableEvAttDropdown, document.getElementById("EvAtt " + correctNum));
+                reusableEvAttDropdown.style.display = "initial";
+                reusableEvAttDropdown.value = document.getElementById("EvAtt " + i).innerHTML;
+                document.getElementById("EvAtt " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableEvAttDropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(7);
+            previousSpace = correctNum;
+            document.getElementById("EvAtt " + correctNum).innerHTML = reusableEvAttDropdown.value;
+        }
+
+        statEvDef.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("EvDef " + correctNum).style.display = "block";
+            }
+            correctNum = this.parentNode.id.substring(7);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("EvGrid " + correctNum).insertBefore(reusableEvDefDropdown, document.getElementById("EvDef " + correctNum));
+                reusableEvDefDropdown.style.display = "initial";
+                reusableEvDefDropdown.value = document.getElementById("EvDef " + i).innerHTML;
+                document.getElementById("EvDef " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableEvDefDropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(7);
+            previousSpace = correctNum;
+            document.getElementById("EvDef " + correctNum).innerHTML = reusableEvDefDropdown.value;
+        }
+
+        statEvSpa.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("EvSpa " + correctNum).style.display = "block";
+            }
+            correctNum = this.parentNode.id.substring(7);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("EvGrid " + correctNum).insertBefore(reusableEvSpaDropdown, document.getElementById("EvSpa " + correctNum));
+                reusableEvSpaDropdown.style.display = "initial";
+                reusableEvSpaDropdown.value = document.getElementById("EvSpa " + i).innerHTML;
+                document.getElementById("EvSpa " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableEvSpaDropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(7);
+            previousSpace = correctNum;
+            document.getElementById("EvSpa " + correctNum).innerHTML = reusableEvSpaDropdown.value;
+        }
+
+        statEvSpd.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("EvSpd " + correctNum).style.display = "block";
+            }
+            correctNum = this.parentNode.id.substring(7);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("EvGrid " + correctNum).insertBefore(reusableEvSpdDropdown, document.getElementById("EvSpd " + correctNum));
+                reusableEvSpdDropdown.style.display = "initial";
+                reusableEvSpdDropdown.value = document.getElementById("EvSpd " + i).innerHTML;
+                document.getElementById("EvSpd " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableEvSpdDropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(7);
+            previousSpace = correctNum;
+            document.getElementById("EvSpd " + correctNum).innerHTML = reusableEvSpdDropdown.value;
+        }
+
+        statEvSpe.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("EvSpe " + correctNum).style.display = "block";
+            }
+            correctNum = this.parentNode.id.substring(7);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("EvGrid " + correctNum).insertBefore(reusableEvSpeDropdown, document.getElementById("EvSpe " + correctNum));
+                reusableEvSpeDropdown.style.display = "initial";
+                reusableEvSpeDropdown.value = document.getElementById("EvSpe " + i).innerHTML;
+                document.getElementById("EvSpe " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableEvSpeDropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(7);
+            previousSpace = correctNum;
+            document.getElementById("EvSpe " + correctNum).innerHTML = reusableEvSpeDropdown.value;
+        }
+
+        evGrid.onmouseleave = function () {
+            correctNum = this.id.substring(7);
+            document.querySelector('#SelectionArea').prepend(reusableEvHPDropdown);
+            document.querySelector('#SelectionArea').prepend(reusableEvAttDropdown);
+            document.querySelector('#SelectionArea').prepend(reusableEvDefDropdown);
+            document.querySelector('#SelectionArea').prepend(reusableEvSpaDropdown);
+            document.querySelector('#SelectionArea').prepend(reusableEvSpdDropdown);
+            document.querySelector('#SelectionArea').prepend(reusableEvSpeDropdown);
+            reusableEvHPDropdown.style.display = "none";
+            reusableEvAttDropdown.style.display = "none";
+            reusableEvDefDropdown.style.display = "none";
+            reusableEvSpaDropdown.style.display = "none";
+            reusableEvSpdDropdown.style.display = "none";
+            reusableEvSpeDropdown.style.display = "none";
+            document.getElementById("EvHP " + correctNum).style.display = "block";
+            document.getElementById("EvAtt " + correctNum).style.display = "block";
+            document.getElementById("EvDef " + correctNum).style.display = "block";
+            document.getElementById("EvSpa " + correctNum).style.display = "block";
+            document.getElementById("EvSpd " + correctNum).style.display = "block";
+            document.getElementById("EvSpe " + correctNum).style.display = "block";
+
+        }*/
+
+        normalMoveGrid = document.createElement("div");
+        normalMoveGrid.setAttribute("id", "NormalMoveGrid " + i);
+        normalMoveGrid.style.display = "grid";
+        normalMoveGrid.style.gridTemplateColumns = "repeat( 2, minmax(120px, 1fr) )";
+        normalMoveGrid.style.position = "absolute";
+        normalMoveGrid.style.top = "180px";
+        normalMoveGrid.style.width = "100%";
+
+        frontSide.appendChild(normalMoveGrid);
+
+
+        normalMove1 = document.createElement("Text");
+        normalMove1.setAttribute("id", "normalMove1 " + i);
+        normalMove1.setAttribute("height", "13px");
+        normalMove1.innerHTML = loopArray.move_1;
+        normalMove1.style.fontWeight = "bold";
+        normalMove1.style.color = "white";
+        normalMove1.style.fontFamily = "'Orbitron', sans-serif";
+        normalMove1.style.fontSize = "11px";
+        normalMove1.style.marginLeft = "2px";
+        normalMove1.style.marginRight = "1px";
+        //normalMove1.style.marginBottom = "4px";
+        normalMove1.style.textAlign = "center";
+        normalMove1.style.paddingTop = "4px";
+        normalMove1.style.paddingBottom = "4px";
+        normalMove1.style.pointerEvents = "none";
+        //normalMove1.style.background = "none";
+        //normalMove1.style.border = "none";
+
+        for (let j = 0; j < allMovesArray.length; j++) {
+            if (allMovesArray[j].moves == loopArray.move_1) {
+                //normalMove1.classList.add("SA-" + allMovesArray[j].move_type + "MoveHolder");
+                if (allMovesArray[j].moves == "Hidden Power") {
+                    if (loopArray.misc.includes("HP")) {
+                        normalMove1.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(3, loopArray.misc.length)) + "_1.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Tera Blast") {
+                    if (loopArray.misc.includes("Tera")) {
+                        normalMove1.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(5, loopArray.misc.length)) + "_1.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Raging Bull") {
+                    if (loopArray.pokemon.includes("Blaze")) {
+                        normalMove1.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fire_1.png')";
+                    } if (loopArray.pokemon.includes("Aqua")) {
+                        normalMove1.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Water_1.png')";
+                    } else {
+                        normalMove1.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fighting_1.png')";
+                    }
+                } else {
+                    normalMove1.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + allMovesArray[j].move_type + "_1.png')";
+                }
+                normalMove1.style.backgroundSize = "cover";
+            }
+        }
+
+        if ((loopArray.move_1 == "(No Move)" || loopArray.move_1 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+            normalMove1.style.opacity = "0";
+        }
+
+        normalMoveGrid.appendChild(normalMove1);
+
+        /*normalMove1.onmouseenter = function () {
+            //previousSpace is needed because otherwise if you move the mouse too fast, it will not unhide the element on the onmouseout method.
+            //So this just is backup so in case it didn't make it visable already, it will.
+            if (previousSpace != null) {
+                document.getElementById("normalMove1 " + correctNum).style.display = "block";
+            }
+            //"this" is basically necessary for getting the current element as otherwise it will grab the last value of i.
+            //In this case we need to get the right number (index) for the movegrid so we can append the dropdown to it which is why all but
+            //that number is removed with the substring and set to a variable.
+
+            //The + i works for the innerHTML part, not 100% sure why, but I'll replace it with correct number if that works instead.
+            //The if statement makes sure that the user is the owner before they are allowed to make any changes.
+            correctNum = this.parentNode.id.substring(15);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("NormalMoveGrid " + correctNum).insertBefore(reusableMove1Dropdown, document.getElementById("normalMove1 " + correctNum));
+                reusableMove1Dropdown.style.display = "initial";
+                reusableMove1Dropdown.value = document.getElementById("normalMove1 " + i).innerHTML;
+                document.getElementById("normalMove1 " + correctNum).style.display = "none";
+            }
+        }
+        //Here we set the previousSpace to be the correctNum and copy the value from the dropdown to the move.
+        reusableMove1Dropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(15);
+            previousSpace = correctNum;
+            document.getElementById("normalMove1 " + correctNum).innerHTML = reusableMove1Dropdown.value;
+        }*/
+
+        if ((loopArray.move_1 == "(No Move)" || loopArray.move_1 == "(Any Move)") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            document.getElementById("normalMove1 " + i).innerHTML = "";
+        }
+
+
+        normalMove2 = document.createElement("Text");
+        normalMove2.setAttribute("id", "normalMove2 " + i);
+        normalMove2.setAttribute("height", "13px");
+        normalMove2.innerHTML = loopArray.move_2;
+        normalMove2.style.fontWeight = "bold";
+        normalMove2.style.color = "white";
+        normalMove2.style.fontFamily = "'Orbitron', sans-serif";
+        normalMove2.style.fontSize = "11px";
+        normalMove2.style.marginLeft = "1px";
+        normalMove2.style.marginRight = "2px";
+        //normalMove2.style.marginBottom = "4px";
+        normalMove2.style.textAlign = "center";
+        normalMove2.style.paddingTop = "4px";
+        normalMove2.style.paddingBottom = "4px";
+        normalMove2.style.pointerEvents = "none";
+        //normalMove2.style.background = "none";
+        //normalMove2.style.border = "none";
+
+        for (let j = 0; j < allMovesArray.length; j++) {
+            if (allMovesArray[j].moves == loopArray.move_2) {
+                //normalMove2.classList.add("SA-" + allMovesArray[j].move_type + "MoveHolder");
+                if (allMovesArray[j].moves == "Hidden Power") {
+                    if (loopArray.misc.includes("HP")) {
+                        normalMove2.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(3, loopArray.misc.length)) + "_2.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Tera Blast") {
+                    if (loopArray.misc.includes("Tera")) {
+                        normalMove2.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(5, loopArray.misc.length)) + "_2.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Raging Bull") {
+                    if (loopArray.pokemon.includes("Blaze")) {
+                        normalMove2.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fire_2.png')";
+                    } else if (loopArray.pokemon.includes("Aqua")) {
+                        normalMove2.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Water_2.png')";
+                    } else {
+                        normalMove2.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fighting_2.png')";
+                    }
+                } else {
+                    normalMove2.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + allMovesArray[j].move_type + "_2.png')";
+                }
+                normalMove2.style.backgroundSize = "cover";
+            }
+        }
+
+        if ((loopArray.move_2 == "(No Move)" || loopArray.move_2 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+            normalMove2.style.opacity = "0";
+        }
+
+        normalMoveGrid.appendChild(normalMove2);
+
+        /*normalMove2.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("normalMove2 " + correctNum).style.display = "block";
+            }
+
+            correctNum = this.parentNode.id.substring(15);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("NormalMoveGrid " + correctNum).insertBefore(reusableMove2Dropdown, document.getElementById("normalMove2 " + correctNum));
+                reusableMove2Dropdown.style.display = "initial";
+                reusableMove2Dropdown.value = document.getElementById("normalMove2 " + i).innerHTML;
+                document.getElementById("normalMove2 " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableMove2Dropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(15);
+            previousSpace = correctNum;
+            document.getElementById("normalMove2 " + correctNum).innerHTML = reusableMove2Dropdown.value;
+        }*/
+
+        if ((loopArray.move_2 == "(No Move)" || loopArray.move_2 == "(Any Move)") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            document.getElementById("normalMove2 " + i).innerHTML = "";
+        }
+
+
+        normalMove3 = document.createElement("Text");
+        normalMove3.setAttribute("id", "normalMove3 " + i);
+        normalMove3.setAttribute("height", "13px");
+        normalMove3.innerHTML = loopArray.move_3;
+        normalMove3.style.fontWeight = "bold";
+        normalMove3.style.color = "white";
+        normalMove3.style.fontFamily = "'Orbitron', sans-serif";
+        normalMove3.style.fontSize = "11px";
+        normalMove3.style.marginLeft = "2px";
+        normalMove3.style.marginRight = "1px";
+        //normalMove3.style.marginBottom = "4px";
+        normalMove3.style.textAlign = "center";
+        normalMove3.style.paddingTop = "4px";
+        normalMove3.style.paddingBottom = "4px";
+        normalMove3.style.pointerEvents = "none";
+        //normalMove3.style.background = "none";
+        //normalMove3.style.border = "none";
+
+        for (let j = 0; j < allMovesArray.length; j++) {
+            if (allMovesArray[j].moves == loopArray.move_3) {
+                //normalMove3.classList.add("SA-" + allMovesArray[j].move_type + "MoveHolder");
+                if (allMovesArray[j].moves == "Hidden Power") {
+                    if (loopArray.misc.includes("HP")) {
+                        normalMove3.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(3, loopArray.misc.length)) + "_3.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Tera Blast") {
+                    if (loopArray.misc.includes("Tera")) {
+                        normalMove3.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(5, loopArray.misc.length)) + "_3.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Raging Bull") {
+                    if (loopArray.pokemon.includes("Blaze")) {
+                        normalMove3.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fire_3.png')";
+                    } if (loopArray.pokemon.includes("Aqua")) {
+                        normalMove3.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Water_3.png')";
+                    } else {
+                        normalMove3.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fighting_3.png')";
+                    }
+                } else {
+                    normalMove3.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + allMovesArray[j].move_type + "_3.png')";
+                }
+                normalMove3.style.backgroundSize = "cover";
+            }
+        }
+
+        if ((loopArray.move_3 == "(No Move)" || loopArray.move_3 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+            normalMove3.style.opacity = "0";
+        }
+
+        normalMoveGrid.appendChild(normalMove3);
+
+        /*normalMove3.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("normalMove3 " + correctNum).style.display = "block";
+            }
+
+            correctNum = this.parentNode.id.substring(15);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("NormalMoveGrid " + correctNum).insertBefore(reusableMove3Dropdown, document.getElementById("normalMove3 " + correctNum));
+                reusableMove3Dropdown.style.display = "initial";
+                reusableMove3Dropdown.value = document.getElementById("normalMove3 " + i).innerHTML;
+                document.getElementById("normalMove3 " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableMove3Dropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(15);
+            previousSpace = correctNum;
+            document.getElementById("normalMove3 " + correctNum).innerHTML = reusableMove3Dropdown.value;
+        }*/
+
+        if ((loopArray.move_3 == "(No Move)" || loopArray.move_3 == "(Any Move)") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            document.getElementById("normalMove3 " + i).innerHTML = "";
+        }
+
+
+
+        normalMove4 = document.createElement("Text");
+        normalMove4.setAttribute("id", "normalMove4 " + i);
+        normalMove4.setAttribute("height", "13px");
+        normalMove4.innerHTML = loopArray.move_4;
+        normalMove4.style.fontWeight = "bold";
+        normalMove4.style.color = "white";
+        normalMove4.style.fontFamily = "'Orbitron', sans-serif";
+        normalMove4.style.fontSize = "11px";
+        normalMove4.style.marginLeft = "1px";
+        normalMove4.style.marginRight = "2px";
+        //normalMove4.style.marginBottom = "4px";
+        normalMove4.style.textAlign = "center";
+        normalMove4.style.paddingTop = "4px";
+        normalMove4.style.paddingBottom = "4px";
+        normalMove4.style.pointerEvents = "none";
+        //normalMove4.style.background = "none";
+        //normalMove4.style.border = "none";
+
+        for (let j = 0; j < allMovesArray.length; j++) {
+            if (allMovesArray[j].moves == loopArray.move_4) {
+                //normalMove4.classList.add("SA-" + allMovesArray[j].move_type + "MoveHolder");
+                if (allMovesArray[j].moves == "Hidden Power") {
+                    if (loopArray.misc.includes("HP")) {
+                        normalMove4.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(3, loopArray.misc.length)) + "_4.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Tera Blast") {
+                    if (loopArray.misc.includes("Tera")) {
+                        normalMove4.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(5, loopArray.misc.length)) + "_4.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Raging Bull") {
+                    if (loopArray.pokemon.includes("Blaze")) {
+                        normalMove4.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fire_4.png')";
+                    } if (loopArray.pokemon.includes("Aqua")) {
+                        normalMove4.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Water_4.png')";
+                    } else {
+                        normalMove4.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fighting_4.png')";
+                    }
+                } else {
+                    normalMove4.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + allMovesArray[j].move_type + "_4.png')";
+                }
+                normalMove4.style.backgroundSize = "cover";
+            }
+        }
+
+        if ((loopArray.move_4 == "(No Move)" || loopArray.move_4 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+            normalMove4.style.opacity = "0";
+        }
+
+        normalMoveGrid.appendChild(normalMove4);
+
+        /*normalMove4.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("normalMove4 " + correctNum).style.display = "block";
+            }
+
+            correctNum = this.parentNode.id.substring(15);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("NormalMoveGrid " + correctNum).insertBefore(reusableMove4Dropdown, document.getElementById("normalMove4 " + correctNum));
+                reusableMove4Dropdown.style.display = "initial";
+                reusableMove4Dropdown.value = document.getElementById("normalMove4 " + i).innerHTML;
+                document.getElementById("normalMove4 " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableMove4Dropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(15);
+            previousSpace = correctNum;
+            document.getElementById("normalMove4 " + correctNum).innerHTML = reusableMove4Dropdown.value;
+        }*/
+
+        if ((loopArray.move_4 == "(No Move)" || loopArray.move_4 == "(Any Move)") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            document.getElementById("normalMove4 " + i).innerHTML = "";
+        }
+
+
+        /*normalMoveGrid.onmouseleave = function () {
+            correctNum = this.id.substring(15);
+            document.querySelector('#SelectionArea').prepend(reusableMove1Dropdown);
+            document.querySelector('#SelectionArea').prepend(reusableMove2Dropdown);
+            document.querySelector('#SelectionArea').prepend(reusableMove3Dropdown);
+            document.querySelector('#SelectionArea').prepend(reusableMove4Dropdown);
+            reusableMove1Dropdown.style.display = "none";
+            reusableMove2Dropdown.style.display = "none";
+            reusableMove3Dropdown.style.display = "none";
+            reusableMove4Dropdown.style.display = "none";
+            document.getElementById("normalMove1 " + correctNum).style.display = "block";
+            document.getElementById("normalMove2 " + correctNum).style.display = "block";
+            document.getElementById("normalMove3 " + correctNum).style.display = "block";
+            document.getElementById("normalMove4 " + correctNum).style.display = "block";
+
+        }*/
+
+        buttonGrid = document.createElement("div");
+        buttonGrid.setAttribute("id", "ButtonGrid " + i);
+        buttonGrid.style.display = "grid";
+        buttonGrid.style.gridTemplateColumns = "repeat( auto-fit, minmax(40px, 1fr) )";
+        buttonGrid.style.position = "absolute";
+        buttonGrid.style.top = "225px";
+        buttonGrid.style.width = "-webkit-fill-available";
+        buttonGrid.style.width = "-moz-available";
+        buttonGrid.style.marginLeft = "4px";
+        buttonGrid.style.marginRight = "4px";
+
+        newDiv.appendChild(buttonGrid);
+
+        /*button2 = document.createElement("button");
+        button2.setAttribute("class", "SA-ButtonDesign");
+        button2.innerHTML = "Save";
+
+        buttonGrid.appendChild(button2);*/
+
+        flipButton = document.createElement("button");
+        flipButton.setAttribute("class", "SA-ButtonDesign");
+        flipButton.innerHTML = "Flip";
+
+        flipButton.onclick = function () {
+            correctNum = this.parentNode.id.substring(11);
+            if (document.getElementById("BackSide " + correctNum).style.display == "none") {
+                document.getElementById("BackSide " + correctNum).style.display = "block";
+                document.getElementById("FrontSide " + correctNum).style.display = "none";
+            } else {
+                document.getElementById("FrontSide " + correctNum).style.display = "block";
+                document.getElementById("BackSide " + correctNum).style.display = "none";
+            }
+        }
+
+        buttonGrid.appendChild(flipButton);
+
+        editButton = document.createElement("button");
+        editButton.setAttribute("class", "SA-ButtonDesign");
+        editButton.innerHTML = "Edit";
+
+        buttonGrid.appendChild(editButton);
+
+        if (userData == null || userData != null && userData.user_id != loopArray.user_id) {
+            editButton.style.pointerEvents = "none";
+            //editButton.style.backgroundColor = "#1e1e1e";
+            editButton.style.display = "none";
+        }
+
+        editButton.onclick = function () {
             if (!creationInProgress) {
                 console.log("Clicked");
-                if (!currentlyRearranging) {
+                if (!currentlyRearranging && !placingPokemon) {
                     if (selectedPokemon != null && pokemonDetails.creation_id == arrayData["Rows"][i].creation_id) {
                         $('.DA-Close').click();
                         CloseDetailOptions();
                         return;
                     } else {
                         CloseDetailOptions();
-                        pokemonDetails = arrayData["Rows"][i];
-                        if (selectedPokemon != null) {
-                            //alert("HERE");
-                            selectedPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
-                            selectedPokemon.style.backgroundColor = "#343f5f";
-
-                            var cols = document.getElementsByClassName("insideDetails" + (storedValue));
-                            for (j = 0; j < cols.length; j++) {
-                                cols[j].style.display = "none";
-                            }
-                            document.getElementById("GenerationGridDiv" + (storedValue)).style.height = "100px";
-                        }
                         selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
-                        storedValue = i;
-                        console.log(selectedPokemon);
-                        //selectedPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
-                        selectedPokemon.style.backgroundColor = "#353d54";
-                        var cols = document.getElementsByClassName("insideDetails" + (i));
-                        if (expandView) {
-                            for (j = 0; j < cols.length; j++) {
-                                cols[j].style.display = "flex";
-                            }
-                            document.getElementById("GenerationGridDiv" + (i)).style.height = "200px";
-                        }
+                        pokemonDetails = arrayData["Rows"][i];
+
                         //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
                         ShowPokemonDetails();
                         document.querySelector("#CTSArea").style.display = "none";
                         document.querySelector("#FilterArea").style.display = "none";
                     }
 
-                    if (ctsSeaching) {
+                    /*if (ctsSeaching) {
                         $.post(url + "/PHP/modify_check.php", { token: token, searchID: 0 }, ModifyCheckViewing);
                     } else {
                         $.post(url + "/PHP/modify_check_viewing.php", { token: token, searchID: pokemonDetails.user_id }, ModifyCheckViewing);
-                    }
+                    }*/
+                }
+            }
+        }
 
+
+        addButton = document.createElement("button");
+        addButton.setAttribute("class", "SA-ButtonDesign");
+        addButton.innerHTML = "Add";
+
+        buttonGrid.appendChild(addButton);
+
+        if (userData == null || userData != null && userData.user_id == loopArray.user_id) {
+            addButton.style.pointerEvents = "none";
+            //addButton.style.backgroundColor = "#1e1e1e";
+            addButton.style.display = "none";
+        }
+
+        addButton.onclick = function () {
+            $.post(url + "/PHP/add_selection.php", { token: token, creationID: pokemonDetails.creation_id });
+            document.querySelector("#NotificationArea").style.display = "block";
+            document.querySelector(".ViewingPokemonAdded").style.display = "block";
+            $.post(url + "/PHP/format_import.php", { token: token });
+        }
+
+        /*pokemonMenuButton = document.createElement("button");
+        pokemonMenuButton.setAttribute("class", "SA-ButtonDesign");
+        pokemonMenuButton.innerHTML = "Pokemon Menu";
+
+        buttonGrid.appendChild(pokemonMenuButton);
+
+        pokemonMenu = document.createElement("div");
+        pokemonMenu.style.width = "50%";
+        pokemonMenu.style.position = "absolute";
+        pokemonMenu.style.display = "grid";
+        pokemonMenu.style.top = "17%";
+        pokemonMenu.style.marginLeft = "50%";
+        pokemonMenu.style.background = "#243048";
+        pokemonMenu.style.zIndex = "1";
+        pokemonMenu.style.display = "none";
+        newDiv.appendChild(pokemonMenu);
+
+        saveButton = document.createElement("button");
+        saveButton.setAttribute("class", "SA-StatHolder");
+        saveButton.style.height = "31px";
+        saveButton.innerHTML = "Save";
+
+        pokemonMenu.appendChild(saveButton);
+
+        placeButton = document.createElement("button");
+        placeButton.setAttribute("class", "SA-StatHolder");
+        placeButton.style.height = "31px";
+        placeButton.innerHTML = "Place";
+
+        pokemonMenu.appendChild(placeButton);
+
+        proofButton = document.createElement("button");
+        proofButton.setAttribute("class", "SA-StatHolder");
+        proofButton.style.height = "31px";
+        proofButton.innerHTML = "View Proof";
+
+        pokemonMenu.appendChild(proofButton);
+
+        noteButton = document.createElement("button");
+        noteButton.setAttribute("class", "SA-StatHolder");
+        noteButton.style.height = "31px";
+        noteButton.innerHTML = "View Note";
+
+        pokemonMenu.appendChild(noteButton);
+
+        deleteButton = document.createElement("button");
+        deleteButton.setAttribute("class", "SA-StatHolder");
+        deleteButton.style.height = "31px";
+        deleteButton.innerHTML = "Delete";
+
+        pokemonMenu.appendChild(deleteButton);
+
+        addButton = document.createElement("button");
+        addButton.setAttribute("class", "SA-StatHolder");
+        addButton.style.height = "31px";
+        addButton.innerHTML = "Add Pokemon";
+
+        pokemonMenu.appendChild(addButton); */
+
+
+
+        /*button4 = document.createElement("button");
+        button4.setAttribute("class", "SA-ButtonDesign");
+        button4.innerHTML = "Delete";
+
+        buttonGrid.appendChild(button4);
+
+        button5 = document.createElement("button");
+        button5.setAttribute("class", "SA-ButtonDesign");
+        button5.innerHTML = "Add";
+
+        buttonGrid.appendChild(button5);*/
+
+        //frontSide.style.display = "none";
+
+        backSide = document.createElement("div");
+        backSide.setAttribute("id", "BackSide " + (i));
+        newDiv.appendChild(backSide);
+
+        templateHolder = document.createElement("div");
+        templateHolder.setAttribute("id", "TemplateHolder " + i);
+        templateHolder.style.position = "absolute";
+        templateHolder.style.width = "100%";
+        templateHolder.style.display = "flex";
+        templateHolder.style.marginTop = "2px";
+
+        backSide.appendChild(templateHolder);
+
+        /*addTemplate = document.createElement("button");
+        addTemplate.setAttribute("id", "addTemplate " + i);
+        addTemplate.setAttribute("class", "SA-DataGrid");
+        addTemplate.innerHTML = "+";
+        addTemplate.style.width = "30px";
+        addTemplate.style.marginLeft = "5px";
+
+        templateHolder.appendChild(addTemplate);
+
+        templateInput = document.createElement("input");
+        templateInput.setAttribute("id", "templateInput " + i);
+        templateInput.setAttribute("class", "SA-DataGrid");
+        templateInput.placeholder = "Type Template..."
+        templateInput.style.width = "100px";
+        templateInput.maxLength = "15";
+
+        templateHolder.appendChild(templateInput);
+
+        removeTemplate = document.createElement("button");
+        removeTemplate.setAttribute("id", "removeTemplate " + i);
+        removeTemplate.setAttribute("class", "SA-DataGrid");
+        removeTemplate.innerHTML = "-";
+        removeTemplate.style.width = "30px";
+
+        templateHolder.appendChild(removeTemplate);
+
+        template = document.createElement("button");
+        template.setAttribute("id", "template " + i);
+        template.setAttribute("class", "SA-DataGrid");
+        template.innerHTML = "(No Template)";
+        template.style.width = "-webkit-fill-available";
+        template.style.width = "-moz-available";
+        template.style.marginRight = "5px";
+
+        templateHolder.appendChild(template);*/
+
+        proofNoteGrid = document.createElement("div");
+        proofNoteGrid.setAttribute("id", "ProofNoteGrid " + i);
+        proofNoteGrid.style.display = "grid";
+        proofNoteGrid.style.gridTemplateColumns = "repeat( 2, minmax(60px, 1fr) )";
+        proofNoteGrid.style.position = "absolute";
+        //proofNoteGrid.style.top = "20px";
+        proofNoteGrid.style.width = "-webkit-fill-available";
+        proofNoteGrid.style.width = "-moz-available";
+        //proofNoteGrid.style.marginLeft = "115px";
+        //proofNoteGrid.style.marginRight = "20px";
+        proofNoteGrid.style.marginLeft = "5px";
+        proofNoteGrid.style.marginRight = "5px";
+        proofNoteGrid.style.top = "5px";
+
+        backSide.appendChild(proofNoteGrid);
+
+        /*proofButton = document.createElement("button");
+        proofButton.setAttribute("class", "SA-ButtonDesign");
+        proofButton.innerHTML = "Proof";*/
+        proofButton = document.createElement("button");
+        proofButton.setAttribute("id", "ProofButton " + i);
+        proofButton.setAttribute("width", "15px");
+        proofButton.setAttribute("height", "15px");
+        proofButton.innerHTML = "Proof";
+        proofButton.setAttribute("class", "SA-DataGrid");
+        if (loopArray.proof != "") {
+            proofButton.style.color = "white";
+            proofButton.style.cursor = "pointer";
+        }
+
+        proofNoteGrid.appendChild(proofButton);
+
+        /*noteButton = document.createElement("button");
+        noteButton.setAttribute("class", "SA-ButtonDesign");
+        noteButton.innerHTML = "Note";*/
+
+        proofMedia = document.createElement("a");
+        proofMedia.setAttribute("target", "_blank");
+        proofMedia.setAttribute("href", loopArray.proof);
+        proofMedia.setAttribute("id", "ProofMedia " + i);
+        proofMedia.style.display = "block";
+        proofMedia.style.position = "absolute";
+        proofMedia.style.zIndex = "2";
+        proofMedia.style.width = "100%";
+        proofMedia.style.top = "39px";
+        proofMedia.style.textAlign = "center";
+        backSide.appendChild(proofMedia);
+
+        proofURL = document.createElement("text");
+        proofURL.setAttribute("id", "ProofURL " + i);
+        proofURL.style.minWidth = "100%";
+        proofURL.style.width = "max-content";
+        proofURL.style.overflow = "hidden";
+        proofURL.style.overflow = "-moz-hidden-unscrollable";
+        proofURL.style.whiteSpace = "no-wrap";
+        proofURL.innerHTML = loopArray.proof;
+        proofURL.style.background = "linear-gradient(#302b75, #112354)";
+        proofURL.style.fontWeight = "bold";
+        proofURL.style.color = "white";
+        proofURL.style.fontFamily = "'Orbitron', sans-serif";
+        proofURL.style.fontSize = "10.2px";
+        proofURL.style.top = "20px";
+        proofURL.style.zIndex = "2";
+        proofURL.style.position = "absolute";
+        proofURL.style.paddingLeft = "5px";
+        proofURL.style.paddingRight = "5px";
+        proofURL.style.paddingTop = "5px";
+        proofURL.style.paddingBottom = "1px";
+        proofURL.style.marginRight = "5px";
+        backSide.appendChild(proofURL);
+
+        proofURL.style.display = "none";
+
+
+        proofVideo = document.createElement("video");
+        proofVideo.setAttribute("id", "ProofVideo " + i);
+        //proofVideo.style.maxWidth = "230px";
+        //proofVideo.style.maxHeight = "230px";
+        proofVideo.style.width = "100%";
+        proofVideo.style.margin = "auto";
+        proofVideo.style.cursor = "pointer";
+        proofVideo.setAttribute("controls", "true");
+        proofVideo.style.zIndex = "2";
+        proofVideo.style.margin = "auto";
+        proofMedia.appendChild(proofVideo);
+
+        proofImage = document.createElement("img");
+        proofImage.setAttribute("id", "ProofImage " + i);
+        proofImage.style.zIndex = "2";
+        proofImage.style.maxWidth = "100%";
+        proofImage.style.maxHeight = "211px";
+        proofImage.style.margin = "auto";
+        proofMedia.appendChild(proofImage);
+
+        proofMedia.style.display = "none";
+
+        noteButton = document.createElement("button");
+        noteButton.setAttribute("id", "NoteButton " + i);
+        noteButton.setAttribute("width", "15px");
+        noteButton.setAttribute("height", "15px");
+        noteButton.innerHTML = "Note";
+        noteButton.setAttribute("class", "SA-DataGrid");
+
+        proofNoteGrid.appendChild(noteButton);
+
+        noteArea = document.createElement("text");
+        noteArea.setAttribute("id", "NoteArea " + i);
+        noteArea.style.width = "230px";
+        noteArea.innerHTML = loopArray.note;
+        noteArea.style.background = "linear-gradient(#302b75, #112354)";
+        noteArea.style.fontWeight = "bold";
+        noteArea.style.color = "white";
+        noteArea.style.fontFamily = "'Orbitron', sans-serif";
+        noteArea.style.fontSize = "10.2px";
+        noteArea.style.top = "20px";
+        noteArea.style.zIndex = "2";
+        noteArea.style.position = "absolute";
+        noteArea.style.overflowWrap = "anywhere";
+        noteArea.style.paddingLeft = "5px";
+        noteArea.style.paddingRight = "5px";
+        noteArea.style.paddingTop = "5px";
+        noteArea.style.paddingBottom = "1px";
+        noteArea.style.marginRight = "5px";
+
+        if (loopArray.note != "") {
+            noteButton.style.color = "white";
+            noteButton.style.cursor = "pointer";
+        }
+
+        backSide.appendChild(noteArea);
+
+
+        noteArea.style.display = "none";
+
+        document.getElementById("ProofButton " + i).onclick = function () {
+            if (document.getElementById("ProofURL " + i).innerHTML != "") {
+                document.getElementById("NoteArea " + i).style.display = "none";
+                tempURL = document.getElementById("ProofURL " + i).innerHTML;
+                if (document.getElementById("ProofMedia " + i).style.display == "none") {
+                    document.getElementById("ProofMedia " + i).style.display = "block";
+                    document.getElementById("ProofURL " + i).style.display = "block";
+                    if (tempURL.includes("mp4")) {
+                        document.getElementById("ProofImage " + i).style.display = "none";
+                        document.getElementById("ProofVideo " + i).style.display = "block";
+                        document.getElementById("ProofVideo " + i).setAttribute("src", tempURL);
+                    } else {
+                        document.getElementById("ProofVideo " + i).style.display = "none";
+                        document.getElementById("ProofImage " + i).style.display = "block";
+                        document.getElementById("ProofImage " + i).setAttribute("src", tempURL);
+                    }
                 } else {
+                    document.getElementById("ProofMedia " + i).style.display = "none";
+                    document.getElementById("ProofURL " + i).style.display = "none";
+                }
+            }
+        }
+
+        document.getElementById("NoteButton " + i).onclick = function () {
+            if (document.getElementById("NoteArea " + i).innerHTML != "") {
+                document.getElementById("ProofMedia " + i).style.display = "none";
+                if (document.getElementById("NoteArea " + i).style.display == "none") {
+                    document.getElementById("NoteArea " + i).style.display = "block";
+                } else {
+                    document.getElementById("NoteArea " + i).style.display = "none";
+                }
+            }
+        }
+
+        newTable = document.createElement("table");
+        newTable.style.position = "absolute";
+        newTable.style.zIndex = "1";
+
+        newTable.style.top = "32px";
+        newTable.style.left = "115px";
+
+        backSide.appendChild(newTable);
+
+        var tr = newTable.insertRow();
+        tr.style.display = "table-row";
+        var td = tr.insertCell();
+        userInfo = document.createElement("Text");
+        td.setAttribute("height", "13px");
+        userInfo.setAttribute("height", "13px");
+        if (!ctsSeaching) {
+            userInfo.innerHTML = searchData.username + "#" + searchData.user_id;
+        } else {
+            //userInfo.innerHTML = loopArray.username + "#" + loopArray.user_id;
+        }
+        userInfo.style.fontWeight = "bold";
+        userInfo.style.color = "#c2c2c2";
+        userInfo.style.fontFamily = "'Orbitron', sans-serif";
+        userInfo.style.fontSize = "10.2px";
+
+        td.appendChild(userInfo);
+
+        var tr = newTable.insertRow();
+        tr.style.display = "table-row";
+        var td = tr.insertCell();
+        statusInfo = document.createElement("Text");
+        td.setAttribute("height", "13px");
+        statusInfo.setAttribute("height", "13px");
+        statusInfo.innerHTML = loopArray.status;
+        statusInfo.style.fontWeight = "bold";
+        statusInfo.style.color = "white";
+        statusInfo.style.fontFamily = "'Orbitron', sans-serif";
+        statusInfo.style.fontSize = "10.2px";
+
+        td.appendChild(statusInfo);
+
+        var tr = newTable.insertRow();
+        tr.style.display = "table-row";
+        var td = tr.insertCell();
+        eventInfo = document.createElement("Text");
+        td.setAttribute("height", "13px");
+        eventInfo.setAttribute("height", "13px");
+        eventInfo.innerHTML = loopArray.event_info;
+        eventInfo.style.fontWeight = "bold";
+        eventInfo.style.color = "white";
+        eventInfo.style.fontFamily = "'Orbitron', sans-serif";
+        eventInfo.style.fontSize = "10.2px";
+
+        td.appendChild(eventInfo);
+
+        var tr = newTable.insertRow();
+        tr.style.display = "table-row";
+        var td = tr.insertCell();
+        howObtained = document.createElement("Text");
+        td.setAttribute("height", "13px");
+        howObtained.setAttribute("height", "13px");
+        howObtained.innerHTML = loopArray.how_obtained;
+        howObtained.style.fontWeight = "bold";
+        howObtained.style.color = "white";
+        howObtained.style.fontFamily = "'Orbitron', sans-serif";
+        howObtained.style.fontSize = "10.2px";
+
+        td.appendChild(howObtained);
+
+        dataGrid1 = document.createElement("div");
+        dataGrid1.setAttribute("id", "DataGrid1 " + i);
+        dataGrid1.style.display = "flex";
+        //dataGrid1.style.gridTemplateColumns = "repeat( 3, minmax(80px, 1fr) )";
+        dataGrid1.style.position = "absolute";
+        dataGrid1.style.top = "130px";
+        dataGrid1.style.width = "100%";
+
+        backSide.appendChild(dataGrid1);
+
+        gameObtained = document.createElement("button");
+        gameObtained.setAttribute("id", "GameObtained " + i);
+        gameObtained.setAttribute("class", "SA-DataGrid");
+        gameObtained.innerHTML = loopArray.game_obtained;
+        gameObtained.style.height = "16px";
+        gameObtained.style.width = "65px";
+
+        dataGrid1.appendChild(gameObtained);
+
+        gameOT = document.createElement("button");
+        gameOT.setAttribute("id", "GameOT " + i);
+        gameOT.setAttribute("class", "SA-DataGrid");
+        gameOT.innerHTML = loopArray.game_ot;
+        gameOT.style.height = "16px";
+        gameOT.style.width = "80px";
+
+
+        dataGrid1.appendChild(gameOT);
+
+        gameID = document.createElement("button");
+        gameID.setAttribute("id", "GameID " + i);
+        gameID.setAttribute("class", "SA-DataGrid");
+        gameID.innerHTML = loopArray.game_id;
+        gameID.style.height = "16px";
+        gameID.style.width = "55px";
+
+        dataGrid1.appendChild(gameID);
+
+        level = document.createElement("button");
+        level.setAttribute("id", "Level " + i);
+        level.setAttribute("class", "SA-DataGrid");
+        if (loopArray.level != null) {
+            level.innerHTML = "Lv" + loopArray.level;
+        } else {
+            level.style.display = "none";
+            gameOT.style.width = "135px";
+        }
+
+        level.style.height = "16px";
+        level.style.width = "55px";
+
+        dataGrid1.appendChild(level);
+
+        dataGrid2 = document.createElement("div");
+        dataGrid2.setAttribute("id", "DataGrid2 " + i);
+        dataGrid2.style.position = "absolute";
+        dataGrid2.style.top = "150px";
+        dataGrid2.style.width = "100%";
+        dataGrid2.style.display = "flex";
+
+        backSide.appendChild(dataGrid2);
+
+        display = document.createElement("button");
+        display.setAttribute("id", "display " + i);
+        display.setAttribute("class", "SA-DataGrid");
+        display.innerHTML = loopArray.display;
+        display.style.minWidth = "60px";
+        display.style.height = "16px";
+        if (userData == null || userData != null && loopArray.user_id != userData.user_id) {
+            display.style.display = "none";
+        }
+
+        dataGrid2.appendChild(display);
+
+        bunch = document.createElement("button");
+        bunch.setAttribute("id", "Bunch " + i);
+        bunch.setAttribute("class", "SA-DataGrid");
+        bunch.innerHTML = loopArray.bunch;
+        bunch.style.width = "-webkit-fill-available";
+        bunch.style.width = "-moz-available";
+        bunch.style.height = "16px";
+
+        dataGrid2.appendChild(bunch);
+
+        legacyMoveGrid = document.createElement("div");
+        legacyMoveGrid.setAttribute("id", "LegacyMoveGrid " + i);
+        legacyMoveGrid.style.display = "grid";
+        legacyMoveGrid.style.gridTemplateColumns = "repeat( 2, minmax(120px, 1fr) )";
+        legacyMoveGrid.style.position = "absolute";
+        legacyMoveGrid.style.top = "180px";
+        legacyMoveGrid.style.width = "100%";
+
+        backSide.appendChild(legacyMoveGrid);
+
+        legacyMoveGrid = document.createElement("div");
+        legacyMoveGrid.setAttribute("id", "LegacyMoveGrid " + i);
+        legacyMoveGrid.style.display = "grid";
+        legacyMoveGrid.style.gridTemplateColumns = "repeat( 2, minmax(120px, 1fr) )";
+        legacyMoveGrid.style.position = "absolute";
+        legacyMoveGrid.style.top = "180px";
+        legacyMoveGrid.style.width = "100%";
+
+        backSide.appendChild(legacyMoveGrid);
+
+
+        legacyMove1 = document.createElement("Text");
+        legacyMove1.setAttribute("id", "legacyMove1 " + i);
+        legacyMove1.setAttribute("height", "13px");
+        legacyMove1.innerHTML = loopArray.legacy_move_1;
+        legacyMove1.style.fontWeight = "bold";
+        legacyMove1.style.color = "white";
+        legacyMove1.style.fontFamily = "'Orbitron', sans-serif";
+        legacyMove1.style.fontSize = "11px";
+        legacyMove1.style.marginLeft = "2px";
+        legacyMove1.style.marginRight = "1px";
+        //legacyMove1.style.marginBottom = "4px";
+        legacyMove1.style.textAlign = "center";
+        legacyMove1.style.paddingTop = "4px";
+        legacyMove1.style.paddingBottom = "4px";
+        legacyMove1.style.pointerEvents = "none";
+        //legacyMove1.style.background = "none";
+        //legacyMove1.style.border = "none";
+
+        for (let j = 0; j < allMovesArray.length; j++) {
+            if (allMovesArray[j].moves == loopArray.legacy_move_1) {
+                //legacyMove1.classList.add("SA-" + allMovesArray[j].move_type + "MoveHolder");
+                if (allMovesArray[j].moves == "Hidden Power") {
+                    if (loopArray.misc.includes("HP")) {
+                        legacyMove1.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(3, loopArray.misc.length)) + "_1.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Tera Blast") {
+                    if (loopArray.misc.includes("Tera")) {
+                        legacyMove1.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(5, loopArray.misc.length)) + "_1.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Raging Bull") {
+                    if (loopArray.pokemon.includes("Blaze")) {
+                        legacyMove1.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fire_1.png')";
+                    } if (loopArray.pokemon.includes("Aqua")) {
+                        legacyMove1.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Water_1.png')";
+                    } else {
+                        legacyMove1.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fighting_1.png')";
+                    }
+                } else {
+                    legacyMove1.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + allMovesArray[j].move_type + "_1.png')";
+                }
+                legacyMove1.style.backgroundSize = "cover";
+            }
+        }
+
+        if ((loopArray.legacy_move_1 == "(No Move)" || loopArray.legacy_move_1 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+            legacyMove1.style.opacity = "0";
+        }
+
+        legacyMoveGrid.appendChild(legacyMove1);
+
+        /*legacyMove1.onmouseenter = function () {
+            //previousSpace is needed because otherwise if you move the mouse too fast, it will not unhide the element on the onmouseout method.
+            //So this just is backup so in case it didn't make it visable already, it will.
+            if (previousSpace != null) {
+                document.getElementById("legacyMove1 " + correctNum).style.display = "block";
+            }
+            //"this" is basically necessary for getting the current element as otherwise it will grab the last value of i.
+            //In this case we need to get the right number (index) for the movegrid so we can append the dropdown to it which is why all but
+            //that number is removed with the substring and set to a variable.
+
+            //The + i works for the innerHTML part, not 100% sure why, but I'll replace it with correct number if that works instead.
+            //The if statement makes sure that the user is the owner before they are allowed to make any changes.
+            correctNum = this.parentNode.id.substring(15);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("LegacyMoveGrid " + correctNum).insertBefore(reusableMove1Dropdown, document.getElementById("legacyMove1 " + correctNum));
+                reusableMove1Dropdown.style.display = "initial";
+                reusableMove1Dropdown.value = document.getElementById("legacyMove1 " + i).innerHTML;
+                document.getElementById("legacyMove1 " + correctNum).style.display = "none";
+            }
+        }
+        //Here we set the previousSpace to be the correctNum and copy the value from the dropdown to the move.
+        reusableMove1Dropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(15);
+            previousSpace = correctNum;
+            document.getElementById("legacyMove1 " + correctNum).innerHTML = reusableMove1Dropdown.value;
+        }*/
+
+        if ((loopArray.legacy_move_1 == "(No Move)" || loopArray.legacy_move_1 == "(Any Move)") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            document.getElementById("legacyMove1 " + i).innerHTML = "";
+        }
+
+
+        legacyMove2 = document.createElement("Text");
+        legacyMove2.setAttribute("id", "legacyMove2 " + i);
+        legacyMove2.setAttribute("height", "13px");
+        legacyMove2.innerHTML = loopArray.legacy_move_2;
+        legacyMove2.style.fontWeight = "bold";
+        legacyMove2.style.color = "white";
+        legacyMove2.style.fontFamily = "'Orbitron', sans-serif";
+        legacyMove2.style.fontSize = "11px";
+        legacyMove2.style.marginLeft = "1px";
+        legacyMove2.style.marginRight = "2px";
+        //legacyMove2.style.marginBottom = "4px";
+        legacyMove2.style.textAlign = "center";
+        legacyMove2.style.paddingTop = "4px";
+        legacyMove2.style.paddingBottom = "4px";
+        legacyMove2.style.pointerEvents = "none";
+        //legacyMove2.style.background = "none";
+        //legacyMove2.style.border = "none";
+
+        for (let j = 0; j < allMovesArray.length; j++) {
+            if (allMovesArray[j].moves == loopArray.legacy_move_2) {
+                //legacyMove2.classList.add("SA-" + allMovesArray[j].move_type + "MoveHolder");
+                if (allMovesArray[j].moves == "Hidden Power") {
+                    if (loopArray.misc.includes("HP")) {
+                        legacyMove2.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(3, loopArray.misc.length)) + "_2.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Tera Blast") {
+                    if (loopArray.misc.includes("Tera")) {
+                        legacyMove2.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(5, loopArray.misc.length)) + "_2.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Raging Bull") {
+                    if (loopArray.pokemon.includes("Blaze")) {
+                        legacyMove2.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fire_2.png')";
+                    } if (loopArray.pokemon.includes("Aqua")) {
+                        legacyMove2.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Water_2.png')";
+                    } else {
+                        legacyMove2.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fighting_2.png')";
+                    }
+                } else {
+                    legacyMove2.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + allMovesArray[j].move_type + "_2.png')";
+                }
+                legacyMove2.style.backgroundSize = "cover";
+            }
+        }
+
+        if ((loopArray.legacy_move_2 == "(No Move)" || loopArray.legacy_move_2 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+            legacyMove2.style.opacity = "0";
+        }
+
+        legacyMoveGrid.appendChild(legacyMove2);
+
+        /*legacyMove2.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("legacyMove2 " + correctNum).style.display = "block";
+            }
+
+            correctNum = this.parentNode.id.substring(15);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("LegacyMoveGrid " + correctNum).insertBefore(reusableMove2Dropdown, document.getElementById("legacyMove2 " + correctNum));
+                reusableMove2Dropdown.style.display = "initial";
+                reusableMove2Dropdown.value = document.getElementById("legacyMove2 " + i).innerHTML;
+                document.getElementById("legacyMove2 " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableMove2Dropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(15);
+            previousSpace = correctNum;
+            document.getElementById("legacyMove2 " + correctNum).innerHTML = reusableMove2Dropdown.value;
+        }*/
+
+        if ((loopArray.legacy_move_2 == "(No Move)" || loopArray.legacy_move_2 == "(Any Move)") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            document.getElementById("legacyMove2 " + i).innerHTML = "";
+        }
+
+
+        legacyMove3 = document.createElement("Text");
+        legacyMove3.setAttribute("id", "legacyMove3 " + i);
+        legacyMove3.setAttribute("height", "13px");
+        legacyMove3.innerHTML = loopArray.legacy_move_3;
+        legacyMove3.style.fontWeight = "bold";
+        legacyMove3.style.color = "white";
+        legacyMove3.style.fontFamily = "'Orbitron', sans-serif";
+        legacyMove3.style.fontSize = "11px";
+        legacyMove3.style.marginLeft = "2px";
+        legacyMove3.style.marginRight = "1px";
+        //legacyMove3.style.marginBottom = "4px";
+        legacyMove3.style.textAlign = "center";
+        legacyMove3.style.paddingTop = "4px";
+        legacyMove3.style.paddingBottom = "4px";
+        legacyMove3.style.pointerEvents = "none";
+        //legacyMove3.style.background = "none";
+        //legacyMove3.style.border = "none";
+
+        for (let j = 0; j < allMovesArray.length; j++) {
+            if (allMovesArray[j].moves == loopArray.legacy_move_3) {
+                //legacyMove3.classList.add("SA-" + allMovesArray[j].move_type + "MoveHolder");
+                if (allMovesArray[j].moves == "Hidden Power") {
+                    if (loopArray.misc.includes("HP")) {
+                        legacyMove3.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(3, loopArray.misc.length)) + "_3.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Tera Blast") {
+                    if (loopArray.misc.includes("Tera")) {
+                        legacyMove3.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(5, loopArray.misc.length)) + "_3.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Raging Bull") {
+                    if (loopArray.pokemon.includes("Blaze")) {
+                        legacyMove3.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fire_3.png')";
+                    } if (loopArray.pokemon.includes("Aqua")) {
+                        legacyMove3.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Water_3.png')";
+                    } else {
+                        legacyMove3.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fighting_3.png')";
+                    }
+                } else {
+                    legacyMove3.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + allMovesArray[j].move_type + "_3.png')";
+                }
+                legacyMove3.style.backgroundSize = "cover";
+            }
+        }
+
+        if ((loopArray.legacy_move_3 == "(No Move)" || loopArray.legacy_move_3 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+            legacyMove3.style.opacity = "0";
+        }
+
+        legacyMoveGrid.appendChild(legacyMove3);
+
+        /*legacyMove3.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("legacyMove3 " + correctNum).style.display = "block";
+            }
+
+            correctNum = this.parentNode.id.substring(15);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("LegacyMoveGrid " + correctNum).insertBefore(reusableMove3Dropdown, document.getElementById("legacyMove3 " + correctNum));
+                reusableMove3Dropdown.style.display = "initial";
+                reusableMove3Dropdown.value = document.getElementById("legacyMove3 " + i).innerHTML;
+                document.getElementById("legacyMove3 " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableMove3Dropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(15);
+            previousSpace = correctNum;
+            document.getElementById("legacyMove3 " + correctNum).innerHTML = reusableMove3Dropdown.value;
+        }*/
+
+        if ((loopArray.legacy_move_3 == "(No Move)" || loopArray.legacy_move_3 == "(Any Move)") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            document.getElementById("legacyMove3 " + i).innerHTML = "";
+        }
+
+
+
+        legacyMove4 = document.createElement("Text");
+        legacyMove4.setAttribute("id", "legacyMove4 " + i);
+        legacyMove4.setAttribute("height", "13px");
+        legacyMove4.innerHTML = loopArray.legacy_move_4;
+        legacyMove4.style.fontWeight = "bold";
+        legacyMove4.style.color = "white";
+        legacyMove4.style.fontFamily = "'Orbitron', sans-serif";
+        legacyMove4.style.fontSize = "11px";
+        legacyMove4.style.marginLeft = "1px";
+        legacyMove4.style.marginRight = "2px";
+        //legacyMove4.style.marginBottom = "4px";
+        legacyMove4.style.textAlign = "center";
+        legacyMove4.style.paddingTop = "4px";
+        legacyMove4.style.paddingBottom = "4px";
+        legacyMove4.style.pointerEvents = "none";
+        //legacyMove4.style.background = "none";
+        //legacyMove4.style.border = "none";
+
+        for (let j = 0; j < allMovesArray.length; j++) {
+            if (allMovesArray[j].moves == loopArray.legacy_move_4) {
+                //legacyMove4.classList.add("SA-" + allMovesArray[j].move_type + "MoveHolder");
+                if (allMovesArray[j].moves == "Hidden Power") {
+                    if (loopArray.misc.includes("HP")) {
+                        legacyMove4.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(3, loopArray.misc.length)) + "_4.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Tera Blast") {
+                    if (loopArray.misc.includes("Tera")) {
+                        legacyMove4.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (loopArray.misc.substring(5, loopArray.misc.length)) + "_4.png')";
+                    }
+                } else if (allMovesArray[j].moves == "Raging Bull") {
+                    if (loopArray.pokemon.includes("Blaze")) {
+                        legacyMove4.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fire_4.png')";
+                    } if (loopArray.pokemon.includes("Aqua")) {
+                        legacyMove4.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Water_4.png')";
+                    } else {
+                        legacyMove4.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fighting_4.png')";
+                    }
+                } else {
+                    legacyMove4.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + allMovesArray[j].move_type + "_4.png')";
+                }
+                legacyMove4.style.backgroundSize = "cover";
+            }
+        }
+
+        if ((loopArray.legacy_move_4 == "(No Move)" || loopArray.legacy_move_4 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+            legacyMove4.style.opacity = "0";
+        }
+
+        legacyMoveGrid.appendChild(legacyMove4);
+
+        /*legacyMove4.onmouseenter = function () {
+            if (previousSpace != null) {
+                document.getElementById("legacyMove4 " + correctNum).style.display = "block";
+            }
+
+            correctNum = this.parentNode.id.substring(15);
+            if (userData != null && userData.user_id == loopArray.user_id) {
+                document.getElementById("LegacyMoveGrid " + correctNum).insertBefore(reusableMove4Dropdown, document.getElementById("legacyMove4 " + correctNum));
+                reusableMove4Dropdown.style.display = "initial";
+                reusableMove4Dropdown.value = document.getElementById("legacyMove4 " + i).innerHTML;
+                document.getElementById("legacyMove4 " + correctNum).style.display = "none";
+            }
+        }
+
+        reusableMove4Dropdown.onmouseout = function () {
+            correctNum = this.parentNode.id.substring(15);
+            previousSpace = correctNum;
+            document.getElementById("legacyMove4 " + correctNum).innerHTML = reusableMove4Dropdown.value;
+        }*/
+
+        if ((loopArray.legacy_move_4 == "(No Move)" || loopArray.legacy_move_4 == "(Any Move)") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            document.getElementById("legacyMove4 " + i).innerHTML = "";
+        }
+
+
+        /*legacyMoveGrid.onmouseleave = function () {
+            correctNum = this.id.substring(17);
+            document.querySelector('#SelectionArea').prepend(reusableLegacyMove1Dropdown);
+            document.querySelector('#SelectionArea').prepend(reusableLegacyMove2Dropdown);
+            document.querySelector('#SelectionArea').prepend(reusableLegacyMove3Dropdown);
+            document.querySelector('#SelectionArea').prepend(reusableLegacyMove4Dropdown);
+            reusableLegacyMove1Dropdown.style.display = "none";
+            reusableLegacyMove2Dropdown.style.display = "none";
+            reusableLegacyMove3Dropdown.style.display = "none";
+            reusableLegacyMove4Dropdown.style.display = "none";
+            document.getElementById("legacyMove1 " + correctNum).style.display = "block";
+            document.getElementById("legacyMove2 " + correctNum).style.display = "block";
+            document.getElementById("legacyMove3 " + correctNum).style.display = "block";
+            document.getElementById("legacyMove4 " + correctNum).style.display = "block";
+
+        }*/
+
+        backSide.style.display = "none";
+
+
+        SetImage(theImage, loopArray.pokemon, loopArray.gender, loopArray.shiny, loopArray.game_obtained);
+
+        //Setting up the onclick to open the details area and to set the information required for it.
+        newDiv.onclick = function () {
+            if (!creationInProgress) {
+                //console.log("Clicked");
+                if (currentlyRearranging) {
+                    /*if (!currentlyRearranging) {
+                        if (selectedPokemon != null && pokemonDetails.creation_id == arrayData["Rows"][i].creation_id) {
+                            $('.DA-Close').click();
+                            CloseDetailOptions();
+                            return;
+                        } else {
+                            CloseDetailOptions();
+                            selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
+                            pokemonDetails = arrayData["Rows"][i];
+    
+                            //$.post(url + "/PHP/generate_selection.php", { token: token, searchID: pokemonDetails.user_id, tradeOption: "Looking For" }, MatchMaking);
+                            ShowPokemonDetails();
+                            document.querySelector("#CTSArea").style.display = "none";
+                            document.querySelector("#FilterArea").style.display = "none";
+                        }
+    
+                        if (ctsSeaching) {
+                            $.post(url + "/PHP/modify_check.php", { token: token, searchID: 0 }, ModifyCheckViewing);
+                        } else {
+                            $.post(url + "/PHP/modify_check_viewing.php", { token: token, searchID: pokemonDetails.user_id }, ModifyCheckViewing);
+                        }
+    
+                    } else {*/
                     if (oldPosition == "") {
                         movingPokemon = document.getElementById("GenerationGridDiv" + (i));
                         oldPosition = arrayData["Rows"][i].position;
                         tempCreationID = arrayData["Rows"][i].creation_id;
-                        if (pokemonDetails != null && selectedPokemon != null) {
-                            if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id && selectedPokemon != null) {
-                                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(147 147 147) 3px 3px 1px 0px";
-                                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#353d54";
-                                console.log(arrayData["Rows"][i].creation_id);
-                            } else {
-                                document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(147 147 147) 3px 3px 1px 0px";
-                                document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#343f5f";
-                                console.log(arrayData["Rows"][i].creation_id);
-                            }
-                        } else {
-                            document.getElementById("GenerationGridDiv" + (i)).style.boxShadow = "rgb(147 147 147) 3px 3px 1px 0px";
-                            document.getElementById("GenerationGridDiv" + (i)).style.backgroundColor = "#343f5f";
-                            console.log(arrayData["Rows"][i].creation_id);
-                        }
-                        document.getElementById("GenerationGridDiv" + (i)).style.opacity = "100%";
+                        document.getElementById("GenerationGridDiv" + (i)).style.opacity = "0.5";
                     } else {
                         newPosition = arrayData["Rows"][i].position;
                         if (oldPosition != newPosition && moving) {
@@ -1871,7 +2850,7 @@ function GenerateSelection(data) {
             }
         }
 
-        newDiv.onmouseenter = function () {
+        /*newDiv.onmouseenter = function () {
             if (!creationInProgress) {
                 if (selectedPokemon == null && hoverInfo == true && window.innerWidth > limitWidth) {
                     pokemonDetails = arrayData["Rows"][i];
@@ -1899,19 +2878,11 @@ function GenerateSelection(data) {
                     }
                 }
             }
-        }
+        }*/
         if (!creationInProgress) {
             if (pokemonDetails != null && selectedPokemon != null) {
                 if (arrayData["Rows"][i].creation_id == pokemonDetails.creation_id) {
                     selectedPokemon = document.getElementById("GenerationGridDiv" + (i));
-                    storedValue = i;
-                    selectedPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
-                    selectedPokemon.style.backgroundColor = "#353d54";
-                    var cols = document.getElementsByClassName("insideDetails" + (i));
-                    for (j = 0; j < cols.length; j++) {
-                        cols[j].style.display = "none";
-                    }
-                    document.getElementById("GenerationGridDiv" + (i)).style.height = "100px";
                 }
             }
         }
@@ -1922,7 +2893,7 @@ function GenerateSelection(data) {
 
 function MovePokemon() {
     MoveFinished();
-    document.querySelector(".SA-MoveButton").innerHTML = "Move";
+    document.querySelector(".SA-MoveText").innerHTML = "Move";
     currentlyRearranging = false;
     oldPosition = "";
     newPosition = "";
@@ -1932,7 +2903,7 @@ function MovePokemon() {
 
 function CopyPokemon() {
     CopyFinished();
-    document.querySelector(".SA-CopyButton").innerHTML = "Copy";
+    document.querySelector(".SA-CopyText").innerHTML = "Copy";
     currentlyRearranging = false;
     oldPosition = "";
     newPosition = "";
@@ -2004,8 +2975,8 @@ function GettingLFBunches(data) {
 }
 
 function ShowPokemonDetails() {
-    document.querySelector(".DA-Place").style.pointerEvents = "none";
-    document.querySelector(".DA-Place").style.background = "#1e1e1e";
+    document.querySelector(".DA-Place").style.display = "none";
+    document.querySelector(".DA-Delete").style.display = "block";
     tempUserID = "";
     if (ctsSeaching) {
 
@@ -2121,9 +3092,10 @@ function ShowPokemonDetails() {
     gameObtainedSelection.value = pokemonDetails.game_obtained;
     gameObtainedValue = pokemonDetails.game_obtained;
 
+    displaySelection.value = pokemonDetails.display;
     //Commented Out due to redesign
     /*document.querySelector(".DA-DisplayRow").style.display == "table-row";
-    displaySelection.value = pokemonDetails.display;
+    
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         document.querySelector(".DA-DisplayRow").style.visibility = "hidden";
     } else {
@@ -2183,12 +3155,12 @@ function ShowPokemonDetails() {
     document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         for (i = 0; i < cols.length; i++) {
-            cols[i].style.background = "#243048";
+            cols[i].style.background = "linear-gradient(#302b75, #112354)";
             cols[i].style.display = "none";
         }
     } else {
         for (i = 0; i < cols.length; i++) {
-            cols[i].style.background = "#243048";
+            cols[i].style.background = "linear-gradient(#302b75, #112354)";
             cols[i].style.display = "block";
         }
     }
@@ -2429,6 +3401,11 @@ function ShowPokemonDetails() {
         move4Null = false;
     }
 
+    $(move1Selection).change();
+    $(move2Selection).change();
+    $(move3Selection).change();
+    $(move4Selection).change();
+
     //Commented Out due to redesign
     /*
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
@@ -2484,6 +3461,11 @@ function ShowPokemonDetails() {
     if (pokemonDetails.legacy_move_4 == "(Any Move)" || pokemonDetails.legacy_move_4 == "(No Move)") {
         legacyMove4Null = false;
     }
+
+    $(legacyMove1Selection).change();
+    $(legacyMove2Selection).change();
+    $(legacyMove3Selection).change();
+    $(legacyMove4Selection).change();
 
     //Commented Out due to redesign
     /*
@@ -2559,7 +3541,8 @@ function ShowPokemonDetails() {
         }
     }*/
 
-    if (competitiveView) {
+    //08/05/2023 commeneted out, revisit later.
+    /*if (competitiveView) {
         if (tempUserID != pokemonDetails.user_id || detailsLocked) {
             if (levelSelection.value != "" && nestInput.value != "") {
                 document.querySelector(".DA-DefaultView").style.display = "none";
@@ -2600,6 +3583,9 @@ function ShowPokemonDetails() {
             $.post(url + "/PHP/generate_nest_selection.php", { userID: pokemonDetails.user_id, creationID: pokemonDetails.creation_id, tradeOption: tradeOption, nest: pokemonDetails.nest, duplicate: "No" }, GenerateNest);
         }
 
+    }*/
+    if (pokemonDetails.nest != null) {
+        $.post(url + "/PHP/generate_nest_selection.php", { userID: pokemonDetails.user_id, creationID: pokemonDetails.creation_id, tradeOption: tradeOption, nest: pokemonDetails.nest }, GenerateNest);
     }
 
 
@@ -2677,13 +3663,13 @@ function ShowAllDropdowns() {
     legacyMove3Selection.style.appearance = "auto";
     legacyMove4Selection.style.appearance = "auto";
 
-    if (competitiveView) {
+    /*if (competitiveView) {
         document.querySelector(".DA-CompetitiveView").display = "block";
         document.querySelector("#DA-NestHolder").style.display = "block";
     } else {
         document.querySelector(".DA-CompetitiveView").display = "none";
         document.querySelector("#DA-NestHolder").style.display = "none";
-    }
+    }*/
 }
 
 function GenerateNest(data) {
@@ -2703,7 +3689,10 @@ function GenerateNest(data) {
         newDiv.setAttribute("id", "GeneratedNest " + (i));
         newDiv.setAttribute("class", "DA-CompetitiveHolder " + (i));
 
-        if (!creationInProgress && i == 0 && detailsLocked == true) {
+        /*if (!creationInProgress && i == 0 && detailsLocked == true) {
+            newDiv.style.borderColor = "#616e7a";
+        }*/
+        if (!creationInProgress && i == 0) {
             newDiv.style.borderColor = "#616e7a";
         }
 
@@ -2729,10 +3718,10 @@ function GenerateNest(data) {
         otherDiv.appendChild(img);
 
         img.onclick = function () {
-            if (userData.user_id != competitiveDetails.user_id || detailsLocked) {
+            if (userData.user_id != competitiveDetails.user_id /*|| detailsLocked*/) {
                 selectedPokemon = document.getElementById("GeneratedNest " + (i));
                 pokemonDetails = nestData["Rows"][i];
-                AssigningOutline();
+                //AssigningOutline();
                 ShowPokemonDetails();
             }
         }
@@ -4027,11 +5016,22 @@ function SortBy(a, b) {
             return (a["pokeball"] < b["pokeball"]) ? -1 : 1;
         }
     } else if (selectionOrderDropdown1.value == "Pokedex") {
-        if (a["dex"] === b["dex"]) {
+        let aDex;
+        let bDex;
+        for (let j = 0; j < pokemonDataArray.length; j++) {
+            if (pokemonDataArray[j].pokemon == a["pokemon"]) {
+                aDex = pokemonDataArray[j].pokedex;
+            }
+
+            if (pokemonDataArray[j].pokemon == b["pokemon"]) {
+                bDex = pokemonDataArray[j].pokedex;
+            }
+        }
+        if (aDex === bDex) {
             return 1;
         }
         else {
-            return (a["dex"] < b["dex"]) ? -1 : 1;
+            return (aDex < bDex) ? -1 : 1;
         }
     }
 }
@@ -4069,11 +5069,22 @@ function SortBy2(a, b) {
             return (a["pokeball"] < b["pokeball"]) ? -1 : 1;
         }
     } else if (selectionOrderDropdown2.value == "Pokedex") {
-        if (a["dex"] === b["dex"]) {
+        let aDex;
+        let bDex;
+        for (let j = 0; j < pokemonDataArray.length; j++) {
+            if (pokemonDataArray[j].pokemon == a["pokemon"]) {
+                aDex = pokemonDataArray[j].pokedex;
+            }
+
+            if (pokemonDataArray[j].pokemon == b["pokemon"]) {
+                bDex = pokemonDataArray[j].pokedex;
+            }
+        }
+        if (aDex === bDex) {
             return 1;
         }
         else {
-            return (a["dex"] < b["dex"]) ? -1 : 1;
+            return (aDex < bDex) ? -1 : 1;
         }
     }
 }

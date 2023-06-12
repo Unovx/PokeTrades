@@ -4,115 +4,6 @@
         width: -moz-available !important;
     }
 
-    [class*="SelectionHelp"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-    }
-
-    [class*="ViewingAdditionalHelp"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-        top: 50% !important;
-    }
-
-    [class*="ViewingConfirmDelete"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-    }
-
-    [class*="ViewingPokemonAdded"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-    }
-
-    [class*="CreationPokemonError"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-    }
-
-    [class*="BunchIconError"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-    }
-
-    [class*="TemplateHelpInfo"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-        top: 50% !important;
-        right: unset !important;
-    }
-
-    [class*="TemplateAdded"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-        top: 50% !important;
-        right: unset !important;
-    }
-
-    [class*="TemplateRemoved"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-        top: 50% !important;
-        right: unset !important;
-    }
-
-    [class*="TemplateAddedError"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-        top: 50% !important;
-        right: unset !important;
-    }
-
-    [class*="TemplateRemovedError"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-        top: 50% !important;
-        right: unset !important;
-    }
-
-    [class*="BunchPokemonAdded"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-        margin: auto !important;
-        right: unset !important;
-        position: relative !important;
-    }
-
-    [class*="BunchPokemonRemoved"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-        margin: auto !important;
-        right: unset !important;
-        position: relative !important;
-    }
-
-    [class*="TradeShopImported"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-    }
-
-    [class*="DeleteAllConfirm"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-    }
-
-    [class*="DeleteAllSuccess"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-    }
-
-    [class*="BunchesMoveHelp"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-    }
-
-    [class*="InformationAreaHelp"] {
-        width: -webkit-fill-available !important;
-        width: -moz-available !important;
-        top: 20% !important;
-        right: unset !important;
-    }
-
     [class*="TrackingInformation"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
@@ -123,32 +14,176 @@
         width: -moz-available !important;
         right: unset !important;
     }
+
+    [class*="NA-MainBlock"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+        right: unset !important;
+    }
 }
 
 #NotificationArea {
     position: fixed;
     display: none;
-    height: calc(100% - 52px);
+    height: 100%;
+    z-index: 10;
+    width: 100%;
+    overflow: auto;
+    backdrop-filter: brightness(0.5);
+}
+
+#LoadingArea {
+    position: fixed;
+    display: none;
+    height: 100%;
     z-index: 10;
     width: 100%;
     overflow: auto;
 }
 
+.NA-Assistant {
+    border-style: solid;
+    border-radius: 9px;
+    width: 35px;
+    vertical-align: middle;
+    margin: 5px;
+    border-color: rgb(160 160 160);
+    cursor: pointer;
+}
+
+.NA-MainBlock {
+    position: relative;
+    display: block;
+    margin: auto;
+    top: 20%;
+    width: 500px;
+    text-align: center;
+}
+
+.NA-TextBlock {
+    position: relative;
+    margin: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /*background: linear-gradient(#2b3075, #004181);*/
+    background: linear-gradient(#073e69, #004181);
+    padding: 10px;
+    text-align: center;
+    border-style: solid;
+    border-color: #576ab3;
+}
+
+.NA-Text {
+    font-weight: normal;
+    font-family: monospace;
+    color: #e6e6e6;
+    font-size: 12px;
+}
+
 .NA-ButtonDesign {
-    background: #171d2c;
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    background-size: contain;
+    width: 100px !important;
+    display: block;
+    margin: auto;
+    margin-top: 25px;
     border-width: 2px;
     border-style: solid;
-    border-color: #2e3850;
-    width: -webkit-fill-available !important;
-    width: -moz-available !important;
+    /*border-color: #2e3850;*/
+    border-color: #64759c;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: #536c9f;
+    color: #cccccc;
     cursor: pointer;
     margin-bottom: 3px !important;
     box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
     border-radius: 5px;
+}
+
+.NA-OptionButton {
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    background-size: contain;
+    width: 300px !important;
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+    border-width: 2px;
+    border-style: solid;
+    /*border-color: #2e3850;*/
+    border-color: #64759c;
+    /*width: -webkit-fill-available !important;
+    width: -moz-available !important;*/
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    color: #cccccc;
+    cursor: pointer;
+    margin-bottom: 3px !important;
+    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
+    border-radius: 5px;
+}
+
+.NA-MainOptions {
+    display: none;
+}
+
+.NA-TradeShopOptions {
+    display: none;
+}
+
+.NA-AccountOptions {
+    display: none;
+}
+
+.NA-OtherOptions {
+    display: none;
+}
+
+.NA-BunchOverview {
+    display: none;
+}
+
+.NA-PokemonCreation {
+    display: none;
+}
+
+.NA-MoveCopy {
+    display: none;
+}
+
+.NA-AddHelp {
+    display: none;
+}
+
+.NA-TemplateOverview {
+    display: none;
+}
+
+.NA-Account {
+    display: none;
+}
+
+.NA-DeleteAll {
+    display: none;
+}
+
+.NA-Exporting {
+    display: none;
+}
+
+.NA-Importing {
+    display: none;
+}
+
+.NA-PokemonData {
+    display: none;
+}
+
+.NA-GenerationalSprites {
+    display: none;
 }
 
 #RefreshPage {
@@ -183,581 +218,76 @@
     color: #e0e0e0;
 }
 
-.SelectionHelp {
-    position: relative;
-    display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 500px;
-    top: 10%;
-    text-align: center;
-}
-
-.NA-SelectionText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-SelectionClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
-}
-
 .ViewingAdditionalHelp {
-    position: relative;
     display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 500px;
-    top: 20%;
-    text-align: center;
-}
-
-.NA-ViewingAdditionalText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-ViewingAdditionalClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
 }
 
 .ViewingConfirmDelete {
-    position: relative;
     display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 500px;
-    top: 20%;
-    text-align: center;
 }
 
 .NA-ConfirmDeleteButtons {
-    position: relative;
-    width: 100%;
-    top: 10px;
-    text-align: center;
-}
-
-.NA-ConfirmDeleteText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-ConfirmDeleteButton {
-    position: relative;
-    cursor: pointer;
-}
-
-.NA-CloseConfirmButton {
-    position: relative;
-    cursor: pointer;
+    margin: auto;
 }
 
 .ViewingPokemonAdded {
-    position: relative;
     display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 500px;
-    top: 20%;
-    text-align: center;
-}
-
-.NA-PokemonAddedText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-PokemonAddedClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
 }
 
 .CreationPokemonError {
-    position: relative;
     display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 500px;
-    top: 20%;
-}
-
-.NA-CreationPokemonText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    color: #e0e0e0;
-}
-
-.NA-CreationPokemonClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
-}
-
-.TemplateHelpInfo {
-    position: absolute;
-    display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 375px;
-    top: 130px;
-    right: 20px;
-    text-align: center;
-}
-
-.NA-TemplateHelpText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-TemplateHelpClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
 }
 
 .TemplateAdded {
-    position: absolute;
     display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 300px;
-    top: 130px;
-    right: 50px;
-    text-align: center;
-}
-
-.NA-TemplateAddedText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-TemplateAddedClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
 }
 
 .TemplateRemoved {
-    position: absolute;
     display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 300px;
-    top: 130px;
-    right: 50px;
-    text-align: center;
-}
-
-.NA-TemplateRemovedText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-TemplateRemovedClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
 }
 
 .TemplateAddedError {
-    position: absolute;
     display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 300px;
-    top: 130px;
-    right: 50px;
-    text-align: center;
-}
-
-.NA-TemplateAddedErrorText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-TemplateAddedErrorClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
 }
 
 .TemplateRemovedError {
-    position: absolute;
     display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 300px;
-    top: 130px;
-    right: 50px;
-    text-align: center;
-}
-
-.NA-TemplateRemovedErrorText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-TemplateRemovedErrorClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
 }
 
 .BunchIconError {
-    position: relative;
     display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 500px;
-    top: 20%;
-}
-
-.NA-BunchIconText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    color: #e0e0e0;
-}
-
-.NA-BunchIconClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
 }
 
 .BunchPokemonAdded {
-    position: absolute;
     display: none;
-    right: 50px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 300px;
-    top: 20%;
-    text-align: center;
-}
-
-.NA-BunchAddedText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-BunchAddedClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
 }
 
 .BunchPokemonRemoved {
-    position: absolute;
     display: none;
-    right: 50px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 300px;
-    top: 20%;
-    text-align: center;
-}
-
-.NA-BunchRemovedText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-BunchRemovedClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
 }
 
 .TradeShopImported {
-    position: relative;
     display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 300px;
-    top: 20%;
-    text-align: center;
-}
-
-.NA-ImportedSuccessText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-ImportedSuccessClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
 }
 
 .DeleteAllConfirm {
-    position: relative;
     display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 500px;
-    top: 20%;
-    text-align: center;
-}
-
-.NA-DeleteAllButtons {
-    position: relative;
-    width: 100%;
-    top: 10px;
-    text-align: center;
 }
 
 .NA-DeleteAllText {
     position: relative;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: monospace;
     width: 100%;
     text-align: center;
-    color: #b96161;
+    color: #ff6f6f;
 }
 
-.NA-ConfirmDeleteAll {
-    position: relative;
-}
-
-.NA-CloseDeleteAll {
-    position: relative;
-    cursor: pointer;
+.NA-DeleteAllButtons {
+    margin: auto;
 }
 
 .DeleteAllSuccess {
-    position: relative;
     display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 300px;
-    top: 20%;
-    text-align: center;
-}
-
-.NA-SuccessDeleteAllText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-SuccessDeleteAllClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
-}
-
-.BunchesMoveHelp {
-    position: relative;
-    display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 500px;
-    top: 20%;
-    text-align: center;
-}
-
-.NA-BunchMoveHelpText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-BunchMoveHelpClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
-}
-
-.InformationAreaHelp {
-    position: absolute;
-    display: none;
-    margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
-    width: 375px;
-    top: 130px;
-    right: 20px;
-    text-align: center;
-}
-
-.NA-InformationAreaText {
-    position: relative;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    text-align: center;
-    color: #e0e0e0;
-}
-
-.NA-InformationAreaClose {
-    position: relative;
-    display: block;
-    cursor: pointer;
-    margin: auto;
-    top: 10px;
 }
 
 .TrackingInformation {

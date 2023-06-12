@@ -149,23 +149,74 @@ function SetHiddenPower() {
     }
 }
 
+$(move1Selection).change(function () {
+    AssignMoveContainer(move1Selection);
+});
+
+$(move2Selection).change(function () {
+    AssignMoveContainer(move2Selection);
+});
+
+$(move3Selection).change(function () {
+    AssignMoveContainer(move3Selection);
+});
+
+$(move4Selection).change(function () {
+    AssignMoveContainer(move4Selection);
+});
+
+$(legacyMove1Selection).change(function () {
+    AssignMoveContainer(legacyMove1Selection);
+});
+
+$(legacyMove2Selection).change(function () {
+    AssignMoveContainer(legacyMove2Selection);
+});
+
+$(legacyMove3Selection).change(function () {
+    AssignMoveContainer(legacyMove3Selection);
+});
+
+$(legacyMove4Selection).change(function () {
+    AssignMoveContainer(legacyMove4Selection);
+});
+
+function AssignMoveContainer(element) {
+    for (let j = 0; j < allMovesArray.length; j++) {
+        if (allMovesArray[j].moves == element.value) {
+            if (allMovesArray[j].moves == "Hidden Power") {
+                if (miscData.includes("HP")) {
+                    alert(miscData);
+                    alert(miscData.substring(3, miscData.length));
+                    element.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (miscData.substring(3, miscData.length)) + "_1.png')";
+                }
+            } else if (allMovesArray[j].moves == "Tera Blast") {
+                if (miscData.includes("Tera")) {
+                    element.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + (miscData.substring(5, miscData.length)) + "_1.png')";
+                }
+            } else if (allMovesArray[j].moves == "Raging Bull") {
+                if (pokemonSelection.value.includes("Blaze")) {
+                    element.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fire_1.png')";
+                } else if (pokemonSelection.value.includes("Aqua")) {
+                    element.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Water_1.png')";
+                } else {
+                    element.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/Fighting_1.png')";
+                }
+            } else {
+                element.style.background = "url('https://poketrades.org/Resources/PokemonContainers/Moves/" + allMovesArray[j].move_type + "_1.png')";
+            }
+            element.style.backgroundSize = "cover";
+        }
+    }
+}
+
 
 $('.DA-Close').click(function () {
     pokemonDetails = null;
     if (selectedPokemon != null) {
-        selectedPokemon.style.boxShadow = "rgb(0 0 0) 5px 5px 0px 1px";
-        selectedPokemon.style.backgroundColor = "#343f5f";
+        selectedPokemon.style.opacity = "1";
     }
     selectedPokemon = null;
-    //Looking for the element showing the additional details and turning them off and changing the height to normal.
-    var cols = document.getElementsByClassName("insideDetails" + (storedValue));
-    for (j = 0; j < cols.length; j++) {
-        cols[j].style.display = "none";
-    }
-    if (storedValue != null) {
-        document.getElementById("GenerationGridDiv" + (storedValue)).style.height = "100px";
-    }
-    storedValue = null;
     document.querySelector("#SelectionArea").style.width = "100%";
     document.querySelector("#DetailsArea").style.display = "none";
     if (ctsSeaching) {
@@ -227,14 +278,14 @@ $('.DA-Reset').click(function () {
     }
 });
 
-$('.DA-Add').click(function () {
+/*$('.DA-Add').click(function () {
     $.post(url + "/PHP/add_selection.php", { token: token, creationID: pokemonDetails.creation_id });
     document.querySelector("#NotificationArea").style.display = "block";
     document.querySelector(".ViewingPokemonAdded").style.display = "block";
     $.post(url + "/PHP/format_import.php", { token: token });
-});
+});*/
 
-$('.DA-Lock').click(function () {
+/*$('.DA-Lock').click(function () {
     if (detailsLocked == false) {
         detailsLocked = true;
         document.querySelector(".DA-Lock").innerHTML = "Open";
@@ -246,7 +297,7 @@ $('.DA-Lock').click(function () {
         document.querySelector(".DA-Lock").innerHTML = "Lock";
         ShowPokemonDetails();
     }
-});
+});*/
 
 $('.DA-ViewingHelp').click(function () {
     document.querySelector("#NotificationArea").style.display = "block";
@@ -402,11 +453,6 @@ $('.DA-AV6').click(function () {
         AssigningOutline();
         $.post(url + "/PHP/modify_check_viewing.php", { token: token, searchID: pokemonDetails.user_id }, ModifyCheckViewing);
     }
-});
-
-$('.DA-TemplateHelp').click(function () {
-    document.querySelector("#NotificationArea").style.display = "block";
-    document.querySelector(".TemplateHelpInfo").style.display = "block";
 });
 
 $('.DA-AddTemplate').click(function () {
@@ -799,7 +845,7 @@ function CreateLangOptions() {
         newDiv = document.createElement("div");
         newDiv.setAttribute("class", "DA-" + languageOptionsArray[i].replace(/\s/g, ''));
         newDiv.classList.add("DA-IconSelects");
-        /*newDiv.style.background = "#243048";
+        /*newDiv.style.background = "linear-gradient(#302b75, #112354)";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -832,7 +878,7 @@ function CreateBallOptions() {
             newDiv.setAttribute("class", "DA-" + allBallsArray[i].replace(/\s/g, ''));
         }
         newDiv.classList.add("DA-IconSelects");
-        /*newDiv.style.background = "#243048";
+        /*newDiv.style.background = "linear-gradient(#302b75, #112354)";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -879,7 +925,7 @@ function CreateGenderOptions() {
             newDiv.setAttribute("class", "DA-" + genderOptionsArray[i].replace(/\s/g, ''));
         }
         newDiv.classList.add("DA-IconSelects");
-        /*newDiv.style.background = "#243048";
+        /*newDiv.style.background = "linear-gradient(#302b75, #112354)";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -918,7 +964,7 @@ function CreateShinyOptions() {
             newDiv.setAttribute("class", "DA-" + shinyOptionsArray[i].replace(/\s/g, ''));
         }
         newDiv.classList.add("DA-IconSelects");
-        /*newDiv.style.background = "#243048";
+        /*newDiv.style.background = "linear-gradient(#302b75, #112354)";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -957,7 +1003,7 @@ function CreateMintOptions() {
             newDiv.setAttribute("class", "DA-" + mintOptionsArray[i].replace(/\s/g, ''));
         }
         newDiv.classList.add("DA-IconSelects");
-        /*newDiv.style.background = "#243048";
+        /*newDiv.style.background = "linear-gradient(#302b75, #112354)";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -995,7 +1041,7 @@ function CreateMiscOptions() {
             newDiv.setAttribute("class", "DA-" + miscOptionsArray[i].replace(/\s/g, ''));
         }
         newDiv.classList.add("DA-IconSelects");
-        /*newDiv.style.background = "#243048";
+        /*newDiv.style.background = "linear-gradient(#302b75, #112354)";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -1035,7 +1081,7 @@ function CreateMarkOptions() {
             newDiv.setAttribute("class", "DA-" + allMarksArray[i].replace(/\s/g, ''));
         }
         newDiv.classList.add("DA-IconSelects");
-        /*newDiv.style.background = "#243048";
+        /*newDiv.style.background = "linear-gradient(#302b75, #112354)";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -1075,7 +1121,7 @@ function CreateRibbonOptions() {
         newDiv.setAttribute("id", "DA-" + ribbonOptionsArray[i]);
         newDiv.setAttribute("class", "Ribbons");
         newDiv.classList.add("DA-IconSelects");
-        /*newDiv.style.background = "#243048";
+        /*newDiv.style.background = "linear-gradient(#302b75, #112354)";
         newDiv.style.borderWidth = "2px";
         newDiv.style.borderStyle = "solid";
         newDiv.style.borderColor = "#949494";
@@ -1115,7 +1161,7 @@ function CreateRibbonOptions() {
                     document.getElementById("DA-" + ribbonOptionsArray[i]).style.background = "#1e5578";
                     for (let j = 0; j < ribbonData.length; j++) {
                         if (ribbonData[j] != "(No Ribbon)") {
-                            document.getElementById("DA-" + ribbonOptionsArray[j]).style.background = "#243048";
+                            document.getElementById("DA-" + ribbonOptionsArray[j]).style.background = "linear-gradient(#302b75, #112354)";
                         }
                     }
                     //console.log(ribbonString);
@@ -1128,15 +1174,15 @@ function CreateRibbonOptions() {
                     document.getElementById("DA-" + ribbonOptionsArray[i]).style.background = "#1e5578";
                     for (let j = 0; j < ribbonData.length; j++) {
                         if (ribbonData[j] != "(Any or No Ribbon)") {
-                            document.getElementById("DA-" + ribbonOptionsArray[j]).style.background = "#243048";
+                            document.getElementById("DA-" + ribbonOptionsArray[j]).style.background = "linear-gradient(#302b75, #112354)";
                         }
                     }
                     //console.log(ribbonString);
                 } else {
                     ribbonData[0] = null;
                     ribbonData[1] = null;
-                    document.getElementById("DA-" + ribbonOptionsArray[0]).style.background = "#243048";
-                    document.getElementById("DA-" + ribbonOptionsArray[1]).style.background = "#243048";
+                    document.getElementById("DA-" + ribbonOptionsArray[0]).style.background = "linear-gradient(#302b75, #112354)";
+                    document.getElementById("DA-" + ribbonOptionsArray[1]).style.background = "linear-gradient(#302b75, #112354)";
                     for (let j = 0; j < ribbonData.length; j++) {
                         if (ribbonData[j] != null) {
                             document.querySelector(".DA-RibbonIcon").src = url + "/Resources/Images/Dreamworld Artwork/Ribbons/" + ribbonOptionsArray[j] + ".png";
@@ -1165,7 +1211,7 @@ function CreateRibbonOptions() {
                         console.log(ribbonString);
                     }
                 }
-                document.getElementById("DA-" + ribbonOptionsArray[i]).style.background = "#243048";
+                document.getElementById("DA-" + ribbonOptionsArray[i]).style.background = "linear-gradient(#302b75, #112354)";
             }
             if (ribbonString == "") {
                 ribbonString = "(No Ribbon)";
@@ -1180,729 +1226,6 @@ function CreateRibbonOptions() {
 function PokemonValidation() {
 
     SetImage(pokemonSprite, pokemonData, genderData, shinyData, gameObtainedValue);
-
-    /*if (shinyExceptionArray.includes(pokemonData) && !shinyData.includes("Normal")) {
-        if (pokemonData.includes("Minior")) {
-            if (genderData.includes("Genderless") || genderData.includes("Any Gender")) {
-                if (generationalSprites) {
-                    pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/Minior.png");
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Minior.png");
-                }
-            } else {
-                pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-            }
-        } else if (pokemonData.includes("Alcremie-Strawberry")) {
-            if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Strawberry.png");
-            } else {
-                pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-            }
-        }
-        else if (pokemonData.includes("Alcremie-Berry")) {
-            if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Berry.png");
-            } else {
-                pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-            }
-        }
-        else if (pokemonData.includes("Alcremie-Love")) {
-            if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Love.png");
-            } else {
-                pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-            }
-        }
-        else if (pokemonData.includes("Alcremie-Star")) {
-            if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Star.png");
-            } else {
-                pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-            }
-        }
-        else if (pokemonData.includes("Alcremie-Clover")) {
-            if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Clover.png");
-            } else {
-                pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-            }
-        }
-        else if (pokemonData.includes("Alcremie-Flower")) {
-            if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Flower.png");
-            } else {
-                pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-            }
-        }
-        else if (pokemonData.includes("Alcremie-Ribbon")) {
-            if (genderData.includes("Female") || genderData.includes("Any Gender")) {
-                pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/Alcremie-Ribbon.png");
-            } else {
-                pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-            }
-        }
-    }
-
-    else if (shinyLockedArray.includes(pokemonData) && !shinyData.includes("Normal")) {
-        pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-    }
-
-    else if (genderlessPokemonArray.includes(pokemonData)) {
-        if (genderData.includes("Genderless") || genderData.includes("(Any Gender)")) {
-            if (shinyData.includes("Normal")) {
-                if (generationalSprites) {
-                    if (gameObtainedValue == "R/G/B/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "G/S/C") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "R/S/E" || gameObtainedValue == "FR/LG" || gameObtainedValue == "Colo/XD") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "D/P/PT" || gameObtainedValue == "HG/SS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "BW/BW2") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "X/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "OR/AS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "SM/USUM") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LGP/LGE") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "BD/SP") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSP/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LA") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + pokemonData + ".png");
-                    }
-                    else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + ".png");
-                    }
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/Home/" + pokemonData + ".png");
-                    }
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + ".png");
-                }
-
-            } else {
-                if (generationalSprites) {
-                    if (gameObtainedValue == "R/G/B/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "G/S/C") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "R/S/E" || gameObtainedValue == "FR/LG" || gameObtainedValue == "Colo/XD") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "D/P/PT" || gameObtainedValue == "HG/SS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "BW/BW2") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "X/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "OR/AS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "SM/USUM") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LGP/LGE") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LA") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + pokemonData + ".png");
-                    }
-                    else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
-                    }
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
-                    }
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
-                }
-            }
-
-        } else {
-            pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-        }
-    }
-    else if (maleOnlyPokemonArray.includes(pokemonData)) {
-        if (genderData.includes("Male") || genderData.includes("(Any Gender)")) {
-            if (shinyData.includes("Normal")) {
-                if (generationalSprites) {
-                    if (gameObtainedValue == "R/G/B/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "G/S/C") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "R/S/E" || gameObtainedValue == "FR/LG" || gameObtainedValue == "Colo/XD") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "D/P/PT" || gameObtainedValue == "HG/SS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "BW/BW2") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "X/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "OR/AS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "SM/USUM") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LGP/LGE") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "BD/SP") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSP/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LA") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + pokemonData + ".png");
-                    }
-                    else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + ".png");
-                    }
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/Home/" + pokemonData + ".png");
-                    }
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + ".png");
-                }
-
-            } else {
-                if (generationalSprites) {
-                    if (gameObtainedValue == "R/G/B/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "G/S/C") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "R/S/E" || gameObtainedValue == "FR/LG" || gameObtainedValue == "Colo/XD") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "D/P/PT" || gameObtainedValue == "HG/SS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "BW/BW2") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "X/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "OR/AS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "SM/USUM") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LGP/LGE") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LA") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + pokemonData + ".png");
-                    }
-                    else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
-                    }
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
-                    }
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
-                }
-            }
-        } else {
-            pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-        }
-    }
-    else if (femaleOnlyPokemonArray.includes(pokemonData)) {
-        if (genderData.includes("Female") || genderData.includes("(Any Gender)")) {
-            if (shinyData.includes("Normal")) {
-                if (generationalSprites) {
-                    if (gameObtainedValue == "R/G/B/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "G/S/C") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "R/S/E" || gameObtainedValue == "FR/LG" || gameObtainedValue == "Colo/XD") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "D/P/PT" || gameObtainedValue == "HG/SS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "BW/BW2") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "X/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "OR/AS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "SM/USUM") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LGP/LGE") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "BD/SP") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSP/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LA") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + pokemonData + ".png");
-                    }
-                    else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + ".png");
-                    }
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/Home/" + pokemonData + ".png");
-                    }
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + ".png");
-                }
-
-            } else {
-                if (generationalSprites) {
-                    if (gameObtainedValue == "R/G/B/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "G/S/C") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "R/S/E" || gameObtainedValue == "FR/LG" || gameObtainedValue == "Colo/XD") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "D/P/PT" || gameObtainedValue == "HG/SS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "BW/BW2") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "X/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "OR/AS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "SM/USUM") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LGP/LGE") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LA") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + pokemonData + ".png");
-                    }
-                    else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
-                    }
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
-                    }
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
-                }
-            }
-
-        } else {
-            pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-        }
-    }
-    else if (genderDifferencesArray.includes(pokemonData)) {
-        if (genderData.includes("Male") || genderData.includes("(Any Gender)")) {
-            if (shinyData.includes("Normal")) {
-                if (generationalSprites) {
-                    if (gameObtainedValue == "R/G/B/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "G/S/C") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "R/S/E" || gameObtainedValue == "FR/LG" || gameObtainedValue == "Colo/XD") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "D/P/PT" || gameObtainedValue == "HG/SS") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + pokemonData + "-Male.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "BW/BW2") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + "-Male.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "X/Y") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + "-Male.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "OR/AS") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + "-Male.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "SM/USUM") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + "-Male.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "LGP/LGE") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + "-Male.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "BD/SP") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSP/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LA") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + pokemonData + "-Male.png");
-                    }
-                    else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Male.png");
-                    }
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Male.png");
-                }
-                document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Male.png")
-                };
-            } else {
-                if (generationalSprites) {
-                    if (gameObtainedValue == "R/G/B/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "G/S/C") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "R/S/E" || gameObtainedValue == "FR/LG" || gameObtainedValue == "Colo/XD") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "D/P/PT" || gameObtainedValue == "HG/SS") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + pokemonData + "-Male.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "BW/BW2") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + "-Male.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "X/Y") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + "-Male.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "OR/AS") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + "-Male.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "SM/USUM") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + "-Male.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "LGP/LGE") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + "-Male.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "LA") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + pokemonData + "-Male.png");
-                    }
-                    else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + "-Male.png");
-                    }
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + "-Male.png");
-                }
-                document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + "-Male.png")
-                };
-            }
-
-        }
-        else if (genderData.includes("Female") || genderData.includes("(Any Gender)")) {
-            if (shinyData.includes("Normal")) {
-                if (generationalSprites) {
-                    if (gameObtainedValue == "R/G/B/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "G/S/C") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "R/S/E" || gameObtainedValue == "FR/LG" || gameObtainedValue == "Colo/XD") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "D/P/PT" || gameObtainedValue == "HG/SS") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + pokemonData + "-.png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + pokemonData + "-Female.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "BW/BW2") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + "-Female.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "X/Y") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + "-Female.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "OR/AS") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + "-Female.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "SM/USUM") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + "-Female.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "LGP/LGE") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + "-Female.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "BD/SP") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSP/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LA") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + pokemonData + "-Female.png");
-                    }
-                    else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Female.png");
-                    }
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Female.png");
-                }
-                document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/Home/" + pokemonData + "-Female.png")
-                };
-            } else {
-                if (generationalSprites) {
-                    if (gameObtainedValue == "R/G/B/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "G/S/C") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "R/S/E" || gameObtainedValue == "FR/LG" || gameObtainedValue == "Colo/XD") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "D/P/PT" || gameObtainedValue == "HG/SS") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + pokemonData + "-Female.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "BW/BW2") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + "-Female.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "X/Y") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + "-Female.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "OR/AS") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + "-Female.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "SM/USUM") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + "-Female.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "LGP/LGE") {
-                        if (pokemonData == "Eevee") {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + ".png");
-                        } else {
-                            pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + "-Female.png");
-                        }
-                    }
-                    else if (gameObtainedValue == "LA") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + pokemonData + "-Female.png");
-                    }
-                    else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + "-Female.png");
-                    }
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + "-Female.png");
-                }
-                document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + "-Female.png")
-                };
-            }
-
-        } else {
-            pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-        }
-    }
-    //For Normal pokemon without any gender differences or specific genders
-    else if (!genderlessPokemonArray.includes(pokemonData)) {
-        if (!genderData.includes("Genderless") || genderData.includes("(Any Gender)")) {
-            if (shinyData.includes("Normal")) {
-                if (generationalSprites) {
-                    if (gameObtainedValue == "R/G/B/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "G/S/C") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "R/S/E" || gameObtainedValue == "FR/LG" || gameObtainedValue == "Colo/XD") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "D/P/PT" || gameObtainedValue == "HG/SS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "BW/BW2") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "X/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "OR/AS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "SM/USUM") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LGP/LGE") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "BD/SP") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSP/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LA") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + pokemonData + ".png");
-                    }
-                    else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + ".png");
-                    }
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/Home/" + pokemonData + ".png");
-                    }
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/Home/" + pokemonData + ".png");
-                }
-            } else {
-                if (generationalSprites) {
-                    if (gameObtainedValue == "R/G/B/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "G/S/C") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "R/S/E" || gameObtainedValue == "FR/LG" || gameObtainedValue == "Colo/XD") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "D/P/PT" || gameObtainedValue == "HG/SS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "BW/BW2") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "X/Y") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "OR/AS") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "SM/USUM") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LGP/LGE") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + pokemonData + ".png");
-                    }
-                    else if (gameObtainedValue == "LA") {
-                        pokemonSprite.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + pokemonData + ".png");
-                    }
-                    else {
-                        pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
-                    }
-                    document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).onerror = function () {
-                        document.querySelector(`.${CSS.escape("DA-PokemonImage")}`).setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
-                    }
-                } else {
-                    pokemonSprite.setAttribute("src", url + "/Resources/HomeShiny/" + pokemonData + ".png");
-                }
-            }
-
-        } else {
-            pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-        }
-    } else {
-        pokemonSprite.setAttribute("src", url + "/Resources/Fennel2.png");
-    }
-    */
 }
 
 function AbilityOptions() {
@@ -2021,7 +1344,7 @@ function CreationReset() {
     var cols = document.getElementsByClassName("Ribbons");
     document.querySelector(".DA-RibbonIcon").src = url + "/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
     for (i = 0; i < cols.length; i++) {
-        cols[i].style.background = "#243048";
+        cols[i].style.background = "linear-gradient(#302b75, #112354)";
         cols[i].style.display = "block";
     }
     document.getElementById("DA-" + ribbonOptionsArray[1]).style.background = "#1e5578";
@@ -2085,6 +1408,16 @@ function CreationReset() {
         legacyMove3Selection.value = "(Any Move)";
         legacyMove4Selection.value = "(Any Move)";
     }
+
+    $(move1Selection).change();
+    $(move2Selection).change();
+    $(move3Selection).change();
+    $(move4Selection).change();
+
+    $(legacyMove1Selection).change();
+    $(legacyMove2Selection).change();
+    $(legacyMove3Selection).change();
+    $(legacyMove4Selection).change();
 
     if (tradeOption == "For Trade") {
         howObtainedSelection.value = "Self-Obtained(Retail)";

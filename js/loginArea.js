@@ -87,14 +87,14 @@ $('.LA-LogOut').click(function () {
     document.querySelector(".LA-LoginArea").style.display = "block";
     document.querySelector(".PA-UserID").style.opacity = "0%";
     document.querySelector(".PA-UserID").innerHTML = "Your ID is: ";
-    document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
-    document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
-    document.querySelector(".TA-UserCollection").style.pointerEvents = "none";
-    document.querySelector(".TA-UserCollection").style.backgroundColor = "grey";
+    //document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
+    //document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
+    //document.querySelector(".TA-UserCollection").style.pointerEvents = "none";
+    //document.querySelector(".TA-UserCollection").style.backgroundColor = "grey";
     userData = null;
     token = null;
     localStorage.setItem('token', null);
-    $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+    //$.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
     document.querySelector(".MA-ImportTradeSheet").style.pointerEvents = "none";
 });
 
@@ -296,7 +296,23 @@ function CloseLoginArea() {
     document.querySelector(".LA-NewPassword").value = "";
     document.querySelector(".LA-ConfirmNewPassword").value = "";
     document.querySelector(".LA-UpdateFailed").style.display = "none";
-    document.querySelector("#MainArea").style.position = "absolute";
+    //document.querySelector("#MainArea").style.position = "absolute";
+
+    if (selectedPokemon == null) {
+        document.querySelector("#PanelArea").style.display = "block";
+        $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
+    } else if (ctsSeaching && selectedPokemon == null) {
+        document.querySelector("#CTSArea").style.display = "block";
+    } else {
+        $('.DA-Close').click();
+    }
+
+    if (currentlyImporting) {
+        $('.Import-CloseButton').click();
+    }
+    document.querySelector(".PA-TradeShopPanel").style.display = "block";
+
+    $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
 }
 
 function UserLogin(data) {
@@ -312,10 +328,10 @@ function UserLogin(data) {
         document.querySelector(".PA-UserID").innerHTML = "Your ID is: " + userData.user_id;
         document.querySelector(".LA-LoginUsername").value = "";
         document.querySelector(".LA-LoginPassword").value = "";
-        document.querySelector(".TA-UserCollection").style.pointerEvents = "initial";
-        document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
+        //document.querySelector(".TA-UserCollection").style.pointerEvents = "initial";
+        //document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
 
-        $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+        //$.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
         document.querySelector(".MA-ImportTradeSheet").style.pointerEvents = "initial";
     } else {
         document.querySelector(".LA-LoginFailed").style.display = "block";
@@ -343,7 +359,7 @@ function RegisterAccount(data) {
         document.querySelector(".TA-UserCollection").style.pointerEvents = "initial";
         document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
 
-        $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
+        //$.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
         document.querySelector(".MA-ImportTradeSheet").style.pointerEvents = "initial";
     } else {
         document.querySelector(".LA-RegisterFailed").style.display = "block";
