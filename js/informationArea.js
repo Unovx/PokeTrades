@@ -19,7 +19,10 @@ let informationPokemon = new Array();
 $('.IA-Close').click(function () {
     document.querySelector("#MainArea").style.position = "absolute";
     document.querySelector("#InformationArea").style.display = "none";
-    if (creationInProgress || selectedPokemon) {
+    if (ctsSeaching && selectedPokemon == null) {
+        document.querySelector("#CTSArea").style.display = "block";
+    }
+    else if (creationInProgress || selectedPokemon) {
         document.querySelector("#DetailsArea").style.display = "block";
     } else {
         document.querySelector("#PanelArea").style.display = "block";

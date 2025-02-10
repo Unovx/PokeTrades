@@ -2,7 +2,10 @@ var searchData;
 var tradeOption;
 var giveawayDetails;
 let showingGiveaway = false;
-var version = 1.5;
+var version = 1.63;
+var link = document.querySelector("link[rel~='icon']");
+let clean = "<b>hello there</b>";
+
 
 ////customMessage = document.querySelector(".MA-Message");
 //document.querySelector(".MA-Searchbar").value = localStorage.getItem('searchID');
@@ -17,18 +20,25 @@ $(document).ready(function () {
 });
 
 window.onload = function () {
-    document.querySelector(".MA-CTS").style.pointerEvents = "initial";
-    document.querySelector(".MA-PokemonData").style.pointerEvents = "initial";
+    //document.querySelector(".MA-CTS").style.pointerEvents = "initial";
+    //document.querySelector(".MA-PokemonData").style.pointerEvents = "initial";
 }
+
 
 function ForceRefresh() {
     $.post(url + "/PHP/version_check.php", { version: version }, CheckVersion);
 }
 
 function CheckVersion(data) {
-    if (version != data) {
+    if (userData != null && userData.user_id == 1) {
+        document.querySelector("#RefreshPage").style.display = "none";
+        document.querySelector(".RefreshPrompt").style.display = "none";
+    }
+    else if (version != data) {
+
         document.querySelector("#RefreshPage").style.display = "block";
         document.querySelector(".RefreshPrompt").style.display = "block";
+
         /*tokken = null;
         userData = null;
         $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
@@ -58,8 +68,50 @@ $('.MA-Assistant').click(function () {
     document.querySelector(".NA-MainOptions").style.display = "block";
 });
 
+$('.MA-Inbox').click(function () {
+    if (userData == null) {
+        LoginRequired();
+        return;
+    }
+    else if (creationInProgress || placingPokemon) {
+        CreationInProgress();
+        return;
+    }
+    //CloseAll();
+    //ctsSeaching = false;
+    //currentlyImporting = false;
+    //document.querySelector("#MainArea").style.display = "block";
+    //document.querySelector("#MainArea").style.position = "fixed";
+    //document.querySelector("#LoginArea").style.display = "block";
+
+    document.querySelector("#MainArea").style.position = "fixed";
+    document.querySelector("#BunchArea").style.display = "none";
+    document.querySelector("#CTSArea").style.display = "none";
+    document.querySelector("#DetailsArea").style.display = "none";
+    document.querySelector("#FilterArea").style.display = "none";
+    document.querySelector("#InformationArea").style.display = "none";
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector("#ImportArea").style.display = "none";
+    document.querySelector("#LoginArea").style.display = "none";
+    document.querySelector("#ViewingArea").style.display = "none";
+    document.querySelector("#PanelArea").style.display = "none";
+
+    document.querySelector(".PA-TradeShopPanel").style.display = "none";
+    document.querySelector(".PA-SettingsPanel").style.display = "none";
+    document.querySelector("#CommunicationArea").style.display = "block";
+    document.querySelector("#ContactsList").style.display = "block";
+    document.querySelector("#Inbox").style.display = "none";
+
+    source.close();
+    $.post(url + "/PHP/get_contacts.php", { token: token }, ShowContacts);
+});
+
 
 $('.MA-Settings').click(function () {
+    if (creationInProgress || placingPokemon) {
+        CreationInProgress();
+        return;
+    }
     //$('.SA-MainMenu').click();
     //CloseAll();
     //document.querySelector("#MainArea").style.display = "block";
@@ -72,6 +124,9 @@ $('.MA-Settings').click(function () {
     document.querySelector("#LoginArea").style.display = "none";
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector("#ImportArea").style.display = "none";
+    document.querySelector("#CommunicationArea").style.display = "none";
+    document.querySelector("#ViewingArea").style.display = "none";
+    document.querySelector("#MainArea").style.position = "fixed";
 
     document.querySelector(".PA-TradeShopPanel").style.display = "none";
     document.querySelector("#PanelArea").style.display = "block";
@@ -102,9 +157,22 @@ $('.MA-SearchTradeShops').click(function () {
             RemoveHash();
         }
     }
+
+    if (userData != null && searchInfoText == userData.user_id) {
+        document.querySelector(".PA-Message").disabled = false;
+        document.querySelector(".PA-ContactIcon").style.display = "none";
+    }
+
+    if (userData == null || userData != null && searchInfoText != userData.user_id) {
+        document.querySelector(".PA-ContactIcon").style.display = "unset";
+    }
 });
 
 $(".MA-UserLogin").click(function () {
+    if (creationInProgress || placingPokemon) {
+        CreationInProgress();
+        return;
+    }
     //CloseAll();
     //ctsSeaching = false;
     //currentlyImporting = false;
@@ -119,13 +187,18 @@ $(".MA-UserLogin").click(function () {
     document.querySelector("#InformationArea").style.display = "none";
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector("#ImportArea").style.display = "none";
+    document.querySelector("#CommunicationArea").style.display = "none";
+    document.querySelector("#ViewingArea").style.display = "none";
+    document.querySelector("#MainArea").style.position = "fixed";
 
+    document.querySelector("#PanelArea").style.display = "none";
     document.querySelector(".PA-TradeShopPanel").style.display = "none";
     document.querySelector(".PA-SettingsPanel").style.display = "none";
     document.querySelector("#LoginArea").style.display = "block";
 
     if (token != null) {
         document.querySelector(".LA-LoggedInArea").style.display = "block";
+        document.querySelector(".LA-AvatarOptions").style.display = "none";
     } else {
         document.querySelector(".LA-LoginArea").style.display = "block";
     }
@@ -147,6 +220,7 @@ $('.MA-PokemonData').click(function () {
 });
 
 $('.MA-CTS').click(function () {
+    CTSResetFilters();
     document.querySelector(".PA-Searchbar").value = "";
     searchInfoText = document.querySelector(".PA-Searchbar").value;
     localStorage.setItem('searchID', searchInfoText);
@@ -172,9 +246,15 @@ $('.MA-CTS').click(function () {
     document.querySelector(".SA-CreateButton").style.display = "none";
     document.querySelector(".SA-MoveButton").style.display = "none";
     document.querySelector(".SA-CopyButton").style.display = "none";
+    $.post(url + "/PHP/modify_check.php", { token: token, searchID: 0 }, ModifyCheck);
 });
 
 $('.MA-ImportTradeSheet').click(function () {
+    if (userData == null) {
+        LoginRequired();
+        return;
+    }
+    CloseAll();
     currentlyImporting = true;
     /*document.querySelector(".PA-Searchbar").value = userData.user_id;
     searchInfoText = document.querySelector(".PA-Searchbar").value;
@@ -183,7 +263,7 @@ $('.MA-ImportTradeSheet').click(function () {
     $(".PA-Message").keyup();
     document.querySelector(".PA-Message").style.height = "";
     document.querySelector(".PA-Message").style.height = document.querySelector(".PA-Message").scrollHeight - 20 + "px";*/
-    CloseAll();
+
     document.querySelector("#ImportArea").style.display = "block";
     document.querySelector("#SelectionArea").style.display = "grid";
     $("#GridContainer").remove();
@@ -192,6 +272,11 @@ $('.MA-ImportTradeSheet').click(function () {
     document.getElementById("GeneratedSelection").appendChild(gridTest);
     document.querySelector(".SA-Bunch").innerHTML = "Importing TradeSheet";
     document.querySelector(".SA-Bunch").style.opacity = "100%";
+    document.querySelector(".SA-Bunch").style.opacity = "100%";
+    document.querySelector(".SA-CreateButton").style.display = "none";
+    document.querySelector(".SA-MoveButton").style.display = "none";
+    document.querySelector(".SA-CopyButton").style.display = "none";
+    $.post(url + "/PHP/modify_check.php", { token: token, searchID: 0 }, ModifyCheck);
 });
 
 $('.MA-Discord').click(function () {
@@ -218,12 +303,57 @@ $('.MA-Giveaway').click(function () {
     $.post(url + "/PHP/modify_check_viewing.php", { token: token, searchID: 0 }, ModifyCheckViewing);
 });
 
-$('.MA-Tracker').click(function () {
+$('.MA-BallLegality').click(function () {
     CloseAllStartingAreas();
     document.querySelector("#MainArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "none";
     document.querySelector("#TrackingArea").style.display = "grid";
+    if (document.querySelector("#ViewingArea").style.display == "block") {
+        if (panelsPositions == "right") {
+            document.querySelector("#TA-TopRow").style.marginRight = "420px";
+            document.querySelector("#TrackingSelection").style.marginRight = "420px";
+            document.querySelector("#TA-TopRow").style.marginLeft = "unset";
+            document.querySelector("#TrackingSelection").style.marginLeft = "unset";
+        }
+        else if (panelsPositions == "left") {
+            document.querySelector("#TA-TopRow").style.marginLeft = "420px";
+            document.querySelector("#TrackingSelection").style.marginLeft = "420px";
+            document.querySelector("#TA-TopRow").style.marginRight = "unset";
+            document.querySelector("#TrackingSelection").style.marginRight = "unset";
+        }
+    }
     //window.location.hash = "legalitylist";
+});
+
+$('.MA-Tracker').click(function () {
+    if (userData == null) {
+        LoginRequired();
+        return;
+    }
+    CloseAllStartingAreas();
+    if (document.querySelector("#TrackingArea").style.display != "grid") {
+        document.querySelector("#MainArea").style.display = "block";
+        document.querySelector("#MainArea").style.position = "fixed";
+    }
+    if (document.querySelector("#TrackingArea").style.display == "grid") {
+        if (panelsPositions == "right") {
+            document.querySelector("#TA-TopRow").style.marginRight = "420px";
+            document.querySelector("#TrackingSelection").style.marginRight = "420px";
+            document.querySelector("#TA-TopRow").style.marginLeft = "unset";
+            document.querySelector("#TrackingSelection").style.marginLeft = "unset";
+        }
+        else if (panelsPositions == "left") {
+            document.querySelector("#TA-TopRow").style.marginLeft = "420px";
+            document.querySelector("#TrackingSelection").style.marginLeft = "420px";
+            document.querySelector("#TA-TopRow").style.marginRight = "unset";
+            document.querySelector("#TrackingSelection").style.marginRight = "unset";
+        }
+    }
+    document.querySelector("#ViewingArea").style.display = "block";
+    document.querySelector("#InformationArea").style.display = "none";
+    document.querySelector("#PanelArea").style.display = "none";
+    document.querySelector("#LoginArea").style.display = "none";
+    document.querySelector("#CommunicationArea").style.display = "none";
 });
 
 function CloseAllStartingAreas() {
@@ -250,7 +380,9 @@ function CloseAll() {
     document.querySelector("#PanelArea").style.display = "none";
     document.querySelector("#SelectionArea").style.display = "none";
     document.querySelector("#ImportArea").style.display = "none";
+    document.querySelector("#CommunicationArea").style.display = "none";
     document.querySelector("#TrackingArea").style.display = "none";
+    document.querySelector("#ViewingArea").style.display = "none";
 
     document.querySelector(".PA-SettingsPanel").style.display = "none";
     document.querySelector(".PA-TradeShopPanel").style.display = "none";

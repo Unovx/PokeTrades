@@ -16,7 +16,25 @@ $('.Import-PreviewButton').click(function () {
 
 $('.Import-ImportButton').click(function () {
     confirmText = "confirming";
-    document.querySelector(".Import-ConfirmInput").click();
+    if (arrayData == null) {
+        PreviewRequired();
+    } else {
+        for (let i = 0; i < arrayData["Rows"].length; i++) {
+            $.post(url + "/PHP/transfer_data.php", { token: token, confirm: confirmText, importArray: arrayData["Rows"][i] }, TestingTempo);
+        }
+        document.querySelector(".Import-ConfirmInput").value = null;
+        document.querySelector(".PA-Searchbar").value = userData.user_id;
+        searchInfoText = document.querySelector(".PA-Searchbar").value;
+        localStorage.setItem('searchID', searchInfoText);
+        $(".PA-Searchbar").keyup();
+        CloseAll();
+        //document.querySelector("#NotificationArea").style.display = "block";
+        //document.querySelector(".TradeShopImported").style.display = "block";
+        document.querySelector("#MainArea").style.display = "block";
+        document.querySelector("#PanelArea").style.display = "block";
+        document.querySelector("#MainArea").style.position = "fixed";
+        document.querySelector(".PA-TradeShopPanel").style.display = "block";
+    }
 });
 
 async function ImportData(file) {
@@ -33,7 +51,7 @@ async function ImportData(file) {
 
 async function ConfirmData(file) {
     let text = await (new Response(file)).text();
-    $.post(url + "/PHP/transfer_data.php", { token: token, fileData: text, confirm: confirmText }, TestingTempo);
+    $.post(url + "/PHP/transfer_data.php", { token: token, fileData: text, confirm: confirmText, importArray: arrayData }, TestingTempo);
     document.querySelector(".Import-ConfirmInput").value = null;
     document.querySelector(".PA-Searchbar").value = userData.user_id;
     searchInfoText = document.querySelector(".PA-Searchbar").value;
@@ -55,6 +73,6 @@ async function ConfirmData(file) {
 }
 
 function TestingTempo(data) {
-    arrayData = jQuery.parseJSON(data);
-    console.log(arrayData);
+    //arrayData = jQuery.parseJSON(data);
+    //console.log(data);
 }

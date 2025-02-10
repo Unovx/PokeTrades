@@ -22,7 +22,10 @@ function LastSession(data) {
         document.querySelector(".PA-UserID").innerHTML = "Your ID is: " + userData.user_id;
         //document.querySelector(".TA-UserCollection").style.pointerEvents = "initial";
         //document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
-        document.querySelector(".MA-ImportTradeSheet").style.pointerEvents = "initial";
+        $.post(url + "/PHP/set_online_status.php", { token: token });
+        $.post(url + "/PHP/check_for_new_messages.php", { token: token }, UpdateAlert);
+        document.querySelector(".LA-Icon").src = url + "/Resources/Avatars/" + userData.avatar + "_Normal.png";
+        document.querySelector(".LA-InboxSettings").value = userData.inbox_settings
     }
 }
 
@@ -32,6 +35,10 @@ function uuidv4() {
     );
 }
 
+$('.LA-InboxSettings').change(function () {
+    userData.inbox_settings = document.querySelector(".LA-InboxSettings").value;
+    $.post(url + "/PHP/update_user_data.php", { token: token, inboxSettings: userData.inbox_settings, avatar: userData.avatar });
+});
 
 
 $('.LA-LoginClose').click(function () {
@@ -87,6 +94,7 @@ $('.LA-LogOut').click(function () {
     document.querySelector(".LA-LoginArea").style.display = "block";
     document.querySelector(".PA-UserID").style.opacity = "0%";
     document.querySelector(".PA-UserID").innerHTML = "Your ID is: ";
+    //$.post(url + "/PHP/set_offline_status.php", { token: token });
     //document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
     //document.querySelector(".SA-CreateButton").style.backgroundColor = "grey";
     //document.querySelector(".TA-UserCollection").style.pointerEvents = "none";
@@ -95,11 +103,12 @@ $('.LA-LogOut').click(function () {
     token = null;
     localStorage.setItem('token', null);
     //$.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-    document.querySelector(".MA-ImportTradeSheet").style.pointerEvents = "none";
+    document.querySelector(".PA-ContactIcon").style.display = "none";
+    document.querySelector(".MA-AlertIcon").style.display = "none";
+    link.href = "https://poketrades.org/PokeTrades Icon Final.png";
 });
 
 $('.LA-ChangeDetails').click(function () {
-    document.querySelector(".LA-LoggedInArea").style.display = "none";
     document.querySelector(".LA-LoggedInArea").style.display = "none";
     document.querySelector(".LA-UpdateArea").style.display = "block";
     document.querySelector(".LA-UpdateFailed").style.display = "none";
@@ -271,6 +280,7 @@ $('.LA-UpdateBackButton').click(function () {
     document.querySelector(".LA-ConfirmNewPassword").value = "";
     document.querySelector(".LA-UpdateFailed").style.display = "none";
 
+    document.querySelector(".LA-AvatarOptions").style.display = "none";
     document.querySelector(".LA-LoggedInArea").style.display = "block";
     document.querySelector(".LA-LoggedInNotify").style.display = "none";
 
@@ -298,20 +308,26 @@ function CloseLoginArea() {
     document.querySelector(".LA-UpdateFailed").style.display = "none";
     //document.querySelector("#MainArea").style.position = "absolute";
 
-    if (selectedPokemon == null) {
+    if (ctsSeaching && selectedPokemon == null) {
+        document.querySelector("#CTSArea").style.display = "block";
+    }
+    else if (selectedPokemon != null) {
+        document.querySelector("#DetailsArea").style.display = "block";
+    }
+    else if (document.querySelector("#SelectionArea").style.display == "grid" && !currentlyImporting) {
         document.querySelector("#PanelArea").style.display = "block";
         $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
-    } else if (ctsSeaching && selectedPokemon == null) {
-        document.querySelector("#CTSArea").style.display = "block";
-    } else {
-        $('.DA-Close').click();
+        document.querySelector(".PA-TradeShopPanel").style.display = "block";
     }
+    else if (currentlyImporting) {
+        document.querySelector("#ImportArea").style.display = "block";
+    }
+    document.querySelector("#LoginArea").style.display = "none";
 
     if (currentlyImporting) {
         $('.Import-CloseButton').click();
     }
-    document.querySelector(".PA-TradeShopPanel").style.display = "block";
-
+    document.querySelector("#MainArea").style.position = "absolute";
     $.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
 }
 
@@ -332,7 +348,9 @@ function UserLogin(data) {
         //document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
 
         //$.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-        document.querySelector(".MA-ImportTradeSheet").style.pointerEvents = "initial";
+        $.post(url + "/PHP/set_online_status.php", { token: token });
+        $.post(url + "/PHP/check_for_new_messages.php", { token: token }, UpdateAlert);
+        document.querySelector(".LA-Icon").src = url + "/Resources/Avatars/" + userData.avatar + "_Normal.png";
     } else {
         document.querySelector(".LA-LoginFailed").style.display = "block";
         document.querySelector(".LA-LoginFailed").innerHTML = "Wrong Username or Password.";
@@ -358,9 +376,10 @@ function RegisterAccount(data) {
         document.querySelector(".LA-RegisterFailed").style.display = "none";
         document.querySelector(".TA-UserCollection").style.pointerEvents = "initial";
         document.querySelector(".TA-UserCollection").style.backgroundColor = "#efefef";
+        $.post(url + "/PHP/set_online_status.php", { token: token });
+        document.querySelector(".LA-Icon").src = url + "/Resources/Avatars/" + userData.avatar + "_Normal.png";
 
         //$.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-        document.querySelector(".MA-ImportTradeSheet").style.pointerEvents = "initial";
     } else {
         document.querySelector(".LA-RegisterFailed").style.display = "block";
         document.querySelector(".LA-RegisterFailed").innerHTML = "Username already taken.";
@@ -393,5 +412,36 @@ function UpdateDetails(data) {
         document.querySelector(".LA-UpdateFailed").innerHTML = "Current password incorrect.";
     } else {
         console.log(data);
+    }
+}
+
+$('.LA-ChangeAvatar').click(function () {
+    if (document.querySelector(".LA-AvatarOptions").style.display == "grid") {
+        document.querySelector(".LA-AvatarOptions").style.display = "none";
+    } else {
+        document.querySelector(".LA-AvatarOptions").style.display = "grid";
+    }
+});
+
+function CreateAvatarOptions() {
+    for (let i = 0; i < avatarOptions.length; i++) {
+        let newDiv = document.createElement("div");
+        newDiv.setAttribute("id", "CTS-" + avatarOptions[i]);
+        newDiv.classList.add("LA-IconContainer");
+
+        newImage = document.createElement("img");
+        newImage.classList.add("LA-Icon");
+        newImage.setAttribute("src", url + "/Resources/Avatars/" + avatarOptions[i] + "_Normal.png");
+        newImage.setAttribute("title", avatarOptions[i]);
+
+        newDiv.appendChild(newImage);
+        document.querySelector(".LA-AvatarOptions").appendChild(newDiv);
+
+        newDiv.onclick = function () {
+            document.querySelector(".LA-Icon").src = url + "/Resources/Avatars/" + avatarOptions[i] + "_Normal.png";
+            document.querySelector(".LA-AvatarOptions").style.display = "none";
+            userData.avatar = avatarOptions[i];
+            $.post(url + "/PHP/update_user_data.php", { token: token, inboxSettings: userData.inbox_settings, avatar: userData.avatar });
+        }
     }
 }

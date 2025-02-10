@@ -94,6 +94,23 @@ $('.PA-TradeShopClose').click(function () {
 
 });
 
+$('.PA-ContactIcon').click(function () {
+    if (userData != null && userData.user_id != searchData.user_id) {
+        document.querySelector(".CA-MessageInput").disabled = false;
+        document.querySelector(".CA-MessageInput").value = "";
+        $('.CA-MessageInput').on('keyup');
+        document.getElementById("CommunicationArea").style.display = "block";
+        document.getElementById("ContactsList").style.display = "none";
+        document.getElementById("Inbox").style.display = "block";
+        document.querySelector(".CA-UsersInvolved").innerHTML = userData.username + "#" + userData.user_id + " to " + searchData.username + "#" + searchData.user_id;
+        otherParty = searchData.user_id;
+        source = new EventSource("https://poketrades.org/PHP/sse_event.php");
+        source.onmessage = function () {
+            $.post(url + "/PHP/get_messages.php", { token: token, otherParty: searchData.user_id }, UpdateMessages);
+        };
+    }
+});
+
 
 $(".PA-Searchbar").keyup(function () {
     document.querySelector(".PA-Message").disabled = true;
@@ -105,9 +122,7 @@ $(".PA-Searchbar").keyup(function () {
     searchData = null;
     $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
     //$.post(url + "/PHP/modify_check.php", { token: token, searchID: searchInfoText }, ModifyCheck);
-    if (userData != null && searchInfoText == userData.user_id) {
-        document.querySelector(".PA-Message").disabled = false;
-    }
+
     //$.post(url + "/PHP/generate_all_bunches.php", { token: token, tradeOption: "For Trade" }, UserBunches);
 
 
@@ -187,16 +202,22 @@ $('.PA-LookingForBunchMove').click(function () {
 });
 
 $('.PA-CloseSettings').click(function () {
-    if (selectedPokemon == null) {
-        document.querySelector("#PanelArea").style.display = "block";
-        $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
-    } else if (ctsSeaching && selectedPokemon == null) {
+    document.querySelector("#PanelArea").style.display = "none";
+    document.querySelector(".PA-SettingsPanel").style.display = "none";
+    if (ctsSeaching && selectedPokemon == null) {
         document.querySelector("#CTSArea").style.display = "block";
-    } else {
+    }
+    else if (selectedPokemon != null) {
         document.querySelector("#DetailsArea").style.display = "block";
     }
-    document.querySelector(".PA-SettingsPanel").style.display = "none";
-    document.querySelector(".PA-TradeShopPanel").style.display = "block";
+    else if (document.querySelector("#SelectionArea").style.display == "grid" && !currentlyImporting) {
+        document.querySelector("#PanelArea").style.display = "block";
+        $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
+        document.querySelector(".PA-TradeShopPanel").style.display = "block";
+    }
+    else if (currentlyImporting) {
+        document.querySelector("#ImportArea").style.display = "block";
+    }
     //CloseAll();
     //document.querySelector("#MainArea").style.display = "block";
 
@@ -228,6 +249,8 @@ function PanelsRight() {
     document.querySelector("#BunchArea").style.right = "0";
     document.querySelector("#InformationArea").style.right = "0";
     document.querySelector("#CTSArea").style.right = "0";
+    document.querySelector("#CommunicationArea").style.right = "0";
+    document.querySelector("#ViewingArea").style.right = "0";
 
     document.querySelector(".MainSection").style.marginLeft = "unset";
     document.querySelector("#SA-TopRow").style.marginLeft = "unset";
@@ -239,6 +262,8 @@ function PanelsRight() {
     document.querySelector("#BunchArea").style.left = "unset";
     document.querySelector("#InformationArea").style.left = "unset";
     document.querySelector("#CTSArea").style.left = "unset";
+    document.querySelector("#CommunicationArea").style.left = "unset";
+    document.querySelector("#ViewingArea").style.left = "unset";
 }
 
 function PanelsLeft() {
@@ -252,6 +277,8 @@ function PanelsLeft() {
     document.querySelector("#BunchArea").style.left = "0";
     document.querySelector("#InformationArea").style.left = "0";
     document.querySelector("#CTSArea").style.left = "0";
+    document.querySelector("#CommunicationArea").style.left = "0";
+    document.querySelector("#ViewingArea").style.left = "0";
 
     document.querySelector(".MainSection").style.marginRight = "unset";
     document.querySelector("#SA-TopRow").style.marginRight = "unset";
@@ -263,6 +290,8 @@ function PanelsLeft() {
     document.querySelector("#BunchArea").style.right = "unset";
     document.querySelector("#InformationArea").style.right = "unset";
     document.querySelector("#CTSArea").style.right = "unset";
+    document.querySelector("#CommunicationArea").style.right = "unset";
+    document.querySelector("#ViewingArea").style.right = "unset";
 }
 
 $('.PA-GenerationalSpritesButton').click(function () {
@@ -334,7 +363,7 @@ function TradeShopInfo(data) {
         window.location.hash = "users/" + searchData.uuid;
     } else if (searchInfoText == "") {
         document.querySelector(".PA-TradeShopInfo").innerHTML = " Search TradeShops";
-
+        document.querySelector(".PA-Message").disabled = true;
         customMessage.value = 'Type in a SearchID in the InputField to bring up their TradeShop. Afterwards, (scroll down if on mobile) click on any of the Bunches below to open them and see the Pokemon within.';
         $(".PA-Message").keyup();
         document.querySelector(".PA-Message").style.height = "";
@@ -348,6 +377,48 @@ function TradeShopInfo(data) {
         RemoveHash();
     }
     localStorage.setItem('searchID', searchInfoText);
+
+    if (userData == null || userData != null && searchInfoText == userData.user_id || document.querySelector(".PA-Searchbar").value == "") {
+        document.querySelector(".PA-ContactIcon").style.display = "none";
+    }
+
+    else if (userData != null && searchInfoText != userData.user_id) {
+        document.querySelector(".PA-Message").disabled = false;
+        document.querySelector(".PA-ContactIcon").style.display = "unset";
+    }
+
+    if (userData == null) {
+        document.querySelector(".PA-Message").disabled = true;
+        document.querySelector(".PA-ContactIcon").style.display = "none";
+    }
+
+    if (userData != null && searchInfoText == userData.user_id) {
+        document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
+        //document.querySelector(".PA-ForTradeBunchEdit").style.background = "#171d2c";
+        document.querySelector(".PA-ForTradeBunchEdit").style.visibility = "visible";
+        document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";
+        //document.querySelector(".PA-ForTradeBunchMove").style.background = "#171d2c";
+        document.querySelector(".PA-ForTradeBunchMove").style.visibility = "visible";
+        document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "initial";
+        //document.querySelector(".PA-LookingForBunchEdit").style.background = "#171d2c";
+        document.querySelector(".PA-LookingForBunchEdit").style.visibility = "visible";
+        document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "initial";
+        //document.querySelector(".PA-LookingForBunchMove").style.background = "#171d2c";
+        document.querySelector(".PA-LookingForBunchMove").style.visibility = "visible";
+    } else {
+        document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
+        //document.querySelector(".PA-ForTradeBunchEdit").style.background = "#1e1e1e";
+        document.querySelector(".PA-ForTradeBunchEdit").style.visibility = "hidden";
+        document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "none";
+        //document.querySelector(".PA-ForTradeBunchMove").style.background = "#1e1e1e";
+        document.querySelector(".PA-ForTradeBunchMove").style.visibility = "hidden";
+        document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
+        //document.querySelector(".PA-LookingForBunchEdit").style.background = "#1e1e1e";
+        document.querySelector(".PA-LookingForBunchEdit").style.visibility = "hidden";
+        document.querySelector(".PA-LookingForBunchMove").style.pointerEvents = "none";
+        //document.querySelector(".PA-LookingForBunchMove").style.background = "#1e1e1e";
+        document.querySelector(".PA-LookingForBunchMove").style.visibility = "hidden";
+    }
 }
 
 //Checking if the user is allowed to create and move data in the selection area.
@@ -452,7 +523,7 @@ function UpdatePersonalText() {
 }
 
 function BunchMoveStarted() {
-    document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
+    /*document.querySelector(".SA-MainMenu").style.pointerEvents = "none";
     document.querySelector(".SA-MainMenuCircle").style.background = "#4e4e4e";
     document.querySelector(".SA-MainMenuCircle").style.boxShadow = "none";
     //document.querySelector(".SA-MainMenu").style.background = "#1e1e1e";
@@ -472,8 +543,12 @@ function BunchMoveStarted() {
     document.querySelector(".SA-FilterCircle").style.background = "#4e4e4e";
     document.querySelector(".SA-FilterCircle").style.boxShadow = "none";
     //document.querySelector(".SA-FiltersButton").style.background = "#1e1e1e";
-    document.querySelector(".SA-Searchbar").disabled = true;
+    document.querySelector(".SA-Searchbar").disabled = true;*/
+    document.body.style.pointerEvents = "none";
+    document.querySelector(".PA-TradeShopPanel").style.pointerEvents = "initial";
+    document.querySelector(".PA-Message").disabled = true;
     document.querySelector(".PA-Searchbar").disabled = true;
+    document.querySelector(".PA-TradeShopClose").style.pointerEvents = "none";
     document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "none";
     //document.querySelector(".PA-ForTradeBunchEdit").style.background = "#1e1e1e";
     document.querySelector(".PA-LookingForBunchEdit").style.pointerEvents = "none";
@@ -482,7 +557,7 @@ function BunchMoveStarted() {
 }
 
 function BunchMoveFinished() {
-    document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
+    /*document.querySelector(".SA-MainMenu").style.pointerEvents = "initial";
     document.querySelector(".SA-MainMenuCircle").style.background = "#00ba06";
     document.querySelector(".SA-MainMenuCircle").style.boxShadow = "0px 0px 8px #00ff07";
     //document.querySelector(".SA-MainMenu").style.background = "#171d2c";
@@ -507,8 +582,12 @@ function BunchMoveFinished() {
         document.querySelector(".SA-FiltersButton").style.background = "#1e1e1e";
     }
     document.querySelector(".SA-Searchbar").disabled = false;
-    document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";
+    document.querySelector("#GeneratedSelection").style.pointerEvents = "initial";*/
+    document.body.style.pointerEvents = "unset";
+    document.querySelector(".PA-TradeShopPanel").pointerEvents = "unset";
     document.querySelector("#PA-ForTradeBunches").style.pointerEvents = "initial";
+    document.querySelector(".PA-Message").disabled = false;
+    document.querySelector(".PA-TradeShopClose").style.pointerEvents = "initial";
     document.querySelector(".PA-ForTradeBunchEdit").style.pointerEvents = "initial";
     //document.querySelector(".PA-ForTradeBunchEdit").style.background = "#171d2c";
     document.querySelector(".PA-ForTradeBunchMove").style.pointerEvents = "initial";

@@ -4,7 +4,12 @@
         width: -moz-available !important;
     }
 
-    [class*="TrackingInformation"] {
+    [class*="LegalityInformation"] {
+        width: -webkit-fill-available !important;
+        width: -moz-available !important;
+    }
+
+    [class*="TrackerInformation"] {
         width: -webkit-fill-available !important;
         width: -moz-available !important;
     }
@@ -24,7 +29,7 @@
 
 #NotificationArea {
     position: fixed;
-    display: none;
+    display: block;
     height: 100%;
     z-index: 10;
     width: 100%;
@@ -134,6 +139,10 @@
     display: none;
 }
 
+.NA-MessagingOptions {
+    display: none;
+}
+
 .NA-AccountOptions {
     display: none;
 }
@@ -174,6 +183,22 @@
     display: none;
 }
 
+.NA-ChangeAvatar {
+    display: none;
+}
+
+.NA-InboxSettings {
+    display: none;
+}
+
+.NA-MessagingUsers {
+    display: none;
+}
+
+.NA-BlockingUsers {
+    display: none;
+}
+
 .NA-Importing {
     display: none;
 }
@@ -199,12 +224,6 @@
     position: relative;
     display: none;
     margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
     width: 500px;
     top: 30%;
     text-align: center;
@@ -228,6 +247,7 @@
 
 .NA-ConfirmDeleteButtons {
     margin: auto;
+    width: 300px;
 }
 
 .ViewingPokemonAdded {
@@ -284,13 +304,53 @@
 
 .NA-DeleteAllButtons {
     margin: auto;
+    width: 300px;
+}
+
+.MessageOptionsPrompt {
+    display: none;
+}
+
+.NA-MessageOptionsButtons {
+    margin: auto;
+    width: 350px;
 }
 
 .DeleteAllSuccess {
     display: none;
 }
 
-.TrackingInformation {
+.UpdatedBlockList {
+    display: none;
+}
+
+.LoginRequired {
+    display: none;
+}
+
+.PreviewRequired {
+    display: none;
+}
+
+.CreationInProgress {
+    display: none;
+}
+
+/*.InitialLoading {
+    display: none;
+}*/
+
+.LegalityInformation {
+    display: none;
+    width: 750px;
+}
+
+.TrackerInformation {
+    display: none;
+    width: 750px;
+}
+
+/*.LegalityInformation {
     position: relative;
     display: none;
     margin: auto;
@@ -302,9 +362,9 @@
     padding: 10px;
     width: 500px;
     top: 20%;
-}
+}*/
 
-.NA-TrackingHelpText {
+/*.NA-TrackingHelpText {
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
@@ -317,7 +377,7 @@
     cursor: pointer;
     margin: auto;
     top: 10px;
-}
+}*/
 
 .LoadingData {
     position: relative;
@@ -356,16 +416,9 @@
     position: absolute;
     display: none;
     margin: auto;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background: #3a4a6a;
-    padding: 10px;
     width: 375px;
     top: 130px;
     right: 20px;
-    text-align: center;
 }
 
 .NA-CTSInfoText {

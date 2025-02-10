@@ -21,7 +21,9 @@
   <link href="css/informationArea.css" rel="stylesheet" />
   <link href="css/ctsArea.css" rel="stylesheet" />
   <link href="css/importArea.css" rel="stylesheet" />
+  <link href="css/communicationArea.css" rel="stylesheet" />
   <link href="css/trackingArea.css" rel="stylesheet" />
+  <link href="css/viewingArea.css" rel="stylesheet" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
   <script src="https://unpkg.com/navigo@8.11.1/lib/navigo.min.js"></script>
@@ -64,6 +66,13 @@
               style="padding: 0"></img></img>
           </td>
           <td>
+            <img class="MA-TopRowImage MA-Inbox" src="https://poketrades.org/Resources/Designs/Message_Icon.png">
+            <div class="MA-AlertIcon">
+
+            </div>
+            </img>
+          </td>
+          <td>
             <img class="MA-TopRowImage MA-UserLogin" src="https://poketrades.org/Resources/Designs/User Icon.png"></img>
           </td>
           <td>
@@ -87,20 +96,20 @@
         <img class="MA-LoginButton" src="https://poketrades.org/Resources/Home/Klang.png"></img>
 
         <div class="StartingSections">
-          <div class="MA-SectionDiv MA-CTS">
-            <text class="MA-SectionText">Search for any Pokemon</text>
-            <div class="MA-Divider"></div>
-            <div class="MA-SectionHolderDiv">
-              <text class="MA-SectionCTSTitleText">CTS</text>
-              <img class="MA-SectionImage" src="https://poketrades.org/Resources/Designs/CTS Icon.png"></img>
-            </div>
-          </div>
           <div class="MA-SectionDiv MA-SearchTradeShops">
             <text class="MA-SectionText">Create, Edit or View TradeShops</text>
             <div class="MA-Divider"></div>
             <div class="MA-SectionHolderDiv">
               <text class="MA-SectionTitleText">Search TradeShops</text>
               <img class="MA-SectionImage" src="https://poketrades.org/Resources/Designs/TradeShop Icon.png"></img>
+            </div>
+          </div>
+          <div class="MA-SectionDiv MA-CTS">
+            <text class="MA-SectionText">Search for any Pokemon</text>
+            <div class="MA-Divider"></div>
+            <div class="MA-SectionHolderDiv">
+              <text class="MA-SectionCTSTitleText">CTS</text>
+              <img class="MA-SectionImage" src="https://poketrades.org/Resources/Designs/CTS Icon.png"></img>
             </div>
           </div>
           <div class="MA-SectionDiv MA-PokemonData">
@@ -119,12 +128,22 @@
               <img class="MA-SectionImage" src="https://poketrades.org/Resources/Designs/Import Icon.png"></img>
             </div>
           </div>
-          <!--<div class="MA-SectionDiv MA-Tracker">
+          <div class="MA-SectionDiv MA-BallLegality">
+            <text class="MA-SectionText">Check Ball Legality Here </text>
+            <div class="MA-Divider"></div>
+            <div class="MA-SectionHolderDiv">
+              <text class="MA-SectionTitleText">Ball Legality</text>
+              <img class="MA-SectionImage" src="https://poketrades.org/Resources/Designs/Import Icon.png"></img>
+            </div>
+          </div>
+          <div class="MA-SectionDiv MA-Tracker">
             <text class="MA-SectionText">See the Progress of your Collection</text>
             <div class="MA-Divider"></div>
-            <text class="MA-InfoText"><br>Click here to see the progress of your collection by filters such as Game or
-              Pokeball</text>
-          </div>-->
+            <div class="MA-SectionHolderDiv">
+              <text class="MA-SectionTitleText">Progress Tracker</text>
+              <img class="MA-SectionImage" src="https://poketrades.org/Resources/Designs/Import Icon.png"></img>
+            </div>
+          </div>
           <div class="MA-SectionDiv MA-Giveaway">
             <text class="MA-SectionText">See the Current Giveaway </text>
             <div class="MA-Divider"></div>
@@ -281,6 +300,8 @@
         <table class="PA-SearchInfo">
           <tr>
             <td>
+              <img class="PA-ContactIcon" src="https://poketrades.org/Resources/Designs/Message_Icon.png"
+                style="height: 15px; display: none; cursor: pointer;"></img>
               <text class="PA-TradeShopInfo">Search TradeShops</text>
             </td>
           </tr>
@@ -334,6 +355,7 @@
         <text class="LA-Username">Test</text>
         <button class="LA-LogOut LA-ButtonDesign">Log Out</button>
         <button class="LA-ChangeDetails LA-ButtonDesign">Change Username or Password</button>
+        <select class="LA-InboxSettings LA-ButtonDesign"></select>
         <button class="LA-Export LA-ButtonDesign">Export Tradeshop</button>
 
         <form method="post" enctype="multipart/form-data" style="display: none;">
@@ -343,6 +365,14 @@
         <text class="LA-LoggedInNotify">Account Created.<br>Join the Discord for help getting started or
           to chat!</text>
         <button class="LA-DeleteAllData LA-ButtonDesign">Delete All Data</button>
+        <div class="LA-ChangeAvatar LA-ButtonDesign">
+          <img class="LA-Icon" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png">
+          <img>
+          <text style="width: -webkit-fill-available; width: -moz-available; font-size: 13.35px;">
+            Change Avatar
+          </text>
+        </div>
+        <div class="LA-AvatarOptions LA-OptionsContainer"></div>
       </div>
       <div class="LA-RegisterArea">
         <text class="LA-CreateAccount">Create Account</text>
@@ -382,7 +412,8 @@
         <text>Before Importing, it is recommended that you export your PokeTrades TradeShop first as this will give you
           the order of the columns that must be followed. Keep in mind that the first row of the import will be ignored
           as it is reserved for the headings.
-          <br><br>To preview the Pokemon you want to Import, click on the Preview Button and select your TradeSheet.
+          <br><br>You must preview your Pokemon before importing, click on the Preview Button and select your
+          TradeSheet.
           (Keep in mind it must be saved as a CSV file).
           <br><br>
           You do not have to fill in every column, defaults will be used in their place if left empty. If the Bunch Name
@@ -390,7 +421,7 @@
           <br><br>
           Keep in mind that you cannot save any changes to the Pokemon previewed here; any mistakes or issues will have
           to be
-          fixed on your CSV file.
+          fixed on your CSV file or after you import. A Pokemon with issues may be forced to private by default.
           <br><br> To import, simply click on the Import Button and select the same File. You will then be taken back
           to your area to view your Pokemon.
           <br><br>
@@ -1012,8 +1043,7 @@
         <button class="CTS-CloseButton CTS-ButtonDesign">Close</button>
         <button class="CTS-SearchButton CTS-ButtonDesign">Search</button>
         <button class="CTS-ResetButton CTS-ButtonDesign">Reset</button>
-        <button class="CTS-HelpButton CTS-ButtonDesign">
-          <img class="CTS-HelpSprite" src="https://poketrades.org/Resources/Designs/Question Icon.png"></img>
+        <button class="CTS-HelpButton CTS-ButtonDesign">Info
         </button>
       </div>
       <div class="CTS-LoadLimits">
@@ -1062,91 +1092,29 @@
         <div>
           <select class="CTS-PokemonDropdown"></select>
           <select class="CTS-NicknameDropdown"></select>
-          <table class="CTS-Tables">
-            <tr class="CTS-AbilityRow">
-              <td class="CTS-TableText">
-                <text>Ability:</text>
-              </td>
-              <td>
-                <select class="CTS-AbilityDropdown">
-                </select>
-              </td>
-            </tr>
-            <tr class="CTS-NatureRow">
-              <td class="CTS-TableText">
-                <text>Nature:</text>
-              </td>
-              <td>
-                <select class="CTS-NatureDropdown"></select>
-              </td>
-            </tr>
-          </table>
+          <select class="CTS-AbilityDropdown"></select>
+          <button class="CTS-SelectedNature">Select Natures</button>
+          <select class="CTS-NatureDropdown" style="display: none;"></select>
         </div>
       </div>
+      <div class="CTS-NatureOptions CTS-NaturesContainer"></div>
       <div class="CTS-InfoHolder">
-        <table style="width: 50%;">
-          <tr>
-            <td>
-              <div class="CTS-Availability">
-                <button class="CTS-Gen6">Gen6</button>
-                <button class="CTS-Gen7">Gen7</button>
-                <button class="CTS-Gen8">Gen8</button>
-                <button class="CTS-Home">Home</button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <select class="CTS-GameObtainedDropdown"></select>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <select class="CTS-HowObtainedDropdown">
-              </select>
-            </td>
-          </tr>
-          <tr>
-            <td>
+        <button class="CTS-SelectedGame">Select Games</button>
+        <select class="CTS-GameObtainedDropdown" style="display: none"></select>
+        <input class="CTS-OT" type="text" maxlength="12" placeholder="Type OT...">
+        <select class="CTS-HowObtainedDropdown"></select>
+        <input class="CTS-ID" type="number" maxlength="6" placeholder="Type ID...">
+        <select class="CTS-EventDropdown"></select>
+        <select class="CTS-StatusDropdown"></select>
+        <div class="CTS-Availability">
+          <button class="CTS-Gen6">Gen6</button>
+          <button class="CTS-Gen7">Gen7</button>
+          <button class="CTS-Gen8">Gen8</button>
+          <button class="CTS-Home">Home</button>
+        </div>
 
-            </td>
-          </tr>
-        </table>
-        <table class="CTS-Tables">
-          <tr class="CTS-OTRow">
-            <td class="CTS-TableText">
-              <text>OT:</text>
-            </td>
-            <td>
-              <input class="CTS-OT" type="text" maxlength="12" placeholder="Type OT...">
-            </td>
-          </tr>
-          <tr class="CTS-IDRow">
-            <td class="CTS-TableText">
-              <text>ID:</text>
-            </td>
-            <td>
-              <input class="CTS-ID" type="number" maxlength="6" placeholder="Type ID...">
-            </td>
-          </tr>
-          <tr class="CTS-StatusRow">
-            <td class="CTS-TableText">
-              <text>Status:</text>
-            </td>
-            <td>
-              <select class="CTS-StatusDropdown"></select>
-            </td>
-          </tr>
-          <tr class="CTS-EventRow">
-            <td class="CTS-TableText">
-              <text>Event:</text>
-            </td>
-            <td>
-              <select class="CTS-EventDropdown"></select>
-            </td>
-          </tr>
-        </table>
       </div>
+      <div class="CTS-GameOptions CTS-GameOptionsContainer"></div>
       <div class="CTS-InfoGridHolder">
         <select class="CTS-FormDropdown"></select>
         <select class="CTS-EvoDropdown"></select>
@@ -1759,7 +1727,8 @@
           <br><br>
           <button class="NA-MainOption1 NA-OptionButton">Tradeshop Tips & Tricks</button>
           <button class="NA-MainOption2 NA-OptionButton">Account Information & Exporting</button>
-          <button class="NA-MainOption3 NA-OptionButton">Other Areas & Options</button>
+          <button class="NA-MainOption3 NA-OptionButton">User Settings & Messaging</button>
+          <button class="NA-MainOption4 NA-OptionButton">Other Areas & Options</button>
           <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
         </div>
       </div>
@@ -1789,6 +1758,19 @@
           <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
         </div>
       </div>
+      <div class="NA-MessagingOptions NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Click on any of these options to see more information!
+          </text>
+          <br><br>
+          <button class="NA-MessagingOption1 NA-OptionButton">Changing Avatar</button>
+          <button class="NA-MessagingOption2 NA-OptionButton">Inbox Notifications & Settings</button>
+          <button class="NA-MessagingOption3 NA-OptionButton">Messaging Users</button>
+          <button class="NA-MessagingOption4 NA-OptionButton">Blocking Users</button>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
       <div class="NA-OtherOptions NA-MainBlock">
         <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
         <div class="NA-TextBlock">
@@ -1797,6 +1779,8 @@
           <br><br>
           <button class="NA-OtherOption1 NA-OptionButton">Importing from Tradesheets</button>
           <button class="NA-OtherOption2 NA-OptionButton">Viewing Pokemon Data</button>
+          <button class="NA-OtherOption4 NA-OptionButton">How Ball Legality Works</button>
+          <button class="NA-OtherOption5 NA-OptionButton">How the Progress Tracker Works</button>
           <button class="NA-OtherOption3 NA-OptionButton">Showing Generational Sprites</button>
           <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
         </div>
@@ -1825,8 +1809,12 @@
       <div class="NA-PokemonCreation NA-MainBlock">
         <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
         <div class="NA-TextBlock">
-          <text class="NA-Text">You create a Pokemon by clicking in the Bunch you want the Pokemon to be in, then
-            clicking on the "Create" button at the top.
+          <text class="NA-Text">To create a Pokemon, you must be first be signed in. Then click on the "Search
+            Tradeshops" button and type in your ID which you'll see underneath the input field.
+            <br><br>
+            Then, click on a Bunch you want the Pokemon to be in, to enter it and click on the "Create" button at the
+            top. Note that you can change the bunch of the Pokemon during creation, it isn't locked to the Bunch you
+            entered.
           </text>
           <br><br>
           <text class="NA-Text">
@@ -1925,6 +1913,59 @@
         <div class="NA-TextBlock">
           <text class="NA-Text">To export your Tradeshop, you must be first be signed in. Then click on the User Icon
             and you'll see a Button to export your selection as a CSV file.
+          </text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="NA-ChangeAvatar NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">To change your Avatar, you must be first be signed in. Then click on the User Icon and
+            and click on the "Change Avatar" button to bring up a selection of Avatars. Click on one to set it as your
+            new Avatar.
+          </text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="NA-InboxSettings NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Whenever you get a new unread message, the Website Icon will change colour and the Inbox
+            Icon will also let you know you've received new messages.
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            By default, you can recieve messages from all users about from those that you have blocked. To change this,
+            click on the User Icon after signing in and select the option you want from the dropdown.
+          </text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="NA-MessagingUsers NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">To message other users, you must be first be signed in. For users you haven't contacted
+            before, you can start messaging by either clicking on the Message Icon next to their name when typing in
+            their ID or by flipping a mon and clicking on the Message Icon on the back.
+          </text>
+          <br><br>
+          <text class="NA-Text">
+            If you have contacted them before or vice versa, then you can simply click on their name from your Contacts
+            List which is accessed by clicking on the "Contacts" Button after clicking on the Message Icon.
+          </text>
+          <br><br>
+          <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="NA-BlockingUsers NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">To block other users, click on their Avatar inside the conversation and you can choose
+            to block or unblock. If you block them, you will also be unable to contact them further and they will be
+            moved from your Contacts List to your Blocked List
           </text>
           <br><br>
           <button class="NA-MainBlockClose NA-ButtonDesign">Close</button>
@@ -2163,44 +2204,157 @@
           <button class="NA-SuccessDeleteAllClose NA-ButtonDesign">Close</button>
         </div>
       </div>
-      <div class="TrackingInformation">
-        <text class="NA-TrackingHelpText">This area shows you both a legality list for ball combinations and what
-          combinations you currently have in your collection.
-          <br> <br>
-          To see the legality list, click on the "Legality List" Button. To see the ball combinations in your
-          collection,
-          you must be signed into your account, then click on the "My Collection" Button.
-          <br> <br>
-          The Colour Coding for the balls are:
-          <br> <br>
-          Normal Colour: Possible (Legality List)/You have (Your Collection)
-          <br>
-          Darkened Colour: Unavailable (Both Legality List and Your Collection)
-          <br>
-          Greyscale: Obtainable (Your Collection)
-        </text>
-        <button class="NA-TrackingHelpClose NA-ButtonDesign">Close</button>
+      <div class="MessageOptionsPrompt NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">What do you want to do with this User?
+          </text>
+          <br><br>
+          <table class="NA-MessageOptionsButtons">
+            <tr>
+              <td>
+                <button class="NA-BlockMessageOption NA-ButtonDesign">Block</button>
+              </td>
+              <td>
+                <button class="NA-UnblockMessageOption NA-ButtonDesign">Unblock</button>
+              </td>
+              <td>
+                <button class="NA-MessageOptionsClose NA-ButtonDesign">Close</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="UpdatedBlockList NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Updated Block List.
+          </text>
+          <br><br>
+          <button class="NA-UpdatedBlockListClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="LoginRequired NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Pained.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">You must be logged in to use that feature.
+          </text>
+          <br><br>
+          <button class="NA-LoginRequiredClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="PreviewRequired NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Pained.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">You must preview your import before pressing the Import Button.
+          </text>
+          <br><br>
+          <button class="NA-PreviewRequiredClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="LegalityInformation NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">This is an area designed to show you what Poke Balls a Pokemon can be in, in what game
+            and by what method. Although painstaking work has been taken to ensure its accuracy, please visit the
+            discord if you find a mistake. If a Poke Ball is faded, that means that the Pokemon cannot be caught in that
+            ball.
+            <br><br>
+            Turning on Evo Chain will extend what can be obtained to evolutions such as showing Venusaur in Red
+            obtainable via catching In-Game. Now let's go over each category and what counts for them. Even if you
+            disagree, this is how it is done.
+            <br><br>
+            In-Game means that the Pokemon is available to be caught in the wild in those balls. This also counts for
+            Pokemon given to you, such as through gifts, or the Game Corner.
+            <br><br>
+            Via Breeding shows what balls can the Pokemon can be obtained in via breeding and this allows for options
+            that are impossible for In-Game such as getting a Beast Ball on a normal Geodude in Gen 7.
+            <br><br>
+            Event is any sort of timed distribution events. This is not only for recieving the Pokemon through Mystery
+            Gift, but also items need for in-game events like Member's Card with Raid Events for Max and Tera Raid
+            Events.
+            <br><br>
+            Other Software is balls the Pokemon can be obtained via the use of another game or software. This includes
+            spin-off games like Pokemon Ranger and Ranch but this also includes E-Reader, Dream World, Dream Radar and
+            in some cases, mainline games (for Exclusive Pokemon Only). Examples of this are Mixing Records in Gen 3,
+            Raids in Gen 8/9 and Union
+            Circle in Gen 9.
+            <br><br>
+            Trade/Transfer is Pokemon that can be obtained via not only all of these methods, but also from other Games.
+          </text>
+          <br><br>
+          <button class="NA-LegalityInformationClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="TrackerInformation NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">To use this area, you must be signed in. This area shows you the progress of your
+            collectiion and what balls the Pokemon are in.
+            It uses the Ball Legality data for accuracy so if you find any mistakes, please let me know on the discord.
+            <br><br>
+            Also check the Ball Legality Area or click on Assistant to see how the method filters work as they are
+            explained there. Keep in mind that for this area, Evo Chain is on by default and can't be off to better show
+            what is needed for a complete collection. This area works standalone but can be used together with the Ball
+            Legality area to help show how you can complete your collection.
+            <br><br>
+            By clicking on the Balls after checking your progress, you can see the Pokemon that you have obtained in
+            that
+            specific ball, clicking on the same ball again will show the Pokemon you are missing in that ball. To hide
+            this information, click on one of the two balls on the heading below. To toggle hiding all balls, click on
+            one of the two grey balls.
+            <br><br>
+            You can also click on the heading for the Missing or Obtained global list to reverse it and multiple games
+            can be selected.
+            <br><br>
+            Event is any sort of timed distribution events. This is not only for recieving the Pokemon through Mystery
+            Gift, but also items need for in-game events like Member's Card with Raid Events for Max and Tera Raid
+            Events.
+          </text>
+          <br><br>
+          <button class="NA-TrackerInformationClose NA-ButtonDesign">Close</button>
+        </div>
       </div>
       <div class="CTSInfo">
-        <text class="NA-CTSInfoText">This is an area to search for any Pokemon on PokeTrades across all users,
-          clicking
-          on the username when viewing any Pokemon will take you to their TradeShop.
+        <div class=NA-TextBlock>
+          <text class="NA-Text">This is an area to search for any Pokemon on PokeTrades across all users,
+            clicking
+            on the username when viewing any Pokemon will take you to their TradeShop.
+            <br><br>
+            Clicking on the Icons on the Rows below will open up areas where you can multi-select what you are
+            searching
+            for; such as clicking on Beast and Poke Balls to indicate you are looking for the Pokemon in those.
+            <br><br>
+            The order of the desired moves do not matter, and when multi-selecting Ribbons, currently it is a
+            combination
+            of all Ribbons, not any one of those Ribbons.
+          </text>
+          <button class="NA-CTSInfoClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="CreationInProgress NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Pained.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">You cannot do this action while creating or editing a Pokemon.
+          </text>
           <br><br>
-          Clicking on the Icons on the Rows below will open up areas where you can multi-select what you are searching
-          for; such as clicking on Beast and Poke Balls to inidicate you are looking for the Pokemon in those.
-          <br><br>
-          The order of the desired moves do not matter, and when multi-selecting Ribbons, currently it is a
-          combination
-          of all Ribbons, not any one of those Ribbons.
-        </text>
-        <button class="NA-CTSInfoClose NA-ButtonDesign">Close</button>
+          <button class="NA-CreationInProgressClose NA-ButtonDesign">Close</button>
+        </div>
+      </div>
+      <div class="InitialLoading NA-MainBlock">
+        <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Happy.png"></img>
+        <div class="NA-TextBlock">
+          <text class="NA-Text">Loading necessary data, please wait...
+          </text>
+        </div>
       </div>
     </div>
     <div id="RefreshPage">
       <div class="RefreshPrompt NA-MainBlock">
         <img class="NA-Assistant" src="https://poketrades.org/Resources/Designs/Assistant_Pained.png"></img>
         <div class="NA-TextBlock">
-          <text class="NA-Text">Due to changes, this website needs to be refreshed.
+          <text class="NA-Text">Due to changes, this website needs to be refreshed. If this message persists, the
+            website may be undergoing maintenance.
           </text>
         </div>
       </div>
@@ -2211,27 +2365,60 @@
         <!--<text class="NA-LoadingText">Loading Data</text>-->
       </div>
     </div>
+    <div id="CommunicationArea">
+      <div class="CA-TopArea" style="display:block">
+        <div class="CA-Buttons">
+          <button class="CA-Close CA-ButtonDesign">Close</button>
+          <button class="CA-Contacts CA-ButtonDesign">Contacts</button>
+          <button class="CA-Blocked CA-ButtonDesign">Blocked</button>
+        </div>
+      </div>
+      <div id="ContactsList">
+        <div id="ContactsSection">
+          <div id="GeneratedContacts">
+            <div id="ContactsContainer">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="BlockedList">
+        <div id="BlockedSection">
+          <div id="GeneratedBlocked">
+            <div id="BlockedContainer">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="Inbox">
+        <div id="MessagesSection">
+          <div id="GeneratedMessages">
+            <div id="MessagesContainer">
+
+            </div>
+          </div>
+          <div>
+            <text class="CA-UsersInvolved">UnovX#1 to TestAccount#0</text>
+            <img class="CA-UserAvatar" src="https://poketrades.org/Resources/Designs/Assistant_Normal.png">
+            </img>
+            <textarea class="CA-MessageInput" placeholder="Type Message.." maxlength="1000"
+              oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="TrackingArea">
       <div id="TA-TopRow">
-        <table class="TA-TrackingButtons">
-          <tr>
-            <td>
-              <button class="TA-MainMenu TA-ButtonDesign">Main Menu</button>
-            </td>
-            <td>
-              <button class="TA-LegalityChecker TA-ButtonDesign">Legality List</button>
-            </td>
-            <td>
-              <button class="TA-EvoToggle TA-ButtonDesign" style="width: 137px;">Turn Evo Chain Off</button>
-            </td>
-            <!--<td>
-              <button class="TA-UserCollection">My Collection</button>
-            </td>-->
-            <td>
-              <button class="TA-InfoButton">How It Works</button>
-            </td>
-          </tr>
-        </table>
+        <div class="TrackingButtons">
+          <button class="TA-MainMenu TA-ButtonDesign">Main Menu</button>
+          <button class="TA-LegalityChecker TA-ButtonDesign">Legality List</button>
+          <button class="TA-EvoToggle TA-ButtonDesign" style="width: 137px;">Turn Evo Chain On</button>
+          <button class="TA-ProgressTracker TA-ButtonDesign">Progress Tracker</button>
+          <button class="TA-InfoButton TA-ButtonDesign">How It Works</button>
+        </div>
+        <input class="TA-Searchbar TA-ButtonDesign" style="cursor: initial;" type="text"
+          placeholder="Search Pokemon...">
         <text class="TA-TitleText">Legality List/Pokedex Tracker</text>
       </div>
       <div id="TrackingSelection">
@@ -2241,66 +2428,94 @@
       </div>
       <div class="TA-PokemonDetails">
         <!--<div class="TA-RBY-Section">
-          <text class="TA-RBY-Text">RBY Availability</text>
-          <div class="TA-RBY-Balls">
-
+            <text class="TA-RBY-Text">RBY Availability</text>
+            <div class="TA-RBY-Balls">
+  
+            </div>
           </div>
-        </div>
-        <div class="TA-GSC-Section">
-          <text class="TA-GSC-Text">GSC Availability</text>
-          <div class="TA-GSC-Balls">
-
+          <div class="TA-GSC-Section">
+            <text class="TA-GSC-Text">GSC Availability</text>
+            <div class="TA-GSC-Balls">
+  
+            </div>
           </div>
-        </div>
-        <div class="TA-RSE-Section">
-          <text class="TA-RSE-Text">RSE Availability</text>
-          <div class="TA-RSE-Balls">
-
-          </div>
-        </div>-->
-        <text class="PA-ImportingText">In-Game means that you can catch this pokemon ingame or its prevo to evolve
-          into
-          it without the need for events, other software, trading or breeding.
-          <br><br>
-          Ball Breed/Trade means that the pokemon can be obtained in these balls but only by either breeding the
-          pokemon
-          down such as transfering a beast ball
-          bulbasaur to BDSP, then breeding a Beast Ball Bulbasaur with it in BDSP so it has the BDSP Mark, or by
-          trading
-          the ball to catch a pokemon with such
-          as transferring Dive Balls to FRLG to get Suicune inside one. In-game events are not covered here and fall
-          under events
-          <br><br>
-          Event means any situation where the pokemon is obtained via official events. This includes ingame events
-          like
-          Celebi, Distribution events like Arceus
-          and Global Link Promotions. This also includes max raid events, pre-evos from events also counted(Dream
-          World
-          is counted as other software).
-          <br><br>
-          Other software means that other tools are required to get the pokemon such as pokemon ranger to get Manaphy
-          or
-          Dream Radar for Tornadus-Therian before
-          being traded to the main series. This also dual slot in DPPT, includes hardware such as the bonus discs and
-          ereader and sites like Dream World.
-          <br><br>
-          Trade/Transfer means that the mon can be in these balls if you trade or transfer from another game</text>
+          <div class="TA-RSE-Section">
+            <text class="TA-RSE-Text">RSE Availability</text>
+            <div class="TA-RSE-Balls">
+  
+            </div>
+          </div>-->
       </div>
-      <script src="js/mainArea.js?v=<?=time();?"></scriptsrc>"</script>
-      <script src="js/panelArea.js?v=<?=time();?"></scriptsrc>"</script>
-      <script src="js/loginArea.js?v=<?=time();?"></scriptsrc>"</script>
-      <script src="js/selectionArea.js?v=<?=time();?"></scriptsrc>"</script>
-      <script src="js/detailsArea.js?v=<?=time();?"></scriptsrc>"</script>
-      <script src="js/listHolder.js?v=<?=time();?"></scriptsrc>"</script>
-      <script src="js/bunchArea.js?v=<?=time();?"></scriptsrc>"</script>
-      <script src="js/filterArea.js?v=<?=time();?"></scriptsrc>"</script>
-      <script src="js/notificationArea.js?v=<?=time();?"></scriptsrc>"</script>
-      <script src="js/informationArea.js"></scriptsrc>"</script>
-      <script src="js/ctsArea.js"></scriptsrc>"</script>
-      <script src="js/importArea.js"></scriptsrc>"</script>
-      <script src="js/trackingArea.js?v=<?=time();?"></scriptsrc>"</script>
-      <script src="js/router.js?v=<?=time();?"></scriptsrc>"</script>
     </div>
+    <div id="ViewingArea">
+      <div class="VA-Buttons">
+        <button class="VA-Close VA-ButtonDesign">Close</button>
+        <button class="VA-Info VA-ButtonDesign">How it Works</button>
+        <button class="VA-SelectGame VA-ButtonDesign">Select Game</button>
+        <select class="VA-MethodDropdown VA-ButtonDesign">
+          <option value="(All Options)" class="VA-DropdownOptions">(All Options)</option>
+          <option value="In-Game" class="VA-DropdownOptions">In-Game</option>
+          <option value="Via Breeding" class="VA-DropdownOptions">Via Breeding</option>
+          <option value="Event" class="VA-DropdownOptions">Event</option>
+          <option value="Raid Event" class="VA-DropdownOptions">Raid Event</option>
+          <option value="Other Software" class="VA-DropdownOptions">Other Software</option>
+          <option value="Trade/Transfer" class="VA-DropdownOptions">Trade/Transfer</option>
+        </select>
+        <button class="VA-CheckProgress VA-ButtonDesign">Check Progress</button>
+        </button>
+      </div>
+      <div class="VA-GameOptions VA-OptionsContainer"></div>
+      <div class="VA-TotalPokemon VA-Headings">
+        <img class="VA-MainBall1 VA-MainBall"
+          src="https://poketrades.org/Resources/Images/Dreamworld%20Artwork/Items/(Any%20Ball).png"></img>
+        <text class="VA-TotalPokemonText VA-HeadingsText">Click on the Check Progress Button to see Results</text>
+        <img class="VA-MainBall2 VA-MainBall"
+          src="https://poketrades.org/Resources/Images/Dreamworld%20Artwork/Items/(Any%20Ball).png"></img>
+      </div>
+      <div id="VA-BallHolder">
+        <div id="VA-ProgressData" class="VA-InfoGrid">
+
+        </div>
+      </div>
+      <div id="VA-SpecificHeadingsHolder">
+        <div class="VA-SpecificPokemon VA-Headings" style="display: none;">
+          <text class="VA-HeadingsText">Missing Pokemon in This Ball</text>
+        </div>
+      </div>
+      <div id="VA-SpecificHolder">
+        <div id="VA-SpecificData" class="VA-InfoGrid">
+
+        </div>
+      </div>
+      <div class="VA-MissingObtainedPokemon VA-Headings" style="cursor:pointer">
+        <text class="VA-MissingObtained VA-HeadingsText">Missing Pokemon (Click to Reverse)</text>
+      </div>
+      <div id="VA-PokemonHolder">
+        <div id="VA-UnobtainedData" class="VA-InfoGrid">
+
+        </div>
+      </div>
+      <div id="VA-Storage" style="display: none;">
+
+      </div>
+    </div>
+    <script src="js/mainArea.js?v=<?=time();?"></scriptsrc>"</script>
+    <script src="js/panelArea.js?v=<?=time();?"></scriptsrc>"</script>
+    <script src="js/loginArea.js?v=<?=time();?"></scriptsrc>"</script>
+    <script src="js/selectionArea.js?v=<?=time();?"></scriptsrc>"</script>
+    <script src="js/detailsArea.js?v=<?=time();?"></scriptsrc>"</script>
+    <script src="js/listHolder.js?v=<?=time();?"></scriptsrc>"</script>
+    <script src="js/bunchArea.js?v=<?=time();?"></scriptsrc>"</script>
+    <script src="js/filterArea.js?v=<?=time();?"></scriptsrc>"</script>
+    <script src="js/notificationArea.js?v=<?=time();?"></scriptsrc>"</script>
+    <script src="js/informationArea.js"></scriptsrc>"</script>
+    <script src="js/ctsArea.js"></scriptsrc>"</script>
+    <script src="js/importArea.js"></scriptsrc>"</script>
+    <script src="js/communicationArea.js"></scriptsrc>"</script>
+    <script src="js/trackingArea.js?v=<?=time();?"></scriptsrc>"</script>
+    <script src="js/viewingArea.js?v=<?=time();?"></scriptsrc>"</script>
+    <script src="js/router.js?v=<?=time();?"></scriptsrc>"</script>
+  </div>
 
 </body>
 

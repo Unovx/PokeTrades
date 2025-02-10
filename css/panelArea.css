@@ -108,7 +108,8 @@
 }
 
 .PA-TradeShopClose {
-    visibility: hidden;
+    /*visibility: hidden;*/
+    height: 23px;
 }
 
 .PA-TradeShopInfo {

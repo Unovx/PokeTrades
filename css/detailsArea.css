@@ -52,7 +52,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: white;
     font-size: 14px;
-    background: #2a3757;
+    background: #232c45;
 }
 
 .DA-Buttons {
@@ -98,9 +98,11 @@
     margin: 3px;
     border-radius: 5px;
     margin-bottom: 5px;
+    height: 23px;
 }
 
 .DA-PlaceInfo {
+    z-index: 1;
     position: absolute;
     display: none;
     margin: auto;
@@ -108,7 +110,9 @@
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: #3a4a6a;
+    background: linear-gradient(#073e69, #004181);
+    border-color: #576ab3;
+    border-style: solid;
     padding: 10px;
     width: 300px;
     top: 30px;
@@ -118,10 +122,10 @@
 
 .DA-PlacePokemonText {
     position: relative;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: monospace;
     width: 100%;
     text-align: center;
-    color: #e0e0e0;
+    color: #e6e6e6;
 }
 
 /*.DA-PlacePokemonClose{

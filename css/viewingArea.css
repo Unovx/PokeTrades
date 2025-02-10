@@ -1,0 +1,268 @@
+@media only screen and (max-width: 768px) {
+    [id*="ViewingArea"] {
+        height: auto !important;
+        top: 80% !important;
+        width: 100% !important;
+    }
+}
+
+#ViewingArea {
+    position: absolute;
+    display: none;
+    height: calc(100% - 52px);
+    z-index: 3;
+    width: 420px;
+    right: 0;
+    overflow: auto;
+    margin-top: 52px;
+    border-color: rgb(55, 58, 109);
+    border-width: 2px;
+    border-style: solid;
+    background: url('https://poketrades.org/Resources/Designs/Sidebar.png');
+}
+
+.VA-Buttons {
+    display: flex;
+    /*border-style: solid;
+    border-color: #5c5c5c;*/
+    text-align: center;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    /*position: sticky;*/
+    top: 0px;
+    z-index: 10;
+    margin-bottom: 8px;
+}
+
+.VA-ButtonDesign {
+    background: #171d2c;
+    border-width: 2px;
+    border-style: solid;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #dbdbdb;
+    cursor: pointer;
+    margin: 3px;
+    border-radius: 5px;
+
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    background-size: contain;
+    border-color: #3d429c;
+}
+
+.VA-DropdownOptions {
+    font-weight: initial;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #e0e0e0;
+    font-size: 14px;
+    background: #232c45;
+}
+
+.VA-IconButton {
+    display: block;
+    color: #e0e0e0;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    background: none;
+    border: none;
+    margin: auto;
+}
+
+.VA-OptionsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(63px, 1fr));
+    border-radius: 9px;
+    /*background: linear-gradient(#0d426b, #00407f);*/
+    background: linear-gradient(#002569, #133e7b);
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    margin-bottom: 10px;
+}
+
+.VA-IconContainer {
+    display: flex;
+    /*border-radius: 30px;*/
+    border-radius: 8px;
+    background: linear-gradient(#61100a, #cd4f4f);
+    /*background-color: #9f5e5e;*/
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    height: 25px;
+    width: 63px;
+    text-align-last: center;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+}
+
+
+/*.VA-SelectedGame {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #4f5397;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #4599bf;
+    font-size: 16px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.VA-GameIcon {
+    color: inherit;
+    background: none;
+    border: none;
+    font-size: inherit;
+    font-weight: inherit;
+    margin: unset;
+    padding: 0;
+}*/
+
+.VA-GameOptions {
+    display: none;
+}
+
+.VA-TotalPokemon {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.VA-TotalPokemonText {
+    width: unset !important;
+}
+
+.VA-MainBall {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.VA-MainBall1 {
+    margin-right: 45px;
+    padding-bottom: 2px;
+    display: none;
+}
+
+.VA-MainBall2 {
+    margin-left: 45px;
+    padding-bottom: 2px;
+    display: none;
+}
+
+#VA-BallHolder {
+    max-height: 320px;
+    overflow: auto;
+}
+
+#VA-SpecificHolder {
+    max-height: 420px;
+    overflow: auto;
+}
+
+#VA-PokemonHolder {
+    max-height: 420px;
+    overflow: auto;
+}
+
+.VA-InfoGrid {
+    display: grid;
+    /* auto-fill into of auto-fit so it starts from the corner of the screen*/
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    /* needing to prevent bunches and to an slight extent mons looking crowded*/
+    grid-gap: 1rem;
+    place-items: center;
+    /*background-color: #163944;*/
+}
+
+.VA-InfoHolder {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    /*cursor: pointer;*/
+    border-radius: 15px;
+    text-align: center;
+    width: -webkit-fill-available;
+    width: -moz-available;
+    height: -webkit-fill-available;
+    height: -moz-available;
+    border-width: 2px;
+    border-style: solid;
+
+    border-color: #3d429c;
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
+    background: url('https://poketrades.org/Resources/Designs/Info_Data_Holder.png');
+    background-size: cover;
+    border: none;
+    background-position: center;
+    max-width: 130px;
+    margin-bottom: 10px;
+}
+
+.VA-InfoText {
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    font-size: 11px;
+    border: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.VA-StandardImage {
+    display: block;
+    top: 50px;
+    max-width: 80px;
+    max-height: 80px;
+    margin: auto;
+}
+
+.VA-Headings {
+    overflow: hidden;
+    display: block;
+    position: relative;
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    background-size: contain;
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+
+.VA-HeadingsText {
+    width: -webkit-fill-available;
+    width: -moz-available;
+    text-align: center;
+    font-weight: bold;
+    /*font-family: 'Orbitron', sans-serif;*/
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    /*font-size: 12px;*/
+    font-size: 13px;
+    border: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+}

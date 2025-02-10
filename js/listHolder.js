@@ -44,6 +44,9 @@ var progressBalls;
 var progressGames;
 var progressGens;
 var progressObtainableOptions;
+var cannotBreedArray;
+var inboxOptionsArray;
+var avatarOptions;
 
 /*$('#Testing').click(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "genderless", table: "genderless_pokemon" }, GenderlessPokemon);
@@ -71,7 +74,7 @@ $(document).ready(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "items", table: "item_names" }, AllItems);
     $.post(url + "/PHP/get_list_names.php", { column: "marks", table: "mark_names" }, AllMarks);
     $.post(url + "/PHP/get_list_names.php", { column: "how_obtained", table: "how_obtained_options" }, HowObtained);
-    $.post(url + "/PHP/get_list_names.php", { column: "game_obtained", table: "game_obtained_options" }, GameObtained);
+    $.post(url + "/PHP/get_list_names.php", { column: "game_obtained", order: "id", table: "game_obtained_options" }, GameObtained);
     $.post(url + "/PHP/get_list_names.php", { column: "icons", table: "icon_names" }, AllIcons);
     $.post(url + "/PHP/get_list_names.php", { column: "icon_exclusives", table: "icon_exclusive_icons" }, IconExclusives);
     $.post(url + "/PHP/get_giveaway_data.php", GiveawayData);
@@ -99,9 +102,12 @@ $(document).ready(function () {
     $.post(url + "/PHP/get_list_names.php", { column: "gen", table: "progress_game_options" }, ProgressGenOptions);
     $.post(url + "/PHP/get_list_names.php", { column: "method", table: "progress_obtainable_options" }, ProgressObtainableOptions);
     $.post(url + "/PHP/get_list_names.php", { column: "unavailable", table: "y_swsh_unavailable" }, TempSWSH);
-    $.post(url + "/PHP/get_list_names.php", { column: "unavailable", table: "y_la_unavailable" }, TempLA);
+    $.post(url + "/PHP/get_list_names.php", { column: "available", table: "y_la_available" }, TempLA);
     $.post(url + "/PHP/get_list_names.php", { column: "unavailable", table: "y_sv_unavailable" }, TempSV);
+    $.post(url + "/PHP/get_list_names.php", { column: "pokemon", table: "unbreedable_pokemon" }, Unbreedable);
     $.post(url + "/PHP/evolution_data.php", EvoLines);
+    $.post(url + "/PHP/get_list_names.php", { column: "inbox_options", table: "inbox_options" }, InboxOptions);
+    $.post(url + "/PHP/get_list_names.php", { column: "avatars", order: "dex", table: "avatar_options" }, AvatarOptions);
     if (token != null) {
         $.post(url + "/PHP/generate_templates.php", { token: token }, GetTemplateOptions);
     }
@@ -410,6 +416,9 @@ function AllNatures(data) {
         ctsOption.setAttribute("class", "CTS-DropdownOptions");
         ctsNatureDropdown.appendChild(ctsOption);
     }
+
+    ctsNatureArray = new Array(allNaturesArray.length - 1);
+    CTSNatureOptions();
 }
 
 function AllAbilities(data) {
@@ -526,6 +535,8 @@ function GameObtained(data) {
         ctsOption.setAttribute("class", "CTS-DropdownOptions");
         ctsGameObtainedDropdown.appendChild(ctsOption);
     }
+    CTSGameOptions();
+    VAGameOptions();
 }
 
 function AllIcons(data) {
@@ -1188,6 +1199,7 @@ function ProgressBallOptions(data) {
     arrayInfo = jQuery.parseJSON(data);
     progressBalls = arrayInfo["Rows"];
     //console.log(progressBalls);
+    CreateProgressBalls();
 }
 
 function ProgressGameOptions(data) {
@@ -1206,6 +1218,44 @@ function ProgressObtainableOptions(data) {
     arrayInfo = jQuery.parseJSON(data);
     progressObtainableOptions = arrayInfo["Rows"];
     //console.log(progressObtainableOptions);
+
+    /*for (let i = 0; i < progressObtainableOptions.length; i++) {
+        const viewingOption = document.createElement("option");
+        viewingOption.value = progressObtainableOptions[i];
+        viewingOption.textContent = progressObtainableOptions[i];
+        viewingOption.setAttribute("class", "VA-DropdownOptions")
+        viewingMethodDropdown.appendChild(viewingOption);
+    }*/
+}
+
+function Unbreedable(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    cannotBreedArray = arrayInfo["Rows"];
+    //console.log(cannotBreedArray);
+}
+
+function InboxOptions(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    inboxOptionsArray = arrayInfo["Rows"];
+    //console.log(inboxOptionsArray);
+
+    for (let i = 0; i < inboxOptionsArray.length; i++) {
+        const loginOption = document.createElement("option");
+        loginOption.value = inboxOptionsArray[i];
+        loginOption.textContent = inboxOptionsArray[i];
+        loginOption.setAttribute("class", "LA-DropdownOptions")
+        document.querySelector(".LA-InboxSettings").appendChild(loginOption);
+    }
+}
+
+function AvatarOptions(data) {
+    arrayInfo = jQuery.parseJSON(data);
+    avatarOptions = arrayInfo["Rows"];
+    CreateAvatarOptions();
+    //console.log(avatarOptions);
+
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".InitialLoading").style.display = "none";
 }
 
 function TempSWSH(data) {

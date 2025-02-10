@@ -14,6 +14,11 @@ $('.NA-MainOption2').click(function () {
 
 $('.NA-MainOption3').click(function () {
     document.querySelector(".NA-MainOptions").style.display = "none";
+    document.querySelector(".NA-MessagingOptions").style.display = "block";
+});
+
+$('.NA-MainOption4').click(function () {
+    document.querySelector(".NA-MainOptions").style.display = "none";
     document.querySelector(".NA-OtherOptions").style.display = "block";
 });
 
@@ -57,6 +62,26 @@ $('.NA-AccountOption3').click(function () {
     document.querySelector(".NA-Exporting").style.display = "block";
 });
 
+$('.NA-MessagingOption1').click(function () {
+    document.querySelector(".NA-MessagingOptions").style.display = "none";
+    document.querySelector(".NA-ChangeAvatar").style.display = "block";
+});
+
+$('.NA-MessagingOption2').click(function () {
+    document.querySelector(".NA-MessagingOptions").style.display = "none";
+    document.querySelector(".NA-InboxSettings").style.display = "block";
+});
+
+$('.NA-MessagingOption3').click(function () {
+    document.querySelector(".NA-MessagingOptions").style.display = "none";
+    document.querySelector(".NA-MessagingUsers").style.display = "block";
+});
+
+$('.NA-MessagingOption4').click(function () {
+    document.querySelector(".NA-MessagingOptions").style.display = "none";
+    document.querySelector(".NA-BlockingUsers").style.display = "block";
+});
+
 $('.NA-OtherOption1').click(function () {
     document.querySelector(".NA-OtherOptions").style.display = "none";
     document.querySelector(".NA-Importing").style.display = "block";
@@ -68,6 +93,16 @@ $('.NA-OtherOption2').click(function () {
 });
 
 $('.NA-OtherOption3').click(function () {
+    document.querySelector(".NA-OtherOptions").style.display = "none";
+    document.querySelector(".LegalityInformation").style.display = "block";
+});
+
+$('.NA-OtherOption4').click(function () {
+    document.querySelector(".NA-OtherOptions").style.display = "none";
+    document.querySelector(".TrackerInformation").style.display = "block";
+});
+
+$('.NA-OtherOption5').click(function () {
     document.querySelector(".NA-OtherOptions").style.display = "none";
     document.querySelector(".NA-GenerationalSprites").style.display = "block";
 });
@@ -170,14 +205,64 @@ $('.NA-InformationAreaClose').click(function () {
     document.querySelector(".InformationAreaHelp").style.display = "none";
 });
 
-$('.NA-TrackingHelpClose').click(function () {
+$('.NA-LegalityInformationClose').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
-    document.querySelector(".TrackingInformation").style.display = "none";
+    document.querySelector(".LegalityInformation").style.display = "none";
+});
+
+$('.NA-TrackerInformationClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".TrackerInformation").style.display = "none";
 });
 
 $('.NA-CTSInfoClose').click(function () {
     document.querySelector("#NotificationArea").style.display = "none";
     document.querySelector(".CTSInfo").style.display = "none";
+});
+
+$('.NA-MessageOptionsClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".MessageOptionsPrompt").style.display = "none";
+});
+
+function UpdatedBlockList() {
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".UpdatedBlockList").style.display = "block";
+};
+
+$('.NA-UpdatedBlockListClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".UpdatedBlockList").style.display = "none";
+});
+
+function LoginRequired() {
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".LoginRequired").style.display = "block";
+}
+
+$('.NA-LoginRequiredClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".LoginRequired").style.display = "none";
+});
+
+function PreviewRequired() {
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".PreviewRequired").style.display = "block";
+}
+
+$('.NA-PreviewRequiredClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".PreviewRequired").style.display = "none";
+});
+
+function CreationInProgress() {
+    document.querySelector("#NotificationArea").style.display = "block";
+    document.querySelector(".CreationInProgress").style.display = "block";
+}
+
+$('.NA-CreationInProgressClose').click(function () {
+    document.querySelector("#NotificationArea").style.display = "none";
+    document.querySelector(".CreationInProgress").style.display = "none";
 });
 
 function ShowLoading() {
@@ -195,6 +280,7 @@ function CloseAllMainBlocks() {
     document.querySelector(".NA-MainOptions").style.display = "none";
     document.querySelector(".NA-TradeShopOptions").style.display = "none";
     document.querySelector(".NA-AccountOptions").style.display = "none";
+    document.querySelector(".NA-MessagingOptions").style.display = "none";
     document.querySelector(".NA-OtherOptions").style.display = "none";
     document.querySelector(".NA-BunchOverview").style.display = "none";
     document.querySelector(".NA-PokemonCreation").style.display = "none";
@@ -204,6 +290,10 @@ function CloseAllMainBlocks() {
     document.querySelector(".NA-Account").style.display = "none";
     document.querySelector(".NA-DeleteAll").style.display = "none";
     document.querySelector(".NA-Exporting").style.display = "none";
+    document.querySelector(".NA-ChangeAvatar").style.display = "none";
+    document.querySelector(".NA-InboxSettings").style.display = "none";
+    document.querySelector(".NA-MessagingUsers").style.display = "none";
+    document.querySelector(".NA-BlockingUsers").style.display = "none";
     document.querySelector(".NA-Importing").style.display = "none";
     document.querySelector(".NA-PokemonData").style.display = "none";
     document.querySelector(".NA-GenerationalSprites").style.display = "none";

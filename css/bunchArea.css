@@ -118,7 +118,8 @@
 .BA-DropdownOptions {
     font-weight: initial;
     font-family: Arial, Helvetica, sans-serif;
-    background: #2a3757;
+    /*background: #2a3757;*/
+    background: #232c45;
     font-size: 14px;
 }
 

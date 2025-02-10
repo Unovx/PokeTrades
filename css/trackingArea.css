@@ -3,12 +3,7 @@
         margin-bottom: 5px !important;
         margin-right: unset !important;
         margin-left: unset !important;
-    }
-
-    [class*="TA-TitleText"] {
-        display: flex !important;
-        width: 100% !important;
-        place-content: center;
+        width: 100%;
     }
 
     [class*="TrackingButtons"] {
@@ -17,6 +12,20 @@
         display: flex !important;
         width: 100% !important;
         place-content: center;
+    }
+
+    [class*="TA-Searchbar"] {
+        display: flex !important;
+        width: -webkit-fill-available;
+        width: -moz-available;
+        align-items: center;
+    }
+
+    [class*="TA-TitleText"] {
+        display: flex !important;
+        width: 100% !important;
+        place-content: center;
+        margin-left: unset !important;
     }
 
     [id*="TrackingContainer"] {
@@ -89,18 +98,29 @@
     border-color: #2e3850;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #536c9f;
+    /*font-family: 'Orbitron', sans-serif;
+    color: #536c9f;*/
+    font-family: 'Orbitron', sans-serif;
+    /*color: #5471ab;*/
+    color: #7f94bf;
+    font-size: 11px;
     cursor: pointer;
     margin: 3px;
     box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
     border-radius: 5px;
+
+    border-color: #037423;
+    /*background: #373737;*/
+    background: #1e1e1e;
+    color: #d9d9d9;
+    /*padding-left: 5px;
+    padding-right: 5px;*/
 }
 
 .TA-DropdownOptions {
     font-weight: initial;
     font-family: Arial, Helvetica, sans-serif;
-    background: #2a3757;
+    background: #232c45;
     font-size: 14px;
 }
 
@@ -126,12 +146,12 @@
     border: none;
 }
 
-.TA-InfoButton {
+/*.TA-InfoButton {
     position: relative;
     background-color: #efefef;
     height: 22px;
     border: none;
-}
+}*/
 
 #TrackingSelection {
     overflow: auto;
@@ -143,6 +163,8 @@
     z-index: -1;
     height: inherit;
     padding-bottom: 10px;
+    margin-left: 2px;
+    margin-right: 5px;
 }
 
 .TrackingGridDiv {
@@ -180,7 +202,7 @@
     display: block;
     position: relative;
     /*cursor: pointer;*/
-    box-shadow: rgb(0 0 0) 5px 5px 0px 1px;
+    box-shadow: rgb(0 0 0) 2px 2px 0px 1px;
     background-color: #343f5f;
     border-radius: 15px;
     width: 100%;

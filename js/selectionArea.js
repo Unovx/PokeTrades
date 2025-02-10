@@ -55,6 +55,7 @@ var insideDetails = true;
 var storedValue;
 
 $(selectionOrderDropdown1).change(function () {
+    ShowLoading();
     PostGenerateSelection();
 });
 
@@ -75,13 +76,13 @@ var selectionVH = $("#SelectionArea").visibleHeight();
 console.log(document.querySelector('#SelectionArea').clientWidth);
 //console.log($(selection).visibleHeight());
 
-document.querySelector('#DetailsArea').onmouseover = function () {
+/*document.querySelector('#DetailsArea').onmouseover = function () {
     if (!creationInProgress) {
         if (selectedPokemon == null && hoverInfo == true && !showingGiveaway) {
             $('.DA-Close').click();
         }
     }
-}
+}*/
 
 //Making sure the Selection Area height is constantly updated.
 $(function UpdateSelectionHeight() {
@@ -178,6 +179,7 @@ $('.SA-CreateButton').click(function () {
     document.querySelector("#PanelArea").style.display = "none";
     document.querySelector("#InformationArea").style.display = "none";
     document.querySelector("#DetailsArea").style.display = "block";
+    document.querySelector("#CommunicationArea").style.display = "none";
     document.querySelector(".SA-CreateButton").style.pointerEvents = "none";
     document.querySelector(".SA-CreateCircle").style.background = "#4e4e4e";
     document.querySelector(".SA-CreateCircle").style.boxShadow = "none";
@@ -209,6 +211,7 @@ $('.SA-CreateButton').click(function () {
     document.querySelector(".SA-RefreshButton").style.pointerEvents = "none";*/
     //document.querySelector(".SA-RefreshButton").style.backgroundColor = "#1e1e1e";
     document.querySelector(".DA-Place").style.display = "block";
+    document.querySelector(".DA-PlaceInfo").style.display = "none";
     document.querySelector(".DA-Delete").style.display = "none";
     /*document.querySelector(".DA-Lock").style.pointerEvents = "none";
     document.querySelector(".DA-Lock").style.background = "#1e1e1e";
@@ -244,6 +247,16 @@ $('.SA-CreateButton').click(function () {
     }
     ribbonData = new Array(103);
     ribbonString = "";
+
+    var cols = document.getElementsByClassName("Marks");
+    document.querySelector(".DA-MarkIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/(No Mark).png";
+    for (i = 0; i < cols.length; i++) {
+        cols[i].style.background = "linear-gradient(#302b75, #112354)";
+        cols[i].style.display = "block";
+    }
+    markData = new Array(54);
+    markString = "";
+
 
     if (toggleOn) {
         $('.DA-ToggleProof').click();
@@ -322,6 +335,7 @@ $('.SA-FiltersButton').click(function () {
     document.querySelector("#BunchArea").style.display = "none";
     document.querySelector("#PanelArea").style.display = "none";
     document.querySelector("#CTSArea").style.display = "none";
+    document.querySelector("#CommunicationArea").style.display = "none";
 });
 
 $('.SA-RefreshButton').click(function () {
@@ -581,7 +595,6 @@ function OpacityFull() {
 
 function GenerateSelection(data) {
     numberOfBunches = null;
-
     if (bunchname != "" && !ctsSeaching) {
         //Showing the bunch name and setting up the ability to exit out the bunch.
         document.querySelector(".SA-Bunch").style.opacity = "100%";
@@ -597,6 +610,13 @@ function GenerateSelection(data) {
     gridTest.style.gridTemplateColumns = "repeat( auto-fill, minmax(230px, 1fr) )";
     gridTest.style.marginTop = "5px";
     document.getElementById("GeneratedSelection").appendChild(gridTest);
+    $("#DA-NestHolder").remove();
+
+    if (arrayData["Rows"] == null) {
+        HideLoading();
+        return;
+    }
+
     if (ctsSeaching) {
         console.log(arrayData["Rows"].length + " Pokemon in CTS Search");
     } else {
@@ -656,6 +676,14 @@ function GenerateSelection(data) {
             }
 
             if (loopArray.pokemon == "Indeedee") {
+                for (let k = 0; k < pokemonDataArray.length; k++) {
+                    if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
+                        index = k;
+                    }
+                }
+            }
+
+            if (loopArray.pokemon == "Basculegion") {
                 for (let k = 0; k < pokemonDataArray.length; k++) {
                     if (loopArray.pokemon + "-" + loopArray.gender == pokemonDataArray[k].pokemon) {
                         index = k;
@@ -723,29 +751,56 @@ function GenerateSelection(data) {
 
         frontSide.appendChild(pokemon);
 
+        dexLangDiv = document.createElement("div");
+
+        dexLangDiv.style.position = "absolute";
+        dexLangDiv.style.zIndex = "1";
+        dexLangDiv.style.top = "17px";
+        dexLangDiv.style.left = "5px";
+        dexLangDiv.style.display = "flex";
+
+        frontSide.appendChild(dexLangDiv);
+
         dex = document.createElement("Text");
         dex.setAttribute("id", "Dex" + (i));
         dex.style.height = "13px";
-        for (let j = 0; j < pokemonDataArray.length; j++) {
-            if (pokemonDataArray[j].pokemon == loopArray.pokemon) {
-                dex.innerHTML = "#" + pokemonDataArray[j].pokedex;
-            }
-        }
+        dex.innerHTML = "#" + pokemonDataArray[index].pokedex;
         dex.style.fontWeight = "bold";
         dex.style.color = "white";
         dex.style.fontFamily = "'Orbitron', sans-serif";
         dex.style.fontSize = "10.2px";
-        //dex.style.display = "inline-flex";
 
-        dex.style.position = "absolute";
-        dex.style.zIndex = "1";
-        dex.style.top = "17px";
-        dex.style.left = "5px";
-        dex.style.display = "flex";
+        dexLangDiv.appendChild(dex);
 
+        language = document.createElement("Text");
+        language.setAttribute("id", "language" + (i));
+        language.style.height = "13px";
+        language.innerHTML = "[" + loopArray.language + "]";
+        language.style.marginLeft = "5px";
+        language.style.fontWeight = "bold";
+        language.style.color = "white";
+        language.style.fontFamily = "'Orbitron', sans-serif";
+        language.style.fontSize = "10.2px";
 
-        frontSide.appendChild(dex);
+        dexLangDiv.appendChild(language);
 
+        if (loopArray.level != null) {
+            level = document.createElement("Text");
+            level.setAttribute("id", "level" + (i));
+            level.style.height = "13px";
+            level.innerHTML = "Lv " + loopArray.level;
+            level.style.fontWeight = "bold";
+            level.style.color = "#ececec";
+            level.style.fontFamily = "'Orbitron', sans-serif";
+            level.style.fontSize = "10.2px";
+            level.style.zIndex = 1;
+            level.style.position = "absolute";
+            level.style.top = "117px";
+            level.style.left = "2px";
+            level.style.display = "flex";
+
+            frontSide.appendChild(level);
+        }
 
         //Setting the Image
         theImage = document.createElement("IMG");
@@ -761,10 +816,10 @@ function GenerateSelection(data) {
             IAPokemonDropdown.value = arrayData["Rows"][i].pokemon;
             if (arrayData["Rows"][i].shiny.includes("Normal")) {
                 shinyStatus = "";
-                document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Misc/X IV Icon.png");
+                document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Designs/Not Shiny Icon.png");
             } else {
                 shinyStatus = "-Shiny";
-                document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Misc/Star Shiny.png");
+                document.querySelector(".IA-ShinySprite").setAttribute("src", url + "/Resources/Designs/Shiny Icon.png");
             }
             $('.IA-PokemonDropdown').change();
             document.querySelector("#InformationArea").style.display = "block";
@@ -775,7 +830,7 @@ function GenerateSelection(data) {
         newTable = document.createElement("table");
         newTable.style.position = "absolute";
         newTable.style.zIndex = "1";
-        newTable.style.top = "15px";
+        newTable.style.top = "16px";
         //newDiv.style.width = "100%";
         newTable.style.left = "115px";
         newTable.style.height = "90px";
@@ -873,7 +928,7 @@ function GenerateSelection(data) {
 
         td.appendChild(misc);
 
-        var td = tr.insertCell();
+        /*var td = tr.insertCell();
         mark = document.createElement("IMG");
         td.setAttribute("width", "15px");
         td.setAttribute("height", "15px");
@@ -887,7 +942,91 @@ function GenerateSelection(data) {
             mark.style.opacity = "0.5";
         }
 
-        td.appendChild(mark);
+        td.appendChild(mark);*/
+
+        var td = tr.insertCell();
+        marks = document.createElement("IMG");
+        marks.setAttribute("id", "Marks " + i);
+        td.setAttribute("width", "15px");
+        td.setAttribute("height", "15px");
+        td.style.marginRight = "0.5px";
+        marks.setAttribute("width", "15px");
+        marks.setAttribute("height", "15px");
+        if (loopArray.mark != "(No Mark)" && loopArray.mark != "(Any or No Marks") {
+            marks.style.cursor = "pointer";
+        }
+
+
+        if ((loopArray.mark == "(No Mark)" || loopArray.mark == "(Any or No Marks") && (userData == null || (userData != null && userData.user_id != loopArray.user_id))) {
+            marks.style.opacity = "0.5";
+        }
+
+        var arrayTempMarks = loopArray.mark.split(",");
+        if (loopArray.mark == "(No Mark)") {
+            marks.setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/(No Mark).png");
+        } else {
+            for (let j = 0; j < allMarksArray.length; j++) {
+                for (let k = 0; k < arrayTempMarks.length; k++) {
+                    if (allMarksArray[j] == arrayTempMarks[k]) {
+                        marks.setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/" + allMarksArray[j] + ".png");
+                        break;
+                    }
+                }
+            }
+        }
+
+        td.appendChild(marks);
+
+        markDisplay = document.createElement("div");
+        markDisplay.setAttribute("id", "MarkDisplay " + i);
+        markDisplay.style.width = "-webkit-fill-available";
+        markDisplay.style.width = "-moz-available";
+        markDisplay.style.display = "none";
+        markDisplay.style.gridTemplateColumns = "repeat(auto-fit, minmax(60px, 1fr)";
+        markDisplay.style.margin = "4px";
+        markDisplay.style.position = "absolute";
+        markDisplay.style.background = "linear-gradient(#302b75, #112354)";
+        markDisplay.style.zIndex = "2";
+        markDisplay.style.top = "55px";
+        for (let j = 0; j < allMarksArray.length; j++) {
+            for (let k = 0; k < arrayTempMarks.length; k++) {
+                if (allMarksArray[j] == arrayTempMarks[k]) {
+                    markDiv = document.createElement("div");
+                    markDiv.style.textAlign = "center";
+                    markDiv.style.borderStyle = "solid";
+                    markDisplay.appendChild(markDiv);
+                    newMark = document.createElement("img");
+                    newMark.style.width = "20px";
+                    newMark.style.height = "20px";
+                    newMark.setAttribute("src", "https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/" + allMarksArray[j] + ".png");
+                    markDiv.appendChild(newMark);
+                    theText = document.createElement("text");
+                    theText.style.display = "block";
+                    theText.style.fontWeight = "bold";
+                    theText.style.color = "white";
+                    theText.style.fontFamily = "'Orbitron', sans-serif";
+                    theText.style.fontSize = "8px";
+                    theText.style.marginBottom = "4px";
+                    if (allMarksArray[j].includes("No Mark")) {
+                        theText.innerHTML = allMarksArray[j];
+                        markDiv.appendChild(theText);
+                    } else {
+                        theText.innerHTML = allMarksArray[j].replace("Mark", '');
+                        markDiv.appendChild(theText);
+                    }
+                }
+            }
+        }
+
+        frontSide.appendChild(markDisplay);
+
+        document.getElementById("Marks " + i).onclick = function () {
+            if (document.getElementById("MarkDisplay " + i).style.display == "none") {
+                document.getElementById("MarkDisplay " + i).style.display = "grid";
+            } else {
+                document.getElementById("MarkDisplay " + i).style.display = "none";
+            }
+        }
 
         var td = tr.insertCell();
         ribbons = document.createElement("IMG");
@@ -991,7 +1130,16 @@ function GenerateSelection(data) {
         if (loopArray.ability == pokemonDataArray[index].hidden_ability_1 || loopArray.ability == pokemonDataArray[index].hidden_ability_2) {
             ability.innerHTML = loopArray.ability + " (H)";
             td.appendChild(ability);
-        } else {
+        }
+        if (loopArray.ability == pokemonDataArray[index].old_ability_1) {
+            ability.innerHTML = loopArray.ability + " (O)";
+            td.appendChild(ability);
+        }
+        if (loopArray.ability == pokemonDataArray[index].old_hidden_ability_1) {
+            ability.innerHTML = loopArray.ability + " (OH)";
+            td.appendChild(ability);
+        }
+        else {
             ability.innerHTML = loopArray.ability;
             td.appendChild(ability);
         }
@@ -1008,6 +1156,7 @@ function GenerateSelection(data) {
         nature.style.color = "white";
         nature.style.fontFamily = "'Orbitron', sans-serif";
         nature.style.fontSize = "10.2px";
+
 
         td.appendChild(nature);
 
@@ -1027,6 +1176,9 @@ function GenerateSelection(data) {
 
         td.appendChild(item);
 
+        ivEvGrid = document.createElement("div");
+        frontSide.appendChild(ivEvGrid);
+
         ivGrid = document.createElement("div");
         ivGrid.setAttribute("id", "IvGrid " + i);
         ivGrid.style.display = "grid";
@@ -1034,10 +1186,11 @@ function GenerateSelection(data) {
         ivGrid.style.position = "absolute";
         ivGrid.style.top = "130px";
         ivGrid.style.width = "100%";
+        ivGrid.style.cursor = "pointer";
         //ivGrid.style.marginLeft = "0.5px";
         //ivGrid.style.marginRight = "0.5px";
 
-        frontSide.appendChild(ivGrid);
+        ivEvGrid.appendChild(ivGrid);
 
         statIvHP = document.createElement("button");
         statIvHP.setAttribute("id", "IvHP " + i);
@@ -1145,43 +1298,43 @@ function GenerateSelection(data) {
         }
 
         /*if (loopArray.nature.includes("+Att")) {
-            statIvAtt.style.background = "#8f1f2f";
+            statIvAtt.style.boxShadow = "0px 0px 6px #ff345a";
         } else if (loopArray.nature.includes("-Att")) {
-            statIvAtt.style.background = "#293d8e"
+            statIvAtt.style.boxShadow = "0px 0px 6px #00fbff"
         } else {
-            statIvAtt.style.background = "none";
+            statIvAtt.style.boxShadow = "none";
         }
 
         if (loopArray.nature.includes("+Def")) {
-            statIvDef.style.background = "#8f1f2f";
+            statIvDef.style.boxShadow = "0px 0px 6px #ff345a";
         } else if (loopArray.nature.includes("-Def")) {
-            statIvDef.style.background = "#293d8e"
+            statIvDef.style.boxShadow = "0px 0px 6px #00fbff"
         } else {
-            statIvDef.style.background = "none";
+            statIvDef.style.boxShadow = "none";
         }
 
         if (loopArray.nature.includes("+Spa")) {
-            statIvSpa.style.background = "#8f1f2f";
+            statIvSpa.style.boxShadow = "0px 0px 6px #ff345a";
         } else if (loopArray.nature.includes("-Spa")) {
-            statIvSpa.style.background = "#293d8e"
+            statIvSpa.style.boxShadow = "0px 0px 6px #00fbff"
         } else {
-            statIvSpa.style.background = "none";
+            statIvSpa.style.boxShadow = "none";
         }
 
         if (loopArray.nature.includes("+Spd")) {
-            statIvSpd.style.background = "#8f1f2f";
+            statIvSpd.style.boxShadow = "0px 0px 6px #ff345a";
         } else if (loopArray.nature.includes("-Spd")) {
-            statIvSpd.style.background = "#293d8e"
+            statIvSpd.style.boxShadow = "0px 0px 6px #00fbff"
         } else {
-            statIvSpd.style.background = "none";
+            statIvSpd.style.boxShadow = "none";
         }
 
         if (loopArray.nature.includes("+Spe")) {
-            statIvSpe.style.background = "#8f1f2f";
+            statIvSpe.style.boxShadow = "0px 0px 6px #ff345a";
         } else if (loopArray.nature.includes("-Spe")) {
-            statIvSpe.style.background = "#293d8e"
+            statIvSpe.style.boxShadow = "0px 0px 6px #00fbff"
         } else {
-            statIvSpe.style.background = "none";
+            statIvSpe.style.boxShadow = "none";
         }*/
 
         /*statIvHP.onmouseenter = function () {
@@ -1328,10 +1481,11 @@ function GenerateSelection(data) {
         evGrid.style.position = "absolute";
         evGrid.style.top = "150px";
         evGrid.style.width = "100%";
+        evGrid.style.cursor = "pointer";
         //evGrid.style.marginLeft = "0.5px";
         //evGrid.style.marginRight = "0.5px";
 
-        frontSide.appendChild(evGrid);
+        ivEvGrid.appendChild(evGrid);
 
         statEvHP = document.createElement("button");
         statEvHP.setAttribute("id", "EvHP " + i);
@@ -1563,6 +1717,174 @@ function GenerateSelection(data) {
 
         }*/
 
+        if (loopArray.level != null) {
+            statIvHP.style.cursor = "pointer";
+            statIvAtt.style.cursor = "pointer";
+            statIvDef.style.cursor = "pointer";
+            statIvSpa.style.cursor = "pointer";
+            statIvSpd.style.cursor = "pointer";
+            statIvSpe.style.cursor = "pointer";
+            statEvHP.style.cursor = "pointer";
+            statEvAtt.style.cursor = "pointer";
+            statEvDef.style.cursor = "pointer";
+            statEvSpa.style.cursor = "pointer";
+            statEvSpd.style.cursor = "pointer";
+            statEvSpe.style.cursor = "pointer";
+        }
+
+        let seeingStats = false;
+        ivEvGrid.onclick = function () {
+            if (seeingStats) {
+                seeingStats = false;
+                document.getElementById("IvHP " + i).innerHTML = arrayData["Rows"][i].iv_hp;
+                document.getElementById("IvAtt " + i).innerHTML = arrayData["Rows"][i].iv_att;
+                document.getElementById("IvDef " + i).innerHTML = arrayData["Rows"][i].iv_def;
+                document.getElementById("IvSpa " + i).innerHTML = arrayData["Rows"][i].iv_spa;
+                document.getElementById("IvSpd " + i).innerHTML = arrayData["Rows"][i].iv_spd;
+                document.getElementById("IvSpe " + i).innerHTML = arrayData["Rows"][i].iv_spe;
+                document.getElementById("EvHP " + i).innerHTML = arrayData["Rows"][i].ev_hp;
+                document.getElementById("EvAtt " + i).innerHTML = arrayData["Rows"][i].ev_att;
+                document.getElementById("EvDef " + i).innerHTML = arrayData["Rows"][i].ev_def;
+                document.getElementById("EvSpa " + i).innerHTML = arrayData["Rows"][i].ev_spa;
+                document.getElementById("EvSpd " + i).innerHTML = arrayData["Rows"][i].ev_spd;
+                document.getElementById("EvSpe " + i).innerHTML = arrayData["Rows"][i].ev_spe;
+            } else {
+                if (arrayData["Rows"][i].level != null) {
+                    seeingStats = true;
+                    for (let j = 0; j < pokemonDataArray.length; j++) {
+                        if (arrayData["Rows"][i].pokemon == pokemonDataArray[j].pokemon || pokemonDataArray[j].pokemon == "Meowstic-Male" && arrayData["Rows"][i].pokemon == "Meowstic" && arrayData["Rows"][i].gender == "Male" || pokemonDataArray[j].pokemon == "Meowstic-Female" && arrayData["Rows"][i].pokemon == "Meowstic" && arrayData["Rows"][i].gender == "Female" || pokemonDataArray[j].pokemon == "Indeedee-Male" && arrayData["Rows"][i].pokemon == "Indeedee" && arrayData["Rows"][i].gender == "Male" || pokemonDataArray[j].pokemon == "Indeedee-Female" && arrayData["Rows"][i].pokemon == "Indeedee" && arrayData["Rows"][i].gender == "Female" || pokemonDataArray[j].pokemon == "Basculegion-Male" && arrayData["Rows"][i].pokemon == "Basculegion" && arrayData["Rows"][i].gender == "Male" || pokemonDataArray[j].pokemon == "Basculegion-Female" && arrayData["Rows"][i].pokemon == "Basculegion" && arrayData["Rows"][i].gender == "Female" || pokemonDataArray[j].pokemon == "Oinkologne-Male" && arrayData["Rows"][i].pokemon == "Oinkologne" && arrayData["Rows"][i].gender == "Male" || pokemonDataArray[j].pokemon == "Oinkologne-Female" && arrayData["Rows"][i].pokemon == "Oinkologne" && arrayData["Rows"][i].gender == "Female") {
+                            document.getElementById("IvHP " + i).innerHTML = pokemonDataArray[j].stat_hp;
+                            document.getElementById("IvAtt " + i).innerHTML = pokemonDataArray[j].stat_att;
+                            document.getElementById("IvDef " + i).innerHTML = pokemonDataArray[j].stat_def;
+                            document.getElementById("IvSpa " + i).innerHTML = pokemonDataArray[j].stat_spa;
+                            document.getElementById("IvSpd " + i).innerHTML = pokemonDataArray[j].stat_spd;
+                            document.getElementById("IvSpe " + i).innerHTML = pokemonDataArray[j].stat_spe;
+
+                            let theStat = 0;
+
+                            if (arrayData["Rows"][i].iv_hp == "X") {
+                                document.getElementById("EvHP " + i).innerHTML = "?";
+                            } else {
+                                if (arrayData["Rows"][i].ev_hp != "X") {
+                                    theStat = parseInt(arrayData["Rows"][i].iv_hp);
+                                    if (arrayData["Rows"][i].iv_hp == "HT") {
+                                        theStat = 31;
+                                    }
+                                    document.getElementById("EvHP " + i).innerHTML = Math.floor((2 * pokemonDataArray[j].stat_hp + theStat + Math.floor(parseInt(arrayData["Rows"][i].ev_hp) / 4)) * arrayData["Rows"][i].level / 100 + arrayData["Rows"][i].level + 10);
+                                } else {
+                                    document.getElementById("EvHP " + i).innerHTML = "?";
+                                }
+                                if (arrayData["Rows"][i].pokemon == "Shedinja") {
+                                    document.getElementById("EvHP " + i).innerHTML = "1";
+                                }
+                            }
+                            if (arrayData["Rows"][i].iv_att == "X") {
+                                document.getElementById("EvAtt " + i).innerHTML = "?";
+                            } else {
+                                if (arrayData["Rows"][i].ev_att != "X") {
+                                    theStat = parseInt(arrayData["Rows"][i].iv_att);
+                                    if (arrayData["Rows"][i].iv_att == "HT") {
+                                        theStat = 31;
+                                    }
+                                    statModifier = 1;
+                                    if (arrayData["Rows"][i].nature.includes("+Att")) {
+                                        statModifier = 1.1;
+                                    }
+                                    else if (arrayData["Rows"][i].nature.includes("-Att")) {
+                                        statModifier = 0.9;
+                                    }
+                                    document.getElementById("EvAtt " + i).innerHTML = Math.floor(((2 * pokemonDataArray[j].stat_att + theStat + Math.floor(parseInt(arrayData["Rows"][i].ev_att) / 4)) * arrayData["Rows"][i].level / 100 + 5) * statModifier);
+                                } else {
+                                    document.getElementById("EvAtt " + i).innerHTML = "?";
+                                }
+                            }
+                            if (arrayData["Rows"][i].iv_def == "X") {
+                                document.getElementById("EvDef " + i).innerHTML = "?";
+                            } else {
+                                if (arrayData["Rows"][i].ev_def != "X") {
+                                    theStat = parseInt(arrayData["Rows"][i].iv_def);
+                                    if (arrayData["Rows"][i].iv_def == "HT") {
+                                        theStat = 31;
+                                    }
+                                    statModifier = 1;
+                                    if (arrayData["Rows"][i].nature.includes("+Def")) {
+                                        statModifier = 1.1;
+                                    }
+                                    else if (arrayData["Rows"][i].nature.includes("-Def")) {
+                                        statModifier = 0.9;
+                                    }
+                                    document.getElementById("EvDef " + i).innerHTML = Math.floor(((2 * pokemonDataArray[j].stat_def + theStat + Math.floor(parseInt(arrayData["Rows"][i].ev_def) / 4)) * arrayData["Rows"][i].level / 100 + 5) * statModifier);
+                                } else {
+                                    document.getElementById("EvDef " + i).innerHTML = "?";
+                                }
+                            }
+                            if (arrayData["Rows"][i].iv_spa == "X") {
+                                document.getElementById("EvSpa " + i).innerHTML = "?";
+                            } else {
+                                if (arrayData["Rows"][i].ev_spa != "X") {
+                                    theStat = parseInt(arrayData["Rows"][i].iv_spa);
+                                    if (arrayData["Rows"][i].iv_spa == "HT") {
+                                        theStat = 31;
+                                    }
+                                    statModifier = 1;
+                                    if (arrayData["Rows"][i].nature.includes("+Spa")) {
+                                        statModifier = 1.1;
+                                    }
+                                    else if (arrayData["Rows"][i].nature.includes("-Spa")) {
+                                        statModifier = 0.9;
+                                    }
+                                    document.getElementById("EvSpa " + i).innerHTML = Math.floor(((2 * pokemonDataArray[j].stat_spa + theStat + Math.floor(parseInt(arrayData["Rows"][i].ev_spa) / 4)) * arrayData["Rows"][i].level / 100 + 5) * statModifier);
+                                } else {
+                                    document.getElementById("EvSpa " + i).innerHTML = "?";
+                                }
+                            }
+                            if (arrayData["Rows"][i].iv_spd == "X") {
+                                document.getElementById("EvSpd " + i).innerHTML = "?";
+                            } else {
+                                if (arrayData["Rows"][i].ev_spd != "X") {
+                                    theStat = parseInt(arrayData["Rows"][i].iv_spd);
+                                    if (arrayData["Rows"][i].iv_spd == "HT") {
+                                        theStat = 31;
+                                    }
+                                    statModifier = 1;
+                                    if (arrayData["Rows"][i].nature.includes("+Spd")) {
+                                        statModifier = 1.1;
+                                    }
+                                    else if (arrayData["Rows"][i].nature.includes("-Spd")) {
+                                        statModifier = 0.9;
+                                    }
+                                    document.getElementById("EvSpd " + i).innerHTML = Math.floor(((2 * pokemonDataArray[j].stat_spd + theStat + Math.floor(parseInt(arrayData["Rows"][i].ev_spd) / 4)) * arrayData["Rows"][i].level / 100 + 5) * statModifier);
+                                } else {
+                                    document.getElementById("EvSpd " + i).innerHTML = "?";
+                                }
+                            }
+                            if (arrayData["Rows"][i].iv_spe == "X") {
+                                document.getElementById("EvSpe " + i).innerHTML = "?";
+                            } else {
+                                if (arrayData["Rows"][i].ev_spe != "X") {
+                                    theStat = parseInt(arrayData["Rows"][i].iv_spe);
+                                    if (arrayData["Rows"][i].iv_spe == "HT") {
+                                        theStat = 31;
+                                    }
+                                    statModifier = 1;
+                                    if (arrayData["Rows"][i].nature.includes("+Spe")) {
+                                        statModifier = 1.1;
+                                    }
+                                    else if (arrayData["Rows"][i].nature.includes("-Spe")) {
+                                        statModifier = 0.9;
+                                    }
+                                    document.getElementById("EvSpe " + i).innerHTML = Math.floor(((2 * pokemonDataArray[j].stat_spe + theStat + Math.floor(parseInt(arrayData["Rows"][i].ev_spe) / 4)) * arrayData["Rows"][i].level / 100 + 5) * statModifier);
+                                } else {
+                                    document.getElementById("EvSpe " + i).innerHTML = "?";
+                                }
+                            }
+                        }
+                    }
+                }
+                //alert(Math.floor((2 * 76 + parseInt(loopArray.iv_hp) + Math.floor(parseInt(loopArray.ev_hp) / 4)) * loopArray.level / 100 + loopArray.level + 10));
+            }
+        }
+
         normalMoveGrid = document.createElement("div");
         normalMoveGrid.setAttribute("id", "NormalMoveGrid " + i);
         normalMoveGrid.style.display = "grid";
@@ -1618,7 +1940,7 @@ function GenerateSelection(data) {
             }
         }
 
-        if ((loopArray.move_1 == "(No Move)" || loopArray.move_1 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+        if ((loopArray.move_1 == "(No Move)" || loopArray.move_1 == "(Any Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
             normalMove1.style.opacity = "0";
         }
 
@@ -1700,7 +2022,7 @@ function GenerateSelection(data) {
             }
         }
 
-        if ((loopArray.move_2 == "(No Move)" || loopArray.move_2 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+        if ((loopArray.move_2 == "(No Move)" || loopArray.move_2 == "(Any Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
             normalMove2.style.opacity = "0";
         }
 
@@ -1775,7 +2097,7 @@ function GenerateSelection(data) {
             }
         }
 
-        if ((loopArray.move_3 == "(No Move)" || loopArray.move_3 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+        if ((loopArray.move_3 == "(No Move)" || loopArray.move_3 == "(Any Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
             normalMove3.style.opacity = "0";
         }
 
@@ -1851,7 +2173,7 @@ function GenerateSelection(data) {
             }
         }
 
-        if ((loopArray.move_4 == "(No Move)" || loopArray.move_4 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+        if ((loopArray.move_4 == "(No Move)" || loopArray.move_4 == "(Any Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
             normalMove4.style.opacity = "0";
         }
 
@@ -1941,7 +2263,7 @@ function GenerateSelection(data) {
 
         buttonGrid.appendChild(editButton);
 
-        if (userData == null || userData != null && userData.user_id != loopArray.user_id) {
+        if (userData == null || userData != null && userData.user_id != loopArray.user_id || ctsSeaching || currentlyImporting) {
             editButton.style.pointerEvents = "none";
             //editButton.style.backgroundColor = "#1e1e1e";
             editButton.style.display = "none";
@@ -2147,6 +2469,7 @@ function GenerateSelection(data) {
         if (loopArray.proof != "") {
             proofButton.style.color = "white";
             proofButton.style.cursor = "pointer";
+            //proofButton.style.background = "#494141b0";
         }
 
         proofNoteGrid.appendChild(proofButton);
@@ -2246,6 +2569,7 @@ function GenerateSelection(data) {
         if (loopArray.note != "") {
             noteButton.style.color = "white";
             noteButton.style.cursor = "pointer";
+            //noteButton.style.background = "#494141b0";
         }
 
         backSide.appendChild(noteArea);
@@ -2291,7 +2615,7 @@ function GenerateSelection(data) {
         newTable.style.position = "absolute";
         newTable.style.zIndex = "1";
 
-        newTable.style.top = "32px";
+        newTable.style.top = "16px";
         newTable.style.left = "115px";
 
         backSide.appendChild(newTable);
@@ -2299,18 +2623,83 @@ function GenerateSelection(data) {
         var tr = newTable.insertRow();
         tr.style.display = "table-row";
         var td = tr.insertCell();
+
+        message = document.createElement("img");
+        message.src = "https://poketrades.org/Resources/Designs/Message_Icon.png";
+        message.setAttribute("height", "9px");
+        message.setAttribute("width", "15px");
+        message.style.verticalAlign = "inherit";
+        message.style.paddingRight = "8px";
+        message.style.cursor = "pointer";
+
+        message.onclick = function () {
+            if (!ctsSeaching) {
+                if (userData != null && userData.user_id != searchData.user_id) {
+                    document.getElementById("CommunicationArea").style.display = "block";
+                    document.getElementById("ContactsList").style.display = "none";
+                    document.getElementById("BlockedList").style.display = "none";
+                    document.getElementById("Inbox").style.display = "block";
+                    document.querySelector(".CA-UsersInvolved").innerHTML = userData.username + "#" + userData.user_id + " to " + searchData.username + "#" + searchData.user_id;
+                    otherParty = searchData.user_id;
+                    source = new EventSource("https://poketrades.org/PHP/sse_event.php");
+                    source.onmessage = function () {
+                        $.post(url + "/PHP/get_messages.php", { token: token, otherParty: searchData.user_id }, UpdateMessages);
+                    };
+                }
+            } else {
+                if (userData != null && userData.user_id != arrayData["Rows"][i].user_id) {
+                    document.getElementById("CommunicationArea").style.display = "block";
+                    document.getElementById("ContactsList").style.display = "none";
+                    document.getElementById("BlockedList").style.display = "none";
+                    document.getElementById("Inbox").style.display = "block";
+                    document.querySelector(".CA-UsersInvolved").innerHTML = userData.username + "#" + userData.user_id + " to " + arrayData["Rows"][i].username + "#" + arrayData["Rows"][i].user_id;
+                    otherParty = arrayData["Rows"][i].user_id;
+                    source = new EventSource("https://poketrades.org/PHP/sse_event.php");
+                    source.onmessage = function () {
+                        $.post(url + "/PHP/get_messages.php", { token: token, otherParty: arrayData["Rows"][i].user_id }, UpdateMessages);
+                    };
+                }
+            }
+
+        }
+
+        td.appendChild(message);
+
         userInfo = document.createElement("Text");
         td.setAttribute("height", "13px");
         userInfo.setAttribute("height", "13px");
-        if (!ctsSeaching) {
+        userInfo.style.textWrap = "no-wrap";
+        userInfo.style.width = "95px";
+        userInfo.style.overflow = "hidden";
+        userInfo.style.display = "inline-flex";
+        if (currentlyImporting) {
+            userInfo.innerHTML = userData.username + "#" + userData.user_id;
+        }
+        else if (!ctsSeaching) {
             userInfo.innerHTML = searchData.username + "#" + searchData.user_id;
         } else {
-            //userInfo.innerHTML = loopArray.username + "#" + loopArray.user_id;
+            userInfo.innerHTML = loopArray.username + "#" + loopArray.user_id;
+            //userInfo.style.cursor = "pointer";
         }
         userInfo.style.fontWeight = "bold";
         userInfo.style.color = "#c2c2c2";
         userInfo.style.fontFamily = "'Orbitron', sans-serif";
         userInfo.style.fontSize = "10.2px";
+
+        /*userInfo.onclick = function () {
+            if (ctsSeaching) {
+                document.querySelector("#FilterArea").style.display = "none";
+                document.querySelector("#DetailsArea").style.display = "none";
+                document.querySelector("#BunchArea").style.display = "none";
+                document.querySelector("#CTSArea").style.display = "none";
+                document.querySelector("#CommunicationArea").style.display = "none";
+                document.querySelector("#PanelArea").style.display = "block";
+                document.querySelector(".PA-TradeShopPanel").style.display = "block";
+                document.querySelector(".PA-Searchbar").value = arrayData["Rows"][i].user_id;
+                $('.PA-Searchbar').keyup();
+
+            }
+        }*/
 
         td.appendChild(userInfo);
 
@@ -2322,7 +2711,7 @@ function GenerateSelection(data) {
         statusInfo.setAttribute("height", "13px");
         statusInfo.innerHTML = loopArray.status;
         statusInfo.style.fontWeight = "bold";
-        statusInfo.style.color = "white";
+        statusInfo.style.color = "#ececec";
         statusInfo.style.fontFamily = "'Orbitron', sans-serif";
         statusInfo.style.fontSize = "10.2px";
 
@@ -2336,11 +2725,25 @@ function GenerateSelection(data) {
         eventInfo.setAttribute("height", "13px");
         eventInfo.innerHTML = loopArray.event_info;
         eventInfo.style.fontWeight = "bold";
-        eventInfo.style.color = "white";
+        eventInfo.style.color = "#ececec";
         eventInfo.style.fontFamily = "'Orbitron', sans-serif";
         eventInfo.style.fontSize = "10.2px";
 
         td.appendChild(eventInfo);
+
+        var tr = newTable.insertRow();
+        tr.style.display = "table-row";
+        var td = tr.insertCell();
+        gameObtained = document.createElement("Text");
+        td.setAttribute("height", "13px");
+        gameObtained.setAttribute("height", "13px");
+        gameObtained.innerHTML = loopArray.game_obtained;
+        gameObtained.style.fontWeight = "bold";
+        gameObtained.style.color = "#ececec";
+        gameObtained.style.fontFamily = "'Orbitron', sans-serif";
+        gameObtained.style.fontSize = "10.2px";
+
+        td.appendChild(gameObtained);
 
         var tr = newTable.insertRow();
         tr.style.display = "table-row";
@@ -2350,7 +2753,7 @@ function GenerateSelection(data) {
         howObtained.setAttribute("height", "13px");
         howObtained.innerHTML = loopArray.how_obtained;
         howObtained.style.fontWeight = "bold";
-        howObtained.style.color = "white";
+        howObtained.style.color = "#ececec";
         howObtained.style.fontFamily = "'Orbitron', sans-serif";
         howObtained.style.fontSize = "10.2px";
 
@@ -2366,21 +2769,21 @@ function GenerateSelection(data) {
 
         backSide.appendChild(dataGrid1);
 
-        gameObtained = document.createElement("button");
+        /*gameObtained = document.createElement("button");
         gameObtained.setAttribute("id", "GameObtained " + i);
         gameObtained.setAttribute("class", "SA-DataGrid");
         gameObtained.innerHTML = loopArray.game_obtained;
         gameObtained.style.height = "16px";
         gameObtained.style.width = "65px";
 
-        dataGrid1.appendChild(gameObtained);
+        dataGrid1.appendChild(gameObtained);*/
 
         gameOT = document.createElement("button");
         gameOT.setAttribute("id", "GameOT " + i);
         gameOT.setAttribute("class", "SA-DataGrid");
         gameOT.innerHTML = loopArray.game_ot;
         gameOT.style.height = "16px";
-        gameOT.style.width = "80px";
+        gameOT.style.width = "130px";
 
 
         dataGrid1.appendChild(gameOT);
@@ -2394,20 +2797,21 @@ function GenerateSelection(data) {
 
         dataGrid1.appendChild(gameID);
 
-        level = document.createElement("button");
+        /*level = document.createElement("button");
         level.setAttribute("id", "Level " + i);
         level.setAttribute("class", "SA-DataGrid");
         if (loopArray.level != null) {
             level.innerHTML = "Lv" + loopArray.level;
         } else {
             level.style.display = "none";
-            gameOT.style.width = "135px";
+            gameID.style.width = "110px";
         }
 
         level.style.height = "16px";
         level.style.width = "55px";
 
-        dataGrid1.appendChild(level);
+        dataGrid1.appendChild(level);*/
+        gameID.style.width = "110px";
 
         dataGrid2 = document.createElement("div");
         dataGrid2.setAttribute("id", "DataGrid2 " + i);
@@ -2505,7 +2909,7 @@ function GenerateSelection(data) {
             }
         }
 
-        if ((loopArray.legacy_move_1 == "(No Move)" || loopArray.legacy_move_1 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+        if ((loopArray.legacy_move_1 == "(No Move)" || loopArray.legacy_move_1 == "(Any Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id || ctsSeaching)) {
             legacyMove1.style.opacity = "0";
         }
 
@@ -2587,7 +2991,7 @@ function GenerateSelection(data) {
             }
         }
 
-        if ((loopArray.legacy_move_2 == "(No Move)" || loopArray.legacy_move_2 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+        if ((loopArray.legacy_move_2 == "(No Move)" || loopArray.legacy_move_2 == "(Any Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id || ctsSeaching)) {
             legacyMove2.style.opacity = "0";
         }
 
@@ -2662,7 +3066,7 @@ function GenerateSelection(data) {
             }
         }
 
-        if ((loopArray.legacy_move_3 == "(No Move)" || loopArray.legacy_move_3 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+        if ((loopArray.legacy_move_3 == "(No Move)" || loopArray.legacy_move_3 == "(Any Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id || ctsSeaching)) {
             legacyMove3.style.opacity = "0";
         }
 
@@ -2738,7 +3142,7 @@ function GenerateSelection(data) {
             }
         }
 
-        if ((loopArray.legacy_move_4 == "(No Move)" || loopArray.legacy_move_4 == "(Any or No Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id)) {
+        if ((loopArray.legacy_move_4 == "(No Move)" || loopArray.legacy_move_4 == "(Any Move)") && (userData == null || userData != null && loopArray.user_id != userData.user_id || ctsSeaching)) {
             legacyMove4.style.opacity = "0";
         }
 
@@ -2886,6 +3290,36 @@ function GenerateSelection(data) {
                 }
             }
         }
+
+        if (currentlyImporting) {
+            document.getElementById("GeneratedSelection " + i).onerror = function () {
+                arrayData["Rows"][i].display = "Private";
+            }
+            ball.onerror = function () {
+                arrayData["Rows"][i].display = "Private";
+            }
+            gender.onerror = function () {
+                arrayData["Rows"][i].display = "Private";
+            }
+            shiny.onerror = function () {
+                arrayData["Rows"][i].display = "Private";
+            }
+            mint.onerror = function () {
+                arrayData["Rows"][i].display = "Private";
+            }
+            misc.onerror = function () {
+                arrayData["Rows"][i].display = "Private";
+            }
+            marks.onerror = function () {
+                arrayData["Rows"][i].display = "Private";
+            }
+            ribbons.onerror = function () {
+                arrayData["Rows"][i].display = "Private";
+            }
+            if (language.innerHTML == "[UKN]") {
+                arrayData["Rows"][i].display = "Private";
+            }
+        }
     }
     FilterResults();
     HideLoading();
@@ -2976,6 +3410,7 @@ function GettingLFBunches(data) {
 
 function ShowPokemonDetails() {
     document.querySelector(".DA-Place").style.display = "none";
+    document.querySelector(".DA-PlaceInfo").style.display = "none";
     document.querySelector(".DA-Delete").style.display = "block";
     tempUserID = "";
     if (ctsSeaching) {
@@ -2996,6 +3431,7 @@ function ShowPokemonDetails() {
     document.querySelector(".DA-CompetitiveView").style.display = "block";
     document.querySelector("#PanelArea").style.display = "none";
     document.querySelector("#InformationArea").style.display = "none";
+    document.querySelector("#CommunicationArea").style.display = "none";
 
     if (tempUserID != pokemonDetails.user_id || detailsLocked) {
         document.querySelector(".DA-DefaultView").style.pointerEvents = "none";
@@ -3148,8 +3584,40 @@ function ShowPokemonDetails() {
     document.querySelector(".DA-MintIcon").setAttribute("src", url + "/Resources/Misc/" + pokemonDetails.mint + ".png");
     miscData = pokemonDetails.misc;
     document.querySelector(".DA-MiscIcon").setAttribute("src", url + "/Resources/Misc/" + pokemonDetails.misc + ".png");
-    markData = pokemonDetails.mark;
-    document.querySelector(".DA-MarkIcon").setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Marks/" + pokemonDetails.mark + ".png");
+    //markData = pokemonDetails.mark;
+    //document.querySelector(".DA-MarkIcon").setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Marks/" + pokemonDetails.mark + ".png");
+    langData = pokemonDetails.language;
+    document.querySelector(".DA-LangIcon").innerHTML = "[" + langData + "]";
+
+    var cols = document.getElementsByClassName("Marks");
+    document.querySelector(".DA-MarkIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/(No Mark).png";
+    if (tempUserID != pokemonDetails.user_id || detailsLocked) {
+        for (i = 0; i < cols.length; i++) {
+            cols[i].style.background = "linear-gradient(#302b75, #112354)";
+            cols[i].style.display = "none";
+        }
+    } else {
+        for (i = 0; i < cols.length; i++) {
+            cols[i].style.background = "linear-gradient(#302b75, #112354)";
+            cols[i].style.display = "block";
+        }
+    }
+    markData = new Array(54);
+    markString = "";
+    if (pokemonDetails.mark != null) {
+        var arrayTempMarks = pokemonDetails.mark.split(",");
+        for (let i = 0; i < allMarksArray.length; i++) {
+            for (let j = 0; j < arrayTempMarks.length; j++) {
+                if (allMarksArray[i] == arrayTempMarks[j]) {
+                    markData[i] = allMarksArray[i];
+                    document.querySelector(".DA-MarkIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Marks/" + allMarksArray[i] + ".png";
+                    document.getElementById("DA-" + allMarksArray[i]).style.background = "#1e5578";
+                    document.getElementById("DA-" + allMarksArray[i]).style.display = "block";
+                    //console.log(markData);
+                }
+            }
+        }
+    }
 
     var cols = document.getElementsByClassName("Ribbons");
     document.querySelector(".DA-RibbonIcon").src = "https://poketrades.org/Resources/Images/Dreamworld Artwork/Ribbons/(No Ribbon).png";
@@ -4137,8 +4605,14 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
         else if (imageName.includes("HP")) {
             image.setAttribute("src", url + "/Resources/Misc/" + imageName + ".png");
         }
-        else if (imageName.includes("Ribbon")) {
+        else if (imageName.includes("Tera ")) {
+            image.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/Tera Icons/" + imageName + ".png");
+        }
+        else if (imageName.includes(" Ribbon")) {
             image.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/Ribbons/" + imageName + ".png");
+        }
+        else if (imageName.includes(" Mark")) {
+            image.setAttribute("src", url + "/Resources/Images/Dreamworld Artwork/Small Icons/Marks/" + imageName + ".png");
         }
         else {
             if (!shiny.includes("Normal")) {
@@ -4220,40 +4694,40 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
         if (gender.includes("Genderless") || gender.includes("(Any Gender)")) {
             if (shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtained == "R/G/B/Y") {
+                    if (gameObtained == "R/G/B/Y" || gameObtained == "Red" || gameObtained == "Green" || gameObtained == "Blue" || gameObtained == "Yellow") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
                     }
-                    else if (gameObtained == "G/S/C") {
+                    else if (gameObtained == "G/S/C" || gameObtained == "Gold" || gameObtained == "Silver" || gameObtained == "Crystal") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + imageName + ".png");
                     }
-                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD" || gameObtained == "Ruby" || gameObtained == "Sapphire" || gameObtained == "Emerald" || gameObtained == "Fire Red" || gameObtained == "Leaf Green" || gameObtained == "Colosseum" || gameObtained == "XD Gale of Darkness") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + imageName + ".png");
                     }
-                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS" || gameObtained == "Diamond" || gameObtained == "Pearl" || gameObtained == "Platinum" || gameObtained == "Heart Gold" || gameObtained == "Soul Silver") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BW/BW2") {
+                    else if (gameObtained == "BW/BW2" || gameObtained == "Black" || gameObtained == "White" || gameObtained == "Black 2" || gameObtained == "White 2") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + ".png");
                     }
-                    else if (gameObtained == "X/Y") {
+                    else if (gameObtained == "X/Y" || gameObtained == "X" || gameObtained == "Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                     }
-                    else if (gameObtained == "OR/AS") {
+                    else if (gameObtained == "OR/AS" || gameObtained == "Omega Ruby" || gameObtained == "Alpha Sapphire") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                     }
-                    else if (gameObtained == "SM/USUM") {
+                    else if (gameObtained == "SM/USUM" || gameObtained == "Sun" || gameObtained == "Moon" || gameObtained == "Ultra Sun" || gameObtained == "Ultra Moon") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LGP/LGE") {
+                    else if (gameObtained == "LGP/LGE" || gameObtained == "Let's Go Pikachu" || gameObtained == "Let's Go Eevee") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BD/SP") {
+                    else if (gameObtained == "BD/SP" || gameObtained == "Brilliant Diamond" || gameObtained == "Shining Pearl") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSP/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LA") {
+                    else if (gameObtained == "LA" || gameObtained == "Legends Arceus") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + ".png");
                     }
-                    else if (gameObtained == "S/V") {
+                    else if (gameObtained == "S/V" || gameObtained == "Scarlet" || gameObtained == "Violet") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + ".png");
                     }
                     else {
@@ -4271,40 +4745,40 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
 
             } else {
                 if (generationalSprites) {
-                    if (gameObtained == "R/G/B/Y") {
+                    if (gameObtained == "R/G/B/Y" || gameObtained == "Red" || gameObtained == "Green" || gameObtained == "Blue" || gameObtained == "Yellow") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "G/S/C") {
+                    else if (gameObtained == "G/S/C" || gameObtained == "Gold" || gameObtained == "Silver" || gameObtained == "Crystal") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD" || gameObtained == "Ruby" || gameObtained == "Sapphire" || gameObtained == "Emerald" || gameObtained == "Fire Red" || gameObtained == "Leaf Green" || gameObtained == "Colosseum" || gameObtained == "XD Gale of Darkness") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS" || gameObtained == "Diamond" || gameObtained == "Pearl" || gameObtained == "Platinum" || gameObtained == "Heart Gold" || gameObtained == "Soul Silver") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BW/BW2") {
+                    else if (gameObtained == "BW/BW2" || gameObtained == "Black" || gameObtained == "White" || gameObtained == "Black 2" || gameObtained == "White 2") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "X/Y") {
+                    else if (gameObtained == "X/Y" || gameObtained == "X" || gameObtained == "Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "OR/AS") {
+                    else if (gameObtained == "OR/AS" || gameObtained == "Omega Ruby" || gameObtained == "Alpha Sapphire") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "SM/USUM") {
+                    else if (gameObtained == "SM/USUM" || gameObtained == "Sun" || gameObtained == "Moon" || gameObtained == "Ultra Sun" || gameObtained == "Ultra Moon") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LGP/LGE") {
+                    else if (gameObtained == "LGP/LGE" || gameObtained == "Let's Go Pikachu" || gameObtained == "Let's Go Eevee") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BD/SP") {
+                    else if (gameObtained == "BD/SP" || gameObtained == "Brilliant Diamond" || gameObtained == "Shining Pearl") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LA") {
+                    else if (gameObtained == "LA" || gameObtained == "Legends Arceus") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "S/V") {
+                    else if (gameObtained == "S/V" || gameObtained == "Scarlet" || gameObtained == "Violet") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + ".png");
                     }
                     else {
@@ -4329,40 +4803,40 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
         if (gender.includes("Male") || gender.includes("(Any Gender)")) {
             if (shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtained == "R/G/B/Y") {
+                    if (gameObtained == "R/G/B/Y" || gameObtained == "Red" || gameObtained == "Green" || gameObtained == "Blue" || gameObtained == "Yellow") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
                     }
-                    else if (gameObtained == "G/S/C") {
+                    else if (gameObtained == "G/S/C" || gameObtained == "Gold" || gameObtained == "Silver" || gameObtained == "Crystal") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + imageName + ".png");
                     }
-                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD" || gameObtained == "Ruby" || gameObtained == "Sapphire" || gameObtained == "Emerald" || gameObtained == "Fire Red" || gameObtained == "Leaf Green" || gameObtained == "Colosseum" || gameObtained == "XD Gale of Darkness") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + imageName + ".png");
                     }
-                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS" || gameObtained == "Diamond" || gameObtained == "Pearl" || gameObtained == "Platinum" || gameObtained == "Heart Gold" || gameObtained == "Soul Silver") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BW/BW2") {
+                    else if (gameObtained == "BW/BW2" || gameObtained == "Black" || gameObtained == "White" || gameObtained == "Black 2" || gameObtained == "White 2") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + ".png");
                     }
-                    else if (gameObtained == "X/Y") {
+                    else if (gameObtained == "X/Y" || gameObtained == "X" || gameObtained == "Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                     }
-                    else if (gameObtained == "OR/AS") {
+                    else if (gameObtained == "OR/AS" || gameObtained == "Omega Ruby" || gameObtained == "Alpha Sapphire") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                     }
-                    else if (gameObtained == "SM/USUM") {
+                    else if (gameObtained == "SM/USUM" || gameObtained == "Sun" || gameObtained == "Moon" || gameObtained == "Ultra Sun" || gameObtained == "Ultra Moon") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LGP/LGE") {
+                    else if (gameObtained == "LGP/LGE" || gameObtained == "Let's Go Pikachu" || gameObtained == "Let's Go Eevee") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BD/SP") {
+                    else if (gameObtained == "BD/SP" || gameObtained == "Brilliant Diamond" || gameObtained == "Shining Pearl") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSP/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LA") {
+                    else if (gameObtained == "LA" || gameObtained == "Legends Arceus") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + ".png");
                     }
-                    else if (gameObtained == "S/V") {
+                    else if (gameObtained == "S/V" || gameObtained == "Scarlet" || gameObtained == "Violet") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + ".png");
                     }
                     else {
@@ -4380,40 +4854,40 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
 
             } else {
                 if (generationalSprites) {
-                    if (gameObtained == "R/G/B/Y") {
+                    if (gameObtained == "R/G/B/Y" || gameObtained == "Red" || gameObtained == "Green" || gameObtained == "Blue" || gameObtained == "Yellow") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "G/S/C") {
+                    else if (gameObtained == "G/S/C" || gameObtained == "Gold" || gameObtained == "Silver" || gameObtained == "Crystal") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD" || gameObtained == "Ruby" || gameObtained == "Sapphire" || gameObtained == "Emerald" || gameObtained == "Fire Red" || gameObtained == "Leaf Green" || gameObtained == "Colosseum" || gameObtained == "XD Gale of Darkness") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS" || gameObtained == "Diamond" || gameObtained == "Pearl" || gameObtained == "Platinum" || gameObtained == "Heart Gold" || gameObtained == "Soul Silver") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BW/BW2") {
+                    else if (gameObtained == "BW/BW2" || gameObtained == "Black" || gameObtained == "White" || gameObtained == "Black 2" || gameObtained == "White 2") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "X/Y") {
+                    else if (gameObtained == "X/Y" || gameObtained == "X" || gameObtained == "Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "OR/AS") {
+                    else if (gameObtained == "OR/AS" || gameObtained == "Omega Ruby" || gameObtained == "Alpha Sapphire") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "SM/USUM") {
+                    else if (gameObtained == "SM/USUM" || gameObtained == "Sun" || gameObtained == "Moon" || gameObtained == "Ultra Sun" || gameObtained == "Ultra Moon") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LGP/LGE") {
+                    else if (gameObtained == "LGP/LGE" || gameObtained == "Let's Go Pikachu" || gameObtained == "Let's Go Eevee") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BD/SP") {
+                    else if (gameObtained == "BD/SP" || gameObtained == "Brilliant Diamond" || gameObtained == "Shining Pearl") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LA") {
+                    else if (gameObtained == "LA" || gameObtained == "Legends Arceus") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "S/V") {
+                    else if (gameObtained == "S/V" || gameObtained == "Scarlet" || gameObtained == "Violet") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + ".png");
                     }
                     else {
@@ -4437,40 +4911,40 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
         if (gender.includes("Female") || gender.includes("(Any Gender)")) {
             if (shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtained == "R/G/B/Y") {
+                    if (gameObtained == "R/G/B/Y" || gameObtained == "Red" || gameObtained == "Green" || gameObtained == "Blue" || gameObtained == "Yellow") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
                     }
-                    else if (gameObtained == "G/S/C") {
+                    else if (gameObtained == "G/S/C" || gameObtained == "Gold" || gameObtained == "Silver" || gameObtained == "Crystal") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + imageName + ".png");
                     }
-                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD" || gameObtained == "Ruby" || gameObtained == "Sapphire" || gameObtained == "Emerald" || gameObtained == "Fire Red" || gameObtained == "Leaf Green" || gameObtained == "Colosseum" || gameObtained == "XD Gale of Darkness") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + imageName + ".png");
                     }
-                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS" || gameObtained == "Diamond" || gameObtained == "Pearl" || gameObtained == "Platinum" || gameObtained == "Heart Gold" || gameObtained == "Soul Silver") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BW/BW2") {
+                    else if (gameObtained == "BW/BW2" || gameObtained == "Black" || gameObtained == "White" || gameObtained == "Black 2" || gameObtained == "White 2") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + ".png");
                     }
-                    else if (gameObtained == "X/Y") {
+                    else if (gameObtained == "X/Y" || gameObtained == "X" || gameObtained == "Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                     }
-                    else if (gameObtained == "OR/AS") {
+                    else if (gameObtained == "OR/AS" || gameObtained == "Omega Ruby" || gameObtained == "Alpha Sapphire") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                     }
-                    else if (gameObtained == "SM/USUM") {
+                    else if (gameObtained == "SM/USUM" || gameObtained == "Sun" || gameObtained == "Moon" || gameObtained == "Ultra Sun" || gameObtained == "Ultra Moon") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LGP/LGE") {
+                    else if (gameObtained == "LGP/LGE" || gameObtained == "Let's Go Pikachu" || gameObtained == "Let's Go Eevee") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BD/SP") {
+                    else if (gameObtained == "BD/SP" || gameObtained == "Brilliant Diamond" || gameObtained == "Shining Pearl") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSP/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LA") {
+                    else if (gameObtained == "LA" || gameObtained == "Legends Arceus") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + ".png");
                     }
-                    else if (gameObtained == "S/V") {
+                    else if (gameObtained == "S/V" || gameObtained == "Scarlet" || gameObtained == "Violet") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + ".png");
                     }
                     else {
@@ -4488,40 +4962,40 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
 
             } else {
                 if (generationalSprites) {
-                    if (gameObtained == "R/G/B/Y") {
+                    if (gameObtained == "R/G/B/Y" || gameObtained == "Red" || gameObtained == "Green" || gameObtained == "Blue" || gameObtained == "Yellow") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "G/S/C") {
+                    else if (gameObtained == "G/S/C" || gameObtained == "Gold" || gameObtained == "Silver" || gameObtained == "Crystal") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD" || gameObtained == "Ruby" || gameObtained == "Sapphire" || gameObtained == "Emerald" || gameObtained == "Fire Red" || gameObtained == "Leaf Green" || gameObtained == "Colosseum" || gameObtained == "XD Gale of Darkness") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS" || gameObtained == "Diamond" || gameObtained == "Pearl" || gameObtained == "Platinum" || gameObtained == "Heart Gold" || gameObtained == "Soul Silver") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BW/BW2") {
+                    else if (gameObtained == "BW/BW2" || gameObtained == "Black" || gameObtained == "White" || gameObtained == "Black 2" || gameObtained == "White 2") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "X/Y") {
+                    else if (gameObtained == "X/Y" || gameObtained == "X" || gameObtained == "Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "OR/AS") {
+                    else if (gameObtained == "OR/AS" || gameObtained == "Omega Ruby" || gameObtained == "Alpha Sapphire") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "SM/USUM") {
+                    else if (gameObtained == "SM/USUM" || gameObtained == "Sun" || gameObtained == "Moon" || gameObtained == "Ultra Sun" || gameObtained == "Ultra Moon") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LGP/LGE") {
+                    else if (gameObtained == "LGP/LGE" || gameObtained == "Let's Go Pikachu" || gameObtained == "Let's Go Eevee") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BD/SP") {
+                    else if (gameObtained == "BD/SP" || gameObtained == "Brilliant Diamond" || gameObtained == "Shining Pearl") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LA") {
+                    else if (gameObtained == "LA" || gameObtained == "Legends Arceus") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "S/V") {
+                    else if (gameObtained == "S/V" || gameObtained == "Scarlet" || gameObtained == "Violet") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + ".png");
                     }
                     else {
@@ -4546,64 +5020,64 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
         if (gender.includes("Male") || gender.includes("(Any Gender)")) {
             if (shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtained == "R/G/B/Y") {
+                    if (gameObtained == "R/G/B/Y" || gameObtained == "Red" || gameObtained == "Green" || gameObtained == "Blue" || gameObtained == "Yellow") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
                     }
-                    else if (gameObtained == "G/S/C") {
+                    else if (gameObtained == "G/S/C" || gameObtained == "Gold" || gameObtained == "Silver" || gameObtained == "Crystal") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + imageName + ".png");
                     }
-                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD" || gameObtained == "Ruby" || gameObtained == "Sapphire" || gameObtained == "Emerald" || gameObtained == "Fire Red" || gameObtained == "Leaf Green" || gameObtained == "Colosseum" || gameObtained == "XD Gale of Darkness") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + imageName + ".png");
                     }
-                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS" || gameObtained == "Diamond" || gameObtained == "Pearl" || gameObtained == "Platinum" || gameObtained == "Heart Gold" || gameObtained == "Soul Silver") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + "-Male.png");
                         }
                     }
-                    else if (gameObtained == "BW/BW2") {
+                    else if (gameObtained == "BW/BW2" || gameObtained == "Black" || gameObtained == "White" || gameObtained == "Black 2" || gameObtained == "White 2") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + "-Male.png");
                         }
                     }
-                    else if (gameObtained == "X/Y") {
+                    else if (gameObtained == "X/Y" || gameObtained == "X" || gameObtained == "Y") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + "-Male.png");
                         }
                     }
-                    else if (gameObtained == "OR/AS") {
+                    else if (gameObtained == "OR/AS" || gameObtained == "Omega Ruby" || gameObtained == "Alpha Sapphire") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + "-Male.png");
                         }
                     }
-                    else if (gameObtained == "SM/USUM") {
+                    else if (gameObtained == "SM/USUM" || gameObtained == "Sun" || gameObtained == "Moon" || gameObtained == "Ultra Sun" || gameObtained == "Ultra Moon") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + "-Male.png");
                         }
                     }
-                    else if (gameObtained == "LGP/LGE") {
+                    else if (gameObtained == "LGP/LGE" || gameObtained == "Let's Go Pikachu" || gameObtained == "Let's Go Eevee") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + "-Male.png");
                         }
                     }
-                    else if (gameObtained == "BD/SP") {
+                    else if (gameObtained == "BD/SP" || gameObtained == "Brilliant Diamond" || gameObtained == "Shining Pearl") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSP/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LA") {
+                    else if (gameObtained == "LA" || gameObtained == "Legends Arceus") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + "-Male.png");
                     }
-                    else if (gameObtained == "S/V") {
+                    else if (gameObtained == "S/V" || gameObtained == "Scarlet" || gameObtained == "Violet") {
                         if (imageName == "Oinkologne") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + "-Male.png");
                         } else {
@@ -4624,64 +5098,64 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                 }
             } else {
                 if (generationalSprites) {
-                    if (gameObtained == "R/G/B/Y") {
+                    if (gameObtained == "R/G/B/Y" || gameObtained == "Red" || gameObtained == "Green" || gameObtained == "Blue" || gameObtained == "Yellow") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "G/S/C") {
+                    else if (gameObtained == "G/S/C" || gameObtained == "Gold" || gameObtained == "Silver" || gameObtained == "Crystal") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD" || gameObtained == "Ruby" || gameObtained == "Sapphire" || gameObtained == "Emerald" || gameObtained == "Fire Red" || gameObtained == "Leaf Green" || gameObtained == "Colosseum" || gameObtained == "XD Gale of Darkness") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS" || gameObtained == "Diamond" || gameObtained == "Pearl" || gameObtained == "Platinum" || gameObtained == "Heart Gold" || gameObtained == "Soul Silver") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + "-Male.png");
                         }
                     }
-                    else if (gameObtained == "BW/BW2") {
+                    else if (gameObtained == "BW/BW2" || gameObtained == "Black" || gameObtained == "White" || gameObtained == "Black 2" || gameObtained == "White 2") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + "-Male.png");
                         }
                     }
-                    else if (gameObtained == "X/Y") {
+                    else if (gameObtained == "X/Y" || gameObtained == "X" || gameObtained == "Y") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + "-Male.png");
                         }
                     }
-                    else if (gameObtained == "OR/AS") {
+                    else if (gameObtained == "OR/AS" || gameObtained == "Omega Ruby" || gameObtained == "Alpha Sapphire") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + "-Male.png");
                         }
                     }
-                    else if (gameObtained == "SM/USUM") {
+                    else if (gameObtained == "SM/USUM" || gameObtained == "Sun" || gameObtained == "Moon" || gameObtained == "Ultra Sun" || gameObtained == "Ultra Moon") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + "-Male.png");
                         }
                     }
-                    else if (gameObtained == "LGP/LGE") {
+                    else if (gameObtained == "LGP/LGE" || gameObtained == "Let's Go Pikachu" || gameObtained == "Let's Go Eevee") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + "-Male.png");
                         }
                     }
-                    else if (gameObtained == "BD/SP") {
+                    else if (gameObtained == "BD/SP" || gameObtained == "Brilliant Diamond" || gameObtained == "Shining Pearl") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LA") {
+                    else if (gameObtained == "LA" || gameObtained == "Legends Arceus") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + "-Male.png");
                     }
-                    else if (gameObtained == "S/V") {
+                    else if (gameObtained == "S/V" || gameObtained == "Scarlet" || gameObtained == "Violet") {
                         if (imageName == "Oinkologne") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + "-Male.png");
                         } else {
@@ -4706,64 +5180,64 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
         else if (gender.includes("Female") || gender.includes("(Any Gender)")) {
             if (shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtained == "R/G/B/Y") {
+                    if (gameObtained == "R/G/B/Y" || gameObtained == "Red" || gameObtained == "Green" || gameObtained == "Blue" || gameObtained == "Yellow") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
                     }
-                    else if (gameObtained == "G/S/C") {
+                    else if (gameObtained == "G/S/C" || gameObtained == "Gold" || gameObtained == "Silver" || gameObtained == "Crystal") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + imageName + ".png");
                     }
-                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD" || gameObtained == "Ruby" || gameObtained == "Sapphire" || gameObtained == "Emerald" || gameObtained == "Fire Red" || gameObtained == "Leaf Green" || gameObtained == "Colosseum" || gameObtained == "XD Gale of Darkness") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + imageName + ".png");
                     }
-                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS" || gameObtained == "Diamond" || gameObtained == "Pearl" || gameObtained == "Platinum" || gameObtained == "Heart Gold" || gameObtained == "Soul Silver") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + "-.png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + "-Female.png");
                         }
                     }
-                    else if (gameObtained == "BW/BW2") {
+                    else if (gameObtained == "BW/BW2" || gameObtained == "Black" || gameObtained == "White" || gameObtained == "Black 2" || gameObtained == "White 2") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + "-Female.png");
                         }
                     }
-                    else if (gameObtained == "X/Y") {
+                    else if (gameObtained == "X/Y" || gameObtained == "X" || gameObtained == "Y") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + "-Female.png");
                         }
                     }
-                    else if (gameObtained == "OR/AS") {
+                    else if (gameObtained == "OR/AS" || gameObtained == "Omega Ruby" || gameObtained == "Alpha Sapphire") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + "-Female.png");
                         }
                     }
-                    else if (gameObtained == "SM/USUM") {
+                    else if (gameObtained == "SM/USUM" || gameObtained == "Sun" || gameObtained == "Moon" || gameObtained == "Ultra Sun" || gameObtained == "Ultra Moon") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + "-Female.png");
                         }
                     }
-                    else if (gameObtained == "LGP/LGE") {
+                    else if (gameObtained == "LGP/LGE" || gameObtained == "Let's Go Pikachu" || gameObtained == "Let's Go Eevee") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + "-Female.png");
                         }
                     }
-                    else if (gameObtained == "BD/SP") {
+                    else if (gameObtained == "BD/SP" || gameObtained == "Brilliant Diamond" || gameObtained == "Shining Pearl") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSP/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LA") {
+                    else if (gameObtained == "LA" || gameObtained == "Legends Arceus") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + "-Female.png");
                     }
-                    else if (gameObtained == "S/V") {
+                    else if (gameObtained == "S/V" || gameObtained == "Scarlet" || gameObtained == "Violet") {
                         if (imageName == "Oinkologne") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + "-Female.png");
                         } else {
@@ -4784,64 +5258,64 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                 }
             } else {
                 if (generationalSprites) {
-                    if (gameObtained == "R/G/B/Y") {
+                    if (gameObtained == "R/G/B/Y" || gameObtained == "Red" || gameObtained == "Green" || gameObtained == "Blue" || gameObtained == "Yellow") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "G/S/C") {
+                    else if (gameObtained == "G/S/C" || gameObtained == "Gold" || gameObtained == "Silver" || gameObtained == "Crystal") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD" || gameObtained == "Ruby" || gameObtained == "Sapphire" || gameObtained == "Emerald" || gameObtained == "Fire Red" || gameObtained == "Leaf Green" || gameObtained == "Colosseum" || gameObtained == "XD Gale of Darkness") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS" || gameObtained == "Diamond" || gameObtained == "Pearl" || gameObtained == "Platinum" || gameObtained == "Heart Gold" || gameObtained == "Soul Silver") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + "-Female.png");
                         }
                     }
-                    else if (gameObtained == "BW/BW2") {
+                    else if (gameObtained == "BW/BW2" || gameObtained == "Black" || gameObtained == "White" || gameObtained == "Black 2" || gameObtained == "White 2") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + "-Female.png");
                         }
                     }
-                    else if (gameObtained == "X/Y") {
+                    else if (gameObtained == "X/Y" || gameObtained == "X" || gameObtained == "Y") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + "-Female.png");
                         }
                     }
-                    else if (gameObtained == "OR/AS") {
+                    else if (gameObtained == "OR/AS" || gameObtained == "Omega Ruby" || gameObtained == "Alpha Sapphire") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + "-Female.png");
                         }
                     }
-                    else if (gameObtained == "SM/USUM") {
+                    else if (gameObtained == "SM/USUM" || gameObtained == "Sun" || gameObtained == "Moon" || gameObtained == "Ultra Sun" || gameObtained == "Ultra Moon") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + "-Female.png");
                         }
                     }
-                    else if (gameObtained == "LGP/LGE") {
+                    else if (gameObtained == "LGP/LGE" || gameObtained == "Let's Go Pikachu" || gameObtained == "Let's Go Eevee") {
                         if (imageName == "Eevee") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + ".png");
                         } else {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + "-Female.png");
                         }
                     }
-                    else if (gameObtained == "BD/SP") {
+                    else if (gameObtained == "BD/SP" || gameObtained == "Brilliant Diamond" || gameObtained == "Shining Pearl") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LA") {
+                    else if (gameObtained == "LA" || gameObtained == "Legends Arceus") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + "-Female.png");
                     }
-                    else if (gameObtained == "S/V") {
+                    else if (gameObtained == "S/V" || gameObtained == "Scarlet" || gameObtained == "Violet") {
                         if (imageName == "Oinkologne") {
                             image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + "-Male.png");
                         } else {
@@ -4871,40 +5345,40 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
         if (!gender.includes("Genderless") || gender.includes("(Any Gender)")) {
             if (shiny.includes("Normal")) {
                 if (generationalSprites) {
-                    if (gameObtained == "R/G/B/Y") {
+                    if (gameObtained == "R/G/B/Y" || gameObtained == "Red" || gameObtained == "Green" || gameObtained == "Blue" || gameObtained == "Yellow") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen1Sprites/Gen1/" + imageName + ".png");
                     }
-                    else if (gameObtained == "G/S/C") {
+                    else if (gameObtained == "G/S/C" || gameObtained == "Gold" || gameObtained == "Silver" || gameObtained == "Crystal") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2/" + imageName + ".png");
                     }
-                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD" || gameObtained == "Ruby" || gameObtained == "Sapphire" || gameObtained == "Emerald" || gameObtained == "Fire Red" || gameObtained == "Leaf Green" || gameObtained == "Colosseum" || gameObtained == "XD Gale of Darkness") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3/" + imageName + ".png");
                     }
-                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS" || gameObtained == "Diamond" || gameObtained == "Pearl" || gameObtained == "Platinum" || gameObtained == "Heart Gold" || gameObtained == "Soul Silver") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BW/BW2") {
+                    else if (gameObtained == "BW/BW2" || gameObtained == "Black" || gameObtained == "White" || gameObtained == "Black 2" || gameObtained == "White 2") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5/" + imageName + ".png");
                     }
-                    else if (gameObtained == "X/Y") {
+                    else if (gameObtained == "X/Y" || gameObtained == "X" || gameObtained == "Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                     }
-                    else if (gameObtained == "OR/AS") {
+                    else if (gameObtained == "OR/AS" || gameObtained == "Omega Ruby" || gameObtained == "Alpha Sapphire") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                     }
-                    else if (gameObtained == "SM/USUM") {
+                    else if (gameObtained == "SM/USUM" || gameObtained == "Sun" || gameObtained == "Moon" || gameObtained == "Ultra Sun" || gameObtained == "Ultra Moon") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3ds/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LGP/LGE") {
+                    else if (gameObtained == "LGP/LGE" || gameObtained == "Let's Go Pikachu" || gameObtained == "Let's Go Eevee") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPE/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BD/SP") {
+                    else if (gameObtained == "BD/SP" || gameObtained == "Brilliant Diamond" || gameObtained == "Shining Pearl") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSP/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LA") {
+                    else if (gameObtained == "LA" || gameObtained == "Legends Arceus") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LA/" + imageName + ".png");
                     }
-                    else if (gameObtained == "S/V") {
+                    else if (gameObtained == "S/V" || gameObtained == "Scarlet" || gameObtained == "Violet") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9/" + imageName + ".png");
                     }
                     else {
@@ -4921,40 +5395,40 @@ function SetImage(image, imageName, gender, shiny, gameObtained) {
                 }
             } else {
                 if (generationalSprites) {
-                    if (gameObtained == "R/G/B/Y") {
+                    if (gameObtained == "R/G/B/Y" || gameObtained == "Red" || gameObtained == "Green" || gameObtained == "Blue" || gameObtained == "Yellow") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "G/S/C") {
+                    else if (gameObtained == "G/S/C" || gameObtained == "Gold" || gameObtained == "Silver" || gameObtained == "Crystal") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen2Sprites/Gen2Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD") {
+                    else if (gameObtained == "R/S/E" || gameObtained == "FR/LG" || gameObtained == "Colo/XD" || gameObtained == "Ruby" || gameObtained == "Sapphire" || gameObtained == "Emerald" || gameObtained == "Fire Red" || gameObtained == "Leaf Green" || gameObtained == "Colosseum" || gameObtained == "XD Gale of Darkness") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen3Sprites/Gen3Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS") {
+                    else if (gameObtained == "D/P/PT" || gameObtained == "HG/SS" || gameObtained == "Diamond" || gameObtained == "Pearl" || gameObtained == "Platinum" || gameObtained == "Heart Gold" || gameObtained == "Soul Silver") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen4Sprites/Gen4Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BW/BW2") {
+                    else if (gameObtained == "BW/BW2" || gameObtained == "Black" || gameObtained == "White" || gameObtained == "Black 2" || gameObtained == "White 2") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen5Sprites/Gen5Shiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "X/Y") {
+                    else if (gameObtained == "X/Y" || gameObtained == "X" || gameObtained == "Y") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "OR/AS") {
+                    else if (gameObtained == "OR/AS" || gameObtained == "Omega Ruby" || gameObtained == "Alpha Sapphire") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "SM/USUM") {
+                    else if (gameObtained == "SM/USUM" || gameObtained == "Sun" || gameObtained == "Moon" || gameObtained == "Ultra Sun" || gameObtained == "Ultra Moon") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/3dsModels/3dsShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LGP/LGE") {
+                    else if (gameObtained == "LGP/LGE" || gameObtained == "Let's Go Pikachu" || gameObtained == "Let's Go Eevee") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LGPEModels/LGPEShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "BD/SP") {
+                    else if (gameObtained == "BD/SP" || gameObtained == "Brilliant Diamond" || gameObtained == "Shining Pearl") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/BDSPImages/BDSPShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "LA") {
+                    else if (gameObtained == "LA" || gameObtained == "Legends Arceus") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/LAModels/LAShiny/" + imageName + ".png");
                     }
-                    else if (gameObtained == "S/V") {
+                    else if (gameObtained == "S/V" || gameObtained == "Scarlet" || gameObtained == "Violet") {
                         image.setAttribute("src", url + "/Resources/GenerationalDesigns/Gen9Images/Gen9Shiny/" + imageName + ".png");
                     }
                     else {

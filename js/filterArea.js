@@ -43,11 +43,12 @@ filterHome = "";
 $('.FA-CloseButton').click(function () {
     document.querySelector("#FilterArea").style.display = "none";
 
-    if (selectedPokemon == null) {
-        //document.querySelector("#SelectionArea").style.width = "100%";
-        document.querySelector("#PanelArea").style.display = "block";
-    } else if (ctsSeaching && selectedPokemon == null) {
+    if (ctsSeaching && selectedPokemon == null) {
         document.querySelector("#CTSArea").style.display = "block";
+    }
+    else if (selectedPokemon == null) {
+        document.querySelector("#PanelArea").style.display = "block";
+        $.post(url + "/PHP/search_id.php", { searchID: searchInfoText }, TradeShopInfo);
     } else if (selectedPokemon != null) {
         document.querySelector("#DetailsArea").style.display = "block";
     }
@@ -855,10 +856,127 @@ function FilterResults() {
 
         if (filterGameObtained.value == "(Any Game)") {
 
-        } else if (arrayData["Rows"][i].game_obtained == filterGameObtained.value) {
+        }/* else if (arrayData["Rows"][i].game_obtained == filterGameObtained.value) {
 
         } else {
             passedFilter = false;
+        }*/
+        else {
+            if (filterGameObtained.value == "R/G/B/Y") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Red" || arrayData["Rows"][i].game_obtained == "Green" || arrayData["Rows"][i].game_obtained == "Blue" || arrayData["Rows"][i].game_obtained == "Yellow") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "G/S/C") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Gold" || arrayData["Rows"][i].game_obtained == "Silver" || arrayData["Rows"][i].game_obtained == "Crystal") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "R/S/E") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Ruby" || arrayData["Rows"][i].game_obtained == "Sapphire" || arrayData["Rows"][i].game_obtained == "Emerald") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "FR/LG") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Fire Red" || arrayData["Rows"][i].game_obtained == "Leaf Green") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "Colo/XD") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Colosseum" || arrayData["Rows"][i].game_obtained == "XD Gale of Darkness") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "D/P/PT") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Diamond" || arrayData["Rows"][i].game_obtained == "Pearl" || arrayData["Rows"][i].game_obtained == "Platinum") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "HG/SS") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Heart Gold" || arrayData["Rows"][i].game_obtained == "Soul Silver") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "BW/BW2") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Black" || arrayData["Rows"][i].game_obtained == "White" || arrayData["Rows"][i].game_obtained == "Black 2" || arrayData["Rows"][i].game_obtained == "White 2") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "X/Y") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "X" || arrayData["Rows"][i].game_obtained == "Y") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "OR/AS") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Omega Ruby" || arrayData["Rows"][i].game_obtained == "Alpha Sapphire") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "SM/USUM") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Sun" || arrayData["Rows"][i].game_obtained == "Moon" || arrayData["Rows"][i].game_obtained == "Ultra Sun" || arrayData["Rows"][i].game_obtained == "Ultra Moon") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "LGP/LGE") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Let's Go Pikachu" || arrayData["Rows"][i].game_obtained == "Let's Go Eevee") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "SW/SH") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Sword" || arrayData["Rows"][i].game_obtained == "Shield") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "BD/SP") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Brilliant Diamond" || arrayData["Rows"][i].game_obtained == "Shining Pearl") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "LA") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Legends Arceus") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (filterGameObtained.value == "S/V") {
+                if (arrayData["Rows"][i].game_obtained == filterGameObtained.value || arrayData["Rows"][i].game_obtained == "Scarlet" || arrayData["Rows"][i].game_obtained == "Violet") {
+
+                } else {
+                    passedFilter = false;
+                }
+            }
+            else if (arrayData["Rows"][i].game_obtained != filterGameObtained.value) {
+                passedFilter = false;
+            }
         }
 
         if (filterNote.value == "(Any/No Note)") {

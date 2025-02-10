@@ -1,0 +1,289 @@
+@media only screen and (max-width: 768px) {
+    [id*="CommunicationArea"] {
+        height: auto !important;
+        top: 80% !important;
+        width: 100% !important;
+    }
+}
+
+#CommunicationArea {
+    background: url('https://poketrades.org/Resources/Designs/Sidebar.png');
+    position: absolute;
+    display: none;
+    height: calc(100% - 52px);
+    z-index: 8;
+    width: 420px;
+    overflow: auto;
+    right: 0;
+    margin-top: 52px;
+    border-color: #373a6d;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.CA-Buttons {
+    display: flex;
+    text-align: center;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    top: 0px;
+    z-index: 10;
+    margin-bottom: 8px;
+}
+
+.CA-ButtonDesign {
+    background: #171d2c;
+    border-width: 2px;
+    border-style: solid;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #dbdbdb;
+    cursor: pointer;
+    margin: 3px;
+    border-radius: 5px;
+
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    background-size: contain;
+    border-color: #3d429c;
+}
+
+#ContactsSection {
+    overflow: auto;
+    margin-bottom: 110px !important;
+}
+
+#GeneratedContacts {
+    position: absolute;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    /*max-height: 600px;*/
+    overflow: auto;
+    margin-left: 2px;
+    margin-right: 5px;
+    padding-bottom: 10px;
+}
+
+#ContactsContainer {
+    display: grid;
+    height: inherit;
+    grid-gap: 1rem;
+    place-items: center;
+}
+
+.CA-ContactBlock {
+    display: flex;
+    position: relative;
+    margin: auto;
+    width: 298px;
+    min-height: 22px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /*background: linear-gradient(#2b3075, #004181);*/
+    background: linear-gradient(#073e69, #004181);
+    padding: 3px;
+    text-align: center;
+    border-style: solid;
+    border-color: #576ab3;
+    cursor: pointer;
+}
+
+.CA-ContactText {
+    font-weight: normal;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: monospace;
+    color: #e6e6e6;
+    font-size: 20px;
+}
+
+#BlockedSection {
+    overflow: auto;
+    margin-bottom: 110px !important;
+}
+
+#GeneratedBlocked {
+    position: absolute;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    /*max-height: 600px;*/
+    overflow: auto;
+    margin-left: 2px;
+    margin-right: 5px;
+    padding-bottom: 10px;
+}
+
+#BlockedContainer {
+    display: grid;
+    height: inherit;
+    grid-gap: 1rem;
+    place-items: center;
+}
+
+.CA-BlockedBlock {
+    display: flex;
+    position: relative;
+    margin: auto;
+    width: 298px;
+    min-height: 22px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /*background: linear-gradient(#2b3075, #004181);*/
+    background: linear-gradient(#073e69, #004181);
+    padding: 3px;
+    text-align: center;
+    border-style: solid;
+    border-color: #576ab3;
+    cursor: pointer;
+}
+
+.CA-BlockedText {
+    font-weight: normal;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: monospace;
+    color: #e6e6e6;
+    font-size: 20px;
+}
+
+
+#Inbox {
+    display: none;
+}
+
+#MessagesSection {
+    overflow: auto;
+    margin-bottom: 110px !important;
+}
+
+#GeneratedMessages {
+    position: absolute;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    max-height: 600px;
+    overflow: auto;
+    margin-left: 2px;
+    margin-right: 5px;
+    padding-bottom: 10px;
+    bottom: 110px;
+}
+
+#MessagesContainer {
+    display: grid;
+    height: inherit;
+    grid-gap: 1rem;
+    place-items: center;
+}
+
+.CA-UserAvatar {
+    display: inline-block;
+    position: absolute;
+    bottom: 50px;
+    border-style: solid;
+    border-radius: 9px;
+    width: 34px;
+    vertical-align: middle;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-color: rgb(160 160 160);
+    cursor: pointer;
+    vertical-align: top;
+
+}
+
+.CA-MessageInput {
+    background-image: linear-gradient(#142961, #233360);
+    resize: none;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #005da8;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    margin-top: 5px;
+    font-weight: normal;
+    font-family: monospace;
+    color: #e6e6e6;
+    font-size: 12px;
+    display: flex;
+    overflow: hidden;
+    min-height: 33px;
+    bottom: 50px;
+    position: absolute;
+    display: inline-block;
+    margin-left: 50px;
+}
+
+.CA-AvatarImage {
+    display: inline-block;
+    border-style: solid;
+    border-radius: 9px;
+    width: 28px;
+    vertical-align: middle;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-color: rgb(160 160 160);
+    cursor: pointer;
+    vertical-align: top;
+}
+
+.CA-SentMessage {
+    display: inline-block;
+    position: relative;
+    margin: auto;
+    width: 290px;
+    min-height: 22px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /*background: linear-gradient(#2b3075, #004181);*/
+    background: linear-gradient(#073e69, #004181);
+    padding: 3px;
+    text-align: center;
+    border-style: solid;
+    border-color: #576ab3;
+}
+
+.CA-RecievedMessage {
+    display: inline-block;
+    position: relative;
+    margin: auto;
+    width: 290px;
+    min-height: 22px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    /*background: linear-gradient(#2b3075, #004181);*/
+    background: linear-gradient(#073e69, #004181);
+    padding: 3px;
+    text-align: center;
+    border-style: solid;
+    border-color: #005da8;
+}
+
+.CA-Text {
+    /*display: block;*/
+    font-weight: normal;
+    font-family: monospace;
+    color: #e6e6e6;
+    font-size: 12px;
+}
+
+.CA-UsersInvolved {
+    color: white;
+    font-weight: bold;
+    font-family: monospace;
+    display: block;
+    text-align-last: center;
+    font-size: 15px;
+    /*bottom: 24px; */
+    position: absolute;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    top: 40px;
+}

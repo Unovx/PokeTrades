@@ -14,10 +14,12 @@ let ctsPokemonDropdown = document.querySelector(".CTS-PokemonDropdown");
 let ctsNicknameDropdown = document.querySelector(".CTS-NicknameDropdown");
 let ctsAbilityDropdown = document.querySelector(".CTS-AbilityDropdown");
 let ctsNatureDropdown = document.querySelector(".CTS-NatureDropdown");
+let ctsNatureArray = new Array();
 let cstGen6 = "";
 let cstGen7 = "";
 let cstGen8 = "";
 let cstHome = "";
+let ctsGameArray = new Array();
 let ctsGameObtainedDropdown = document.querySelector(".CTS-GameObtainedDropdown");
 let ctsHowObtainedDropdown = document.querySelector(".CTS-HowObtainedDropdown");
 let ctsFormEvos = new Array();
@@ -63,7 +65,7 @@ $(".CTS-CloseButton").click(function () {
 
 $(".CTS-SearchButton").click(function () {
     ShowLoading();
-    $.post(url + "/PHP/cts_search.php", { offset: selectionOffset.value, limit: selectionLimit.value, pokemon: ctsPokemonDropdown.value, lang: ctsLangArray, ball: ctsBallArray, gender: ctsGenderOption, shiny: ctsShinyOption, mint: ctsMintOption, misc: ctsMiscArray, mark: ctsMarkArray, ribbons: ctsRibbonArray, nickname: ctsNicknameDropdown.value, ability: ctsAbilityDropdown.value, nature: ctsNatureDropdown.value, gen6: cstGen6, gen7: cstGen7, gen8: cstGen8, home: cstHome, gameObtained: ctsGameObtainedDropdown.value, howObtained: ctsHowObtainedDropdown.value, formEvos: ctsFormEvos, forms: ctsForms, formOption: ctsFormDropdown.value, evos: ctsEvos, evoOption: ctsEvoDropdown.value, OT: ctsOT.value, ID: ctsID.value, status: ctsStatusDropdown.value, event: ctsEventDropdown.value, ivhp: ctsIvHP.value, ivatt: ctsIvAtt.value, ivdef: ctsIvDef.value, ivspa: ctsIvSpa.value, ivspd: ctsIvSpd.value, ivspe: ctsIvSpe.value, evhp: ctsEvHP.value, evatt: ctsEvAtt.value, evdef: ctsEvDef.value, evspa: ctsEvSpa.value, evspd: ctsEvSpd.value, evspe: ctsEvSpe.value, move1: ctsMove1Dropdown.value, move2: ctsMove2Dropdown.value, move3: ctsMove3Dropdown.value, move4: ctsMove4Dropdown.value, proof: ctsProofDropdown.value, note: ctsNoteDropdown.value }, GenerateSelection);
+    $.post(url + "/PHP/cts_search.php", { token: token, offset: selectionOffset.value, limit: selectionLimit.value, pokemon: ctsPokemonDropdown.value, lang: ctsLangArray, ball: ctsBallArray, gender: ctsGenderOption, shiny: ctsShinyOption, mint: ctsMintOption, misc: ctsMiscArray, mark: ctsMarkArray, ribbons: ctsRibbonArray, nickname: ctsNicknameDropdown.value, ability: ctsAbilityDropdown.value, nature: ctsNatureArray, gen6: cstGen6, gen7: cstGen7, gen8: cstGen8, home: cstHome, gameObtained: ctsGameArray, howObtained: ctsHowObtainedDropdown.value, formEvos: ctsFormEvos, forms: ctsForms, formOption: ctsFormDropdown.value, evos: ctsEvos, evoOption: ctsEvoDropdown.value, OT: ctsOT.value, ID: ctsID.value, status: ctsStatusDropdown.value, event: ctsEventDropdown.value, ivhp: ctsIvHP.value, ivatt: ctsIvAtt.value, ivdef: ctsIvDef.value, ivspa: ctsIvSpa.value, ivspd: ctsIvSpd.value, ivspe: ctsIvSpe.value, evhp: ctsEvHP.value, evatt: ctsEvAtt.value, evdef: ctsEvDef.value, evspa: ctsEvSpa.value, evspd: ctsEvSpd.value, evspe: ctsEvSpe.value, move1: ctsMove1Dropdown.value, move2: ctsMove2Dropdown.value, move3: ctsMove3Dropdown.value, move4: ctsMove4Dropdown.value, proof: ctsProofDropdown.value, note: ctsNoteDropdown.value }, GenerateSelection);
     //$.post(ur, move1: ctsMove1Dropdown.valuel + "/PHP/cts_search.php", { ball: ctsBallArray }, GenerateSelection);
 });
 
@@ -140,8 +142,43 @@ $(".CTS-SelectedRibbon").click(function () {
     }
 });
 
+$(".CTS-SelectedNature").click(function () {
+    if (document.querySelector(".CTS-NatureOptions").style.display == "grid") {
+        document.querySelector(".CTS-NatureOptions").style.display = "none";
+    } else {
+        document.querySelector(".CTS-NatureOptions").style.display = "grid";
+    }
+});
+
+$(".CTS-SelectedGame").click(function () {
+    if (document.querySelector(".CTS-GameOptions").style.display == "grid") {
+        document.querySelector(".CTS-GameOptions").style.display = "none";
+    } else {
+        document.querySelector(".CTS-GameOptions").style.display = "grid";
+    }
+});
+
+function SetCTSImage() {
+    let gamesFound = 0;
+    let theGame = "";
+    for (let i = 0; i < ctsGameArray.length; i++) {
+        if (ctsGameArray[i] != undefined) {
+            gamesFound++;
+            if (gamesFound == 1) {
+                theGame = ctsGameArray[i];
+            }
+        }
+    }
+
+    if (gamesFound == 1) {
+        SetImage(document.querySelector(".CTS-PokemonImage"), ctsPokemonDropdown.value, ctsGenderOption, ctsShinyOption, theGame);
+    } else {
+        SetImage(document.querySelector(".CTS-PokemonImage"), ctsPokemonDropdown.value, ctsGenderOption, ctsShinyOption, "(Any Game)");
+    }
+}
+
 $(ctsPokemonDropdown).change(function () {
-    SetImage(document.querySelector(".CTS-PokemonImage"), ctsPokemonDropdown.value, ctsGenderOption, ctsShinyOption, ctsGameObtainedDropdown.value);
+    SetCTSImage();
     CTSAbilityOptions();
     ctsForms = new Array();
     ctsEvos = new Array();
@@ -256,11 +293,11 @@ function CTSLangOptions() {
         newDiv.onclick = function () {
             if (ctsLangArray[i] != languageOptionsArray[i]) {
                 ctsLangArray[i] = languageOptionsArray[i];
-                newDiv.style.backgroundColor = "#407c74";
+                newDiv.style.background = "linear-gradient(#076915, #008179)";
 
             } else {
                 delete (ctsLangArray[i]);
-                newDiv.style.backgroundColor = "#9f5e5e";
+                newDiv.style.background = "linear-gradient(#61100a, #cd4f4f)";
             }
         }
     }
@@ -285,10 +322,10 @@ function CTSBallOptions() {
             if (i != 0) {
                 if (ctsBallArray[i] != allBallsArray[i]) {
                     ctsBallArray[i] = allBallsArray[i];
-                    newDiv.style.backgroundColor = "#407c74";
+                    newDiv.style.background = "linear-gradient(#076915, #008179)";
                 } else {
                     delete (ctsBallArray[i]);
-                    newDiv.style.backgroundColor = "#9f5e5e";
+                    newDiv.style.background = "linear-gradient(#61100a, #cd4f4f)";
                 }
             }
         }
@@ -312,19 +349,19 @@ function CTSGenderOptions() {
         newDiv.onclick = function () {
             if (ctsGenderOption == genderOptionsArray[i]) {
                 ctsGenderOption = "(Any Gender)";
-                newDiv.style.backgroundColor = "#9f5e5e";
+                newDiv.style.background = "linear-gradient(#61100a, #cd4f4f)";
 
             } else {
                 ctsGenderOption = genderOptionsArray[i];
-                newDiv.style.backgroundColor = "#407c74";
+                newDiv.style.background = "linear-gradient(#076915, #008179)";
             }
 
             for (let j = 1; j < genderOptionsArray.length; j++) {
                 if (ctsGenderOption != genderOptionsArray[j]) {
-                    document.getElementById("CTS-" + genderOptionsArray[j]).style.backgroundColor = "#9f5e5e";
+                    document.getElementById("CTS-" + genderOptionsArray[j]).style.background = "linear-gradient(#61100a, #cd4f4f)";
                 }
             }
-            SetImage(document.querySelector(".CTS-PokemonImage"), ctsPokemonDropdown.value, ctsGenderOption, ctsShinyOption, ctsGameObtainedDropdown.value);
+            SetCTSImage();
         }
     }
 }
@@ -346,19 +383,19 @@ function CTSShinyOptions() {
         newDiv.onclick = function () {
             if (ctsShinyOption == shinyOptionsArray[i]) {
                 ctsShinyOption = "(Any Shiny or Normal)";
-                newDiv.style.backgroundColor = "#9f5e5e";
+                newDiv.style.background = "linear-gradient(#61100a, #cd4f4f)";
 
             } else {
                 ctsShinyOption = shinyOptionsArray[i];
-                newDiv.style.backgroundColor = "#407c74";
+                newDiv.style.background = "linear-gradient(#076915, #008179)";
             }
 
             for (let j = 1; j < shinyOptionsArray.length; j++) {
                 if (ctsShinyOption != shinyOptionsArray[j]) {
-                    document.getElementById("CTS-" + shinyOptionsArray[j]).style.backgroundColor = "#9f5e5e";
+                    document.getElementById("CTS-" + shinyOptionsArray[j]).style.background = "linear-gradient(#61100a, #cd4f4f)";
                 }
             }
-            SetImage(document.querySelector(".CTS-PokemonImage"), ctsPokemonDropdown.value, ctsGenderOption, ctsShinyOption, ctsGameObtainedDropdown.value);
+            SetCTSImage();
         }
     }
 }
@@ -380,16 +417,16 @@ function CTSMintOptions() {
         newDiv.onclick = function () {
             if (ctsMintOption == mintOptionsArray[i]) {
                 ctsMintOption = "(Any or No Mint)";
-                newDiv.style.backgroundColor = "#9f5e5e";
+                newDiv.style.background = "linear-gradient(#61100a, #cd4f4f)";
 
             } else {
                 ctsMintOption = mintOptionsArray[i];
-                newDiv.style.backgroundColor = "#407c74";
+                newDiv.style.background = "linear-gradient(#076915, #008179)";
             }
 
             for (let j = 1; j < mintOptionsArray.length; j++) {
                 if (ctsMintOption != mintOptionsArray[j]) {
-                    document.getElementById("CTS-" + mintOptionsArray[j]).style.backgroundColor = "#9f5e5e";
+                    document.getElementById("CTS-" + mintOptionsArray[j]).style.background = "linear-gradient(#61100a, #cd4f4f)";
                 }
             }
         }
@@ -413,11 +450,11 @@ function CTSMiscOptions() {
         newDiv.onclick = function () {
             if (ctsMiscArray[i] != miscOptionsArray[i]) {
                 ctsMiscArray[i] = miscOptionsArray[i];
-                newDiv.style.backgroundColor = "#407c74";
+                newDiv.style.background = "linear-gradient(#076915, #008179)";
 
             } else {
                 delete (ctsMiscArray[i]);
-                newDiv.style.backgroundColor = "#9f5e5e";
+                newDiv.style.background = "linear-gradient(#61100a, #cd4f4f)";
             }
         }
     }
@@ -440,11 +477,11 @@ function CTSMarkOptions() {
         newDiv.onclick = function () {
             if (ctsMarkArray[i] != allMarksArray[i]) {
                 ctsMarkArray[i] = allMarksArray[i];
-                newDiv.style.backgroundColor = "#407c74";
+                newDiv.style.background = "linear-gradient(#076915, #008179)";
 
             } else {
                 delete (ctsMarkArray[i]);
-                newDiv.style.backgroundColor = "#9f5e5e";
+                newDiv.style.background = "linear-gradient(#61100a, #cd4f4f)";
             }
         }
     }
@@ -467,12 +504,39 @@ function CTSRibbonOptions() {
         newDiv.onclick = function () {
             if (ctsRibbonArray[i] != ribbonOptionsArray[i]) {
                 ctsRibbonArray[i] = ribbonOptionsArray[i];
-                newDiv.style.backgroundColor = "#407c74";
+                newDiv.style.background = "linear-gradient(#076915, #008179)";
 
             } else {
                 delete (ctsRibbonArray[i]);
-                newDiv.style.backgroundColor = "#9f5e5e";
+                newDiv.style.background = "linear-gradient(#61100a, #cd4f4f)";
             }
+        }
+    }
+}
+
+function CTSGameOptions() {
+    for (let i = 2; i < gameObtainedArray.length; i++) {
+        let newDiv = document.createElement("div");
+        newDiv.setAttribute("id", "CTS-" + gameObtainedArray[i]);
+        newDiv.classList.add("CTS-GameIconContainer")
+
+        newButton = document.createElement("button");
+        newButton.classList.add("CTS-IconButton");
+        newButton.innerHTML = gameObtainedArray[i];
+
+        newDiv.appendChild(newButton);
+        document.querySelector(".CTS-GameOptions").appendChild(newDiv);
+
+        newDiv.onclick = function () {
+            if (ctsGameArray[i] != gameObtainedArray[i]) {
+                ctsGameArray[i] = gameObtainedArray[i];
+                newDiv.style.background = "linear-gradient(#076915, #008179)";
+
+            } else {
+                delete (ctsGameArray[i]);
+                newDiv.style.background = "linear-gradient(#61100a, #cd4f4f)";
+            }
+            SetCTSImage();
         }
     }
 }
@@ -540,10 +604,54 @@ function CTSAbilityOptions() {
     }
 }
 
+function CTSNatureOptions() {
+    for (let i = 1; i < allNaturesArray.length; i++) {
+        let newDiv = document.createElement("div");
+        newDiv.setAttribute("id", "CTS-" + allNaturesArray[i]);
+        newDiv.classList.add("CTS-NatureContainer")
+
+        newButton = document.createElement("button");
+        newButton.classList.add("CTS-IconButton");
+        newButton.innerHTML = allNaturesArray[i];
+
+        newDiv.appendChild(newButton);
+        document.querySelector(".CTS-NatureOptions").appendChild(newDiv);
+
+        newDiv.onclick = function () {
+            if (ctsNatureArray[i] != allNaturesArray[i]) {
+                ctsNatureArray[i] = allNaturesArray[i];
+                newDiv.style.background = "linear-gradient(#076915, #008179)";
+
+            } else {
+                delete (ctsNatureArray[i]);
+                newDiv.style.background = "linear-gradient(#61100a, #cd4f4f)";
+            }
+        }
+    }
+}
+
 function CTSResetFilters() {
+    document.querySelector(".CTS-LangOptions").style.display = "none";
+    document.querySelector(".CTS-BallOptions").style.display = "none";
+    document.querySelector(".CTS-GenderOptions").style.display = "none";
+    document.querySelector(".CTS-ShinyOptions").style.display = "none";
+    document.querySelector(".CTS-MintOptions").style.display = "none";
+    document.querySelector(".CTS-MiscOptions").style.display = "none";
+    document.querySelector(".CTS-MarkOptions").style.display = "none";
+    document.querySelector(".CTS-RibbonOptions").style.display = "none";
+    document.querySelector(".CTS-NatureOptions").style.display = "none";
+    document.querySelector(".CTS-GameOptions").style.display = "none";
     var cols = document.getElementsByClassName("CTS-IconContainer");
     for (i = 0; i < cols.length; i++) {
-        cols[i].style.background = "#9f5e5e";
+        cols[i].style.background = "linear-gradient(#61100a, #cd4f4f)";
+    }
+    var cols = document.getElementsByClassName("CTS-NatureContainer");
+    for (i = 0; i < cols.length; i++) {
+        cols[i].style.background = "linear-gradient(#61100a, #cd4f4f)";
+    }
+    var cols = document.getElementsByClassName("CTS-GameIconContainer");
+    for (i = 0; i < cols.length; i++) {
+        cols[i].style.background = "linear-gradient(#61100a, #cd4f4f)";
     }
     ctsLangArray = new Array(languageOptionsArray.length - 1);
     ctsBallArray = new Array(allBallsArray.length - 1);
@@ -557,6 +665,7 @@ function CTSResetFilters() {
     ctsNicknameDropdown.value = "(Any/No Nickname)";
     ctsAbilityDropdown.value = "(Any Ability)";
     ctsNatureDropdown.value = "(Any Nature)";
+    ctsNatureArray = new Array(allNaturesArray.length - 1);
     cstGen6 = "";
     document.querySelector(".CTS-Gen6").style.color = "white";
     cstGen7 = "";
@@ -569,6 +678,7 @@ function CTSResetFilters() {
     ctsFormDropdown.value = "(This Form)";
     ctsEvos = new Array();
     ctsEvoDropdown.value = "(This Pokemon)";
+    ctsGameArray = new Array();
     ctsGameObtainedDropdown.value = "(Any Game)";
     ctsHowObtainedDropdown.value = "(Any Method)";
     ctsOT.value = "";

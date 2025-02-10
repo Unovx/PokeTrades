@@ -7,15 +7,18 @@
 }
 
 #CTSArea {
-    background-color: #1a233a;
+    background: url('https://poketrades.org/Resources/Designs/Sidebar.png');
     position: absolute;
     display: none;
     height: calc(100% - 52px);
-    z-index: 2;
+    z-index: 5;
     width: 420px;
-    right: 0;
     overflow: auto;
+    right: 0;
     margin-top: 52px;
+    border-color: #373a6d;
+    border-width: 2px;
+    border-style: solid;
 }
 
 .CTS-DropdownOptions {
@@ -23,7 +26,7 @@
     font-family: Arial, Helvetica, sans-serif;
     color: #e0e0e0;
     font-size: 14px;
-    background: #2a3757;
+    background: #232c45;
 }
 
 .CTS-Buttons {
@@ -42,17 +45,19 @@
     background: #171d2c;
     border-width: 2px;
     border-style: solid;
-    border-color: #2e3850;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: #536c9f;
+    color: #dbdbdb;
     cursor: pointer;
     margin: 3px;
-    box-shadow: rgb(17 23 37) 1px 2px 0px 1px;
     border-radius: 5px;
+
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    background-size: contain;
+    border-color: #3d429c;
 }
 
 .CTS-LoadLimits {
@@ -73,6 +78,8 @@
 }
 
 .CTS-IconOptions {
+    background: url('https://poketrades.org/Resources/Designs/Stat_Data_Holder.png');
+    background-size: contain;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     text-align: center;
@@ -84,86 +91,78 @@
 }
 
 .CTS-SelectedLang {
-    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #4f5397;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
-    color: #2c7b9f;
+    color: #4599bf;
     font-size: 16px;
     height: 20px;
     cursor: pointer;
 }
 
 .CTS-SelectedBall {
-    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #4f5397;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     cursor: pointer;
 }
 
 .CTS-SelectedGender {
-    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #4f5397;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     cursor: pointer;
 }
 
 .CTS-SelectedShiny {
-    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #4f5397;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     cursor: pointer;
 }
 
 .CTS-SelectedMint {
-    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #4f5397;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     cursor: pointer;
 }
 
 .CTS-SelectedMisc {
-    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #4f5397;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     cursor: pointer;
 }
 
 .CTS-SelectedMark {
-    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #4f5397;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     cursor: pointer;
 }
 
 .CTS-SelectedRibbon {
-    background-color: #243048;
     border-width: 2px;
     border-style: solid;
-    border-color: #171d2c;
+    border-color: #4f5397;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     pointer-events: initial !important;
@@ -226,7 +225,22 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
     border-radius: 9px;
-    background-color: #243048;
+    /*background: linear-gradient(#0d426b, #00407f);*/
+    background: linear-gradient(#002569, #133e7b);
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    margin-bottom: 10px;
+}
+
+.CTS-GameOptionsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(63px, 1fr));
+    border-radius: 9px;
+    /*background: linear-gradient(#0d426b, #00407f);*/
+    background: linear-gradient(#002569, #133e7b);
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
     border-width: 2px;
     border-style: solid;
     border-color: #171d2c;
@@ -268,24 +282,47 @@
 .CTS-PokemonDetails {
     display: flex;
     border-radius: 9px;
-    background-color: #243048;
-    height: 125px;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    background-size: contain;
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
+    height: 120px;
     border-width: 2px;
     border-style: solid;
     border-color: #171d2c;
     margin-bottom: 10px;
+    place-items: center;
 }
 
 .CTS-IconContainer {
     display: flex;
     /*border-radius: 30px;*/
     border-radius: 8px;
-    background-color: #9f5e5e;
+    background: linear-gradient(#61100a, #cd4f4f);
+    /*background-color: #9f5e5e;*/
     border-width: 2px;
     border-style: solid;
     border-color: #171d2c;
     height: 25px;
     width: 25px;
+    text-align-last: center;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+}
+
+.CTS-GameIconContainer {
+    display: flex;
+    /*border-radius: 30px;*/
+    border-radius: 8px;
+    background: linear-gradient(#61100a, #cd4f4f);
+    /*background-color: #9f5e5e;*/
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    height: 25px;
+    width: 63px;
     text-align-last: center;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -319,28 +356,28 @@
 }
 
 .CTS-PokemonDropdown {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
 .CTS-NicknameDropdown {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #a0a0a0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -353,12 +390,12 @@
 }
 
 .CTS-TableText {
-    background: #243048;
+    background: none;
     text-align: end;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     width: 140px;
     display: table-cell;
     border-right-style: none;
@@ -367,43 +404,98 @@
 }
 
 .CTS-AbilityDropdown {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
+    text-align: center;
 }
 
 .CTS-NatureDropdown {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
-.CTS-InfoHolder {
+.CTS-SelectedNature {
+    background: none;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    color: #e0e0e0;
+    font-size: 13px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+.CTS-NaturesContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
     border-radius: 9px;
-    background-color: #243048;
+    /*background: linear-gradient(#0d426b, #00407f);*/
+    background: linear-gradient(#002569, #133e7b);
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
     border-width: 2px;
     border-style: solid;
     border-color: #171d2c;
     margin-bottom: 10px;
+}
+
+.CTS-NatureContainer {
     display: flex;
+    /*border-radius: 30px;*/
+    border-radius: 8px;
+    background: linear-gradient(#61100a, #cd4f4f);
+    /*background-color: #9f5e5e;*/
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    height: 25px;
+    width: 70px;
+    text-align-last: center;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+}
+
+.CTS-NatureOptions {
+    display: none;
+}
+
+.CTS-InfoHolder {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    border-radius: 9px;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    background-size: contain;
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #171d2c;
+    margin-bottom: 10px;
 }
 
 .CTS-Availability {
-    display: grid;
+    /*display: grid;*/
+    display: none;
     grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
     text-align: center;
     width: auto;
@@ -469,116 +561,137 @@
     padding: 0px;
 }
 
+.CTS-SelectedGame {
+    background: none;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
+    font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+    color: #e0e0e0;
+    font-size: 13px;
+    border: 0px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
 .CTS-GameObtainedDropdown {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
 .CTS-HowObtainedDropdown {
-    background: #243048;
-    /*width: -webkit-fill-available !important;
-    width: -moz-available !important;*/
-    width: 171px;
+    background: none;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
 .CTS-FormDropdown {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #a0a0a0;
-    font-size: 15px;
+    font-family: 'Orbitron', sans-serif;
+    color: #e0e0e0;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
 .CTS-EvoDropdown {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #a0a0a0;
-    font-size: 15px;
+    font-family: 'Orbitron', sans-serif;
+    color: #e0e0e0;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
 .CTS-OT {
-    background: #243048;
-    width: 148px !important;
+    background: none;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
+    text-align: center;
 }
 
 .CTS-ID {
-    background: #243048;
-    width: 148px !important;
+    background: none;
+    width: -webkit-fill-available !important;
+    width: -moz-available !important;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
+    text-align: center;
 }
 
 .CTS-StatusDropdown {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
+    text-align: center;
 }
 
 .CTS-EventDropdown {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
+    text-align: center;
 }
 
 .CTS-StatHolder {
     border-radius: 9px;
-    background-color: #35425c;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    background-size: contain;
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
     border-width: 2px;
     border-style: solid;
     border-color: #171d2c;
@@ -589,32 +702,35 @@
 }
 
 .CTS-IvEvDesign {
-    font-size: 15px;
-    background-color: #243048;
+    font-size: 13px;
+    background: linear-gradient(#2c618a, #004181);
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
 }
 
 .CTS-IvText {
     color: #e0e0e0;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
     text-align: center;
 }
 
 .CTS-EvText {
     color: #e0e0e0;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
     text-align: center;
 }
 
 .CTS-IvEvText {
     color: #e0e0e0;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
     text-align: center;
     width: 46px !important;
 }
@@ -677,7 +793,9 @@
 
 .CTS-MovesHolder {
     border-radius: 9px;
-    background-color: #243048;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    background-size: contain;
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
     border-width: 2px;
     border-style: solid;
     border-color: #171d2c;
@@ -686,14 +804,14 @@
 
 .CTS-PokemonMoves {
     display: block;
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -707,56 +825,56 @@
 }
 
 .CTS-Move1 {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
 .CTS-Move2 {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
 .CTS-Move3 {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
 .CTS-Move4 {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     text-align: center;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
@@ -767,38 +885,41 @@
     grid-template-columns: repeat(2, minmax(100px, 1fr));
     text-align: center;
     border-radius: 9px;
-    background-color: #243048;
+    background: url(https://poketrades.org/Resources/Designs/Stat_Data_Holder.png);
+    background-size: contain;
+    box-shadow: #3d429c 0px 0px 0px 2px inset;
     border-width: 2px;
     border-style: solid;
     border-color: #171d2c;
     margin-bottom: 10px;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
+    height: 30px;
 }
 
 .CTS-ProofDropdown {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     text-align-last: center;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
 }
 
 .CTS-NoteDropdown {
-    background: #243048;
+    background: none;
     width: -webkit-fill-available !important;
     width: -moz-available !important;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     text-align-last: center;
     color: #e0e0e0;
-    font-size: 15px;
+    font-size: 13px;
     border: 0px;
     margin-top: 4px;
     margin-bottom: 4px;
